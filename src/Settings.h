@@ -14,35 +14,25 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef SETTINGS_H
+#define SETTINGS_H
 
 // Qt includes
-#include <QMainWindow>
+#include <QSettings>
 
-// Local classes
-class Settings;
-
-// Qt classes
-class QDockWidget;
-class QCloseEvent;
-
-class MainWindow : public QMainWindow
+class Settings : public QSettings
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow();
+    explicit Settings(QObject *parent);
 
-protected:
-    virtual void closeEvent(QCloseEvent *) override;
+    void saveMainWindowGeometry(const QByteArray &data);
+    QByteArray mainWindowGeometry() const;
 
-private: // Functions
-    QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-
-private: // Variables
-    Settings *m_settings;
+    void saveMainWindowState(const QByteArray &data);
+    QByteArray mainWindowState() const;
 
 };
 
-#endif // MAINWINDOW_H
+#endif // SETTINGS_H

@@ -46,6 +46,7 @@ include_directories(${main_ROOT})
 set(main_SOURCES
     ${main_ROOT}/main.cpp
     ${main_ROOT}/MainWindow.cpp
+    ${main_ROOT}/Settings.cpp
     ${main_ROOT}/ImagesWidget.cpp
     ${main_ROOT}/PreviewWidget.cpp
     ${main_ROOT}/MapWidget.cpp

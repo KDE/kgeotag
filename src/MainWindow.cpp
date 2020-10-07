@@ -16,6 +16,7 @@
 
 // Local includes
 #include "MainWindow.h"
+#include "Settings.h"
 #include "ImagesWidget.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
@@ -32,6 +33,8 @@
 
 MainWindow::MainWindow() : QMainWindow()
 {
+    m_settings = new Settings(this);
+
     // Menu setup
 
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
@@ -48,16 +51,20 @@ MainWindow::MainWindow() : QMainWindow()
                                          QStringLiteral("previewDock"));
     createDockWidget(i18n("Map"), new MapWidget, QStringLiteral("mapDock"));
 
-    // Size initialization
-
-    const QRect availableGeometry = QGuiApplication::primaryScreen()->availableGeometry();
-    if (availableGeometry.width() > 1024 && availableGeometry.height() > 765) {
-        resize(QSize(1024, 765));
-    } else {
-        setWindowState(Qt::WindowMaximized);
+    // Size initialization/restoration
+    if (! restoreGeometry(m_settings->mainWindowGeometry())) {
+        const QRect availableGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+        if (availableGeometry.width() > 1024 && availableGeometry.height() > 765) {
+            resize(QSize(1024, 765));
+        } else {
+            setWindowState(Qt::WindowMaximized);
+        }
     }
 
-    splitDockWidget(imagesDock, previewDock, Qt::Vertical);
+    // Initialize/Restore the dock widget arrangement
+    if (! restoreState(m_settings->mainWindowState())) {
+        splitDockWidget(imagesDock, previewDock, Qt::Vertical);
+    }
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
@@ -69,4 +76,10 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
     dock->setWidget(widget);
     addDockWidget(Qt::TopDockWidgetArea, dock);
     return dock;
+}
+
+void MainWindow::closeEvent(QCloseEvent *)
+{
+    m_settings->saveMainWindowGeometry(saveGeometry());
+    m_settings->saveMainWindowState(saveState());
 }
