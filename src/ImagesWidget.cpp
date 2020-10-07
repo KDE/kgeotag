@@ -14,25 +14,18 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+// Local includes
+#include "ImagesWidget.h"
+
+// KDE includes
+#include <KLocalizedString>
 
 // Qt includes
-#include <QMainWindow>
+#include <QVBoxLayout>
+#include <QLabel>
 
-// Qt classes
-class QDockWidget;
-
-class MainWindow : public QMainWindow
+ImagesWidget::ImagesWidget(QWidget *parent) : QWidget(parent)
 {
-    Q_OBJECT
-
-public:
-    explicit MainWindow();
-
-private: // Functions
-    QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-
-};
-
-#endif // MAINWINDOW_H
+    auto *layout = new QVBoxLayout(this);
+    layout->addWidget(new QLabel(i18n("ImagesWidget")));
+}

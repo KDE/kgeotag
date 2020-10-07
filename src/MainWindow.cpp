@@ -16,7 +16,56 @@
 
 // Local includes
 #include "MainWindow.h"
+#include "ImagesWidget.h"
+#include "PreviewWidget.h"
+#include "MapWidget.h"
+
+// KDE includes
+#include <KLocalizedString>
+
+// Qt includes
+#include <QMenuBar>
+#include <QAction>
+#include <QDockWidget>
+#include <QGuiApplication>
+#include <QScreen>
 
 MainWindow::MainWindow() : QMainWindow()
 {
+    // Menu setup
+
+    auto *fileMenu = menuBar()->addMenu(i18n("File"));
+    auto *quitAction = fileMenu->addAction(i18n("Quit"));
+    connect(quitAction, &QAction::triggered, this, &QWidget::close);
+
+    // Dock setup
+
+    setDockNestingEnabled(true);
+
+    auto *imagesDock = createDockWidget(i18n("Images"), new ImagesWidget,
+                                        QStringLiteral("imagesDock"));
+    auto *previewDock = createDockWidget(i18n("Preview"), new PreviewWidget,
+                                         QStringLiteral("previewDock"));
+    createDockWidget(i18n("Map"), new MapWidget, QStringLiteral("mapDock"));
+
+    // Size initialization
+
+    const QRect availableGeometry = QGuiApplication::primaryScreen()->availableGeometry();
+    if (availableGeometry.width() > 1024 && availableGeometry.height() > 765) {
+        resize(QSize(1024, 765));
+    } else {
+        setWindowState(Qt::WindowMaximized);
+    }
+
+    splitDockWidget(imagesDock, previewDock, Qt::Vertical);
+}
+
+QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
+                                          const QString &objectName)
+{
+    auto *dock = new QDockWidget(title, this);
+    dock->setObjectName(objectName);
+    dock->setWidget(widget);
+    addDockWidget(Qt::TopDockWidgetArea, dock);
+    return dock;
 }

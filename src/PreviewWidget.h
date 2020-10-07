@@ -14,25 +14,19 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef PREVIEWWIDGET_H
+#define PREVIEWWIDGET_H
 
 // Qt includes
-#include <QMainWindow>
+#include <QWidget>
 
-// Qt classes
-class QDockWidget;
-
-class MainWindow : public QMainWindow
+class PreviewWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MainWindow();
-
-private: // Functions
-    QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
+    explicit PreviewWidget(QWidget *parent = nullptr);
 
 };
 
-#endif // MAINWINDOW_H
+#endif // PREVIEWWIDGET_H
