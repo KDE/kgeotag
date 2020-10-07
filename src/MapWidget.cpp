@@ -19,6 +19,7 @@
 
 // Marble includes
 #include <marble/MarbleWidget.h>
+#include <marble/AbstractFloatItem.h>
 
 // Qt includes
 #include <QVBoxLayout>
@@ -34,4 +35,27 @@ MapWidget::MapWidget(QWidget *parent) : QWidget(parent)
 
     layout->addWidget(m_mapWidget);
     m_mapWidget->show();
+}
+
+QHash<QString, bool> MapWidget::floatersVisibility() const
+{
+    QHash<QString, bool> visibility;
+
+    const auto floatItems = m_mapWidget->floatItems();
+    for (const auto &item : floatItems) {
+        visibility.insert(item->name(), item->visible());
+    }
+
+    return visibility;
+}
+
+void MapWidget::setFloatersVisibility(const QHash<QString, bool> &data)
+{
+    const auto floatItems = m_mapWidget->floatItems();
+    for (const auto &item : floatItems) {
+        const auto name = item->name();
+        if (data.contains(name)) {
+            item->setVisible(data.value(name));
+        }
+    }
 }

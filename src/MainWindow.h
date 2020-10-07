@@ -22,6 +22,7 @@
 
 // Local classes
 class Settings;
+class MapWidget;
 
 // Qt classes
 class QDockWidget;
@@ -42,6 +43,7 @@ private: // Functions
 
 private: // Variables
     Settings *m_settings;
+    MapWidget *m_mapWidget;
 
 };
 

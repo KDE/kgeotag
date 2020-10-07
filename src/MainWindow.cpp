@@ -31,6 +31,7 @@
 #include <QGuiApplication>
 #include <QScreen>
 #include <QApplication>
+#include <QDebug>
 
 MainWindow::MainWindow() : QMainWindow()
 {
@@ -39,6 +40,7 @@ MainWindow::MainWindow() : QMainWindow()
     // Menu setup
 
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
+
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
@@ -50,7 +52,9 @@ MainWindow::MainWindow() : QMainWindow()
                                         QStringLiteral("imagesDock"));
     auto *previewDock = createDockWidget(i18n("Preview"), new PreviewWidget,
                                          QStringLiteral("previewDock"));
-    createDockWidget(i18n("Map"), new MapWidget, QStringLiteral("mapDock"));
+
+    m_mapWidget = new MapWidget;
+    createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -66,6 +70,10 @@ MainWindow::MainWindow() : QMainWindow()
     if (! restoreState(m_settings->mainWindowState())) {
         splitDockWidget(imagesDock, previewDock, Qt::Vertical);
     }
+
+    // Restore the map's floaters visibility settings
+    const auto floatersVisiblility = m_settings->floatersVisibility();
+    m_mapWidget->setFloatersVisibility(floatersVisiblility);
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
@@ -82,7 +90,11 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
 void MainWindow::closeEvent(QCloseEvent *)
 {
     m_settings->saveMainWindowGeometry(saveGeometry());
+
     m_settings->saveMainWindowState(saveState());
+
+    const auto visibility = m_mapWidget->floatersVisibility();
+    m_settings->saveFloatersVisibility(visibility);
 
     QApplication::quit();
 }

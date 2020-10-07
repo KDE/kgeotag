@@ -33,6 +33,9 @@ public:
     void saveMainWindowState(const QByteArray &data);
     QByteArray mainWindowState() const;
 
+    void saveFloatersVisibility(const QHash<QString, bool> &data);
+    QHash<QString, bool> floatersVisibility();
+
 };
 
 #endif // SETTINGS_H

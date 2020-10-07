@@ -17,12 +17,17 @@
 // Local includes
 #include "Settings.h"
 
+// Qt includes
+#include <QDebug>
+
 namespace
 {
 
 const QLatin1String c_main("main/");
 const QString c_main_windowGeometry = c_main + QLatin1String("window_geometry");
 const QString c_main_windowState   = c_main + QLatin1String("window_state");
+
+const QLatin1String c_map("floaters_visibility/");
 
 }
 
@@ -49,4 +54,27 @@ void Settings::saveMainWindowState(const QByteArray &data)
 QByteArray Settings::mainWindowState() const
 {
     return value(c_main_windowState, QByteArray()).toByteArray();
+}
+
+void Settings::saveFloatersVisibility(const QHash<QString, bool> &data)
+{
+    const auto keys = data.keys();
+    for (const auto &key : keys) {
+        setValue(c_map + key, data.value(key));
+    }
+}
+
+QHash<QString, bool> Settings::floatersVisibility()
+{
+    QHash<QString, bool> data;
+
+    beginGroup(c_map);
+    const auto keys = allKeys();
+    endGroup();
+
+    for (const auto &key : keys) {
+        data.insert(key, value(c_map + key).toBool());
+    }
+
+    return data;
 }

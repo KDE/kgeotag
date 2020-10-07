@@ -31,6 +31,8 @@ class MapWidget : public QWidget
 
 public:
     explicit MapWidget(QWidget *parent = nullptr);
+    QHash<QString, bool> floatersVisibility() const;
+    void setFloatersVisibility(const QHash<QString, bool> &data);
 
 private: // Variables
     Marble::MarbleWidget *m_mapWidget;
