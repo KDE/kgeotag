@@ -17,15 +17,25 @@
 // Local includes
 #include "MapWidget.h"
 
+// Marble includes
+#include <marble/MarbleWidget.h>
+
 // KDE includes
 #include <KLocalizedString>
 
 // Qt includes
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QDebug>
 
 MapWidget::MapWidget(QWidget *parent) : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
-    layout->addWidget(new QLabel(i18n("MapWidget")));
+
+    m_mapWidget = new Marble::MarbleWidget;
+    m_mapWidget->setProjection(Marble::Mercator);
+    m_mapWidget->setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
+
+    layout->addWidget(m_mapWidget);
+    m_mapWidget->show();
 }

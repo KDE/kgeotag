@@ -30,6 +30,7 @@
 #include <QDockWidget>
 #include <QGuiApplication>
 #include <QScreen>
+#include <QApplication>
 
 MainWindow::MainWindow() : QMainWindow()
 {
@@ -82,4 +83,6 @@ void MainWindow::closeEvent(QCloseEvent *)
 {
     m_settings->saveMainWindowGeometry(saveGeometry());
     m_settings->saveMainWindowState(saveState());
+
+    QApplication::quit();
 }

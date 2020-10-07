@@ -20,12 +20,20 @@
 // Qt includes
 #include <QWidget>
 
+namespace Marble
+{
+class MarbleWidget;
+}
+
 class MapWidget : public QWidget
 {
     Q_OBJECT
 
 public:
     explicit MapWidget(QWidget *parent = nullptr);
+
+private: // Variables
+    Marble::MarbleWidget *m_mapWidget;
 
 };
 
