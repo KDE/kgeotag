@@ -20,12 +20,8 @@
 // Marble includes
 #include <marble/MarbleWidget.h>
 
-// KDE includes
-#include <KLocalizedString>
-
 // Qt includes
 #include <QVBoxLayout>
-#include <QLabel>
 #include <QDebug>
 
 MapWidget::MapWidget(QWidget *parent) : QWidget(parent)
