@@ -14,39 +14,17 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef SETTINGS_H
-#define SETTINGS_H
-
-// Qt includes
-#include <QSettings>
+#ifndef COORDINATES_H
+#define COORDINATES_H
 
 namespace Coordinates
 {
-struct Data;
-}
 
-class Settings : public QSettings
-{
-    Q_OBJECT
-
-public:
-    explicit Settings(QObject *parent);
-
-    void saveMainWindowGeometry(const QByteArray &data);
-    QByteArray mainWindowGeometry() const;
-
-    void saveMainWindowState(const QByteArray &data);
-    QByteArray mainWindowState() const;
-
-    void saveFloatersVisibility(const QHash<QString, bool> &data);
-    QHash<QString, bool> floatersVisibility();
-
-    void saveMapCenter(const Coordinates::Data &coordinates);
-    Coordinates::Data mapCenter() const;
-
-    void saveZoom(int zoom);
-    int zoom() const;
-
+struct Data {
+    double lon;
+    double lat;
 };
 
-#endif // SETTINGS_H
+}
+
+#endif // COORDINATES_H

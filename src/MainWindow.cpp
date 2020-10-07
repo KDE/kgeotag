@@ -74,6 +74,11 @@ MainWindow::MainWindow() : QMainWindow()
     // Restore the map's floaters visibility settings
     const auto floatersVisiblility = m_settings->floatersVisibility();
     m_mapWidget->setFloatersVisibility(floatersVisiblility);
+
+    // Restore map's last center point and zoom level
+    const auto center = m_settings->mapCenter();
+    m_mapWidget->setCenter(center);
+    m_mapWidget->setZoom(m_settings->zoom());
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
@@ -95,6 +100,9 @@ void MainWindow::closeEvent(QCloseEvent *)
 
     const auto visibility = m_mapWidget->floatersVisibility();
     m_settings->saveFloatersVisibility(visibility);
+
+    m_settings->saveMapCenter(m_mapWidget->mapCenter());
+    m_settings->saveZoom(m_mapWidget->zoom());
 
     QApplication::quit();
 }

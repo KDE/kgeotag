@@ -16,6 +16,7 @@
 
 // Local includes
 #include "Settings.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QDebug>
@@ -27,7 +28,12 @@ const QLatin1String c_main("main/");
 const QString c_main_windowGeometry = c_main + QLatin1String("window_geometry");
 const QString c_main_windowState   = c_main + QLatin1String("window_state");
 
-const QLatin1String c_map("floaters_visibility/");
+const QLatin1String c_floatersVisibility("floaters_visibility/");
+
+const QLatin1String c_map("map/");
+const QString c_map_centerLon = c_map + QLatin1String("centerLon");
+const QString c_map_centerLat = c_map + QLatin1String("centerLat");
+const QString c_map_zoom = c_map + QLatin1String("zoom");
 
 }
 
@@ -60,7 +66,7 @@ void Settings::saveFloatersVisibility(const QHash<QString, bool> &data)
 {
     const auto keys = data.keys();
     for (const auto &key : keys) {
-        setValue(c_map + key, data.value(key));
+        setValue(c_floatersVisibility + key, data.value(key));
     }
 }
 
@@ -68,13 +74,35 @@ QHash<QString, bool> Settings::floatersVisibility()
 {
     QHash<QString, bool> data;
 
-    beginGroup(c_map);
+    beginGroup(c_floatersVisibility);
     const auto keys = allKeys();
     endGroup();
 
     for (const auto &key : keys) {
-        data.insert(key, value(c_map + key).toBool());
+        data.insert(key, value(c_floatersVisibility + key).toBool());
     }
 
     return data;
+}
+
+void Settings::saveMapCenter(const Coordinates::Data &coordinates)
+{
+    setValue(c_map_centerLon, coordinates.lon);
+    setValue(c_map_centerLat, coordinates.lat);
+}
+
+Coordinates::Data Settings::mapCenter() const
+{
+    return Coordinates::Data { value(c_map_centerLon, 0).toDouble(),
+                               value(c_map_centerLat, 0).toDouble() };
+}
+
+void Settings::saveZoom(int zoom)
+{
+    setValue(c_map_zoom, zoom);
+}
+
+int Settings::zoom() const
+{
+    return value(c_map_zoom, 1520).toInt();
 }

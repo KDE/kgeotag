@@ -59,3 +59,29 @@ void MapWidget::setFloatersVisibility(const QHash<QString, bool> &data)
         }
     }
 }
+
+Coordinates::Data MapWidget::toCoordinates(const Marble::GeoDataCoordinates &data) const
+{
+    return Coordinates::Data { data.longitude(Marble::GeoDataCoordinates::Degree),
+                               data.latitude(Marble::GeoDataCoordinates::Degree) };
+}
+
+Coordinates::Data MapWidget::mapCenter() const
+{
+    return toCoordinates(m_mapWidget->focusPoint());
+}
+
+void MapWidget::setCenter(const Coordinates::Data &coordinates)
+{
+    m_mapWidget->centerOn(coordinates.lon, coordinates.lat);
+}
+
+int MapWidget::zoom() const
+{
+    return m_mapWidget->zoom();
+}
+
+void MapWidget::setZoom(int zoom)
+{
+    m_mapWidget->setZoom(zoom);
+}
