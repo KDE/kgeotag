@@ -41,6 +41,10 @@ MainWindow::MainWindow() : QMainWindow()
 
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
 
+    auto *addImagesAction = fileMenu->addAction(i18n("Add images"));
+
+    fileMenu->addSeparator();
+
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
@@ -48,8 +52,11 @@ MainWindow::MainWindow() : QMainWindow()
 
     setDockNestingEnabled(true);
 
-    auto *imagesDock = createDockWidget(i18n("Images"), new ImagesWidget,
+    m_imagesWidget = new ImagesWidget(m_settings);
+    auto *imagesDock = createDockWidget(i18n("Images"), m_imagesWidget,
                                         QStringLiteral("imagesDock"));
+    connect(addImagesAction, &QAction::triggered, m_imagesWidget, &ImagesWidget::addImages);
+
     auto *previewDock = createDockWidget(i18n("Preview"), new PreviewWidget,
                                          QStringLiteral("previewDock"));
 

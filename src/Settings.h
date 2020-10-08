@@ -47,6 +47,9 @@ public:
     void saveZoom(int zoom);
     int zoom() const;
 
+    void saveLastImagesOpenPath(const QString &path);
+    QString lastImagesOpenPath() const;
+
 };
 
 #endif // SETTINGS_H

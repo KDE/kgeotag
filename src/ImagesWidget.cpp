@@ -16,16 +16,50 @@
 
 // Local includes
 #include "ImagesWidget.h"
+#include "Settings.h"
 
 // KDE includes
 #include <KLocalizedString>
 
 // Qt includes
 #include <QVBoxLayout>
-#include <QLabel>
+#include <QDebug>
+#include <QFileDialog>
+#include <QFileInfo>
+#include <QListWidget>
 
-ImagesWidget::ImagesWidget(QWidget *parent) : QWidget(parent)
+ImagesWidget::ImagesWidget(Settings *settings, QWidget *parent)
+    : QWidget(parent), m_settings(settings)
 {
     auto *layout = new QVBoxLayout(this);
-    layout->addWidget(new QLabel(i18n("ImagesWidget")));
+
+    m_images = new QListWidget;
+    layout->addWidget(m_images);
+}
+
+void ImagesWidget::addImages()
+{
+    const auto files = QFileDialog::getOpenFileNames(this,
+                           i18n("Please select the images to add"),
+                           m_settings->lastImagesOpenPath(),
+                           i18n("JPEG Images (*.jpg *.jpeg)"));
+    if (files.isEmpty()) {
+        return;
+    }
+
+    const QFileInfo info(files.at(0));
+    m_settings->saveLastImagesOpenPath(info.dir().absolutePath());
+
+    for (const auto &file : files) {
+        if (m_allImages.contains(file)) {
+            continue;
+        }
+
+        const QFileInfo info(file);
+        m_allImages.append(file);
+
+        auto *item = new QListWidgetItem(info.fileName());
+        item->setData(Qt::UserRole, m_allImages.count() - 1);
+        m_images->addItem(item);
+    }
 }

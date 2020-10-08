@@ -20,12 +20,26 @@
 // Qt includes
 #include <QWidget>
 
+// Local classes
+class Settings;
+
+// Qt classes
+class QListWidget;
+
 class ImagesWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit ImagesWidget(QWidget *parent = nullptr);
+    explicit ImagesWidget(Settings *settings, QWidget *parent = nullptr);
+
+public slots:
+    void addImages();
+
+private: // Variables
+    Settings *m_settings;
+    QListWidget *m_images;
+    QVector<QString> m_allImages;
 
 };
 
