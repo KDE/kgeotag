@@ -14,38 +14,28 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGESWIDGET_H
-#define IMAGESWIDGET_H
+#ifndef IMAGECACHE_H
+#define IMAGECACHE_H
 
 // Qt includes
-#include <QWidget>
+#include <QObject>
+#include <QHash>
+#include <QImage>
 
-// Local classes
-class Settings;
-class ImageCache;
-
-// Qt classes
-class QListWidget;
-class QListWidgetItem;
-
-class ImagesWidget : public QWidget
+class ImageCache : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit ImagesWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
-
-signals:
-    void imageSelected(const QString &path) const;
-
-public slots:
-    void addImages();
+    explicit ImageCache(QObject *parent);
+    bool addImage(const QString &path);
+    QImage thumbnail(const QString &path) const;
+    QImage preview(const QString &path) const;
 
 private: // Variables
-    Settings *m_settings;
-    ImageCache *m_imageCache;
-    QListWidget *m_images;
+    QHash<QString, QImage> m_thumbnails;
+    QHash<QString, QImage> m_previews;
 
 };
 
-#endif // IMAGESWIDGET_H
+#endif // IMAGECACHE_H

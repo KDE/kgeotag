@@ -22,6 +22,7 @@
 
 // Local classes
 class Settings;
+class ImageCache;
 class ImagesWidget;
 class PreviewWidget;
 class MapWidget;
@@ -45,6 +46,7 @@ private: // Functions
 
 private: // Variables
     Settings *m_settings;
+    ImageCache *m_imageCache;
     ImagesWidget *m_imagesWidget;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;

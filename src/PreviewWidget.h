@@ -20,6 +20,9 @@
 // Qt includes
 #include <QWidget>
 
+// Local classes
+class ImageCache;
+
 // Qt classes
 class QLabel;
 
@@ -28,12 +31,13 @@ class PreviewWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PreviewWidget(QWidget *parent = nullptr);
+    explicit PreviewWidget(ImageCache *imageCache, QWidget *parent = nullptr);
 
 public slots:
     void updateDisplay(const QString &path);
 
 private: // Variables
+    ImageCache *m_imageCache;
     QLabel *m_preview;
 
 };

@@ -17,6 +17,7 @@
 // Local includes
 #include "ImagesWidget.h"
 #include "Settings.h"
+#include "ImageCache.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -27,17 +28,20 @@
 #include <QFileDialog>
 #include <QFileInfo>
 #include <QListWidget>
+#include <QApplication>
+#include <QIcon>
 
-ImagesWidget::ImagesWidget(Settings *settings, QWidget *parent)
-    : QWidget(parent), m_settings(settings)
+ImagesWidget::ImagesWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
+    : QWidget(parent), m_settings(settings), m_imageCache(imageCache)
 {
     auto *layout = new QVBoxLayout(this);
 
     m_images = new QListWidget;
     m_images->setSortingEnabled(true);
+    m_images->setIconSize(QSize(32, 32));
     connect(m_images, &QListWidget::itemClicked, [this](QListWidgetItem *item)
             {
-                emit imageSelected(m_allImages.at(item->data(Qt::UserRole).toInt()));
+                emit imageSelected(item->data(Qt::UserRole).toString());
             });
     layout->addWidget(m_images);
 }
@@ -55,16 +59,19 @@ void ImagesWidget::addImages()
     const QFileInfo info(files.at(0));
     m_settings->saveLastImagesOpenPath(info.dir().absolutePath());
 
-    for (const auto &file : files) {
-        if (m_allImages.contains(file)) {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    for (const auto &path : files) {
+        if (! m_imageCache->addImage(path)) {
             continue;
         }
 
-        const QFileInfo info(file);
-        m_allImages.append(file);
-
-        auto *item = new QListWidgetItem(info.fileName());
-        item->setData(Qt::UserRole, m_allImages.count() - 1);
+        const QFileInfo info(path);
+        auto *item = new QListWidgetItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
+                                         info.fileName());
+        item->setData(Qt::UserRole, path);
         m_images->addItem(item);
     }
+
+    QApplication::restoreOverrideCursor();
 }

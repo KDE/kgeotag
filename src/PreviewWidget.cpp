@@ -16,6 +16,7 @@
 
 // Local includes
 #include "PreviewWidget.h"
+#include "ImageCache.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -27,7 +28,8 @@
 #include <QImage>
 #include <QPixmap>
 
-PreviewWidget::PreviewWidget(QWidget *parent) : QWidget(parent)
+PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
+    : QWidget(parent), m_imageCache(imageCache)
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -37,6 +39,7 @@ PreviewWidget::PreviewWidget(QWidget *parent) : QWidget(parent)
 
 void PreviewWidget::updateDisplay(const QString &path)
 {
-    const QImage scaledImage = QImage(path).scaled(m_preview->size(), Qt::KeepAspectRatio);
+    const QImage scaledImage = m_imageCache->preview(path).scaled(m_preview->size(),
+                                                                  Qt::KeepAspectRatio);
     m_preview->setPixmap(QPixmap::fromImage(scaledImage));
 }

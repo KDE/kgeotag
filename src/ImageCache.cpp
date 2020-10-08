@@ -14,38 +14,35 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGESWIDGET_H
-#define IMAGESWIDGET_H
+// Local includes
+#include "ImageCache.h"
 
-// Qt includes
-#include <QWidget>
-
-// Local classes
-class Settings;
-class ImageCache;
-
-// Qt classes
-class QListWidget;
-class QListWidgetItem;
-
-class ImagesWidget : public QWidget
+ImageCache::ImageCache(QObject *parent) : QObject(parent)
 {
-    Q_OBJECT
+}
 
-public:
-    explicit ImagesWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
+bool ImageCache::addImage(const QString &path)
+{
+    if (m_thumbnails.contains(path)) {
+        return false;
+    }
 
-signals:
-    void imageSelected(const QString &path) const;
+    const QImage image = QImage(path);
+    if (image.isNull()) {
+        return false;
+    }
 
-public slots:
-    void addImages();
+    m_thumbnails.insert(path, image.scaled(QSize(32, 32), Qt::KeepAspectRatio));
+    m_previews.insert(path, image.scaled(QSize(300, 300), Qt::KeepAspectRatio));
+    return true;
+}
 
-private: // Variables
-    Settings *m_settings;
-    ImageCache *m_imageCache;
-    QListWidget *m_images;
+QImage ImageCache::thumbnail(const QString &path) const
+{
+    return m_thumbnails.value(path);
+}
 
-};
-
-#endif // IMAGESWIDGET_H
+QImage ImageCache::preview(const QString &path) const
+{
+    return m_previews.value(path);
+}

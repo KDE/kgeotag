@@ -17,6 +17,7 @@
 // Local includes
 #include "MainWindow.h"
 #include "Settings.h"
+#include "ImageCache.h"
 #include "ImagesWidget.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
@@ -36,6 +37,7 @@
 MainWindow::MainWindow() : QMainWindow()
 {
     m_settings = new Settings(this);
+    m_imageCache = new ImageCache(this);
 
     // Menu setup
 
@@ -52,12 +54,12 @@ MainWindow::MainWindow() : QMainWindow()
 
     setDockNestingEnabled(true);
 
-    m_imagesWidget = new ImagesWidget(m_settings);
+    m_imagesWidget = new ImagesWidget(m_settings, m_imageCache);
     auto *imagesDock = createDockWidget(i18n("Images"), m_imagesWidget,
                                         QStringLiteral("imagesDock"));
     connect(addImagesAction, &QAction::triggered, m_imagesWidget, &ImagesWidget::addImages);
 
-    m_previewWidget = new PreviewWidget;
+    m_previewWidget = new PreviewWidget(m_imageCache);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
     connect(m_imagesWidget, &ImagesWidget::imageSelected,
