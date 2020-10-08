@@ -27,6 +27,9 @@ class PreviewWidget : public QWidget
 public:
     explicit PreviewWidget(QWidget *parent = nullptr);
 
+public slots:
+    void updateDisplay(const QString &path);
+
 };
 
 #endif // PREVIEWWIDGET_H

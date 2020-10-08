@@ -23,9 +23,15 @@
 // Qt includes
 #include <QVBoxLayout>
 #include <QLabel>
+#include <QDebug>
 
 PreviewWidget::PreviewWidget(QWidget *parent) : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
     layout->addWidget(new QLabel(i18n("PreviewWidget")));
+}
+
+void PreviewWidget::updateDisplay(const QString &path)
+{
+    qDebug() << path;
 }

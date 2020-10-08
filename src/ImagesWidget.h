@@ -34,11 +34,11 @@ class ImagesWidget : public QWidget
 public:
     explicit ImagesWidget(Settings *settings, QWidget *parent = nullptr);
 
+signals:
+    void imageSelected(const QString &path) const;
+
 public slots:
     void addImages();
-
-private slots:
-    void imageSelected(QListWidgetItem *item);
 
 private: // Variables
     Settings *m_settings;

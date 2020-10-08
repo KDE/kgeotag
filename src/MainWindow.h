@@ -23,6 +23,7 @@
 // Local classes
 class Settings;
 class ImagesWidget;
+class PreviewWidget;
 class MapWidget;
 
 // Qt classes
@@ -45,6 +46,7 @@ private: // Functions
 private: // Variables
     Settings *m_settings;
     ImagesWidget *m_imagesWidget;
+    PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
 
 };
