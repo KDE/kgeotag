@@ -59,6 +59,7 @@ set(main_SOURCES
     ${main_ROOT}/MapWidget.cpp
     ${main_ROOT}/ImageCache.cpp
     ${main_ROOT}/ImagesList.cpp
+    ${main_ROOT}/MapView.cpp
 )
 
 # Assemble all sources

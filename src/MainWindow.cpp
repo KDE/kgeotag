@@ -65,7 +65,7 @@ MainWindow::MainWindow() : QMainWindow()
     connect(m_imagesWidget, &ImagesWidget::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
 
-    m_mapWidget = new MapWidget(m_settings);
+    m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
 
     // Size initialization/restoration

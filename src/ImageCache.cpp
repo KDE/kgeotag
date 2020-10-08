@@ -53,6 +53,11 @@ bool ImageCache::addImage(const QString &path)
     return true;
 }
 
+bool ImageCache::contains(const QString &path) const
+{
+    return m_imageData.contains(path);
+}
+
 QString ImageCache::getExifValue(Exiv2::ExifData &data, const char *key) const
 {
     return QString::fromStdString(data[key].value().toString());

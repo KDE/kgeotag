@@ -18,26 +18,23 @@
 #include "MapWidget.h"
 #include "Settings.h"
 #include "Coordinates.h"
+#include "MapView.h"
 
 // Marble includes
-#include <marble/MarbleWidget.h>
 #include <marble/AbstractFloatItem.h>
 
 // Qt includes
 #include <QVBoxLayout>
 #include <QDebug>
 
-MapWidget::MapWidget(Settings *settings, QWidget *parent)
+MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
     : QWidget(parent), m_settings(settings)
 {
     auto *layout = new QVBoxLayout(this);
 
-    m_mapWidget = new Marble::MarbleWidget;
-    m_mapWidget->setProjection(Marble::Mercator);
-    m_mapWidget->setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
-
-    layout->addWidget(m_mapWidget);
-    m_mapWidget->show();
+    m_mapView = new MapView(imageCache);
+    layout->addWidget(m_mapView);
+    m_mapView->show();
 }
 
 void MapWidget::saveSettings()
@@ -46,7 +43,7 @@ void MapWidget::saveSettings()
 
     QHash<QString, bool> visibility;
 
-    const auto floatItems = m_mapWidget->floatItems();
+    const auto floatItems = m_mapView->floatItems();
     for (const auto &item : floatItems) {
         visibility.insert(item->name(), item->visible());
     }
@@ -54,20 +51,20 @@ void MapWidget::saveSettings()
     m_settings->saveFloatersVisibility(visibility);
 
     // Save the current center point
-    const auto center = m_mapWidget->focusPoint();
+    const auto center = m_mapView->focusPoint();
     m_settings->saveMapCenter(Coordinates::Data {
                                   center.longitude(Marble::GeoDataCoordinates::Degree),
                                   center.latitude(Marble::GeoDataCoordinates::Degree) });
 
     // Save the zoom level
-    m_settings->saveZoom(m_mapWidget->zoom());
+    m_settings->saveZoom(m_mapView->zoom());
 }
 
 void MapWidget::restoreSettings()
 {
     // Restore the floaters visiblility
     const auto floatersVisiblility = m_settings->floatersVisibility();
-    const auto floatItems = m_mapWidget->floatItems();
+    const auto floatItems = m_mapView->floatItems();
     for (const auto &item : floatItems) {
         const auto name = item->name();
         if (floatersVisiblility.contains(name)) {
@@ -77,8 +74,8 @@ void MapWidget::restoreSettings()
 
     // Restore map's last center point
     const auto [ lon, lat ] = m_settings->mapCenter();
-    m_mapWidget->centerOn(lon, lat);
+    m_mapView->centerOn(lon, lat);
 
     // Restore the last zoom level
-    m_mapWidget->setZoom(m_settings->zoom());
+    m_mapView->setZoom(m_settings->zoom());
 }

@@ -14,36 +14,33 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef MAPWIDGET_H
-#define MAPWIDGET_H
+#ifndef MAPVIEW_H
+#define MAPVIEW_H
 
-// Qt includes
-#include <QWidget>
+// Marble includes
+#include <marble/MarbleWidget.h>
 
 // Local classes
-class Settings;
 class ImageCache;
-class MapView;
 
-// Marble classes
-namespace Marble
-{
-class GeoDataCoordinates;
-}
+// Qt classes
+class QDragEnterEvent;
+class QDropEvent;
 
-class MapWidget : public QWidget
+class MapView : public Marble::MarbleWidget
 {
     Q_OBJECT
 
 public:
-    explicit MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
-    void saveSettings();
-    void restoreSettings();
+    explicit MapView(ImageCache *imageCache, QWidget *parent = nullptr);
+
+protected:
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dropEvent(QDropEvent *event) override;
 
 private: // Variables
-    Settings *m_settings;
-    MapView *m_mapView;
+    ImageCache *m_imageCache;
 
 };
 
-#endif // MAPWIDGET_H
+#endif // MAPVIEW_H

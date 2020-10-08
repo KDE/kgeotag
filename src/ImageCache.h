@@ -36,6 +36,7 @@ class ImageCache : public QObject
 public:
     explicit ImageCache(QObject *parent);
     bool addImage(const QString &path);
+    bool contains(const QString &path) const;
     QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
