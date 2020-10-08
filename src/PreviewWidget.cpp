@@ -17,29 +17,26 @@
 // Local includes
 #include "PreviewWidget.h"
 #include "ImageCache.h"
+#include "ImagePreview.h"
 
 // KDE includes
 #include <KLocalizedString>
 
 // Qt includes
 #include <QVBoxLayout>
-#include <QLabel>
 #include <QDebug>
 #include <QImage>
 #include <QPixmap>
 
-PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
-    : QWidget(parent), m_imageCache(imageCache)
+PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent) : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
 
-    m_preview = new QLabel;
+    m_preview = new ImagePreview(imageCache);
     layout->addWidget(m_preview);
 }
 
-void PreviewWidget::updateDisplay(const QString &path)
+void PreviewWidget::setImage(const QString &path)
 {
-    const QImage scaledImage = m_imageCache->preview(path).scaled(m_preview->size(),
-                                                                  Qt::KeepAspectRatio);
-    m_preview->setPixmap(QPixmap::fromImage(scaledImage));
+    m_preview->setImage(path);
 }

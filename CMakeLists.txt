@@ -52,6 +52,7 @@ set(main_SOURCES
     ${main_ROOT}/Settings.cpp
     ${main_ROOT}/ImagesWidget.cpp
     ${main_ROOT}/PreviewWidget.cpp
+    ${main_ROOT}/ImagePreview.cpp
     ${main_ROOT}/MapWidget.cpp
     ${main_ROOT}/ImageCache.cpp
 )

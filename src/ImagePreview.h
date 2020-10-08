@@ -14,32 +14,38 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef PREVIEWWIDGET_H
-#define PREVIEWWIDGET_H
+#ifndef IMAGEPREVIEW_H
+#define IMAGEPREVIEW_H
 
 // Qt includes
-#include <QWidget>
+#include <QLabel>
+#include <QImage>
 
 // Local classes
 class ImageCache;
-class ImagePreview;
 
 // Qt classes
-class QLabel;
+class QTimer;
 
-class PreviewWidget : public QWidget
+class ImagePreview : public QLabel
 {
     Q_OBJECT
 
 public:
-    explicit PreviewWidget(ImageCache *imageCache, QWidget *parent = nullptr);
-
-public slots:
+    explicit ImagePreview(ImageCache *imageCache, QWidget *parent = nullptr);
     void setImage(const QString &path);
 
+protected:
+    virtual void resizeEvent(QResizeEvent *event) override;
+
+private slots:
+    void setScaledPreview();
+
 private: // Variables
-    ImagePreview *m_preview;
+    ImageCache *m_imageCache;
+    QImage m_currentImage;
+    QTimer *m_smoothTimer;
 
 };
 
-#endif // PREVIEWWIDGET_H
+#endif // IMAGEPREVIEW_H

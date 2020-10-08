@@ -32,8 +32,9 @@ bool ImageCache::addImage(const QString &path)
         return false;
     }
 
-    m_thumbnails.insert(path, image.scaled(QSize(32, 32), Qt::KeepAspectRatio));
-    m_previews.insert(path, image.scaled(QSize(300, 300), Qt::KeepAspectRatio));
+    m_thumbnails.insert(path, image.scaled(QSize(32, 32), Qt::KeepAspectRatio,
+                                           Qt::SmoothTransformation));
+    m_previews.insert(path, image.scaled(QSize(400, 400), Qt::KeepAspectRatio));
     return true;
 }
 

@@ -63,7 +63,7 @@ MainWindow::MainWindow() : QMainWindow()
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
     connect(m_imagesWidget, &ImagesWidget::imageSelected,
-            m_previewWidget, &PreviewWidget::updateDisplay);
+            m_previewWidget, &PreviewWidget::setImage);
 
     m_mapWidget = new MapWidget(m_settings);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
