@@ -23,6 +23,9 @@
 #include <QImage>
 #include <QDateTime>
 
+// Local classes
+class Settings;
+
 // exiv2 classes
 namespace Exiv2
 {
@@ -34,7 +37,7 @@ class ImageCache : public QObject
     Q_OBJECT
 
 public:
-    explicit ImageCache(QObject *parent);
+    explicit ImageCache(QObject *parent, Settings *settings);
     bool addImage(const QString &path);
     bool contains(const QString &path) const;
     QImage thumbnail(const QString &path) const;
@@ -52,6 +55,7 @@ private: // Structs
     };
 
 private: // Variables
+    Settings *m_settings;
     QHash<QString, ImageData> m_imageData;
 
 };

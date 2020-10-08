@@ -39,7 +39,7 @@ ImagesWidget::ImagesWidget(Settings *settings, ImageCache *imageCache, QWidget *
 
     m_images = new ImagesList;
     m_images->setSortingEnabled(true);
-    m_images->setIconSize(QSize(32, 32));
+    m_images->setIconSize(m_settings->thumbnailSize());
     connect(m_images, &QListWidget::itemClicked, [this](QListWidgetItem *item)
             {
                 emit imageSelected(item->data(Qt::UserRole).toString());

@@ -16,6 +16,7 @@
 
 // Local includes
 #include "ImageCache.h"
+#include "Settings.h"
 
 // exiv2 includes
 #include <exiv2/exiv2.hpp>
@@ -23,7 +24,8 @@
 // Qt includes
 #include <QDebug>
 
-ImageCache::ImageCache(QObject *parent) : QObject(parent)
+ImageCache::ImageCache(QObject *parent, Settings *settings)
+    : QObject(parent), m_settings(settings)
 {
 }
 
@@ -44,9 +46,9 @@ bool ImageCache::addImage(const QString &path)
     const auto date = QDateTime::fromString(getExifValue(exifData, "Exif.Photo.DateTimeOriginal"),
                                             QStringLiteral("yyyy:MM:dd hh:mm:ss"));
 
-    const QImage thumbnail = image.scaled(QSize(32, 32), Qt::KeepAspectRatio,
+    const QImage thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
                                           Qt::SmoothTransformation);
-    const QImage preview = image.scaled(QSize(400, 400), Qt::KeepAspectRatio);
+    const QImage preview = image.scaled(m_settings->previewSize(), Qt::KeepAspectRatio);
 
     m_imageData.insert(path, ImageData { thumbnail, preview, date });
 

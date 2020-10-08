@@ -37,7 +37,7 @@
 MainWindow::MainWindow() : QMainWindow()
 {
     m_settings = new Settings(this);
-    m_imageCache = new ImageCache(this);
+    m_imageCache = new ImageCache(this, m_settings);
 
     // Menu setup
 

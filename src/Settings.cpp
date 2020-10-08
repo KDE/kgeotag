@@ -20,6 +20,7 @@
 
 // Qt includes
 #include <QDebug>
+#include <QSize>
 
 namespace
 {
@@ -118,4 +119,14 @@ void Settings::saveLastImagesOpenPath(const QString &path)
 QString Settings::lastImagesOpenPath() const
 {
     return value(c_images_lastOpenPath, QString()).toString();
+}
+
+QSize Settings::thumbnailSize() const
+{
+    return QSize(32, 32);
+}
+
+QSize Settings::previewSize() const
+{
+    return QSize(400, 400);
 }

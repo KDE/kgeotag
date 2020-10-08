@@ -49,7 +49,7 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
     const auto *item = currentItem();
 
     auto *drag = new QDrag(this);
-    drag->setPixmap(item->icon().pixmap(QSize(32, 32)));
+    drag->setPixmap(item->icon().pixmap(iconSize()));
 
     QMimeData *mimeData = new QMimeData;
     mimeData->setText(item->data(Qt::UserRole).toString());

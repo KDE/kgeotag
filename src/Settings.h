@@ -50,6 +50,9 @@ public:
     void saveLastImagesOpenPath(const QString &path);
     QString lastImagesOpenPath() const;
 
+    QSize thumbnailSize() const;
+    QSize previewSize() const;
+
 };
 
 #endif // SETTINGS_H
