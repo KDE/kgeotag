@@ -86,6 +86,7 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
 {
     auto *dock = new QDockWidget(title, this);
     dock->setObjectName(objectName);
+    dock->setContextMenuPolicy(Qt::PreventContextMenu);
     dock->setFeatures(QDockWidget::DockWidgetMovable | QDockWidget::DockWidgetFloatable);
     dock->setWidget(widget);
     addDockWidget(Qt::TopDockWidgetArea, dock);
