@@ -60,7 +60,7 @@ MainWindow::MainWindow() : QMainWindow()
     auto *previewDock = createDockWidget(i18n("Preview"), new PreviewWidget,
                                          QStringLiteral("previewDock"));
 
-    m_mapWidget = new MapWidget;
+    m_mapWidget = new MapWidget(m_settings);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
 
     // Size initialization/restoration
@@ -78,14 +78,8 @@ MainWindow::MainWindow() : QMainWindow()
         splitDockWidget(imagesDock, previewDock, Qt::Vertical);
     }
 
-    // Restore the map's floaters visibility settings
-    const auto floatersVisiblility = m_settings->floatersVisibility();
-    m_mapWidget->setFloatersVisibility(floatersVisiblility);
-
-    // Restore map's last center point and zoom level
-    const auto center = m_settings->mapCenter();
-    m_mapWidget->setCenter(center);
-    m_mapWidget->setZoom(m_settings->zoom());
+    // Restore the map's settings
+    m_mapWidget->restoreSettings();
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
@@ -103,14 +97,9 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
 void MainWindow::closeEvent(QCloseEvent *)
 {
     m_settings->saveMainWindowGeometry(saveGeometry());
-
     m_settings->saveMainWindowState(saveState());
 
-    const auto visibility = m_mapWidget->floatersVisibility();
-    m_settings->saveFloatersVisibility(visibility);
-
-    m_settings->saveMapCenter(m_mapWidget->mapCenter());
-    m_settings->saveZoom(m_mapWidget->zoom());
+    m_mapWidget->saveSettings();
 
     QApplication::quit();
 }

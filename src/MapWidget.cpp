@@ -16,6 +16,8 @@
 
 // Local includes
 #include "MapWidget.h"
+#include "Settings.h"
+#include "Coordinates.h"
 
 // Marble includes
 #include <marble/MarbleWidget.h>
@@ -25,7 +27,8 @@
 #include <QVBoxLayout>
 #include <QDebug>
 
-MapWidget::MapWidget(QWidget *parent) : QWidget(parent)
+MapWidget::MapWidget(Settings *settings, QWidget *parent)
+    : QWidget(parent), m_settings(settings)
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -37,8 +40,10 @@ MapWidget::MapWidget(QWidget *parent) : QWidget(parent)
     m_mapWidget->show();
 }
 
-QHash<QString, bool> MapWidget::floatersVisibility() const
+void MapWidget::saveSettings()
 {
+    // Save the floaters visibility
+
     QHash<QString, bool> visibility;
 
     const auto floatItems = m_mapWidget->floatItems();
@@ -46,42 +51,34 @@ QHash<QString, bool> MapWidget::floatersVisibility() const
         visibility.insert(item->name(), item->visible());
     }
 
-    return visibility;
+    m_settings->saveFloatersVisibility(visibility);
+
+    // Save the current center point
+    const auto center = m_mapWidget->focusPoint();
+    m_settings->saveMapCenter(Coordinates::Data {
+                                  center.longitude(Marble::GeoDataCoordinates::Degree),
+                                  center.latitude(Marble::GeoDataCoordinates::Degree) });
+
+    // Save the zoom level
+    m_settings->saveZoom(m_mapWidget->zoom());
 }
 
-void MapWidget::setFloatersVisibility(const QHash<QString, bool> &data)
+void MapWidget::restoreSettings()
 {
+    // Restore the floaters visiblility
+    const auto floatersVisiblility = m_settings->floatersVisibility();
     const auto floatItems = m_mapWidget->floatItems();
     for (const auto &item : floatItems) {
         const auto name = item->name();
-        if (data.contains(name)) {
-            item->setVisible(data.value(name));
+        if (floatersVisiblility.contains(name)) {
+            item->setVisible(floatersVisiblility.value(name));
         }
     }
-}
 
-Coordinates::Data MapWidget::toCoordinates(const Marble::GeoDataCoordinates &data) const
-{
-    return Coordinates::Data { data.longitude(Marble::GeoDataCoordinates::Degree),
-                               data.latitude(Marble::GeoDataCoordinates::Degree) };
-}
+    // Restore map's last center point
+    const auto center = m_settings->mapCenter();
+    m_mapWidget->centerOn(center.lon, center.lat);
 
-Coordinates::Data MapWidget::mapCenter() const
-{
-    return toCoordinates(m_mapWidget->focusPoint());
-}
-
-void MapWidget::setCenter(const Coordinates::Data &coordinates)
-{
-    m_mapWidget->centerOn(coordinates.lon, coordinates.lat);
-}
-
-int MapWidget::zoom() const
-{
-    return m_mapWidget->zoom();
-}
-
-void MapWidget::setZoom(int zoom)
-{
-    m_mapWidget->setZoom(zoom);
+    // Restore the last zoom level
+    m_mapWidget->setZoom(m_settings->zoom());
 }

@@ -17,12 +17,13 @@
 #ifndef MAPWIDGET_H
 #define MAPWIDGET_H
 
-// Local includes
-#include "Coordinates.h"
-
 // Qt includes
 #include <QWidget>
 
+// Local classes
+class Settings;
+
+// Marble classes
 namespace Marble
 {
 class MarbleWidget;
@@ -34,18 +35,12 @@ class MapWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit MapWidget(QWidget *parent = nullptr);
-    QHash<QString, bool> floatersVisibility() const;
-    void setFloatersVisibility(const QHash<QString, bool> &data);
-    Coordinates::Data mapCenter() const;
-    void setCenter(const Coordinates::Data &coordinates);
-    int zoom() const;
-    void setZoom(int zoom);
-
-private: // Functions
-    Coordinates::Data toCoordinates(const Marble::GeoDataCoordinates &data) const;
+    explicit MapWidget(Settings *settings, QWidget *parent = nullptr);
+    void saveSettings();
+    void restoreSettings();
 
 private: // Variables
+    Settings *m_settings;
     Marble::MarbleWidget *m_mapWidget;
 
 };
