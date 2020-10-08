@@ -18,6 +18,7 @@
 #include "ImagesWidget.h"
 #include "Settings.h"
 #include "ImageCache.h"
+#include "ImagesList.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -36,7 +37,7 @@ ImagesWidget::ImagesWidget(Settings *settings, ImageCache *imageCache, QWidget *
 {
     auto *layout = new QVBoxLayout(this);
 
-    m_images = new QListWidget;
+    m_images = new ImagesList;
     m_images->setSortingEnabled(true);
     m_images->setIconSize(QSize(32, 32));
     connect(m_images, &QListWidget::itemClicked, [this](QListWidgetItem *item)

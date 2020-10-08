@@ -33,6 +33,7 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     auto *layout = new QVBoxLayout(this);
 
     m_path = new QLabel;
+    m_path->setWordWrap(true);
     m_path->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
     layout->addWidget(m_path);
 

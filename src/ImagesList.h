@@ -14,38 +14,29 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGESWIDGET_H
-#define IMAGESWIDGET_H
+#ifndef IMAGESLIST_H
+#define IMAGESLIST_H
 
 // Qt includes
-#include <QWidget>
-
-// Local classes
-class Settings;
-class ImageCache;
-class ImagesList;
+#include <QListWidget>
 
 // Qt classes
-class QListWidgetItem;
+class QMouseEvent;
 
-class ImagesWidget : public QWidget
+class ImagesList : public QListWidget
 {
     Q_OBJECT
 
 public:
-    explicit ImagesWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
+    explicit ImagesList(QWidget *parent = nullptr);
 
-signals:
-    void imageSelected(const QString &path) const;
-
-public slots:
-    void addImages();
+protected:
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
 
 private: // Variables
-    Settings *m_settings;
-    ImageCache *m_imageCache;
-    ImagesList *m_images;
+    QPoint m_dragStartPosition;
 
 };
 
-#endif // IMAGESWIDGET_H
+#endif // IMAGESLIST_H
