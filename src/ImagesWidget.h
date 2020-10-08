@@ -25,6 +25,7 @@ class Settings;
 
 // Qt classes
 class QListWidget;
+class QListWidgetItem;
 
 class ImagesWidget : public QWidget
 {
@@ -35,6 +36,9 @@ public:
 
 public slots:
     void addImages();
+
+private slots:
+    void imageSelected(QListWidgetItem *item);
 
 private: // Variables
     Settings *m_settings;

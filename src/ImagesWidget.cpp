@@ -34,6 +34,8 @@ ImagesWidget::ImagesWidget(Settings *settings, QWidget *parent)
     auto *layout = new QVBoxLayout(this);
 
     m_images = new QListWidget;
+    m_images->setSortingEnabled(true);
+    connect(m_images, &QListWidget::itemClicked, this, &ImagesWidget::imageSelected);
     layout->addWidget(m_images);
 }
 
@@ -62,4 +64,9 @@ void ImagesWidget::addImages()
         item->setData(Qt::UserRole, m_allImages.count() - 1);
         m_images->addItem(item);
     }
+}
+
+void ImagesWidget::imageSelected(QListWidgetItem *item)
+{
+    qDebug() << m_allImages.at(item->data(Qt::UserRole).toInt());
 }
