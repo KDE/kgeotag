@@ -76,8 +76,8 @@ void MapWidget::restoreSettings()
     }
 
     // Restore map's last center point
-    const auto center = m_settings->mapCenter();
-    m_mapWidget->centerOn(center.lon, center.lat);
+    const auto [ lon, lat ] = m_settings->mapCenter();
+    m_mapWidget->centerOn(lon, lat);
 
     // Restore the last zoom level
     m_mapWidget->setZoom(m_settings->zoom());
