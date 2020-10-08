@@ -38,7 +38,10 @@ public slots:
     void setImage(const QString &path);
 
 private: // Variables
+    ImageCache *m_imageCache;
     ImagePreview *m_preview;
+    QLabel *m_path;
+    QLabel *m_date;
 
 };
 

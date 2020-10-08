@@ -25,12 +25,20 @@
 // Qt includes
 #include <QVBoxLayout>
 #include <QDebug>
-#include <QImage>
-#include <QPixmap>
+#include <QLabel>
 
-PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent) : QWidget(parent)
+PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
+    : QWidget(parent), m_imageCache(imageCache)
 {
     auto *layout = new QVBoxLayout(this);
+
+    m_path = new QLabel;
+    m_path->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    layout->addWidget(m_path);
+
+    m_date = new QLabel;
+    m_date->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    layout->addWidget(m_date);
 
     m_preview = new ImagePreview(imageCache);
     layout->addWidget(m_preview);
@@ -38,5 +46,8 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent) : QWidget(
 
 void PreviewWidget::setImage(const QString &path)
 {
+    m_path->setText(i18n("File: %0").arg(path));
+    m_date->setText(i18n("Date: %0").arg(
+                         m_imageCache->date(path).toString(i18n("yyyy-MM-dd hh:mm:ss")))) ;
     m_preview->setImage(path);
 }

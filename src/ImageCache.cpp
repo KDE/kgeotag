@@ -67,3 +67,8 @@ QImage ImageCache::preview(const QString &path) const
 {
     return m_imageData[path].preview;
 }
+
+QDateTime ImageCache::date(const QString &path) const
+{
+    return m_imageData[path].date;
+}
