@@ -21,6 +21,13 @@
 #include <QObject>
 #include <QHash>
 #include <QImage>
+#include <QDateTime>
+
+// exiv2 classes
+namespace Exiv2
+{
+class ExifData;
+}
 
 class ImageCache : public QObject
 {
@@ -32,9 +39,18 @@ public:
     QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
 
+private: // Functions
+    QString getExifValue(Exiv2::ExifData &data, const char *key) const;
+
+private: // Structs
+    struct ImageData {
+        QImage thumbnail;
+        QImage preview;
+        QDateTime date;
+    };
+
 private: // Variables
-    QHash<QString, QImage> m_thumbnails;
-    QHash<QString, QImage> m_previews;
+    QHash<QString, ImageData> m_imageData;
 
 };
 

@@ -17,13 +17,19 @@
 // Local includes
 #include "ImageCache.h"
 
+// exiv2 includes
+#include <exiv2/exiv2.hpp>
+
+// Qt includes
+#include <QDebug>
+
 ImageCache::ImageCache(QObject *parent) : QObject(parent)
 {
 }
 
 bool ImageCache::addImage(const QString &path)
 {
-    if (m_thumbnails.contains(path)) {
+    if (m_imageData.contains(path)) {
         return false;
     }
 
@@ -32,18 +38,32 @@ bool ImageCache::addImage(const QString &path)
         return false;
     }
 
-    m_thumbnails.insert(path, image.scaled(QSize(32, 32), Qt::KeepAspectRatio,
-                                           Qt::SmoothTransformation));
-    m_previews.insert(path, image.scaled(QSize(400, 400), Qt::KeepAspectRatio));
+    auto exif = Exiv2::ImageFactory::open(path.toLocal8Bit().data());
+    exif->readMetadata();
+    auto &exifData = exif->exifData();
+    const auto date = QDateTime::fromString(getExifValue(exifData, "Exif.Photo.DateTimeOriginal"),
+                                            QStringLiteral("yyyy:MM:dd hh:mm:ss"));
+
+    const QImage thumbnail = image.scaled(QSize(32, 32), Qt::KeepAspectRatio,
+                                          Qt::SmoothTransformation);
+    const QImage preview = image.scaled(QSize(400, 400), Qt::KeepAspectRatio);
+
+    m_imageData.insert(path, ImageData { thumbnail, preview, date });
+
     return true;
+}
+
+QString ImageCache::getExifValue(Exiv2::ExifData &data, const char *key) const
+{
+    return QString::fromStdString(data[key].value().toString());
 }
 
 QImage ImageCache::thumbnail(const QString &path) const
 {
-    return m_thumbnails.value(path);
+    return m_imageData[path].thumbnail;
 }
 
 QImage ImageCache::preview(const QString &path) const
 {
-    return m_previews.value(path);
+    return m_imageData[path].preview;
 }

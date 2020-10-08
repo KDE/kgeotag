@@ -33,6 +33,9 @@ find_package(KF5 5.44 REQUIRED COMPONENTS I18n REQUIRED)
 # Find Marble
 find_package(Marble 0.28 REQUIRED)
 
+# Find exiv2
+find_package(exiv2 REQUIRED)
+
 # Generate version.h
 add_custom_target(
     UpdateVersion ALL
@@ -69,4 +72,5 @@ target_link_libraries(kgeotag
     Qt5::Widgets
     KF5::I18n
     Marble
+    exiv2
 )

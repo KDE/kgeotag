@@ -62,14 +62,16 @@ void ImagesWidget::addImages()
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     for (const auto &path : files) {
-        if (! m_imageCache->addImage(path)) {
+        const QFileInfo info(path);
+        const QString id = info.canonicalFilePath();
+
+        if (! m_imageCache->addImage(id)) {
             continue;
         }
 
-        const QFileInfo info(path);
-        auto *item = new QListWidgetItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
+        auto *item = new QListWidgetItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(id))),
                                          info.fileName());
-        item->setData(Qt::UserRole, path);
+        item->setData(Qt::UserRole, id);
         m_images->addItem(item);
     }
 
