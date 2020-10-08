@@ -24,14 +24,19 @@
 #include <QVBoxLayout>
 #include <QLabel>
 #include <QDebug>
+#include <QImage>
+#include <QPixmap>
 
 PreviewWidget::PreviewWidget(QWidget *parent) : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
-    layout->addWidget(new QLabel(i18n("PreviewWidget")));
+
+    m_preview = new QLabel;
+    layout->addWidget(m_preview);
 }
 
 void PreviewWidget::updateDisplay(const QString &path)
 {
-    qDebug() << path;
+    const QImage scaledImage = QImage(path).scaled(m_preview->size(), Qt::KeepAspectRatio);
+    m_preview->setPixmap(QPixmap::fromImage(scaledImage));
 }

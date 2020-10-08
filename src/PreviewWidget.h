@@ -20,6 +20,9 @@
 // Qt includes
 #include <QWidget>
 
+// Qt classes
+class QLabel;
+
 class PreviewWidget : public QWidget
 {
     Q_OBJECT
@@ -29,6 +32,9 @@ public:
 
 public slots:
     void updateDisplay(const QString &path);
+
+private: // Variables
+    QLabel *m_preview;
 
 };
 
