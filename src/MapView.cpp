@@ -18,6 +18,9 @@
 #include "MapView.h"
 #include "ImageCache.h"
 
+// Marble includes
+#include <marble/GeoPainter.h>
+
 // Qt includes
 #include <QDebug>
 #include <QDragEnterEvent>
@@ -44,6 +47,27 @@ void MapView::dragEnterEvent(QDragEnterEvent *event)
 
 void MapView::dropEvent(QDropEvent *event)
 {
-    qDebug() << "Image" << event->mimeData()->text() << "dropped";
+    const auto dropPosition = event->pos();
+
+    qreal lon;
+    qreal lat;
+    if (! geoCoordinates(dropPosition.x(), dropPosition.y(), lon, lat,
+                         Marble::GeoDataCoordinates::Degree)) {
+        return;
+    }
+
+    m_images[event->mimeData()->text()]
+        = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
+    reloadMap();
+
     event->acceptProposedAction();
+}
+
+void MapView::customPaint(Marble::GeoPainter *painter)
+{
+    const auto images = m_images.keys();
+    for (const auto image : images) {
+        painter->drawPixmap(m_images.value(image),
+                            QPixmap::fromImage(m_imageCache->thumbnail(image)));
+    }
 }

@@ -19,6 +19,10 @@
 
 // Marble includes
 #include <marble/MarbleWidget.h>
+#include <marble/GeoDataCoordinates.h>
+
+// Qt includes
+#include <QHash>
 
 // Local classes
 class ImageCache;
@@ -33,6 +37,7 @@ class MapView : public Marble::MarbleWidget
 
 public:
     explicit MapView(ImageCache *imageCache, QWidget *parent = nullptr);
+    virtual void customPaint(Marble::GeoPainter *painter) override;
 
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
@@ -40,6 +45,7 @@ protected:
 
 private: // Variables
     ImageCache *m_imageCache;
+    QHash<QString, Marble::GeoDataCoordinates> m_images;
 
 };
 
