@@ -90,6 +90,7 @@ MainWindow::MainWindow() : QMainWindow()
     if (! restoreState(m_settings->mainWindowState())) {
         splitDockWidget(unassignedImagesDock, assignedImagesDock, Qt::Vertical);
         splitDockWidget(assignedImagesDock, previewDock, Qt::Vertical);
+        splitDockWidget(assignedImagesDock, unassignedImagesDock, Qt::Horizontal);
     }
 
     // Restore the map's settings
