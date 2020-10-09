@@ -24,6 +24,7 @@
 #include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
 #include <marble/MarbleModel.h>
+#include <marble/GeoDataLatLonAltBox.h>
 
 // Qt includes
 #include <QDebug>
@@ -49,12 +50,12 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
 
 void MapWidget::addGpx(const QString &path)
 {
-
     QFile gpxFile(path);
     gpxFile.open(QIODevice::ReadOnly | QIODevice::Text);
     QXmlStreamReader xml(&gpxFile);
 
     Marble::GeoDataLineString lineString;
+    Marble::GeoDataLatLonAltBox trackBox;
     double lon;
     double lat;
     QDateTime time;
@@ -78,16 +79,25 @@ void MapWidget::addGpx(const QString &path)
             }
 
         } else if (token == QXmlStreamReader::EndElement) {
-            if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
-                m_tracks.append(lineString);
-                lineString.clear();
-
-            } else if (name == QStringLiteral("time")) {
+            if (name == QStringLiteral("time")) {
                 m_points[time] = Coordinates::Data { lon, lat };
+
+            } else if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
+                m_tracks.append(lineString);
+
+                const auto &box = lineString.latLonAltBox();
+                if (trackBox.isEmpty()) {
+                    trackBox = box;
+                } else {
+                    trackBox |= box;
+                }
+
+                lineString.clear();
             }
         }
     }
 
+    centerOn(trackBox);
 }
 
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)
