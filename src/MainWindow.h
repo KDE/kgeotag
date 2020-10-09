@@ -52,7 +52,7 @@ private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     ImagesList *m_assignedImages;
-    DragableImagesList *m_unassignedImages;
+    DragableImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
 

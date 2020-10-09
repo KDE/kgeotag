@@ -21,6 +21,7 @@
 #include "DragableImagesList.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
+#include "Coordinates.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -55,8 +56,8 @@ MainWindow::MainWindow() : QMainWindow()
     setDockNestingEnabled(true);
 
     // Unassigned images
-    m_unassignedImages = new DragableImagesList(m_imageCache);
-    auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unassignedImages,
+    m_unAssignedImages = new DragableImagesList(m_imageCache);
+    auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
     connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
 
@@ -69,7 +70,7 @@ MainWindow::MainWindow() : QMainWindow()
     m_previewWidget = new PreviewWidget(m_imageCache);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
-    connect(m_unassignedImages, &ImagesList::imageSelected,
+    connect(m_unAssignedImages, &ImagesList::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
 
     // Map
@@ -133,12 +134,22 @@ void MainWindow::addImages()
     m_settings->saveLastImagesOpenPath(info.dir().absolutePath());
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
+
     for (const auto &path : files) {
         const QFileInfo info(path);
         const QString canonicalPath = info.canonicalFilePath();
-        if (m_imageCache->addImage(canonicalPath)) {
-            m_unassignedImages->addImage(info.fileName(), canonicalPath);
+        if (! m_imageCache->addImage(canonicalPath)) {
+            continue;
+        }
+
+        const auto coordinates = m_imageCache->coordinates(canonicalPath);
+        if (! coordinates.isSet) {
+            m_unAssignedImages->addImage(info.fileName(), canonicalPath);
+        } else {
+            m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
+            m_assignedImages->addImage(info.fileName(), canonicalPath);
         }
     }
+
     QApplication::restoreOverrideCursor();
 }

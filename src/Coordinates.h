@@ -23,6 +23,7 @@ namespace Coordinates
 struct Data {
     double lon;
     double lat;
+    bool isSet = true;
 };
 
 }

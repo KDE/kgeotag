@@ -17,6 +17,9 @@
 #ifndef IMAGECACHE_H
 #define IMAGECACHE_H
 
+// Local includes
+#include "Coordinates.h"
+
 // Qt includes
 #include <QObject>
 #include <QHash>
@@ -44,15 +47,19 @@ public:
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
     QSize thumbnailSize() const;
+    Coordinates::Data coordinates(const QString &path) const;
 
 private: // Functions
     QString getExifValue(Exiv2::ExifData &data, const char *key) const;
+    Coordinates::Data getExifGps(Exiv2::ExifData &data) const;
+    double parseExifLonLat(const QString &lonLat, const QString &ref) const;
 
 private: // Structs
     struct ImageData {
         QImage thumbnail;
         QImage preview;
         QDateTime date;
+        Coordinates::Data coordinates;
     };
 
 private: // Variables

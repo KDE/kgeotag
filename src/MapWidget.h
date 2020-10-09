@@ -41,6 +41,7 @@ public:
     virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
+    void addImage(const QString &path, double lon, double lat);
 
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;

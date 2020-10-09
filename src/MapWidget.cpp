@@ -59,11 +59,15 @@ void MapWidget::dropEvent(QDropEvent *event)
         return;
     }
 
-    m_images[event->mimeData()->text()]
-        = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
+    addImage(event->mimeData()->text(), lon, lat);
     reloadMap();
 
     event->acceptProposedAction();
+}
+
+void MapWidget::addImage(const QString &path, double lon, double lat)
+{
+    m_images[path] = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
 }
 
 void MapWidget::customPaint(Marble::GeoPainter *painter)
@@ -111,7 +115,7 @@ void MapWidget::restoreSettings()
     }
 
     // Restore map's last center point
-    const auto [ lon, lat ] = m_settings->mapCenter();
+    const auto [ lon, lat, isSet ] = m_settings->mapCenter();
     centerOn(lon, lat);
 
     // Restore the last zoom level
