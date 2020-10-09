@@ -20,6 +20,7 @@
 
 // Qt includes
 #include <QIcon>
+#include <QDebug>
 
 ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     : QListWidget(parent), m_imageCache(imageCache)

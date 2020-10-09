@@ -52,20 +52,27 @@ MainWindow::MainWindow() : QMainWindow()
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
     // Dock setup
-
     setDockNestingEnabled(true);
 
+    // Unassigned images
     m_unassignedImages = new DragableImagesList(m_imageCache);
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unassignedImages,
-                                        QStringLiteral("unassignedImagesDock"));
+                                                  QStringLiteral("unassignedImagesDock"));
     connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
 
+    // Assigned images
+    m_assignedImages = new ImagesList(m_imageCache);
+    auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
+                                                QStringLiteral("assignedImagesDock"));
+
+    // Preview
     m_previewWidget = new PreviewWidget(m_imageCache);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
     connect(m_unassignedImages, &ImagesList::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
 
+    // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
 
@@ -81,7 +88,8 @@ MainWindow::MainWindow() : QMainWindow()
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
-        splitDockWidget(unassignedImagesDock, previewDock, Qt::Vertical);
+        splitDockWidget(unassignedImagesDock, assignedImagesDock, Qt::Vertical);
+        splitDockWidget(assignedImagesDock, previewDock, Qt::Vertical);
     }
 
     // Restore the map's settings
