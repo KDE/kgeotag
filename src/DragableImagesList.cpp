@@ -40,14 +40,15 @@ void DragableImagesList::mousePressEvent(QMouseEvent *event)
 
 void DragableImagesList::mouseMoveEvent(QMouseEvent *event)
 {
+    const auto *item = currentItem();
+
     if (! (event->buttons() & Qt::LeftButton)
+        || item == nullptr
         || (event->pos() - m_dragStartPosition).manhattanLength()
            < QApplication::startDragDistance()) {
 
         return;
     }
-
-    const auto *item = currentItem();
 
     auto *drag = new QDrag(this);
     drag->setPixmap(item->icon().pixmap(iconSize()));
