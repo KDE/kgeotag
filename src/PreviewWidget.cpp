@@ -18,6 +18,7 @@
 #include "PreviewWidget.h"
 #include "ImageCache.h"
 #include "ImagePreview.h"
+#include "Coordinates.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -41,14 +42,27 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     m_date->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
     layout->addWidget(m_date);
 
+    m_coordinates = new QLabel;
+    m_coordinates->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
+    layout->addWidget(m_coordinates);
+
     m_preview = new ImagePreview(imageCache);
     layout->addWidget(m_preview);
 }
 
 void PreviewWidget::setImage(const QString &path)
 {
-    m_path->setText(i18n("File: %0").arg(path));
-    m_date->setText(i18n("Date: %0").arg(
-                         m_imageCache->date(path).toString(i18n("yyyy-MM-dd hh:mm:ss")))) ;
+    m_path->setText(i18n("File: %1", path));
+    m_date->setText(i18n("Date: %1",
+                         m_imageCache->date(path).toString(i18n("yyyy-MM-dd hh:mm:ss"))));
+
+    const auto coordinates = m_imageCache->coordinates(path);
+    if (coordinates.isSet) {
+        m_coordinates->setText(i18n("Longitude: %1 / Latitude: %2",
+                                    coordinates.lon, coordinates.lat));
+    } else {
+        m_coordinates->setText(i18n("<i>No coordinates set</i>"));
+    }
+
     m_preview->setImage(path);
 }

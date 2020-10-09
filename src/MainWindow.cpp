@@ -65,11 +65,12 @@ MainWindow::MainWindow() : QMainWindow()
     m_assignedImages = new ImagesList(m_imageCache);
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
-
     // Preview
     m_previewWidget = new PreviewWidget(m_imageCache);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
+    connect(m_assignedImages, &ImagesList::imageSelected,
+            m_previewWidget, &PreviewWidget::setImage);
     connect(m_unAssignedImages, &ImagesList::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
 

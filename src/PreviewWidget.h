@@ -42,6 +42,7 @@ private: // Variables
     ImagePreview *m_preview;
     QLabel *m_path;
     QLabel *m_date;
+    QLabel *m_coordinates;
 
 };
 
