@@ -47,7 +47,26 @@ bool ImageCache::addImage(const QString &path)
 
     const auto date = QDateTime::fromString(getExifValue(exifData, "Exif.Photo.DateTimeOriginal"),
                                             QStringLiteral("yyyy:MM:dd hh:mm:ss"));
-    const auto coordinates = getExifGps(exifData);
+
+    auto coordinates = Coordinates::Data { 0.0, 0.0, false };
+
+    if (! getExifValue(exifData, "Exif.GPSInfo.GPSVersionID").isEmpty()) {
+        const QString longitude    = getExifValue(exifData, "Exif.GPSInfo.GPSLongitude");
+        const QString longitudeRef = getExifValue(exifData, "Exif.GPSInfo.GPSLongitudeRef");
+        const QString latitude     = getExifValue(exifData, "Exif.GPSInfo.GPSLatitude");
+        const QString latitudeRef  = getExifValue(exifData, "Exif.GPSInfo.GPSLatitudeRef");
+
+        if (   ! longitude.isEmpty() && ! longitudeRef.isEmpty()
+            && ! latitude.isEmpty()  && ! latitudeRef.isEmpty()
+            && longitude.count(QStringLiteral(" ")) == 2
+            && longitude.count(QStringLiteral("/")) == 3
+            && latitude.count(QStringLiteral(" ")) == 2
+            && latitude.count(QStringLiteral("/")) == 3) {
+
+            coordinates = Coordinates::Data { parseExifLonLat(longitude, longitudeRef),
+                                              parseExifLonLat(latitude, latitudeRef) };
+        }
+    }
 
     const auto orientation = getExifValue(exifData, "Exif.Image.Orientation");
     if (! orientation.isEmpty() && orientation != QStringLiteral("1")) {
@@ -87,32 +106,6 @@ bool ImageCache::addImage(const QString &path)
     m_imageData.insert(path, ImageData { thumbnail, preview, date, coordinates });
 
     return true;
-}
-
-Coordinates::Data ImageCache::getExifGps(Exiv2::ExifData &data) const
-{
-    if (getExifValue(data, "Exif.GPSInfo.GPSVersionID").isEmpty()) {
-        return Coordinates::Data { 0.0, 0.0, false };
-    }
-
-    const QString longitude    = getExifValue(data, "Exif.GPSInfo.GPSLongitude");
-    const QString longitudeRef = getExifValue(data, "Exif.GPSInfo.GPSLongitudeRef");
-    const QString latitude     = getExifValue(data, "Exif.GPSInfo.GPSLatitude");
-    const QString latitudeRef  = getExifValue(data, "Exif.GPSInfo.GPSLatitudeRef");
-
-    if (longitude.isEmpty() || longitudeRef.isEmpty()
-        || latitude.isEmpty() || latitudeRef.isEmpty()
-        || longitude.count(QStringLiteral(" ")) != 2
-        || longitude.count(QStringLiteral("/")) != 3
-        || latitude.count(QStringLiteral(" ")) != 2
-        || latitude.count(QStringLiteral("/")) != 3) {
-
-        return Coordinates::Data { 0.0, 0.0, false };
-    }
-
-    return Coordinates::Data { parseExifLonLat(longitude, longitudeRef),
-                               parseExifLonLat(latitude, latitudeRef),
-                               true };
 }
 
 double ImageCache::parseExifLonLat(const QString &lonLat, const QString &ref) const

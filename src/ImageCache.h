@@ -52,7 +52,6 @@ public:
 
 private: // Functions
     QString getExifValue(Exiv2::ExifData &data, const char *key) const;
-    Coordinates::Data getExifGps(Exiv2::ExifData &data) const;
     double parseExifLonLat(const QString &lonLat, const QString &ref) const;
 
 private: // Structs
