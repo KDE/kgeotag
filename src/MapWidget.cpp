@@ -121,3 +121,9 @@ void MapWidget::restoreSettings()
     // Restore the last zoom level
     setZoom(m_settings->zoom());
 }
+
+void MapWidget::centerImage(const QString &path)
+{
+    const auto coordinates = m_imageCache->coordinates(path);
+    centerOn(coordinates.lon, coordinates.lat);
+}

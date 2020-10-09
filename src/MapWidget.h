@@ -43,6 +43,9 @@ public:
     void restoreSettings();
     void addImage(const QString &path, double lon, double lat);
 
+public slots:
+    void centerImage(const QString &path);
+
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;

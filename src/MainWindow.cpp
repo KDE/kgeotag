@@ -65,6 +65,7 @@ MainWindow::MainWindow() : QMainWindow()
     m_assignedImages = new ImagesList(m_imageCache);
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
+
     // Preview
     m_previewWidget = new PreviewWidget(m_imageCache);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
@@ -77,6 +78,7 @@ MainWindow::MainWindow() : QMainWindow()
     // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
+    connect(m_assignedImages, &ImagesList::imageSelected, m_mapWidget, &MapWidget::centerImage);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
