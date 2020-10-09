@@ -23,6 +23,7 @@
 // Marble includes
 #include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
+#include <marble/MarbleModel.h>
 
 // Qt includes
 #include <QDebug>
@@ -37,6 +38,11 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
 
     setProjection(Marble::Mercator);
     setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
+}
+
+void MapWidget::addGpx(const QString &path)
+{
+    model()->addGeoDataFile(path);
 }
 
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)

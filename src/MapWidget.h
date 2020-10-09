@@ -41,6 +41,7 @@ public:
     virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
+    void addGpx(const QString &path);
     void addImage(const QString &path, double lon, double lat);
 
 signals:

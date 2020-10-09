@@ -45,7 +45,11 @@ MainWindow::MainWindow() : QMainWindow()
 
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
 
+    auto *addGpxAction = fileMenu->addAction(i18n("Add GPX track"));
+    connect(addGpxAction, &QAction::triggered, this, &MainWindow::addGpx);
+
     auto *addImagesAction = fileMenu->addAction(i18n("Add images"));
+    connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
 
     fileMenu->addSeparator();
 
@@ -59,7 +63,6 @@ MainWindow::MainWindow() : QMainWindow()
     m_unAssignedImages = new DragableImagesList(m_imageCache);
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
-    connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
 
     // Assigned images
     m_assignedImages = new ImagesList(m_imageCache);
@@ -124,18 +127,33 @@ void MainWindow::closeEvent(QCloseEvent *)
     QApplication::quit();
 }
 
+void MainWindow::addGpx()
+{
+    const auto file = QFileDialog::getOpenFileName(this,
+                          i18n("Please select the GPX track to add"),
+                          m_settings->lastOpenPath(),
+                          i18n("GPX tracks (*.gpx)"));
+    if (file.isEmpty()) {
+        return;
+    }
+
+    const QFileInfo info(file);
+    m_settings->saveLastOpenPath(info.dir().absolutePath());
+    m_mapWidget->addGpx(file);
+}
+
 void MainWindow::addImages()
 {
     const auto files = QFileDialog::getOpenFileNames(this,
                            i18n("Please select the images to add"),
-                           m_settings->lastImagesOpenPath(),
+                           m_settings->lastOpenPath(),
                            i18n("JPEG Images (*.jpg *.jpeg)"));
     if (files.isEmpty()) {
         return;
     }
 
     const QFileInfo info(files.at(0));
-    m_settings->saveLastImagesOpenPath(info.dir().absolutePath());
+    m_settings->saveLastOpenPath(info.dir().absolutePath());
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 

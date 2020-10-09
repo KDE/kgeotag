@@ -28,6 +28,7 @@ namespace
 const QLatin1String c_main("main/");
 const QString c_main_windowGeometry = c_main + QLatin1String("window_geometry");
 const QString c_main_windowState   = c_main + QLatin1String("window_state");
+const QString c_main_lastOpenPath = c_main + QLatin1String("last_open_path");
 
 const QLatin1String c_floatersVisibility("floaters_visibility/");
 
@@ -35,9 +36,6 @@ const QLatin1String c_map("map/");
 const QString c_map_centerLon = c_map + QLatin1String("center_lon");
 const QString c_map_centerLat = c_map + QLatin1String("center_lat");
 const QString c_map_zoom = c_map + QLatin1String("zoom");
-
-const QLatin1String c_images("images/");
-const QString c_images_lastOpenPath = c_images + QLatin1String("last_open_path");
 
 }
 
@@ -111,14 +109,14 @@ int Settings::zoom() const
     return value(c_map_zoom, 1520).toInt();
 }
 
-void Settings::saveLastImagesOpenPath(const QString &path)
+void Settings::saveLastOpenPath(const QString &path)
 {
-    setValue(c_images_lastOpenPath, path);
+    setValue(c_main_lastOpenPath, path);
 }
 
-QString Settings::lastImagesOpenPath() const
+QString Settings::lastOpenPath() const
 {
-    return value(c_images_lastOpenPath, QString()).toString();
+    return value(c_main_lastOpenPath, QString()).toString();
 }
 
 QSize Settings::thumbnailSize() const

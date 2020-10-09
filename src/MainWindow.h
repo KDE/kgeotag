@@ -43,6 +43,7 @@ protected:
     virtual void closeEvent(QCloseEvent *) override;
 
 private slots:
+    void addGpx();
     void addImages();
     void imageAssigned(const QString &path);
 
