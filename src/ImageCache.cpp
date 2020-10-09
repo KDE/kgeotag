@@ -23,6 +23,7 @@
 
 // Qt includes
 #include <QDebug>
+#include <QTransform>
 
 ImageCache::ImageCache(QObject *parent, Settings *settings)
     : QObject(parent), m_settings(settings)
@@ -35,7 +36,7 @@ bool ImageCache::addImage(const QString &path)
         return false;
     }
 
-    const QImage image = QImage(path);
+    QImage image = QImage(path);
     if (image.isNull()) {
         return false;
     }
@@ -47,6 +48,37 @@ bool ImageCache::addImage(const QString &path)
     const auto date = QDateTime::fromString(getExifValue(exifData, "Exif.Photo.DateTimeOriginal"),
                                             QStringLiteral("yyyy:MM:dd hh:mm:ss"));
     const auto coordinates = getExifGps(exifData);
+
+    const auto orientation = getExifValue(exifData, "Exif.Image.Orientation");
+    if (! orientation.isEmpty() && orientation != QStringLiteral("1")) {
+        if (orientation == QStringLiteral("2")) {
+            image = image.mirrored(true);
+        } else if (orientation == QStringLiteral("3")) {
+            QTransform transform;
+            transform.rotate(180);
+            image = image.transformed(transform);
+        } else if (orientation == QStringLiteral("4")) {
+            QTransform transform;
+            transform.rotate(180);
+            image = image.transformed(transform).mirrored(true);
+        } else if (orientation == QStringLiteral("5")) {
+            QTransform transform;
+            transform.rotate(-90);
+            image = image.transformed(transform).mirrored(true);
+        } else if (orientation == QStringLiteral("6")) {
+            QTransform transform;
+            transform.rotate(90);
+            image = image.transformed(transform);
+        } else if (orientation == QStringLiteral("7")) {
+            QTransform transform;
+            transform.rotate(90);
+            image = image.transformed(transform).mirrored(true);
+        } else if (orientation == QStringLiteral("8")) {
+            QTransform transform;
+            transform.rotate(-90);
+            image = image.transformed(transform);
+        }
+    }
 
     const QImage thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
                                           Qt::SmoothTransformation);
