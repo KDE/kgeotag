@@ -17,12 +17,18 @@
 #ifndef MAPWIDGET_H
 #define MAPWIDGET_H
 
+// Local includes
+#include "Coordinates.h"
+
 // Marble includes
 #include <marble/MarbleWidget.h>
 #include <marble/GeoDataCoordinates.h>
+#include <marble/GeoDataLineString.h>
 
 // Qt includes
 #include <QHash>
+#include <QPen>
+#include <QMap>
 
 // Local classes
 class Settings;
@@ -58,6 +64,9 @@ private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     QHash<QString, Marble::GeoDataCoordinates> m_images;
+    QVector<Marble::GeoDataLineString> m_tracks;
+    QPen m_trackPen;
+    QMap<QDateTime, Coordinates::Data> m_points;
 
 };
 

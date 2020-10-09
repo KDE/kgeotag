@@ -30,6 +30,7 @@
 #include <QDragEnterEvent>
 #include <QMimeData>
 #include <QDropEvent>
+#include <QXmlStreamReader>
 
 MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
     : Marble::MarbleWidget(parent), m_settings(settings), m_imageCache(imageCache)
@@ -38,11 +39,55 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
 
     setProjection(Marble::Mercator);
     setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
+
+    m_trackPen.setColor(QColor(255, 0, 255, 150));
+    m_trackPen.setWidth(3);
+    m_trackPen.setStyle(Qt::DotLine);
+    m_trackPen.setCapStyle(Qt::RoundCap);
+    m_trackPen.setJoinStyle(Qt::RoundJoin);
 }
 
 void MapWidget::addGpx(const QString &path)
 {
-    model()->addGeoDataFile(path);
+
+    QFile gpxFile(path);
+    gpxFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    QXmlStreamReader xml(&gpxFile);
+
+    Marble::GeoDataLineString lineString;
+    double lon;
+    double lat;
+    QDateTime time;
+
+    while (! xml.atEnd() && ! xml.hasError()) {
+        const QXmlStreamReader::TokenType token = xml.readNext();
+        const QStringRef name = xml.name();
+
+        if (token == QXmlStreamReader::StartElement) {
+            if (name == QStringLiteral("trkpt")) {
+                QXmlStreamAttributes attributes = xml.attributes();
+                lon = attributes.value(QStringLiteral("lon")).toDouble();
+                lat = attributes.value(QStringLiteral("lat")).toDouble();
+                const Marble::GeoDataCoordinates coordinates
+                    = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
+                lineString.append(coordinates);
+
+            } else if (name == QStringLiteral("time")) {
+                xml.readNext();
+                time = QDateTime::fromString(xml.text().toString(), Qt::ISODate);
+            }
+
+        } else if (token == QXmlStreamReader::EndElement) {
+            if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
+                m_tracks.append(lineString);
+                lineString.clear();
+
+            } else if (name == QStringLiteral("time")) {
+                m_points[time] = Coordinates::Data { lon, lat };
+            }
+        }
+    }
+
 }
 
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)
@@ -86,6 +131,11 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
     for (const auto image : images) {
         painter->drawPixmap(m_images.value(image),
                             QPixmap::fromImage(m_imageCache->thumbnail(image)));
+    }
+
+    painter->setPen(m_trackPen);
+    for (const auto &lineString : m_tracks) {
+        painter->drawPolyline(lineString);
     }
 }
 
