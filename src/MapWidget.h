@@ -17,32 +17,39 @@
 #ifndef MAPWIDGET_H
 #define MAPWIDGET_H
 
+// Marble includes
+#include <marble/MarbleWidget.h>
+#include <marble/GeoDataCoordinates.h>
+
 // Qt includes
-#include <QWidget>
+#include <QHash>
 
 // Local classes
 class Settings;
 class ImageCache;
-class MapView;
 
-// Marble classes
-namespace Marble
-{
-class GeoDataCoordinates;
-}
+// Qt classes
+class QDragEnterEvent;
+class QDropEvent;
 
-class MapWidget : public QWidget
+class MapWidget : public Marble::MarbleWidget
 {
     Q_OBJECT
 
 public:
     explicit MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
+    virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
 
+protected:
+    virtual void dragEnterEvent(QDragEnterEvent *event) override;
+    virtual void dropEvent(QDropEvent *event) override;
+
 private: // Variables
     Settings *m_settings;
-    MapView *m_mapView;
+    ImageCache *m_imageCache;
+    QHash<QString, Marble::GeoDataCoordinates> m_images;
 
 };
 

@@ -17,24 +17,62 @@
 // Local includes
 #include "MapWidget.h"
 #include "Settings.h"
+#include "ImageCache.h"
 #include "Coordinates.h"
-#include "MapView.h"
 
 // Marble includes
+#include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
 
 // Qt includes
-#include <QVBoxLayout>
 #include <QDebug>
+#include <QDragEnterEvent>
+#include <QMimeData>
+#include <QDropEvent>
 
 MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
-    : QWidget(parent), m_settings(settings)
+    : Marble::MarbleWidget(parent), m_settings(settings), m_imageCache(imageCache)
 {
-    auto *layout = new QVBoxLayout(this);
+    setAcceptDrops(true);
 
-    m_mapView = new MapView(imageCache);
-    layout->addWidget(m_mapView);
-    m_mapView->show();
+    setProjection(Marble::Mercator);
+    setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
+}
+
+void MapWidget::dragEnterEvent(QDragEnterEvent *event)
+{
+    if (event->mimeData()->hasFormat(QStringLiteral("text/plain"))
+        && m_imageCache->contains(event->mimeData()->text())) {
+
+        event->acceptProposedAction();
+    }
+}
+
+void MapWidget::dropEvent(QDropEvent *event)
+{
+    const auto dropPosition = event->pos();
+
+    qreal lon;
+    qreal lat;
+    if (! geoCoordinates(dropPosition.x(), dropPosition.y(), lon, lat,
+                         Marble::GeoDataCoordinates::Degree)) {
+        return;
+    }
+
+    m_images[event->mimeData()->text()]
+        = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
+    reloadMap();
+
+    event->acceptProposedAction();
+}
+
+void MapWidget::customPaint(Marble::GeoPainter *painter)
+{
+    const auto images = m_images.keys();
+    for (const auto image : images) {
+        painter->drawPixmap(m_images.value(image),
+                            QPixmap::fromImage(m_imageCache->thumbnail(image)));
+    }
 }
 
 void MapWidget::saveSettings()
@@ -43,29 +81,29 @@ void MapWidget::saveSettings()
 
     QHash<QString, bool> visibility;
 
-    const auto floatItems = m_mapView->floatItems();
-    for (const auto &item : floatItems) {
+    const auto floatItemsList = floatItems();
+    for (const auto &item : floatItemsList) {
         visibility.insert(item->name(), item->visible());
     }
 
     m_settings->saveFloatersVisibility(visibility);
 
     // Save the current center point
-    const auto center = m_mapView->focusPoint();
+    const auto center = focusPoint();
     m_settings->saveMapCenter(Coordinates::Data {
                                   center.longitude(Marble::GeoDataCoordinates::Degree),
                                   center.latitude(Marble::GeoDataCoordinates::Degree) });
 
     // Save the zoom level
-    m_settings->saveZoom(m_mapView->zoom());
+    m_settings->saveZoom(zoom());
 }
 
 void MapWidget::restoreSettings()
 {
     // Restore the floaters visiblility
     const auto floatersVisiblility = m_settings->floatersVisibility();
-    const auto floatItems = m_mapView->floatItems();
-    for (const auto &item : floatItems) {
+    const auto floatItemsList = floatItems();
+    for (const auto &item : floatItemsList) {
         const auto name = item->name();
         if (floatersVisiblility.contains(name)) {
             item->setVisible(floatersVisiblility.value(name));
@@ -74,8 +112,8 @@ void MapWidget::restoreSettings()
 
     // Restore map's last center point
     const auto [ lon, lat ] = m_settings->mapCenter();
-    m_mapView->centerOn(lon, lat);
+    centerOn(lon, lat);
 
     // Restore the last zoom level
-    m_mapView->setZoom(m_settings->zoom());
+    setZoom(m_settings->zoom());
 }
