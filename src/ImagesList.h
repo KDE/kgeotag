@@ -20,22 +20,25 @@
 // Qt includes
 #include <QListWidget>
 
+// Local classes
+class ImageCache;
+
 // Qt classes
-class QMouseEvent;
+class QListWidgetItem;
 
 class ImagesList : public QListWidget
 {
     Q_OBJECT
 
 public:
-    explicit ImagesList(QWidget *parent = nullptr);
+    explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
+    void addImage(const QString fileName, const QString &path);
 
-protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
+signals:
+    void imageSelected(const QString &path) const;
 
 private: // Variables
-    QPoint m_dragStartPosition;
+    ImageCache *m_imageCache;
 
 };
 

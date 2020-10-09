@@ -43,6 +43,7 @@ public:
     QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
+    QSize thumbnailSize() const;
 
 private: // Functions
     QString getExifValue(Exiv2::ExifData &data, const char *key) const;

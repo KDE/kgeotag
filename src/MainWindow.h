@@ -23,7 +23,7 @@
 // Local classes
 class Settings;
 class ImageCache;
-class ImagesWidget;
+class DragableImagesList;
 class PreviewWidget;
 class MapWidget;
 
@@ -41,13 +41,16 @@ public:
 protected:
     virtual void closeEvent(QCloseEvent *) override;
 
+private slots:
+    void addImages();
+
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
 
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
-    ImagesWidget *m_imagesWidget;
+    DragableImagesList *m_unassignedImages;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
 

@@ -16,43 +16,27 @@
 
 // Local includes
 #include "ImagesList.h"
+#include "ImageCache.h"
 
 // Qt includes
-#include <QDebug>
-#include <QMouseEvent>
-#include <QApplication>
-#include <QDrag>
-#include <QMimeData>
+#include <QIcon>
 
-ImagesList::ImagesList(QWidget *parent) : QListWidget(parent)
+ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
+    : QListWidget(parent), m_imageCache(imageCache)
 {
+    setSortingEnabled(true);
+    setIconSize(m_imageCache->thumbnailSize());
+
+    connect(this, &QListWidget::itemClicked, [this](QListWidgetItem *item)
+            {
+                emit imageSelected(item->data(Qt::UserRole).toString());
+            });
 }
 
-void ImagesList::mousePressEvent(QMouseEvent *event)
+void ImagesList::addImage(const QString fileName, const QString &path)
 {
-    if (event->button() == Qt::LeftButton) {
-        m_dragStartPosition = event->pos();
-    }
-
-    QListWidget::mousePressEvent(event);
-}
-
-void ImagesList::mouseMoveEvent(QMouseEvent *event)
-{
-    if (! (event->buttons() & Qt::LeftButton)
-        || (event->pos() - m_dragStartPosition).manhattanLength()
-           < QApplication::startDragDistance()) {
-
-        return;
-    }
-
-    const auto *item = currentItem();
-
-    auto *drag = new QDrag(this);
-    drag->setPixmap(item->icon().pixmap(iconSize()));
-
-    QMimeData *mimeData = new QMimeData;
-    mimeData->setText(item->data(Qt::UserRole).toString());
-    drag->setMimeData(mimeData);
-    drag->exec(Qt::MoveAction);
+    auto *item = new QListWidgetItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
+                                     fileName);
+    item->setData(Qt::UserRole, path);
+    addItem(item);
 }

@@ -18,7 +18,7 @@
 #include "MainWindow.h"
 #include "Settings.h"
 #include "ImageCache.h"
-#include "ImagesWidget.h"
+#include "DragableImagesList.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
 
@@ -33,6 +33,7 @@
 #include <QScreen>
 #include <QApplication>
 #include <QDebug>
+#include <QFileDialog>
 
 MainWindow::MainWindow() : QMainWindow()
 {
@@ -54,15 +55,15 @@ MainWindow::MainWindow() : QMainWindow()
 
     setDockNestingEnabled(true);
 
-    m_imagesWidget = new ImagesWidget(m_settings, m_imageCache);
-    auto *imagesDock = createDockWidget(i18n("Images"), m_imagesWidget,
-                                        QStringLiteral("imagesDock"));
-    connect(addImagesAction, &QAction::triggered, m_imagesWidget, &ImagesWidget::addImages);
+    m_unassignedImages = new DragableImagesList(m_imageCache);
+    auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unassignedImages,
+                                        QStringLiteral("unassignedImagesDock"));
+    connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
 
     m_previewWidget = new PreviewWidget(m_imageCache);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
-    connect(m_imagesWidget, &ImagesWidget::imageSelected,
+    connect(m_unassignedImages, &ImagesList::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
 
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
@@ -80,7 +81,7 @@ MainWindow::MainWindow() : QMainWindow()
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
-        splitDockWidget(imagesDock, previewDock, Qt::Vertical);
+        splitDockWidget(unassignedImagesDock, previewDock, Qt::Vertical);
     }
 
     // Restore the map's settings
@@ -107,4 +108,28 @@ void MainWindow::closeEvent(QCloseEvent *)
     m_mapWidget->saveSettings();
 
     QApplication::quit();
+}
+
+void MainWindow::addImages()
+{
+    const auto files = QFileDialog::getOpenFileNames(this,
+                           i18n("Please select the images to add"),
+                           m_settings->lastImagesOpenPath(),
+                           i18n("JPEG Images (*.jpg *.jpeg)"));
+    if (files.isEmpty()) {
+        return;
+    }
+
+    const QFileInfo info(files.at(0));
+    m_settings->saveLastImagesOpenPath(info.dir().absolutePath());
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    for (const auto &path : files) {
+        const QFileInfo info(path);
+        const QString canonicalPath = info.canonicalFilePath();
+        if (m_imageCache->addImage(canonicalPath)) {
+            m_unassignedImages->addImage(info.fileName(), canonicalPath);
+        }
+    }
+    QApplication::restoreOverrideCursor();
 }

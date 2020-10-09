@@ -49,21 +49,16 @@ include_directories(${CMAKE_BINARY_DIR})
 # Source files
 set(main_ROOT ${CMAKE_SOURCE_DIR}/src)
 include_directories(${main_ROOT})
-set(main_SOURCES
+set(kgeotag_SOURCES
     ${main_ROOT}/main.cpp
-    ${main_ROOT}/MainWindow.cpp
     ${main_ROOT}/Settings.cpp
-    ${main_ROOT}/ImagesWidget.cpp
+    ${main_ROOT}/ImageCache.cpp
+    ${main_ROOT}/MainWindow.cpp
+    ${main_ROOT}/ImagesList.cpp
+    ${main_ROOT}/DragableImagesList.cpp
     ${main_ROOT}/PreviewWidget.cpp
     ${main_ROOT}/MapWidget.cpp
     ${main_ROOT}/ImagePreview.cpp
-    ${main_ROOT}/ImageCache.cpp
-    ${main_ROOT}/ImagesList.cpp
-)
-
-# Assemble all sources
-set(kgeotag_SOURCES
-    ${main_SOURCES}
 )
 
 # Build the executable
