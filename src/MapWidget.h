@@ -43,6 +43,9 @@ public:
     void restoreSettings();
     void addImage(const QString &path, double lon, double lat);
 
+signals:
+    void imageAssigned(const QString &path) const;
+
 public slots:
     void centerImage(const QString &path);
 

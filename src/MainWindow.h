@@ -44,6 +44,7 @@ protected:
 
 private slots:
     void addImages();
+    void imageAssigned(const QString &path);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

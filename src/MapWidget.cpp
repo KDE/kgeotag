@@ -59,8 +59,12 @@ void MapWidget::dropEvent(QDropEvent *event)
         return;
     }
 
-    addImage(event->mimeData()->text(), lon, lat);
+    const QString path = event->mimeData()->text();
+    addImage(path, lon, lat);
     reloadMap();
+
+    m_imageCache->setCoordinates(path, lon, lat);
+    emit imageAssigned(path);
 
     event->acceptProposedAction();
 }

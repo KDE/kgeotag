@@ -41,3 +41,9 @@ void ImagesList::addImage(const QString fileName, const QString &path)
     item->setData(Qt::UserRole, path);
     addItem(item);
 }
+
+void ImagesList::removeCurrentImage()
+{
+    const auto *item = takeItem(currentRow());
+    delete item;
+}

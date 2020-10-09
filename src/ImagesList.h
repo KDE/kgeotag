@@ -23,9 +23,6 @@
 // Local classes
 class ImageCache;
 
-// Qt classes
-class QListWidgetItem;
-
 class ImagesList : public QListWidget
 {
     Q_OBJECT
@@ -33,6 +30,7 @@ class ImagesList : public QListWidget
 public:
     explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
     void addImage(const QString fileName, const QString &path);
+    void removeCurrentImage();
 
 signals:
     void imageSelected(const QString &path) const;

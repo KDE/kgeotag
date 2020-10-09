@@ -48,6 +48,7 @@ public:
     QDateTime date(const QString &path) const;
     QSize thumbnailSize() const;
     Coordinates::Data coordinates(const QString &path) const;
+    void setCoordinates(const QString &path, double lon, double lat);
 
 private: // Functions
     QString getExifValue(Exiv2::ExifData &data, const char *key) const;
