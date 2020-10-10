@@ -17,6 +17,9 @@
 #ifndef IMAGESLIST_H
 #define IMAGESLIST_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QListWidget>
 
@@ -31,16 +34,9 @@ class ImagesList : public QListWidget
     Q_OBJECT
 
 public:
-    enum MatchType {
-        None,
-        Exact,
-        Interpolated,
-        Set
-    };
-
     explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
     void addImage(const QString fileName, const QString &path,
-                  MatchType matchType = MatchType::None);
+                  KGeoTag::MatchType matchType = KGeoTag::MatchType::None);
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
 

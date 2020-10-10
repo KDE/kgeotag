@@ -48,7 +48,7 @@ bool ImageCache::addImage(const QString &path)
     const auto date = QDateTime::fromString(getExifValue(exifData, "Exif.Photo.DateTimeOriginal"),
                                             QStringLiteral("yyyy:MM:dd hh:mm:ss"));
 
-    auto coordinates = Coordinates::Data { 0.0, 0.0, false };
+    auto coordinates = KGeoTag::Coordinates { 0.0, 0.0, false };
 
     if (! getExifValue(exifData, "Exif.GPSInfo.GPSVersionID").isEmpty()) {
         const QString longitude    = getExifValue(exifData, "Exif.GPSInfo.GPSLongitude");
@@ -63,8 +63,8 @@ bool ImageCache::addImage(const QString &path)
             && latitude.count(QStringLiteral(" ")) == 2
             && latitude.count(QStringLiteral("/")) == 3) {
 
-            coordinates = Coordinates::Data { parseExifLonLat(longitude, longitudeRef),
-                                              parseExifLonLat(latitude, latitudeRef) };
+            coordinates = KGeoTag::Coordinates { parseExifLonLat(longitude, longitudeRef),
+                                                 parseExifLonLat(latitude, latitudeRef) };
         }
     }
 
@@ -158,17 +158,17 @@ QSize ImageCache::thumbnailSize() const
     return m_settings->thumbnailSize();
 }
 
-Coordinates::Data ImageCache::coordinates(const QString &path) const
+KGeoTag::Coordinates ImageCache::coordinates(const QString &path) const
 {
     return m_imageData[path].coordinates;
 }
 
 void ImageCache::setCoordinates(const QString &path, double lon, double lat)
 {
-    setCoordinates(path, Coordinates::Data { lon, lat, true });
+    setCoordinates(path, KGeoTag::Coordinates { lon, lat, true });
 }
 
-void ImageCache::setCoordinates(const QString &path, const Coordinates::Data &coordinates)
+void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
     m_imageData[path].coordinates = coordinates;
 }

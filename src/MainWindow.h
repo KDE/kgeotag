@@ -18,22 +18,17 @@
 #define MAINWINDOW_H
 
 // Local includes
-#include "ImagesList.h"
+#include "KGeoTag.h"
 
 // Qt includes
 #include <QMainWindow>
 
 // Local classes
-
 class Settings;
 class ImageCache;
+class ImagesList;
 class PreviewWidget;
 class MapWidget;
-
-namespace Coordinates
-{
-class Data;
-}
 
 // Qt classes
 class QDockWidget;
@@ -58,8 +53,8 @@ private slots:
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void assignImage(const QString &path, const Coordinates::Data &coordinates,
-                     ImagesList::MatchType matchType);
+    void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates,
+                     KGeoTag::MatchType matchType);
 
 private: // Variables
     Settings *m_settings;

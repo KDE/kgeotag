@@ -14,19 +14,26 @@
    along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#ifndef COORDINATES_H
-#define COORDINATES_H
+#ifndef KGEOTAG_H
+#define KGEOTAG_H
 
-namespace Coordinates
+namespace KGeoTag
 {
 
-struct Data
+struct Coordinates
 {
     double lon;
     double lat;
     bool isSet = true;
 };
 
+enum MatchType {
+    None,
+    Exact,
+    Interpolated,
+    Set
+};
+
 }
 
-#endif // COORDINATES_H
+#endif // KGEOTAG_H

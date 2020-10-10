@@ -17,13 +17,11 @@
 #ifndef SETTINGS_H
 #define SETTINGS_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QSettings>
-
-namespace Coordinates
-{
-struct Data;
-}
 
 class Settings : public QSettings
 {
@@ -41,8 +39,8 @@ public:
     void saveFloatersVisibility(const QHash<QString, bool> &data);
     QHash<QString, bool> floatersVisibility();
 
-    void saveMapCenter(const Coordinates::Data &coordinates);
-    Coordinates::Data mapCenter() const;
+    void saveMapCenter(const KGeoTag::Coordinates &coordinates);
+    KGeoTag::Coordinates mapCenter() const;
 
     void saveZoom(int zoom);
     int zoom() const;

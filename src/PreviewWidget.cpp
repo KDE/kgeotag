@@ -18,7 +18,7 @@
 #include "PreviewWidget.h"
 #include "ImageCache.h"
 #include "ImagePreview.h"
-#include "Coordinates.h"
+#include "KGeoTag.h"
 
 // KDE includes
 #include <KLocalizedString>

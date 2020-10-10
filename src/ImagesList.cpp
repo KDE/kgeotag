@@ -42,7 +42,7 @@ void ImagesList::imageHiglighted(QListWidgetItem *item, QListWidgetItem *) const
     }
 }
 
-void ImagesList::addImage(const QString fileName, const QString &path, MatchType matchType)
+void ImagesList::addImage(const QString fileName, const QString &path, KGeoTag::MatchType matchType)
 {
     bool itemFound = false;
     QListWidgetItem *imageItem;
@@ -63,16 +63,16 @@ void ImagesList::addImage(const QString fileName, const QString &path, MatchType
     }
 
     switch (matchType) {
-    case None:
+    case KGeoTag::MatchType::None:
         imageItem->setForeground(QBrush());
         break;
-    case Exact:
+    case KGeoTag::MatchType::Exact:
         imageItem->setForeground(Qt::darkGreen);
         break;
-    case Interpolated:
+    case KGeoTag::MatchType::Interpolated:
         imageItem->setForeground(Qt::darkYellow);
         break;
-    case Set:
+    case KGeoTag::MatchType::Set:
         imageItem->setForeground(Qt::darkBlue);
         break;
     }

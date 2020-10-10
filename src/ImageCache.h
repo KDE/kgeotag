@@ -18,7 +18,7 @@
 #define IMAGECACHE_H
 
 // Local includes
-#include "Coordinates.h"
+#include "KGeoTag.h"
 
 // Qt includes
 #include <QObject>
@@ -47,9 +47,9 @@ public:
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
     QSize thumbnailSize() const;
-    Coordinates::Data coordinates(const QString &path) const;
+    KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat);
-    void setCoordinates(const QString &path, const Coordinates::Data &coordinates);
+    void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
 
 private: // Functions
     QString getExifValue(Exiv2::ExifData &data, const char *key) const;
@@ -60,7 +60,7 @@ private: // Structs
         QImage thumbnail;
         QImage preview;
         QDateTime date;
-        Coordinates::Data coordinates;
+        KGeoTag::Coordinates coordinates;
     };
 
 private: // Variables

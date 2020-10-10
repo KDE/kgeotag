@@ -16,7 +16,6 @@
 
 // Local includes
 #include "Settings.h"
-#include "Coordinates.h"
 
 // Qt includes
 #include <QDebug>
@@ -87,16 +86,16 @@ QHash<QString, bool> Settings::floatersVisibility()
     return data;
 }
 
-void Settings::saveMapCenter(const Coordinates::Data &coordinates)
+void Settings::saveMapCenter(const KGeoTag::Coordinates &coordinates)
 {
     setValue(c_map_centerLon, coordinates.lon);
     setValue(c_map_centerLat, coordinates.lat);
 }
 
-Coordinates::Data Settings::mapCenter() const
+KGeoTag::Coordinates Settings::mapCenter() const
 {
-    return Coordinates::Data { value(c_map_centerLon, 0).toDouble(),
-                               value(c_map_centerLat, 0).toDouble() };
+    return KGeoTag::Coordinates { value(c_map_centerLon, 0).toDouble(),
+                                  value(c_map_centerLat, 0).toDouble() };
 }
 
 void Settings::saveZoom(int zoom)

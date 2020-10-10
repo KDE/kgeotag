@@ -18,7 +18,7 @@
 #define MAPWIDGET_H
 
 // Local includes
-#include "Coordinates.h"
+#include "KGeoTag.h"
 
 // Marble includes
 #include <marble/MarbleWidget.h>
@@ -49,9 +49,9 @@ public:
     void restoreSettings();
     void addGpx(const QString &path);
     void addImage(const QString &path, double lon, double lat);
-    void addImage(const QString &path, const Coordinates::Data &coordinates);
-    Coordinates::Data findExactCoordinates(const QDateTime &time) const;
-    Coordinates::Data findInterpolatedCoordinates(const QDateTime &time) const;
+    void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
+    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
+    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
 
 signals:
     void imageAssigned(const QString &path) const;
@@ -70,7 +70,7 @@ private: // Variables
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     QVector<QDateTime> m_allTimes;
-    QHash<QDateTime, Coordinates::Data> m_points;
+    QHash<QDateTime, KGeoTag::Coordinates> m_points;
 
 };
 

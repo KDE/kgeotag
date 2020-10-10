@@ -18,7 +18,7 @@
 #include "MapWidget.h"
 #include "Settings.h"
 #include "ImageCache.h"
-#include "Coordinates.h"
+#include "KGeoTag.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -90,7 +90,7 @@ void MapWidget::addGpx(const QString &path)
 
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("time")) {
-                m_points[time] = Coordinates::Data { lon, lat };
+                m_points[time] = KGeoTag::Coordinates { lon, lat };
                 m_allTimes.append(time);
 
             } else if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
@@ -142,7 +142,7 @@ void MapWidget::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
 }
 
-void MapWidget::addImage(const QString &path, const Coordinates::Data &coordinates)
+void MapWidget::addImage(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
     addImage(path, coordinates.lon, coordinates.lat);
 }
@@ -181,7 +181,7 @@ void MapWidget::saveSettings()
 
     // Save the current center point
     const auto center = focusPoint();
-    m_settings->saveMapCenter(Coordinates::Data {
+    m_settings->saveMapCenter(KGeoTag::Coordinates {
                                   center.longitude(Marble::GeoDataCoordinates::Degree),
                                   center.latitude(Marble::GeoDataCoordinates::Degree) });
 
@@ -215,7 +215,7 @@ void MapWidget::centerImage(const QString &path)
     centerOn(coordinates.lon, coordinates.lat);
 }
 
-Coordinates::Data MapWidget::findExactCoordinates(const QDateTime &time) const
+KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time) const
 {
     // Check for an exact match
     if (m_points.contains(time)) {
@@ -235,15 +235,15 @@ Coordinates::Data MapWidget::findExactCoordinates(const QDateTime &time) const
     }
 
     // No match found
-    return Coordinates::Data { 0.0, 0.0, false };
+    return KGeoTag::Coordinates { 0.0, 0.0, false };
 }
 
-Coordinates::Data MapWidget::findInterpolatedCoordinates(const QDateTime &time) const
+KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &time) const
 {
     // If the image's date is before the first or after the last point we have,
     // it can't be assigned.
     if (time < m_allTimes.first() || time > m_allTimes.last()) {
-        return Coordinates::Data { 0.0, 0.0, false };
+        return KGeoTag::Coordinates { 0.0, 0.0, false };
     }
 
     // Check for an exact match (without tolerance)
@@ -297,6 +297,6 @@ Coordinates::Data MapWidget::findInterpolatedCoordinates(const QDateTime &time) 
                             / double(secondsBefore + time.secsTo(closestAfter));
     const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
 
-    return Coordinates::Data { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
-                               interpolated.latitude(Marble::GeoDataCoordinates::Degree) };
+    return KGeoTag::Coordinates { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
+                                  interpolated.latitude(Marble::GeoDataCoordinates::Degree) };
 }

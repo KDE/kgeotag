@@ -20,7 +20,8 @@
 #include "ImageCache.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
-#include "Coordinates.h"
+#include "KGeoTag.h"
+#include "ImagesList.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -200,11 +201,11 @@ void MainWindow::imageAssigned(const QString &path)
 {
     const QFileInfo info(path);
     m_unAssignedImages->removeImage(path);
-    m_assignedImages->addImage(info.fileName(), path, ImagesList::MatchType::Set);
+    m_assignedImages->addImage(info.fileName(), path, KGeoTag::MatchType::Set);
 }
 
-void MainWindow::assignImage(const QString &path, const Coordinates::Data &coordinates,
-                             ImagesList::MatchType matchType)
+void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates,
+                             KGeoTag::MatchType matchType)
 {
     m_imageCache->setCoordinates(path, coordinates);
     m_unAssignedImages->removeImage(path);
@@ -221,7 +222,7 @@ void MainWindow::assignExactMatches()
     for (const auto &image : images) {
         const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(image));
         if (coordinates.isSet) {
-            assignImage(image, coordinates, ImagesList::MatchType::Exact);
+            assignImage(image, coordinates, KGeoTag::MatchType::Exact);
         }
     }
 
@@ -239,7 +240,7 @@ void MainWindow::assignInterpolatedMatches()
         const auto coordinates
             = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(image));
         if (coordinates.isSet) {
-            assignImage(image, coordinates, ImagesList::MatchType::Interpolated);
+            assignImage(image, coordinates, KGeoTag::MatchType::Interpolated);
         }
     }
 
