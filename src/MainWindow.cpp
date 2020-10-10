@@ -35,6 +35,7 @@
 #include <QApplication>
 #include <QDebug>
 #include <QFileDialog>
+#include <QProgressDialog>
 
 MainWindow::MainWindow() : QMainWindow()
 {
@@ -156,8 +157,16 @@ void MainWindow::addImages()
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
+    QProgressDialog progress(i18n("Loading images ..."), i18n("Cancel"), 0, files.count(), this);
+    progress.setWindowModality(Qt::WindowModal);
 
+    int processed = 0;
     for (const auto &path : files) {
+        progress.setValue(processed);
+        if (progress.wasCanceled()) {
+            break;
+        }
+
         const QFileInfo info(path);
         const QString canonicalPath = info.canonicalFilePath();
         if (! m_imageCache->addImage(canonicalPath)) {
@@ -171,6 +180,8 @@ void MainWindow::addImages()
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
             m_assignedImages->addImage(info.fileName(), canonicalPath);
         }
+
+        processed++;
     }
 
     QApplication::restoreOverrideCursor();
