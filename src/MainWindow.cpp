@@ -18,7 +18,7 @@
 #include "MainWindow.h"
 #include "Settings.h"
 #include "ImageCache.h"
-#include "DragableImagesList.h"
+#include "ImagesList.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
 #include "Coordinates.h"
@@ -71,7 +71,7 @@ MainWindow::MainWindow() : QMainWindow()
     setDockNestingEnabled(true);
 
     // Unassigned images
-    m_unAssignedImages = new DragableImagesList(m_imageCache);
+    m_unAssignedImages = new ImagesList(m_imageCache);
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
 
@@ -200,7 +200,7 @@ void MainWindow::addImages()
 void MainWindow::imageAssigned(const QString &path)
 {
     const QFileInfo info(path);
-    m_unAssignedImages->removeCurrentImage();
+    m_unAssignedImages->removeImage(path);
     m_assignedImages->addImage(info.fileName(), path);
 }
 

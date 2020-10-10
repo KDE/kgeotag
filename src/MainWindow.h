@@ -25,7 +25,6 @@
 class Settings;
 class ImageCache;
 class ImagesList;
-class DragableImagesList;
 class PreviewWidget;
 class MapWidget;
 
@@ -63,7 +62,7 @@ private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     ImagesList *m_assignedImages;
-    DragableImagesList *m_unAssignedImages;
+    ImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
 

@@ -55,7 +55,6 @@ set(kgeotag_SOURCES
     ${main_ROOT}/ImageCache.cpp
     ${main_ROOT}/MainWindow.cpp
     ${main_ROOT}/ImagesList.cpp
-    ${main_ROOT}/DragableImagesList.cpp
     ${main_ROOT}/PreviewWidget.cpp
     ${main_ROOT}/MapWidget.cpp
     ${main_ROOT}/ImagePreview.cpp

@@ -21,6 +21,10 @@
 // Qt includes
 #include <QIcon>
 #include <QDebug>
+#include <QApplication>
+#include <QMouseEvent>
+#include <QDrag>
+#include <QMimeData>
 
 ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     : QListWidget(parent), m_imageCache(imageCache)
@@ -37,16 +41,17 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
 
 void ImagesList::addImage(const QString fileName, const QString &path)
 {
+    // Be sure not to double-add the image
+    for (int i = 0; i < count(); i++) {
+        if (item(i)->data(Qt::UserRole).toString() == path) {
+            return;
+        }
+    }
+
     auto *item = new QListWidgetItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
                                      fileName);
     item->setData(Qt::UserRole, path);
     addItem(item);
-}
-
-void ImagesList::removeCurrentImage()
-{
-    const auto *item = takeItem(currentRow());
-    delete item;
 }
 
 QVector<QString> ImagesList::allImages() const
@@ -67,4 +72,34 @@ void ImagesList::removeImage(const QString &path)
             return;
         }
     }
+}
+
+void ImagesList::mousePressEvent(QMouseEvent *event)
+{
+    if (event->button() == Qt::LeftButton) {
+        m_dragStartPosition = event->pos();
+    }
+
+    QListWidget::mousePressEvent(event);
+}
+
+void ImagesList::mouseMoveEvent(QMouseEvent *event)
+{
+    const auto *item = currentItem();
+
+    if (! (event->buttons() & Qt::LeftButton)
+        || item == nullptr
+        || (event->pos() - m_dragStartPosition).manhattanLength()
+           < QApplication::startDragDistance()) {
+
+        return;
+    }
+
+    auto *drag = new QDrag(this);
+    drag->setPixmap(item->icon().pixmap(iconSize()));
+
+    QMimeData *mimeData = new QMimeData;
+    mimeData->setText(item->data(Qt::UserRole).toString());
+    drag->setMimeData(mimeData);
+    drag->exec(Qt::MoveAction);
 }
