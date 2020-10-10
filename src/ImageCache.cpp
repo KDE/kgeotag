@@ -168,7 +168,7 @@ void ImageCache::setCoordinates(const QString &path, double lon, double lat)
     setCoordinates(path, Coordinates::Data { lon, lat, true });
 }
 
-void ImageCache::setCoordinates(const QString &path, Coordinates::Data coordinates)
+void ImageCache::setCoordinates(const QString &path, const Coordinates::Data &coordinates)
 {
     m_imageData[path].coordinates = coordinates;
 }

@@ -21,12 +21,18 @@
 #include <QMainWindow>
 
 // Local classes
+
 class Settings;
 class ImageCache;
 class ImagesList;
 class DragableImagesList;
 class PreviewWidget;
 class MapWidget;
+
+namespace Coordinates
+{
+class Data;
+}
 
 // Qt classes
 class QDockWidget;
@@ -46,10 +52,12 @@ private slots:
     void addGpx();
     void addImages();
     void imageAssigned(const QString &path);
-    void assignImages();
+    void assignExactMatches();
+    void assignInterpolatedMatches();
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
+    void assignImage(const QString &path, const Coordinates::Data &coordinates);
 
 private: // Variables
     Settings *m_settings;

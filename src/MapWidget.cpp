@@ -60,9 +60,16 @@ void MapWidget::addGpx(const QString &path)
     double lat;
     QDateTime time;
 
+    bool trackFound = false;
     while (! xml.atEnd() && ! xml.hasError()) {
         const QXmlStreamReader::TokenType token = xml.readNext();
         const QStringRef name = xml.name();
+
+        if (! trackFound && name != QStringLiteral("trk")) {
+            continue;
+        } else {
+            trackFound = true;
+        }
 
         if (token == QXmlStreamReader::StartElement) {
             if (name == QStringLiteral("trkpt")) {
@@ -81,10 +88,10 @@ void MapWidget::addGpx(const QString &path)
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("time")) {
                 m_points[time] = Coordinates::Data { lon, lat };
-                if (time < m_first) {
+                if (time < m_first || ! m_first.isValid()) {
                     m_first = time;
                 }
-                if (time > m_last) {
+                if (time > m_last || ! m_last.isValid()) {
                     m_last = time;
                 }
 
@@ -209,7 +216,7 @@ void MapWidget::centerImage(const QString &path)
     centerOn(coordinates.lon, coordinates.lat);
 }
 
-Coordinates::Data MapWidget::findCoordinates(const QDateTime &time) const
+Coordinates::Data MapWidget::findExactCoordinates(const QDateTime &time) const
 {
     // Check for an exact match
     if (m_points.contains(time)) {
@@ -230,4 +237,49 @@ Coordinates::Data MapWidget::findCoordinates(const QDateTime &time) const
 
     // No match found
     return Coordinates::Data { 0.0, 0.0, false };
+}
+
+Coordinates::Data MapWidget::findInterpolatedCoordinates(const QDateTime &time) const
+{
+    // If the image's date is before the first or after the last point we have,
+    // it can't be assigned. Exact matches would be processed by findExactCoordinates
+    if (time <= m_first || time >= m_last) {
+        return Coordinates::Data { 0.0, 0.0, false };
+    }
+
+    // Find the first point before the image's date
+    QDateTime timeBefore;
+    for (int seconds = -1;; seconds--) {
+        const auto lookup = time.addSecs(seconds);
+        if (m_points.contains(lookup)) {
+            timeBefore = lookup;
+            break;
+        }
+    }
+
+    // Find the first point after the image's date
+    QDateTime timeAfter;
+    for (int seconds = 1;; seconds++) {
+        const auto lookup = time.addSecs(seconds);
+        if (m_points.contains(lookup)) {
+            timeAfter = lookup;
+            break;
+        }
+    }
+
+    // Interpolate between the two coordinates
+
+    const auto &pointBefore = m_points[timeBefore];
+    const auto &pointAfter = m_points[timeAfter];
+    const auto coordinatesBefore = Marble::GeoDataCoordinates(
+        pointBefore.lon, pointBefore.lat, 0.0, Marble::GeoDataCoordinates::Degree);
+    const auto coordinatesAfter = Marble::GeoDataCoordinates(
+        pointAfter.lon, pointAfter.lat, 0.0, Marble::GeoDataCoordinates::Degree);
+
+    const int secondsBefore = timeBefore.secsTo(time);
+    const double fraction = double(secondsBefore) / double(secondsBefore + time.secsTo(timeAfter));
+    const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
+
+    return Coordinates::Data { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
+                               interpolated.latitude(Marble::GeoDataCoordinates::Degree) };
 }
