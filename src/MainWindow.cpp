@@ -235,26 +235,15 @@ void MainWindow::assignInterpolatedMatches()
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     const auto images = m_unAssignedImages->allImages();
-    QProgressDialog progress(i18n("Searching for interpolated matches ..."),
-                             i18n("Cancel"), 0, images.count(), this);
-    progress.setWindowModality(Qt::WindowModal);
-
-    int processed = 0;
     for (const auto &image : images) {
-        progress.setValue(processed);
-        if (progress.wasCanceled()) {
-            break;
-        }
-
         const auto coordinates
             = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(image));
         if (coordinates.isSet) {
             assignImage(image, coordinates, ImagesList::MatchType::Interpolated);
         }
-
-        processed++;
     }
 
     m_mapWidget->reloadMap();
+
     QApplication::restoreOverrideCursor();
 }

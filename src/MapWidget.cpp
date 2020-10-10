@@ -241,42 +241,60 @@ Coordinates::Data MapWidget::findExactCoordinates(const QDateTime &time) const
 Coordinates::Data MapWidget::findInterpolatedCoordinates(const QDateTime &time) const
 {
     // If the image's date is before the first or after the last point we have,
-    // it can't be assigned. Exact matches would be processed by findExactCoordinates
-    if (time <= m_allTimes.first() || time >= m_allTimes.last()) {
+    // it can't be assigned.
+    if (time < m_allTimes.first() || time > m_allTimes.last()) {
         return Coordinates::Data { 0.0, 0.0, false };
     }
 
-    // Find the first point before the image's date
-    QDateTime timeBefore;
-    QVector<QDateTime>::const_reverse_iterator it = m_allTimes.crbegin();
-    while (it != m_allTimes.crend()) {
-        if (*it < time) {
-            timeBefore = *it;
-            break;
-        }
-        it++;
+    // Check for an exact match (without tolerance)
+    // This also eliminates the case that the time could be the first one.
+    // We thus can be sure the first entry in m_allTimes is earlier than the time requested.
+    if (m_allTimes.contains(time)) {
+        return m_points.value(time);
     }
 
-    // Find the first point after the image's date
-    QDateTime timeAfter;
-    for (const auto &presentTime : m_allTimes) {
-        if (presentTime > time) {
-            timeAfter = presentTime;
+    // Search for the first time earlier than the image's
+
+    int start = 0;
+    int end = m_allTimes.count() - 1;
+    int index = 0;
+    int lastIndex = -1;
+
+    while (true) {
+        index = start + (end - start) / 2;
+        if (index == lastIndex) {
             break;
         }
+
+        if (m_allTimes.at(index) > time) {
+            end = index;
+        } else {
+            start = index;
+        }
+
+        lastIndex = index;
     }
+
+    // If the found point is the last one, we can't interpolate and use it directly
+    const auto &closestBefore = m_allTimes.at(index);
+    if (closestBefore == m_allTimes.last()) {
+        return m_points.value(closestBefore);
+    }
+
 
     // Interpolate between the two coordinates
 
-    const auto &pointBefore = m_points[timeBefore];
-    const auto &pointAfter = m_points[timeAfter];
+    const auto &closestAfter = m_allTimes.at(index + 1);
+    const auto &pointBefore = m_points[closestBefore];
+    const auto &pointAfter = m_points[closestAfter];
     const auto coordinatesBefore = Marble::GeoDataCoordinates(
         pointBefore.lon, pointBefore.lat, 0.0, Marble::GeoDataCoordinates::Degree);
     const auto coordinatesAfter = Marble::GeoDataCoordinates(
         pointAfter.lon, pointAfter.lat, 0.0, Marble::GeoDataCoordinates::Degree);
 
-    const int secondsBefore = timeBefore.secsTo(time);
-    const double fraction = double(secondsBefore) / double(secondsBefore + time.secsTo(timeAfter));
+    const int secondsBefore = closestBefore.secsTo(time);
+    const double fraction = double(secondsBefore)
+                            / double(secondsBefore + time.secsTo(closestAfter));
     const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
 
     return Coordinates::Data { interpolated.longitude(Marble::GeoDataCoordinates::Degree),

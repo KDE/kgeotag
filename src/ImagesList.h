@@ -51,6 +51,9 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
 
+private slots:
+    void imageHiglighted(QListWidgetItem *item, QListWidgetItem *) const;
+
 private: // Variables
     ImageCache *m_imageCache;
     QPoint m_dragStartPosition;

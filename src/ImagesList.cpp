@@ -32,11 +32,14 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());
 
-    connect(this, &QListWidget::currentItemChanged,
-            [this](QListWidgetItem *item, QListWidgetItem *)
-            {
-                emit imageSelected(item->data(Qt::UserRole).toString());
-            });
+    connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHiglighted);
+}
+
+void ImagesList::imageHiglighted(QListWidgetItem *item, QListWidgetItem *) const
+{
+    if (item != nullptr) {
+        emit imageSelected(item->data(Qt::UserRole).toString());
+    }
 }
 
 void ImagesList::addImage(const QString fileName, const QString &path, MatchType matchType)
