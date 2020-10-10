@@ -69,9 +69,8 @@ private: // Variables
     QHash<QString, Marble::GeoDataCoordinates> m_images;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
+    QVector<QDateTime> m_allTimes;
     QHash<QDateTime, Coordinates::Data> m_points;
-    QDateTime m_first;
-    QDateTime m_last;
 
 };
 

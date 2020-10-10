@@ -215,6 +215,8 @@ void MainWindow::assignImage(const QString &path, const Coordinates::Data &coord
 
 void MainWindow::assignExactMatches()
 {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     const auto images = m_unAssignedImages->allImages();
     for (const auto &image : images) {
         const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(image));
@@ -222,15 +224,37 @@ void MainWindow::assignExactMatches()
             assignImage(image, coordinates);
         }
     }
+
+    m_mapWidget->reloadMap();
+
+    QApplication::restoreOverrideCursor();
 }
 
 void MainWindow::assignInterpolatedMatches()
 {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     const auto images = m_unAssignedImages->allImages();
+    QProgressDialog progress(i18n("Searching for interpolated matches ..."),
+                             i18n("Cancel"), 0, images.count(), this);
+    progress.setWindowModality(Qt::WindowModal);
+
+    int processed = 0;
     for (const auto &image : images) {
-        const auto coordinates = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(image));
+        progress.setValue(processed);
+        if (progress.wasCanceled()) {
+            break;
+        }
+
+        const auto coordinates
+            = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(image));
         if (coordinates.isSet) {
             assignImage(image, coordinates);
         }
+
+        processed++;
     }
+
+    m_mapWidget->reloadMap();
+    QApplication::restoreOverrideCursor();
 }

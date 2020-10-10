@@ -33,6 +33,9 @@
 #include <QDropEvent>
 #include <QXmlStreamReader>
 
+// C++ includes
+#include <algorithm>
+
 MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
     : Marble::MarbleWidget(parent), m_settings(settings), m_imageCache(imageCache)
 {
@@ -88,12 +91,7 @@ void MapWidget::addGpx(const QString &path)
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("time")) {
                 m_points[time] = Coordinates::Data { lon, lat };
-                if (time < m_first || ! m_first.isValid()) {
-                    m_first = time;
-                }
-                if (time > m_last || ! m_last.isValid()) {
-                    m_last = time;
-                }
+                m_allTimes.append(time);
 
             } else if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
                 m_tracks.append(lineString);
@@ -110,6 +108,7 @@ void MapWidget::addGpx(const QString &path)
         }
     }
 
+    std::sort(m_allTimes.begin(), m_allTimes.end());
     centerOn(trackBox);
 }
 
@@ -243,26 +242,26 @@ Coordinates::Data MapWidget::findInterpolatedCoordinates(const QDateTime &time) 
 {
     // If the image's date is before the first or after the last point we have,
     // it can't be assigned. Exact matches would be processed by findExactCoordinates
-    if (time <= m_first || time >= m_last) {
+    if (time <= m_allTimes.first() || time >= m_allTimes.last()) {
         return Coordinates::Data { 0.0, 0.0, false };
     }
 
     // Find the first point before the image's date
     QDateTime timeBefore;
-    for (int seconds = -1;; seconds--) {
-        const auto lookup = time.addSecs(seconds);
-        if (m_points.contains(lookup)) {
-            timeBefore = lookup;
+    QVector<QDateTime>::const_reverse_iterator it = m_allTimes.crbegin();
+    while (it != m_allTimes.crend()) {
+        if (*it < time) {
+            timeBefore = *it;
             break;
         }
+        it++;
     }
 
     // Find the first point after the image's date
     QDateTime timeAfter;
-    for (int seconds = 1;; seconds++) {
-        const auto lookup = time.addSecs(seconds);
-        if (m_points.contains(lookup)) {
-            timeAfter = lookup;
+    for (const auto &presentTime : m_allTimes) {
+        if (presentTime > time) {
+            timeAfter = presentTime;
             break;
         }
     }
