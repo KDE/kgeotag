@@ -81,6 +81,12 @@ void MapWidget::addGpx(const QString &path)
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("time")) {
                 m_points[time] = Coordinates::Data { lon, lat };
+                if (time < m_first) {
+                    m_first = time;
+                }
+                if (time > m_last) {
+                    m_last = time;
+                }
 
             } else if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
                 m_tracks.append(lineString);
