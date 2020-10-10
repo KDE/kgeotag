@@ -31,8 +31,16 @@ class ImagesList : public QListWidget
     Q_OBJECT
 
 public:
+    enum MatchType {
+        None,
+        Exact,
+        Interpolated,
+        Set
+    };
+
     explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
-    void addImage(const QString fileName, const QString &path);
+    void addImage(const QString fileName, const QString &path,
+                  MatchType matchType = MatchType::None);
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
 

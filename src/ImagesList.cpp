@@ -39,19 +39,44 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
             });
 }
 
-void ImagesList::addImage(const QString fileName, const QString &path)
+void ImagesList::addImage(const QString fileName, const QString &path, MatchType matchType)
 {
-    // Be sure not to double-add the image
+    bool itemFound = false;
+    QListWidgetItem *imageItem;
+
+    // Check for an existing entry and update it's color if found
     for (int i = 0; i < count(); i++) {
         if (item(i)->data(Qt::UserRole).toString() == path) {
-            return;
+            imageItem = item(i);
+            itemFound = true;
+            break;
         }
     }
 
-    auto *item = new QListWidgetItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
-                                     fileName);
-    item->setData(Qt::UserRole, path);
-    addItem(item);
+    if (! itemFound) {
+        imageItem = new QListWidgetItem(
+            QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))), fileName);
+        imageItem->setData(Qt::UserRole, path);
+    }
+
+    switch (matchType) {
+    case None:
+        imageItem->setForeground(QBrush());
+        break;
+    case Exact:
+        imageItem->setForeground(Qt::darkGreen);
+        break;
+    case Interpolated:
+        imageItem->setForeground(Qt::darkYellow);
+        break;
+    case Set:
+        imageItem->setForeground(Qt::darkBlue);
+        break;
+    }
+
+    if (! itemFound) {
+        addItem(imageItem);
+    }
 }
 
 QVector<QString> ImagesList::allImages() const

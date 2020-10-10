@@ -20,7 +20,8 @@
 namespace Coordinates
 {
 
-struct Data {
+struct Data
+{
     double lon;
     double lat;
     bool isSet = true;

@@ -17,6 +17,9 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 
+// Local includes
+#include "ImagesList.h"
+
 // Qt includes
 #include <QMainWindow>
 
@@ -24,7 +27,6 @@
 
 class Settings;
 class ImageCache;
-class ImagesList;
 class PreviewWidget;
 class MapWidget;
 
@@ -56,7 +58,8 @@ private slots:
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void assignImage(const QString &path, const Coordinates::Data &coordinates);
+    void assignImage(const QString &path, const Coordinates::Data &coordinates,
+                     ImagesList::MatchType matchType);
 
 private: // Variables
     Settings *m_settings;

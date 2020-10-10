@@ -18,7 +18,6 @@
 #include "MainWindow.h"
 #include "Settings.h"
 #include "ImageCache.h"
-#include "ImagesList.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
 #include "Coordinates.h"
@@ -201,16 +200,17 @@ void MainWindow::imageAssigned(const QString &path)
 {
     const QFileInfo info(path);
     m_unAssignedImages->removeImage(path);
-    m_assignedImages->addImage(info.fileName(), path);
+    m_assignedImages->addImage(info.fileName(), path, ImagesList::MatchType::Set);
 }
 
-void MainWindow::assignImage(const QString &path, const Coordinates::Data &coordinates)
+void MainWindow::assignImage(const QString &path, const Coordinates::Data &coordinates,
+                             ImagesList::MatchType matchType)
 {
     m_imageCache->setCoordinates(path, coordinates);
     m_unAssignedImages->removeImage(path);
     m_mapWidget->addImage(path, coordinates);
     const QFileInfo info(path);
-    m_assignedImages->addImage(info.fileName(), path);
+    m_assignedImages->addImage(info.fileName(), path, matchType);
 }
 
 void MainWindow::assignExactMatches()
@@ -221,7 +221,7 @@ void MainWindow::assignExactMatches()
     for (const auto &image : images) {
         const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(image));
         if (coordinates.isSet) {
-            assignImage(image, coordinates);
+            assignImage(image, coordinates, ImagesList::MatchType::Exact);
         }
     }
 
@@ -249,7 +249,7 @@ void MainWindow::assignInterpolatedMatches()
         const auto coordinates
             = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(image));
         if (coordinates.isSet) {
-            assignImage(image, coordinates);
+            assignImage(image, coordinates, ImagesList::MatchType::Interpolated);
         }
 
         processed++;
