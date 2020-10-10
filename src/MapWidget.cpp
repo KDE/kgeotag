@@ -136,6 +136,11 @@ void MapWidget::dropEvent(QDropEvent *event)
     event->acceptProposedAction();
 }
 
+void MapWidget::addImage(const QString &path, const Coordinates::Data &coordinates)
+{
+    addImage(path, coordinates.lon, coordinates.lat);
+}
+
 void MapWidget::addImage(const QString &path, double lon, double lat)
 {
     m_images[path] = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
@@ -202,4 +207,27 @@ void MapWidget::centerImage(const QString &path)
 {
     const auto coordinates = m_imageCache->coordinates(path);
     centerOn(coordinates.lon, coordinates.lat);
+}
+
+Coordinates::Data MapWidget::findCoordinates(const QDateTime &time) const
+{
+    // Check for an exact match
+    if (m_points.contains(time)) {
+        return m_points.value(time);
+    }
+
+    // Check for a match with +/- the secondsTolerance
+    for (int i = 1; i <= m_settings->secondsTolerance(); i++) {
+        const auto timeBefore = time.addSecs(i * -1);
+        if (m_points.contains(timeBefore)) {
+            return m_points.value(timeBefore);
+        }
+        const auto timeAfter = time.addSecs(i);
+        if (m_points.contains(timeAfter)) {
+            return m_points.value(timeAfter);
+        }
+    }
+
+    // No match found
+    return Coordinates::Data { 0.0, 0.0, false };
 }

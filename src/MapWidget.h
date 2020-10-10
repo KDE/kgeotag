@@ -49,6 +49,8 @@ public:
     void restoreSettings();
     void addGpx(const QString &path);
     void addImage(const QString &path, double lon, double lat);
+    void addImage(const QString &path, const Coordinates::Data &coordinates);
+    Coordinates::Data findCoordinates(const QDateTime &time) const;
 
 signals:
     void imageAssigned(const QString &path) const;

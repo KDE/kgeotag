@@ -128,3 +128,8 @@ QSize Settings::previewSize() const
 {
     return QSize(400, 400);
 }
+
+int Settings::secondsTolerance() const
+{
+    return 10;
+}

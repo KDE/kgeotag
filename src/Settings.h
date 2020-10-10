@@ -52,6 +52,7 @@ public:
 
     QSize thumbnailSize() const;
     QSize previewSize() const;
+    int secondsTolerance() const;
 
 };
 

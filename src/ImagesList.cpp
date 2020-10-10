@@ -28,7 +28,8 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());
 
-    connect(this, &QListWidget::itemClicked, [this](QListWidgetItem *item)
+    connect(this, &QListWidget::currentItemChanged,
+            [this](QListWidgetItem *item, QListWidgetItem *)
             {
                 emit imageSelected(item->data(Qt::UserRole).toString());
             });
@@ -46,4 +47,24 @@ void ImagesList::removeCurrentImage()
 {
     const auto *item = takeItem(currentRow());
     delete item;
+}
+
+QVector<QString> ImagesList::allImages() const
+{
+    QVector<QString> paths;
+    for (int i = 0; i < count(); i++) {
+        paths.append(item(i)->data(Qt::UserRole).toString());
+    }
+    return paths;
+}
+
+void ImagesList::removeImage(const QString &path)
+{
+    for (int i = 0; i < count(); i++) {
+        if (item(i)->data(Qt::UserRole).toString() == path) {
+            const auto *item = takeItem(i);
+            delete item;
+            return;
+        }
+    }
 }

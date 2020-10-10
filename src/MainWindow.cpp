@@ -54,6 +54,11 @@ MainWindow::MainWindow() : QMainWindow()
 
     fileMenu->addSeparator();
 
+    auto *assignImagesAction = fileMenu->addAction(i18n("Assign images"));
+    connect(assignImagesAction, &QAction::triggered, this, &MainWindow::assignImages);
+
+    fileMenu->addSeparator();
+
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
@@ -192,4 +197,19 @@ void MainWindow::imageAssigned(const QString &path)
     const QFileInfo info(path);
     m_unAssignedImages->removeCurrentImage();
     m_assignedImages->addImage(info.fileName(), path);
+}
+
+void MainWindow::assignImages()
+{
+    const auto images = m_unAssignedImages->allImages();
+    for (const auto &image : images) {
+        const auto coordinates = m_mapWidget->findCoordinates(m_imageCache->date(image));
+        if (coordinates.isSet) {
+            m_imageCache->setCoordinates(image, coordinates);
+            m_unAssignedImages->removeImage(image);
+            m_mapWidget->addImage(image, coordinates);
+            const QFileInfo info(image);
+            m_assignedImages->addImage(info.fileName(), image);
+        }
+    }
 }

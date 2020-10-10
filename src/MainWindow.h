@@ -46,6 +46,7 @@ private slots:
     void addGpx();
     void addImages();
     void imageAssigned(const QString &path);
+    void assignImages();
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

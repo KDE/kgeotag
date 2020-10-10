@@ -31,6 +31,8 @@ public:
     explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
     void addImage(const QString fileName, const QString &path);
     void removeCurrentImage();
+    QVector<QString> allImages() const;
+    void removeImage(const QString &path);
 
 signals:
     void imageSelected(const QString &path) const;

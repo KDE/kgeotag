@@ -49,6 +49,7 @@ public:
     QSize thumbnailSize() const;
     Coordinates::Data coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat);
+    void setCoordinates(const QString &path, Coordinates::Data coordinates);
 
 private: // Functions
     QString getExifValue(Exiv2::ExifData &data, const char *key) const;
