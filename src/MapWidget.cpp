@@ -32,6 +32,7 @@
 #include <QMimeData>
 #include <QDropEvent>
 #include <QXmlStreamReader>
+#include <QApplication>
 
 // C++ includes
 #include <algorithm>
@@ -53,6 +54,8 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
 
 void MapWidget::addGpx(const QString &path)
 {
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     QFile gpxFile(path);
     gpxFile.open(QIODevice::ReadOnly | QIODevice::Text);
     QXmlStreamReader xml(&gpxFile);
@@ -110,6 +113,8 @@ void MapWidget::addGpx(const QString &path)
 
     std::sort(m_allTimes.begin(), m_allTimes.end());
     centerOn(trackBox);
+
+    QApplication::restoreOverrideCursor();
 }
 
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)

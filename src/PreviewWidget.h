@@ -17,8 +17,12 @@
 #ifndef PREVIEWWIDGET_H
 #define PREVIEWWIDGET_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QWidget>
+#include <QHash>
 
 // Local classes
 class ImageCache;
@@ -43,6 +47,7 @@ private: // Variables
     QLabel *m_path;
     QLabel *m_date;
     QLabel *m_coordinates;
+    QHash<KGeoTag::MatchType, QString> m_matchString;
 
 };
 

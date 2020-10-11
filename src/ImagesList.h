@@ -40,7 +40,7 @@ public:
     void removeImage(const QString &path);
 
 signals:
-    void imageSelected(const QString &path) const;
+    void imageSelected(const QString &path, bool center = true) const;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;

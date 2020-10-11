@@ -52,12 +52,10 @@ public:
     void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
     KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
     KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
+    void centerImage(const QString &path);
 
 signals:
     void imageDropped(const QString &path) const;
-
-public slots:
-    void centerImage(const QString &path);
 
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;

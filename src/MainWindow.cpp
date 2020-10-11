@@ -101,7 +101,7 @@ MainWindow::MainWindow() : QMainWindow()
     // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
-    connect(m_assignedImages, &ImagesList::imageSelected, m_mapWidget, &MapWidget::centerImage);
+    connect(m_assignedImages, &ImagesList::imageSelected, this, &MainWindow::imageSelected);
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
 
     // Size initialization/restoration
@@ -321,4 +321,11 @@ void MainWindow::saveChanges()
     }
 
     QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::imageSelected(const QString &path, bool center)
+{
+    if (center) {
+        m_mapWidget->centerImage(path);
+    }
 }

@@ -89,6 +89,11 @@ void ImagesList::addOrUpdateImage(const QString &path)
     if (! itemFound) {
         addItem(imageItem);
     }
+
+    if (currentItem() == imageItem) {
+        // Update the preview without centering the image
+        emit imageSelected(path, false);
+    }
 }
 
 QVector<QString> ImagesList::allImages() const

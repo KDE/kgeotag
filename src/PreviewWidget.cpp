@@ -48,6 +48,11 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
 
     m_preview = new ImagePreview(imageCache);
     layout->addWidget(m_preview);
+
+    m_matchString[KGeoTag::MatchType::None] = i18n("read from file");
+    m_matchString[KGeoTag::MatchType::Exact] = i18n("exact match");
+    m_matchString[KGeoTag::MatchType::Interpolated] = i18n("interpolated match");
+    m_matchString[KGeoTag::MatchType::Set] = i18n("manually set");
 }
 
 void PreviewWidget::setImage(const QString &path)
@@ -58,8 +63,11 @@ void PreviewWidget::setImage(const QString &path)
 
     const auto coordinates = m_imageCache->coordinates(path);
     if (coordinates.isSet) {
-        m_coordinates->setText(i18n("Longitude: %1 / Latitude: %2",
-                                    coordinates.lon, coordinates.lat));
+
+
+        m_coordinates->setText(i18n("Longitude: %1 / Latitude: %2 (%3)",
+                                    coordinates.lon, coordinates.lat,
+                                    m_matchString.value(m_imageCache->matchType(path))));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));
     }
