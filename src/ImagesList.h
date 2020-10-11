@@ -47,7 +47,7 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
 
 private slots:
-    void imageHiglighted(QListWidgetItem *item, QListWidgetItem *) const;
+    void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
 
 private: // Variables
     ImageCache *m_imageCache;

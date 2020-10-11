@@ -30,16 +30,21 @@
 #include <QMimeData>
 #include <QFileInfo>
 
+// C++ includes
+#include <functional>
+
 ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     : QListWidget(parent), m_imageCache(imageCache)
 {
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());
 
-    connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHiglighted);
+    connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHighlighted);
+    connect(this, &QListWidget::itemClicked,
+            this, std::bind(&ImagesList::imageHighlighted, this, std::placeholders::_1, nullptr));
 }
 
-void ImagesList::imageHiglighted(QListWidgetItem *item, QListWidgetItem *) const
+void ImagesList::imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const
 {
     if (item != nullptr) {
         emit imageSelected(item->data(Qt::UserRole).toString());
