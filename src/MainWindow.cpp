@@ -190,10 +190,10 @@ void MainWindow::addImages()
 
         const auto coordinates = m_imageCache->coordinates(canonicalPath);
         if (! coordinates.isSet) {
-            m_unAssignedImages->addImage(info.fileName(), canonicalPath);
+            m_unAssignedImages->addOrUpdateImage(canonicalPath);
         } else {
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
-            m_assignedImages->addImage(info.fileName(), canonicalPath);
+            m_assignedImages->addOrUpdateImage(canonicalPath);
         }
 
         processed++;
@@ -206,18 +206,17 @@ void MainWindow::imageAssigned(const QString &path)
 {
     const QFileInfo info(path);
     m_unAssignedImages->removeImage(path);
-    m_assignedImages->addImage(info.fileName(), path, KGeoTag::MatchType::Set);
+    m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
     m_imageCache->markAsChanged(path);
+    m_assignedImages->addOrUpdateImage(path);
 }
 
-void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates,
-                             KGeoTag::MatchType matchType)
+void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
     m_imageCache->setCoordinates(path, coordinates);
     m_unAssignedImages->removeImage(path);
     m_mapWidget->addImage(path, coordinates);
-    const QFileInfo info(path);
-    m_assignedImages->addImage(info.fileName(), path, matchType);
+    m_assignedImages->addOrUpdateImage(path);
 }
 
 void MainWindow::assignExactMatches()
@@ -228,8 +227,9 @@ void MainWindow::assignExactMatches()
     for (const auto &path : images) {
         const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(path));
         if (coordinates.isSet) {
-            assignImage(path, coordinates, KGeoTag::MatchType::Exact);
+            m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
             m_imageCache->markAsChanged(path);
+            assignImage(path, coordinates);
         }
     }
 
@@ -247,8 +247,9 @@ void MainWindow::assignInterpolatedMatches()
         const auto coordinates
             = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(path));
         if (coordinates.isSet) {
-            assignImage(path, coordinates, KGeoTag::MatchType::Interpolated);
+            m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
             m_imageCache->markAsChanged(path);
+            assignImage(path, coordinates);
         }
     }
 

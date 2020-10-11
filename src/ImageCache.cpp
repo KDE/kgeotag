@@ -41,32 +41,33 @@ bool ImageCache::addImage(const QString &path)
         return false;
     }
 
+    ImageData data;
+
     // Read the exif data
     const auto exif = KExiv2Iface::KExiv2(path);
 
-    // Fix the image's orientation
-    exif.rotateExifQImage(image, exif.getImageOrientation());
-
     // Read the date (falling back to the file's date if nothing is set)
-    const auto date = exif.getImageDateTime();
+    data.date = exif.getImageDateTime();
 
     // Try to read gps information
-    auto coordinates = KGeoTag::Coordinates { 0.0, 0.0, false };
     double altitude;
     double latitude;
     double longitude;
     if (exif.getGPSInfo(altitude, latitude, longitude)) {
-            coordinates = KGeoTag::Coordinates { longitude, latitude };
+            data.coordinates = KGeoTag::Coordinates { longitude, latitude, true };
     }
 
+    // Fix the image's orientation
+    exif.rotateExifQImage(image, exif.getImageOrientation());
+
     // Create a smaller thumbnail
-    const QImage thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
-                                          Qt::SmoothTransformation);
+    data.thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
+                                  Qt::SmoothTransformation);
 
     // Create a bigger preview (to be scaled according to the view size)
-    const QImage preview = image.scaled(m_settings->previewSize(), Qt::KeepAspectRatio);
+    data.preview = image.scaled(m_settings->previewSize(), Qt::KeepAspectRatio);
 
-    m_imageData.insert(path, ImageData { thumbnail, preview, date, coordinates });
+    m_imageData.insert(path, data);
     return true;
 }
 
@@ -112,12 +113,35 @@ void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates 
 
 void ImageCache::markAsChanged(const QString &path)
 {
-    if (! m_changedImages.contains(path)) {
-        m_changedImages.append(path);
+    if (m_imageData.contains(path)) {
+        m_imageData[path].changed = true;
     }
 }
 
-const QVector<QString> &ImageCache::changedImages() const
+QVector<QString> ImageCache::changedImages() const
 {
-    return m_changedImages;
+    QVector<QString> changed;
+    QHashIterator<QString, ImageData> it(m_imageData);
+    while (it.hasNext()) {
+        it.next();
+        if (it.value().changed) {
+            changed.append(it.key());
+        }
+    }
+    return changed;
+}
+
+void ImageCache::setMatchType(const QString &path, KGeoTag::MatchType matchType)
+{
+    m_imageData[path].matchType = matchType;
+}
+
+KGeoTag::MatchType ImageCache::matchType(const QString &path)
+{
+    return m_imageData[path].matchType;
+}
+
+bool ImageCache::changed(const QString &path) const
+{
+    return m_imageData[path].changed;
 }

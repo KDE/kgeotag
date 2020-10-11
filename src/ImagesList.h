@@ -35,8 +35,7 @@ class ImagesList : public QListWidget
 
 public:
     explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
-    void addImage(const QString fileName, const QString &path,
-                  KGeoTag::MatchType matchType = KGeoTag::MatchType::None);
+    void addOrUpdateImage(const QString &path);
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
 

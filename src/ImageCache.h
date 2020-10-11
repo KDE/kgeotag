@@ -51,20 +51,25 @@ public:
     void setCoordinates(const QString &path, double lon, double lat);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
     void markAsChanged(const QString &path);
-    const QVector<QString> &changedImages() const;
+    QVector<QString> changedImages() const;
+    void setMatchType(const QString &path, KGeoTag::MatchType matchType);
+    KGeoTag::MatchType matchType(const QString &path);
+    bool changed(const QString &path) const;
 
 private: // Structs
-    struct ImageData {
+    struct ImageData
+    {
         QImage thumbnail;
         QImage preview;
         QDateTime date;
-        KGeoTag::Coordinates coordinates;
+        KGeoTag::Coordinates coordinates = KGeoTag::Coordinates { 0.0, 0.0, false };
+        KGeoTag::MatchType matchType = KGeoTag::MatchType::None;
+        bool changed = false;
     };
 
 private: // Variables
     Settings *m_settings;
     QHash<QString, ImageData> m_imageData;
-    QVector<QString> m_changedImages;
 
 };
 

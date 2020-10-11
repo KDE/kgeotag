@@ -54,8 +54,7 @@ private slots:
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates,
-                     KGeoTag::MatchType matchType);
+    void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates);
 
 private: // Variables
     Settings *m_settings;

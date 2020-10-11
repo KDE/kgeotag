@@ -18,6 +18,9 @@
 #include "ImagesList.h"
 #include "ImageCache.h"
 
+// KDE includes
+#include <KLocalizedString>
+
 // Qt includes
 #include <QIcon>
 #include <QDebug>
@@ -25,6 +28,7 @@
 #include <QMouseEvent>
 #include <QDrag>
 #include <QMimeData>
+#include <QFileInfo>
 
 ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     : QListWidget(parent), m_imageCache(imageCache)
@@ -42,12 +46,12 @@ void ImagesList::imageHiglighted(QListWidgetItem *item, QListWidgetItem *) const
     }
 }
 
-void ImagesList::addImage(const QString fileName, const QString &path, KGeoTag::MatchType matchType)
+void ImagesList::addOrUpdateImage(const QString &path)
 {
     bool itemFound = false;
     QListWidgetItem *imageItem;
 
-    // Check for an existing entry and update it's color if found
+    // Check for an existing entry we want to update
     for (int i = 0; i < count(); i++) {
         if (item(i)->data(Qt::UserRole).toString() == path) {
             imageItem = item(i);
@@ -57,12 +61,17 @@ void ImagesList::addImage(const QString fileName, const QString &path, KGeoTag::
     }
 
     if (! itemFound) {
-        imageItem = new QListWidgetItem(
-            QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))), fileName);
+        // We need a new item
+        imageItem = new QListWidgetItem;
+        imageItem->setIcon(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))));
         imageItem->setData(Qt::UserRole, path);
     }
 
-    switch (matchType) {
+    QFileInfo info(path);
+    imageItem->setText(m_imageCache->changed(path) ? i18n("*%1", info.fileName())
+                                                   : info.fileName());
+
+    switch (m_imageCache->matchType(path)) {
     case KGeoTag::MatchType::None:
         imageItem->setForeground(QBrush());
         break;
