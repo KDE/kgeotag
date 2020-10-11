@@ -50,6 +50,8 @@ public:
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void markAsChanged(const QString &path);
+    const QVector<QString> &changedImages() const;
 
 private: // Structs
     struct ImageData {
@@ -62,6 +64,7 @@ private: // Structs
 private: // Variables
     Settings *m_settings;
     QHash<QString, ImageData> m_imageData;
+    QVector<QString> m_changedImages;
 
 };
 

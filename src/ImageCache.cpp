@@ -109,3 +109,15 @@ void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates 
 {
     m_imageData[path].coordinates = coordinates;
 }
+
+void ImageCache::markAsChanged(const QString &path)
+{
+    if (! m_changedImages.contains(path)) {
+        m_changedImages.append(path);
+    }
+}
+
+const QVector<QString> &ImageCache::changedImages() const
+{
+    return m_changedImages;
+}

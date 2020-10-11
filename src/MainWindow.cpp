@@ -64,6 +64,11 @@ MainWindow::MainWindow() : QMainWindow()
 
     fileMenu->addSeparator();
 
+    auto *saveChangesAction = fileMenu->addAction(i18n("Save changed images"));
+    connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveChanges);
+
+    fileMenu->addSeparator();
+
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
@@ -202,6 +207,7 @@ void MainWindow::imageAssigned(const QString &path)
     const QFileInfo info(path);
     m_unAssignedImages->removeImage(path);
     m_assignedImages->addImage(info.fileName(), path, KGeoTag::MatchType::Set);
+    m_imageCache->markAsChanged(path);
 }
 
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates,
@@ -219,10 +225,11 @@ void MainWindow::assignExactMatches()
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     const auto images = m_unAssignedImages->allImages();
-    for (const auto &image : images) {
-        const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(image));
+    for (const auto &path : images) {
+        const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(path));
         if (coordinates.isSet) {
-            assignImage(image, coordinates, KGeoTag::MatchType::Exact);
+            assignImage(path, coordinates, KGeoTag::MatchType::Exact);
+            m_imageCache->markAsChanged(path);
         }
     }
 
@@ -236,15 +243,23 @@ void MainWindow::assignInterpolatedMatches()
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     const auto images = m_unAssignedImages->allImages();
-    for (const auto &image : images) {
+    for (const auto &path : images) {
         const auto coordinates
-            = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(image));
+            = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(path));
         if (coordinates.isSet) {
-            assignImage(image, coordinates, KGeoTag::MatchType::Interpolated);
+            assignImage(path, coordinates, KGeoTag::MatchType::Interpolated);
+            m_imageCache->markAsChanged(path);
         }
     }
 
     m_mapWidget->reloadMap();
 
     QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::saveChanges()
+{
+    for (const QString &path : m_imageCache->changedImages()) {
+        qDebug() << path;
+    }
 }

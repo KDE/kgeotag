@@ -50,6 +50,7 @@ private slots:
     void imageAssigned(const QString &path);
     void assignExactMatches();
     void assignInterpolatedMatches();
+    void saveChanges();
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
