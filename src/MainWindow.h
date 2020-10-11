@@ -47,7 +47,7 @@ protected:
 private slots:
     void addGpx();
     void addImages();
-    void imageAssigned(const QString &path);
+    void imageDropped(const QString &path);
     void assignExactMatches();
     void assignInterpolatedMatches();
     void saveChanges();

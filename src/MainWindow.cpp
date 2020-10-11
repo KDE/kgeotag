@@ -25,6 +25,7 @@
 
 // KDE includes
 #include <KLocalizedString>
+#include <KExiv2/KExiv2>
 
 // Qt includes
 #include <QMenuBar>
@@ -36,6 +37,9 @@
 #include <QDebug>
 #include <QFileDialog>
 #include <QProgressDialog>
+#include <QFile>
+#include <QTimer>
+#include <QMessageBox>
 
 MainWindow::MainWindow() : QMainWindow()
 {
@@ -98,7 +102,7 @@ MainWindow::MainWindow() : QMainWindow()
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_assignedImages, &ImagesList::imageSelected, m_mapWidget, &MapWidget::centerImage);
-    connect(m_mapWidget, &MapWidget::imageAssigned, this, &MainWindow::imageAssigned);
+    connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -177,7 +181,7 @@ void MainWindow::addImages()
 
     int processed = 0;
     for (const auto &path : files) {
-        progress.setValue(processed);
+        progress.setValue(processed++);
         if (progress.wasCanceled()) {
             break;
         }
@@ -195,19 +199,17 @@ void MainWindow::addImages()
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
             m_assignedImages->addOrUpdateImage(canonicalPath);
         }
-
-        processed++;
     }
 
     QApplication::restoreOverrideCursor();
 }
 
-void MainWindow::imageAssigned(const QString &path)
+void MainWindow::imageDropped(const QString &path)
 {
     const QFileInfo info(path);
     m_unAssignedImages->removeImage(path);
     m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
-    m_imageCache->markAsChanged(path);
+    m_imageCache->setChanged(path, true);
     m_assignedImages->addOrUpdateImage(path);
 }
 
@@ -228,7 +230,7 @@ void MainWindow::assignExactMatches()
         const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(path));
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
-            m_imageCache->markAsChanged(path);
+            m_imageCache->setChanged(path, true);
             assignImage(path, coordinates);
         }
     }
@@ -241,14 +243,23 @@ void MainWindow::assignExactMatches()
 void MainWindow::assignInterpolatedMatches()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
+    const auto files = m_unAssignedImages->allImages();
 
-    const auto images = m_unAssignedImages->allImages();
-    for (const auto &path : images) {
+    QProgressDialog progress(i18n("Assigning images ..."), i18n("Cancel"), 0, files.count(), this);
+    progress.setWindowModality(Qt::WindowModal);
+
+    int processed = 0;
+    for (const auto &path : files) {
+        progress.setValue(processed++);
+        if (progress.wasCanceled()) {
+            break;
+        }
+
         const auto coordinates
             = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(path));
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
-            m_imageCache->markAsChanged(path);
+            m_imageCache->setChanged(path, true);
             assignImage(path, coordinates);
         }
     }
@@ -260,7 +271,54 @@ void MainWindow::assignInterpolatedMatches()
 
 void MainWindow::saveChanges()
 {
-    for (const QString &path : m_imageCache->changedImages()) {
-        qDebug() << path;
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    const auto &files = m_imageCache->changedImages();
+
+    QProgressDialog progress(i18n("Saving changes ..."), i18n("Cancel"), 0, files.count(), this);
+    progress.setWindowModality(Qt::WindowModal);
+
+    int processed = 0;
+    for (const QString &path : files) {
+        progress.setValue(processed++);
+        if (progress.wasCanceled()) {
+            break;
+        }
+
+        // Create a backup of the file
+        if (! QFile::copy(path, path + QStringLiteral(".orig"))) {
+            progress.deleteLater();
+            QApplication::restoreOverrideCursor();
+            QTimer::singleShot(0, [this, path]
+            {
+                QMessageBox::warning(this,
+                    i18n("Save changes"),
+                    i18n("Failed to create a backup of \"%1\". No changes will be written to it. "
+                         "Aborting.", path));
+            });
+            return;
+        }
+
+        // Write the GPS information
+
+        auto exif = KExiv2Iface::KExiv2(path);
+        const auto coordinates = m_imageCache->coordinates(path);
+        exif.setGPSInfo(0.0, coordinates.lat, coordinates.lon);
+
+        if (! exif.save(path)) {
+            progress.deleteLater();
+            QApplication::restoreOverrideCursor();
+            QTimer::singleShot(0, [this, path]
+            {
+                QMessageBox::warning(this,
+                    i18n("Save changes"),
+                    i18n("Could not save EXIF information to \"%1\". Aborting.", path));
+            });
+            return;
+        }
+
+        m_imageCache->setChanged(path, false);
+        m_assignedImages->addOrUpdateImage(path);
     }
+
+    QApplication::restoreOverrideCursor();
 }

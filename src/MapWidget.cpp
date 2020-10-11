@@ -137,7 +137,7 @@ void MapWidget::dropEvent(QDropEvent *event)
     reloadMap();
 
     m_imageCache->setCoordinates(path, lon, lat);
-    emit imageAssigned(path);
+    emit imageDropped(path);
 
     event->acceptProposedAction();
 }

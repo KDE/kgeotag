@@ -50,7 +50,7 @@ public:
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
-    void markAsChanged(const QString &path);
+    void setChanged(const QString &path, bool changed);
     QVector<QString> changedImages() const;
     void setMatchType(const QString &path, KGeoTag::MatchType matchType);
     KGeoTag::MatchType matchType(const QString &path);

@@ -111,10 +111,10 @@ void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates 
     m_imageData[path].coordinates = coordinates;
 }
 
-void ImageCache::markAsChanged(const QString &path)
+void ImageCache::setChanged(const QString &path, bool changed)
 {
     if (m_imageData.contains(path)) {
-        m_imageData[path].changed = true;
+        m_imageData[path].changed = changed;
     }
 }
 

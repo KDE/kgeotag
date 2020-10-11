@@ -54,7 +54,7 @@ public:
     KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
 
 signals:
-    void imageAssigned(const QString &path) const;
+    void imageDropped(const QString &path) const;
 
 public slots:
     void centerImage(const QString &path);
