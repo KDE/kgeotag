@@ -51,10 +51,6 @@ public:
     void setCoordinates(const QString &path, double lon, double lat);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
 
-private: // Functions
-    QString getExifValue(Exiv2::ExifData &data, const char *key) const;
-    double parseExifLonLat(const QString &lonLat, const QString &ref) const;
-
 private: // Structs
     struct ImageData {
         QImage thumbnail;

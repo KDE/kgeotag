@@ -18,8 +18,8 @@
 #include "ImageCache.h"
 #include "Settings.h"
 
-// exiv2 includes
-#include <exiv2/exiv2.hpp>
+// KDE includes
+#include <KExiv2/KExiv2>
 
 // Qt includes
 #include <QDebug>
@@ -41,101 +41,38 @@ bool ImageCache::addImage(const QString &path)
         return false;
     }
 
-    auto exif = Exiv2::ImageFactory::open(path.toLocal8Bit().data());
-    exif->readMetadata();
-    auto &exifData = exif->exifData();
+    // Read the exif data
+    const auto exif = KExiv2Iface::KExiv2(path);
 
-    const auto date = QDateTime::fromString(getExifValue(exifData, "Exif.Photo.DateTimeOriginal"),
-                                            QStringLiteral("yyyy:MM:dd hh:mm:ss"));
+    // Fix the image's orientation
+    exif.rotateExifQImage(image, exif.getImageOrientation());
 
+    // Read the date (falling back to the file's date if nothing is set)
+    const auto date = exif.getImageDateTime();
+
+    // Try to read gps information
     auto coordinates = KGeoTag::Coordinates { 0.0, 0.0, false };
-
-    if (! getExifValue(exifData, "Exif.GPSInfo.GPSVersionID").isEmpty()) {
-        const QString longitude    = getExifValue(exifData, "Exif.GPSInfo.GPSLongitude");
-        const QString longitudeRef = getExifValue(exifData, "Exif.GPSInfo.GPSLongitudeRef");
-        const QString latitude     = getExifValue(exifData, "Exif.GPSInfo.GPSLatitude");
-        const QString latitudeRef  = getExifValue(exifData, "Exif.GPSInfo.GPSLatitudeRef");
-
-        if (   ! longitude.isEmpty() && ! longitudeRef.isEmpty()
-            && ! latitude.isEmpty()  && ! latitudeRef.isEmpty()
-            && longitude.count(QStringLiteral(" ")) == 2
-            && longitude.count(QStringLiteral("/")) == 3
-            && latitude.count(QStringLiteral(" ")) == 2
-            && latitude.count(QStringLiteral("/")) == 3) {
-
-            coordinates = KGeoTag::Coordinates { parseExifLonLat(longitude, longitudeRef),
-                                                 parseExifLonLat(latitude, latitudeRef) };
-        }
+    double altitude;
+    double latitude;
+    double longitude;
+    if (exif.getGPSInfo(altitude, latitude, longitude)) {
+            coordinates = KGeoTag::Coordinates { longitude, latitude };
     }
 
-    const auto orientation = getExifValue(exifData, "Exif.Image.Orientation");
-    if (! orientation.isEmpty() && orientation != QStringLiteral("1")) {
-        if (orientation == QStringLiteral("2")) {
-            image = image.mirrored(true);
-        } else if (orientation == QStringLiteral("3")) {
-            QTransform transform;
-            transform.rotate(180);
-            image = image.transformed(transform);
-        } else if (orientation == QStringLiteral("4")) {
-            QTransform transform;
-            transform.rotate(180);
-            image = image.transformed(transform).mirrored(true);
-        } else if (orientation == QStringLiteral("5")) {
-            QTransform transform;
-            transform.rotate(-90);
-            image = image.transformed(transform).mirrored(true);
-        } else if (orientation == QStringLiteral("6")) {
-            QTransform transform;
-            transform.rotate(90);
-            image = image.transformed(transform);
-        } else if (orientation == QStringLiteral("7")) {
-            QTransform transform;
-            transform.rotate(90);
-            image = image.transformed(transform).mirrored(true);
-        } else if (orientation == QStringLiteral("8")) {
-            QTransform transform;
-            transform.rotate(-90);
-            image = image.transformed(transform);
-        }
-    }
-
+    // Create a smaller thumbnail
     const QImage thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
                                           Qt::SmoothTransformation);
+
+    // Create a bigger preview (to be scaled according to the view size)
     const QImage preview = image.scaled(m_settings->previewSize(), Qt::KeepAspectRatio);
 
     m_imageData.insert(path, ImageData { thumbnail, preview, date, coordinates });
-
     return true;
-}
-
-double ImageCache::parseExifLonLat(const QString &lonLat, const QString &ref) const
-{
-    QVector<double> parsedLonLat;
-    const auto degMinSec = lonLat.split(QLatin1String(" "));
-    for (const auto &part : degMinSec) {
-        const auto fraction = part.split(QLatin1String("/"));
-        parsedLonLat.append(fraction.at(0).toDouble() / fraction.at(1).toDouble());
-    }
-
-    return (parsedLonLat.at(0)
-            + parsedLonLat.at(1) / 60.0
-            + parsedLonLat.at(2) / 3600.0)
-           * ((ref == QStringLiteral("N") || ref == QStringLiteral("E")) ? 1 : -1);
 }
 
 bool ImageCache::contains(const QString &path) const
 {
     return m_imageData.contains(path);
-}
-
-QString ImageCache::getExifValue(Exiv2::ExifData &data, const char *key) const
-{
-    auto it = data.findKey(Exiv2::ExifKey(key));
-    if (it != data.end()) {
-        return QString::fromStdString(it->toString());
-    } else {
-        return QString();
-    }
 }
 
 QImage ImageCache::thumbnail(const QString &path) const

@@ -5,7 +5,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
 
-find_package(ECM 1.0.0 REQUIRED NO_MODULE)
+find_package(ECM 1.1.0 REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
 
 include(KDEInstallDirs)
@@ -28,13 +28,10 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF5 5.44 REQUIRED COMPONENTS I18n REQUIRED)
+find_package(KF5 REQUIRED COMPONENTS I18n KExiv2 REQUIRED)
 
 # Find Marble
 find_package(Marble 0.28 REQUIRED)
-
-# Find exiv2
-find_package(exiv2 REQUIRED)
 
 # Generate version.h
 add_custom_target(
@@ -66,6 +63,6 @@ add_dependencies(kgeotag UpdateVersion)
 target_link_libraries(kgeotag
     Qt5::Widgets
     KF5::I18n
+    KF5::KExiv2
     Marble
-    exiv2
 )
