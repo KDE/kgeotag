@@ -15,8 +15,10 @@
 */
 
 // Local includes
-
 #include "MainWindow.h"
+
+// KDE includes
+#include <KLocalizedString>
 
 // Qt includes
 #include <QApplication>
@@ -24,6 +26,7 @@
 
 int main(int argc, char *argv[])
 {
+    KLocalizedString::setApplicationDomain("kgeotag");
     QApplication application(argc, argv);
 
     // Create the main window
