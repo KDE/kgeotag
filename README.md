@@ -1,7 +1,9 @@
 # KGeoTag
 
-**Warning**: This is alpha, pre-0.1 code. Until version 0.1 is tagged, this code won't be functional. Don't use this yet, it most probably will raid your fridge and steal your girlfriend ;-)
+**Warning**: This is pre-0.1 beta code. It works ("on my machine" ;-), but until version 0.1 is tagged, use carefully. Have backups.
 
-KGeoTag is intended to be a minimalistic, yet functional and convenient standalone photo geotagging program for the [KDE](https://kde.org/) ecosystem, with the Unix philosophy in mind ("do one thing and do it well").
+KGeoTag is a standalone photo geotagging program for the [KDE](https://kde.org/) ecosystem, with the Unix philosophy in mind ("do one thing and do it well").
+
+It shows a map on which geodata stored in [GPX](https://en.wikipedia.org/wiki/GPS_Exchange_Format) files can be displayed. Using this data, images can be matched with geographic coordinates automatically, either by finding (more or less) exact chronological matches or by interpolating a possible position if no exact match can be found. Additionally, coordinates can be set or corrected manually by dragging and dropping images on the map directly. This also can be done without additional geodata.
 
 It uses the [Qt framework](https://www.qt.io/), [Marble](https://marble.kde.org/) for the map view and [libkexiv2](https://invent.kde.org/graphics/libkexiv2) for image metadata reading and writing.
