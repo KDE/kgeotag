@@ -159,7 +159,7 @@ void SettingsDialog::enableMaximumInterpolationInterval(bool state)
 {
     m_maximumInterpolationInterval->setEnabled(state);
     if (! state) {
-        m_maximumInterpolationInterval->setValue(14400);
+        m_maximumInterpolationInterval->setValue(3600);
     }
 }
 
