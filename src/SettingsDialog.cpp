@@ -123,7 +123,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     layout->addWidget(saveBox);
 
     m_createBackups = new QCheckBox(i18n("Create a backup of each image\n"
-                                         "before altering the EXIF header"));
+                                         "before altering the Exif header"));
     m_createBackups->setChecked(m_settings->createBackups());
     saveBoxLayout->addWidget(m_createBackups);
 
