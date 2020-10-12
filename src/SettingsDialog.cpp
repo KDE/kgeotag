@@ -38,6 +38,8 @@
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
 {
+    setWindowTitle(i18n("KGeoTag: Settings"));
+
     auto *layout = new QVBoxLayout(this);
 
     // GPX track rendering

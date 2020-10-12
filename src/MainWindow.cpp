@@ -44,6 +44,8 @@
 
 MainWindow::MainWindow() : QMainWindow()
 {
+    setWindowTitle(i18n("KGeoTag"));
+
     m_settings = new Settings(this);
     m_imageCache = new ImageCache(this, m_settings);
 
@@ -340,9 +342,9 @@ void MainWindow::imageSelected(const QString &path, bool center)
     }
 }
 
-void MainWindow::showSettings() const
+void MainWindow::showSettings()
 {
-    SettingsDialog dialog(m_settings);
+    SettingsDialog dialog(m_settings, this);
     if (! dialog.exec()) {
         return;
     }

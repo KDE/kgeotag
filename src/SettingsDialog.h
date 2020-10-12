@@ -36,7 +36,7 @@ class SettingsDialog : public QDialog
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(Settings *settings, QWidget *parent = nullptr);
+    explicit SettingsDialog(Settings *settings, QWidget *parent);
 
 protected:
     virtual void accept() override;

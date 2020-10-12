@@ -52,7 +52,7 @@ private slots:
     void assignInterpolatedMatches();
     void saveChanges();
     void imageSelected(const QString &path, bool center);
-    void showSettings() const;
+    void showSettings();
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
