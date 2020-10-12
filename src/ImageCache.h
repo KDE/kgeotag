@@ -62,7 +62,7 @@ private: // Structs
         QImage thumbnail;
         QImage preview;
         QDateTime date;
-        KGeoTag::Coordinates coordinates = KGeoTag::Coordinates { 0.0, 0.0, false };
+        KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
         KGeoTag::MatchType matchType = KGeoTag::MatchType::None;
         bool changed = false;
     };

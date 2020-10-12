@@ -246,7 +246,7 @@ KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time) cons
     }
 
     // No match found
-    return KGeoTag::Coordinates { 0.0, 0.0, false };
+    return KGeoTag::NoCoordinates;
 }
 
 KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &time) const
@@ -254,7 +254,7 @@ KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &tim
     // If the image's date is before the first or after the last point we have,
     // it can't be assigned.
     if (time < m_allTimes.first() || time > m_allTimes.last()) {
-        return KGeoTag::Coordinates { 0.0, 0.0, false };
+        return KGeoTag::NoCoordinates;
     }
 
     // Check for an exact match (without tolerance)

@@ -27,6 +27,8 @@ struct Coordinates
     bool isSet = true;
 };
 
+const Coordinates NoCoordinates { 0.0, 0.0, false };
+
 enum MatchType {
     None,
     Exact,
