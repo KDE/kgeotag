@@ -22,6 +22,7 @@
 #include "MapWidget.h"
 #include "KGeoTag.h"
 #include "ImagesList.h"
+#include "SettingsDialog.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -48,6 +49,8 @@ MainWindow::MainWindow() : QMainWindow()
 
     // Menu setup
 
+    // File
+
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
 
     auto *addGpxAction = fileMenu->addAction(i18n("Add GPX track"));
@@ -58,16 +61,6 @@ MainWindow::MainWindow() : QMainWindow()
 
     fileMenu->addSeparator();
 
-    auto *assignExactMatchesAction = fileMenu->addAction(i18n("Assign images (exact matches)"));
-    connect(assignExactMatchesAction, &QAction::triggered, this, &MainWindow::assignExactMatches);
-
-    auto *assignInterpolatedMatchesAction = fileMenu->addAction(i18n("Assign images "
-                                                                     "(interpolated)"));
-    connect(assignInterpolatedMatchesAction, &QAction::triggered,
-            this, &MainWindow::assignInterpolatedMatches);
-
-    fileMenu->addSeparator();
-
     auto *saveChangesAction = fileMenu->addAction(i18n("Save changed images"));
     connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveChanges);
 
@@ -75,6 +68,23 @@ MainWindow::MainWindow() : QMainWindow()
 
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
+
+    // Edit
+
+    auto *editMenu = menuBar()->addMenu(i18n("Edit"));
+
+    auto *assignExactMatchesAction = editMenu->addAction(i18n("Assign images (exact matches)"));
+    connect(assignExactMatchesAction, &QAction::triggered, this, &MainWindow::assignExactMatches);
+
+    auto *assignInterpolatedMatchesAction = editMenu->addAction(i18n("Assign images "
+                                                                     "(interpolated)"));
+    connect(assignInterpolatedMatchesAction, &QAction::triggered,
+            this, &MainWindow::assignInterpolatedMatches);
+
+    editMenu->addSeparator();
+
+    auto *showSettingsAction = editMenu->addAction(i18n("Settings"));
+    connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
 
     // Dock setup
     setDockNestingEnabled(true);
@@ -328,4 +338,10 @@ void MainWindow::imageSelected(const QString &path, bool center)
     if (center) {
         m_mapWidget->centerImage(path);
     }
+}
+
+void MainWindow::showSettings() const
+{
+    SettingsDialog dialog(m_settings);
+    dialog.exec();
 }
