@@ -26,6 +26,9 @@
 #include <marble/MarbleModel.h>
 #include <marble/GeoDataLatLonAltBox.h>
 
+// KDE includes
+#include <KLocalizedString>
+
 // Qt includes
 #include <QDebug>
 #include <QDragEnterEvent>
@@ -33,6 +36,7 @@
 #include <QDropEvent>
 #include <QXmlStreamReader>
 #include <QApplication>
+#include <QMessageBox>
 
 // C++ includes
 #include <algorithm>
@@ -63,7 +67,13 @@ void MapWidget::addGpx(const QString &path)
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     QFile gpxFile(path);
-    gpxFile.open(QIODevice::ReadOnly | QIODevice::Text);
+
+    if (! gpxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
+        QMessageBox::warning(this, i18n("Add GPX track"),
+                             i18n("Failed to open GPX file \"%1\"", path));
+        return;
+    }
+
     QXmlStreamReader xml(&gpxFile);
 
     Marble::GeoDataLineString lineString;
