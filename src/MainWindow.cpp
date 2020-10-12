@@ -289,6 +289,8 @@ void MainWindow::saveChanges()
     QProgressDialog progress(i18n("Saving changes ..."), i18n("Cancel"), 0, files.count(), this);
     progress.setWindowModality(Qt::WindowModal);
 
+    const bool createBackups = m_settings->createBackups();
+
     int processed = 0;
     for (const QString &path : files) {
         progress.setValue(processed++);
@@ -296,8 +298,8 @@ void MainWindow::saveChanges()
             break;
         }
 
-        // Create a backup of the file
-        if (! QFile::copy(path, path + QStringLiteral(".orig"))) {
+        // Create a backup of the file if requested
+        if (createBackups && ! QFile::copy(path, path + QStringLiteral(".orig"))) {
             progress.deleteLater();
             QApplication::restoreOverrideCursor();
             QTimer::singleShot(0, [this, path]

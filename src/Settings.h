@@ -67,6 +67,9 @@ public:
     void saveTrackStyle(Qt::PenStyle style);
     Qt::PenStyle trackStyle() const;
 
+    void saveCreateBackups(bool state);
+    bool createBackups() const;
+
 };
 
 #endif // SETTINGS_H

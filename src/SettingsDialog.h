@@ -61,6 +61,8 @@ private: // Variables
     QCheckBox *m_enableMaximumInterpolationInterval;
     QSpinBox *m_maximumInterpolationInterval;
 
+    QCheckBox *m_createBackups;
+
 };
 
 #endif // SETTINGSDIALOG_H

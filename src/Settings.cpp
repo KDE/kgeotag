@@ -61,6 +61,9 @@ const QString c_assignment_exactMatchDeviation
 const QString c_assignment_maximumInterpolationInterval
     = c_assignment + QLatin1String("maximum_interpolation_interval");
 
+const QLatin1String c_save("save/");
+const QString c_save_createBackups = c_save + QLatin1String("create_backups");
+
 }
 
 Settings::Settings(QObject *parent)
@@ -211,4 +214,14 @@ void Settings::saveTrackWidth(int width)
 int Settings::trackWidth() const
 {
     return value(c_track_width, 3).toInt();
+}
+
+void Settings::saveCreateBackups(bool state)
+{
+    setValue(c_save_createBackups, state);
+}
+
+bool Settings::createBackups() const
+{
+    return value(c_save_createBackups, true).toBool();
 }

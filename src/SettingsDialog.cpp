@@ -116,6 +116,17 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     connect(m_enableMaximumInterpolationInterval, &QCheckBox::toggled,
             this, &SettingsDialog::enableMaximumInterpolationInterval);
 
+    // Data saving
+
+    auto *saveBox = new QGroupBox(i18n("Saving"));
+    auto *saveBoxLayout = new QVBoxLayout(saveBox);
+    layout->addWidget(saveBox);
+
+    m_createBackups = new QCheckBox(i18n("Create a backup of each image\n"
+                                         "before altering the EXIF header"));
+    m_createBackups->setChecked(m_settings->createBackups());
+    saveBoxLayout->addWidget(m_createBackups);
+
     // Button box
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Close);
@@ -161,6 +172,8 @@ void SettingsDialog::accept()
     m_settings->saveExactMatchDeviation(m_exactMatchDeviation->value());
     m_settings->saveMaximumInterpolationInterval(m_enableMaximumInterpolationInterval->isChecked()
         ? m_maximumInterpolationInterval->value() : -1);
+
+    m_settings->saveCreateBackups(m_createBackups->isChecked());
 
     QDialog::accept();
 }
