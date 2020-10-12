@@ -36,6 +36,9 @@ const QString c_map_centerLon = c_map + QLatin1String("center_lon");
 const QString c_map_centerLat = c_map + QLatin1String("center_lat");
 const QString c_map_zoom = c_map + QLatin1String("zoom");
 
+const QLatin1String c_tracks("tracks/");
+const QString c_tracks_color = c_tracks + QLatin1String("color");
+
 }
 
 Settings::Settings(QObject *parent)
@@ -131,4 +134,19 @@ QSize Settings::previewSize() const
 int Settings::secondsTolerance() const
 {
     return 10;
+}
+
+void Settings::saveTrackColor(const QColor &color)
+{
+    setValue(c_tracks_color, color);
+}
+
+QColor Settings::trackColor() const
+{
+    QColor color = value(c_tracks_color).value<QColor>();
+    if (! color.isValid()) {
+        color = QColor(255, 0, 255, 150);
+    }
+
+    return color;
 }

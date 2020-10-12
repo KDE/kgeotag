@@ -22,6 +22,7 @@
 
 // Qt includes
 #include <QSettings>
+#include <QColor>
 
 class Settings : public QSettings
 {
@@ -51,6 +52,9 @@ public:
     QSize thumbnailSize() const;
     QSize previewSize() const;
     int secondsTolerance() const;
+
+    void saveTrackColor(const QColor &color);
+    QColor trackColor() const;
 
 };
 

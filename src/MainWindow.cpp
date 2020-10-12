@@ -343,5 +343,9 @@ void MainWindow::imageSelected(const QString &path, bool center)
 void MainWindow::showSettings() const
 {
     SettingsDialog dialog(m_settings);
-    dialog.exec();
+    if (! dialog.exec()) {
+        return;
+    }
+
+    m_mapWidget->updateSettings();
 }

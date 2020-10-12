@@ -44,6 +44,7 @@ class MapWidget : public Marble::MarbleWidget
 
 public:
     explicit MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
+    void updateSettings();
     virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();

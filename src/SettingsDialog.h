@@ -23,6 +23,11 @@
 // Local classes
 class Settings;
 
+// Qt classes
+class QPushButton;
+class QSpinBox;
+class QComboBox;
+
 class SettingsDialog : public QDialog
 {
     Q_OBJECT
@@ -30,8 +35,15 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(Settings *settings, QWidget *parent = nullptr);
 
+protected:
+    virtual void accept() override;
+
 private: // Variables
     Settings *m_settings;
+
+    QPushButton *m_trackColor;
+    QSpinBox *m_trackWidth;
+    QComboBox *m_trackStyle;
 
 };
 

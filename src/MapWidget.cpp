@@ -45,11 +45,18 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
     setProjection(Marble::Mercator);
     setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
 
-    m_trackPen.setColor(QColor(255, 0, 255, 150));
-    m_trackPen.setWidth(3);
-    m_trackPen.setStyle(Qt::DotLine);
     m_trackPen.setCapStyle(Qt::RoundCap);
     m_trackPen.setJoinStyle(Qt::RoundJoin);
+    updateSettings();
+}
+
+void MapWidget::updateSettings()
+{
+    m_trackPen.setColor(m_settings->trackColor());
+    m_trackPen.setWidth(3);
+    m_trackPen.setStyle(Qt::DotLine);
+
+    reloadMap();
 }
 
 void MapWidget::addGpx(const QString &path)
