@@ -19,12 +19,14 @@
 
 // Qt includes
 #include <QDialog>
+#include <QColor>
 
 // Local classes
 class Settings;
 
 // Qt classes
 class QPushButton;
+class QLabel;
 class QSpinBox;
 class QComboBox;
 
@@ -38,10 +40,18 @@ public:
 protected:
     virtual void accept() override;
 
+private slots:
+    void setTrackColor();
+
+private: // Functions
+    void updateTrackColor();
+
 private: // Variables
     Settings *m_settings;
 
+    QColor m_currentTrackColor;
     QPushButton *m_trackColor;
+    QLabel *m_trackOpacity;
     QSpinBox *m_trackWidth;
     QComboBox *m_trackStyle;
 

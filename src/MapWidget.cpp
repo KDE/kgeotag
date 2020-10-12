@@ -53,9 +53,8 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
 void MapWidget::updateSettings()
 {
     m_trackPen.setColor(m_settings->trackColor());
-    m_trackPen.setWidth(3);
-    m_trackPen.setStyle(Qt::DotLine);
-
+    m_trackPen.setWidth(m_settings->trackWidth());
+    m_trackPen.setStyle(m_settings->trackStyle());
     reloadMap();
 }
 

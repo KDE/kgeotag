@@ -56,6 +56,12 @@ public:
     void saveTrackColor(const QColor &color);
     QColor trackColor() const;
 
+    void saveTrackWidth(int width);
+    int trackWidth() const;
+
+    void saveTrackStyle(Qt::PenStyle style);
+    Qt::PenStyle trackStyle() const;
+
 };
 
 #endif // SETTINGS_H

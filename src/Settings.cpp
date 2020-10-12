@@ -36,8 +36,24 @@ const QString c_map_centerLon = c_map + QLatin1String("center_lon");
 const QString c_map_centerLat = c_map + QLatin1String("center_lat");
 const QString c_map_zoom = c_map + QLatin1String("zoom");
 
-const QLatin1String c_tracks("tracks/");
-const QString c_tracks_color = c_tracks + QLatin1String("color");
+const QLatin1String c_track("track/");
+const QString c_track_color = c_track + QLatin1String("color");
+const QString c_track_width = c_track + QLatin1String("width");
+const QString c_track_style = c_track + QLatin1String("style");
+const QVector<Qt::PenStyle> c_track_styleEnum {
+    Qt::SolidLine,
+    Qt::DashLine,
+    Qt::DotLine,
+    Qt::DashDotLine,
+    Qt::DashDotDotLine
+};
+const QVector<QString> c_track_styleString {
+    QStringLiteral("solid"),
+    QStringLiteral("dashes"),
+    QStringLiteral("dots"),
+    QStringLiteral("dash_dot"),
+    QStringLiteral("dash_dot_dot")
+};
 
 }
 
@@ -138,15 +154,40 @@ int Settings::secondsTolerance() const
 
 void Settings::saveTrackColor(const QColor &color)
 {
-    setValue(c_tracks_color, color);
+    setValue(c_track_color, color);
 }
 
 QColor Settings::trackColor() const
 {
-    QColor color = value(c_tracks_color).value<QColor>();
+    QColor color = value(c_track_color).value<QColor>();
     if (! color.isValid()) {
         color = QColor(255, 0, 255, 150);
     }
 
     return color;
+}
+
+void Settings::saveTrackStyle(Qt::PenStyle style)
+{
+    setValue(c_track_style, c_track_styleString.at(c_track_styleEnum.indexOf(style)));
+}
+
+Qt::PenStyle Settings::trackStyle() const
+{
+    QString styleString = value(c_track_style).toString();
+    if (c_track_styleString.contains(styleString)) {
+        return c_track_styleEnum.at(c_track_styleString.indexOf(styleString));
+    } else {
+        return Qt::DotLine;
+    }
+}
+
+void Settings::saveTrackWidth(int width)
+{
+    setValue(c_track_width, width);
+}
+
+int Settings::trackWidth() const
+{
+    return value(c_track_width, 3).toInt();
 }
