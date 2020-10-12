@@ -55,6 +55,12 @@ const QVector<QString> c_track_styleString {
     QStringLiteral("dash_dot_dot")
 };
 
+const QLatin1String c_assignment("assignment/");
+const QString c_assignment_exactMatchDeviation
+    = c_assignment + QLatin1String("exact_match_deviation");
+const QString c_assignment_maximumInterpolationInterval
+    = c_assignment + QLatin1String("maximum_interpolation_interval");
+
 }
 
 Settings::Settings(QObject *parent)
@@ -147,9 +153,24 @@ QSize Settings::previewSize() const
     return QSize(400, 400);
 }
 
-int Settings::secondsTolerance() const
+void Settings::saveExactMatchDeviation(int seconds)
 {
-    return 10;
+    setValue(c_assignment_exactMatchDeviation, seconds);
+}
+
+int Settings::exactMatchDeviation() const
+{
+    return value(c_assignment_exactMatchDeviation, 10).toInt();
+}
+
+void Settings::saveMaximumInterpolationInterval(int seconds)
+{
+    setValue(c_assignment_maximumInterpolationInterval, seconds);
+}
+
+int Settings::maximumInterpolationInterval() const
+{
+    return value(c_assignment_maximumInterpolationInterval, -1).toInt();
 }
 
 void Settings::saveTrackColor(const QColor &color)

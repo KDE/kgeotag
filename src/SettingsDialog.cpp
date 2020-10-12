@@ -33,11 +33,14 @@
 #include <QSpinBox>
 #include <QPushButton>
 #include <QColorDialog>
+#include <QCheckBox>
 
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
 {
     auto *layout = new QVBoxLayout(this);
+
+    // GPX track rendering
 
     auto *trackBox = new QGroupBox(i18n("GPX track rendering"));
     auto *trackBoxLayout = new QGridLayout(trackBox);
@@ -73,6 +76,46 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
         m_trackStyle->findData(static_cast<int>(m_settings->trackStyle())));
     trackBoxLayout->addWidget(m_trackStyle, 2, 1, 1, 2);
 
+    // Image assignment
+
+    auto *assignmentBox = new QGroupBox(i18n("Image assignment"));
+    auto *assignmentBoxLayout = new QGridLayout(assignmentBox);
+    layout->addWidget(assignmentBox);
+
+    auto *exactMatchDeviationLabel = new QLabel(i18n("Maximum deviation (seconds)\n"
+                                                     "for an exact match"));
+    exactMatchDeviationLabel->setWordWrap(true);
+    assignmentBoxLayout->addWidget(exactMatchDeviationLabel, 0, 0);
+
+    m_exactMatchDeviation = new QSpinBox;
+    m_exactMatchDeviation->setMinimum(0);
+    m_exactMatchDeviation->setMaximum(300);
+    m_exactMatchDeviation->setValue(m_settings->exactMatchDeviation());
+    assignmentBoxLayout->addWidget(m_exactMatchDeviation, 0, 1);
+
+    m_enableMaximumInterpolationInterval = new QCheckBox(i18n("Maximum interval (seconds)\n"
+                                                              "between two points used for\n"
+                                                              "an interpolated match"));
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, 1, 0);
+
+    m_maximumInterpolationInterval = new QSpinBox;
+    m_maximumInterpolationInterval->setMinimum(0);
+    m_maximumInterpolationInterval->setMaximum(86400);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, 1, 1);
+
+    const int interval = m_settings->maximumInterpolationInterval();
+    if (interval == -1) {
+        enableMaximumInterpolationInterval(false);
+    } else {
+        m_enableMaximumInterpolationInterval->setChecked(true);
+        m_maximumInterpolationInterval->setValue(interval);
+    }
+
+    connect(m_enableMaximumInterpolationInterval, &QCheckBox::toggled,
+            this, &SettingsDialog::enableMaximumInterpolationInterval);
+
+    // Button box
+
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Close);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -99,10 +142,23 @@ void SettingsDialog::setTrackColor()
     updateTrackColor();
 }
 
+void SettingsDialog::enableMaximumInterpolationInterval(bool state)
+{
+    m_maximumInterpolationInterval->setEnabled(state);
+    if (! state) {
+        m_maximumInterpolationInterval->setValue(14400);
+    }
+}
+
 void SettingsDialog::accept()
 {
     m_settings->saveTrackColor(m_currentTrackColor);
     m_settings->saveTrackWidth(m_trackWidth->value());
     m_settings->saveTrackStyle(static_cast<Qt::PenStyle>(m_trackStyle->currentData().toInt()));
+
+    m_settings->saveExactMatchDeviation(m_exactMatchDeviation->value());
+    m_settings->saveMaximumInterpolationInterval(m_enableMaximumInterpolationInterval->isChecked()
+        ? m_maximumInterpolationInterval->value() : -1);
+
     QDialog::accept();
 }

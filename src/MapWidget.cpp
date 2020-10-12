@@ -233,8 +233,8 @@ KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time) cons
         return m_points.value(time);
     }
 
-    // Check for a match with +/- the secondsTolerance
-    for (int i = 1; i <= m_settings->secondsTolerance(); i++) {
+    // Check for a match with +/- the maximum tolerable deviation
+    for (int i = 1; i <= m_settings->exactMatchDeviation(); i++) {
         const auto timeBefore = time.addSecs(i * -1);
         if (m_points.contains(timeBefore)) {
             return m_points.value(timeBefore);
@@ -292,10 +292,14 @@ KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &tim
         return m_points.value(closestBefore);
     }
 
-
     // Interpolate between the two coordinates
 
     const auto &closestAfter = m_allTimes.at(index + 1);
+    const int maximumInterval = m_settings->maximumInterpolationInterval();
+    if (maximumInterval != -1 && closestBefore.secsTo(closestAfter) > maximumInterval) {
+        return KGeoTag::NoCoordinates;
+    }
+
     const auto &pointBefore = m_points[closestBefore];
     const auto &pointAfter = m_points[closestAfter];
     const auto coordinatesBefore = Marble::GeoDataCoordinates(

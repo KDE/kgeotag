@@ -51,7 +51,12 @@ public:
 
     QSize thumbnailSize() const;
     QSize previewSize() const;
-    int secondsTolerance() const;
+
+    void saveExactMatchDeviation(int seconds);
+    int exactMatchDeviation() const;
+
+    void saveMaximumInterpolationInterval(int seconds);
+    int maximumInterpolationInterval() const;
 
     void saveTrackColor(const QColor &color);
     QColor trackColor() const;

@@ -29,6 +29,7 @@ class QPushButton;
 class QLabel;
 class QSpinBox;
 class QComboBox;
+class QCheckBox;
 
 class SettingsDialog : public QDialog
 {
@@ -42,6 +43,7 @@ protected:
 
 private slots:
     void setTrackColor();
+    void enableMaximumInterpolationInterval(bool state);
 
 private: // Functions
     void updateTrackColor();
@@ -54,6 +56,10 @@ private: // Variables
     QLabel *m_trackOpacity;
     QSpinBox *m_trackWidth;
     QComboBox *m_trackStyle;
+
+    QSpinBox *m_exactMatchDeviation;
+    QCheckBox *m_enableMaximumInterpolationInterval;
+    QSpinBox *m_maximumInterpolationInterval;
 
 };
 
