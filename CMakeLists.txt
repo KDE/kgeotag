@@ -84,3 +84,4 @@ ecm_install_icons(
     DESTINATION ${KDE_INSTALL_ICONDIR})
 
 install(PROGRAMS invent.kde.tleupold.kgeotag.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES invent.kde.tleupold.kgeotag.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
