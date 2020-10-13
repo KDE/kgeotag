@@ -10,6 +10,7 @@ set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DI
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
+include(ECMInstallIcons)
 
 # Enable colored output for GCC and Clang when using Ninja
 include(${CMAKE_SOURCE_DIR}/cmake/NinjaColors.cmake)
@@ -28,7 +29,7 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF5 REQUIRED COMPONENTS I18n KExiv2 REQUIRED)
+find_package(KF5 REQUIRED COMPONENTS I18n IconThemes KExiv2 REQUIRED)
 
 # Find Marble
 find_package(Marble 0.28 REQUIRED)
@@ -64,6 +65,20 @@ add_dependencies(kgeotag UpdateVersion)
 target_link_libraries(kgeotag
     Qt5::Widgets
     KF5::I18n
+    KF5::IconThemes
     KF5::KExiv2
     Marble
 )
+
+# Installation
+
+install(TARGETS kgeotag ${KDE_INSTALL_TARGETS_DEFAULT_ARGS})
+
+ecm_install_icons(
+    ICONS icons/16-apps-kgeotag.png
+          icons/22-apps-kgeotag.png
+          icons/32-apps-kgeotag.png
+          icons/48-apps-kgeotag.png
+          icons/64-apps-kgeotag.png
+          icons/128-apps-kgeotag.png
+    DESTINATION ${KDE_INSTALL_ICONDIR})

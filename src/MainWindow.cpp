@@ -26,6 +26,7 @@
 
 // KDE includes
 #include <KLocalizedString>
+#include <KIconLoader>
 #include <KExiv2/KExiv2>
 
 // Qt includes
