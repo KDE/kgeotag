@@ -8,4 +8,4 @@ It shows a map on which geodata stored in [GPX](https://en.wikipedia.org/wiki/GP
 
 Finally, the assigned coordinates can be saven in the image's [Exif](https://en.wikipedia.org/wiki/Exif) header, making them persistent and accessible for other applications.
 
-It uses the [Qt framework](https://www.qt.io/), [Marble](https://marble.kde.org/) for the map view and [libkexiv2](https://invent.kde.org/graphics/libkexiv2) for image metadata reading and writing.
+The program uses the [Qt framework](https://www.qt.io/), [Marble](https://marble.kde.org/) for the map view and [libkexiv2](https://invent.kde.org/graphics/libkexiv2) for image metadata reading and writing.
