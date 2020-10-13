@@ -28,6 +28,8 @@ class ImageCache;
 
 // Qt classes
 class QMouseEvent;
+class QMenu;
+class QAction;
 
 class ImagesList : public QListWidget
 {
@@ -41,6 +43,8 @@ public:
 
 signals:
     void imageSelected(const QString &path, bool center = true) const;
+    void removeCoordinates(const QString &path) const;
+    void discardChanges(const QString &path) const;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -48,10 +52,14 @@ protected:
 
 private slots:
     void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
+    void showContextMenu(const QPoint &point);
 
 private: // Variables
     ImageCache *m_imageCache;
     QPoint m_dragStartPosition;
+    QMenu *m_contextMenu;
+    QAction *m_removeCoordinates;
+    QAction *m_discardChanges;
 
 };
 

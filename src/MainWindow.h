@@ -53,6 +53,8 @@ private slots:
     void saveChanges();
     void imageSelected(const QString &path, bool center);
     void showSettings();
+    void removeCoordinates(const QString &path);
+    void discardChanges(const QString &path);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

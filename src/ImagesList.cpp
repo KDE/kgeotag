@@ -29,6 +29,8 @@
 #include <QDrag>
 #include <QMimeData>
 #include <QFileInfo>
+#include <QMenu>
+#include <QAction>
 
 // C++ includes
 #include <functional>
@@ -42,6 +44,19 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
     connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHighlighted);
     connect(this, &QListWidget::itemClicked,
             this, std::bind(&ImagesList::imageHighlighted, this, std::placeholders::_1, nullptr));
+
+    m_contextMenu = new QMenu(this);
+
+    m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
+    connect(m_removeCoordinates, &QAction::triggered, [this]
+            { emit removeCoordinates(currentItem()->data(Qt::UserRole).toString()); });
+
+    m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
+    connect(m_discardChanges, &QAction::triggered, [this]
+            { emit discardChanges(currentItem()->data(Qt::UserRole).toString()); });
+
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, &QListWidget::customContextMenuRequested, this, &ImagesList::showContextMenu);
 }
 
 void ImagesList::imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const
@@ -149,4 +164,18 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
     mimeData->setText(item->data(Qt::UserRole).toString());
     drag->setMimeData(mimeData);
     drag->exec(Qt::MoveAction);
+}
+
+void ImagesList::showContextMenu(const QPoint &point)
+{
+    const auto *item = currentItem();
+    if (item == nullptr) {
+        return;
+    }
+
+    const QString path = item->data(Qt::UserRole).toString();
+    m_removeCoordinates->setEnabled(m_imageCache->coordinates(path).isSet);
+    m_discardChanges->setEnabled(m_imageCache->changed(path));
+
+    m_contextMenu->exec(mapToGlobal(point));
 }

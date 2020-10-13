@@ -51,6 +51,7 @@ public:
     void addGpx(const QString &path);
     void addImage(const QString &path, double lon, double lat);
     void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void removeImage(const QString &path);
     KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
     KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
     void centerImage(const QString &path);

@@ -54,7 +54,8 @@ bool ImageCache::addImage(const QString &path)
     double latitude;
     double longitude;
     if (exif.getGPSInfo(altitude, latitude, longitude)) {
-            data.coordinates = KGeoTag::Coordinates { longitude, latitude, true };
+        data.originalCoordinates = KGeoTag::Coordinates { longitude, latitude, true };
+        data.coordinates = KGeoTag::Coordinates { longitude, latitude, true };
     }
 
     // Fix the image's orientation
@@ -144,4 +145,12 @@ KGeoTag::MatchType ImageCache::matchType(const QString &path)
 bool ImageCache::changed(const QString &path) const
 {
     return m_imageData[path].changed;
+}
+
+void ImageCache::resetChanges(const QString &path)
+{
+    auto &data = m_imageData[path];
+    data.coordinates = data.originalCoordinates;
+    data.matchType = KGeoTag::MatchType::None;
+    data.changed = false;
 }

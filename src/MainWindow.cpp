@@ -44,6 +44,9 @@
 #include <QTimer>
 #include <QMessageBox>
 
+// C++ includes
+#include <algorithm>
+
 MainWindow::MainWindow() : QMainWindow()
 {
     setWindowTitle(i18n("KGeoTag"));
@@ -101,11 +104,16 @@ MainWindow::MainWindow() : QMainWindow()
     m_unAssignedImages = new ImagesList(m_imageCache);
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
+    connect(m_unAssignedImages, &ImagesList::removeCoordinates,
+            this, &MainWindow::removeCoordinates);
+    connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
 
     // Assigned images
     m_assignedImages = new ImagesList(m_imageCache);
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
+    connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
+    connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
 
     // Preview
     m_previewWidget = new PreviewWidget(m_imageCache);
@@ -290,7 +298,10 @@ void MainWindow::assignInterpolatedMatches()
 void MainWindow::saveChanges()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    const auto &files = m_imageCache->changedImages();
+
+    auto files = m_imageCache->changedImages();
+    // We sort the list so that the processing order matches the display order
+    std::sort(files.begin(), files.end());
 
     QProgressDialog progress(i18n("Saving changes ..."), i18n("Cancel"), 0, files.count(), this);
     progress.setWindowModality(Qt::WindowModal);
@@ -321,8 +332,13 @@ void MainWindow::saveChanges()
         // Write the GPS information
 
         auto exif = KExiv2Iface::KExiv2(path);
+
         const auto coordinates = m_imageCache->coordinates(path);
-        exif.setGPSInfo(0.0, coordinates.lat, coordinates.lon);
+        if (coordinates.isSet) {
+            exif.setGPSInfo(0.0, coordinates.lat, coordinates.lon);
+        } else {
+            exif.removeGPSInfo();
+        }
 
         if (! exif.save(path)) {
             progress.deleteLater();
@@ -337,7 +353,11 @@ void MainWindow::saveChanges()
         }
 
         m_imageCache->setChanged(path, false);
-        m_assignedImages->addOrUpdateImage(path);
+        if (coordinates.isSet) {
+            m_assignedImages->addOrUpdateImage(path);
+        } else {
+            m_unAssignedImages->addOrUpdateImage(path);
+        }
     }
 
     QApplication::restoreOverrideCursor();
@@ -358,4 +378,31 @@ void MainWindow::showSettings()
     }
 
     m_mapWidget->updateSettings();
+}
+
+void MainWindow::removeCoordinates(const QString &path)
+{
+    m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
+    m_imageCache->setChanged(path, true);
+    m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
+    m_assignedImages->removeImage(path);
+    m_unAssignedImages->addOrUpdateImage(path);
+    m_mapWidget->removeImage(path);
+    m_mapWidget->reloadMap();
+}
+
+void MainWindow::discardChanges(const QString &path)
+{
+    m_imageCache->resetChanges(path);
+    const auto coordinates = m_imageCache->coordinates(path);
+    if (coordinates.isSet) {
+        m_unAssignedImages->removeImage(path);
+        m_assignedImages->addOrUpdateImage(path);
+        m_mapWidget->addImage(path, coordinates);
+    } else {
+        m_assignedImages->removeImage(path);
+        m_unAssignedImages->addOrUpdateImage(path);
+        m_mapWidget->removeImage(path);
+    }
+    m_mapWidget->reloadMap();
 }

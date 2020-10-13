@@ -173,6 +173,11 @@ void MapWidget::addImage(const QString &path, double lon, double lat)
     m_images[path] = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
 }
 
+void MapWidget::removeImage(const QString &path)
+{
+    m_images.remove(path);
+}
+
 void MapWidget::customPaint(Marble::GeoPainter *painter)
 {
     const auto images = m_images.keys();

@@ -55,6 +55,7 @@ public:
     void setMatchType(const QString &path, KGeoTag::MatchType matchType);
     KGeoTag::MatchType matchType(const QString &path);
     bool changed(const QString &path) const;
+    void resetChanges(const QString &path);
 
 private: // Structs
     struct ImageData
@@ -62,6 +63,7 @@ private: // Structs
         QImage thumbnail;
         QImage preview;
         QDateTime date;
+        KGeoTag::Coordinates originalCoordinates = KGeoTag::NoCoordinates;
         KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
         KGeoTag::MatchType matchType = KGeoTag::MatchType::None;
         bool changed = false;
