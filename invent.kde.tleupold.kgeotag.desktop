@@ -1,0 +1,9 @@
+[Desktop Entry]
+Name=KGeoTag
+GenericName=Photo geotagging program
+Type=Application
+Icon=kgeotag
+Exec=kgeotag
+Terminal=false
+Categories=Qt;KDE;Graphics;Photography;
+X-KDE-StartupNotify=true
