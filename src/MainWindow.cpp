@@ -27,6 +27,7 @@
 // KDE includes
 #include <KLocalizedString>
 #include <KIconLoader>
+#include <KHelpMenu>
 #include <KExiv2/KExiv2>
 
 // Qt includes
@@ -88,6 +89,10 @@ MainWindow::MainWindow() : QMainWindow()
 
     auto *showSettingsAction = editMenu->addAction(i18n("Settings"));
     connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
+
+    // Help
+    auto *helpMenu = new KHelpMenu;
+    menuBar()->addMenu(helpMenu->menu());
 
     // Dock setup
     setDockNestingEnabled(true);
