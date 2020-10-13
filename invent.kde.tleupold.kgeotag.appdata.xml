@@ -7,7 +7,7 @@
   <name>KGeoTag</name>
   <summary>Photo geotagging program</summary>
   <description>
-    <p>KGeoTag is a standalone photo geotagging program for the KDE ecosystem, with the Unix philosophy in mind ("do one thing and do it well"). It shows a map images can be dragged and dropped onto and also provides automatic matching (exact and also interpolated) with GPX encoded geodata.</p>
+    <p>KGeoTag is a standalone photo geotagging program for the KDE ecosystem, with the Unix philosophy in mind ("do one thing and do it well"). It shows a map images can be dragged and dropped onto and also provides automatic matching (exact and also interpolated) with GPX encoded geodata. The coordinates can then be stored in the images' Exif header.</p>
   </description>
   <url type="homepage">https://invent.kde.org/tleupold/kgeotag</url>
   <provides>
