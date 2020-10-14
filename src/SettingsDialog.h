@@ -57,7 +57,7 @@ private: // Variables
     QSpinBox *m_trackWidth;
     QComboBox *m_trackStyle;
 
-    QSpinBox *m_exactMatchDeviation;
+    QSpinBox *m_exactMatchTolerance;
     QCheckBox *m_enableMaximumInterpolationInterval;
     QSpinBox *m_maximumInterpolationInterval;
 

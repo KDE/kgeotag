@@ -84,16 +84,16 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *assignmentBoxLayout = new QGridLayout(assignmentBox);
     layout->addWidget(assignmentBox);
 
-    auto *exactMatchDeviationLabel = new QLabel(i18n("Maximum deviation (seconds)\n"
+    auto *exactMatchToleranceLabel = new QLabel(i18n("Maximum deviation (seconds)\n"
                                                      "for an exact match"));
-    exactMatchDeviationLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(exactMatchDeviationLabel, 0, 0);
+    exactMatchToleranceLabel->setWordWrap(true);
+    assignmentBoxLayout->addWidget(exactMatchToleranceLabel, 0, 0);
 
-    m_exactMatchDeviation = new QSpinBox;
-    m_exactMatchDeviation->setMinimum(0);
-    m_exactMatchDeviation->setMaximum(300);
-    m_exactMatchDeviation->setValue(m_settings->exactMatchDeviation());
-    assignmentBoxLayout->addWidget(m_exactMatchDeviation, 0, 1);
+    m_exactMatchTolerance = new QSpinBox;
+    m_exactMatchTolerance->setMinimum(0);
+    m_exactMatchTolerance->setMaximum(300);
+    m_exactMatchTolerance->setValue(m_settings->exactMatchTolerance());
+    assignmentBoxLayout->addWidget(m_exactMatchTolerance, 0, 1);
 
     m_enableMaximumInterpolationInterval = new QCheckBox(i18n("Maximum interval (seconds)\n"
                                                               "between two points used for\n"
@@ -169,7 +169,7 @@ void SettingsDialog::accept()
     m_settings->saveTrackWidth(m_trackWidth->value());
     m_settings->saveTrackStyle(static_cast<Qt::PenStyle>(m_trackStyle->currentData().toInt()));
 
-    m_settings->saveExactMatchDeviation(m_exactMatchDeviation->value());
+    m_settings->saveExactMatchTolerance(m_exactMatchTolerance->value());
     m_settings->saveMaximumInterpolationInterval(m_enableMaximumInterpolationInterval->isChecked()
         ? m_maximumInterpolationInterval->value() : -1);
 

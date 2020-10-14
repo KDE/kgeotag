@@ -56,8 +56,8 @@ const QVector<QString> c_track_styleString {
 };
 
 const QLatin1String c_assignment("assignment/");
-const QString c_assignment_exactMatchDeviation
-    = c_assignment + QLatin1String("exact_match_deviation");
+const QString c_assignment_exactMatchTolerance
+    = c_assignment + QLatin1String("exact_match_tolerance");
 const QString c_assignment_maximumInterpolationInterval
     = c_assignment + QLatin1String("maximum_interpolation_interval");
 
@@ -156,14 +156,14 @@ QSize Settings::previewSize() const
     return QSize(400, 400);
 }
 
-void Settings::saveExactMatchDeviation(int seconds)
+void Settings::saveExactMatchTolerance(int seconds)
 {
-    setValue(c_assignment_exactMatchDeviation, seconds);
+    setValue(c_assignment_exactMatchTolerance, seconds);
 }
 
-int Settings::exactMatchDeviation() const
+int Settings::exactMatchTolerance() const
 {
-    return value(c_assignment_exactMatchDeviation, 10).toInt();
+    return value(c_assignment_exactMatchTolerance, 10).toInt();
 }
 
 void Settings::saveMaximumInterpolationInterval(int seconds)

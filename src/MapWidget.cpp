@@ -24,7 +24,6 @@
 #include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
 #include <marble/MarbleModel.h>
-#include <marble/GeoDataLatLonAltBox.h>
 
 // KDE includes
 #include <KLocalizedString>
@@ -54,6 +53,20 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
     updateSettings();
 }
 
+void MapWidget::customPaint(Marble::GeoPainter *painter)
+{
+    const auto images = m_images.keys();
+    for (const auto &image : images) {
+        painter->drawPixmap(m_images.value(image),
+                            QPixmap::fromImage(m_imageCache->thumbnail(image)));
+    }
+
+    painter->setPen(m_trackPen);
+    for (const auto &lineString : m_tracks) {
+        painter->drawPolyline(lineString);
+    }
+}
+
 void MapWidget::updateSettings()
 {
     m_trackPen.setColor(m_settings->trackColor());
@@ -62,75 +75,68 @@ void MapWidget::updateSettings()
     reloadMap();
 }
 
-void MapWidget::addGpx(const QString &path)
+void MapWidget::saveSettings()
 {
-    QApplication::setOverrideCursor(Qt::WaitCursor);
+    // Save the floaters visibility
 
-    QFile gpxFile(path);
+    QHash<QString, bool> visibility;
 
-    if (! gpxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        QMessageBox::warning(this, i18n("Add GPX track"),
-                             i18n("Failed to open GPX file \"%1\"", path));
-        return;
+    const auto floatItemsList = floatItems();
+    for (const auto &item : floatItemsList) {
+        visibility.insert(item->name(), item->visible());
     }
 
-    QXmlStreamReader xml(&gpxFile);
+    m_settings->saveFloatersVisibility(visibility);
 
+    // Save the current center point
+    const auto center = focusPoint();
+    m_settings->saveMapCenter(KGeoTag::Coordinates {
+                                  center.longitude(Marble::GeoDataCoordinates::Degree),
+                                  center.latitude(Marble::GeoDataCoordinates::Degree) });
+
+    // Save the zoom level
+    m_settings->saveZoom(zoom());
+}
+
+void MapWidget::restoreSettings()
+{
+    // Restore the floaters visiblility
+    const auto floatersVisiblility = m_settings->floatersVisibility();
+    const auto floatItemsList = floatItems();
+    for (const auto &item : floatItemsList) {
+        const auto name = item->name();
+        if (floatersVisiblility.contains(name)) {
+            item->setVisible(floatersVisiblility.value(name));
+        }
+    }
+
+    // Restore map's last center point
+    const auto [ lon, lat, isSet ] = m_settings->mapCenter();
+    centerOn(lon, lat);
+
+    // Restore the last zoom level
+    setZoom(m_settings->zoom());
+}
+
+void MapWidget::addSegment(const QVector<KGeoTag::Coordinates> &segment)
+{
     Marble::GeoDataLineString lineString;
-    Marble::GeoDataLatLonAltBox trackBox;
-    double lon;
-    double lat;
-    QDateTime time;
 
-    bool trackFound = false;
-    while (! xml.atEnd() && ! xml.hasError()) {
-        const QXmlStreamReader::TokenType token = xml.readNext();
-        const QStringRef name = xml.name();
-
-        if (! trackFound && name != QStringLiteral("trk")) {
-            continue;
-        } else {
-            trackFound = true;
-        }
-
-        if (token == QXmlStreamReader::StartElement) {
-            if (name == QStringLiteral("trkpt")) {
-                QXmlStreamAttributes attributes = xml.attributes();
-                lon = attributes.value(QStringLiteral("lon")).toDouble();
-                lat = attributes.value(QStringLiteral("lat")).toDouble();
-                const Marble::GeoDataCoordinates coordinates
-                    = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
-                lineString.append(coordinates);
-
-            } else if (name == QStringLiteral("time")) {
-                xml.readNext();
-                time = QDateTime::fromString(xml.text().toString(), Qt::ISODate);
-            }
-
-        } else if (token == QXmlStreamReader::EndElement) {
-            if (name == QStringLiteral("time")) {
-                m_points[time] = KGeoTag::Coordinates { lon, lat };
-                m_allTimes.append(time);
-
-            } else if (name == QStringLiteral("trkseg") && ! lineString.isEmpty()) {
-                m_tracks.append(lineString);
-
-                const auto &box = lineString.latLonAltBox();
-                if (trackBox.isEmpty()) {
-                    trackBox = box;
-                } else {
-                    trackBox |= box;
-                }
-
-                lineString.clear();
-            }
-        }
+    for (const auto &coordinates : segment) {
+        const Marble::GeoDataCoordinates marbleCoordinates
+            = Marble::GeoDataCoordinates(coordinates.lon, coordinates.lat, 0.0,
+                                         Marble::GeoDataCoordinates::Degree);
+        lineString.append(marbleCoordinates);
     }
 
-    std::sort(m_allTimes.begin(), m_allTimes.end());
-    centerOn(trackBox);
+    m_tracks.append(lineString);
 
-    QApplication::restoreOverrideCursor();
+    const auto box = lineString.latLonAltBox();
+    if (m_gpxBox.isEmpty()) {
+        m_gpxBox = box;
+    } else {
+        m_gpxBox |= box;
+    }
 }
 
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)
@@ -178,176 +184,14 @@ void MapWidget::removeImage(const QString &path)
     m_images.remove(path);
 }
 
-void MapWidget::customPaint(Marble::GeoPainter *painter)
-{
-    const auto images = m_images.keys();
-    for (const auto &image : images) {
-        painter->drawPixmap(m_images.value(image),
-                            QPixmap::fromImage(m_imageCache->thumbnail(image)));
-    }
-
-    painter->setPen(m_trackPen);
-    for (const auto &lineString : m_tracks) {
-        painter->drawPolyline(lineString);
-    }
-}
-
-void MapWidget::saveSettings()
-{
-    // Save the floaters visibility
-
-    QHash<QString, bool> visibility;
-
-    const auto floatItemsList = floatItems();
-    for (const auto &item : floatItemsList) {
-        visibility.insert(item->name(), item->visible());
-    }
-
-    m_settings->saveFloatersVisibility(visibility);
-
-    // Save the current center point
-    const auto center = focusPoint();
-    m_settings->saveMapCenter(KGeoTag::Coordinates {
-                                  center.longitude(Marble::GeoDataCoordinates::Degree),
-                                  center.latitude(Marble::GeoDataCoordinates::Degree) });
-
-    // Save the zoom level
-    m_settings->saveZoom(zoom());
-}
-
-void MapWidget::restoreSettings()
-{
-    // Restore the floaters visiblility
-    const auto floatersVisiblility = m_settings->floatersVisibility();
-    const auto floatItemsList = floatItems();
-    for (const auto &item : floatItemsList) {
-        const auto name = item->name();
-        if (floatersVisiblility.contains(name)) {
-            item->setVisible(floatersVisiblility.value(name));
-        }
-    }
-
-    // Restore map's last center point
-    const auto [ lon, lat, isSet ] = m_settings->mapCenter();
-    centerOn(lon, lat);
-
-    // Restore the last zoom level
-    setZoom(m_settings->zoom());
-}
-
 void MapWidget::centerImage(const QString &path)
 {
     const auto coordinates = m_imageCache->coordinates(path);
     centerOn(coordinates.lon, coordinates.lat);
 }
 
-KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time, int deviation) const
+void MapWidget::zoomToGpxBox()
 {
-    if (deviation == 0) {
-        return findExactCoordinates(time);
-    } else {
-        const QDateTime fixedTime = time.addSecs(deviation);
-        return findExactCoordinates(fixedTime);
-    }
-}
-
-KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time) const
-{
-    // Check for an exact match
-    if (m_points.contains(time)) {
-        return m_points.value(time);
-    }
-
-    // Check for a match with +/- the maximum tolerable deviation
-    for (int i = 1; i <= m_settings->exactMatchDeviation(); i++) {
-        const auto timeBefore = time.addSecs(i * -1);
-        if (m_points.contains(timeBefore)) {
-            return m_points.value(timeBefore);
-        }
-        const auto timeAfter = time.addSecs(i);
-        if (m_points.contains(timeAfter)) {
-            return m_points.value(timeAfter);
-        }
-    }
-
-    // No match found
-    return KGeoTag::NoCoordinates;
-}
-
-KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &time,
-                                                            int deviation) const
-{
-    if (deviation == 0) {
-        return findInterpolatedCoordinates(time);
-    } else {
-        const QDateTime fixedTime = time.addSecs(deviation);
-        return findInterpolatedCoordinates(fixedTime);
-    }
-}
-
-KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &time) const
-{
-    // If the image's date is before the first or after the last point we have,
-    // it can't be assigned.
-    if (time < m_allTimes.first() || time > m_allTimes.last()) {
-        return KGeoTag::NoCoordinates;
-    }
-
-    // Check for an exact match (without tolerance)
-    // This also eliminates the case that the time could be the first one.
-    // We thus can be sure the first entry in m_allTimes is earlier than the time requested.
-    if (m_allTimes.contains(time)) {
-        return m_points.value(time);
-    }
-
-    // Search for the first time earlier than the image's
-
-    int start = 0;
-    int end = m_allTimes.count() - 1;
-    int index = 0;
-    int lastIndex = -1;
-
-    while (true) {
-        index = start + (end - start) / 2;
-        if (index == lastIndex) {
-            break;
-        }
-
-        if (m_allTimes.at(index) > time) {
-            end = index;
-        } else {
-            start = index;
-        }
-
-        lastIndex = index;
-    }
-
-    // If the found point is the last one, we can't interpolate and use it directly
-    const auto &closestBefore = m_allTimes.at(index);
-    if (closestBefore == m_allTimes.last()) {
-        return m_points.value(closestBefore);
-    }
-
-    // Interpolate between the two coordinates
-
-    const auto &closestAfter = m_allTimes.at(index + 1);
-    const int maximumInterval = m_settings->maximumInterpolationInterval();
-    if (maximumInterval != -1 && closestBefore.secsTo(closestAfter) > maximumInterval) {
-        return KGeoTag::NoCoordinates;
-    }
-
-    const auto &pointBefore = m_points[closestBefore];
-    const auto &pointAfter = m_points[closestAfter];
-    const auto coordinatesBefore = Marble::GeoDataCoordinates(
-        pointBefore.lon, pointBefore.lat, 0.0, Marble::GeoDataCoordinates::Degree);
-    const auto coordinatesAfter = Marble::GeoDataCoordinates(
-        pointAfter.lon, pointAfter.lat, 0.0, Marble::GeoDataCoordinates::Degree);
-
-    const int secondsBefore = closestBefore.secsTo(time);
-    const double fraction = double(secondsBefore)
-                            / double(secondsBefore + time.secsTo(closestAfter));
-    const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
-
-    return KGeoTag::Coordinates { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
-                                  interpolated.latitude(Marble::GeoDataCoordinates::Degree) };
+    centerOn(m_gpxBox);
+    m_gpxBox.clear();
 }

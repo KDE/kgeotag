@@ -26,6 +26,7 @@
 // Local classes
 class Settings;
 class ImageCache;
+class GpxEngine;
 class ImagesList;
 class PreviewWidget;
 class MapWidget;
@@ -65,6 +66,7 @@ private: // Functions
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
+    GpxEngine *m_gpxEngine;
     ImagesList *m_assignedImages;
     ImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;

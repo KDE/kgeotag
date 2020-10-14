@@ -52,8 +52,8 @@ public:
     QSize thumbnailSize() const;
     QSize previewSize() const;
 
-    void saveExactMatchDeviation(int seconds);
-    int exactMatchDeviation() const;
+    void saveExactMatchTolerance(int seconds);
+    int exactMatchTolerance() const;
 
     void saveMaximumInterpolationInterval(int seconds);
     int maximumInterpolationInterval() const;

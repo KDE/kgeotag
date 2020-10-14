@@ -24,6 +24,7 @@
 #include <marble/MarbleWidget.h>
 #include <marble/GeoDataCoordinates.h>
 #include <marble/GeoDataLineString.h>
+#include <marble/GeoDataLatLonAltBox.h>
 
 // Qt includes
 #include <QHash>
@@ -48,13 +49,14 @@ public:
     virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
-    void addGpx(const QString &path);
     void addImage(const QString &path, double lon, double lat);
     void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
     void removeImage(const QString &path);
-    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
-    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
     void centerImage(const QString &path);
+    void zoomToGpxBox();
+
+public slots:
+    void addSegment(const QVector<KGeoTag::Coordinates> &segment);
 
 signals:
     void imageDropped(const QString &path) const;
@@ -63,18 +65,13 @@ protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
 
-private: // Functions
-    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
-    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
-
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     QHash<QString, Marble::GeoDataCoordinates> m_images;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
-    QVector<QDateTime> m_allTimes;
-    QHash<QDateTime, KGeoTag::Coordinates> m_points;
+    Marble::GeoDataLatLonAltBox m_gpxBox;
 
 };
 

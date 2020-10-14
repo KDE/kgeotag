@@ -18,6 +18,7 @@
 #include "MainWindow.h"
 #include "Settings.h"
 #include "ImageCache.h"
+#include "GpxEngine.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
 #include "KGeoTag.h"
@@ -54,6 +55,7 @@ MainWindow::MainWindow() : QMainWindow()
 
     m_settings = new Settings(this);
     m_imageCache = new ImageCache(this, m_settings);
+    m_gpxEngine = new GpxEngine(this, m_settings);
 
     // Menu setup
 
@@ -138,6 +140,7 @@ MainWindow::MainWindow() : QMainWindow()
     // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
+    connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::imageSelected, this, &MainWindow::imageSelected);
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
 
@@ -188,17 +191,38 @@ void MainWindow::closeEvent(QCloseEvent *)
 
 void MainWindow::addGpx()
 {
-    const auto file = QFileDialog::getOpenFileName(this,
+    const auto path = QFileDialog::getOpenFileName(this,
                           i18n("Please select the GPX track to add"),
                           m_settings->lastOpenPath(),
                           i18n("GPX tracks (*.gpx)"));
-    if (file.isEmpty()) {
+    if (path.isEmpty()) {
         return;
     }
 
-    const QFileInfo info(file);
+    const QFileInfo info(path);
     m_settings->saveLastOpenPath(info.dir().absolutePath());
-    m_mapWidget->addGpx(file);
+
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    const auto result = m_gpxEngine->load(path);
+    m_mapWidget->zoomToGpxBox();
+    QApplication::restoreOverrideCursor();
+
+    switch (result) {
+    case GpxEngine::LoadResult::Okay:
+        // Everthing fine :-)
+        break;
+    case GpxEngine::LoadResult::OpenFailed:
+        QMessageBox::warning(this, i18n("Add GPX file"),
+            i18n("<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
+                 "file.</p>", path));
+        break;
+    case GpxEngine::LoadResult::XmlError:
+        QMessageBox::warning(this, i18n("Add GPX file"),
+            i18n("<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
+                 "all, or only a part of it.</p>",
+                 path));
+        break;
+    }
 }
 
 void MainWindow::addImages()
@@ -267,7 +291,7 @@ void MainWindow::assignExactMatches()
     const int deviation = m_fixDriftWidget->deviation();
     const auto images = m_unAssignedImages->allImages();
     for (const auto &path : images) {
-        const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(path),
+        const auto coordinates = m_gpxEngine->findExactCoordinates(m_imageCache->date(path),
                                                                    deviation);
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
@@ -298,7 +322,7 @@ void MainWindow::assignInterpolatedMatches()
             break;
         }
 
-        const auto coordinates = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(path),
+        const auto coordinates = m_gpxEngine->findInterpolatedCoordinates(m_imageCache->date(path),
                                                                           deviation);
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
