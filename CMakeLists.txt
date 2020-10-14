@@ -57,6 +57,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/MapWidget.cpp
     ${main_ROOT}/ImagePreview.cpp
     ${main_ROOT}/SettingsDialog.cpp
+    ${main_ROOT}/FixDriftWidget.cpp
 )
 
 # Build the executable

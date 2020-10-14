@@ -23,6 +23,7 @@
 #include "KGeoTag.h"
 #include "ImagesList.h"
 #include "SettingsDialog.h"
+#include "FixDriftWidget.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -124,6 +125,11 @@ MainWindow::MainWindow() : QMainWindow()
     connect(m_unAssignedImages, &ImagesList::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
 
+    // Fix drift
+    m_fixDriftWidget = new FixDriftWidget;
+    auto *fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
+                                          QStringLiteral("fixDriftDock"));
+
     // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
@@ -142,9 +148,9 @@ MainWindow::MainWindow() : QMainWindow()
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
-        splitDockWidget(unassignedImagesDock, assignedImagesDock, Qt::Vertical);
         splitDockWidget(assignedImagesDock, previewDock, Qt::Vertical);
         splitDockWidget(assignedImagesDock, unassignedImagesDock, Qt::Horizontal);
+        splitDockWidget(previewDock, fixDriftDock, Qt::Vertical);
     }
 
     // Restore the map's settings

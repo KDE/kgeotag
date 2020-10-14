@@ -29,6 +29,7 @@ class ImageCache;
 class ImagesList;
 class PreviewWidget;
 class MapWidget;
+class FixDriftWidget;
 
 // Qt classes
 class QDockWidget;
@@ -67,6 +68,7 @@ private: // Variables
     ImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
+    FixDriftWidget *m_fixDriftWidget;
 
 };
 
