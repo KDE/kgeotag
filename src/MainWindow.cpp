@@ -316,16 +316,28 @@ void MainWindow::saveChanges()
         }
 
         // Create a backup of the file if requested
-        if (createBackups && ! QFile::copy(path, path + QStringLiteral(".orig"))) {
+
+        const QString backupPath = path + QStringLiteral(".orig");
+
+        if (createBackups && ! QFile::copy(path, backupPath)) {
             progress.deleteLater();
             QApplication::restoreOverrideCursor();
-            QTimer::singleShot(0, [this, path]
+
+            QTimer::singleShot(0, [this, path, backupPath]
             {
+                QFileInfo info(backupPath);
+
                 QMessageBox::warning(this,
                     i18n("Save changes"),
-                    i18n("Failed to create a backup of \"%1\". No changes will be written to it. "
-                         "Aborting.", path));
+                    i18n("<p><b>Saving changes failed</b></p>"
+                         "<p>Could not save changes to <kbd>%1</kbd>: The backup file "
+                         "<kbd>%2</kbd> could not be created.</p>"
+                         "<p>Please check if this file doesn't exist yet and be sure to have "
+                         "write access to <kbd>%3</kbd></p>"
+                         "<p>The writing process will be aborted.</p>",
+                         path, info.fileName(), info.dir().path()));
             });
+
             return;
         }
 
@@ -343,12 +355,17 @@ void MainWindow::saveChanges()
         if (! exif.save(path)) {
             progress.deleteLater();
             QApplication::restoreOverrideCursor();
+
             QTimer::singleShot(0, [this, path]
             {
                 QMessageBox::warning(this,
                     i18n("Save changes"),
-                    i18n("Could not save EXIF information to \"%1\". Aborting.", path));
+                    i18n("<p><b>Saving changes failed</b></p>"
+                         "<p>Could not write Exif header to <kbd>%1</kbd>. Please check the file's "
+                         "permissions and be sure to have write access.</p>"
+                         "<p>The writing process will be aborted.</p>", path));
             });
+
             return;
         }
 
@@ -361,6 +378,8 @@ void MainWindow::saveChanges()
     }
 
     QApplication::restoreOverrideCursor();
+    QMessageBox::information(this, i18n("Save changes"),
+                             i18n("All changes have been successfully saved!"));
 }
 
 void MainWindow::imageSelected(const QString &path, bool center)
