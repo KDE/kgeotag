@@ -330,6 +330,8 @@ void MainWindow::saveChanges()
     progress.setWindowModality(Qt::WindowModal);
 
     const bool createBackups = m_settings->createBackups();
+    const int deviation = m_fixDriftWidget->deviation();
+    const bool fixDrift = m_fixDriftWidget->save() && deviation != 0;
 
     int processed = 0;
     for (const QString &path : files) {
@@ -368,11 +370,21 @@ void MainWindow::saveChanges()
 
         auto exif = KExiv2Iface::KExiv2(path);
 
+        // Set or remove the coordinates
         const auto coordinates = m_imageCache->coordinates(path);
         if (coordinates.isSet) {
             exif.setGPSInfo(0.0, coordinates.lat, coordinates.lon);
         } else {
             exif.removeGPSInfo();
+        }
+
+        // Fix the time drift if requested
+        if (fixDrift) {
+            const QDateTime originalTime = m_imageCache->date(path);
+            const QDateTime fixedTime = originalTime.addSecs(deviation);
+            // If the Digitization time is equal to the original time, update it as well.
+            // Otherwise, only update the image's timestamp.
+            exif.setImageDateTime(fixedTime, exif.getDigitizationDateTime() == originalTime);
         }
 
         if (! exif.save(path)) {
