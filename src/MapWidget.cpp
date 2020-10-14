@@ -241,6 +241,16 @@ void MapWidget::centerImage(const QString &path)
     centerOn(coordinates.lon, coordinates.lat);
 }
 
+KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time, int deviation) const
+{
+    if (deviation == 0) {
+        return findExactCoordinates(time);
+    } else {
+        const QDateTime fixedTime = time.addSecs(deviation);
+        return findExactCoordinates(fixedTime);
+    }
+}
+
 KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time) const
 {
     // Check for an exact match
@@ -262,6 +272,17 @@ KGeoTag::Coordinates MapWidget::findExactCoordinates(const QDateTime &time) cons
 
     // No match found
     return KGeoTag::NoCoordinates;
+}
+
+KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &time,
+                                                            int deviation) const
+{
+    if (deviation == 0) {
+        return findInterpolatedCoordinates(time);
+    } else {
+        const QDateTime fixedTime = time.addSecs(deviation);
+        return findInterpolatedCoordinates(fixedTime);
+    }
 }
 
 KGeoTag::Coordinates MapWidget::findInterpolatedCoordinates(const QDateTime &time) const

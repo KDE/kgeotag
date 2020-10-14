@@ -52,8 +52,8 @@ public:
     void addImage(const QString &path, double lon, double lat);
     void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
     void removeImage(const QString &path);
-    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
-    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
+    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
+    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
     void centerImage(const QString &path);
 
 signals:
@@ -62,6 +62,10 @@ signals:
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
+
+private: // Functions
+    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
+    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
 
 private: // Variables
     Settings *m_settings;

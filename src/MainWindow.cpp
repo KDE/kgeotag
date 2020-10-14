@@ -264,9 +264,11 @@ void MainWindow::assignExactMatches()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
+    const int deviation = m_fixDriftWidget->deviation();
     const auto images = m_unAssignedImages->allImages();
     for (const auto &path : images) {
-        const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(path));
+        const auto coordinates = m_mapWidget->findExactCoordinates(m_imageCache->date(path),
+                                                                   deviation);
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
             m_imageCache->setChanged(path, true);
@@ -282,6 +284,8 @@ void MainWindow::assignExactMatches()
 void MainWindow::assignInterpolatedMatches()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    const int deviation = m_fixDriftWidget->deviation();
     const auto files = m_unAssignedImages->allImages();
 
     QProgressDialog progress(i18n("Assigning images ..."), i18n("Cancel"), 0, files.count(), this);
@@ -294,8 +298,8 @@ void MainWindow::assignInterpolatedMatches()
             break;
         }
 
-        const auto coordinates
-            = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(path));
+        const auto coordinates = m_mapWidget->findInterpolatedCoordinates(m_imageCache->date(path),
+                                                                          deviation);
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
             m_imageCache->setChanged(path, true);
