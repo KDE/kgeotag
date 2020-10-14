@@ -56,6 +56,7 @@ private slots:
     void showSettings();
     void removeCoordinates(const QString &path);
     void discardChanges(const QString &path);
+    void discardAllChanges();
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

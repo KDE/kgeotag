@@ -91,6 +91,11 @@ MainWindow::MainWindow() : QMainWindow()
 
     editMenu->addSeparator();
 
+    auto *discardAllChangesAction = editMenu->addAction(i18n("Discard all changes"));
+    connect(discardAllChangesAction, &QAction::triggered, this, &MainWindow::discardAllChanges);
+
+    editMenu->addSeparator();
+
     auto *showSettingsAction = editMenu->addAction(i18n("Settings"));
     connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
 
@@ -437,5 +442,26 @@ void MainWindow::discardChanges(const QString &path)
         m_unAssignedImages->addOrUpdateImage(path);
         m_mapWidget->removeImage(path);
     }
+    m_mapWidget->reloadMap();
+}
+
+void MainWindow::discardAllChanges()
+{
+    const auto files = m_imageCache->changedImages();
+    for (const auto &path : files) {
+        m_imageCache->resetChanges(path);
+        m_assignedImages->removeImage(path);
+        m_unAssignedImages->removeImage(path);
+        m_mapWidget->removeImage(path);
+
+        const auto coordinates = m_imageCache->coordinates(path);
+        if (coordinates.isSet) {
+            m_assignedImages->addOrUpdateImage(path);
+            m_mapWidget->addImage(path, coordinates);
+        } else {
+            m_unAssignedImages->addOrUpdateImage(path);
+        }
+    }
+
     m_mapWidget->reloadMap();
 }
