@@ -297,9 +297,15 @@ void MainWindow::assignInterpolatedMatches()
 
 void MainWindow::saveChanges()
 {
+    auto files = m_imageCache->changedImages();
+
+    if (files.isEmpty()) {
+        QMessageBox::information(this, i18n("Save changes"), i18n("Nothing to do"));
+        return;
+    }
+
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    auto files = m_imageCache->changedImages();
     // We sort the list so that the processing order matches the display order
     std::sort(files.begin(), files.end());
 
