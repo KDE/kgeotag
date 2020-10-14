@@ -151,6 +151,8 @@ MainWindow::MainWindow() : QMainWindow()
         splitDockWidget(assignedImagesDock, previewDock, Qt::Vertical);
         splitDockWidget(assignedImagesDock, unassignedImagesDock, Qt::Horizontal);
         splitDockWidget(previewDock, fixDriftDock, Qt::Vertical);
+        tabifyDockWidget(previewDock, fixDriftDock);
+        previewDock->raise();
     }
 
     // Restore the map's settings
