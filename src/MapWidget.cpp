@@ -181,7 +181,7 @@ void MapWidget::removeImage(const QString &path)
 void MapWidget::customPaint(Marble::GeoPainter *painter)
 {
     const auto images = m_images.keys();
-    for (const auto image : images) {
+    for (const auto &image : images) {
         painter->drawPixmap(m_images.value(image),
                             QPixmap::fromImage(m_imageCache->thumbnail(image)));
     }
