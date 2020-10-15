@@ -49,7 +49,10 @@ public:
     void saveLastOpenPath(const QString &path);
     QString lastOpenPath() const;
 
+    void saveThumbnailSize(int size);
     QSize thumbnailSize() const;
+
+    void savePreviewSize(int size);
     QSize previewSize() const;
 
     void saveExactMatchTolerance(int seconds);

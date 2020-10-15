@@ -42,6 +42,32 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *layout = new QVBoxLayout(this);
 
+    auto *imagesBox = new QGroupBox(i18n("Images"));
+    auto *imagesBoxLayout = new QGridLayout(imagesBox);
+    layout->addWidget(imagesBox);
+
+    imagesBoxLayout->addWidget(new QLabel(i18n("Thumbnail size:")), 0, 0);
+    m_thumbnailSize = new QSpinBox;
+    m_thumbnailSize->setMinimum(16);
+    m_thumbnailSize->setMaximum(512);
+    m_thumbnailSize->setValue(m_settings->thumbnailSize().width());
+    imagesBoxLayout->addWidget(m_thumbnailSize, 0, 1);
+    imagesBoxLayout->addWidget(new QLabel(i18n("px")), 0, 2);
+
+    imagesBoxLayout->addWidget(new QLabel(i18n("Preview size:")), 1, 0);
+    m_previewSize = new QSpinBox;
+    m_previewSize->setMinimum(100);
+    m_previewSize->setMaximum(1920);
+    m_previewSize->setValue(m_settings->previewSize().width());
+    imagesBoxLayout->addWidget(m_previewSize, 1, 1);
+    imagesBoxLayout->addWidget(new QLabel(i18n("px")), 1, 2);
+
+    auto *imagesChangesLabel = new QLabel(i18n("Please restart the program after changes to these "
+                                               "values so that they are applied and become "
+                                               "visible."));
+    imagesChangesLabel->setWordWrap(true);
+    imagesBoxLayout->addWidget(imagesChangesLabel, 2, 0, 1, 3);
+
     // GPX track rendering
 
     auto *trackBox = new QGroupBox(i18n("GPX track rendering"));
@@ -165,6 +191,9 @@ void SettingsDialog::enableMaximumInterpolationInterval(bool state)
 
 void SettingsDialog::accept()
 {
+    m_settings->saveThumbnailSize(m_thumbnailSize->value());
+    m_settings->savePreviewSize(m_previewSize->value());
+
     m_settings->saveTrackColor(m_currentTrackColor);
     m_settings->saveTrackWidth(m_trackWidth->value());
     m_settings->saveTrackStyle(static_cast<Qt::PenStyle>(m_trackStyle->currentData().toInt()));

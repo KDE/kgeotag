@@ -51,6 +51,9 @@ private: // Functions
 private: // Variables
     Settings *m_settings;
 
+    QSpinBox *m_thumbnailSize;
+    QSpinBox *m_previewSize;
+
     QColor m_currentTrackColor;
     QPushButton *m_trackColor;
     QLabel *m_trackOpacity;

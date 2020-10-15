@@ -24,17 +24,23 @@
 namespace
 {
 
+// Main
+
 const QLatin1String c_main("main/");
 const QString c_main_windowGeometry = c_main + QLatin1String("window_geometry");
 const QString c_main_windowState   = c_main + QLatin1String("window_state");
 const QString c_main_lastOpenPath = c_main + QLatin1String("last_open_path");
 
-const QLatin1String c_floatersVisibility("floaters_visibility/");
+// Map
 
 const QLatin1String c_map("map/");
 const QString c_map_centerLon = c_map + QLatin1String("center_lon");
 const QString c_map_centerLat = c_map + QLatin1String("center_lat");
 const QString c_map_zoom = c_map + QLatin1String("zoom");
+
+const QLatin1String c_floatersVisibility("floaters_visibility/");
+
+// Tracks
 
 const QLatin1String c_track("track/");
 const QString c_track_color = c_track + QLatin1String("color");
@@ -55,11 +61,21 @@ const QVector<QString> c_track_styleString {
     QStringLiteral("dash_dot_dot")
 };
 
+// Images
+
+const QLatin1String c_images("images/");
+const QString c_images_thumnailSize = c_images + QLatin1String("thumbnail_size");
+const QString c_images_previewSize = c_images + QLatin1String("preview_size");
+
+// Assignment
+
 const QLatin1String c_assignment("assignment/");
 const QString c_assignment_exactMatchTolerance
     = c_assignment + QLatin1String("exact_match_tolerance");
 const QString c_assignment_maximumInterpolationInterval
     = c_assignment + QLatin1String("maximum_interpolation_interval");
+
+// Sabving
 
 const QLatin1String c_save("save/");
 const QString c_save_createBackups = c_save + QLatin1String("create_backups");
@@ -146,14 +162,26 @@ QString Settings::lastOpenPath() const
     return value(c_main_lastOpenPath, QString()).toString();
 }
 
+void Settings::saveThumbnailSize(int size)
+{
+    setValue(c_images_thumnailSize, size);
+}
+
 QSize Settings::thumbnailSize() const
 {
-    return QSize(32, 32);
+    const int size = value(c_images_thumnailSize, 32).toInt();
+    return QSize(size, size);
+}
+
+void Settings::savePreviewSize(int size)
+{
+    setValue(c_images_previewSize, size);
 }
 
 QSize Settings::previewSize() const
 {
-    return QSize(400, 400);
+    const int size = value(c_images_previewSize, 400).toInt();
+    return QSize(size, size);
 }
 
 void Settings::saveExactMatchTolerance(int seconds)
