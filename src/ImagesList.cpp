@@ -20,10 +20,10 @@
 // Local includes
 #include "ImagesList.h"
 #include "ImageCache.h"
+#include "ImageItem.h"
 
 // KDE includes
 #include <KLocalizedString>
-#include <KColorScheme>
 
 // Qt includes
 #include <QIcon>
@@ -53,11 +53,11 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
     connect(m_removeCoordinates, &QAction::triggered, [this]
-            { emit removeCoordinates(currentItem()->data(Qt::UserRole).toString()); });
+            { emit removeCoordinates(dynamic_cast<ImageItem *>(currentItem())->path()); });
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
     connect(m_discardChanges, &QAction::triggered, [this]
-            { emit discardChanges(currentItem()->data(Qt::UserRole).toString()); });
+            { emit discardChanges(dynamic_cast<ImageItem *>(currentItem())->path()); });
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QListWidget::customContextMenuRequested, this, &ImagesList::showContextMenu);
@@ -66,19 +66,22 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
 void ImagesList::imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const
 {
     if (item != nullptr) {
-        emit imageSelected(item->data(Qt::UserRole).toString());
+        emit imageSelected(dynamic_cast<ImageItem *>(item)->path());
     }
 }
 
 void ImagesList::addOrUpdateImage(const QString &path)
 {
     bool itemFound = false;
-    QListWidgetItem *imageItem;
+    ImageItem *imageItem;
+
+    const QFileInfo info(path);
+    const QString fileName = info.fileName();
 
     // Check for an existing entry we want to update
     for (int i = 0; i < count(); i++) {
-        if (item(i)->data(Qt::UserRole).toString() == path) {
-            imageItem = item(i);
+        if (dynamic_cast<ImageItem *>(item(i))->path() == path) {
+            imageItem = dynamic_cast<ImageItem *>(item(i));
             itemFound = true;
             break;
         }
@@ -86,31 +89,12 @@ void ImagesList::addOrUpdateImage(const QString &path)
 
     if (! itemFound) {
         // We need a new item
-        imageItem = new QListWidgetItem;
-        imageItem->setIcon(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))));
-        imageItem->setData(Qt::UserRole, path);
+        imageItem = new ImageItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
+                                  fileName, path);
     }
 
-    QFileInfo info(path);
-    imageItem->setText(m_imageCache->changed(path)
-        ? i18nc("A file's name marked as changed (by the asterisk)", "*%1", info.fileName())
-        : info.fileName());
-
-    KColorScheme scheme;
-    switch (m_imageCache->matchType(path)) {
-    case KGeoTag::MatchType::None:
-        imageItem->setForeground(scheme.foreground());
-        break;
-    case KGeoTag::MatchType::Exact:
-        imageItem->setForeground(scheme.foreground(KColorScheme::PositiveText));
-        break;
-    case KGeoTag::MatchType::Interpolated:
-        imageItem->setForeground(scheme.foreground(KColorScheme::NeutralText));
-        break;
-    case KGeoTag::MatchType::Set:
-        imageItem->setForeground(scheme.foreground(KColorScheme::LinkText));
-        break;
-    }
+    imageItem->setChanged(m_imageCache->changed(path));
+    imageItem->setMatchType(m_imageCache->matchType(path));
 
     if (! itemFound) {
         addItem(imageItem);
@@ -126,7 +110,7 @@ QVector<QString> ImagesList::allImages() const
 {
     QVector<QString> paths;
     for (int i = 0; i < count(); i++) {
-        paths.append(item(i)->data(Qt::UserRole).toString());
+        paths.append(dynamic_cast<ImageItem *>(item(i))->path());
     }
     return paths;
 }
@@ -134,7 +118,7 @@ QVector<QString> ImagesList::allImages() const
 void ImagesList::removeImage(const QString &path)
 {
     for (int i = 0; i < count(); i++) {
-        if (item(i)->data(Qt::UserRole).toString() == path) {
+        if (dynamic_cast<ImageItem *>(item(i))->path() == path) {
             const auto *item = takeItem(i);
             delete item;
             return;
@@ -167,7 +151,7 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
     drag->setPixmap(item->icon().pixmap(iconSize()));
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setText(item->data(Qt::UserRole).toString());
+    mimeData->setText(dynamic_cast<const ImageItem *>(item)->path());
     drag->setMimeData(mimeData);
     drag->exec(Qt::MoveAction);
 }
@@ -179,7 +163,7 @@ void ImagesList::showContextMenu(const QPoint &point)
         return;
     }
 
-    const QString path = item->data(Qt::UserRole).toString();
+    const QString &path = dynamic_cast<const ImageItem *>(item)->path();
     m_removeCoordinates->setEnabled(m_imageCache->coordinates(path).isSet);
     m_discardChanges->setEnabled(m_imageCache->changed(path));
 
