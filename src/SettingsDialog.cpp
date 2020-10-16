@@ -114,7 +114,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     layout->addWidget(assignmentBox);
 
     auto *exactMatchToleranceLabel = new QLabel(
-        i18n("Maximum deviation of the image's time from GPX point for an exact match"));
+        i18n("Maximum deviation of the image's time from a GPS point's time for an exact match"));
     exactMatchToleranceLabel->setWordWrap(true);
     assignmentBoxLayout->addWidget(exactMatchToleranceLabel, 0, 0);
 
