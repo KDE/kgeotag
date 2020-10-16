@@ -126,16 +126,20 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 0, 2);
 
-    m_enableMaximumInterpolationInterval = new QCheckBox(
-        i18n("Maximum interval between two points\nused for an interpolated match"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, 1, 0);
+    auto *interpolatedMatchLabel = new QLabel(i18n("Boundaries for two coordinates used to "
+                                                   "calculate interpolated matches:"));
+    interpolatedMatchLabel->setWordWrap(true);
+    assignmentBoxLayout->addWidget(interpolatedMatchLabel, 1, 0, 1, 3);
+
+    m_enableMaximumInterpolationInterval = new QCheckBox(i18n("Maximum interval:"));
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, 2, 0);
 
     m_maximumInterpolationInterval = new QSpinBox;
     m_maximumInterpolationInterval->setMinimum(0);
     m_maximumInterpolationInterval->setMaximum(86400);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, 1, 1);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, 2, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 1, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 2, 2);
 
     const int interval = m_settings->maximumInterpolationInterval();
     if (interval == -1) {
@@ -148,16 +152,15 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     connect(m_enableMaximumInterpolationInterval, &QCheckBox::toggled,
             this, &SettingsDialog::enableMaximumInterpolationInterval);
 
-    m_enableMaximumInterpolationDistance = new QCheckBox(
-        i18n("Maximum distance of two points\nused for an interpolated match"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, 2, 0);
+    m_enableMaximumInterpolationDistance = new QCheckBox(i18n("Maximum distance:"));
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, 3, 0);
 
     m_maximumInterpolationDistance = new QSpinBox;
     m_maximumInterpolationDistance->setMinimum(0);
     m_maximumInterpolationDistance->setMaximum(1000000);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, 2, 1);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, 3, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), 2, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), 3, 2);
 
     const int distance = m_settings->maximumInterpolationDistance();
     if (distance == -1) {
