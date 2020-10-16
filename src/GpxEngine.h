@@ -40,8 +40,15 @@ public:
         XmlError
     };
 
+    struct LoadInfo
+    {
+        LoadResult result;
+        int points = 0;
+        int segments = 0;
+    };
+
     explicit GpxEngine(QObject *parent, Settings *settings);
-    GpxEngine::LoadResult load(const QString &path);
+    GpxEngine::LoadInfo load(const QString &path);
     KGeoTag::Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
     KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
 

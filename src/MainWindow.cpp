@@ -216,13 +216,18 @@ void MainWindow::addGpx()
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    const auto result = m_gpxEngine->load(path);
+    const auto [ result, points, segments ] = m_gpxEngine->load(path);
     m_mapWidget->zoomToGpxBox();
     QApplication::restoreOverrideCursor();
 
     switch (result) {
     case GpxEngine::LoadResult::Okay:
-        // Everthing fine :-)
+        QMessageBox::information(this, i18n("Add GPX file"),
+            i18nc("E. g. \"Successfully loaded 18,000 waypoints from 8 track segments\", the "
+                  "plural forms are compiled in the following two i18np calls.",
+                  "<p>Successfully loaded %1 from %2!</p>",
+                 i18np("1 waypoint", "%1 waypoints", points),
+                 i18np("1 track segment", "%1 track segments", segments)));
         break;
     case GpxEngine::LoadResult::OpenFailed:
         QMessageBox::warning(this, i18n("Add GPX file"),

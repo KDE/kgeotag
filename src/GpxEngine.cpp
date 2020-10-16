@@ -31,12 +31,12 @@ GpxEngine::GpxEngine(QObject *parent, Settings *settings)
 {
 }
 
-GpxEngine::LoadResult GpxEngine::load(const QString &path)
+GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 {
     QFile gpxFile(path);
 
     if (! gpxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
-        return LoadResult::OpenFailed;
+        return { LoadResult::OpenFailed };
     }
 
     QXmlStreamReader xml(&gpxFile);
@@ -49,9 +49,12 @@ GpxEngine::LoadResult GpxEngine::load(const QString &path)
     QVector<KGeoTag::Coordinates> segmentCoordinates;
 
     bool trackFound = false;
+    int points = 0;
+    int segments = 0;
+
     while (! xml.atEnd()) {
         if (xml.hasError()) {
-            return LoadResult::XmlError;
+            return { LoadResult::XmlError };
         }
 
         const QXmlStreamReader::TokenType token = xml.readNext();
@@ -77,6 +80,7 @@ GpxEngine::LoadResult GpxEngine::load(const QString &path)
             if (name == QStringLiteral("time")) {
                 segmentTimes.append(time);
                 segmentCoordinates.append({ lon, lat });
+                points++;
             } else if (name == QStringLiteral("trkseg") && ! segmentCoordinates.isEmpty()) {
                 emit segmentLoaded(segmentCoordinates);
                 for (int i = 0; i < segmentTimes.count(); i++) {
@@ -86,13 +90,14 @@ GpxEngine::LoadResult GpxEngine::load(const QString &path)
                 }
                 segmentTimes.clear();
                 segmentCoordinates.clear();
+                segments++;
             }
         }
     }
 
     std::sort(m_allTimes.begin(), m_allTimes.end());
 
-    return LoadResult::Okay;
+    return { LoadResult::Okay, points, segments };
 }
 
 KGeoTag::Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation) const
