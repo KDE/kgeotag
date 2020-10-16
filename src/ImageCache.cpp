@@ -57,8 +57,8 @@ bool ImageCache::addImage(const QString &path)
     double latitude;
     double longitude;
     if (exif.getGPSInfo(altitude, latitude, longitude)) {
-        data.originalCoordinates = KGeoTag::Coordinates { longitude, latitude, true };
-        data.coordinates = KGeoTag::Coordinates { longitude, latitude, true };
+        data.originalCoordinates = KGeoTag::Coordinates { longitude, latitude, altitude, true };
+        data.coordinates = KGeoTag::Coordinates { longitude, latitude, altitude, true };
     }
 
     // Fix the image's orientation
