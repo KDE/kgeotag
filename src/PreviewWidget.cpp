@@ -30,24 +30,40 @@
 #include <QVBoxLayout>
 #include <QDebug>
 #include <QLabel>
+#include <QLocale>
+#include <QGridLayout>
 
 PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     : QWidget(parent), m_imageCache(imageCache)
 {
     auto *layout = new QVBoxLayout(this);
 
+    auto *infoLayout = new QGridLayout;
+    layout->addLayout(infoLayout);
+
+    auto *pathLabel = new QLabel(i18n("Image:"));
+    pathLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    infoLayout->addWidget(pathLabel, 0, 0);
+
     m_path = new QLabel;
     m_path->setWordWrap(true);
-    m_path->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-    layout->addWidget(m_path);
+    infoLayout->addWidget(m_path, 0, 1);
+
+    auto *dateTimeLabel = new QLabel(i18n("Date/Time:"));
+    dateTimeLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    infoLayout->addWidget(dateTimeLabel, 1, 0);
 
     m_date = new QLabel;
-    m_date->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-    layout->addWidget(m_date);
+    m_date->setWordWrap(true);
+    infoLayout->addWidget(m_date, 1, 1);
+
+    auto *coordinatesLabel = new QLabel(i18n("Coordinates:"));
+    coordinatesLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    infoLayout->addWidget(coordinatesLabel, 2, 0);
 
     m_coordinates = new QLabel;
-    m_coordinates->setSizePolicy(QSizePolicy::Expanding, QSizePolicy::Maximum);
-    layout->addWidget(m_coordinates);
+    m_coordinates->setWordWrap(true);
+    infoLayout->addWidget(m_coordinates, 2, 1);
 
     m_preview = new ImagePreview(imageCache);
     layout->addWidget(m_preview);
@@ -60,15 +76,13 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
 
 void PreviewWidget::setImage(const QString &path)
 {
-    m_path->setText(i18n("File: %1", path));
-    m_date->setText(i18n("Date: %1",
-                         m_imageCache->date(path).toString(i18n("yyyy-MM-dd hh:mm:ss"))));
+    m_path->setText(path);
+    QLocale locale;
+    m_date->setText(m_imageCache->date(path).toString(locale.dateTimeFormat()));
 
     const auto coordinates = m_imageCache->coordinates(path);
     if (coordinates.isSet) {
-
-
-        m_coordinates->setText(i18n("Longitude: %1 / Latitude: %2 (%3)",
+        m_coordinates->setText(i18n("Lon: %1 / Lat: %2 (%3)",
                                     coordinates.lon, coordinates.lat,
                                     m_matchString.value(m_imageCache->matchType(path))));
     } else {

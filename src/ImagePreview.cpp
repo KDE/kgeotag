@@ -29,6 +29,7 @@ ImagePreview::ImagePreview(ImageCache *imageCache, QWidget *parent)
 {
     setAlignment(Qt::AlignCenter);
     setMinimumSize(128, 128);
+    setSizePolicy(QSizePolicy::Ignored, QSizePolicy::Ignored);
 
     m_smoothTimer = new QTimer(this);
     m_smoothTimer->setSingleShot(true);
