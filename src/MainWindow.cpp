@@ -97,6 +97,13 @@ MainWindow::MainWindow() : QMainWindow()
 
     editMenu->addSeparator();
 
+    auto *removeAllCoordinatesAction = editMenu->addAction(i18n("Remove coordinates from all "
+                                                                "images"));
+    connect(removeAllCoordinatesAction, &QAction::triggered,
+            this, &MainWindow::removeAllCoordinates);
+
+    editMenu->addSeparator();
+
     auto *discardAllChangesAction = editMenu->addAction(i18n("Discard all changes"));
     connect(discardAllChangesAction, &QAction::triggered, this, &MainWindow::discardAllChanges);
 
@@ -524,5 +531,26 @@ void MainWindow::discardAllChanges()
         }
     }
 
+    m_mapWidget->reloadMap();
+}
+
+void MainWindow::removeAllCoordinates()
+{
+    if (QMessageBox::question(this, i18n("Remove coordinates from all images"),
+            i18n("Do you really want to remove all set coordinates from all images?"),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+
+        return;
+    }
+
+    const auto images = m_assignedImages->allImages();
+    for (const auto &path : images) {
+        m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
+        m_imageCache->setChanged(path, true);
+        m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
+        m_assignedImages->removeImage(path);
+        m_unAssignedImages->addOrUpdateImage(path);
+        m_mapWidget->removeImage(path);
+    }
     m_mapWidget->reloadMap();
 }
