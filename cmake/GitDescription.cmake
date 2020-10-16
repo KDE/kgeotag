@@ -1,3 +1,4 @@
+# Copyright 2020 Tobias Leupold <tobias.leupold@gmx.de>
 # Copyright 2012-2020 Johannes Zarl-Zierl <johannes@zarl-zierl.at>
 #
 # This software is distributed WITHOUT ANY WARRANTY; without even the
@@ -52,20 +53,31 @@ function(git_get_description DESCVAR)
         return()
     endif()
 
-    execute_process(COMMAND "${GIT_EXECUTABLE}" describe --dirty ${ggd_GIT_ARGS}
+    # Check if any tag has been set
+    execute_process(COMMAND "${GIT_EXECUTABLE}" tag -l
                     WORKING_DIRECTORY "${BASE_DIR}"
-                    RESULT_VARIABLE git_result
-                    OUTPUT_VARIABLE git_desc
-                    ERROR_VARIABLE  git_error
+                    OUTPUT_VARIABLE git_existing_tags
                     OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-    if (NOT git_result EQUAL 0)
-        message(${severity} "git_get_description: error during execution of git describe!")
-        message(${severity} "Error was: ${git_error}")
-        set(${DESCVAR} "-NOTFOUND" PARENT_SCOPE)
+    if (git_existing_tags STREQUAL "")
+        message(STATUS "No tags set yet, can't determine version")
+
     else()
-        string(REGEX REPLACE "^v" "" git_desc ${git_desc})
-        set(${DESCVAR} "${git_desc}" PARENT_SCOPE)
+        execute_process(COMMAND "${GIT_EXECUTABLE}" describe --dirty ${ggd_GIT_ARGS}
+                        WORKING_DIRECTORY "${BASE_DIR}"
+                        RESULT_VARIABLE git_result
+                        OUTPUT_VARIABLE git_desc
+                        ERROR_VARIABLE  git_error
+                        OUTPUT_STRIP_TRAILING_WHITESPACE)
+
+        if (NOT git_result EQUAL 0)
+            message(${severity} "git_get_description: error during execution of git describe!")
+            message(${severity} "Error was: ${git_error}")
+            set(${DESCVAR} "-NOTFOUND" PARENT_SCOPE)
+        else()
+            string(REGEX REPLACE "^v" "" git_desc ${git_desc})
+            set(${DESCVAR} "${git_desc}" PARENT_SCOPE)
+        endif()
     endif()
 
 endfunction()
