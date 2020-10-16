@@ -44,6 +44,7 @@ protected:
 private slots:
     void setTrackColor();
     void enableMaximumInterpolationInterval(bool state);
+    void enableMaximumInterpolationDistance(bool state);
 
 private: // Functions
     void updateTrackColor();
@@ -63,6 +64,8 @@ private: // Variables
     QSpinBox *m_exactMatchTolerance;
     QCheckBox *m_enableMaximumInterpolationInterval;
     QSpinBox *m_maximumInterpolationInterval;
+    QCheckBox *m_enableMaximumInterpolationDistance;
+    QSpinBox *m_maximumInterpolationDistance;
 
     QCheckBox *m_createBackups;
 

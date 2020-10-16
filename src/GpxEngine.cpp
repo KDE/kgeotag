@@ -26,6 +26,12 @@
 #include <QFile>
 #include <QXmlStreamReader>
 
+namespace
+{
+// Earth radius according to WGS-84 ellipsoid, Radius of Sphere of Equal Area
+const double c_earthRadius = 6371007.1809;
+}
+
 GpxEngine::GpxEngine(QObject *parent, Settings *settings)
     : QObject(parent), m_settings(settings)
 {
@@ -198,16 +204,31 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
 
     const auto &closestAfter = m_allTimes.at(index + 1);
     const int maximumInterval = m_settings->maximumInterpolationInterval();
+    const int maximumDistance = m_settings->maximumInterpolationDistance();
+
+    // Check for a maximum time interval between the points if requested
     if (maximumInterval != -1 && closestBefore.secsTo(closestAfter) > maximumInterval) {
         return KGeoTag::NoCoordinates;
     }
 
+    // Create Marble coordinates from the cache for further calculations
     const auto &pointBefore = m_coordinates[closestBefore];
     const auto &pointAfter = m_coordinates[closestAfter];
     const auto coordinatesBefore = Marble::GeoDataCoordinates(
-        pointBefore.lon, pointBefore.lat, 0.0, Marble::GeoDataCoordinates::Degree);
+        pointBefore.lon, pointBefore.lat, pointBefore.alt, Marble::GeoDataCoordinates::Degree);
     const auto coordinatesAfter = Marble::GeoDataCoordinates(
-        pointAfter.lon, pointAfter.lat, 0.0, Marble::GeoDataCoordinates::Degree);
+        pointAfter.lon, pointAfter.lat, pointAfter.alt, Marble::GeoDataCoordinates::Degree);
+
+    // Check for a maximum distance between the points if requested
+
+    if (maximumDistance != -1
+        && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * c_earthRadius
+        > maximumDistance) {
+
+        return KGeoTag::NoCoordinates;
+    }
+
+    // Calculate an interpolated position between the coordinates
 
     const int secondsBefore = closestBefore.secsTo(time);
     const double fraction = double(secondsBefore)

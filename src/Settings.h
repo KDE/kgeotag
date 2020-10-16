@@ -61,6 +61,9 @@ public:
     void saveMaximumInterpolationInterval(int seconds);
     int maximumInterpolationInterval() const;
 
+    void saveMaximumInterpolationDistance(int meters);
+    int maximumInterpolationDistance() const;
+
     void saveTrackColor(const QColor &color);
     QColor trackColor() const;
 

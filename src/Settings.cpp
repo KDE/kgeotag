@@ -74,8 +74,10 @@ const QString c_assignment_exactMatchTolerance
     = c_assignment + QLatin1String("exact_match_tolerance");
 const QString c_assignment_maximumInterpolationInterval
     = c_assignment + QLatin1String("maximum_interpolation_interval");
+const QString c_assignment_maximumInterpolationDistance
+    = c_assignment + QLatin1String("maximum_interpolation_distance");
 
-// Sabving
+// Saving
 
 const QLatin1String c_save("save/");
 const QString c_save_createBackups = c_save + QLatin1String("create_backups");
@@ -202,6 +204,16 @@ void Settings::saveMaximumInterpolationInterval(int seconds)
 int Settings::maximumInterpolationInterval() const
 {
     return value(c_assignment_maximumInterpolationInterval, -1).toInt();
+}
+
+void Settings::saveMaximumInterpolationDistance(int meters)
+{
+    setValue(c_assignment_maximumInterpolationDistance, meters);
+}
+
+int Settings::maximumInterpolationDistance() const
+{
+    return value(c_assignment_maximumInterpolationDistance, -1).toInt();
 }
 
 void Settings::saveTrackColor(const QColor &color)
