@@ -89,8 +89,9 @@ void ImagesList::addOrUpdateImage(const QString &path)
     }
 
     QFileInfo info(path);
-    imageItem->setText(m_imageCache->changed(path) ? i18n("*%1", info.fileName())
-                                                   : info.fileName());
+    imageItem->setText(m_imageCache->changed(path)
+        ? i18nc("A file's name marked as changed (by the asterisk)", "*%1", info.fileName())
+        : info.fileName());
 
     KColorScheme scheme;
     switch (m_imageCache->matchType(path)) {
