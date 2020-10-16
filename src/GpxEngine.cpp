@@ -91,6 +91,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
                 segmentTimes.append(time);
                 segmentCoordinates.append({ lon, lat, alt });
                 alt = 0.0;
+                time = QDateTime();
                 points++;
             } else if (name == QStringLiteral("trkseg") && ! segmentCoordinates.isEmpty()) {
                 emit segmentLoaded(segmentCoordinates);
