@@ -35,7 +35,7 @@ public:
     QString path() const;
     void setChanged(bool state);
     void setMatchType(KGeoTag::MatchType matchType);
-    bool operator<(const QListWidgetItem &other) const;
+    virtual bool operator<(const QListWidgetItem &other) const override;
 
 private: // Variables
     const QString m_fileName;
