@@ -21,39 +21,36 @@
 #include <QDebug>
 #include <QSize>
 
-namespace
-{
-
 // Main
 
-const QLatin1String c_main("main/");
-const QString c_main_windowGeometry = c_main + QLatin1String("window_geometry");
-const QString c_main_windowState   = c_main + QLatin1String("window_state");
-const QString c_main_lastOpenPath = c_main + QLatin1String("last_open_path");
+static const QLatin1String s_main("main/");
+static const QString s_main_windowGeometry = s_main + QLatin1String("window_geometry");
+static const QString s_main_windowState   = s_main + QLatin1String("window_state");
+static const QString s_main_lastOpenPath = s_main + QLatin1String("last_open_path");
 
 // Map
 
-const QLatin1String c_map("map/");
-const QString c_map_centerLon = c_map + QLatin1String("center_lon");
-const QString c_map_centerLat = c_map + QLatin1String("center_lat");
-const QString c_map_zoom = c_map + QLatin1String("zoom");
+static const QLatin1String s_map("map/");
+static const QString s_map_centerLon = s_map + QLatin1String("center_lon");
+static const QString s_map_centerLat = s_map + QLatin1String("center_lat");
+static const QString s_map_zoom = s_map + QLatin1String("zoom");
 
-const QLatin1String c_floatersVisibility("floaters_visibility/");
+static const QLatin1String s_floatersVisibility("floaters_visibility/");
 
 // Tracks
 
-const QLatin1String c_track("track/");
-const QString c_track_color = c_track + QLatin1String("color");
-const QString c_track_width = c_track + QLatin1String("width");
-const QString c_track_style = c_track + QLatin1String("style");
-const QVector<Qt::PenStyle> c_track_styleEnum {
+static const QLatin1String s_track("track/");
+static const QString s_track_color = s_track + QLatin1String("color");
+static const QString s_track_width = s_track + QLatin1String("width");
+static const QString s_track_style = s_track + QLatin1String("style");
+static const QVector<Qt::PenStyle> s_track_styleEnum {
     Qt::SolidLine,
     Qt::DashLine,
     Qt::DotLine,
     Qt::DashDotLine,
     Qt::DashDotDotLine
 };
-const QVector<QString> c_track_styleString {
+static const QVector<QString> s_track_styleString {
     QStringLiteral("solid"),
     QStringLiteral("dashes"),
     QStringLiteral("dots"),
@@ -63,26 +60,24 @@ const QVector<QString> c_track_styleString {
 
 // Images
 
-const QLatin1String c_images("images/");
-const QString c_images_thumnailSize = c_images + QLatin1String("thumbnail_size");
-const QString c_images_previewSize = c_images + QLatin1String("preview_size");
+static const QLatin1String s_images("images/");
+static const QString s_images_thumnailSize = s_images + QLatin1String("thumbnail_size");
+static const QString s_images_previewSize = s_images + QLatin1String("preview_size");
 
 // Assignment
 
-const QLatin1String c_assignment("assignment/");
-const QString c_assignment_exactMatchTolerance
+static const QLatin1String c_assignment("assignment/");
+static const QString c_assignment_exactMatchTolerance
     = c_assignment + QLatin1String("exact_match_tolerance");
-const QString c_assignment_maximumInterpolationInterval
+static const QString c_assignment_maximumInterpolationInterval
     = c_assignment + QLatin1String("maximum_interpolation_interval");
-const QString c_assignment_maximumInterpolationDistance
+static const QString c_assignment_maximumInterpolationDistance
     = c_assignment + QLatin1String("maximum_interpolation_distance");
 
 // Saving
 
-const QLatin1String c_save("save/");
-const QString c_save_createBackups = c_save + QLatin1String("create_backups");
-
-}
+static const QLatin1String s_save("save/");
+static const QString s_save_createBackups = s_save + QLatin1String("create_backups");
 
 Settings::Settings(QObject *parent)
     : QSettings(QStringLiteral("kgeotag"), QStringLiteral("kgeotag"), parent)
@@ -91,29 +86,29 @@ Settings::Settings(QObject *parent)
 
 void Settings::saveMainWindowGeometry(const QByteArray &data)
 {
-    setValue(c_main_windowGeometry, data);
+    setValue(s_main_windowGeometry, data);
 }
 
 QByteArray Settings::mainWindowGeometry() const
 {
-    return value(c_main_windowGeometry, QByteArray()).toByteArray();
+    return value(s_main_windowGeometry, QByteArray()).toByteArray();
 }
 
 void Settings::saveMainWindowState(const QByteArray &data)
 {
-    setValue(c_main_windowState, data);
+    setValue(s_main_windowState, data);
 }
 
 QByteArray Settings::mainWindowState() const
 {
-    return value(c_main_windowState, QByteArray()).toByteArray();
+    return value(s_main_windowState, QByteArray()).toByteArray();
 }
 
 void Settings::saveFloatersVisibility(const QHash<QString, bool> &data)
 {
     const auto keys = data.keys();
     for (const auto &key : keys) {
-        setValue(c_floatersVisibility + key, data.value(key));
+        setValue(s_floatersVisibility + key, data.value(key));
     }
 }
 
@@ -121,12 +116,12 @@ QHash<QString, bool> Settings::floatersVisibility()
 {
     QHash<QString, bool> data;
 
-    beginGroup(c_floatersVisibility);
+    beginGroup(s_floatersVisibility);
     const auto keys = allKeys();
     endGroup();
 
     for (const auto &key : keys) {
-        data.insert(key, value(c_floatersVisibility + key).toBool());
+        data.insert(key, value(s_floatersVisibility + key).toBool());
     }
 
     return data;
@@ -134,55 +129,55 @@ QHash<QString, bool> Settings::floatersVisibility()
 
 void Settings::saveMapCenter(const KGeoTag::Coordinates &coordinates)
 {
-    setValue(c_map_centerLon, coordinates.lon);
-    setValue(c_map_centerLat, coordinates.lat);
+    setValue(s_map_centerLon, coordinates.lon);
+    setValue(s_map_centerLat, coordinates.lat);
 }
 
 KGeoTag::Coordinates Settings::mapCenter() const
 {
-    return KGeoTag::Coordinates { value(c_map_centerLon, 0).toDouble(),
-                                  value(c_map_centerLat, 0).toDouble() };
+    return KGeoTag::Coordinates { value(s_map_centerLon, 0).toDouble(),
+                                  value(s_map_centerLat, 0).toDouble() };
 }
 
 void Settings::saveZoom(int zoom)
 {
-    setValue(c_map_zoom, zoom);
+    setValue(s_map_zoom, zoom);
 }
 
 int Settings::zoom() const
 {
-    return value(c_map_zoom, 1520).toInt();
+    return value(s_map_zoom, 1520).toInt();
 }
 
 void Settings::saveLastOpenPath(const QString &path)
 {
-    setValue(c_main_lastOpenPath, path);
+    setValue(s_main_lastOpenPath, path);
 }
 
 QString Settings::lastOpenPath() const
 {
-    return value(c_main_lastOpenPath, QString()).toString();
+    return value(s_main_lastOpenPath, QString()).toString();
 }
 
 void Settings::saveThumbnailSize(int size)
 {
-    setValue(c_images_thumnailSize, size);
+    setValue(s_images_thumnailSize, size);
 }
 
 QSize Settings::thumbnailSize() const
 {
-    const int size = value(c_images_thumnailSize, 32).toInt();
+    const int size = value(s_images_thumnailSize, 32).toInt();
     return QSize(size, size);
 }
 
 void Settings::savePreviewSize(int size)
 {
-    setValue(c_images_previewSize, size);
+    setValue(s_images_previewSize, size);
 }
 
 QSize Settings::previewSize() const
 {
-    const int size = value(c_images_previewSize, 400).toInt();
+    const int size = value(s_images_previewSize, 400).toInt();
     return QSize(size, size);
 }
 
@@ -218,12 +213,12 @@ int Settings::maximumInterpolationDistance() const
 
 void Settings::saveTrackColor(const QColor &color)
 {
-    setValue(c_track_color, color);
+    setValue(s_track_color, color);
 }
 
 QColor Settings::trackColor() const
 {
-    QColor color = value(c_track_color).value<QColor>();
+    QColor color = value(s_track_color).value<QColor>();
     if (! color.isValid()) {
         color = QColor(255, 0, 255, 150);
     }
@@ -233,14 +228,14 @@ QColor Settings::trackColor() const
 
 void Settings::saveTrackStyle(Qt::PenStyle style)
 {
-    setValue(c_track_style, c_track_styleString.at(c_track_styleEnum.indexOf(style)));
+    setValue(s_track_style, s_track_styleString.at(s_track_styleEnum.indexOf(style)));
 }
 
 Qt::PenStyle Settings::trackStyle() const
 {
-    QString styleString = value(c_track_style).toString();
-    if (c_track_styleString.contains(styleString)) {
-        return c_track_styleEnum.at(c_track_styleString.indexOf(styleString));
+    QString styleString = value(s_track_style).toString();
+    if (s_track_styleString.contains(styleString)) {
+        return s_track_styleEnum.at(s_track_styleString.indexOf(styleString));
     } else {
         return Qt::DotLine;
     }
@@ -248,20 +243,20 @@ Qt::PenStyle Settings::trackStyle() const
 
 void Settings::saveTrackWidth(int width)
 {
-    setValue(c_track_width, width);
+    setValue(s_track_width, width);
 }
 
 int Settings::trackWidth() const
 {
-    return value(c_track_width, 3).toInt();
+    return value(s_track_width, 3).toInt();
 }
 
 void Settings::saveCreateBackups(bool state)
 {
-    setValue(c_save_createBackups, state);
+    setValue(s_save_createBackups, state);
 }
 
 bool Settings::createBackups() const
 {
-    return value(c_save_createBackups, true).toBool();
+    return value(s_save_createBackups, true).toBool();
 }
