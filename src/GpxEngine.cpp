@@ -48,7 +48,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     QVector<QDateTime> segmentTimes;
     QVector<KGeoTag::Coordinates> segmentCoordinates;
 
-    bool trackFound = false;
+    bool trackStartFound = false;
     int points = 0;
     int segments = 0;
 
@@ -60,10 +60,10 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
         const QXmlStreamReader::TokenType token = xml.readNext();
         const QStringRef name = xml.name();
 
-        if (! trackFound && name != QStringLiteral("trk")) {
+        if (! trackStartFound && name != QStringLiteral("trk")) {
             continue;
         } else {
-            trackFound = true;
+            trackStartFound = true;
         }
 
         if (token == QXmlStreamReader::StartElement) {
@@ -77,7 +77,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
             }
 
         } else if (token == QXmlStreamReader::EndElement) {
-            if (name == QStringLiteral("time")) {
+            if (name == QStringLiteral("trkpt")) {
                 segmentTimes.append(time);
                 segmentCoordinates.append({ lon, lat });
                 points++;
@@ -91,6 +91,8 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
                 segmentTimes.clear();
                 segmentCoordinates.clear();
                 segments++;
+            } else if (name == QStringLiteral("trk")) {
+                trackStartFound = false;
             }
         }
     }
