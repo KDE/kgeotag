@@ -44,7 +44,7 @@ public:
     explicit MainWindow();
 
 protected:
-    virtual void closeEvent(QCloseEvent *) override;
+    virtual void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void addGpx();

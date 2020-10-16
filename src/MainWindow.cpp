@@ -45,6 +45,7 @@
 #include <QFile>
 #include <QTimer>
 #include <QMessageBox>
+#include <QCloseEvent>
 
 // C++ includes
 #include <algorithm>
@@ -179,8 +180,20 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
     return dock;
 }
 
-void MainWindow::closeEvent(QCloseEvent *)
+void MainWindow::closeEvent(QCloseEvent *event)
 {
+    if (! m_imageCache->changedImages().isEmpty()) {
+        if (QMessageBox::question(this, i18n("Close KGeoTag"),
+            i18n("<p>There are pending changes to images that haven't been saved yet. All changes "
+                 "will be discarded if KGeoTag is closed now.</p>"
+                 "<p>Do you want to close the program anyway?</p>"),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+
+            event->ignore();
+            return;
+        }
+    }
+
     m_settings->saveMainWindowGeometry(saveGeometry());
     m_settings->saveMainWindowState(saveState());
 
