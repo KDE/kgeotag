@@ -35,12 +35,13 @@ include(CMakeParseArguments)
 # Write the result of "git describe" into the variable DESCRIPTION_VARIABLE.
 # Additional arguments to git describe ( e.g. --dirty ) can be passed using the keyword GIT_ARGS.
 # If SEND_ERROR is set, execution is immediately stopped when an error occurs.
+
 function(git_get_description DESCVAR)
-    cmake_parse_arguments(_GGD "SEND_ERROR" "GIT_ARGS" "" "${ARGN}")
+    cmake_parse_arguments(ggd "SEND_ERROR" "GIT_ARGS" "" "${ARGN}")
     if (SEND_ERROR)
-        set(_severity SEND_ERROR)
+        set(severity SEND_ERROR)
     else()
-        set(_severity WARNING)
+        set(severity WARNING)
     endif()
 
     find_package(Git QUIET)
@@ -51,20 +52,20 @@ function(git_get_description DESCVAR)
         return()
     endif()
 
-    execute_process(COMMAND "${GIT_EXECUTABLE}" describe --dirty ${_GGD_GIT_ARGS}
+    execute_process(COMMAND "${GIT_EXECUTABLE}" describe --dirty ${ggd_GIT_ARGS}
                     WORKING_DIRECTORY "${BASE_DIR}"
-                    RESULT_VARIABLE _gitresult
-                    OUTPUT_VARIABLE _gitdesc
-                    ERROR_VARIABLE  _giterror
+                    RESULT_VARIABLE git_result
+                    OUTPUT_VARIABLE git_desc
+                    ERROR_VARIABLE  git_error
                     OUTPUT_STRIP_TRAILING_WHITESPACE)
 
-    if (NOT _gitresult EQUAL 0)
-        message(${_severity} "git_get_description: error during execution of git describe!")
-        message(${_severity} "Error was: ${_giterror}")
+    if (NOT git_result EQUAL 0)
+        message(${severity} "git_get_description: error during execution of git describe!")
+        message(${severity} "Error was: ${git_error}")
         set(${DESCVAR} "-NOTFOUND" PARENT_SCOPE)
     else()
-        string(REGEX REPLACE "^v" "" _gitdesc ${_gitdesc})
-        set(${DESCVAR} "${_gitdesc}" PARENT_SCOPE)
+        string(REGEX REPLACE "^v" "" git_desc ${git_desc})
+        set(${DESCVAR} "${git_desc}" PARENT_SCOPE)
     endif()
 
 endfunction()
