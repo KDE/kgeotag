@@ -88,5 +88,5 @@ ecm_install_icons(
           icons/128-apps-kgeotag.png
     DESTINATION ${KDE_INSTALL_ICONDIR})
 
-install(PROGRAMS org.kde.invent.kgeotag.desktop DESTINATION ${KDE_INSTALL_APPDIR})
-install(FILES org.kde.invent.kgeotag.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+install(PROGRAMS org.kde.kgeotag.desktop DESTINATION ${KDE_INSTALL_APPDIR})
+install(FILES org.kde.kgeotag.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
