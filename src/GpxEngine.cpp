@@ -41,8 +41,9 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     QXmlStreamReader xml(&gpxFile);
 
-    double lon;
-    double lat;
+    double lon = 0.0;
+    double lat = 0.0;
+    double alt = 0.0;
     QDateTime time;
 
     QVector<QDateTime> segmentTimes;
@@ -71,6 +72,9 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
                 QXmlStreamAttributes attributes = xml.attributes();
                 lon = attributes.value(QStringLiteral("lon")).toDouble();
                 lat = attributes.value(QStringLiteral("lat")).toDouble();
+            } else if (name == QStringLiteral("ele")) {
+                xml.readNext();
+                alt = xml.text().toDouble();
             } else if (name == QStringLiteral("time")) {
                 xml.readNext();
                 time = QDateTime::fromString(xml.text().toString(), Qt::ISODate);
@@ -79,7 +83,8 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("trkpt")) {
                 segmentTimes.append(time);
-                segmentCoordinates.append({ lon, lat });
+                segmentCoordinates.append({ lon, lat, alt });
+                alt = 0.0;
                 points++;
             } else if (name == QStringLiteral("trkseg") && ! segmentCoordinates.isEmpty()) {
                 emit segmentLoaded(segmentCoordinates);
@@ -210,5 +215,6 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
     const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
 
     return KGeoTag::Coordinates { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
-                                  interpolated.latitude(Marble::GeoDataCoordinates::Degree) };
+                                  interpolated.latitude(Marble::GeoDataCoordinates::Degree),
+                                  interpolated.altitude() };
 }
