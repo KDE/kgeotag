@@ -29,7 +29,7 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF5 REQUIRED COMPONENTS CoreAddons I18n IconThemes XmlGui KExiv2 REQUIRED)
+find_package(KF5 COMPONENTS CoreAddons I18n IconThemes XmlGui ConfigWidgets KExiv2 REQUIRED)
 
 # Find Marble
 find_package(Marble 0.28 REQUIRED)
@@ -70,6 +70,7 @@ target_link_libraries(kgeotag
     KF5::I18n
     KF5::XmlGui
     KF5::IconThemes
+    KF5::ConfigWidgets
     KF5::KExiv2
     Marble
 )

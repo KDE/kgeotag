@@ -20,6 +20,7 @@
 
 // KDE includes
 #include <KLocalizedString>
+#include <KColorScheme>
 
 // Qt includes
 #include <QIcon>
@@ -91,18 +92,19 @@ void ImagesList::addOrUpdateImage(const QString &path)
     imageItem->setText(m_imageCache->changed(path) ? i18n("*%1", info.fileName())
                                                    : info.fileName());
 
+    KColorScheme scheme;
     switch (m_imageCache->matchType(path)) {
     case KGeoTag::MatchType::None:
-        imageItem->setForeground(QBrush());
+        imageItem->setForeground(scheme.foreground());
         break;
     case KGeoTag::MatchType::Exact:
-        imageItem->setForeground(Qt::darkGreen);
+        imageItem->setForeground(scheme.foreground(KColorScheme::PositiveText));
         break;
     case KGeoTag::MatchType::Interpolated:
-        imageItem->setForeground(Qt::darkYellow);
+        imageItem->setForeground(scheme.foreground(KColorScheme::NeutralText));
         break;
     case KGeoTag::MatchType::Set:
-        imageItem->setForeground(Qt::darkBlue);
+        imageItem->setForeground(scheme.foreground(KColorScheme::LinkText));
         break;
     }
 
