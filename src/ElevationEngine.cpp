@@ -65,6 +65,11 @@ void ElevationEngine::cleanUpRequest(QNetworkReply *request)
 
 void ElevationEngine::processReply(QNetworkReply *request)
 {
+    if (! request->isOpen()) {
+        // This happens if the request has been aborted by the cleanup timer
+        return;
+    }
+
     QJsonParseError error;
     const auto json = QJsonDocument::fromJson(request->readAll(), &error);
     if (error.error != QJsonParseError::NoError || ! json.isObject()) {
