@@ -46,6 +46,9 @@ private slots:
     void cleanUpRequest(QNetworkReply *request);
     void processReply(QNetworkReply *reply);
 
+private: // Functions
+    void removeRequest(QNetworkReply *request);
+
 private: // Variables
     QNetworkAccessManager *m_manager;
     QHash<QNetworkReply *, QString> m_requests;

@@ -48,6 +48,12 @@ void ElevationEngine::request(const QString &path, const KGeoTag::Coordinates &c
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, request));
 }
 
+void ElevationEngine::removeRequest(QNetworkReply *request)
+{
+    m_requests.remove(request);
+    request->deleteLater();
+}
+
 void ElevationEngine::cleanUpRequest(QNetworkReply *request)
 {
     if (m_requests.contains(request)) {
@@ -57,42 +63,37 @@ void ElevationEngine::cleanUpRequest(QNetworkReply *request)
     }
 }
 
-void ElevationEngine::processReply(QNetworkReply *reply)
+void ElevationEngine::processReply(QNetworkReply *request)
 {
     QJsonParseError error;
-    const auto json = QJsonDocument::fromJson(reply->readAll(), &error);
+    const auto json = QJsonDocument::fromJson(request->readAll(), &error);
     if (error.error != QJsonParseError::NoError || ! json.isObject()) {
-        emit elevationProcessed(m_requests.value(reply), false);
-        m_requests.remove(reply);
-        reply->deleteLater();
+        emit elevationProcessed(m_requests.value(request), false);
+        removeRequest(request);
         return;
     }
 
     const auto object = json.object();
     if (object.value(QStringLiteral("status")) != QStringLiteral("OK")) {
-        emit elevationProcessed(m_requests.value(reply), false);
-        m_requests.remove(reply);
-        reply->deleteLater();
+        emit elevationProcessed(m_requests.value(request), false);
+        removeRequest(request);
         return;
     }
 
     const auto results = object.value(QStringLiteral("results")).toArray().at(0);
     if (results.isUndefined()) {
-        emit elevationProcessed(m_requests.value(reply), false);
-        m_requests.remove(reply);
-        reply->deleteLater();
+        emit elevationProcessed(m_requests.value(request), false);
+        removeRequest(request);
         return;
     }
 
     const auto elevation = results.toObject().value(QStringLiteral("elevation"));
     if (elevation.isUndefined()) {
-        emit elevationProcessed(m_requests.value(reply), false);
-        m_requests.remove(reply);
-        reply->deleteLater();
+        emit elevationProcessed(m_requests.value(request), false);
+        removeRequest(request);
         return;
     }
 
-    emit elevationProcessed(m_requests.value(reply), true, elevation.toDouble());
-    m_requests.remove(reply);
-    reply->deleteLater();
+    emit elevationProcessed(m_requests.value(request), true, elevation.toDouble());
+    removeRequest(request);
 }
