@@ -51,7 +51,7 @@ public:
     QDateTime date(const QString &path) const;
     QSize thumbnailSize() const;
     KGeoTag::Coordinates coordinates(const QString &path) const;
-    void setCoordinates(const QString &path, double lon, double lat);
+    void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
     void setChanged(const QString &path, bool changed);
     QVector<QString> changedImages() const;

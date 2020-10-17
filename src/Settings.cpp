@@ -139,7 +139,8 @@ void Settings::saveMapCenter(const KGeoTag::Coordinates &coordinates)
 KGeoTag::Coordinates Settings::mapCenter() const
 {
     return KGeoTag::Coordinates { value(s_map_centerLon, 0).toDouble(),
-                                  value(s_map_centerLat, 0).toDouble() };
+                                  value(s_map_centerLat, 0).toDouble(),
+                                  0.0, true };
 }
 
 void Settings::saveZoom(int zoom)

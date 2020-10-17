@@ -95,7 +95,7 @@ void MapWidget::saveSettings()
     const auto center = focusPoint();
     m_settings->saveMapCenter(KGeoTag::Coordinates {
                                   center.longitude(Marble::GeoDataCoordinates::Degree),
-                                  center.latitude(Marble::GeoDataCoordinates::Degree) });
+                                  center.latitude(Marble::GeoDataCoordinates::Degree), 0, true });
 
     // Save the zoom level
     m_settings->saveZoom(zoom());
@@ -166,7 +166,7 @@ void MapWidget::dropEvent(QDropEvent *event)
     addImage(path, lon, lat);
     reloadMap();
 
-    m_imageCache->setCoordinates(path, lon, lat);
+    m_imageCache->setCoordinates(path, lon, lat, 0.0);
     emit imageDropped(path);
 
     event->acceptProposedAction();

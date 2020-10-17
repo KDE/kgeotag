@@ -89,7 +89,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("trkpt")) {
                 segmentTimes.append(time);
-                segmentCoordinates.append({ lon, lat, alt });
+                segmentCoordinates.append({ lon, lat, alt, true });
                 alt = 0.0;
                 time = QDateTime();
                 points++;
@@ -238,5 +238,5 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
 
     return KGeoTag::Coordinates { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
                                   interpolated.latitude(Marble::GeoDataCoordinates::Degree),
-                                  interpolated.altitude() };
+                                  interpolated.altitude(), true };
 }

@@ -27,8 +27,8 @@ struct Coordinates
 {
     double lon;
     double lat;
-    double alt = 0.0;
-    bool isSet = true;
+    double alt;
+    bool isSet;
 };
 
 const Coordinates NoCoordinates { 0.0, 0.0, 0.0, false };

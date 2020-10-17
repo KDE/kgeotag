@@ -105,9 +105,9 @@ KGeoTag::Coordinates ImageCache::coordinates(const QString &path) const
     return m_imageData[path].coordinates;
 }
 
-void ImageCache::setCoordinates(const QString &path, double lon, double lat)
+void ImageCache::setCoordinates(const QString &path, double lon, double lat, double alt)
 {
-    setCoordinates(path, KGeoTag::Coordinates { lon, lat, true });
+    setCoordinates(path, KGeoTag::Coordinates { lon, lat, alt, true });
 }
 
 void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates)
