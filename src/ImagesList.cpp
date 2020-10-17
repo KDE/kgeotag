@@ -21,6 +21,7 @@
 #include "ImagesList.h"
 #include "ImageCache.h"
 #include "ImageItem.h"
+#include "Settings.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -39,8 +40,12 @@
 // C++ includes
 #include <functional>
 
-ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
-    : QListWidget(parent), m_imageCache(imageCache)
+ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *imageCache,
+                       QWidget *parent)
+    : QListWidget(parent),
+      m_type(type),
+      m_settings(settings),
+      m_imageCache(imageCache)
 {
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());
@@ -50,6 +55,12 @@ ImagesList::ImagesList(ImageCache *imageCache, QWidget *parent)
             this, std::bind(&ImagesList::imageHighlighted, this, std::placeholders::_1, nullptr));
 
     m_contextMenu = new QMenu(this);
+
+    if (m_type == Type::Assigned) {
+        m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
+        connect(m_lookupElevation, &QAction::triggered, [this]
+                { emit lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path()); });
+    }
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
     connect(m_removeCoordinates, &QAction::triggered, [this]
@@ -161,6 +172,10 @@ void ImagesList::showContextMenu(const QPoint &point)
     const auto *item = currentItem();
     if (item == nullptr) {
         return;
+    }
+
+    if (m_lookupElevation != nullptr) {
+        m_lookupElevation->setEnabled(m_settings->lookupElevation());
     }
 
     const QString &path = dynamic_cast<const ImageItem *>(item)->path();

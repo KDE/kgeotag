@@ -69,6 +69,7 @@ private: // Variables
     QSpinBox *m_maximumInterpolationInterval;
     QCheckBox *m_enableMaximumInterpolationDistance;
     QSpinBox *m_maximumInterpolationDistance;
+    QCheckBox *m_lookupElevation;
 
     QCheckBox *m_createBackups;
 

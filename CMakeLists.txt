@@ -16,7 +16,7 @@ include(ECMInstallIcons)
 include(${CMAKE_SOURCE_DIR}/cmake/NinjaColors.cmake)
 
 # Find Qt
-find_package(Qt5 5.11 COMPONENTS Widgets REQUIRED)
+find_package(Qt5 5.11 COMPONENTS Widgets Network REQUIRED)
 set(CMAKE_AUTOMOC ON)
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
@@ -60,6 +60,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/FixDriftWidget.cpp
     ${main_ROOT}/GpxEngine.cpp
     ${main_ROOT}/ImageItem.cpp
+    ${main_ROOT}/ElevationEngine.cpp
 )
 
 # Build the executable
@@ -67,6 +68,7 @@ add_executable(kgeotag ${kgeotag_SOURCES})
 add_dependencies(kgeotag UpdateVersion)
 target_link_libraries(kgeotag
     Qt5::Widgets
+    Qt5::Network
     KF5::CoreAddons
     KF5::I18n
     KF5::XmlGui

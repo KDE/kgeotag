@@ -17,43 +17,39 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef PREVIEWWIDGET_H
-#define PREVIEWWIDGET_H
+#ifndef ELEVATIONENGINE_H
+#define ELEVATIONENGINE_H
 
 // Local includes
 #include "KGeoTag.h"
 
 // Qt includes
-#include <QWidget>
+#include <QObject>
 #include <QHash>
 
-// Local classes
-class ImageCache;
-class ImagePreview;
-
 // Qt classes
-class QLabel;
+class QNetworkAccessManager;
+class QNetworkReply;
 
-class PreviewWidget : public QWidget
+class ElevationEngine : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit PreviewWidget(ImageCache *imageCache, QWidget *parent = nullptr);
-    QString currentImage() const;
+    explicit ElevationEngine(QObject *parent);
+    void request(const QString &path, const KGeoTag::Coordinates &coordinates);
 
-public slots:
-    void setImage(const QString &path);
+signals:
+    void elevationProcessed(QString path, bool success, double elevation = 0.0) const;
+
+private slots:
+    void cleanUpRequest(QNetworkReply *request);
+    void processReply(QNetworkReply *reply);
 
 private: // Variables
-    ImageCache *m_imageCache;
-    ImagePreview *m_preview;
-    QLabel *m_path;
-    QLabel *m_date;
-    QLabel *m_coordinates;
-    QHash<KGeoTag::MatchType, QString> m_matchString;
-    QString m_currentImage;
+    QNetworkAccessManager *m_manager;
+    QHash<QNetworkReply *, QString> m_requests;
 
 };
 
-#endif // PREVIEWWIDGET_H
+#endif // ELEVATIONENGINE_H

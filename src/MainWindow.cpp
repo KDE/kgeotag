@@ -22,6 +22,7 @@
 #include "Settings.h"
 #include "ImageCache.h"
 #include "GpxEngine.h"
+#include "ElevationEngine.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
 #include "KGeoTag.h"
@@ -60,6 +61,9 @@ MainWindow::MainWindow() : QMainWindow()
     m_settings = new Settings(this);
     m_imageCache = new ImageCache(this, m_settings);
     m_gpxEngine = new GpxEngine(this, m_settings);
+    m_elevationEngine = new ElevationEngine(this);
+    connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
+            this, &MainWindow::elevationProcessed);
 
     // Menu setup
 
@@ -120,7 +124,7 @@ MainWindow::MainWindow() : QMainWindow()
     setDockNestingEnabled(true);
 
     // Unassigned images
-    m_unAssignedImages = new ImagesList(m_imageCache);
+    m_unAssignedImages = new ImagesList(ImagesList::Type::UnAssigned, m_settings, m_imageCache);
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
     connect(m_unAssignedImages, &ImagesList::removeCoordinates,
@@ -128,9 +132,10 @@ MainWindow::MainWindow() : QMainWindow()
     connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
 
     // Assigned images
-    m_assignedImages = new ImagesList(m_imageCache);
+    m_assignedImages = new ImagesList(ImagesList::Type::Assigned, m_settings, m_imageCache);
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
+    connect(m_assignedImages, &ImagesList::lookupElevation, this, &MainWindow::lookupElevation);
     connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
 
@@ -297,12 +302,21 @@ void MainWindow::addImages()
 
 void MainWindow::imageDropped(const QString &path)
 {
-    const QFileInfo info(path);
     m_unAssignedImages->removeImage(path);
     m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
     m_imageCache->setChanged(path, true);
     m_assignedImages->addOrUpdateImage(path);
     m_previewWidget->setImage(path);
+
+    if (m_settings->lookupElevation()) {
+        lookupElevation(path);
+    }
+}
+
+void MainWindow::lookupElevation(const QString &path)
+{
+    QApplication::setOverrideCursor(Qt::BusyCursor);
+    m_elevationEngine->request(path, m_imageCache->coordinates(path));
 }
 
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
@@ -557,4 +571,20 @@ void MainWindow::removeAllCoordinates()
         m_mapWidget->removeImage(path);
     }
     m_mapWidget->reloadMap();
+}
+
+void MainWindow::elevationProcessed(QString path, bool success, double elevation)
+{
+    QApplication::restoreOverrideCursor();
+    if (! success) {
+        return;
+    }
+
+    auto coordinates = m_imageCache->coordinates(path);
+    coordinates.alt = elevation;
+    m_imageCache->setCoordinates(path, coordinates);
+
+    if (m_previewWidget->currentImage() == path) {
+        m_previewWidget->setImage(path);
+    }
 }

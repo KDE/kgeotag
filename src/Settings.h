@@ -67,6 +67,9 @@ public:
     void saveMaximumInterpolationDistance(int meters);
     int maximumInterpolationDistance() const;
 
+    void saveLookupElevation(bool state);
+    bool lookupElevation() const;
+
     void saveTrackColor(const QColor &color);
     QColor trackColor() const;
 

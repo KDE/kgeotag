@@ -79,6 +79,8 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
 
 void PreviewWidget::setImage(const QString &path)
 {
+    m_currentImage = path;
+
     if (path.isEmpty()) {
         m_path->setText(path);
         m_date->setText(path);
@@ -105,4 +107,9 @@ void PreviewWidget::setImage(const QString &path)
     }
 
     m_preview->setImage(path);
+}
+
+QString PreviewWidget::currentImage() const
+{
+    return m_currentImage;
 }

@@ -30,6 +30,7 @@
 class Settings;
 class ImageCache;
 class GpxEngine;
+class ElevationEngine;
 class ImagesList;
 class PreviewWidget;
 class MapWidget;
@@ -62,6 +63,8 @@ private slots:
     void discardChanges(const QString &path);
     void discardAllChanges();
     void removeAllCoordinates();
+    void lookupElevation(const QString &path);
+    void elevationProcessed(QString path, bool success, double elevation);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
@@ -71,6 +74,7 @@ private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     GpxEngine *m_gpxEngine;
+    ElevationEngine *m_elevationEngine;
     ImagesList *m_assignedImages;
     ImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;

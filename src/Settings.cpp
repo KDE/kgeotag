@@ -69,13 +69,15 @@ static const QString s_images_previewSize = s_images + QLatin1String("preview_si
 
 // Assignment
 
-static const QLatin1String c_assignment("assignment/");
-static const QString c_assignment_exactMatchTolerance
-    = c_assignment + QLatin1String("exact_match_tolerance");
-static const QString c_assignment_maximumInterpolationInterval
-    = c_assignment + QLatin1String("maximum_interpolation_interval");
-static const QString c_assignment_maximumInterpolationDistance
-    = c_assignment + QLatin1String("maximum_interpolation_distance");
+static const QLatin1String s_assignment("assignment/");
+static const QString s_assignment_exactMatchTolerance
+    = s_assignment + QLatin1String("exact_match_tolerance");
+static const QString s_assignment_maximumInterpolationInterval
+    = s_assignment + QLatin1String("maximum_interpolation_interval");
+static const QString s_assignment_maximumInterpolationDistance
+    = s_assignment + QLatin1String("maximum_interpolation_distance");
+static const QString s_assignment_lookupElevation
+    = s_assignment + QLatin1String("lookup_elevation");
 
 // Saving
 
@@ -187,32 +189,42 @@ QSize Settings::previewSize() const
 
 void Settings::saveExactMatchTolerance(int seconds)
 {
-    setValue(c_assignment_exactMatchTolerance, seconds);
+    setValue(s_assignment_exactMatchTolerance, seconds);
 }
 
 int Settings::exactMatchTolerance() const
 {
-    return value(c_assignment_exactMatchTolerance, 10).toInt();
+    return value(s_assignment_exactMatchTolerance, 10).toInt();
 }
 
 void Settings::saveMaximumInterpolationInterval(int seconds)
 {
-    setValue(c_assignment_maximumInterpolationInterval, seconds);
+    setValue(s_assignment_maximumInterpolationInterval, seconds);
 }
 
 int Settings::maximumInterpolationInterval() const
 {
-    return value(c_assignment_maximumInterpolationInterval, -1).toInt();
+    return value(s_assignment_maximumInterpolationInterval, -1).toInt();
+}
+
+void Settings::saveLookupElevation(bool state)
+{
+    setValue(s_assignment_lookupElevation, state);
+}
+
+bool Settings::lookupElevation() const
+{
+    return value(s_assignment_lookupElevation, false).toBool();
 }
 
 void Settings::saveMaximumInterpolationDistance(int meters)
 {
-    setValue(c_assignment_maximumInterpolationDistance, meters);
+    setValue(s_assignment_maximumInterpolationDistance, meters);
 }
 
 int Settings::maximumInterpolationDistance() const
 {
-    return value(c_assignment_maximumInterpolationDistance, -1).toInt();
+    return value(s_assignment_maximumInterpolationDistance, -1).toInt();
 }
 
 void Settings::saveTrackColor(const QColor &color)

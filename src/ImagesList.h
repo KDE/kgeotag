@@ -27,6 +27,7 @@
 #include <QListWidget>
 
 // Local classes
+class Settings;
 class ImageCache;
 
 // Qt classes
@@ -39,13 +40,20 @@ class ImagesList : public QListWidget
     Q_OBJECT
 
 public:
-    explicit ImagesList(ImageCache *imageCache, QWidget *parent = nullptr);
+    enum Type {
+        UnAssigned,
+        Assigned
+    };
+
+    explicit ImagesList(Type type, Settings *settings, ImageCache *imageCache,
+                        QWidget *parent = nullptr);
     void addOrUpdateImage(const QString &path);
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
 
 signals:
     void imageSelected(const QString &path, bool center = true) const;
+    void lookupElevation(const QString &path) const;
     void removeCoordinates(const QString &path) const;
     void discardChanges(const QString &path) const;
 
@@ -58,9 +66,12 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private: // Variables
+    Type m_type;
+    Settings *m_settings;
     ImageCache *m_imageCache;
     QPoint m_dragStartPosition;
     QMenu *m_contextMenu;
+    QAction *m_lookupElevation = nullptr;
     QAction *m_removeCoordinates;
     QAction *m_discardChanges;
 

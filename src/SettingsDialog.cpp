@@ -113,33 +113,39 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *assignmentBoxLayout = new QGridLayout(assignmentBox);
     layout->addWidget(assignmentBox);
 
+    m_lookupElevation = new QCheckBox(i18n("Enable elevation lookup using opentopodata.org\n"
+                                           "(requested automatically when placing images on the "
+                                           "map)"));
+    m_lookupElevation->setChecked(m_settings->lookupElevation());
+    assignmentBoxLayout->addWidget(m_lookupElevation, 0, 0, 1, 3);
+
     auto *exactMatchToleranceLabel = new QLabel(
         i18n("Maximum deviation of the image's time from a GPS point's time for an exact match"));
     exactMatchToleranceLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(exactMatchToleranceLabel, 0, 0);
+    assignmentBoxLayout->addWidget(exactMatchToleranceLabel, 1, 0);
 
     m_exactMatchTolerance = new QSpinBox;
     m_exactMatchTolerance->setMinimum(0);
     m_exactMatchTolerance->setMaximum(300);
     m_exactMatchTolerance->setValue(m_settings->exactMatchTolerance());
-    assignmentBoxLayout->addWidget(m_exactMatchTolerance, 0, 1);
+    assignmentBoxLayout->addWidget(m_exactMatchTolerance, 1, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 0, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 1, 2);
 
     auto *interpolatedMatchLabel = new QLabel(i18n("Boundaries for two coordinates used to "
                                                    "calculate interpolated matches:"));
     interpolatedMatchLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(interpolatedMatchLabel, 1, 0, 1, 3);
+    assignmentBoxLayout->addWidget(interpolatedMatchLabel, 2, 0, 1, 3);
 
     m_enableMaximumInterpolationInterval = new QCheckBox(i18n("Maximum interval:"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, 2, 0);
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, 3, 0);
 
     m_maximumInterpolationInterval = new QSpinBox;
     m_maximumInterpolationInterval->setMinimum(0);
     m_maximumInterpolationInterval->setMaximum(86400);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, 2, 1);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, 3, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 2, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 3, 2);
 
     const int interval = m_settings->maximumInterpolationInterval();
     if (interval == -1) {
@@ -153,14 +159,14 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
             this, &SettingsDialog::enableMaximumInterpolationInterval);
 
     m_enableMaximumInterpolationDistance = new QCheckBox(i18n("Maximum distance:"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, 3, 0);
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, 4, 0);
 
     m_maximumInterpolationDistance = new QSpinBox;
     m_maximumInterpolationDistance->setMinimum(0);
     m_maximumInterpolationDistance->setMaximum(1000000);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, 3, 1);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, 4, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), 3, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), 4, 2);
 
     const int distance = m_settings->maximumInterpolationDistance();
     if (distance == -1) {
@@ -242,6 +248,7 @@ void SettingsDialog::accept()
         ? m_maximumInterpolationInterval->value() : -1);
     m_settings->saveMaximumInterpolationDistance(m_enableMaximumInterpolationDistance->isChecked()
         ? m_maximumInterpolationDistance->value() : -1);
+    m_settings->saveLookupElevation(m_lookupElevation->isChecked());
 
     m_settings->saveCreateBackups(m_createBackups->isChecked());
 
