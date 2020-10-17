@@ -302,6 +302,7 @@ void MainWindow::imageDropped(const QString &path)
     m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
     m_imageCache->setChanged(path, true);
     m_assignedImages->addOrUpdateImage(path);
+    m_previewWidget->setImage(path);
 }
 
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
@@ -495,6 +496,7 @@ void MainWindow::removeCoordinates(const QString &path)
     m_unAssignedImages->addOrUpdateImage(path);
     m_mapWidget->removeImage(path);
     m_mapWidget->reloadMap();
+    m_previewWidget->setImage(path);
 }
 
 void MainWindow::discardChanges(const QString &path)
@@ -511,6 +513,7 @@ void MainWindow::discardChanges(const QString &path)
         m_mapWidget->removeImage(path);
     }
     m_mapWidget->reloadMap();
+    m_previewWidget->setImage(path);
 }
 
 void MainWindow::discardAllChanges()
@@ -532,6 +535,7 @@ void MainWindow::discardAllChanges()
     }
 
     m_mapWidget->reloadMap();
+    m_previewWidget->setImage(QString());
 }
 
 void MainWindow::removeAllCoordinates()

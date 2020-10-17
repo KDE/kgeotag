@@ -76,6 +76,14 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
 
 void PreviewWidget::setImage(const QString &path)
 {
+    if (path.isEmpty()) {
+        m_path->setText(path);
+        m_date->setText(path);
+        m_coordinates->setText(path);
+        m_preview->setImage(path);
+        return;
+    }
+
     m_path->setText(path);
     QLocale locale;
     m_date->setText(m_imageCache->date(path).toString(locale.dateTimeFormat()));

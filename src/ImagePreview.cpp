@@ -38,7 +38,7 @@ ImagePreview::ImagePreview(ImageCache *imageCache, QWidget *parent)
 
 void ImagePreview::setImage(const QString &path)
 {
-    m_currentImage = m_imageCache->preview(path);
+    m_currentImage = ! path.isEmpty() ? m_imageCache->preview(path) : QImage();
     setScaledPreview();
 }
 
