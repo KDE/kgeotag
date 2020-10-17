@@ -3,17 +3,15 @@ project(kgeotag CXX)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -Wall -Wextra -pedantic")
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 
 find_package(ECM 1.1.0 REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${ECM_KDE_MODULE_DIR} ${CMAKE_SOURCE_DIR}/cmake)
+set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 include(KDEInstallDirs)
 include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
-
-# Enable colored output for GCC and Clang when using Ninja
-include(${CMAKE_SOURCE_DIR}/cmake/NinjaColors.cmake)
 
 # Find Qt
 find_package(Qt5 5.11 COMPONENTS Widgets Network REQUIRED)
@@ -42,11 +40,9 @@ add_custom_target(
     COMMENT "Updating version header"
     BYPRODUCTS ${CMAKE_BINARY_DIR}/version.h
 )
-include_directories(${CMAKE_BINARY_DIR})
 
 # Source files
 set(main_ROOT ${CMAKE_SOURCE_DIR}/src)
-include_directories(${main_ROOT})
 set(kgeotag_SOURCES
     ${main_ROOT}/main.cpp
     ${main_ROOT}/Settings.cpp
