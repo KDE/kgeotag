@@ -50,6 +50,7 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
 
     m_path = new QLabel;
     m_path->setWordWrap(true);
+    m_path->setTextInteractionFlags(Qt::TextSelectableByMouse);
     infoLayout->addWidget(m_path, 0, 1);
 
     auto *dateTimeLabel = new QLabel(i18n("Date/Time:"));
@@ -57,6 +58,7 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     infoLayout->addWidget(dateTimeLabel, 1, 0);
 
     m_date = new QLabel;
+    m_date->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_date->setWordWrap(true);
     infoLayout->addWidget(m_date, 1, 1);
 
@@ -65,6 +67,7 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     infoLayout->addWidget(coordinatesLabel, 2, 0);
 
     m_coordinates = new QLabel;
+    m_coordinates->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_coordinates->setWordWrap(true);
     infoLayout->addWidget(m_coordinates, 2, 1);
 
