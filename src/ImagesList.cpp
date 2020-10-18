@@ -37,9 +37,6 @@
 #include <QMenu>
 #include <QAction>
 
-// C++ includes
-#include <functional>
-
 ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *imageCache,
                        QWidget *parent)
     : QListWidget(parent),
@@ -51,8 +48,10 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
     setIconSize(m_imageCache->thumbnailSize());
 
     connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHighlighted);
-    connect(this, &QListWidget::itemClicked,
-            this, std::bind(&ImagesList::imageHighlighted, this, std::placeholders::_1, nullptr));
+    connect(this, &QListWidget::itemClicked, [this](QListWidgetItem *item)
+            {
+                emit imageSelected(dynamic_cast<ImageItem *>(item)->path(), true);
+            });
 
     m_contextMenu = new QMenu(this);
 
@@ -77,7 +76,7 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
 void ImagesList::imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const
 {
     if (item != nullptr) {
-        emit imageSelected(dynamic_cast<ImageItem *>(item)->path());
+        emit imageSelected(dynamic_cast<ImageItem *>(item)->path(), false);
     }
 }
 
@@ -158,11 +157,14 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
+    const auto path = dynamic_cast<const ImageItem *>(item)->path();
+    emit imageSelected(path, false);
+
     auto *drag = new QDrag(this);
     drag->setPixmap(item->icon().pixmap(iconSize()));
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setText(dynamic_cast<const ImageItem *>(item)->path());
+    mimeData->setText(path);
     drag->setMimeData(mimeData);
     drag->exec(Qt::MoveAction);
 }
