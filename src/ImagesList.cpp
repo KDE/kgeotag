@@ -48,7 +48,8 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
     setIconSize(m_imageCache->thumbnailSize());
 
     connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHighlighted);
-    connect(this, &QListWidget::itemClicked, [this](QListWidgetItem *item)
+    connect(this, &QListWidget::itemClicked,
+            [this](QListWidgetItem *item)
             {
                 emit imageSelected(dynamic_cast<ImageItem *>(item)->path(), true);
             });
@@ -57,17 +58,26 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
 
     if (m_type == Type::Assigned) {
         m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
-        connect(m_lookupElevation, &QAction::triggered, [this]
-                { emit lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path()); });
+        connect(m_lookupElevation, &QAction::triggered,
+                [this]
+                {
+                    emit lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path());
+                });
     }
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
-    connect(m_removeCoordinates, &QAction::triggered, [this]
-            { emit removeCoordinates(dynamic_cast<ImageItem *>(currentItem())->path()); });
+    connect(m_removeCoordinates, &QAction::triggered,
+            [this]
+            {
+                emit removeCoordinates(dynamic_cast<ImageItem *>(currentItem())->path());
+            });
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
-    connect(m_discardChanges, &QAction::triggered, [this]
-            { emit discardChanges(dynamic_cast<ImageItem *>(currentItem())->path()); });
+    connect(m_discardChanges, &QAction::triggered,
+            [this]
+            {
+                emit discardChanges(dynamic_cast<ImageItem *>(currentItem())->path());
+            });
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QListWidget::customContextMenuRequested, this, &ImagesList::showContextMenu);
