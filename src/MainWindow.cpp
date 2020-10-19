@@ -32,7 +32,6 @@
 
 // KDE includes
 #include <KLocalizedString>
-#include <KIconLoader>
 #include <KHelpMenu>
 #include <KExiv2/KExiv2>
 
