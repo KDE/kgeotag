@@ -103,15 +103,17 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
                 this, std::bind(&MapWidget::changeFloaterVisiblity, this, action));
     }
 
-    m_contextMenu->addSeparator();
-
     // The "License" floater is always shown on startup (by Marble itself)
-    auto *licenseAction = m_contextMenu->addAction(floatItem(s_licenseFloaterId)->name());
-    licenseAction->setCheckable(true);
-    licenseAction->setChecked(true);
-    licenseAction->setData(s_licenseFloaterId);
-    connect(licenseAction, &QAction::toggled,
-            this, std::bind(&MapWidget::changeFloaterVisiblity, this, licenseAction));
+    auto *licenseFloater = floatItem(s_licenseFloaterId);
+    if (licenseFloater != nullptr) {
+        m_contextMenu->addSeparator();
+        auto *licenseAction = m_contextMenu->addAction(licenseFloater->name());
+        licenseAction->setCheckable(true);
+        licenseAction->setChecked(true);
+        licenseAction->setData(s_licenseFloaterId);
+        connect(licenseAction, &QAction::toggled,
+                this, std::bind(&MapWidget::changeFloaterVisiblity, this, licenseAction));
+    }
 
     // Don't use the MarbleWidget context menu, but our own
     auto *handler = inputHandler();
