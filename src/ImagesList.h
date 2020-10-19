@@ -34,6 +34,7 @@ class ImageCache;
 class QMouseEvent;
 class QMenu;
 class QAction;
+class QKeyEvent;
 
 class ImagesList : public QListWidget
 {
@@ -52,12 +53,15 @@ public:
     void removeImage(const QString &path);
 
 signals:
-    void imageSelected(const QString &path, bool center = true) const;
+    void imageSelected(const QString &path) const;
+    void centerImage(const QString &path) const;
     void lookupElevation(const QString &path) const;
     void removeCoordinates(const QString &path) const;
     void discardChanges(const QString &path) const;
 
 protected:
+    virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
 
@@ -69,7 +73,10 @@ private: // Variables
     Type m_type;
     Settings *m_settings;
     ImageCache *m_imageCache;
+
+    QListWidgetItem *m_itemBeforeKeyPress = nullptr;
     QPoint m_dragStartPosition;
+
     QMenu *m_contextMenu;
     QAction *m_lookupElevation = nullptr;
     QAction *m_removeCoordinates;

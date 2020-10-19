@@ -66,6 +66,7 @@ MainWindow::MainWindow() : QMainWindow()
             this, &MainWindow::elevationProcessed);
 
     // Menu setup
+    // ==========
 
     // File
 
@@ -121,6 +122,8 @@ MainWindow::MainWindow() : QMainWindow()
     menuBar()->addMenu(helpMenu->menu());
 
     // Dock setup
+    // ==========
+
     setDockNestingEnabled(true);
 
     // Unassigned images
@@ -157,7 +160,7 @@ MainWindow::MainWindow() : QMainWindow()
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
-    connect(m_assignedImages, &ImagesList::imageSelected, this, &MainWindow::imageSelected);
+    connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
 
     // Size initialization/restoration
@@ -482,13 +485,6 @@ void MainWindow::saveChanges()
     QApplication::restoreOverrideCursor();
     QMessageBox::information(this, i18n("Save changes"),
                              i18n("All changes have been successfully saved!"));
-}
-
-void MainWindow::imageSelected(const QString &path, bool center)
-{
-    if (center) {
-        m_mapWidget->centerImage(path);
-    }
 }
 
 void MainWindow::showSettings()

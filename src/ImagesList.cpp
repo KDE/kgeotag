@@ -36,6 +36,7 @@
 #include <QFileInfo>
 #include <QMenu>
 #include <QAction>
+#include <QKeyEvent>
 
 ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *imageCache,
                        QWidget *parent)
@@ -48,11 +49,13 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
     setIconSize(m_imageCache->thumbnailSize());
 
     connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHighlighted);
-    connect(this, &QListWidget::itemClicked,
-            [this](QListWidgetItem *item)
-            {
-                emit imageSelected(dynamic_cast<ImageItem *>(item)->path(), true);
-            });
+    if (m_type == Type::Assigned) {
+        connect(this, &QListWidget::itemClicked,
+                [this](QListWidgetItem *item)
+                {
+                    emit centerImage(dynamic_cast<ImageItem *>(item)->path());
+                });
+    }
 
     m_contextMenu = new QMenu(this);
 
@@ -83,11 +86,40 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
     connect(this, &QListWidget::customContextMenuRequested, this, &ImagesList::showContextMenu);
 }
 
+void ImagesList::keyPressEvent(QKeyEvent *event)
+{
+    if (m_type == Type::Assigned) {
+        const auto key = event->key();
+        if (key == Qt::Key_Up || key == Qt::Key_Down
+            || key == Qt::Key_PageUp || key == Qt::Key_PageDown) {
+
+            m_itemBeforeKeyPress = currentItem();
+        }
+    }
+
+    QListWidget::keyPressEvent(event);
+}
+
+void ImagesList::keyReleaseEvent(QKeyEvent *event)
+{
+    if (m_type == Type::Assigned) {
+        const auto *item = currentItem();
+        if (m_itemBeforeKeyPress != nullptr && m_itemBeforeKeyPress != item) {
+            emit centerImage(dynamic_cast<const ImageItem *>(item)->path());
+        }
+        m_itemBeforeKeyPress = nullptr;
+    }
+
+    QListWidget::keyReleaseEvent(event);
+}
+
 void ImagesList::imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const
 {
-    if (item != nullptr) {
-        emit imageSelected(dynamic_cast<ImageItem *>(item)->path(), false);
+    if (item == nullptr) {
+        return;
     }
+
+    emit imageSelected(dynamic_cast<ImageItem *>(item)->path());
 }
 
 void ImagesList::addOrUpdateImage(const QString &path)
@@ -121,8 +153,7 @@ void ImagesList::addOrUpdateImage(const QString &path)
     }
 
     if (currentItem() == imageItem) {
-        // Update the preview without centering the image
-        emit imageSelected(path, false);
+        emit imageSelected(path);
     }
 }
 
@@ -168,7 +199,7 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
     }
 
     const auto path = dynamic_cast<const ImageItem *>(item)->path();
-    emit imageSelected(path, false);
+    emit imageSelected(path);
 
     auto *drag = new QDrag(this);
     drag->setPixmap(item->icon().pixmap(iconSize()));

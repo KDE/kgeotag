@@ -57,7 +57,6 @@ private slots:
     void assignExactMatches();
     void assignInterpolatedMatches();
     void saveChanges();
-    void imageSelected(const QString &path, bool center);
     void showSettings();
     void removeCoordinates(const QString &path);
     void discardChanges(const QString &path);
