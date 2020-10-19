@@ -160,6 +160,11 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
 
 KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 {
+    // This only works if we at least have at least 2 points ;-)
+    if (m_allTimes.count() < 2) {
+        return KGeoTag::NoCoordinates;
+    }
+
     // If the image's date is before the first or after the last point we have,
     // it can't be assigned.
     if (time < m_allTimes.first() || time > m_allTimes.last()) {
