@@ -45,11 +45,7 @@ int main(int argc, char *argv[])
     aboutData.setVersion(VERSION_STRING);
     aboutData.setShortDescription(i18n("Photo geotagging program"));
     aboutData.setLicense(KAboutLicense::GPL);
-    const int year = QLocale(QStringLiteral("en_US")).toDate(
-        QStringLiteral(__DATE__).simplified(), QStringLiteral("MMM d yyyy")).year();
-    aboutData.setCopyrightStatement(i18n("Copyright (c) %1 Tobias Leupold",
-                                         year == 2020 ? QStringLiteral("2020")
-                                                      : i18n("2020-%1", year)));
+    aboutData.setCopyrightStatement(i18n("Copyright (C) 2020 Tobias Leupold"));
     aboutData.setBugAddress(
         QStringLiteral("https://invent.kde.org/tleupold/kgeotag/-/issues").toUtf8());
     aboutData.setHomepage(QStringLiteral("https://invent.kde.org/tleupold/kgeotag"));
