@@ -26,7 +26,7 @@
 // Marble includes
 #include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
-#include <marble/MarbleModel.h>
+#include <marble/MarbleWidgetInputHandler.h>
 
 // KDE includes
 #include <KLocalizedString>
@@ -36,12 +36,11 @@
 #include <QDragEnterEvent>
 #include <QMimeData>
 #include <QDropEvent>
-#include <QXmlStreamReader>
-#include <QApplication>
-#include <QMessageBox>
+#include <QMenu>
+#include <QAction>
 
 // C++ includes
-#include <algorithm>
+#include <functional>
 
 MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
     : Marble::MarbleWidget(parent), m_settings(settings), m_imageCache(imageCache)
@@ -54,6 +53,40 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
     m_trackPen.setCapStyle(Qt::RoundCap);
     m_trackPen.setJoinStyle(Qt::RoundJoin);
     updateSettings();
+
+    // Build a context menu
+
+    m_contextMenu = new QMenu(this);
+
+    const auto floatItemsList = floatItems();
+    const auto visibility = m_settings->floatersVisibility();
+    for (const auto &item : floatItemsList) {
+        const auto id = item->nameId();
+        auto *action = m_contextMenu->addAction(item->name());
+        action->setIcon(item->icon());
+        action->setCheckable(true);
+        action->setChecked(visibility.value(id));
+        action->setData(id);
+
+        connect(action, &QAction::toggled,
+                this, std::bind(&MapWidget::changeFloaterVisiblity, this, action));
+    }
+
+    // Don't use the MarbleWidget context menu, but our own
+    auto *handler = inputHandler();
+    handler->setMouseButtonPopupEnabled(Qt::RightButton, false);
+    connect(handler, &Marble::MarbleWidgetInputHandler::rmbRequest,
+            this, &MapWidget::showContextMenu);
+}
+
+void MapWidget::showContextMenu(int x, int y)
+{
+    m_contextMenu->exec(mapToGlobal(QPoint(x, y)));
+}
+
+void MapWidget::changeFloaterVisiblity(QAction *action)
+{
+    floatItem(action->data().toString())->setVisible(action->isChecked());
 }
 
 void MapWidget::customPaint(Marble::GeoPainter *painter)
@@ -86,7 +119,7 @@ void MapWidget::saveSettings()
 
     const auto floatItemsList = floatItems();
     for (const auto &item : floatItemsList) {
-        visibility.insert(item->name(), item->visible());
+        visibility.insert(item->nameId(), item->visible());
     }
 
     m_settings->saveFloatersVisibility(visibility);
@@ -104,7 +137,7 @@ void MapWidget::restoreSettings()
     const auto floatersVisiblility = m_settings->floatersVisibility();
     const auto floatItemsList = floatItems();
     for (const auto &item : floatItemsList) {
-        const auto name = item->name();
+        const auto name = item->nameId();
         if (floatersVisiblility.contains(name)) {
             item->setVisible(floatersVisiblility.value(name));
         }

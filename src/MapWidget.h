@@ -33,6 +33,7 @@
 #include <QHash>
 #include <QPen>
 #include <QDateTime>
+#include <QMenu>
 
 // Local classes
 class Settings;
@@ -69,6 +70,10 @@ protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
     virtual void dropEvent(QDropEvent *event) override;
 
+private slots:
+    void showContextMenu(int x, int y);
+    void changeFloaterVisiblity(QAction *action);
+
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
@@ -76,6 +81,7 @@ private: // Variables
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     Marble::GeoDataLatLonAltBox m_gpxBox;
+    QMenu *m_contextMenu;
 
 };
 
