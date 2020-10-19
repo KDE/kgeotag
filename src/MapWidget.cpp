@@ -92,10 +92,7 @@ void MapWidget::saveSettings()
     m_settings->saveFloatersVisibility(visibility);
 
     // Save the current center point
-    const auto center = focusPoint();
-    m_settings->saveMapCenter(KGeoTag::Coordinates {
-                                  center.longitude(Marble::GeoDataCoordinates::Degree),
-                                  center.latitude(Marble::GeoDataCoordinates::Degree), 0, true });
+    m_settings->saveMapCenter(currentCenter());
 
     // Save the zoom level
     m_settings->saveZoom(zoom());
@@ -197,4 +194,12 @@ void MapWidget::zoomToGpxBox()
 {
     centerOn(m_gpxBox);
     m_gpxBox.clear();
+}
+
+KGeoTag::Coordinates MapWidget::currentCenter() const
+{
+    const auto center = focusPoint();
+    return KGeoTag::Coordinates { center.longitude(Marble::GeoDataCoordinates::Degree),
+                                  center.latitude(Marble::GeoDataCoordinates::Degree),
+                                  0.0, true };
 }

@@ -64,6 +64,7 @@ private slots:
     void removeAllCoordinates();
     void lookupElevation(const QString &path);
     void elevationProcessed(QString path, bool success, double elevation);
+    void assignToMapCenter(const QString &path);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

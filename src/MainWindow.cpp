@@ -133,6 +133,8 @@ MainWindow::MainWindow() : QMainWindow()
     connect(m_unAssignedImages, &ImagesList::removeCoordinates,
             this, &MainWindow::removeCoordinates);
     connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
+    connect(m_unAssignedImages, &ImagesList::assignToMapCenter,
+            this, &MainWindow::assignToMapCenter);
 
     // Assigned images
     m_assignedImages = new ImagesList(ImagesList::Type::Assigned, m_settings, m_imageCache);
@@ -141,6 +143,7 @@ MainWindow::MainWindow() : QMainWindow()
     connect(m_assignedImages, &ImagesList::lookupElevation, this, &MainWindow::lookupElevation);
     connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
+    connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
 
     // Preview
     m_previewWidget = new PreviewWidget(m_imageCache);
@@ -310,6 +313,19 @@ void MainWindow::imageDropped(const QString &path)
     m_imageCache->setChanged(path, true);
     m_assignedImages->addOrUpdateImage(path);
     m_previewWidget->setImage(path);
+
+    if (m_settings->lookupElevation()) {
+        lookupElevation(path);
+    }
+}
+
+void MainWindow::assignToMapCenter(const QString &path)
+{
+    const auto coordinates = m_mapWidget->currentCenter();
+    assignImage(path, coordinates);
+
+    m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
+    m_mapWidget->reloadMap();
 
     if (m_settings->lookupElevation()) {
         lookupElevation(path);

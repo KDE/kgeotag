@@ -57,6 +57,7 @@ public:
     void removeImage(const QString &path);
     void centerImage(const QString &path);
     void zoomToGpxBox();
+    KGeoTag::Coordinates currentCenter() const;
 
 public slots:
     void addSegment(const QVector<KGeoTag::Coordinates> &segment);

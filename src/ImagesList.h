@@ -55,6 +55,8 @@ public:
 signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
+
+    void assignToMapCenter(const QString &path) const;
     void lookupElevation(const QString &path) const;
     void removeCoordinates(const QString &path) const;
     void discardChanges(const QString &path) const;

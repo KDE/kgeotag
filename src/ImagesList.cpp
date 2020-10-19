@@ -59,6 +59,15 @@ ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *im
 
     m_contextMenu = new QMenu(this);
 
+    auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
+    connect(assignToMapCenterAction, &QAction::triggered,
+            [this]
+            {
+                emit assignToMapCenter(dynamic_cast<ImageItem *>(currentItem())->path());
+            });
+
+    m_contextMenu->addSeparator();
+
     if (m_type == Type::Assigned) {
         m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
         connect(m_lookupElevation, &QAction::triggered,
