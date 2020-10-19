@@ -40,6 +40,9 @@ public:
     void saveMainWindowState(const QByteArray &data);
     QByteArray mainWindowState() const;
 
+    void saveShowCrosshairs(bool state);
+    bool showCrosshairs() const;
+
     void saveFloatersVisibility(const QHash<QString, bool> &data);
     QHash<QString, bool> floatersVisibility();
 

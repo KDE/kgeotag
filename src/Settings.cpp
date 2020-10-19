@@ -28,12 +28,13 @@
 
 static const QLatin1String s_main("main/");
 static const QString s_main_windowGeometry = s_main + QLatin1String("window_geometry");
-static const QString s_main_windowState   = s_main + QLatin1String("window_state");
+static const QString s_main_windowState = s_main + QLatin1String("window_state");
 static const QString s_main_lastOpenPath = s_main + QLatin1String("last_open_path");
 
 // Map
 
 static const QLatin1String s_map("map/");
+static const QString s_map_showCrosshairs = s_map + QLatin1String("show_crosshairs");
 static const QString s_map_centerLon = s_map + QLatin1String("center_lon");
 static const QString s_map_centerLat = s_map + QLatin1String("center_lat");
 static const QString s_map_zoom = s_map + QLatin1String("zoom");
@@ -107,6 +108,16 @@ void Settings::saveMainWindowState(const QByteArray &data)
 QByteArray Settings::mainWindowState() const
 {
     return value(s_main_windowState, QByteArray()).toByteArray();
+}
+
+void Settings::saveShowCrosshairs(bool state)
+{
+    setValue(s_map_showCrosshairs, state);
+}
+
+bool Settings::showCrosshairs() const
+{
+    return value(s_map_showCrosshairs, true).toBool();
 }
 
 void Settings::saveFloatersVisibility(const QHash<QString, bool> &data)

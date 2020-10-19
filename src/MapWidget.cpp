@@ -42,6 +42,16 @@
 // C++ includes
 #include <functional>
 
+static QString s_licenseFloaterId = QStringLiteral("license");
+static QVector<QString> s_unsupportedFloaters = {
+    s_licenseFloaterId,
+    QStringLiteral("elevationprofile"),
+    QStringLiteral("GpsInfo"),
+    QStringLiteral("progress"),
+    QStringLiteral("routing"),
+    QStringLiteral("speedometer")
+};
+
 MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
     : Marble::MarbleWidget(parent), m_settings(settings), m_imageCache(imageCache)
 {
@@ -57,11 +67,32 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
     // Build a context menu
 
     m_contextMenu = new QMenu(this);
+    m_contextMenu->addSection(i18n("Floating items"));
 
     const auto floatItemsList = floatItems();
     const auto visibility = m_settings->floatersVisibility();
+
+    // Add a "Toggle crosshairs" action
+    auto *crossHairsAction = m_contextMenu->addAction(i18n("Crosshairs"));
+    crossHairsAction->setCheckable(true);
+    connect(crossHairsAction, &QAction::toggled, this, &Marble::MarbleWidget::setShowCrosshairs);
+    crossHairsAction->setChecked(m_settings->showCrosshairs());
+    setShowCrosshairs(m_settings->showCrosshairs());
+
+    // Add actions for all supported floaters
+
+    m_contextMenu->addSeparator();
+
     for (const auto &item : floatItemsList) {
         const auto id = item->nameId();
+        if (s_unsupportedFloaters.contains(id)) {
+            auto item = floatItem(id);
+            if (item != nullptr) {
+                item->setVisible(false);
+            }
+            continue;
+        }
+
         auto *action = m_contextMenu->addAction(item->name());
         action->setIcon(item->icon());
         action->setCheckable(true);
@@ -71,6 +102,16 @@ MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent
         connect(action, &QAction::toggled,
                 this, std::bind(&MapWidget::changeFloaterVisiblity, this, action));
     }
+
+    m_contextMenu->addSeparator();
+
+    // The "License" floater is always shown on startup (by Marble itself)
+    auto *licenseAction = m_contextMenu->addAction(floatItem(s_licenseFloaterId)->name());
+    licenseAction->setCheckable(true);
+    licenseAction->setChecked(true);
+    licenseAction->setData(s_licenseFloaterId);
+    connect(licenseAction, &QAction::toggled,
+            this, std::bind(&MapWidget::changeFloaterVisiblity, this, licenseAction));
 
     // Don't use the MarbleWidget context menu, but our own
     auto *handler = inputHandler();
@@ -113,13 +154,20 @@ void MapWidget::updateSettings()
 
 void MapWidget::saveSettings()
 {
+    // Save the crosshairs visibility
+    m_settings->saveShowCrosshairs(showCrosshairs());
+
     // Save the floaters visibility
 
     QHash<QString, bool> visibility;
 
     const auto floatItemsList = floatItems();
     for (const auto &item : floatItemsList) {
-        visibility.insert(item->nameId(), item->visible());
+        const auto id = item->nameId();
+        if (s_unsupportedFloaters.contains(id)) {
+            continue;
+        }
+        visibility.insert(id, item->visible());
     }
 
     m_settings->saveFloatersVisibility(visibility);
