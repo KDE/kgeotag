@@ -29,6 +29,7 @@ class MapWidget;
 
 // Qt classes
 class QMenu;
+class QAction;
 class QListWidgetItem;
 
 class BookmarksList : public QListWidget
@@ -42,6 +43,7 @@ private slots:
     void showContextMenu(const QPoint &point);
     void newBookmark();
     void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
+    void removeBookmark();
 
 private: // Enums
     enum ItemData {
@@ -53,6 +55,7 @@ private: // Variables
     Settings *m_settings;
     MapWidget *m_mapWidget;
     QMenu *m_contextMenu;
+    QAction *m_deleteBookmarkAction;
 
 };
 

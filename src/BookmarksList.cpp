@@ -42,6 +42,11 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
                                                             "center"));
     connect(newBookmarkAction, &QAction::triggered, this, &BookmarksList::newBookmark);
 
+    m_contextMenu->addSeparator();
+
+    m_deleteBookmarkAction = m_contextMenu->addAction(i18n("Delete bookmark"));
+    connect(m_deleteBookmarkAction, &QAction::triggered, this, &BookmarksList::removeBookmark);
+
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &BookmarksList::showContextMenu);
 
@@ -50,6 +55,9 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
 
 void BookmarksList::showContextMenu(const QPoint &point)
 {
+    const bool itemSelected = currentItem() != nullptr;
+    m_deleteBookmarkAction->setEnabled(itemSelected);
+
     m_contextMenu->exec(mapToGlobal(point));
 }
 
@@ -96,4 +104,17 @@ void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
                                              0.0, true };
 
     m_mapWidget->centerCoordinates(coordinates);
+}
+
+void BookmarksList::removeBookmark()
+{
+    if (QMessageBox::question(this, i18n("Delete bookmark"),
+        i18n("Really delete bookmark \"%1\"?", currentItem()->text()),
+        QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes) {
+
+        return;
+    }
+
+    const auto *item = takeItem(currentRow());
+    delete item;
 }
