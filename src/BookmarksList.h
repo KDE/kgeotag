@@ -29,6 +29,7 @@ class MapWidget;
 
 // Qt classes
 class QMenu;
+class QListWidgetItem;
 
 class BookmarksList : public QListWidget
 {
@@ -40,6 +41,13 @@ public:
 private slots:
     void showContextMenu(const QPoint &point);
     void newBookmark();
+    void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
+
+private: // Enums
+    enum ItemData {
+        Lon = Qt::UserRole,
+        Lat
+    };
 
 private: // Variables
     Settings *m_settings;

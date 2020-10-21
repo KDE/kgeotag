@@ -30,6 +30,7 @@
 #include <QMenu>
 #include <QInputDialog>
 #include <QMessageBox>
+#include <QListWidgetItem>
 
 BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *parent)
     : QListWidget(parent),
@@ -43,6 +44,8 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &BookmarksList::showContextMenu);
+
+    connect(this, &QListWidget::currentItemChanged, this, &BookmarksList::itemHighlighted);
 }
 
 void BookmarksList::showContextMenu(const QPoint &point)
@@ -64,6 +67,33 @@ void BookmarksList::newBookmark()
         label = i18n("Untitled");
     }
 
+    QString searchLabel = label;
+    int addition = 0;
+    while (! findItems(searchLabel, Qt::MatchExactly).isEmpty()) {
+        addition++;
+        searchLabel = i18nc("Adding a consecutive number to a bookmark label to make it unique",
+                            "%1 (%2)", label, addition);
+    }
+    label = searchLabel;
+
     const auto coordinates = m_mapWidget->currentCenter();
-    qDebug() << label << coordinates.lon << coordinates.lat;
+
+    auto *item = new QListWidgetItem(label);
+    item->setData(ItemData::Lon, coordinates.lon);
+    item->setData(ItemData::Lat, coordinates.lat);
+    addItem(item);
+    setCurrentItem(item);
+}
+
+void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
+{
+    if (item == nullptr) {
+        return;
+    }
+
+    const KGeoTag::Coordinates coordinates { item->data(ItemData::Lon).toDouble(),
+                                             item->data(ItemData::Lat).toDouble(),
+                                             0.0, true };
+
+    m_mapWidget->centerCoordinates(coordinates);
 }

@@ -269,7 +269,11 @@ void MapWidget::removeImage(const QString &path)
 
 void MapWidget::centerImage(const QString &path)
 {
-    const auto coordinates = m_imageCache->coordinates(path);
+    centerCoordinates(m_imageCache->coordinates(path));
+}
+
+void MapWidget::centerCoordinates(const KGeoTag::Coordinates &coordinates)
+{
     centerOn(coordinates.lon, coordinates.lat);
 }
 
