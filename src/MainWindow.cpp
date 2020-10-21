@@ -159,17 +159,17 @@ MainWindow::MainWindow() : QMainWindow()
     auto *fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
                                           QStringLiteral("fixDriftDock"));
 
-    // Bookmarks
-    m_bookmarks = new BookmarksList(m_settings);
-    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarks,
-                                           QStringLiteral("bookmarksDock"));
-
     // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
+
+    // Bookmarks
+    m_bookmarks = new BookmarksList(m_settings, m_mapWidget);
+    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarks,
+                                           QStringLiteral("bookmarksDock"));
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {

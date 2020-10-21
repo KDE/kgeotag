@@ -25,16 +25,26 @@
 
 // Local classes
 class Settings;
+class MapWidget;
+
+// Qt classes
+class QMenu;
 
 class BookmarksList : public QListWidget
 {
     Q_OBJECT
 
 public:
-    explicit BookmarksList(Settings *settings, QWidget *parent = nullptr);
+    explicit BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *parent = nullptr);
+
+private slots:
+    void showContextMenu(const QPoint &point);
+    void newBookmark();
 
 private: // Variables
     Settings *m_settings;
+    MapWidget *m_mapWidget;
+    QMenu *m_contextMenu;
 
 };
 

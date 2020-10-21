@@ -20,9 +20,50 @@
 // Local includes
 #include "BookmarksList.h"
 #include "Settings.h"
+#include "MapWidget.h"
 
-BookmarksList::BookmarksList(Settings *settings, QWidget *parent)
+// KDE includes
+#include <KLocalizedString>
+
+// Qt includes
+#include <QDebug>
+#include <QMenu>
+#include <QInputDialog>
+#include <QMessageBox>
+
+BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *parent)
     : QListWidget(parent),
-      m_settings(settings)
+      m_settings(settings),
+      m_mapWidget(mapWidget)
 {
+    m_contextMenu = new QMenu(this);
+    auto *newBookmarkAction = m_contextMenu->addAction(i18n("Add new bookmark for current map "
+                                                            "center"));
+    connect(newBookmarkAction, &QAction::triggered, this, &BookmarksList::newBookmark);
+
+    setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(this, &QWidget::customContextMenuRequested, this, &BookmarksList::showContextMenu);
+}
+
+void BookmarksList::showContextMenu(const QPoint &point)
+{
+    m_contextMenu->exec(mapToGlobal(point));
+}
+
+void BookmarksList::newBookmark()
+{
+    bool okay = false;
+    auto label = QInputDialog::getText(this, i18n("New Bookmark"),
+                                       i18n("Label for the new bookmark:"), QLineEdit::Normal,
+                                       QString(), &okay);
+    if (! okay) {
+        return;
+    }
+
+    if (label.isEmpty()) {
+        label = i18n("Untitled");
+    }
+
+    const auto coordinates = m_mapWidget->currentCenter();
+    qDebug() << label << coordinates.lon << coordinates.lat;
 }
