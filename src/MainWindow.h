@@ -35,6 +35,7 @@ class ImagesList;
 class PreviewWidget;
 class MapWidget;
 class FixDriftWidget;
+class BookmarksList;
 
 // Qt classes
 class QDockWidget;
@@ -80,6 +81,7 @@ private: // Variables
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
     FixDriftWidget *m_fixDriftWidget;
+    BookmarksList *m_bookmarks;
 
 };
 

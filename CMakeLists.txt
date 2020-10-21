@@ -57,6 +57,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/GpxEngine.cpp
     ${main_ROOT}/ImageItem.cpp
     ${main_ROOT}/ElevationEngine.cpp
+    ${main_ROOT}/BookmarksList.cpp
 )
 
 # Build the executable

@@ -29,6 +29,7 @@
 #include "ImagesList.h"
 #include "SettingsDialog.h"
 #include "FixDriftWidget.h"
+#include "BookmarksList.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -158,6 +159,11 @@ MainWindow::MainWindow() : QMainWindow()
     auto *fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
                                           QStringLiteral("fixDriftDock"));
 
+    // Bookmarks
+    m_bookmarks = new BookmarksList(m_settings);
+    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarks,
+                                           QStringLiteral("bookmarksDock"));
+
     // Map
     m_mapWidget = new MapWidget(m_settings, m_imageCache);
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
@@ -181,6 +187,7 @@ MainWindow::MainWindow() : QMainWindow()
         splitDockWidget(assignedImagesDock, unassignedImagesDock, Qt::Horizontal);
         splitDockWidget(previewDock, fixDriftDock, Qt::Vertical);
         tabifyDockWidget(previewDock, fixDriftDock);
+        tabifyDockWidget(fixDriftDock, bookmarksDock);
         previewDock->raise();
     }
 
