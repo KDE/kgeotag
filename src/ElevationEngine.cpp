@@ -58,7 +58,7 @@ void ElevationEngine::cleanUpRequest(QNetworkReply *request)
 {
     if (m_requests.contains(request)) {
         request->abort();
-        emit elevationProcessed(m_requests.value(request), false);
+        emit lookupFailed();
         m_requests.remove(request);
     }
 }
@@ -70,35 +70,33 @@ void ElevationEngine::processReply(QNetworkReply *request)
         return;
     }
 
+    const auto id = m_requests.value(request);
+    removeRequest(request);
+
     QJsonParseError error;
     const auto json = QJsonDocument::fromJson(request->readAll(), &error);
     if (error.error != QJsonParseError::NoError || ! json.isObject()) {
-        emit elevationProcessed(m_requests.value(request), false);
-        removeRequest(request);
+        emit lookupFailed();
         return;
     }
 
     const auto object = json.object();
     if (object.value(QStringLiteral("status")) != QStringLiteral("OK")) {
-        emit elevationProcessed(m_requests.value(request), false);
-        removeRequest(request);
+        emit lookupFailed();
         return;
     }
 
     const auto results = object.value(QStringLiteral("results")).toArray().at(0);
     if (results.isUndefined()) {
-        emit elevationProcessed(m_requests.value(request), false);
-        removeRequest(request);
+        emit lookupFailed();
         return;
     }
 
     const auto elevation = results.toObject().value(QStringLiteral("elevation"));
     if (elevation.isUndefined()) {
-        emit elevationProcessed(m_requests.value(request), false);
-        removeRequest(request);
+        emit lookupFailed();
         return;
     }
 
-    emit elevationProcessed(m_requests.value(request), true, elevation.toDouble());
-    removeRequest(request);
+    emit elevationProcessed(id, elevation.toDouble());
 }

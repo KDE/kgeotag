@@ -30,6 +30,7 @@
 #include "SettingsDialog.h"
 #include "FixDriftWidget.h"
 #include "BookmarksList.h"
+#include "ElevationEngine.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -61,6 +62,9 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_settings = sharedObjects->settings();
     m_imageCache = sharedObjects->imageCache();
     m_gpxEngine = sharedObjects->gpxEngine();
+
+    connect(sharedObjects->elevationEngine(), &ElevationEngine::lookupFailed,
+            this, &MainWindow::elevationLookupFailed);
 
     // Menu setup
     // ==========
@@ -587,5 +591,18 @@ void MainWindow::checkUpdatePreview(const QString &path)
 {
     if (m_previewWidget->currentImage() == path) {
         m_previewWidget->setImage(path);
+    }
+}
+
+void MainWindow::elevationLookupFailed()
+{
+    QApplication::restoreOverrideCursor();
+
+    if (QMessageBox::warning(this, i18n("Elevation lookup"),
+        i18n("<p>Fetching elevation data from opentopodata.org failed.</p>"
+             "<p>Should the elevation lookup be disabled?</p>"),
+        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+
+        m_settings->saveLookupElevation(false);
     }
 }

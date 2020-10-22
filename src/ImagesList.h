@@ -73,7 +73,7 @@ protected:
 private slots:
     void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
     void showContextMenu(const QPoint &point);
-    void elevationProcessed(QString path, bool success, double elevation);
+    void elevationProcessed(QString path, double elevation);
 
 private: // Variables
     Settings *m_settings;

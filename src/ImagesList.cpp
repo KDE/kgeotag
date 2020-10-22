@@ -39,7 +39,6 @@
 #include <QMenu>
 #include <QAction>
 #include <QKeyEvent>
-#include <QMessageBox>
 
 ImagesList::ImagesList(SharedObjects *sharedObjects, ImagesList::Type type, QWidget *parent)
     : QListWidget(parent),
@@ -249,19 +248,9 @@ void ImagesList::lookupElevation(const QString &path)
     m_elevationEngine->request(path, m_imageCache->coordinates(path));
 }
 
-void ImagesList::elevationProcessed(QString path, bool success, double elevation)
+void ImagesList::elevationProcessed(QString path, double elevation)
 {
     QApplication::restoreOverrideCursor();
-    if (! success) {
-        if (QMessageBox::warning(this, i18n("Elevation lookup"),
-            i18n("<p>Fetching elevation data from opentopodata.org failed.</p>"
-                 "<p>Should the elevation lookup be disabled?</p>"),
-            QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
-
-            m_settings->saveLookupElevation(false);
-        }
-        return;
-    }
 
     auto coordinates = m_imageCache->coordinates(path);
     coordinates.alt = elevation;

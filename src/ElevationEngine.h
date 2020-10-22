@@ -40,7 +40,8 @@ public:
     void request(const QString &path, const KGeoTag::Coordinates &coordinates);
 
 signals:
-    void elevationProcessed(QString path, bool success, double elevation = 0.0) const;
+    void lookupFailed() const;
+    void elevationProcessed(QString path, double elevation = 0.0) const;
 
 private slots:
     void cleanUpRequest(QNetworkReply *request);
