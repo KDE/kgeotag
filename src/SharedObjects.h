@@ -17,63 +17,38 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef BOOKMARKSLIST_H
-#define BOOKMARKSLIST_H
+#ifndef SHAREDOBJECTS_H
+#define SHAREDOBJECTS_H
 
 // Qt includes
-#include <QListWidget>
+#include <QObject>
 
 // Local classes
-class SharedObjects;
 class Settings;
+class ImageCache;
+class GpxEngine;
+class ElevationEngine;
 class MapWidget;
 
-// Qt classes
-class QMenu;
-class QAction;
-class QListWidgetItem;
-
-class BookmarksList : public QListWidget
+class SharedObjects : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit BookmarksList(SharedObjects *sharedObjects, QWidget *parent = nullptr);
-
-private: // Enums
-    enum ItemData {
-        Lon = Qt::UserRole,
-        Lat
-    };
-
-private: // Structs
-    struct EnteredString
-    {
-        QString string;
-        bool okay;
-    };
-
-
-private slots:
-    void showContextMenu(const QPoint &point);
-    void newBookmark();
-    void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
-    void renameBookmark();
-    void deleteBookmark();
-
-private: // Functions
-    EnteredString getString(const QString &title, const QString &label,
-                            const QString &text = QString());
+    explicit SharedObjects(QObject *parent = nullptr);
+    Settings *settings() const;
+    ImageCache *imageCache() const;
+    GpxEngine *gpxEngine() const;
+    ElevationEngine *elevationEngine() const;
+    MapWidget *mapWidget() const;
 
 private: // Variables
     Settings *m_settings;
+    ImageCache *m_imageCache;
+    GpxEngine *m_gpxEngine;
+    ElevationEngine *m_elevationEngine;
     MapWidget *m_mapWidget;
-
-    QListWidgetItem *m_contextMenuItem = nullptr;
-    QMenu *m_contextMenu;
-    QAction *m_renameBookmark;
-    QAction *m_deleteBookmark;
 
 };
 
-#endif // BOOKMARKSLIST_H
+#endif // SHAREDOBJECTS_H

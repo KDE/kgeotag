@@ -19,6 +19,7 @@
 
 // Local includes
 #include "MainWindow.h"
+#include "SharedObjects.h"
 #include "version.h"
 
 // KDE includes
@@ -56,8 +57,11 @@ int main(int argc, char *argv[])
 
     KAboutData::setApplicationData(aboutData);
 
+    // Setup all shared objects
+    SharedObjects sharedObjects;
+
     // Create the main window
-    MainWindow mainWindow;
+    MainWindow mainWindow(&sharedObjects);
     mainWindow.show();
 
     // Run the program

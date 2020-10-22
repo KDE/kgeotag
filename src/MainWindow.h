@@ -27,6 +27,7 @@
 #include <QMainWindow>
 
 // Local classes
+class SharedObjects;
 class Settings;
 class ImageCache;
 class GpxEngine;
@@ -46,7 +47,7 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit MainWindow();
+    explicit MainWindow(SharedObjects *sharedObjects);
 
 protected:
     virtual void closeEvent(QCloseEvent *event) override;

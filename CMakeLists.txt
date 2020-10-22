@@ -45,6 +45,7 @@ add_custom_target(
 set(main_ROOT ${CMAKE_SOURCE_DIR}/src)
 set(kgeotag_SOURCES
     ${main_ROOT}/main.cpp
+    ${main_ROOT}/SharedObjects.cpp
     ${main_ROOT}/Settings.cpp
     ${main_ROOT}/ImageCache.cpp
     ${main_ROOT}/MainWindow.cpp

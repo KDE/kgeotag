@@ -19,6 +19,7 @@
 
 // Local includes
 #include "BookmarksList.h"
+#include "SharedObjects.h"
 #include "Settings.h"
 #include "MapWidget.h"
 
@@ -32,10 +33,10 @@
 #include <QMessageBox>
 #include <QListWidgetItem>
 
-BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *parent)
+BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     : QListWidget(parent),
-      m_settings(settings),
-      m_mapWidget(mapWidget)
+      m_settings(sharedObjects->settings()),
+      m_mapWidget(sharedObjects->mapWidget())
 {
     setSortingEnabled(true);
 

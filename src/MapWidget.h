@@ -36,6 +36,7 @@
 #include <QMenu>
 
 // Local classes
+class SharedObjects;
 class Settings;
 class ImageCache;
 
@@ -48,7 +49,7 @@ class MapWidget : public Marble::MarbleWidget
     Q_OBJECT
 
 public:
-    explicit MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent = nullptr);
+    explicit MapWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     void updateSettings();
     virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();

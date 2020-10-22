@@ -19,6 +19,7 @@
 
 // Local includes
 #include "MainWindow.h"
+#include "SharedObjects.h"
 #include "Settings.h"
 #include "ImageCache.h"
 #include "GpxEngine.h"
@@ -54,14 +55,14 @@
 // C++ includes
 #include <algorithm>
 
-MainWindow::MainWindow() : QMainWindow()
+MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 {
     setWindowTitle(i18n("KGeoTag"));
 
-    m_settings = new Settings(this);
-    m_imageCache = new ImageCache(this, m_settings);
-    m_gpxEngine = new GpxEngine(this, m_settings);
-    m_elevationEngine = new ElevationEngine(this);
+    m_settings = sharedObjects->settings();
+    m_imageCache = sharedObjects->imageCache();
+    m_gpxEngine = sharedObjects->gpxEngine();
+    m_elevationEngine = sharedObjects->elevationEngine();
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &MainWindow::elevationProcessed);
 
@@ -127,7 +128,7 @@ MainWindow::MainWindow() : QMainWindow()
     setDockNestingEnabled(true);
 
     // Unassigned images
-    m_unAssignedImages = new ImagesList(ImagesList::Type::UnAssigned, m_settings, m_imageCache);
+    m_unAssignedImages = new ImagesList(sharedObjects, ImagesList::Type::UnAssigned);
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
     connect(m_unAssignedImages, &ImagesList::removeCoordinates,
@@ -137,7 +138,7 @@ MainWindow::MainWindow() : QMainWindow()
             this, &MainWindow::assignToMapCenter);
 
     // Assigned images
-    m_assignedImages = new ImagesList(ImagesList::Type::Assigned, m_settings, m_imageCache);
+    m_assignedImages = new ImagesList(sharedObjects, ImagesList::Type::Assigned);
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
     connect(m_assignedImages, &ImagesList::lookupElevation, this, &MainWindow::lookupElevation);
@@ -160,14 +161,14 @@ MainWindow::MainWindow() : QMainWindow()
                                           QStringLiteral("fixDriftDock"));
 
     // Map
-    m_mapWidget = new MapWidget(m_settings, m_imageCache);
+    m_mapWidget = sharedObjects->mapWidget();
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
 
     // Bookmarks
-    m_bookmarks = new BookmarksList(m_settings, m_mapWidget);
+    m_bookmarks = new BookmarksList(sharedObjects);
     auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarks,
                                            QStringLiteral("bookmarksDock"));
 

@@ -19,6 +19,7 @@
 
 // Local includes
 #include "MapWidget.h"
+#include "SharedObjects.h"
 #include "Settings.h"
 #include "ImageCache.h"
 #include "KGeoTag.h"
@@ -52,8 +53,10 @@ static QVector<QString> s_unsupportedFloaters = {
     QStringLiteral("speedometer")
 };
 
-MapWidget::MapWidget(Settings *settings, ImageCache *imageCache, QWidget *parent)
-    : Marble::MarbleWidget(parent), m_settings(settings), m_imageCache(imageCache)
+MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
+    : Marble::MarbleWidget(parent),
+      m_settings(sharedObjects->settings()),
+      m_imageCache(sharedObjects->imageCache())
 {
     setAcceptDrops(true);
 

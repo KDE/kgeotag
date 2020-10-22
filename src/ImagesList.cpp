@@ -19,9 +19,10 @@
 
 // Local includes
 #include "ImagesList.h"
+#include "SharedObjects.h"
+#include "Settings.h"
 #include "ImageCache.h"
 #include "ImageItem.h"
-#include "Settings.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -38,12 +39,11 @@
 #include <QAction>
 #include <QKeyEvent>
 
-ImagesList::ImagesList(ImagesList::Type type, Settings *settings, ImageCache *imageCache,
-                       QWidget *parent)
+ImagesList::ImagesList(SharedObjects *sharedObjects, ImagesList::Type type, QWidget *parent)
     : QListWidget(parent),
-      m_type(type),
-      m_settings(settings),
-      m_imageCache(imageCache)
+      m_settings(sharedObjects->settings()),
+      m_imageCache(sharedObjects->imageCache()),
+      m_type(type)
 {
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());

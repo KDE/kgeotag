@@ -27,6 +27,7 @@
 #include <QListWidget>
 
 // Local classes
+class SharedObjects;
 class Settings;
 class ImageCache;
 
@@ -46,8 +47,7 @@ public:
         Assigned
     };
 
-    explicit ImagesList(Type type, Settings *settings, ImageCache *imageCache,
-                        QWidget *parent = nullptr);
+    explicit ImagesList(SharedObjects *sharedObjects, Type type, QWidget *parent = nullptr);
     void addOrUpdateImage(const QString &path);
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
@@ -72,9 +72,9 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private: // Variables
-    Type m_type;
     Settings *m_settings;
     ImageCache *m_imageCache;
+    Type m_type;
 
     QListWidgetItem *m_itemBeforeKeyPress = nullptr;
     QPoint m_dragStartPosition;
