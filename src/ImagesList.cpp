@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "ImageCache.h"
+#include "ElevationEngine.h"
 #include "ImageItem.h"
 
 // KDE includes
@@ -38,13 +39,18 @@
 #include <QMenu>
 #include <QAction>
 #include <QKeyEvent>
+#include <QMessageBox>
 
 ImagesList::ImagesList(SharedObjects *sharedObjects, ImagesList::Type type, QWidget *parent)
     : QListWidget(parent),
       m_settings(sharedObjects->settings()),
       m_imageCache(sharedObjects->imageCache()),
+      m_elevationEngine(sharedObjects->elevationEngine()),
       m_type(type)
 {
+    connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
+            this, &ImagesList::elevationProcessed);
+
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());
 
@@ -73,7 +79,7 @@ ImagesList::ImagesList(SharedObjects *sharedObjects, ImagesList::Type type, QWid
         connect(m_lookupElevation, &QAction::triggered,
                 [this]
                 {
-                    emit lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path());
+                    lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path());
                 });
     }
 
@@ -235,4 +241,31 @@ void ImagesList::showContextMenu(const QPoint &point)
     m_discardChanges->setEnabled(m_imageCache->changed(path));
 
     m_contextMenu->exec(mapToGlobal(point));
+}
+
+void ImagesList::lookupElevation(const QString &path)
+{
+    QApplication::setOverrideCursor(Qt::BusyCursor);
+    m_elevationEngine->request(path, m_imageCache->coordinates(path));
+}
+
+void ImagesList::elevationProcessed(QString path, bool success, double elevation)
+{
+    QApplication::restoreOverrideCursor();
+    if (! success) {
+        if (QMessageBox::warning(this, i18n("Elevation lookup"),
+            i18n("<p>Fetching elevation data from opentopodata.org failed.</p>"
+                 "<p>Should the elevation lookup be disabled?</p>"),
+            QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+
+            m_settings->saveLookupElevation(false);
+        }
+        return;
+    }
+
+    auto coordinates = m_imageCache->coordinates(path);
+    coordinates.alt = elevation;
+    m_imageCache->setCoordinates(path, coordinates);
+
+    emit checkUpdatePreview(path);
 }

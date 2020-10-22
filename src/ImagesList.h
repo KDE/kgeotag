@@ -30,6 +30,7 @@
 class SharedObjects;
 class Settings;
 class ImageCache;
+class ElevationEngine;
 
 // Qt classes
 class QMouseEvent;
@@ -52,14 +53,16 @@ public:
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
 
+public slots:
+    void lookupElevation(const QString &path = QString());
+
 signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
-
     void assignToMapCenter(const QString &path) const;
-    void lookupElevation(const QString &path) const;
     void removeCoordinates(const QString &path) const;
     void discardChanges(const QString &path) const;
+    void checkUpdatePreview(const QString &path) const;
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
@@ -70,10 +73,12 @@ protected:
 private slots:
     void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
     void showContextMenu(const QPoint &point);
+    void elevationProcessed(QString path, bool success, double elevation);
 
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
+    ElevationEngine *m_elevationEngine;
     Type m_type;
 
     QListWidgetItem *m_itemBeforeKeyPress = nullptr;
