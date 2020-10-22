@@ -68,6 +68,7 @@ private: // Variables
     Settings *m_settings;
     MapWidget *m_mapWidget;
 
+    QListWidgetItem *m_contextMenuItem = nullptr;
     QMenu *m_contextMenu;
     QAction *m_renameBookmark;
     QAction *m_deleteBookmark;

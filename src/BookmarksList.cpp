@@ -60,7 +60,9 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
 
 void BookmarksList::showContextMenu(const QPoint &point)
 {
-    const bool itemSelected = currentItem() != nullptr;
+    m_contextMenuItem = itemAt(point);
+
+    const bool itemSelected = m_contextMenuItem != nullptr;
     m_renameBookmark->setEnabled(itemSelected);
     m_deleteBookmark->setEnabled(itemSelected);
 
@@ -120,9 +122,7 @@ BookmarksList::EnteredString BookmarksList::getString(const QString &title, cons
 
 void BookmarksList::renameBookmark()
 {
-    auto *item = currentItem();
-
-    const auto currentLabel = item->text();
+    const auto currentLabel = m_contextMenuItem->text();
     auto [ label, okay ] = getString(i18n("Rename Bookmark"),
                                      i18n("New label for the new bookmark:"), currentLabel);
     if (! okay || label == currentLabel) {
@@ -137,18 +137,18 @@ void BookmarksList::renameBookmark()
         return;
     }
 
-    item->setText(label);
+    m_contextMenuItem->setText(label);
 }
 
 void BookmarksList::deleteBookmark()
 {
     if (QMessageBox::question(this, i18n("Delete bookmark"),
-        i18n("Really delete bookmark \"%1\"?", currentItem()->text()),
+        i18n("Really delete bookmark \"%1\"?", m_contextMenuItem->text()),
         QMessageBox::Yes | QMessageBox::No, QMessageBox::No) != QMessageBox::Yes) {
 
         return;
     }
 
-    const auto *item = takeItem(currentRow());
+    const auto *item = takeItem(row(m_contextMenuItem));
     delete item;
 }
