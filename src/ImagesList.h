@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "ElevationEngine.h"
 
 // Qt includes
 #include <QListWidget>
@@ -73,7 +74,7 @@ protected:
 private slots:
     void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
     void showContextMenu(const QPoint &point);
-    void elevationProcessed(QString path, double elevation);
+    void elevationProcessed(ElevationEngine::Target target, const QString &path, double elevation);
 
 private: // Variables
     Settings *m_settings;

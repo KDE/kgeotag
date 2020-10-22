@@ -36,12 +36,16 @@ class ElevationEngine : public QObject
     Q_OBJECT
 
 public:
+    enum Target {
+        Image
+    };
+
     explicit ElevationEngine(QObject *parent);
-    void request(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void request(Target target, const QString &id, const KGeoTag::Coordinates &coordinates);
 
 signals:
     void lookupFailed() const;
-    void elevationProcessed(QString path, double elevation = 0.0) const;
+    void elevationProcessed(Target target, const QString &id, double elevation = 0.0) const;
 
 private slots:
     void cleanUpRequest(QNetworkReply *request);
@@ -51,8 +55,14 @@ private: // Functions
     void removeRequest(QNetworkReply *request);
 
 private: // Variables
+    struct RequestData
+    {
+        Target target;
+        QString id;
+    };
+
     QNetworkAccessManager *m_manager;
-    QHash<QNetworkReply *, QString> m_requests;
+    QHash<QNetworkReply *, RequestData> m_requests;
 
 };
 

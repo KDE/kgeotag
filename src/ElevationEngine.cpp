@@ -38,13 +38,14 @@ ElevationEngine::ElevationEngine(QObject *parent) : QObject(parent)
     connect(m_manager, &QNetworkAccessManager::finished, this, &ElevationEngine::processReply);
 }
 
-void ElevationEngine::request(const QString &path, const KGeoTag::Coordinates &coordinates)
+void ElevationEngine::request(ElevationEngine::Target target, const QString &id,
+                              const KGeoTag::Coordinates &coordinates)
 {
     auto *request = m_manager->get(QNetworkRequest(QUrl(
         QStringLiteral("https://api.opentopodata.org/v1/aster30m?locations=%1,%2").arg(
                        QString::number(coordinates.lat), QString::number(coordinates.lon)))));
 
-    m_requests.insert(request, path);
+    m_requests.insert(request, { target, id });
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, request));
 }
 
@@ -70,7 +71,7 @@ void ElevationEngine::processReply(QNetworkReply *request)
         return;
     }
 
-    const auto id = m_requests.value(request);
+    const auto [ target, id ] = m_requests.value(request);
     removeRequest(request);
 
     QJsonParseError error;
@@ -98,5 +99,5 @@ void ElevationEngine::processReply(QNetworkReply *request)
         return;
     }
 
-    emit elevationProcessed(id, elevation.toDouble());
+    emit elevationProcessed(target, id, elevation.toDouble());
 }

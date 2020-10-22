@@ -22,7 +22,6 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "ImageCache.h"
-#include "ElevationEngine.h"
 #include "ImageItem.h"
 
 // KDE includes
@@ -245,11 +244,17 @@ void ImagesList::showContextMenu(const QPoint &point)
 void ImagesList::lookupElevation(const QString &path)
 {
     QApplication::setOverrideCursor(Qt::BusyCursor);
-    m_elevationEngine->request(path, m_imageCache->coordinates(path));
+    m_elevationEngine->request(ElevationEngine::Target::Image, path,
+                               m_imageCache->coordinates(path));
 }
 
-void ImagesList::elevationProcessed(QString path, double elevation)
+void ImagesList::elevationProcessed(ElevationEngine::Target target, const QString &path,
+                                    double elevation)
 {
+    if (target != ElevationEngine::Target::Image) {
+        return;
+    }
+
     QApplication::restoreOverrideCursor();
 
     auto coordinates = m_imageCache->coordinates(path);
