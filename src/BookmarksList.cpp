@@ -71,6 +71,7 @@ void BookmarksList::newBookmark()
         return;
     }
 
+    label = label.simplified();
     if (label.isEmpty()) {
         label = i18n("Untitled");
     }
