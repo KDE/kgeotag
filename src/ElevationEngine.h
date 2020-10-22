@@ -45,7 +45,7 @@ public:
 
 signals:
     void lookupFailed() const;
-    void elevationProcessed(Target target, const QString &id, double elevation = 0.0) const;
+    void elevationProcessed(Target target, const QString &id, double elevation) const;
 
 private slots:
     void cleanUpRequest(QNetworkReply *request);
