@@ -37,6 +37,8 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
       m_settings(settings),
       m_mapWidget(mapWidget)
 {
+    setSortingEnabled(true);
+
     m_contextMenu = new QMenu(this);
     auto *newBookmarkAction = m_contextMenu->addAction(i18n("Add new bookmark for current map "
                                                             "center"));
