@@ -46,8 +46,11 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
 
     m_contextMenu->addSeparator();
 
-    m_deleteBookmarkAction = m_contextMenu->addAction(i18n("Delete bookmark"));
-    connect(m_deleteBookmarkAction, &QAction::triggered, this, &BookmarksList::removeBookmark);
+    m_renameBookmark = m_contextMenu->addAction(i18n("Rename bookmark"));
+    connect(m_renameBookmark, &QAction::triggered, this, &BookmarksList::renameBookmark);
+
+    m_deleteBookmark = m_contextMenu->addAction(i18n("Delete bookmark"));
+    connect(m_deleteBookmark, &QAction::triggered, this, &BookmarksList::deleteBookmark);
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &BookmarksList::showContextMenu);
@@ -58,17 +61,15 @@ BookmarksList::BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *
 void BookmarksList::showContextMenu(const QPoint &point)
 {
     const bool itemSelected = currentItem() != nullptr;
-    m_deleteBookmarkAction->setEnabled(itemSelected);
+    m_renameBookmark->setEnabled(itemSelected);
+    m_deleteBookmark->setEnabled(itemSelected);
 
     m_contextMenu->exec(mapToGlobal(point));
 }
 
 void BookmarksList::newBookmark()
 {
-    bool okay = false;
-    auto label = QInputDialog::getText(this, i18n("New Bookmark"),
-                                       i18n("Label for the new bookmark:"), QLineEdit::Normal,
-                                       QString(), &okay);
+    auto [ label, okay ] = getString(i18n("New Bookmark"), i18n("Label for the new bookmark:"));
     if (! okay) {
         return;
     }
@@ -109,7 +110,37 @@ void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
     m_mapWidget->centerCoordinates(coordinates);
 }
 
-void BookmarksList::removeBookmark()
+BookmarksList::EnteredString BookmarksList::getString(const QString &title, const QString &label,
+                                                      const QString &text)
+{
+    bool okay = false;
+    auto string = QInputDialog::getText(this, title, label, QLineEdit::Normal, text, &okay);
+    return { string, okay };
+}
+
+void BookmarksList::renameBookmark()
+{
+    auto *item = currentItem();
+
+    const auto currentLabel = item->text();
+    auto [ label, okay ] = getString(i18n("Rename Bookmark"),
+                                     i18n("New label for the new bookmark:"), currentLabel);
+    if (! okay || label == currentLabel) {
+        return;
+    }
+
+    label = label.simplified();
+    if (! findItems(label, Qt::MatchExactly).isEmpty()) {
+        QMessageBox::warning(this, i18n("Rename Bookmark"),
+                             i18n("The label \"%1\" is already in use. Please choose another "
+                                  "name.", label));
+        return;
+    }
+
+    item->setText(label);
+}
+
+void BookmarksList::deleteBookmark()
 {
     if (QMessageBox::question(this, i18n("Delete bookmark"),
         i18n("Really delete bookmark \"%1\"?", currentItem()->text()),

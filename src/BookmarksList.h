@@ -39,23 +39,38 @@ class BookmarksList : public QListWidget
 public:
     explicit BookmarksList(Settings *settings, MapWidget *mapWidget, QWidget *parent = nullptr);
 
-private slots:
-    void showContextMenu(const QPoint &point);
-    void newBookmark();
-    void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
-    void removeBookmark();
-
 private: // Enums
     enum ItemData {
         Lon = Qt::UserRole,
         Lat
     };
 
+private: // Structs
+    struct EnteredString
+    {
+        QString string;
+        bool okay;
+    };
+
+
+private slots:
+    void showContextMenu(const QPoint &point);
+    void newBookmark();
+    void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
+    void renameBookmark();
+    void deleteBookmark();
+
+private: // Functions
+    EnteredString getString(const QString &title, const QString &label,
+                            const QString &text = QString());
+
 private: // Variables
     Settings *m_settings;
     MapWidget *m_mapWidget;
+
     QMenu *m_contextMenu;
-    QAction *m_deleteBookmarkAction;
+    QAction *m_renameBookmark;
+    QAction *m_deleteBookmark;
 
 };
 
