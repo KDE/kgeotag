@@ -31,6 +31,7 @@
 #include "FixDriftWidget.h"
 #include "BookmarksList.h"
 #include "ElevationEngine.h"
+#include "BookmarksWidget.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -166,8 +167,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
 
     // Bookmarks
-    m_bookmarks = new BookmarksList(sharedObjects);
-    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarks,
+    auto *bookmarksWidget = new BookmarksWidget(sharedObjects);
+    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), bookmarksWidget,
                                            QStringLiteral("bookmarksDock"));
 
     // Size initialization/restoration

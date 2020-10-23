@@ -118,7 +118,9 @@ void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
         return;
     }
 
-    m_mapWidget->centerCoordinates(m_settings->bookmarkCoordinates(item->text()));
+    const QString id = item->text();
+    m_mapWidget->centerCoordinates(m_settings->bookmarkCoordinates(id));
+    emit showInfo(id);
 }
 
 BookmarksList::EnteredString BookmarksList::getString(const QString &title, const QString &label,
@@ -176,6 +178,7 @@ void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QSt
     auto coordinates = m_settings->bookmarkCoordinates(id);
     coordinates.alt = elevation;
     m_settings->addOrUpdateBookmark(id, coordinates);
+    emit showInfo(id);
 }
 
 void BookmarksList::restoreAfterElevationLookup()

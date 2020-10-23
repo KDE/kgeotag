@@ -43,6 +43,9 @@ class BookmarksList : public QListWidget
 public:
     explicit BookmarksList(SharedObjects *sharedObjects, QWidget *parent = nullptr);
 
+signals:
+    void showInfo(const QString &id);
+
 private: // Structs
     struct EnteredString
     {
