@@ -185,6 +185,7 @@ void ImagesList::removeImage(const QString &path)
         if (dynamic_cast<ImageItem *>(item(i))->path() == path) {
             const auto *item = takeItem(i);
             delete item;
+            clearSelection();
             return;
         }
     }
