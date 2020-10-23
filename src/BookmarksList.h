@@ -58,6 +58,8 @@ private slots:
     void newBookmark();
     void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
     void renameBookmark();
+    void lookupElevation();
+    void setElevation();
     void deleteBookmark();
     void elevationProcessed(ElevationEngine::Target target, const QString &id, double elevation);
     void restoreAfterElevationLookup();
@@ -66,6 +68,7 @@ private slots:
 private: // Functions
     EnteredString getString(const QString &title, const QString &label,
                             const QString &text = QString());
+    void requestElevation(const QString &id);
 
 private: // Variables
     Settings *m_settings;
@@ -75,6 +78,8 @@ private: // Variables
     QListWidgetItem *m_contextMenuItem = nullptr;
     QMenu *m_contextMenu;
     QAction *m_renameBookmark;
+    QAction *m_lookupElevation;
+    QAction *m_setElevation;
     QAction *m_deleteBookmark;
 
 };

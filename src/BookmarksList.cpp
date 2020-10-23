@@ -57,6 +57,14 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     m_renameBookmark = m_contextMenu->addAction(i18n("Rename bookmark"));
     connect(m_renameBookmark, &QAction::triggered, this, &BookmarksList::renameBookmark);
 
+    m_lookupElevation = m_contextMenu->addAction(i18n("Fetch elevation"));
+    connect(m_lookupElevation, &QAction::triggered, this, &BookmarksList::lookupElevation);
+
+    m_setElevation = m_contextMenu->addAction(i18n("Set elevation manually"));
+    connect(m_setElevation, &QAction::triggered, this, &BookmarksList::setElevation);
+
+    m_contextMenu->addSeparator();
+
     m_deleteBookmark = m_contextMenu->addAction(i18n("Delete bookmark"));
     connect(m_deleteBookmark, &QAction::triggered, this, &BookmarksList::deleteBookmark);
 
@@ -72,6 +80,8 @@ void BookmarksList::showContextMenu(const QPoint &point)
 
     const bool itemSelected = m_contextMenuItem != nullptr;
     m_renameBookmark->setEnabled(itemSelected);
+    m_lookupElevation->setEnabled(itemSelected && m_settings->lookupElevation());
+    m_setElevation->setEnabled(itemSelected);
     m_deleteBookmark->setEnabled(itemSelected);
 
     m_contextMenu->exec(mapToGlobal(point));
@@ -106,10 +116,16 @@ void BookmarksList::newBookmark()
     setCurrentItem(item);
 
     if (m_settings->lookupElevation()) {
-        QApplication::setOverrideCursor(Qt::WaitCursor);
-        setEnabled(false);
-        m_elevationEngine->request(ElevationEngine::Target::Bookmark, label, coordinates);
+        requestElevation(label);
     }
+}
+
+void BookmarksList::requestElevation(const QString &id)
+{
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    setEnabled(false);
+    m_elevationEngine->request(ElevationEngine::Target::Bookmark, id,
+                               m_settings->bookmarkCoordinates(id));
 }
 
 void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
@@ -187,4 +203,24 @@ void BookmarksList::restoreAfterElevationLookup()
         QApplication::restoreOverrideCursor();
         setEnabled(true);
     }
+}
+
+void BookmarksList::lookupElevation()
+{
+    requestElevation(m_contextMenuItem->text());
+}
+
+void BookmarksList::setElevation()
+{
+    const auto id = m_contextMenuItem->text();
+
+    bool okay = false;
+    auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
+                                             i18n("Elevation for \"%1\" (m)", id), 0, -12000, 8900,
+                                             1, &okay);
+    if (! okay) {
+        return;
+    }
+
+    elevationProcessed(ElevationEngine::Target::Bookmark, id, elevation);
 }
