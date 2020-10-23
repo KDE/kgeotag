@@ -26,6 +26,7 @@
 // Qt includes
 #include <QSettings>
 #include <QColor>
+#include <QHash>
 
 class Settings : public QSettings
 {
@@ -84,6 +85,14 @@ public:
 
     void saveCreateBackups(bool state);
     bool createBackups() const;
+
+    void addOrUpdateBookmark(const QString &id, const KGeoTag::Coordinates &coordinates);
+    void removeBookmark(const QString &id);
+    KGeoTag::Coordinates bookmarkCoordinates(const QString &id) const;
+    const QHash<QString, KGeoTag::Coordinates> &bookmarks() const;
+
+private: // Variables
+    QHash<QString, KGeoTag::Coordinates> m_bookmarks;
 
 };
 

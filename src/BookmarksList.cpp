@@ -32,12 +32,19 @@
 #include <QInputDialog>
 #include <QMessageBox>
 #include <QListWidgetItem>
+#include <QApplication>
 
 BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     : QListWidget(parent),
       m_settings(sharedObjects->settings()),
+      m_elevationEngine(sharedObjects->elevationEngine()),
       m_mapWidget(sharedObjects->mapWidget())
 {
+    connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
+            this, &BookmarksList::elevationProcessed);
+    connect(m_elevationEngine, &ElevationEngine::lookupFailed,
+            this, &BookmarksList::restoreAfterElevationLookup);
+
     setSortingEnabled(true);
 
     m_contextMenu = new QMenu(this);
@@ -92,12 +99,17 @@ void BookmarksList::newBookmark()
     label = searchLabel;
 
     const auto coordinates = m_mapWidget->currentCenter();
+    m_settings->addOrUpdateBookmark(label, coordinates);
 
     auto *item = new QListWidgetItem(label);
-    item->setData(ItemData::Lon, coordinates.lon);
-    item->setData(ItemData::Lat, coordinates.lat);
     addItem(item);
     setCurrentItem(item);
+
+    if (m_settings->lookupElevation()) {
+        QApplication::setOverrideCursor(Qt::WaitCursor);
+        setEnabled(false);
+        m_elevationEngine->request(ElevationEngine::Target::Bookmark, label, coordinates);
+    }
 }
 
 void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
@@ -106,11 +118,7 @@ void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
         return;
     }
 
-    const KGeoTag::Coordinates coordinates { item->data(ItemData::Lon).toDouble(),
-                                             item->data(ItemData::Lat).toDouble(),
-                                             0.0, true };
-
-    m_mapWidget->centerCoordinates(coordinates);
+    m_mapWidget->centerCoordinates(m_settings->bookmarkCoordinates(item->text()));
 }
 
 BookmarksList::EnteredString BookmarksList::getString(const QString &title, const QString &label,
@@ -124,21 +132,23 @@ BookmarksList::EnteredString BookmarksList::getString(const QString &title, cons
 void BookmarksList::renameBookmark()
 {
     const auto currentLabel = m_contextMenuItem->text();
-    auto [ label, okay ] = getString(i18n("Rename Bookmark"),
-                                     i18n("New label for the new bookmark:"), currentLabel);
-    if (! okay || label == currentLabel) {
+    auto [ newLabel, okay ] = getString(i18n("Rename Bookmark"),
+                                        i18n("New label for the new bookmark:"), currentLabel);
+    if (! okay || newLabel == currentLabel) {
         return;
     }
 
-    label = label.simplified();
-    if (! findItems(label, Qt::MatchExactly).isEmpty()) {
+    newLabel = newLabel.simplified();
+    if (! findItems(newLabel, Qt::MatchExactly).isEmpty()) {
         QMessageBox::warning(this, i18n("Rename Bookmark"),
                              i18n("The label \"%1\" is already in use. Please choose another "
-                                  "name.", label));
+                                  "name.", newLabel));
         return;
     }
 
-    m_contextMenuItem->setText(label);
+    m_settings->addOrUpdateBookmark(newLabel, m_settings->bookmarkCoordinates(currentLabel));
+    m_settings->removeBookmark(currentLabel);
+    m_contextMenuItem->setText(newLabel);
 }
 
 void BookmarksList::deleteBookmark()
@@ -150,6 +160,28 @@ void BookmarksList::deleteBookmark()
         return;
     }
 
+    m_settings->removeBookmark(m_contextMenuItem->text());
     const auto *item = takeItem(row(m_contextMenuItem));
     delete item;
+}
+
+void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QString &id,
+                                       double elevation)
+{
+    if (target != ElevationEngine::Target::Bookmark) {
+        return;
+    }
+
+    restoreAfterElevationLookup();
+    auto coordinates = m_settings->bookmarkCoordinates(id);
+    coordinates.alt = elevation;
+    m_settings->addOrUpdateBookmark(id, coordinates);
+}
+
+void BookmarksList::restoreAfterElevationLookup()
+{
+    if (! isEnabled()) {
+        QApplication::restoreOverrideCursor();
+        setEnabled(true);
+    }
 }

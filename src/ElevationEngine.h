@@ -37,7 +37,8 @@ class ElevationEngine : public QObject
 
 public:
     enum Target {
-        Image
+        Image,
+        Bookmark
     };
 
     explicit ElevationEngine(QObject *parent);

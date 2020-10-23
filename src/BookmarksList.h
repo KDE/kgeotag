@@ -20,6 +20,9 @@
 #ifndef BOOKMARKSLIST_H
 #define BOOKMARKSLIST_H
 
+// Local includes
+#include "ElevationEngine.h"
+
 // Qt includes
 #include <QListWidget>
 
@@ -40,12 +43,6 @@ class BookmarksList : public QListWidget
 public:
     explicit BookmarksList(SharedObjects *sharedObjects, QWidget *parent = nullptr);
 
-private: // Enums
-    enum ItemData {
-        Lon = Qt::UserRole,
-        Lat
-    };
-
 private: // Structs
     struct EnteredString
     {
@@ -53,13 +50,15 @@ private: // Structs
         bool okay;
     };
 
-
 private slots:
     void showContextMenu(const QPoint &point);
     void newBookmark();
     void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
     void renameBookmark();
     void deleteBookmark();
+    void elevationProcessed(ElevationEngine::Target target, const QString &id, double elevation);
+    void restoreAfterElevationLookup();
+
 
 private: // Functions
     EnteredString getString(const QString &title, const QString &label,
@@ -67,6 +66,7 @@ private: // Functions
 
 private: // Variables
     Settings *m_settings;
+    ElevationEngine *m_elevationEngine;
     MapWidget *m_mapWidget;
 
     QListWidgetItem *m_contextMenuItem = nullptr;

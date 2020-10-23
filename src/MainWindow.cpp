@@ -63,9 +63,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_imageCache = sharedObjects->imageCache();
     m_gpxEngine = sharedObjects->gpxEngine();
 
-    connect(sharedObjects->elevationEngine(), &ElevationEngine::lookupFailed,
-            this, &MainWindow::elevationLookupFailed);
-
     // Menu setup
     // ==========
 
@@ -195,6 +192,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Restore the map's settings
     m_mapWidget->restoreSettings();
+
+    // Handle failed elevation lookups
+    connect(sharedObjects->elevationEngine(), &ElevationEngine::lookupFailed,
+            this, &MainWindow::elevationLookupFailed);
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,

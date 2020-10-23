@@ -287,3 +287,23 @@ bool Settings::createBackups() const
 {
     return value(s_save_createBackups, true).toBool();
 }
+
+void Settings::addOrUpdateBookmark(const QString &id, const KGeoTag::Coordinates &coordinates)
+{
+    m_bookmarks[id] = coordinates;
+}
+
+void Settings::removeBookmark(const QString &id)
+{
+    m_bookmarks.remove(id);
+}
+
+KGeoTag::Coordinates Settings::bookmarkCoordinates(const QString &id) const
+{
+    return m_bookmarks.value(id);
+}
+
+const QHash<QString, KGeoTag::Coordinates> &Settings::bookmarks() const
+{
+    return m_bookmarks;
+}
