@@ -33,9 +33,6 @@
 #include <QLocale>
 #include <QGridLayout>
 
-// C++ includes
-#include <cmath>
-
 PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     : QWidget(parent), m_imageCache(imageCache)
 {
@@ -98,13 +95,11 @@ void PreviewWidget::setImage(const QString &path)
 
     const auto coordinates = m_imageCache->coordinates(path);
     if (coordinates.isSet) {
-        m_coordinates->setText(i18n("<p>Position: %1° %2, %3° %4; Altitude: %5 m<br/>(%6)</p>",
-            std::abs(coordinates.lon), coordinates.lon >= 0 ? i18nc("Cardinal direction", "E")
-                                                            : i18nc("Cardinal direction", "W"),
-            std::abs(coordinates.lat), coordinates.lat >= 0 ? i18nc("Cardinal direction", "N")
-                                                            : i18nc("Cardinal direction", "S"),
-            coordinates.alt,
-            m_matchString.value(m_imageCache->matchType(path))));
+        m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
+                                    KGeoTag::formatLon(coordinates),
+                                    KGeoTag::formatLat(coordinates),
+                                    coordinates.alt,
+                                    m_matchString.value(m_imageCache->matchType(path))));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));
     }

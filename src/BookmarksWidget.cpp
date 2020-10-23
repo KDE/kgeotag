@@ -48,10 +48,8 @@ BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent)
 void BookmarksWidget::showInfo(const QString &id)
 {
     const auto coordinates = m_settings->bookmarkCoordinates(id);
-    m_info->setText(i18n("Position: %1° %2, %3° %4; Altitude: %5 m",
-        std::abs(coordinates.lon), coordinates.lon >= 0 ? i18nc("Cardinal direction", "E")
-                                                        : i18nc("Cardinal direction", "W"),
-        std::abs(coordinates.lat), coordinates.lat >= 0 ? i18nc("Cardinal direction", "N")
-                                                        : i18nc("Cardinal direction", "S"),
-    coordinates.alt));
+    m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
+                         KGeoTag::formatLon(coordinates),
+                         KGeoTag::formatLat(coordinates),
+                         coordinates.alt));
 }

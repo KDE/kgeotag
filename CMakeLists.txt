@@ -60,6 +60,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/ElevationEngine.cpp
     ${main_ROOT}/BookmarksList.cpp
     ${main_ROOT}/BookmarksWidget.cpp
+    ${main_ROOT}/KGeoTag.cpp
 )
 
 # Build the executable

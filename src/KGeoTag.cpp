@@ -17,35 +17,30 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef KGEOTAG_H
-#define KGEOTAG_H
+// Local includes
+#include "KGeoTag.h"
 
-// Qt includes
-#include <QString>
+// KDE includes
+#include <KLocalizedString>
+
+// C++ includes
+#include <cmath>
 
 namespace KGeoTag
 {
 
-struct Coordinates
+QString formatLon(const Coordinates &coordinates)
 {
-    double lon;
-    double lat;
-    double alt;
-    bool isSet;
-};
-
-const Coordinates NoCoordinates { 0.0, 0.0, 0.0, false };
-
-enum MatchType {
-    None,
-    Exact,
-    Interpolated,
-    Set
-};
-
-QString formatLon(const Coordinates &coordinates);
-QString formatLat(const Coordinates &coordinates);
-
+    return i18nc("Formatted longitude with a cardinal direcetion", "%1° %2",
+                 std::abs(coordinates.lon), coordinates.lon >= 0
+                    ? i18nc("Cardinal direction", "E") : i18nc("Cardinal direction", "W"));
 }
 
-#endif // KGEOTAG_H
+QString formatLat(const Coordinates &coordinates)
+{
+    return i18nc("Formatted latitude with a cardinal direcetion", "%1° %2",
+                 std::abs(coordinates.lat), coordinates.lat >= 0
+                    ? i18nc("Cardinal direction", "N") : i18nc("Cardinal direction", "S"));
+}
+
+}
