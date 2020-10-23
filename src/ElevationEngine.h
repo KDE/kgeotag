@@ -44,7 +44,7 @@ public:
     void request(Target target, const QString &id, const KGeoTag::Coordinates &coordinates);
 
 signals:
-    void lookupFailed() const;
+    void lookupFailed(const QString &errorMessage) const;
     void elevationProcessed(Target target, const QString &id, double elevation) const;
 
 private slots:

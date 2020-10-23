@@ -66,7 +66,7 @@ private slots:
     void removeAllCoordinates();
     void assignToMapCenter(const QString &path);
     void checkUpdatePreview(const QString &path);
-    void elevationLookupFailed();
+    void elevationLookupFailed(const QString &errorMessage);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

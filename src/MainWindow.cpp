@@ -594,13 +594,15 @@ void MainWindow::checkUpdatePreview(const QString &path)
     }
 }
 
-void MainWindow::elevationLookupFailed()
+void MainWindow::elevationLookupFailed(const QString &errorMessage)
 {
     QApplication::restoreOverrideCursor();
 
     if (QMessageBox::warning(this, i18n("Elevation lookup"),
         i18n("<p>Fetching elevation data from opentopodata.org failed.</p>"
-             "<p>Should the elevation lookup be disabled?</p>"),
+             "<p>The error message was: %1</p>"
+             "<p>Should the elevation lookup be disabled (cf. the settings)?</p>",
+             errorMessage),
         QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
 
         m_settings->saveLookupElevation(false);

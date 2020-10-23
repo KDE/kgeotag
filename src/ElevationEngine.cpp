@@ -20,6 +20,9 @@
 // Local includes
 #include "ElevationEngine.h"
 
+// KDE includes
+#include <KLocalizedString>
+
 // Qt includes
 #include <QNetworkAccessManager>
 #include <QNetworkReply>
@@ -59,7 +62,7 @@ void ElevationEngine::cleanUpRequest(QNetworkReply *request)
 {
     if (m_requests.contains(request)) {
         request->abort();
-        emit lookupFailed();
+        emit lookupFailed(i18n("The request timed out"));
         m_requests.remove(request);
     }
 }
@@ -77,25 +80,39 @@ void ElevationEngine::processReply(QNetworkReply *request)
     QJsonParseError error;
     const auto json = QJsonDocument::fromJson(request->readAll(), &error);
     if (error.error != QJsonParseError::NoError || ! json.isObject()) {
-        emit lookupFailed();
+        emit lookupFailed(i18n("Could not parse the server's response: Failed to create a JSON "
+                               "document"));
         return;
     }
 
     const auto object = json.object();
-    if (object.value(QStringLiteral("status")) != QStringLiteral("OK")) {
-        emit lookupFailed();
+    const auto statusValue = object.value(QStringLiteral("status"));
+    if (statusValue.isUndefined()) {
+        emit lookupFailed(i18n("Could not parse the server's response: Could not read the status "
+                               "value"));
+    }
+
+    const auto statusString = statusValue.toString();
+    if (statusString != QStringLiteral("OK")) {
+        const auto errorValue = object.value(QStringLiteral("error"));
+        const auto errorString = errorValue.isUndefined()
+            ? i18n("Could not read error description") : errorValue.toString();
+        emit lookupFailed(i18nc("A server error status followed by the error description",
+                                "%1: %2", statusString, errorString));
         return;
     }
 
     const auto results = object.value(QStringLiteral("results")).toArray().at(0);
     if (results.isUndefined()) {
-        emit lookupFailed();
+        emit lookupFailed(i18n("Could not parse the server's response: Could not read the results "
+                               "array"));
         return;
     }
 
     const auto elevation = results.toObject().value(QStringLiteral("elevation"));
     if (elevation.isUndefined()) {
-        emit lookupFailed();
+        emit lookupFailed(i18n("Could not parse the server's response: Could not read the "
+                               "elevation value"));
         return;
     }
 
