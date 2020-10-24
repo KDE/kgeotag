@@ -57,7 +57,7 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     m_renameBookmark = m_contextMenu->addAction(i18n("Rename bookmark"));
     connect(m_renameBookmark, &QAction::triggered, this, &BookmarksList::renameBookmark);
 
-    m_lookupElevation = m_contextMenu->addAction(i18n("Fetch elevation"));
+    m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
     connect(m_lookupElevation, &QAction::triggered, this, &BookmarksList::lookupElevation);
 
     m_setElevation = m_contextMenu->addAction(i18n("Set elevation manually"));
