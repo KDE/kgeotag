@@ -44,8 +44,12 @@ BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent) 
 
 void BookmarksWidget::showInfo(const KGeoTag::Coordinates &coordinates)
 {
-    m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
-                         KGeoTag::formatLon(coordinates),
-                         KGeoTag::formatLat(coordinates),
-                         coordinates.alt));
+    if (! coordinates.isSet) {
+        m_info->clear();
+    } else {
+        m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
+                             KGeoTag::formatLon(coordinates),
+                             KGeoTag::formatLat(coordinates),
+                             coordinates.alt));
+    }
 }

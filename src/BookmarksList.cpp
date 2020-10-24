@@ -130,6 +130,7 @@ void BookmarksList::requestElevation(const QString &id)
 void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
 {
     if (item == nullptr) {
+        emit showInfo(KGeoTag::NoCoordinates);
         return;
     }
 
