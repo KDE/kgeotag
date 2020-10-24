@@ -38,6 +38,7 @@
 #include <QMenu>
 #include <QAction>
 #include <QKeyEvent>
+#include <QInputDialog>
 
 // C++ includes
 #include <algorithm>
@@ -78,17 +79,23 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
             });
 
     m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
-
-    m_contextMenu->addSeparator();
+    updateBookmarks();
 
     if (m_type == Type::Assigned) {
+        m_contextMenu->addSeparator();
+
         m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
         connect(m_lookupElevation, &QAction::triggered,
                 [this]
                 {
                     lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path());
                 });
+
+        m_setElevation = m_contextMenu->addAction(i18n("Set elevation manually"));
+        connect(m_setElevation, &QAction::triggered, this, &ImagesList::setElevation);
     }
+
+    m_contextMenu->addSeparator();
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
     connect(m_removeCoordinates, &QAction::triggered,
@@ -256,6 +263,21 @@ void ImagesList::lookupElevation(const QString &path)
     QApplication::setOverrideCursor(Qt::BusyCursor);
     m_elevationEngine->request(ElevationEngine::Target::Image, path,
                                m_imageCache->coordinates(path));
+}
+
+void ImagesList::setElevation()
+{
+    const auto path = dynamic_cast<ImageItem *>(currentItem())->path();
+
+    bool okay = false;
+    auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
+                                             i18n("Elevation for \"%1\" (m)", path), 0, -12000,
+                                             8900, 1, &okay);
+    if (! okay) {
+        return;
+    }
+
+    elevationProcessed(ElevationEngine::Target::Image, path, elevation);
 }
 
 void ImagesList::elevationProcessed(ElevationEngine::Target target, const QString &path,
