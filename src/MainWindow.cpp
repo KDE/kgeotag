@@ -125,10 +125,18 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     setDockNestingEnabled(true);
 
+    // Bookmarks
+    auto *bookmarksWidget = new BookmarksWidget(sharedObjects);
+    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), bookmarksWidget,
+                                           QStringLiteral("bookmarksDock"));
+
     // Unassigned images
-    m_unAssignedImages = new ImagesList(sharedObjects, ImagesList::Type::UnAssigned);
+    m_unAssignedImages = new ImagesList(ImagesList::Type::UnAssigned, sharedObjects,
+                                        bookmarksWidget->bookmarks());
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
+    connect(bookmarksWidget, &BookmarksWidget::bookmarksChanged,
+            m_unAssignedImages, &ImagesList::updateBookmarks);
     connect(m_unAssignedImages, &ImagesList::removeCoordinates,
             this, &MainWindow::removeCoordinates);
     connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
@@ -136,9 +144,12 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
             this, &MainWindow::assignToMapCenter);
 
     // Assigned images
-    m_assignedImages = new ImagesList(sharedObjects, ImagesList::Type::Assigned);
+    m_assignedImages = new ImagesList(ImagesList::Type::Assigned, sharedObjects,
+                                      bookmarksWidget->bookmarks());
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
+    connect(bookmarksWidget, &BookmarksWidget::bookmarksChanged,
+            m_assignedImages, &ImagesList::updateBookmarks);
     connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
@@ -165,11 +176,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
-
-    // Bookmarks
-    auto *bookmarksWidget = new BookmarksWidget(sharedObjects);
-    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), bookmarksWidget,
-                                           QStringLiteral("bookmarksDock"));
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {

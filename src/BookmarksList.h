@@ -42,9 +42,11 @@ class BookmarksList : public QListWidget
 
 public:
     explicit BookmarksList(SharedObjects *sharedObjects, QWidget *parent = nullptr);
+    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
 
 signals:
-    void showInfo(const KGeoTag::Coordinates &coordinates);
+    void showInfo(const KGeoTag::Coordinates &coordinates) const;
+    void bookmarksChanged() const;
 
 private: // Structs
     struct EnteredString

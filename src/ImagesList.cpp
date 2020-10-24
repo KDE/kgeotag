@@ -39,12 +39,14 @@
 #include <QAction>
 #include <QKeyEvent>
 
-ImagesList::ImagesList(SharedObjects *sharedObjects, ImagesList::Type type, QWidget *parent)
+ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
+                       const QHash<QString, KGeoTag::Coordinates> *bookmarks, QWidget *parent)
     : QListWidget(parent),
+      m_type(type),
       m_settings(sharedObjects->settings()),
       m_imageCache(sharedObjects->imageCache()),
       m_elevationEngine(sharedObjects->elevationEngine()),
-      m_type(type)
+      m_bookmarks(bookmarks)
 {
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &ImagesList::elevationProcessed);
@@ -263,4 +265,9 @@ void ImagesList::elevationProcessed(ElevationEngine::Target target, const QStrin
     m_imageCache->setCoordinates(path, coordinates);
 
     emit checkUpdatePreview(path);
+}
+
+void ImagesList::updateBookmarks()
+{
+    qDebug() << "Bookmarks changed";
 }

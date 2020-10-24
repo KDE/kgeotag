@@ -118,6 +118,8 @@ void BookmarksList::newBookmark()
     if (m_settings->lookupElevation()) {
         requestElevation(label);
     }
+
+    emit bookmarksChanged();
 }
 
 void BookmarksList::requestElevation(const QString &id)
@@ -168,6 +170,8 @@ void BookmarksList::renameBookmark()
     m_bookmarks[newLabel] = m_bookmarks.value(currentLabel);
     m_bookmarks.remove(currentLabel);
     m_contextMenuItem->setText(newLabel);
+
+    emit bookmarksChanged();
 }
 
 void BookmarksList::deleteBookmark()
@@ -182,6 +186,8 @@ void BookmarksList::deleteBookmark()
     m_bookmarks.remove(m_contextMenuItem->text());
     const auto *item = takeItem(row(m_contextMenuItem));
     delete item;
+
+    emit bookmarksChanged();
 }
 
 void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QString &id,
@@ -222,4 +228,9 @@ void BookmarksList::setElevation()
     }
 
     elevationProcessed(ElevationEngine::Target::Bookmark, id, elevation);
+}
+
+const QHash<QString, KGeoTag::Coordinates> *BookmarksList::bookmarks() const
+{
+    return &m_bookmarks;
 }

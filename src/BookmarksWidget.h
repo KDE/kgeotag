@@ -39,6 +39,10 @@ class BookmarksWidget : public QWidget
 
 public:
     explicit BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
+    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
+
+signals:
+    void bookmarksChanged() const;
 
 private slots:
     void showInfo(const KGeoTag::Coordinates &coordinates);

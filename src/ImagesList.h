@@ -49,12 +49,15 @@ public:
         Assigned
     };
 
-    explicit ImagesList(SharedObjects *sharedObjects, Type type, QWidget *parent = nullptr);
+    explicit ImagesList(Type type, SharedObjects *sharedObjects,
+                        const QHash<QString, KGeoTag::Coordinates> *bookmarks,
+                        QWidget *parent = nullptr);
     void addOrUpdateImage(const QString &path);
     QVector<QString> allImages() const;
     void removeImage(const QString &path);
 
 public slots:
+    void updateBookmarks();
     void lookupElevation(const QString &path = QString());
 
 signals:
@@ -77,10 +80,11 @@ private slots:
     void elevationProcessed(ElevationEngine::Target target, const QString &path, double elevation);
 
 private: // Variables
+    Type m_type;
     Settings *m_settings;
     ImageCache *m_imageCache;
     ElevationEngine *m_elevationEngine;
-    Type m_type;
+    const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
     QListWidgetItem *m_itemBeforeKeyPress = nullptr;
     QPoint m_dragStartPosition;

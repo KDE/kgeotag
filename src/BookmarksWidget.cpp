@@ -35,11 +35,18 @@ BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent) 
     auto *layout = new QVBoxLayout(this);
 
     m_bookmarksList = new BookmarksList(sharedObjects);
+    connect(m_bookmarksList, &BookmarksList::bookmarksChanged,
+            this, &BookmarksWidget::bookmarksChanged);
     connect(m_bookmarksList, &BookmarksList::showInfo, this, &BookmarksWidget::showInfo);
     layout->addWidget(m_bookmarksList);
 
     m_info = new QLabel;
     layout->addWidget(m_info);
+}
+
+const QHash<QString, KGeoTag::Coordinates> *BookmarksWidget::bookmarks() const
+{
+    return m_bookmarksList->bookmarks();
 }
 
 void BookmarksWidget::showInfo(const KGeoTag::Coordinates &coordinates)
