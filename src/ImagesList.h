@@ -64,6 +64,7 @@ signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
     void assignToMapCenter(const QString &path) const;
+    void assignTo(const QString &path, const KGeoTag::Coordinates &coordinates);
     void removeCoordinates(const QString &path) const;
     void discardChanges(const QString &path) const;
     void checkUpdatePreview(const QString &path) const;
@@ -77,6 +78,7 @@ protected:
 private slots:
     void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
     void showContextMenu(const QPoint &point);
+    void emitAssignTo(QAction *action);
     void elevationProcessed(ElevationEngine::Target target, const QString &path, double elevation);
 
 private: // Variables
@@ -90,6 +92,7 @@ private: // Variables
     QPoint m_dragStartPosition;
 
     QMenu *m_contextMenu;
+    QMenu *m_bookmarksMenu;
     QAction *m_lookupElevation = nullptr;
     QAction *m_removeCoordinates;
     QAction *m_discardChanges;

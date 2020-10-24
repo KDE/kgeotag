@@ -39,6 +39,11 @@
 #include <QAction>
 #include <QKeyEvent>
 
+// C++ includes
+#include <algorithm>
+#include <utility>
+#include <functional>
+
 ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
                        const QHash<QString, KGeoTag::Coordinates> *bookmarks, QWidget *parent)
     : QListWidget(parent),
@@ -71,6 +76,8 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
             {
                 emit assignToMapCenter(dynamic_cast<ImageItem *>(currentItem())->path());
             });
+
+    m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
 
     m_contextMenu->addSeparator();
 
@@ -269,5 +276,25 @@ void ImagesList::elevationProcessed(ElevationEngine::Target target, const QStrin
 
 void ImagesList::updateBookmarks()
 {
-    qDebug() << "Bookmarks changed";
+    m_bookmarksMenu->clear();
+    auto bookmarks = m_bookmarks->keys();
+
+    if (bookmarks.count() == 0) {
+        m_bookmarksMenu->addAction(i18n("(No bookmarks defined)"));
+        return;
+    }
+
+    std::sort(bookmarks.begin(), bookmarks.end());
+    for (const auto &label : std::as_const(bookmarks)) {
+        auto *entry = m_bookmarksMenu->addAction(label);
+        entry->setData(label);
+        connect(entry, &QAction::triggered,
+                this, std::bind(&ImagesList::emitAssignTo, this, entry));
+    }
+}
+
+void ImagesList::emitAssignTo(QAction *action)
+{
+    emit assignTo(dynamic_cast<ImageItem *>(currentItem())->path(),
+                  m_bookmarks->value(action->data().toString()));
 }

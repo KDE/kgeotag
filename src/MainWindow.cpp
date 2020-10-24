@@ -140,6 +140,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_unAssignedImages, &ImagesList::removeCoordinates,
             this, &MainWindow::removeCoordinates);
     connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
+    connect(m_unAssignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_unAssignedImages, &ImagesList::assignToMapCenter,
             this, &MainWindow::assignToMapCenter);
 
@@ -152,6 +153,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
             m_assignedImages, &ImagesList::updateBookmarks);
     connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
+    connect(m_assignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
     connect(m_assignedImages, &ImagesList::checkUpdatePreview,
             this, &MainWindow::checkUpdatePreview);
@@ -337,7 +339,11 @@ void MainWindow::imageDropped(const QString &path)
 
 void MainWindow::assignToMapCenter(const QString &path)
 {
-    const auto coordinates = m_mapWidget->currentCenter();
+    assignTo(path, m_mapWidget->currentCenter());
+}
+
+void MainWindow::assignTo(const QString &path, const KGeoTag::Coordinates &coordinates)
+{
     assignImage(path, coordinates);
 
     m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
@@ -351,6 +357,7 @@ void MainWindow::assignToMapCenter(const QString &path)
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
     m_imageCache->setCoordinates(path, coordinates);
+    m_imageCache->setChanged(path, true);
     m_unAssignedImages->removeImage(path);
     m_mapWidget->addImage(path, coordinates);
     m_assignedImages->addOrUpdateImage(path);
