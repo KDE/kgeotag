@@ -44,7 +44,7 @@ public:
     explicit BookmarksList(SharedObjects *sharedObjects, QWidget *parent = nullptr);
 
 signals:
-    void showInfo(const QString &id);
+    void showInfo(const KGeoTag::Coordinates &coordinates);
 
 private: // Structs
     struct EnteredString
@@ -74,6 +74,8 @@ private: // Variables
     Settings *m_settings;
     ElevationEngine *m_elevationEngine;
     MapWidget *m_mapWidget;
+
+    QHash<QString, KGeoTag::Coordinates> m_bookmarks;
 
     QListWidgetItem *m_contextMenuItem = nullptr;
     QMenu *m_contextMenu;

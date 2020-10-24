@@ -21,7 +21,6 @@
 #include "BookmarksWidget.h"
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "KGeoTag.h"
 #include "BookmarksList.h"
 
 // KDE includes
@@ -31,23 +30,20 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
-BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent)
-    : QWidget(parent),
-      m_settings(sharedObjects->settings())
+BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent) : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
 
-    auto *bookmarks = new BookmarksList(sharedObjects);
-    connect(bookmarks, &BookmarksList::showInfo, this, &BookmarksWidget::showInfo);
-    layout->addWidget(bookmarks);
+    m_bookmarksList = new BookmarksList(sharedObjects);
+    connect(m_bookmarksList, &BookmarksList::showInfo, this, &BookmarksWidget::showInfo);
+    layout->addWidget(m_bookmarksList);
 
     m_info = new QLabel;
     layout->addWidget(m_info);
 }
 
-void BookmarksWidget::showInfo(const QString &id)
+void BookmarksWidget::showInfo(const KGeoTag::Coordinates &coordinates)
 {
-    const auto coordinates = m_settings->bookmarkCoordinates(id);
     m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
                          KGeoTag::formatLon(coordinates),
                          KGeoTag::formatLat(coordinates),

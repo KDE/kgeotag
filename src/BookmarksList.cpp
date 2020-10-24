@@ -109,7 +109,7 @@ void BookmarksList::newBookmark()
     label = searchLabel;
 
     const auto coordinates = m_mapWidget->currentCenter();
-    m_settings->addOrUpdateBookmark(label, coordinates);
+    m_bookmarks[label] = coordinates;
 
     auto *item = new QListWidgetItem(label);
     addItem(item);
@@ -124,8 +124,7 @@ void BookmarksList::requestElevation(const QString &id)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     setEnabled(false);
-    m_elevationEngine->request(ElevationEngine::Target::Bookmark, id,
-                               m_settings->bookmarkCoordinates(id));
+    m_elevationEngine->request(ElevationEngine::Target::Bookmark, id, m_bookmarks.value(id));
 }
 
 void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
@@ -135,8 +134,9 @@ void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
     }
 
     const QString id = item->text();
-    m_mapWidget->centerCoordinates(m_settings->bookmarkCoordinates(id));
-    emit showInfo(id);
+    const auto coordinates = m_bookmarks.value(id);
+    m_mapWidget->centerCoordinates(coordinates);
+    emit showInfo(coordinates);
 }
 
 BookmarksList::EnteredString BookmarksList::getString(const QString &title, const QString &label,
@@ -164,8 +164,8 @@ void BookmarksList::renameBookmark()
         return;
     }
 
-    m_settings->addOrUpdateBookmark(newLabel, m_settings->bookmarkCoordinates(currentLabel));
-    m_settings->removeBookmark(currentLabel);
+    m_bookmarks[newLabel] = m_bookmarks.value(currentLabel);
+    m_bookmarks.remove(currentLabel);
     m_contextMenuItem->setText(newLabel);
 }
 
@@ -178,7 +178,7 @@ void BookmarksList::deleteBookmark()
         return;
     }
 
-    m_settings->removeBookmark(m_contextMenuItem->text());
+    m_bookmarks.remove(m_contextMenuItem->text());
     const auto *item = takeItem(row(m_contextMenuItem));
     delete item;
 }
@@ -191,10 +191,8 @@ void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QSt
     }
 
     restoreAfterElevationLookup();
-    auto coordinates = m_settings->bookmarkCoordinates(id);
-    coordinates.alt = elevation;
-    m_settings->addOrUpdateBookmark(id, coordinates);
-    emit showInfo(id);
+    m_bookmarks[id].alt = elevation;
+    emit showInfo(m_bookmarks.value(id));
 }
 
 void BookmarksList::restoreAfterElevationLookup()

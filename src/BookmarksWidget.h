@@ -20,12 +20,15 @@
 #ifndef BOOKMARKSWIDGET_H
 #define BOOKMARKSWIDGET_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QWidget>
 
 // Local classes
 class SharedObjects;
-class Settings;
+class BookmarksList;
 
 // Qt classes
 class QLabel;
@@ -38,10 +41,10 @@ public:
     explicit BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
 
 private slots:
-    void showInfo(const QString &id);
+    void showInfo(const KGeoTag::Coordinates &coordinates);
 
 private: // Variables
-    Settings *m_settings;
+    BookmarksList *m_bookmarksList;
     QLabel *m_info;
 
 };
