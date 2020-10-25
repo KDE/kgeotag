@@ -346,8 +346,10 @@ void MainWindow::assignToMapCenter(const QString &path)
 
 void MainWindow::assignTo(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
+    m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
     assignImage(path, coordinates);
 
+    m_mapWidget->centerCoordinates(coordinates);
     m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
     m_mapWidget->reloadMap();
 
@@ -376,7 +378,6 @@ void MainWindow::assignExactMatches()
                                                                    deviation);
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
-            m_imageCache->setChanged(path, true);
             assignImage(path, coordinates);
         }
     }
@@ -407,7 +408,6 @@ void MainWindow::assignInterpolatedMatches()
                                                                           deviation);
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
-            m_imageCache->setChanged(path, true);
             assignImage(path, coordinates);
         }
     }
