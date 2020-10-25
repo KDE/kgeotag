@@ -46,6 +46,8 @@ ElevationEngine::ElevationEngine(QObject *parent) : QObject(parent)
 
     m_requestTimer = new QTimer(this);
     m_requestTimer->setSingleShot(true);
+    m_requestTimer->setInterval(s_msToNextRequest);
+    connect(m_requestTimer, &QTimer::timeout, this, &ElevationEngine::processNextRequest);
 }
 
 void ElevationEngine::request(ElevationEngine::Target target, const QVector<QString> &ids,
@@ -73,8 +75,6 @@ void ElevationEngine::processNextRequest()
 {
     if (m_requestTimer->isActive()) {
         // Pending request, try again when the minimum waiting time is over
-        QTimer::singleShot(m_requestTimer->remainingTime(),
-                           this, &ElevationEngine::processNextRequest);
         return;
     }
 
@@ -89,8 +89,8 @@ void ElevationEngine::processNextRequest()
     m_requests.insert(reply, { m_queuedTargets.takeFirst(), m_queuedIds.takeFirst() });
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, reply));
 
-    // Block for s_msToNextRequest ms
-    m_requestTimer->start(s_msToNextRequest);
+    // Block the next requst (checking)
+    m_requestTimer->start();
 }
 
 void ElevationEngine::removeRequest(QNetworkReply *request)
