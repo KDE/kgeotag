@@ -310,17 +310,31 @@ void ImagesList::lookupElevation(const QVector<QString> &paths)
 
 void ImagesList::setElevation()
 {
-    const auto path = dynamic_cast<ImageItem *>(currentItem())->path();
+    const auto paths = selectedPaths();
+    QString label;
+    double preset = 0.0;
+    if (paths.count() == 1) {
+        const auto &path = paths.first();
+        QFileInfo info(path);
+        label = i18nc("A quoted filename", "\"%1\"", info.fileName());
+        preset = m_imageCache->coordinates(path).alt;
+    } else {
+        label = i18n("%1 images", paths.count());
+    }
 
     bool okay = false;
     auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
-                                             i18n("Elevation for \"%1\" (m)", path), 0, -12000,
+                                             i18n("Elevation (m) for %1", label), preset, -12000,
                                              8900, 1, &okay);
     if (! okay) {
         return;
     }
 
-    elevationProcessed(ElevationEngine::Target::Image, { path }, { elevation });
+    QVector<double> elevations;
+    for (int i = 0; i < paths.count(); i++) {
+        elevations.append(elevation);
+    }
+    elevationProcessed(ElevationEngine::Target::Image, paths, elevations);
 }
 
 void ImagesList::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
