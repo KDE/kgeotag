@@ -349,11 +349,10 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
     for (const auto &path : paths) {
         m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
         assignImage(path, coordinates);
-
-        m_mapWidget->centerCoordinates(coordinates);
         m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
     }
 
+    m_mapWidget->centerCoordinates(coordinates);
     m_mapWidget->reloadMap();
 
     if (m_settings->lookupElevation()) {
@@ -481,7 +480,7 @@ void MainWindow::saveChanges()
         // Set or remove the coordinates
         const auto coordinates = m_imageCache->coordinates(path);
         if (coordinates.isSet) {
-            exif.setGPSInfo(0.0, coordinates.lat, coordinates.lon);
+            exif.setGPSInfo(coordinates.alt, coordinates.lat, coordinates.lon);
         } else {
             exif.removeGPSInfo();
         }
