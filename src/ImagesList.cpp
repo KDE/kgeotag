@@ -39,6 +39,7 @@
 #include <QAction>
 #include <QKeyEvent>
 #include <QInputDialog>
+#include <QUrl>
 
 // C++ includes
 #include <algorithm>
@@ -250,14 +251,23 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    const auto path = dynamic_cast<const ImageItem *>(item)->path();
-    emit imageSelected(path);
+    const auto *selectedItem = dynamic_cast<const ImageItem *>(currentItem());
+    emit imageSelected(selectedItem->path());
 
     auto *drag = new QDrag(this);
-    drag->setPixmap(item->icon().pixmap(iconSize()));
+    const auto paths = selectedPaths();
+
+    if (paths.count() == 1) {
+        drag->setPixmap(selectedItem->icon().pixmap(iconSize()));
+    }
 
     QMimeData *mimeData = new QMimeData;
-    mimeData->setText(path);
+    QList<QUrl> urls;
+    for (const auto &path : paths) {
+        urls.append(QUrl::fromLocalFile(path));
+    }
+    mimeData->setUrls(urls);
+
     drag->setMimeData(mimeData);
     drag->exec(Qt::MoveAction);
 }

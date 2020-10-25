@@ -39,6 +39,7 @@
 #include <QDropEvent>
 #include <QMenu>
 #include <QAction>
+#include <QUrl>
 
 // C++ includes
 #include <functional>
@@ -227,11 +228,20 @@ void MapWidget::addSegment(const QVector<KGeoTag::Coordinates> &segment)
 
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 {
-    if (event->mimeData()->hasFormat(QStringLiteral("text/plain"))
-        && m_imageCache->contains(event->mimeData()->text())) {
+    const auto mimeData = event->mimeData();
 
-        event->acceptProposedAction();
+    if (! mimeData->hasFormat(QStringLiteral("text/uri-list"))) {
+        return;
     }
+
+    const auto urls = mimeData->urls();
+    for (const auto &url : urls) {
+        if (! m_imageCache->contains(url.toLocalFile())) {
+            return;
+        }
+    }
+
+    event->acceptProposedAction();
 }
 
 void MapWidget::dropEvent(QDropEvent *event)
@@ -245,12 +255,17 @@ void MapWidget::dropEvent(QDropEvent *event)
         return;
     }
 
-    const QString path = event->mimeData()->text();
-    addImage(path, lon, lat);
-    reloadMap();
+    QVector<QString> paths;
+    const auto urls = event->mimeData()->urls();
+    for (const auto &url : urls) {
+        const auto path = url.toLocalFile();
+        addImage(path, lon, lat);
+        m_imageCache->setCoordinates(path, lon, lat, 0.0);
+        paths.append(path);
+    }
 
-    m_imageCache->setCoordinates(path, lon, lat, 0.0);
-    emit imageDropped(path);
+    reloadMap();
+    emit imagesDropped(paths);
 
     event->acceptProposedAction();
 }

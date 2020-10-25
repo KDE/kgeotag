@@ -55,7 +55,7 @@ protected:
 private slots:
     void addGpx();
     void addImages();
-    void imageDropped(const QString &path);
+    void imagesDropped(const QVector<QString> &paths);
     void searchExactMatches(const QVector<QString> &paths);
     void searchInterpolatedMatches(const QVector<QString> &paths);
     void saveChanges();

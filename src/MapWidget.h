@@ -66,7 +66,7 @@ public slots:
     void addSegment(const QVector<KGeoTag::Coordinates> &segment);
 
 signals:
-    void imageDropped(const QString &path) const;
+    void imagesDropped(const QVector<QString> &paths) const;
 
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;

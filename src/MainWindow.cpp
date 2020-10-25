@@ -159,7 +159,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
-    connect(m_mapWidget, &MapWidget::imageDropped, this, &MainWindow::imageDropped);
+    connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -308,16 +308,19 @@ void MainWindow::addImages()
     QApplication::restoreOverrideCursor();
 }
 
-void MainWindow::imageDropped(const QString &path)
+void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
-    m_unAssignedImages->removeImage(path);
-    m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
-    m_imageCache->setChanged(path, true);
-    m_assignedImages->addOrUpdateImage(path);
-    m_previewWidget->setImage(path);
+    for (const auto &path : paths) {
+        m_unAssignedImages->removeImage(path);
+        m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
+        m_imageCache->setChanged(path, true);
+        m_assignedImages->addOrUpdateImage(path);
+    }
+
+    m_previewWidget->setImage(paths.last());
 
     if (m_settings->lookupElevation()) {
-        m_assignedImages->lookupElevation({ path });
+        m_assignedImages->lookupElevation(paths);
     }
 }
 
