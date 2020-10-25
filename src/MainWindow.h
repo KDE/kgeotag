@@ -61,8 +61,7 @@ private slots:
     void saveChanges();
     void showSettings();
     void removeCoordinates(const QVector<QString> &paths);
-    void discardChanges(const QString &path);
-    void discardAllChanges();
+    void discardChanges(const QVector<QString> &paths);
     void assignToMapCenter(const QVector<QString> &paths);
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QString &path);

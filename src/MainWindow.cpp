@@ -101,11 +101,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     editMenu->addSeparator();
 
-    auto *discardAllChangesAction = editMenu->addAction(i18n("Discard all changes"));
-    connect(discardAllChangesAction, &QAction::triggered, this, &MainWindow::discardAllChanges);
-
-    editMenu->addSeparator();
-
     auto *showSettingsAction = editMenu->addAction(i18n("Settings"));
     connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
 
@@ -540,27 +535,9 @@ void MainWindow::removeCoordinates(const QVector<QString> &paths)
     m_previewWidget->setImage(m_previewWidget->currentImage());
 }
 
-void MainWindow::discardChanges(const QString &path)
+void MainWindow::discardChanges(const QVector<QString> &paths)
 {
-    m_imageCache->resetChanges(path);
-    const auto coordinates = m_imageCache->coordinates(path);
-    if (coordinates.isSet) {
-        m_unAssignedImages->removeImage(path);
-        m_assignedImages->addOrUpdateImage(path);
-        m_mapWidget->addImage(path, coordinates);
-    } else {
-        m_assignedImages->removeImage(path);
-        m_unAssignedImages->addOrUpdateImage(path);
-        m_mapWidget->removeImage(path);
-    }
-    m_mapWidget->reloadMap();
-    m_previewWidget->setImage(path);
-}
-
-void MainWindow::discardAllChanges()
-{
-    const auto files = m_imageCache->changedImages();
-    for (const auto &path : files) {
+    for (const auto &path : paths) {
         m_imageCache->resetChanges(path);
         m_assignedImages->removeImage(path);
         m_unAssignedImages->removeImage(path);
@@ -576,7 +553,7 @@ void MainWindow::discardAllChanges()
     }
 
     m_mapWidget->reloadMap();
-    m_previewWidget->setImage(QString());
+    m_previewWidget->setImage(m_previewWidget->currentImage());
 }
 
 void MainWindow::checkUpdatePreview(const QString &path)

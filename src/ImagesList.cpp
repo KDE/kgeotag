@@ -103,7 +103,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     connect(m_discardChanges, &QAction::triggered,
             [this]
             {
-                emit discardChanges(dynamic_cast<ImageItem *>(currentItem())->path());
+                emit discardChanges(selectedPaths());
             });
 
     setContextMenuPolicy(Qt::CustomContextMenu);

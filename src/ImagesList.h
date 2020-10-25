@@ -66,7 +66,7 @@ signals:
     void assignToMapCenter(const QVector<QString> &paths) const;
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
     void removeCoordinates(const QVector<QString> &paths) const;
-    void discardChanges(const QString &path) const;
+    void discardChanges(const QVector<QString> &paths) const;
     void checkUpdatePreview(const QString &path) const;
 
 protected:
