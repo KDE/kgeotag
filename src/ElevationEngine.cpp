@@ -53,19 +53,44 @@ ElevationEngine::ElevationEngine(QObject *parent) : QObject(parent)
 void ElevationEngine::request(ElevationEngine::Target target, const QVector<QString> &ids,
                               const QVector<KGeoTag::Coordinates> &coordinates)
 {
-    QStringList locations;
-    for (const auto &singleCoordinate : coordinates) {
-        locations.append(QStringLiteral("%1,%2").arg(QString::number(singleCoordinate.lat),
-                                                     QString::number(singleCoordinate.lon)));
+    // Check if we want to lookup different coordinates
+    bool identicalCoordinates = true;
+    if (coordinates.count() > 1) {
+        const auto &firstCoordinates = coordinates.first();
+        for (int i = 1; i < coordinates.count(); i++) {
+            if (coordinates.at(i) != firstCoordinates) {
+                identicalCoordinates = false;
+                break;
+            }
+        }
     }
 
-    // Group all requested coordinates to groups with at most s_maximumLocations entries
-    int start = 0;
-    while (start < ids.count()) {
+    if (identicalCoordinates) {
+        // Add a request for one location
         m_queuedTargets.append(target);
-        m_queuedIds.append(ids.mid(start, s_maximumLocations));
-        m_queuedLocations.append(locations.mid(start, s_maximumLocations).join(QLatin1String("|")));
-        start += s_maximumLocations;
+        m_queuedIds.append(ids);
+        const auto &firstCoordinates = coordinates.first();
+        m_queuedLocations.append(QStringLiteral("%1,%2").arg(
+                                                QString::number(firstCoordinates.lat),
+                                                QString::number(firstCoordinates.lon)));
+    } else {
+        // Create clusters of locations with at most s_maximumLocations locations per cluster
+
+        QStringList locations;
+        for (const auto &singleCoordinate : coordinates) {
+            locations.append(QStringLiteral("%1,%2").arg(QString::number(singleCoordinate.lat),
+                                                        QString::number(singleCoordinate.lon)));
+        }
+
+        // Group all requested coordinates to groups with at most s_maximumLocations entries
+        int start = 0;
+        while (start < ids.count()) {
+            m_queuedTargets.append(target);
+            m_queuedIds.append(ids.mid(start, s_maximumLocations));
+            m_queuedLocations.append(
+                locations.mid(start, s_maximumLocations).join(QLatin1String("|")));
+            start += s_maximumLocations;
+        }
     }
 
     processNextRequest();
@@ -160,6 +185,14 @@ void ElevationEngine::processReply(QNetworkReply *request)
             return;
         }
         elevations.append(elevation.toDouble());
+    }
+
+    if (ids.count() > 1 && elevations.count() == 1) {
+        // Same coordinates requested multiple times
+        const auto coordinates = elevations.first();
+        for (int i = 0; i < ids.count() - 2; i++) {
+            elevations.append(coordinates);
+        }
     }
 
     emit elevationProcessed(target, ids, elevations);

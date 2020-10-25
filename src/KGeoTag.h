@@ -31,7 +31,24 @@ struct Coordinates
     double lon;
     double lat;
     double alt;
+
     bool isSet;
+
+    bool operator ==(const Coordinates &other) const
+    {
+        return    this->lon == other.lon
+               && this->lat == other.lat
+               && this->alt == other.alt
+               && this->isSet == other.isSet;
+    }
+
+    bool operator !=(const Coordinates &other) const
+    {
+        return    this->lon != other.lon
+               || this->lat != other.lat
+               || this->alt != other.alt
+               || this->isSet != other.isSet;
+    }
 };
 
 const Coordinates NoCoordinates { 0.0, 0.0, 0.0, false };
