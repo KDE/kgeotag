@@ -92,7 +92,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
-
     // Help
     auto *helpMenu = new KHelpMenu;
     menuBar()->addMenu(helpMenu->menu());
@@ -356,7 +355,7 @@ void MainWindow::searchExactMatches(const QVector<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    bool matchFound = false;
+    int matches = 0;
     QString lastMatchedPath;
 
     for (const auto &path : paths) {
@@ -365,21 +364,22 @@ void MainWindow::searchExactMatches(const QVector<QString> &paths)
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
             assignImage(path, coordinates);
-            matchFound = true;
+            matches++;
             lastMatchedPath = path;
         }
     }
 
-    if (matchFound) {
+    QApplication::restoreOverrideCursor();
+
+    if (matches > 0) {
         m_mapWidget->reloadMap();
         m_mapWidget->centerImage(lastMatchedPath);
         m_previewWidget->setImage(lastMatchedPath);
         m_assignedImages->scrollToImage(lastMatchedPath);
-    }
+        QMessageBox::information(this, i18n("Search for exact matches"),
+            i18np("1 exact match found!", "%1 exact matches found!", matches));
 
-    QApplication::restoreOverrideCursor();
-
-    if (! matchFound) {
+    } else {
         QMessageBox::warning(this, i18n("Search for exact matches"),
             i18n("Could not find any exact matches!"));
     }
@@ -389,7 +389,7 @@ void MainWindow::searchInterpolatedMatches(const QVector<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    bool matchFound = false;
+    int matches = 0;
     QString lastMatchedPath;
 
     QProgressDialog progress(i18n("Assigning images ..."), i18n("Cancel"), 0, paths.count(), this);
@@ -408,21 +408,22 @@ void MainWindow::searchInterpolatedMatches(const QVector<QString> &paths)
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
             assignImage(path, coordinates);
-            matchFound = true;
+            matches++;
             lastMatchedPath = path;
         }
     }
 
-    if (matchFound) {
+    QApplication::restoreOverrideCursor();
+
+    if (matches > 0) {
         m_mapWidget->reloadMap();
         m_mapWidget->centerImage(lastMatchedPath);
         m_previewWidget->setImage(lastMatchedPath);
         m_assignedImages->scrollToImage(lastMatchedPath);
-    }
+        QMessageBox::information(this, i18n("Search for interpolated matches"),
+            i18np("1 interpolated match found!", "%1 interpolated matches found!", matches));
 
-    QApplication::restoreOverrideCursor();
-
-    if (! matchFound) {
+    } else {
         QMessageBox::warning(this, i18n("Search for interpolated matches"),
             i18n("Could not find any interpolated matches!"));
     }
