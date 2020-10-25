@@ -84,15 +84,14 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     fileMenu->addSeparator();
 
+    auto *showSettingsAction = fileMenu->addAction(i18n("Settings"));
+    connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
+
+    fileMenu->addSeparator();
+
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
 
-    // Edit
-
-    auto *editMenu = menuBar()->addMenu(i18n("Edit"));
-
-    auto *showSettingsAction = editMenu->addAction(i18n("Settings"));
-    connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
 
     // Help
     auto *helpMenu = new KHelpMenu;
