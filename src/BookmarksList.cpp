@@ -40,6 +40,7 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
       m_elevationEngine(sharedObjects->elevationEngine()),
       m_mapWidget(sharedObjects->mapWidget())
 {
+    // Load the saved bookmarks
     m_bookmarks = m_settings->bookmarks();
     const auto labels = m_bookmarks.keys();
     for (const auto &label : labels) {
@@ -79,6 +80,11 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     connect(this, &QWidget::customContextMenuRequested, this, &BookmarksList::showContextMenu);
 
     connect(this, &QListWidget::currentItemChanged, this, &BookmarksList::itemHighlighted);
+
+    // Show the first bookmark's coordinates if we have bookmarks
+    if (! m_bookmarks.isEmpty()) {
+        setCurrentItem(0);
+    }
 }
 
 void BookmarksList::showContextMenu(const QPoint &point)
