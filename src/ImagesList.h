@@ -67,7 +67,7 @@ signals:
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
     void removeCoordinates(const QVector<QString> &paths) const;
     void discardChanges(const QVector<QString> &paths) const;
-    void checkUpdatePreview(const QString &path) const;
+    void checkUpdatePreview(const QVector<QString> &paths) const;
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;

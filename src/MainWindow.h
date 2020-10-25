@@ -64,7 +64,7 @@ private slots:
     void discardChanges(const QVector<QString> &paths);
     void assignToMapCenter(const QVector<QString> &paths);
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
-    void checkUpdatePreview(const QString &path);
+    void checkUpdatePreview(const QVector<QString> &paths);
     void elevationLookupFailed(const QString &errorMessage);
 
 private: // Functions

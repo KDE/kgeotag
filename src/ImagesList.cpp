@@ -352,10 +352,7 @@ void ImagesList::elevationProcessed(ElevationEngine::Target target, const QVecto
         m_imageCache->setCoordinates(path, coordinates);
     }
 
-    const auto *current = currentItem();
-    if (current != nullptr) {
-        emit checkUpdatePreview(dynamic_cast<const ImageItem *>(current)->path());
-    }
+    emit checkUpdatePreview(paths);
     QApplication::restoreOverrideCursor();
 }
 

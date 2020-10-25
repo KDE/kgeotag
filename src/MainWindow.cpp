@@ -556,10 +556,13 @@ void MainWindow::discardChanges(const QVector<QString> &paths)
     m_previewWidget->setImage(m_previewWidget->currentImage());
 }
 
-void MainWindow::checkUpdatePreview(const QString &path)
+void MainWindow::checkUpdatePreview(const QVector<QString> &paths)
 {
-    if (m_previewWidget->currentImage() == path) {
-        m_previewWidget->setImage(path);
+    for (const QString &path : paths) {
+        if (m_previewWidget->currentImage() == path) {
+            m_previewWidget->setImage(path);
+            break;
+        }
     }
 }
 
