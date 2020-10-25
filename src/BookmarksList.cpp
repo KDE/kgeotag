@@ -40,6 +40,13 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
       m_elevationEngine(sharedObjects->elevationEngine()),
       m_mapWidget(sharedObjects->mapWidget())
 {
+    m_bookmarks = m_settings->bookmarks();
+    const auto labels = m_bookmarks.keys();
+    for (const auto &label : labels) {
+        auto *item = new QListWidgetItem(label);
+        addItem(item);
+    }
+
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &BookmarksList::elevationProcessed);
     connect(m_elevationEngine, &ElevationEngine::lookupFailed,

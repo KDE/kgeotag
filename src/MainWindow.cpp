@@ -126,16 +126,16 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     setDockNestingEnabled(true);
 
     // Bookmarks
-    auto *bookmarksWidget = new BookmarksWidget(sharedObjects);
-    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), bookmarksWidget,
+    m_bookmarksWidget = new BookmarksWidget(sharedObjects);
+    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarksWidget,
                                            QStringLiteral("bookmarksDock"));
 
     // Unassigned images
     m_unAssignedImages = new ImagesList(ImagesList::Type::UnAssigned, sharedObjects,
-                                        bookmarksWidget->bookmarks());
+                                        m_bookmarksWidget->bookmarks());
     auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
-    connect(bookmarksWidget, &BookmarksWidget::bookmarksChanged,
+    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_unAssignedImages, &ImagesList::updateBookmarks);
     connect(m_unAssignedImages, &ImagesList::removeCoordinates,
             this, &MainWindow::removeCoordinates);
@@ -146,10 +146,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Assigned images
     m_assignedImages = new ImagesList(ImagesList::Type::Assigned, sharedObjects,
-                                      bookmarksWidget->bookmarks());
+                                      m_bookmarksWidget->bookmarks());
     auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
-    connect(bookmarksWidget, &BookmarksWidget::bookmarksChanged,
+    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_assignedImages, &ImagesList::updateBookmarks);
     connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
@@ -237,6 +237,8 @@ void MainWindow::closeEvent(QCloseEvent *event)
     m_settings->saveMainWindowState(saveState());
 
     m_mapWidget->saveSettings();
+
+    m_settings->saveBookmarks(m_bookmarksWidget->bookmarks());
 
     QApplication::quit();
 }

@@ -23,6 +23,9 @@
 // Qt includes
 #include <QDebug>
 #include <QSize>
+#include <QJsonArray>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 // Main
 
@@ -84,6 +87,18 @@ static const QString s_assignment_lookupElevation
 
 static const QLatin1String s_save("save/");
 static const QString s_save_createBackups = s_save + QLatin1String("create_backups");
+
+// Bookmarks
+
+static const QLatin1String s_bookmarks("bookmarks/");
+static const QString s_bookmarks_version = s_bookmarks + QLatin1String("version");
+static const QString s_bookmarks_data = s_bookmarks + QLatin1String("data");
+
+static constexpr int s_bookmarksDataVersion = 1;
+static const QString s_bookmarksDataLabel = QStringLiteral("label");
+static const QString s_bookmarksDataLon = QStringLiteral("lon");
+static const QString s_bookmarksDataLat = QStringLiteral("lat");
+static const QString s_bookmarksDataAlt = QStringLiteral("alt");
 
 Settings::Settings(QObject *parent)
     : QSettings(QStringLiteral("kgeotag"), QStringLiteral("kgeotag"), parent)
@@ -286,4 +301,56 @@ void Settings::saveCreateBackups(bool state)
 bool Settings::createBackups() const
 {
     return value(s_save_createBackups, true).toBool();
+}
+
+void Settings::saveBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks)
+{
+    QJsonArray data;
+
+    const auto labels = bookmarks->keys();
+    for (const auto &label : labels) {
+        const auto coordinates = bookmarks->value(label);
+        data.append(QJsonObject { { s_bookmarksDataLabel, label },
+                                  { s_bookmarksDataLon, coordinates.lon },
+                                  { s_bookmarksDataLat, coordinates.lat },
+                                  { s_bookmarksDataAlt, coordinates.alt } });
+    }
+
+    setValue(s_bookmarks_version, s_bookmarksDataVersion);
+    setValue(s_bookmarks_data, QJsonDocument(data).toJson(QJsonDocument::Compact));
+}
+
+QHash<QString, KGeoTag::Coordinates> Settings::bookmarks() const
+{
+    const auto version = value(s_bookmarks_version, 0).toInt();
+    if (version != s_bookmarksDataVersion) {
+        return {};
+    }
+
+    QJsonParseError error;
+    const auto document = QJsonDocument::fromJson(
+        value(s_bookmarks_data, QByteArray()).toByteArray(), &error);
+    if (error.error != QJsonParseError::NoError || ! document.isArray()) {
+        return {};
+    }
+
+    QHash<QString, KGeoTag::Coordinates> bookmarks;
+
+    const auto data = document.array();
+    for (const auto &entry : data) {
+        auto entryData = entry.toObject();
+        const auto label = entryData.value(s_bookmarksDataLabel);
+        const auto lon = entryData.value(s_bookmarksDataLon);
+        const auto lat = entryData.value(s_bookmarksDataLat);
+        const auto alt = entryData.value(s_bookmarksDataAlt);
+
+        if (! label.isString() || ! lon.isDouble() || ! lat.isDouble() || ! alt.isDouble()) {
+            return {};
+        }
+
+        bookmarks.insert(label.toString(), KGeoTag::Coordinates { lon.toDouble(), lat.toDouble(),
+                                                                  alt.toDouble(), true });
+    }
+
+    return bookmarks;
 }

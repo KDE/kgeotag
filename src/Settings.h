@@ -86,6 +86,9 @@ public:
     void saveCreateBackups(bool state);
     bool createBackups() const;
 
+    void saveBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks);
+    QHash<QString, KGeoTag::Coordinates> bookmarks() const;
+
 };
 
 #endif // SETTINGS_H
