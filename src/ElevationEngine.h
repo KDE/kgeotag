@@ -26,6 +26,7 @@
 // Qt includes
 #include <QObject>
 #include <QHash>
+#include <QVector>
 
 // Qt classes
 class QNetworkAccessManager;
@@ -42,11 +43,13 @@ public:
     };
 
     explicit ElevationEngine(QObject *parent);
-    void request(Target target, const QString &id, const KGeoTag::Coordinates &coordinates);
+    void request(Target target, const QVector<QString> &ids,
+                 const QVector<KGeoTag::Coordinates> &coordinates);
 
 signals:
     void lookupFailed(const QString &errorMessage) const;
-    void elevationProcessed(Target target, const QString &id, double elevation) const;
+    void elevationProcessed(Target target, const QVector<QString> &ids,
+                            const QVector<double> &elevations) const;
 
 private slots:
     void cleanUpRequest(QNetworkReply *request);
@@ -59,7 +62,7 @@ private: // Variables
     struct RequestData
     {
         Target target;
-        QString id;
+        QVector<QString> ids;
     };
 
     QNetworkAccessManager *m_manager;

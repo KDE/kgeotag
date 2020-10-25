@@ -81,7 +81,8 @@ private slots:
     void showContextMenu(const QPoint &point);
     void emitAssignTo(QAction *action);
     void setElevation();
-    void elevationProcessed(ElevationEngine::Target target, const QString &path, double elevation);
+    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
+                            const QVector<double> &elevations);
 
 private: // Variables
     Type m_type;

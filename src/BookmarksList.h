@@ -63,7 +63,8 @@ private slots:
     void lookupElevation();
     void setElevation();
     void deleteBookmark();
-    void elevationProcessed(ElevationEngine::Target target, const QString &id, double elevation);
+    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
+                            const QVector<double> &elevations);
     void restoreAfterElevationLookup();
 
 

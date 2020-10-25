@@ -139,7 +139,8 @@ void BookmarksList::requestElevation(const QString &id)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     setEnabled(false);
-    m_elevationEngine->request(ElevationEngine::Target::Bookmark, id, m_bookmarks.value(id));
+    m_elevationEngine->request(ElevationEngine::Target::Bookmark, { id },
+                               { m_bookmarks.value(id) });
 }
 
 void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
@@ -203,15 +204,16 @@ void BookmarksList::deleteBookmark()
     emit bookmarksChanged();
 }
 
-void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QString &id,
-                                       double elevation)
+void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
+                                       const QVector<double> &elevations)
 {
     if (target != ElevationEngine::Target::Bookmark) {
         return;
     }
 
     restoreAfterElevationLookup();
-    m_bookmarks[id].alt = elevation;
+    const auto id = ids.at(0);
+    m_bookmarks[id].alt = elevations.at(0);
     emit showInfo(m_bookmarks.value(id));
 }
 
@@ -240,7 +242,7 @@ void BookmarksList::setElevation()
         return;
     }
 
-    elevationProcessed(ElevationEngine::Target::Bookmark, id, elevation);
+    elevationProcessed(ElevationEngine::Target::Bookmark, { id }, { elevation });
 }
 
 const QHash<QString, KGeoTag::Coordinates> *BookmarksList::bookmarks() const

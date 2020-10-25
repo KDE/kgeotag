@@ -265,8 +265,8 @@ void ImagesList::showContextMenu(const QPoint &point)
 void ImagesList::lookupElevation(const QString &path)
 {
     QApplication::setOverrideCursor(Qt::BusyCursor);
-    m_elevationEngine->request(ElevationEngine::Target::Image, path,
-                               m_imageCache->coordinates(path));
+    m_elevationEngine->request(ElevationEngine::Target::Image, { path },
+                               { m_imageCache->coordinates(path) });
 }
 
 void ImagesList::setElevation()
@@ -281,11 +281,11 @@ void ImagesList::setElevation()
         return;
     }
 
-    elevationProcessed(ElevationEngine::Target::Image, path, elevation);
+    elevationProcessed(ElevationEngine::Target::Image, { path }, { elevation });
 }
 
-void ImagesList::elevationProcessed(ElevationEngine::Target target, const QString &path,
-                                    double elevation)
+void ImagesList::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
+                                    const QVector<double> &elevations)
 {
     if (target != ElevationEngine::Target::Image) {
         return;
@@ -293,8 +293,9 @@ void ImagesList::elevationProcessed(ElevationEngine::Target target, const QStrin
 
     QApplication::restoreOverrideCursor();
 
+    const auto path = paths.at(0);
     auto coordinates = m_imageCache->coordinates(path);
-    coordinates.alt = elevation;
+    coordinates.alt = elevations.at(0);
     m_imageCache->setCoordinates(path, coordinates);
 
     emit checkUpdatePreview(path);

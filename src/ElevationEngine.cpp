@@ -41,14 +41,20 @@ ElevationEngine::ElevationEngine(QObject *parent) : QObject(parent)
     connect(m_manager, &QNetworkAccessManager::finished, this, &ElevationEngine::processReply);
 }
 
-void ElevationEngine::request(ElevationEngine::Target target, const QString &id,
-                              const KGeoTag::Coordinates &coordinates)
+void ElevationEngine::request(ElevationEngine::Target target, const QVector<QString> &ids,
+                              const QVector<KGeoTag::Coordinates> &coordinates)
 {
-    auto *request = m_manager->get(QNetworkRequest(QUrl(
-        QStringLiteral("https://api.opentopodata.org/v1/aster30m?locations=%1,%2").arg(
-                       QString::number(coordinates.lat), QString::number(coordinates.lon)))));
+    QStringList locations;
+    for (const auto &singleCoordinate : coordinates) {
+        locations.append(QStringLiteral("%1,%2").arg(QString::number(singleCoordinate.lat),
+                                                     QString::number(singleCoordinate.lon)));
+    }
 
-    m_requests.insert(request, { target, id });
+    auto *request = m_manager->get(QNetworkRequest(QUrl(
+        QStringLiteral("https://api.opentopodata.org/v1/aster30m?locations=%1").arg(
+                       locations.join(QLatin1String("|"))))));
+
+    m_requests.insert(request, { target, ids });
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, request));
 }
 
@@ -74,7 +80,7 @@ void ElevationEngine::processReply(QNetworkReply *request)
         return;
     }
 
-    const auto [ target, id ] = m_requests.value(request);
+    const auto [ target, ids ] = m_requests.value(request);
     removeRequest(request);
 
     QJsonParseError error;
@@ -102,19 +108,24 @@ void ElevationEngine::processReply(QNetworkReply *request)
         return;
     }
 
-    const auto results = object.value(QStringLiteral("results")).toArray().at(0);
-    if (results.isUndefined()) {
+    const auto resultsValue = object.value(QStringLiteral("results"));
+    if (! resultsValue.isArray()) {
         emit lookupFailed(i18n("Could not parse the server's response: Could not read the results "
                                "array"));
         return;
     }
 
-    const auto elevation = results.toObject().value(QStringLiteral("elevation"));
-    if (elevation.isUndefined()) {
-        emit lookupFailed(i18n("Could not parse the server's response: Could not read the "
-                               "elevation value"));
-        return;
+    const auto resultsArray = resultsValue.toArray();
+    QVector<double> elevations;
+    for (const auto result : resultsArray)  {
+        const auto elevation = result.toObject().value(QStringLiteral("elevation"));
+        if (elevation.isUndefined()) {
+            emit lookupFailed(i18n("Could not parse the server's response: Could not read the "
+                                "elevation value"));
+            return;
+        }
+        elevations.append(elevation.toDouble());
     }
 
-    emit elevationProcessed(target, id, elevation.toDouble());
+    emit elevationProcessed(target, ids, elevations);
 }
