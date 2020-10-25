@@ -76,7 +76,8 @@ protected:
     virtual void mouseMoveEvent(QMouseEvent *event) override;
 
 private slots:
-    void imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const;
+    void processItemClicked(QListWidgetItem *item);
+    void imageHighlighted(QListWidgetItem *item) const;
     void showContextMenu(const QPoint &point);
     void emitAssignTo(QAction *action);
     void setElevation();

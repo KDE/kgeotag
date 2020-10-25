@@ -61,13 +61,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     setIconSize(m_imageCache->thumbnailSize());
 
     connect(this, &QListWidget::currentItemChanged, this, &ImagesList::imageHighlighted);
-    if (m_type == Type::Assigned) {
-        connect(this, &QListWidget::itemClicked,
-                [this](QListWidgetItem *item)
-                {
-                    emit centerImage(dynamic_cast<ImageItem *>(item)->path());
-                });
-    }
+    connect(this, &QListWidget::itemClicked, this, &ImagesList::processItemClicked);
 
     m_contextMenu = new QMenu(this);
 
@@ -142,13 +136,23 @@ void ImagesList::keyReleaseEvent(QKeyEvent *event)
     QListWidget::keyReleaseEvent(event);
 }
 
-void ImagesList::imageHighlighted(QListWidgetItem *item, QListWidgetItem *) const
+void ImagesList::imageHighlighted(QListWidgetItem *item) const
 {
     if (item == nullptr) {
         return;
     }
 
     emit imageSelected(dynamic_cast<ImageItem *>(item)->path());
+}
+
+void ImagesList::processItemClicked(QListWidgetItem *item)
+{
+    const auto path = dynamic_cast<ImageItem *>(item)->path();
+    emit imageSelected(path);
+
+    if (m_type == Type::Assigned) {
+        emit centerImage(path);
+    }
 }
 
 void ImagesList::addOrUpdateImage(const QString &path)
