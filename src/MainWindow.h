@@ -60,10 +60,9 @@ private slots:
     void assignInterpolatedMatches();
     void saveChanges();
     void showSettings();
-    void removeCoordinates(const QString &path);
+    void removeCoordinates(const QVector<QString> &paths);
     void discardChanges(const QString &path);
     void discardAllChanges();
-    void removeAllCoordinates();
     void assignToMapCenter(const QVector<QString> &paths);
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QString &path);

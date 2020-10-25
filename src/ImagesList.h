@@ -64,8 +64,8 @@ signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
     void assignToMapCenter(const QVector<QString> &paths) const;
-    void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
-    void removeCoordinates(const QString &path) const;
+    void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
+    void removeCoordinates(const QVector<QString> &paths) const;
     void discardChanges(const QString &path) const;
     void checkUpdatePreview(const QString &path) const;
 

@@ -101,13 +101,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     editMenu->addSeparator();
 
-    auto *removeAllCoordinatesAction = editMenu->addAction(i18n("Remove coordinates from all "
-                                                                "images"));
-    connect(removeAllCoordinatesAction, &QAction::triggered,
-            this, &MainWindow::removeAllCoordinates);
-
-    editMenu->addSeparator();
-
     auto *discardAllChangesAction = editMenu->addAction(i18n("Discard all changes"));
     connect(discardAllChangesAction, &QAction::triggered, this, &MainWindow::discardAllChanges);
 
@@ -137,8 +130,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
                                                   QStringLiteral("unassignedImagesDock"));
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_unAssignedImages, &ImagesList::updateBookmarks);
-    connect(m_unAssignedImages, &ImagesList::removeCoordinates,
-            this, &MainWindow::removeCoordinates);
     connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_unAssignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_unAssignedImages, &ImagesList::assignToMapCenter,
@@ -534,16 +525,19 @@ void MainWindow::showSettings()
     m_mapWidget->updateSettings();
 }
 
-void MainWindow::removeCoordinates(const QString &path)
+void MainWindow::removeCoordinates(const QVector<QString> &paths)
 {
-    m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
-    m_imageCache->setChanged(path, true);
-    m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
-    m_assignedImages->removeImage(path);
-    m_unAssignedImages->addOrUpdateImage(path);
-    m_mapWidget->removeImage(path);
+    for (const QString &path : paths) {
+        m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
+        m_imageCache->setChanged(path, true);
+        m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
+        m_assignedImages->removeImage(path);
+        m_unAssignedImages->addOrUpdateImage(path);
+        m_mapWidget->removeImage(path);
+    }
+
     m_mapWidget->reloadMap();
-    m_previewWidget->setImage(path);
+    m_previewWidget->setImage(m_previewWidget->currentImage());
 }
 
 void MainWindow::discardChanges(const QString &path)
@@ -583,27 +577,6 @@ void MainWindow::discardAllChanges()
 
     m_mapWidget->reloadMap();
     m_previewWidget->setImage(QString());
-}
-
-void MainWindow::removeAllCoordinates()
-{
-    if (QMessageBox::question(this, i18n("Remove coordinates from all images"),
-            i18n("Do you really want to remove all set coordinates from all images?"),
-            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
-
-        return;
-    }
-
-    const auto images = m_assignedImages->allImages();
-    for (const auto &path : images) {
-        m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
-        m_imageCache->setChanged(path, true);
-        m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
-        m_assignedImages->removeImage(path);
-        m_unAssignedImages->addOrUpdateImage(path);
-        m_mapWidget->removeImage(path);
-    }
-    m_mapWidget->reloadMap();
 }
 
 void MainWindow::checkUpdatePreview(const QString &path)

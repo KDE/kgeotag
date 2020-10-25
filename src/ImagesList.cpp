@@ -96,7 +96,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     connect(m_removeCoordinates, &QAction::triggered,
             [this]
             {
-                emit removeCoordinates(dynamic_cast<ImageItem *>(currentItem())->path());
+                emit removeCoordinates(selectedPaths());
             });
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
