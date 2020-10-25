@@ -98,13 +98,15 @@ void ElevationEngine::request(ElevationEngine::Target target, const QVector<QStr
 
 void ElevationEngine::processNextRequest()
 {
-    if (m_requestTimer->isActive()) {
-        // Pending request, try again when the minimum waiting time is over
+    if (m_queuedTargets.isEmpty()) {
+        // Nothing to do.
+        // This happens because m_requestTimer always calls this after being finished.
         return;
     }
 
-    if (m_queuedTargets.isEmpty()) {
-        // Nothing to do
+    if (m_requestTimer->isActive()) {
+        // Pending request, we can't currently post another one.
+        // m_requestTimer will call this again after having waited for s_msToNextRequest.
         return;
     }
 
