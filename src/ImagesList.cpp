@@ -57,6 +57,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &ImagesList::elevationProcessed);
 
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());
 
@@ -69,7 +70,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     connect(assignToMapCenterAction, &QAction::triggered,
             [this]
             {
-                emit assignToMapCenter(dynamic_cast<ImageItem *>(currentItem())->path());
+                emit assignToMapCenter(selectedPaths());
             });
 
     m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
@@ -82,7 +83,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
         connect(m_lookupElevation, &QAction::triggered,
                 [this]
                 {
-                    lookupElevation(dynamic_cast<ImageItem *>(currentItem())->path());
+                    lookupElevation(selectedPaths());
                 });
 
         m_setElevation = m_contextMenu->addAction(i18n("Set elevation manually"));
@@ -107,6 +108,16 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QListWidget::customContextMenuRequested, this, &ImagesList::showContextMenu);
+}
+
+QVector<QString> ImagesList::selectedPaths() const
+{
+    QVector<QString> paths;
+    const auto selected = selectedItems();
+    for (const auto *item : selected) {
+        paths.append(dynamic_cast<const ImageItem *>(item)->path());
+    }
+    return paths;
 }
 
 void ImagesList::keyPressEvent(QKeyEvent *event)
@@ -246,8 +257,8 @@ void ImagesList::mouseMoveEvent(QMouseEvent *event)
 
 void ImagesList::showContextMenu(const QPoint &point)
 {
-    const auto *item = currentItem();
-    if (item == nullptr) {
+    const auto paths = selectedPaths();
+    if (paths.count() == 0) {
         return;
     }
 
@@ -255,18 +266,46 @@ void ImagesList::showContextMenu(const QPoint &point)
         m_lookupElevation->setEnabled(m_settings->lookupElevation());
     }
 
-    const QString &path = dynamic_cast<const ImageItem *>(item)->path();
-    m_removeCoordinates->setEnabled(m_imageCache->coordinates(path).isSet);
-    m_discardChanges->setEnabled(m_imageCache->changed(path));
+    bool coordinatesSet = false;
+    bool changesPresent = false;
+
+    for (const auto &path : paths) {
+        if (m_imageCache->coordinates(path).isSet) {
+            coordinatesSet = true;
+        }
+
+        if (m_imageCache->changed(path)) {
+            changesPresent = true;
+        }
+
+        if (coordinatesSet && changesPresent) {
+            break;
+        }
+    }
+
+    m_removeCoordinates->setEnabled(coordinatesSet);
+    m_discardChanges->setEnabled(changesPresent);
 
     m_contextMenu->exec(mapToGlobal(point));
 }
 
-void ImagesList::lookupElevation(const QString &path)
+void ImagesList::lookupElevation(const QVector<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::BusyCursor);
-    m_elevationEngine->request(ElevationEngine::Target::Image, { path },
-                               { m_imageCache->coordinates(path) });
+
+    QVector<QString> lookupPaths;
+    if (paths.isEmpty()) {
+        lookupPaths = selectedPaths();
+    } else {
+        lookupPaths = paths;
+    }
+
+    QVector<KGeoTag::Coordinates> coordinates;
+    for (const auto &path : lookupPaths) {
+        coordinates.append(m_imageCache->coordinates(path));
+    }
+
+    m_elevationEngine->request(ElevationEngine::Target::Image, lookupPaths, coordinates);
 }
 
 void ImagesList::setElevation()
@@ -291,14 +330,19 @@ void ImagesList::elevationProcessed(ElevationEngine::Target target, const QVecto
         return;
     }
 
+    for (int i = 0; i < paths.count(); i++) {
+        const auto &path = paths.at(i);
+        const auto &elevation = elevations.at(i);
+        auto coordinates = m_imageCache->coordinates(path);
+        coordinates.alt = elevation;
+        m_imageCache->setCoordinates(path, coordinates);
+    }
+
+    const auto *current = currentItem();
+    if (current != nullptr) {
+        emit checkUpdatePreview(dynamic_cast<const ImageItem *>(current)->path());
+    }
     QApplication::restoreOverrideCursor();
-
-    const auto path = paths.at(0);
-    auto coordinates = m_imageCache->coordinates(path);
-    coordinates.alt = elevations.at(0);
-    m_imageCache->setCoordinates(path, coordinates);
-
-    emit checkUpdatePreview(path);
 }
 
 void ImagesList::updateBookmarks()
@@ -322,6 +366,5 @@ void ImagesList::updateBookmarks()
 
 void ImagesList::emitAssignTo(QAction *action)
 {
-    emit assignTo(dynamic_cast<ImageItem *>(currentItem())->path(),
-                  m_bookmarks->value(action->data().toString()));
+    emit assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
 }

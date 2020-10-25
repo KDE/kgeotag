@@ -335,26 +335,29 @@ void MainWindow::imageDropped(const QString &path)
     m_previewWidget->setImage(path);
 
     if (m_settings->lookupElevation()) {
-        m_assignedImages->lookupElevation(path);
+        m_assignedImages->lookupElevation({ path });
     }
 }
 
-void MainWindow::assignToMapCenter(const QString &path)
+void MainWindow::assignToMapCenter(const QVector<QString> &paths)
 {
-    assignTo(path, m_mapWidget->currentCenter());
+    assignTo(paths, m_mapWidget->currentCenter());
 }
 
-void MainWindow::assignTo(const QString &path, const KGeoTag::Coordinates &coordinates)
+void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates)
 {
-    m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
-    assignImage(path, coordinates);
+    for (const auto &path : paths) {
+        m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
+        assignImage(path, coordinates);
 
-    m_mapWidget->centerCoordinates(coordinates);
-    m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
+        m_mapWidget->centerCoordinates(coordinates);
+        m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
+    }
+
     m_mapWidget->reloadMap();
 
     if (m_settings->lookupElevation()) {
-        m_assignedImages->lookupElevation(path);
+        m_assignedImages->lookupElevation(paths);
     }
 }
 

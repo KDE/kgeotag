@@ -58,13 +58,13 @@ public:
 
 public slots:
     void updateBookmarks();
-    void lookupElevation(const QString &path = QString());
+    void lookupElevation(const QVector<QString> &paths = QVector<QString>());
 
 signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
-    void assignToMapCenter(const QString &path) const;
-    void assignTo(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void assignToMapCenter(const QVector<QString> &paths) const;
+    void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void removeCoordinates(const QString &path) const;
     void discardChanges(const QString &path) const;
     void checkUpdatePreview(const QString &path) const;
@@ -83,6 +83,9 @@ private slots:
     void setElevation();
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
                             const QVector<double> &elevations);
+
+private: // Functions
+    QVector<QString> selectedPaths() const;
 
 private: // Variables
     Type m_type;

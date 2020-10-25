@@ -192,7 +192,7 @@ void ElevationEngine::processReply(QNetworkReply *request)
     if (ids.count() > 1 && elevations.count() == 1) {
         // Same coordinates requested multiple times
         const auto coordinates = elevations.first();
-        for (int i = 0; i < ids.count() - 2; i++) {
+        for (int i = 0; i < ids.count() - 1; i++) {
             elevations.append(coordinates);
         }
     }
