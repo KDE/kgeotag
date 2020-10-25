@@ -31,6 +31,7 @@
 // Qt classes
 class QNetworkAccessManager;
 class QNetworkReply;
+class QTimer;
 
 class ElevationEngine : public QObject
 {
@@ -52,6 +53,7 @@ signals:
                             const QVector<double> &elevations) const;
 
 private slots:
+    void processNextRequest();
     void cleanUpRequest(QNetworkReply *request);
     void processReply(QNetworkReply *reply);
 
@@ -66,6 +68,12 @@ private: // Variables
     };
 
     QNetworkAccessManager *m_manager;
+
+    QTimer *m_requestTimer;
+    QVector<Target> m_queuedTargets;
+    QVector<QVector<QString>> m_queuedIds;
+    QVector<QString> m_queuedLocations;
+
     QHash<QNetworkReply *, RequestData> m_requests;
 
 };

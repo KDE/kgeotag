@@ -35,10 +35,17 @@
 // C++ includes
 #include <functional>
 
+// opentopodata.org query restrictions
+static constexpr int s_maximumLocations = 100;
+static constexpr int s_msToNextRequest = 1000;
+
 ElevationEngine::ElevationEngine(QObject *parent) : QObject(parent)
 {
     m_manager = new QNetworkAccessManager(this);
     connect(m_manager, &QNetworkAccessManager::finished, this, &ElevationEngine::processReply);
+
+    m_requestTimer = new QTimer(this);
+    m_requestTimer->setSingleShot(true);
 }
 
 void ElevationEngine::request(ElevationEngine::Target target, const QVector<QString> &ids,
@@ -50,12 +57,40 @@ void ElevationEngine::request(ElevationEngine::Target target, const QVector<QStr
                                                      QString::number(singleCoordinate.lon)));
     }
 
-    auto *request = m_manager->get(QNetworkRequest(QUrl(
-        QStringLiteral("https://api.opentopodata.org/v1/aster30m?locations=%1").arg(
-                       locations.join(QLatin1String("|"))))));
+    // Group all requested coordinates to groups with at most s_maximumLocations entries
+    int start = 0;
+    while (start < ids.count()) {
+        m_queuedTargets.append(target);
+        m_queuedIds.append(ids.mid(start, s_maximumLocations));
+        m_queuedLocations.append(locations.mid(start, s_maximumLocations).join(QLatin1String("|")));
+        start += s_maximumLocations;
+    }
 
-    m_requests.insert(request, { target, ids });
-    QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, request));
+    processNextRequest();
+}
+
+void ElevationEngine::processNextRequest()
+{
+    if (m_requestTimer->isActive()) {
+        // Pending request, try again when the minimum waiting time is over
+        QTimer::singleShot(m_requestTimer->remainingTime(),
+                           this, &ElevationEngine::processNextRequest);
+        return;
+    }
+
+    if (m_queuedTargets.isEmpty()) {
+        // Nothing to do
+        return;
+    }
+
+    auto *reply = m_manager->get(QNetworkRequest(QUrl(
+        QStringLiteral("https://api.opentopodata.org/v1/aster30m?locations=%1").arg(
+                    m_queuedLocations.takeFirst()))));
+    m_requests.insert(reply, { m_queuedTargets.takeFirst(), m_queuedIds.takeFirst() });
+    QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, reply));
+
+    // Block for s_msToNextRequest ms
+    m_requestTimer->start(s_msToNextRequest);
 }
 
 void ElevationEngine::removeRequest(QNetworkReply *request)
