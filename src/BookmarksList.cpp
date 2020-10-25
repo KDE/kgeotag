@@ -111,6 +111,7 @@ void BookmarksList::newBookmark()
     }
 
     label = label.simplified();
+    const auto originalLabel = label;
     if (label.isEmpty()) {
         label = i18n("Untitled");
     }
@@ -136,6 +137,12 @@ void BookmarksList::newBookmark()
     }
 
     emit bookmarksChanged();
+
+    if (label != originalLabel) {
+        QMessageBox::warning(this, i18n("Add new bookmark"),
+            i18n("The bookmark \"%1\" already exists, created \"%2\" instead.",
+                 originalLabel, label));
+    }
 }
 
 void BookmarksList::requestElevation(const QString &id)
