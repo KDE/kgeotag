@@ -66,6 +66,22 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
 
     m_contextMenu = new QMenu(this);
 
+    auto *searchMatchesMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
+
+    m_searchExactMatch = searchMatchesMenu->addAction(i18n("Exact match search"));
+    connect(m_searchExactMatch, &QAction::triggered,
+            [this]
+            {
+                emit searchExactMatches(selectedPaths());
+            });
+
+    m_searchInterpolatedMatch = searchMatchesMenu->addAction(i18n("Interpolated match search"));
+    connect(m_searchInterpolatedMatch, &QAction::triggered,
+            [this]
+            {
+                emit searchInterpolatedMatches(selectedPaths());
+            });
+
     auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
     connect(assignToMapCenterAction, &QAction::triggered,
             [this]
@@ -199,15 +215,6 @@ void ImagesList::addOrUpdateImage(const QString &path)
     if (currentItem() == imageItem) {
         emit imageSelected(path);
     }
-}
-
-QVector<QString> ImagesList::allImages() const
-{
-    QVector<QString> paths;
-    for (int i = 0; i < count(); i++) {
-        paths.append(dynamic_cast<ImageItem *>(item(i))->path());
-    }
-    return paths;
 }
 
 void ImagesList::removeImage(const QString &path)
@@ -378,4 +385,14 @@ void ImagesList::updateBookmarks()
 void ImagesList::emitAssignTo(QAction *action)
 {
     emit assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
+}
+
+void ImagesList::scrollToImage(const QString &path)
+{
+    for (int i = 0; i < count(); i++) {
+        if (dynamic_cast<const ImageItem *>(item(i))->path() == path) {
+            setCurrentRow(i);
+            return;
+        }
+    }
 }

@@ -91,16 +91,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     auto *editMenu = menuBar()->addMenu(i18n("Edit"));
 
-    auto *assignExactMatchesAction = editMenu->addAction(i18n("Assign images (exact matches)"));
-    connect(assignExactMatchesAction, &QAction::triggered, this, &MainWindow::assignExactMatches);
-
-    auto *assignInterpolatedMatchesAction = editMenu->addAction(i18n("Assign images "
-                                                                     "(interpolated)"));
-    connect(assignInterpolatedMatchesAction, &QAction::triggered,
-            this, &MainWindow::assignInterpolatedMatches);
-
-    editMenu->addSeparator();
-
     auto *showSettingsAction = editMenu->addAction(i18n("Settings"));
     connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
 
@@ -129,6 +119,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_unAssignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_unAssignedImages, &ImagesList::assignToMapCenter,
             this, &MainWindow::assignToMapCenter);
+    connect(m_unAssignedImages, &ImagesList::searchExactMatches,
+            this, &MainWindow::searchExactMatches);
+    connect(m_unAssignedImages, &ImagesList::searchInterpolatedMatches,
+            this, &MainWindow::searchInterpolatedMatches);
 
     // Assigned images
     m_assignedImages = new ImagesList(ImagesList::Type::Assigned, sharedObjects,
@@ -143,6 +137,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
     connect(m_assignedImages, &ImagesList::checkUpdatePreview,
             this, &MainWindow::checkUpdatePreview);
+    connect(m_assignedImages, &ImagesList::searchExactMatches,
+            this, &MainWindow::searchExactMatches);
+    connect(m_assignedImages, &ImagesList::searchInterpolatedMatches,
+            this, &MainWindow::searchInterpolatedMatches);
 
     // Preview
     m_previewWidget = new PreviewWidget(m_imageCache);
@@ -355,54 +353,80 @@ void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &co
     m_assignedImages->addOrUpdateImage(path);
 }
 
-void MainWindow::assignExactMatches()
+void MainWindow::searchExactMatches(const QVector<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    const int deviation = m_fixDriftWidget->deviation();
-    const auto images = m_unAssignedImages->allImages();
-    for (const auto &path : images) {
+    bool matchFound = false;
+    QString lastMatchedPath;
+
+    for (const auto &path : paths) {
         const auto coordinates = m_gpxEngine->findExactCoordinates(m_imageCache->date(path),
-                                                                   deviation);
+                                                                   m_fixDriftWidget->deviation());
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
             assignImage(path, coordinates);
+            matchFound = true;
+            lastMatchedPath = path;
         }
     }
 
-    m_mapWidget->reloadMap();
+    if (matchFound) {
+        m_mapWidget->reloadMap();
+        m_mapWidget->centerImage(lastMatchedPath);
+        m_previewWidget->setImage(lastMatchedPath);
+        m_assignedImages->scrollToImage(lastMatchedPath);
+    }
 
     QApplication::restoreOverrideCursor();
+
+    if (! matchFound) {
+        QMessageBox::warning(this, i18n("Search for exact matches"),
+            i18n("Could not find any exact matches!"));
+    }
 }
 
-void MainWindow::assignInterpolatedMatches()
+void MainWindow::searchInterpolatedMatches(const QVector<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    const int deviation = m_fixDriftWidget->deviation();
-    const auto files = m_unAssignedImages->allImages();
+    bool matchFound = false;
+    QString lastMatchedPath;
 
-    QProgressDialog progress(i18n("Assigning images ..."), i18n("Cancel"), 0, files.count(), this);
+    QProgressDialog progress(i18n("Assigning images ..."), i18n("Cancel"), 0, paths.count(), this);
     progress.setWindowModality(Qt::WindowModal);
 
     int processed = 0;
-    for (const auto &path : files) {
+    for (const auto &path : paths) {
         progress.setValue(processed++);
         if (progress.wasCanceled()) {
             break;
         }
 
-        const auto coordinates = m_gpxEngine->findInterpolatedCoordinates(m_imageCache->date(path),
-                                                                          deviation);
+        const auto coordinates = m_gpxEngine->findInterpolatedCoordinates(
+            m_imageCache->date(path), m_fixDriftWidget->deviation());
+
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
             assignImage(path, coordinates);
+            matchFound = true;
+            lastMatchedPath = path;
         }
     }
 
-    m_mapWidget->reloadMap();
+    if (matchFound) {
+        m_mapWidget->reloadMap();
+        m_mapWidget->centerImage(lastMatchedPath);
+        m_previewWidget->setImage(lastMatchedPath);
+        m_assignedImages->scrollToImage(lastMatchedPath);
+    }
 
     QApplication::restoreOverrideCursor();
+
+    if (! matchFound) {
+        QMessageBox::warning(this, i18n("Search for interpolated matches"),
+            i18n("Could not find any interpolated matches!"));
+    }
 }
 
 void MainWindow::saveChanges()

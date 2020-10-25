@@ -53,8 +53,8 @@ public:
                         const QHash<QString, KGeoTag::Coordinates> *bookmarks,
                         QWidget *parent = nullptr);
     void addOrUpdateImage(const QString &path);
-    QVector<QString> allImages() const;
     void removeImage(const QString &path);
+    void scrollToImage(const QString &path);
 
 public slots:
     void updateBookmarks();
@@ -68,6 +68,8 @@ signals:
     void removeCoordinates(const QVector<QString> &paths) const;
     void discardChanges(const QVector<QString> &paths) const;
     void checkUpdatePreview(const QVector<QString> &paths) const;
+    void searchExactMatches(const QVector<QString> &paths) const;
+    void searchInterpolatedMatches(const QVector<QString> &paths) const;
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
@@ -98,6 +100,8 @@ private: // Variables
     QPoint m_dragStartPosition;
 
     QMenu *m_contextMenu;
+    QAction *m_searchExactMatch;
+    QAction *m_searchInterpolatedMatch;
     QMenu *m_bookmarksMenu;
     QAction *m_lookupElevation = nullptr;
     QAction *m_setElevation = nullptr;
