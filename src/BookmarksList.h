@@ -66,6 +66,7 @@ private slots:
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
                             const QVector<double> &elevations);
     void restoreAfterElevationLookup();
+    void centerBookmark(QListWidgetItem *item);
 
 
 private: // Functions

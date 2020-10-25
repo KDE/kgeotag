@@ -40,6 +40,8 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
       m_elevationEngine(sharedObjects->elevationEngine()),
       m_mapWidget(sharedObjects->mapWidget())
 {
+    setSortingEnabled(true);
+
     // Load the saved bookmarks
     m_bookmarks = m_settings->bookmarks();
     const auto labels = m_bookmarks.keys();
@@ -48,12 +50,20 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
         addItem(item);
     }
 
+    // Show the first bookmark's coordinates if we have bookmarks
+    if (! m_bookmarks.isEmpty()) {
+        setCurrentItem(0);
+    }
+
+    connect(this, &QListWidget::itemClicked, this, &BookmarksList::centerBookmark);
+    connect(this, &QListWidget::currentItemChanged, this, &BookmarksList::itemHighlighted);
+
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &BookmarksList::elevationProcessed);
     connect(m_elevationEngine, &ElevationEngine::lookupFailed,
             this, &BookmarksList::restoreAfterElevationLookup);
 
-    setSortingEnabled(true);
+    // Context menu
 
     m_contextMenu = new QMenu(this);
     auto *newBookmarkAction = m_contextMenu->addAction(i18n("Add new bookmark for current map "
@@ -78,13 +88,6 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QWidget::customContextMenuRequested, this, &BookmarksList::showContextMenu);
-
-    connect(this, &QListWidget::currentItemChanged, this, &BookmarksList::itemHighlighted);
-
-    // Show the first bookmark's coordinates if we have bookmarks
-    if (! m_bookmarks.isEmpty()) {
-        setCurrentItem(0);
-    }
 }
 
 void BookmarksList::showContextMenu(const QPoint &point)
@@ -150,10 +153,12 @@ void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
         return;
     }
 
-    const QString id = item->text();
-    const auto coordinates = m_bookmarks.value(id);
-    m_mapWidget->centerCoordinates(coordinates);
-    emit showInfo(coordinates);
+    emit showInfo(m_bookmarks.value(item->text()));
+}
+
+void BookmarksList::centerBookmark(QListWidgetItem *item)
+{
+    m_mapWidget->centerCoordinates(m_bookmarks.value(item->text()));
 }
 
 BookmarksList::EnteredString BookmarksList::getString(const QString &title, const QString &label,
