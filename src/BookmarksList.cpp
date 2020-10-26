@@ -270,8 +270,8 @@ void BookmarksList::setElevation()
 
     bool okay = false;
     auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
-                                             i18n("Elevation for \"%1\" (m)", id), 0, -12000, 8900,
-                                             1, &okay);
+                                             i18n("Elevation for \"%1\" (m)", id),
+                                             m_bookmarks.value(id).alt, -12000, 8900, 1, &okay);
     if (! okay) {
         return;
     }
