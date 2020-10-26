@@ -58,6 +58,7 @@ private: // Structs
 private slots:
     void showContextMenu(const QPoint &point);
     void newBookmark();
+    void newManualBookmark();
     void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
     void renameBookmark();
     void lookupElevation();
@@ -70,6 +71,7 @@ private slots:
 
 
 private: // Functions
+    void saveBookmark(QString label, const KGeoTag::Coordinates &coordinates);
     EnteredString getString(const QString &title, const QString &label,
                             const QString &text = QString());
     void requestElevation(const QString &id);

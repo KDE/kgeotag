@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "MapWidget.h"
+#include "CoordinatesDialog.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -66,9 +67,13 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     // Context menu
 
     m_contextMenu = new QMenu(this);
+
     auto *newBookmarkAction = m_contextMenu->addAction(i18n("Add new bookmark for current map "
                                                             "center"));
     connect(newBookmarkAction, &QAction::triggered, this, &BookmarksList::newBookmark);
+
+    auto *newManualBookmarkAction = m_contextMenu->addAction(i18n("Add new manual bookmark"));
+    connect(newManualBookmarkAction, &QAction::triggered, this, &BookmarksList::newManualBookmark);
 
     m_contextMenu->addSeparator();
 
@@ -116,6 +121,24 @@ void BookmarksList::newBookmark()
         label = i18n("Untitled");
     }
 
+    saveBookmark(label, m_mapWidget->currentCenter());
+}
+
+void BookmarksList::newManualBookmark()
+{
+    CoordinatesDialog dialog(CoordinatesDialog::Mode::ManualBookmark,
+                             m_settings->lookupElevation());
+    if (! dialog.exec()) {
+        return;
+    }
+
+    saveBookmark(dialog.label(),
+                 KGeoTag::Coordinates { dialog.lon(), dialog.lat(), dialog.alt(), true });
+}
+
+void BookmarksList::saveBookmark(QString label, const KGeoTag::Coordinates &coordinates)
+{
+    const QString originalLabel = label;
     QString searchLabel = label;
     int addition = 0;
     while (! findItems(searchLabel, Qt::MatchExactly).isEmpty()) {
@@ -125,7 +148,6 @@ void BookmarksList::newBookmark()
     }
     label = searchLabel;
 
-    const auto coordinates = m_mapWidget->currentCenter();
     m_bookmarks[label] = coordinates;
 
     auto *item = new QListWidgetItem(label);
