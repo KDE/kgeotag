@@ -17,8 +17,8 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef DEGREESFORMATTER_H
-#define DEGREESFORMATTER_H
+#ifndef COORDINATESFORMATTER_H
+#define COORDINATESFORMATTER_H
 
 // Qt includes
 #include <QObject>
@@ -32,21 +32,21 @@ struct Coordinates;
 // Qt classes
 class QLocale;
 
-class DegreesFormatter : public QObject
+class CoordinatesFormatter : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit DegreesFormatter(QObject *parent, QLocale *locale);
+    explicit CoordinatesFormatter(QObject *parent, QLocale *locale);
     QString lon(const KGeoTag::Coordinates &coordinates) const;
     QString lat(const KGeoTag::Coordinates &coordinates) const;
 
 private: // Functions
-    QString formatDouble(double value) const;
+    QString formatLonLat(double value) const;
 
 private: // Variables
     QLocale *m_locale;
 
 };
 
-#endif // DEGREESFORMATTER_H
+#endif // COORDINATESFORMATTER_H

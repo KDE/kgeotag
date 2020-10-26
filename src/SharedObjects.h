@@ -30,7 +30,7 @@ class ImageCache;
 class GpxEngine;
 class ElevationEngine;
 class MapWidget;
-class DegreesFormatter;
+class CoordinatesFormatter;
 
 class SharedObjects : public QObject
 {
@@ -43,7 +43,7 @@ public:
     GpxEngine *gpxEngine() const;
     ElevationEngine *elevationEngine() const;
     MapWidget *mapWidget() const;
-    DegreesFormatter *degreesFormatter() const;
+    CoordinatesFormatter *coordinatesFormatter() const;
 
 private: // Variables
     Settings *m_settings;
@@ -52,7 +52,7 @@ private: // Variables
     ElevationEngine *m_elevationEngine;
     MapWidget *m_mapWidget;
     QLocale m_locale;
-    DegreesFormatter *m_degreesFormatter;
+    CoordinatesFormatter *m_coordinatesFormatter;
 
 };
 

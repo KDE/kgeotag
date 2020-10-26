@@ -29,7 +29,7 @@
 
 // Local classes
 class SharedObjects;
-class DegreesFormatter;
+class CoordinatesFormatter;
 class ImageCache;
 class ImagePreview;
 
@@ -48,7 +48,7 @@ public slots:
     void setImage(const QString &path);
 
 private: // Variables
-    DegreesFormatter *m_formatter;
+    CoordinatesFormatter *m_formatter;
     ImageCache *m_imageCache;
 
     ImagePreview *m_preview;

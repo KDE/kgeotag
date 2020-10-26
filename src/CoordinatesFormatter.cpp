@@ -18,7 +18,7 @@
 */
 
 // Local includes
-#include "DegreesFormatter.h"
+#include "CoordinatesFormatter.h"
 #include "KGeoTag.h"
 
 // KDE includes
@@ -30,29 +30,29 @@
 // C++ includes
 #include <cmath>
 
-DegreesFormatter::DegreesFormatter(QObject *parent, QLocale *locale)
+CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale)
     : QObject(parent),
       m_locale(locale)
 {
 }
 
-QString DegreesFormatter::formatDouble(double value) const
+QString CoordinatesFormatter::formatLonLat(double value) const
 {
     return m_locale->toString(std::abs(value), 'f', 5);
 }
 
-QString DegreesFormatter::lon(const KGeoTag::Coordinates &coordinates) const
+QString CoordinatesFormatter::lon(const KGeoTag::Coordinates &coordinates) const
 {
     return i18nc("Formatted longitude with a cardinal direction", "%1° %2",
-                 formatDouble(coordinates.lon),
+                 formatLonLat(coordinates.lon),
                  coordinates.lon >= 0 ? i18nc("Cardinal direction", "E")
                                       : i18nc("Cardinal direction", "W"));
 }
 
-QString DegreesFormatter::lat(const KGeoTag::Coordinates &coordinates) const
+QString CoordinatesFormatter::lat(const KGeoTag::Coordinates &coordinates) const
 {
     return i18nc("Formatted latitude with a cardinal direction", "%1° %2",
-                 formatDouble(coordinates.lat),
+                 formatLonLat(coordinates.lat),
                  coordinates.lat >= 0 ? i18nc("Cardinal direction", "N")
                                       : i18nc("Cardinal direction", "S"));
 }

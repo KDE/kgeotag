@@ -22,7 +22,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "BookmarksList.h"
-#include "DegreesFormatter.h"
+#include "CoordinatesFormatter.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -33,7 +33,7 @@
 
 BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
-      m_formatter(sharedObjects->degreesFormatter())
+      m_formatter(sharedObjects->coordinatesFormatter())
 {
     auto *layout = new QVBoxLayout(this);
 

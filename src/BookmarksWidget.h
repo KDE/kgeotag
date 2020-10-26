@@ -29,7 +29,7 @@
 // Local classes
 class SharedObjects;
 class BookmarksList;
-class DegreesFormatter;
+class CoordinatesFormatter;
 
 // Qt classes
 class QLabel;
@@ -49,7 +49,7 @@ private slots:
     void showInfo(const KGeoTag::Coordinates &coordinates);
 
 private: // Variables
-    DegreesFormatter *m_formatter;
+    CoordinatesFormatter *m_formatter;
     BookmarksList *m_bookmarksList;
     QLabel *m_info;
 

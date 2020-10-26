@@ -20,7 +20,7 @@
 // Local includes
 #include "PreviewWidget.h"
 #include "SharedObjects.h"
-#include "DegreesFormatter.h"
+#include "CoordinatesFormatter.h"
 #include "ImageCache.h"
 #include "ImagePreview.h"
 #include "KGeoTag.h"
@@ -37,7 +37,7 @@
 
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
-      m_formatter(sharedObjects->degreesFormatter()),
+      m_formatter(sharedObjects->coordinatesFormatter()),
       m_imageCache(sharedObjects->imageCache())
 {
     auto *layout = new QVBoxLayout(this);

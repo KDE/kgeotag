@@ -61,7 +61,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/BookmarksList.cpp
     ${main_ROOT}/BookmarksWidget.cpp
     ${main_ROOT}/CoordinatesDialog.cpp
-    ${main_ROOT}/DegreesFormatter.cpp
+    ${main_ROOT}/CoordinatesFormatter.cpp
 )
 
 # Build the executable
