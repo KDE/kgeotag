@@ -17,43 +17,36 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SHAREDOBJECTS_H
-#define SHAREDOBJECTS_H
+#ifndef DEGREESFORMATTER_H
+#define DEGREESFORMATTER_H
 
 // Qt includes
 #include <QObject>
-#include <QLocale>
 
-// Local classes
-class Settings;
-class ImageCache;
-class GpxEngine;
-class ElevationEngine;
-class MapWidget;
-class DegreesFormatter;
+// Local structs
+namespace KGeoTag
+{
+struct Coordinates;
+}
 
-class SharedObjects : public QObject
+// Qt classes
+class QLocale;
+
+class DegreesFormatter : public QObject
 {
     Q_OBJECT
 
 public:
-    explicit SharedObjects(QObject *parent = nullptr);
-    Settings *settings() const;
-    ImageCache *imageCache() const;
-    GpxEngine *gpxEngine() const;
-    ElevationEngine *elevationEngine() const;
-    MapWidget *mapWidget() const;
-    DegreesFormatter *degreesFormatter() const;
+    explicit DegreesFormatter(QObject *parent, QLocale *locale);
+    QString lon(const KGeoTag::Coordinates &coordinates) const;
+    QString lat(const KGeoTag::Coordinates &coordinates) const;
+
+private: // Functions
+    QString formatDouble(double value) const;
 
 private: // Variables
-    Settings *m_settings;
-    ImageCache *m_imageCache;
-    GpxEngine *m_gpxEngine;
-    ElevationEngine *m_elevationEngine;
-    MapWidget *m_mapWidget;
-    QLocale m_locale;
-    DegreesFormatter *m_degreesFormatter;
+    QLocale *m_locale;
 
 };
 
-#endif // SHAREDOBJECTS_H
+#endif // DEGREESFORMATTER_H

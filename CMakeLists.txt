@@ -60,8 +60,8 @@ set(kgeotag_SOURCES
     ${main_ROOT}/ElevationEngine.cpp
     ${main_ROOT}/BookmarksList.cpp
     ${main_ROOT}/BookmarksWidget.cpp
-    ${main_ROOT}/KGeoTag.cpp
     ${main_ROOT}/CoordinatesDialog.cpp
+    ${main_ROOT}/DegreesFormatter.cpp
 )
 
 # Build the executable

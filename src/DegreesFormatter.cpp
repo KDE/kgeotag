@@ -18,29 +18,41 @@
 */
 
 // Local includes
+#include "DegreesFormatter.h"
 #include "KGeoTag.h"
 
 // KDE includes
 #include <KLocalizedString>
 
+// Qt includes
+#include <QLocale>
+
 // C++ includes
 #include <cmath>
 
-namespace KGeoTag
+DegreesFormatter::DegreesFormatter(QObject *parent, QLocale *locale)
+    : QObject(parent),
+      m_locale(locale)
 {
-
-QString formatLon(const Coordinates &coordinates)
-{
-    return i18nc("Formatted longitude with a cardinal direcetion", "%1° %2",
-                 std::abs(coordinates.lon), coordinates.lon >= 0
-                    ? i18nc("Cardinal direction", "E") : i18nc("Cardinal direction", "W"));
 }
 
-QString formatLat(const Coordinates &coordinates)
+QString DegreesFormatter::formatDouble(double value) const
 {
-    return i18nc("Formatted latitude with a cardinal direcetion", "%1° %2",
-                 std::abs(coordinates.lat), coordinates.lat >= 0
-                    ? i18nc("Cardinal direction", "N") : i18nc("Cardinal direction", "S"));
+    return m_locale->toString(std::abs(value), 'f', 5);
 }
 
+QString DegreesFormatter::lon(const KGeoTag::Coordinates &coordinates) const
+{
+    return i18nc("Formatted longitude with a cardinal direction", "%1° %2",
+                 formatDouble(coordinates.lon),
+                 coordinates.lon >= 0 ? i18nc("Cardinal direction", "E")
+                                      : i18nc("Cardinal direction", "W"));
+}
+
+QString DegreesFormatter::lat(const KGeoTag::Coordinates &coordinates) const
+{
+    return i18nc("Formatted latitude with a cardinal direction", "%1° %2",
+                 formatDouble(coordinates.lat),
+                 coordinates.lat >= 0 ? i18nc("Cardinal direction", "N")
+                                      : i18nc("Cardinal direction", "S"));
 }

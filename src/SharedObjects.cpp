@@ -24,6 +24,7 @@
 #include "GpxEngine.h"
 #include "ElevationEngine.h"
 #include "MapWidget.h"
+#include "DegreesFormatter.h"
 
 SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
@@ -32,6 +33,7 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
     m_gpxEngine = new GpxEngine(this, m_settings);
     m_elevationEngine = new ElevationEngine(this);
     m_mapWidget = new MapWidget(this);
+    m_degreesFormatter = new DegreesFormatter(this, &m_locale);
 }
 
 Settings *SharedObjects::settings() const
@@ -57,4 +59,9 @@ ElevationEngine *SharedObjects::elevationEngine() const
 MapWidget *SharedObjects::mapWidget() const
 {
     return m_mapWidget;
+}
+
+DegreesFormatter *SharedObjects::degreesFormatter() const
+{
+    return m_degreesFormatter;
 }

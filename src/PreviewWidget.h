@@ -28,6 +28,8 @@
 #include <QHash>
 
 // Local classes
+class SharedObjects;
+class DegreesFormatter;
 class ImageCache;
 class ImagePreview;
 
@@ -39,15 +41,18 @@ class PreviewWidget : public QWidget
     Q_OBJECT
 
 public:
-    explicit PreviewWidget(ImageCache *imageCache, QWidget *parent = nullptr);
+    explicit PreviewWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     QString currentImage() const;
 
 public slots:
     void setImage(const QString &path);
 
 private: // Variables
+    DegreesFormatter *m_formatter;
     ImageCache *m_imageCache;
+
     ImagePreview *m_preview;
+
     QLabel *m_path;
     QLabel *m_date;
     QLabel *m_coordinates;

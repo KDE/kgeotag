@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "BookmarksList.h"
+#include "DegreesFormatter.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -30,7 +31,9 @@
 #include <QVBoxLayout>
 #include <QLabel>
 
-BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent) : QWidget(parent)
+BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent)
+    : QWidget(parent),
+      m_formatter(sharedObjects->degreesFormatter())
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -55,8 +58,8 @@ void BookmarksWidget::showInfo(const KGeoTag::Coordinates &coordinates)
         m_info->clear();
     } else {
         m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
-                             KGeoTag::formatLon(coordinates),
-                             KGeoTag::formatLat(coordinates),
+                             m_formatter->lon(coordinates),
+                             m_formatter->lat(coordinates),
                              coordinates.alt));
     }
 }

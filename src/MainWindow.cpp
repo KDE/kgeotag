@@ -141,7 +141,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
             this, &MainWindow::searchInterpolatedMatches);
 
     // Preview
-    m_previewWidget = new PreviewWidget(m_imageCache);
+    m_previewWidget = new PreviewWidget(sharedObjects);
     auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
     connect(m_assignedImages, &ImagesList::imageSelected,

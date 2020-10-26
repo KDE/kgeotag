@@ -19,6 +19,8 @@
 
 // Local includes
 #include "PreviewWidget.h"
+#include "SharedObjects.h"
+#include "DegreesFormatter.h"
 #include "ImageCache.h"
 #include "ImagePreview.h"
 #include "KGeoTag.h"
@@ -33,8 +35,10 @@
 #include <QLocale>
 #include <QGridLayout>
 
-PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
-    : QWidget(parent), m_imageCache(imageCache)
+PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
+    : QWidget(parent),
+      m_formatter(sharedObjects->degreesFormatter()),
+      m_imageCache(sharedObjects->imageCache())
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -68,7 +72,7 @@ PreviewWidget::PreviewWidget(ImageCache *imageCache, QWidget *parent)
     m_coordinates->setWordWrap(true);
     infoLayout->addWidget(m_coordinates, 2, 1);
 
-    m_preview = new ImagePreview(imageCache);
+    m_preview = new ImagePreview(m_imageCache);
     layout->addWidget(m_preview);
 
     m_matchString[KGeoTag::MatchType::None] = i18n("read from file");
@@ -96,8 +100,8 @@ void PreviewWidget::setImage(const QString &path)
     const auto coordinates = m_imageCache->coordinates(path);
     if (coordinates.isSet) {
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
-                                    KGeoTag::formatLon(coordinates),
-                                    KGeoTag::formatLat(coordinates),
+                                    m_formatter->lon(coordinates),
+                                    m_formatter->lat(coordinates),
                                     coordinates.alt,
                                     m_matchString.value(m_imageCache->matchType(path))));
     } else {
