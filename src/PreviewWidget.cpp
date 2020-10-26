@@ -102,7 +102,7 @@ void PreviewWidget::setImage(const QString &path)
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
                                     m_formatter->lon(coordinates),
                                     m_formatter->lat(coordinates),
-                                    coordinates.alt,
+                                    m_formatter->alt(coordinates),
                                     m_matchString.value(m_imageCache->matchType(path))));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));

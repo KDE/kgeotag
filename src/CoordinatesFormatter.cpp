@@ -56,3 +56,8 @@ QString CoordinatesFormatter::lat(const KGeoTag::Coordinates &coordinates) const
                  coordinates.lat >= 0 ? i18nc("Cardinal direction", "N")
                                       : i18nc("Cardinal direction", "S"));
 }
+
+QString CoordinatesFormatter::alt(const KGeoTag::Coordinates &coordinates) const
+{
+    return m_locale->toString(coordinates.alt, 'f', 1);
+}

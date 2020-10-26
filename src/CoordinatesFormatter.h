@@ -40,6 +40,7 @@ public:
     explicit CoordinatesFormatter(QObject *parent, QLocale *locale);
     QString lon(const KGeoTag::Coordinates &coordinates) const;
     QString lat(const KGeoTag::Coordinates &coordinates) const;
+    QString alt(const KGeoTag::Coordinates &coordinates) const;
 
 private: // Functions
     QString formatLonLat(double value) const;

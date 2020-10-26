@@ -60,6 +60,6 @@ void BookmarksWidget::showInfo(const KGeoTag::Coordinates &coordinates)
         m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
                              m_formatter->lon(coordinates),
                              m_formatter->lat(coordinates),
-                             coordinates.alt));
+                             m_formatter->alt(coordinates)));
     }
 }
