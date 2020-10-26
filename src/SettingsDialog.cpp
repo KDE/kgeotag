@@ -94,7 +94,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_trackWidth->setMinimum(1);
     m_trackWidth->setMaximum(50);
     m_trackWidth->setValue(m_settings->trackWidth());
-    trackBoxLayout->addWidget(m_trackWidth, 1, 1, 1, 2);
+    trackBoxLayout->addWidget(m_trackWidth, 1, 1);
 
     trackBoxLayout->addWidget(new QLabel(i18n("Line style:")), 2, 0);
     m_trackStyle = new QComboBox;
@@ -105,7 +105,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_trackStyle->addItem(i18n("Dash-Dot-Dot"), static_cast<int>(Qt::DashDotDotLine));
     m_trackStyle->setCurrentIndex(
         m_trackStyle->findData(static_cast<int>(m_settings->trackStyle())));
-    trackBoxLayout->addWidget(m_trackStyle, 2, 1, 1, 2);
+    trackBoxLayout->addWidget(m_trackStyle, 2, 1);
 
     // Image assignment
 
@@ -113,9 +113,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *assignmentBoxLayout = new QGridLayout(assignmentBox);
     layout->addWidget(assignmentBox);
 
-    m_lookupElevation = new QCheckBox(i18n("Enable elevation lookup using opentopodata.org\n"
-                                           "(requested automatically when placing images on the "
-                                           "map)"));
+    m_lookupElevation = new QCheckBox(i18n("Request and set altitudes automatically using "
+                                           "opentopodata.org"));
     m_lookupElevation->setChecked(m_settings->lookupElevation());
     assignmentBoxLayout->addWidget(m_lookupElevation, 0, 0, 1, 3);
 
@@ -185,8 +184,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *saveBoxLayout = new QVBoxLayout(saveBox);
     layout->addWidget(saveBox);
 
-    m_createBackups = new QCheckBox(i18n("Create a backup of each image\n"
-                                         "before altering the Exif header"));
+    m_createBackups = new QCheckBox(i18n("Create a backup of each image before altering the Exif "
+                                         "header"));
     m_createBackups->setChecked(m_settings->createBackups());
     saveBoxLayout->addWidget(m_createBackups);
 
