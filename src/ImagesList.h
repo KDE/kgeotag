@@ -55,6 +55,7 @@ public:
     void addOrUpdateImage(const QString &path);
     void removeImage(const QString &path);
     void scrollToImage(const QString &path);
+    QVector<QString> selectedPaths() const;
 
 public slots:
     void updateBookmarks();
@@ -63,13 +64,13 @@ public slots:
 signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
-    void assignToMapCenter(const QVector<QString> &paths) const;
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
-    void removeCoordinates(const QVector<QString> &paths) const;
-    void discardChanges(const QVector<QString> &paths) const;
+    void removeCoordinates() const;
     void checkUpdatePreview(const QVector<QString> &paths) const;
-    void searchExactMatches(const QVector<QString> &paths) const;
-    void searchInterpolatedMatches(const QVector<QString> &paths) const;
+    void assignToMapCenter(ImagesList *list) const;
+    void discardChanges(ImagesList *list) const;
+    void searchExactMatches(ImagesList *list) const;
+    void searchInterpolatedMatches(ImagesList *list) const;
 
 protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
@@ -86,9 +87,6 @@ private slots:
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
                             const QVector<double> &elevations);
 
-private: // Functions
-    QVector<QString> selectedPaths() const;
-
 private: // Variables
     Type m_type;
     Settings *m_settings;
@@ -100,8 +98,6 @@ private: // Variables
     QPoint m_dragStartPosition;
 
     QMenu *m_contextMenu;
-    QAction *m_searchExactMatch;
-    QAction *m_searchInterpolatedMatch;
     QMenu *m_bookmarksMenu;
     QAction *m_lookupElevation = nullptr;
     QAction *m_setElevation = nullptr;

@@ -56,13 +56,13 @@ private slots:
     void addGpx();
     void addImages();
     void imagesDropped(const QVector<QString> &paths);
-    void searchExactMatches(const QVector<QString> &paths);
-    void searchInterpolatedMatches(const QVector<QString> &paths);
+    void searchExactMatches(ImagesList *list);
+    void searchInterpolatedMatches(ImagesList *list);
     void saveChanges();
     void showSettings();
-    void removeCoordinates(const QVector<QString> &paths);
-    void discardChanges(const QVector<QString> &paths);
-    void assignToMapCenter(const QVector<QString> &paths);
+    void removeCoordinates();
+    void discardChanges(ImagesList *list);
+    void assignToMapCenter(ImagesList *list);
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
     void elevationLookupFailed(const QString &errorMessage);

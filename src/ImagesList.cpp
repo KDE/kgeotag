@@ -43,7 +43,6 @@
 
 // C++ includes
 #include <algorithm>
-#include <utility>
 #include <functional>
 
 ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
@@ -69,26 +68,18 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
 
     auto *searchMatchesMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
 
-    m_searchExactMatch = searchMatchesMenu->addAction(i18n("Exact match search"));
-    connect(m_searchExactMatch, &QAction::triggered,
-            [this]
-            {
-                emit searchExactMatches(selectedPaths());
-            });
+    auto *searchExactMatchesAction = searchMatchesMenu->addAction(i18n("Exact match search"));
+    connect(searchExactMatchesAction, &QAction::triggered,
+            this, std::bind(&ImagesList::searchExactMatches, this, this));
 
-    m_searchInterpolatedMatch = searchMatchesMenu->addAction(i18n("Interpolated match search"));
-    connect(m_searchInterpolatedMatch, &QAction::triggered,
-            [this]
-            {
-                emit searchInterpolatedMatches(selectedPaths());
-            });
+    auto *searchInterpolatedMatchesAction
+        = searchMatchesMenu->addAction(i18n("Interpolated match search"));
+    connect(searchInterpolatedMatchesAction, &QAction::triggered,
+            this, std::bind(&ImagesList::searchInterpolatedMatches, this, this));
 
     auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
     connect(assignToMapCenterAction, &QAction::triggered,
-            [this]
-            {
-                emit assignToMapCenter(selectedPaths());
-            });
+            this, std::bind(&ImagesList::assignToMapCenter, this, this));
 
     m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
     updateBookmarks();
@@ -98,10 +89,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
 
         m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
         connect(m_lookupElevation, &QAction::triggered,
-                [this]
-                {
-                    lookupElevation(selectedPaths());
-                });
+                this, std::bind(&ImagesList::lookupElevation, this, QVector<QString>()));
 
         m_setElevation = m_contextMenu->addAction(i18n("Set elevation manually"));
         connect(m_setElevation, &QAction::triggered, this, &ImagesList::setElevation);
@@ -110,18 +98,11 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     m_contextMenu->addSeparator();
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
-    connect(m_removeCoordinates, &QAction::triggered,
-            [this]
-            {
-                emit removeCoordinates(selectedPaths());
-            });
+    connect(m_removeCoordinates, &QAction::triggered, this, &ImagesList::removeCoordinates);
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
     connect(m_discardChanges, &QAction::triggered,
-            [this]
-            {
-                emit discardChanges(selectedPaths());
-            });
+            this, std::bind(&ImagesList::discardChanges, this, this));
 
     setContextMenuPolicy(Qt::CustomContextMenu);
     connect(this, &QListWidget::customContextMenuRequested, this, &ImagesList::showContextMenu);

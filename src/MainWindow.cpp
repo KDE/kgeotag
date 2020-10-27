@@ -324,9 +324,9 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     }
 }
 
-void MainWindow::assignToMapCenter(const QVector<QString> &paths)
+void MainWindow::assignToMapCenter(ImagesList *list)
 {
-    assignTo(paths, m_mapWidget->currentCenter());
+    assignTo(list->selectedPaths(), m_mapWidget->currentCenter());
 }
 
 void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates)
@@ -354,10 +354,11 @@ void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &co
     m_assignedImages->addOrUpdateImage(path);
 }
 
-void MainWindow::searchExactMatches(const QVector<QString> &paths)
+void MainWindow::searchExactMatches(ImagesList *list)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
+    const auto paths = list->selectedPaths();
     int matches = 0;
     QString lastMatchedPath;
 
@@ -388,10 +389,11 @@ void MainWindow::searchExactMatches(const QVector<QString> &paths)
     }
 }
 
-void MainWindow::searchInterpolatedMatches(const QVector<QString> &paths)
+void MainWindow::searchInterpolatedMatches(ImagesList *list)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
+    const auto paths = list->selectedPaths();
     int matches = 0;
     QString lastMatchedPath;
 
@@ -547,8 +549,9 @@ void MainWindow::showSettings()
     m_mapWidget->updateSettings();
 }
 
-void MainWindow::removeCoordinates(const QVector<QString> &paths)
+void MainWindow::removeCoordinates()
 {
+    const auto paths = m_assignedImages->selectedPaths();
     for (const QString &path : paths) {
         m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
         m_imageCache->setChanged(path, true);
@@ -562,8 +565,9 @@ void MainWindow::removeCoordinates(const QVector<QString> &paths)
     m_previewWidget->setImage(m_previewWidget->currentImage());
 }
 
-void MainWindow::discardChanges(const QVector<QString> &paths)
+void MainWindow::discardChanges(ImagesList *list)
 {
+    const auto paths = list->selectedPaths();
     for (const auto &path : paths) {
         m_imageCache->resetChanges(path);
         m_assignedImages->removeImage(path);
