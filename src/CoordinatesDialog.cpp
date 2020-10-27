@@ -68,8 +68,8 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, QWidget *parent) :
     grid->addWidget(altLabel, row, 0);
     m_alt = new QDoubleSpinBox;
     m_alt->setDecimals(1);
-    m_alt->setMinimum(-12000.0);
-    m_alt->setMaximum(8900.0);
+    m_alt->setMinimum(KGeoTag::minimalAltitude);
+    m_alt->setMaximum(KGeoTag::maximalAltitude);
     grid->addWidget(m_alt, row++, 1);
 
     switch (mode) {

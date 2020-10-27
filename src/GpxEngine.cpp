@@ -29,9 +29,6 @@
 #include <QFile>
 #include <QXmlStreamReader>
 
-// Earth radius according to WGS-84 ellipsoid, Radius of Sphere of Equal Area
-static const double s_earthRadius = 6371007.1809;
-
 GpxEngine::GpxEngine(QObject *parent, Settings *settings)
     : QObject(parent), m_settings(settings)
 {
@@ -228,7 +225,7 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
     // Check for a maximum distance between the points if requested
 
     if (maximumDistance != -1
-        && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * s_earthRadius
+        && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * KGeoTag::earthRadius
         > maximumDistance) {
 
         return KGeoTag::NoCoordinates;

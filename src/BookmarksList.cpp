@@ -271,7 +271,8 @@ void BookmarksList::setElevation()
     bool okay = false;
     auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
                                              i18n("Elevation for \"%1\" (m)", id),
-                                             m_bookmarks.value(id).alt, -12000, 8900, 1, &okay);
+                                             m_bookmarks.value(id).alt, KGeoTag::minimalAltitude,
+                                             KGeoTag::maximalAltitude, 1, &okay);
     if (! okay) {
         return;
     }

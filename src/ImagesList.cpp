@@ -341,8 +341,9 @@ void ImagesList::setElevation()
 
     bool okay = false;
     auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
-                                             i18n("Elevation (m) for %1", label), preset, -12000,
-                                             8900, 1, &okay);
+                                             i18n("Elevation (m) for %1", label), preset,
+                                             KGeoTag::minimalAltitude, KGeoTag::maximalAltitude, 1,
+                                             &okay);
     if (! okay) {
         return;
     }

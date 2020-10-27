@@ -26,6 +26,15 @@
 namespace KGeoTag
 {
 
+// Depth of the Marianna Trench minus some meters
+constexpr const double minimalAltitude = -12000.0;
+
+// Height of Mount Everest plus some meters
+constexpr const double maximalAltitude = 8900.0;
+
+// Earth radius according to WGS-84 ellipsoid, Radius of Sphere of Equal Area
+constexpr const double earthRadius = 6371007.1809;
+
 struct Coordinates
 {
     double lon;
