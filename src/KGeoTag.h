@@ -32,7 +32,7 @@ constexpr const double minimalAltitude = -12000.0;
 // Height of Mount Everest plus some meters
 constexpr const double maximalAltitude = 8900.0;
 
-// Earth radius according to GRS 80 ellipsoid, radius of Sphere of Equal Area
+// Earth radius according to the GRS 80 ellipsoid (radius of a sphere of equal area)
 constexpr const double earthRadius = 6371007.2;
 
 // 5 decimal places of degrees result in a precision of at worst about 1 m.
@@ -75,9 +75,6 @@ enum MatchType {
     Interpolated,
     Set
 };
-
-QString formatLon(const Coordinates &coordinates);
-QString formatLat(const Coordinates &coordinates);
 
 }
 
