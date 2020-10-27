@@ -57,8 +57,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     grid->addWidget(lonLabel, row, 0);
     m_lon = new QDoubleSpinBox;
     m_lon->setDecimals(KGeoTag::degreesPrecision);
-    m_lon->setMinimum(-180.0);
-    m_lon->setMaximum(180.0);
+    m_lon->setRange(-180.0, 180.0);
     m_lon->setValue(coordinates.lon);
     grid->addWidget(m_lon, row++, 1);
 
@@ -66,18 +65,16 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     grid->addWidget(latLabel, row, 0);
     m_lat = new QDoubleSpinBox;
     m_lat->setDecimals(KGeoTag::degreesPrecision);
-    m_lat->setMinimum(-180.0);
-    m_lat->setMaximum(180.0);
-    m_lon->setValue(coordinates.lat);
+    m_lat->setRange(-180.0, 180.0);
+    m_lat->setValue(coordinates.lat);
     grid->addWidget(m_lat, row++, 1);
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
     grid->addWidget(altLabel, row, 0);
     m_alt = new QDoubleSpinBox;
     m_alt->setDecimals(KGeoTag::altitudePrecision);
-    m_alt->setMinimum(KGeoTag::minimalAltitude);
-    m_alt->setMaximum(KGeoTag::maximalAltitude);
-    m_lon->setValue(coordinates.alt);
+    m_alt->setRange(KGeoTag::minimalAltitude, KGeoTag::maximalAltitude);
+    m_alt->setValue(coordinates.alt);
     grid->addWidget(m_alt, row++, 1);
 
     switch (mode) {
