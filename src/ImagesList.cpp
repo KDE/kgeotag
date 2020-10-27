@@ -77,12 +77,18 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     connect(searchInterpolatedMatchesAction, &QAction::triggered,
             this, std::bind(&ImagesList::searchInterpolatedMatches, this, this));
 
+    m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
+    updateBookmarks();
+
     auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
     connect(assignToMapCenterAction, &QAction::triggered,
             this, std::bind(&ImagesList::assignToMapCenter, this, this));
 
-    m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
-    updateBookmarks();
+    if (m_type == Type::UnAssigned) {
+        auto *assignManuallyAction = m_contextMenu->addAction(i18n("Set coordinates manually"));
+        connect(assignManuallyAction, &QAction::triggered,
+                this, std::bind(&ImagesList::assignManually, this, this));
+    }
 
     if (m_type == Type::Assigned) {
         m_contextMenu->addSeparator();
@@ -91,14 +97,16 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
         connect(m_lookupElevation, &QAction::triggered,
                 this, std::bind(&ImagesList::lookupElevation, this, QVector<QString>()));
 
-        m_setElevation = m_contextMenu->addAction(i18n("Set elevation manually"));
-        connect(m_setElevation, &QAction::triggered, this, &ImagesList::setElevation);
+        auto *setElevationAction = m_contextMenu->addAction(i18n("Set elevation manually"));
+        connect(setElevationAction, &QAction::triggered, this, &ImagesList::setElevation);
+
+        m_contextMenu->addSeparator();
+
+        auto *removeCoordinatesAction = m_contextMenu->addAction(i18n("Remove coordinates"));
+        connect(removeCoordinatesAction, &QAction::triggered, this, &ImagesList::removeCoordinates);
     }
 
     m_contextMenu->addSeparator();
-
-    m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
-    connect(m_removeCoordinates, &QAction::triggered, this, &ImagesList::removeCoordinates);
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
     connect(m_discardChanges, &QAction::triggered,
@@ -281,7 +289,6 @@ void ImagesList::showContextMenu(const QPoint &point)
         }
     }
 
-    m_removeCoordinates->setEnabled(coordinatesSet);
     m_discardChanges->setEnabled(changesPresent);
 
     m_contextMenu->exec(mapToGlobal(point));
@@ -317,7 +324,8 @@ void ImagesList::setElevation()
         label = i18nc("A quoted filename", "\"%1\"", info.fileName());
         preset = m_imageCache->coordinates(path).alt;
     } else {
-        label = i18n("%1 images", paths.count());
+        // We don't need this for English, but possibly for languages with other plural forms
+        label = i18np("1 image", "%1 images", paths.count());
     }
 
     bool okay = false;

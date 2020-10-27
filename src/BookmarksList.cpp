@@ -293,7 +293,7 @@ const QHash<QString, KGeoTag::Coordinates> *BookmarksList::bookmarks() const
 
 void BookmarksList::editCoordinates()
 {
-    const auto label = m_contextMenuItem->text();
+    const auto label = i18nc("A quoted filename", "\"%1\"", m_contextMenuItem->text());
     auto &coordinates = m_bookmarks[label];
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false, coordinates, label);
@@ -301,7 +301,7 @@ void BookmarksList::editCoordinates()
         return;
     }
 
-    coordinates = { dialog.lon(), dialog.lat(), dialog.alt(), true };
+    coordinates = dialog.coordinates();
     m_mapWidget->centerCoordinates(coordinates);
     emit showInfo(coordinates);
 }

@@ -32,6 +32,7 @@
 #include "BookmarksList.h"
 #include "ElevationEngine.h"
 #include "BookmarksWidget.h"
+#include "CoordinatesDialog.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -117,6 +118,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_unAssignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_unAssignedImages, &ImagesList::assignToMapCenter,
             this, &MainWindow::assignToMapCenter);
+    connect(m_unAssignedImages, &ImagesList::assignManually, this, &MainWindow::assignManually);
     connect(m_unAssignedImages, &ImagesList::searchExactMatches,
             this, &MainWindow::searchExactMatches);
     connect(m_unAssignedImages, &ImagesList::searchInterpolatedMatches,
@@ -133,6 +135,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_assignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
+    connect(m_assignedImages, &ImagesList::assignManually, this, &MainWindow::assignManually);
     connect(m_assignedImages, &ImagesList::checkUpdatePreview,
             this, &MainWindow::checkUpdatePreview);
     connect(m_assignedImages, &ImagesList::searchExactMatches,
@@ -327,6 +330,27 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
 void MainWindow::assignToMapCenter(ImagesList *list)
 {
     assignTo(list->selectedPaths(), m_mapWidget->currentCenter());
+}
+
+void MainWindow::assignManually(ImagesList *list)
+{
+    const auto paths = list->selectedPaths();
+    QString label;
+    if (paths.count() == 1) {
+        QFileInfo info(paths.first());
+        label = i18nc("A quoted filename", "\"%1\"", info.fileName());
+    } else {
+        // We don't need this for English, but possibly for languages with other plural forms
+        label = i18np("1 image", "%1 images", paths.count());
+    }
+
+    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates,
+                             m_settings->lookupElevation(), KGeoTag::NoCoordinates, label);
+    if (! dialog.exec()) {
+        return;
+    }
+
+    assignTo(paths, dialog.coordinates());
 }
 
 void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates)

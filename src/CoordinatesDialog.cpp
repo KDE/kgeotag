@@ -31,6 +31,7 @@
 #include <QLineEdit>
 #include <QDoubleSpinBox>
 #include <QDialogButtonBox>
+#include <QDebug>
 
 CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
                                      const KGeoTag::Coordinates &coordinates,
@@ -90,7 +91,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
         labelLabel->hide();
         m_label->hide();
         setWindowTitle(i18n("Edit coordinates"));
-        titleLabel->setText(i18n("Coordinates for \"%1\":", target));
+        titleLabel->setText(i18n("Coordinates for %1:", target));
         break;
 
     }
@@ -125,4 +126,9 @@ double CoordinatesDialog::lat() const
 double CoordinatesDialog::alt() const
 {
     return m_alt->value();
+}
+
+KGeoTag::Coordinates CoordinatesDialog::coordinates() const
+{
+    return KGeoTag::Coordinates { m_lon->value(), m_lat->value(), m_alt->value(), true };
 }

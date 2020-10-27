@@ -47,6 +47,7 @@ public:
     double lon() const;
     double lat() const;
     double alt() const;
+    KGeoTag::Coordinates coordinates() const;
 
 private: // Variables
     QLineEdit *m_label;
