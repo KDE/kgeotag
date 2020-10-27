@@ -36,12 +36,13 @@ class CoordinatesDialog : public QDialog
 
 public:
     enum Mode {
-        ManualBookmark
+        ManualBookmark,
+        EditCoordinates
     };
 
     explicit CoordinatesDialog(Mode mode, bool hideAlt,
                                const KGeoTag::Coordinates &coordinates = KGeoTag::NoCoordinates,
-                               QWidget *parent = nullptr);
+                               const QString &target = QString(), QWidget *parent = nullptr);
     QString label() const;
     double lon() const;
     double lat() const;

@@ -59,11 +59,13 @@ private slots:
     void showContextMenu(const QPoint &point);
     void newBookmark();
     void newManualBookmark();
-    void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
     void renameBookmark();
+    void editCoordinates();
     void lookupElevation();
     void setElevation();
     void deleteBookmark();
+
+    void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
                             const QVector<double> &elevations);
     void restoreAfterElevationLookup();
@@ -89,6 +91,7 @@ private: // Variables
     QAction *m_lookupElevation;
     QAction *m_setElevation;
     QAction *m_deleteBookmark;
+    QAction *m_editCoordinates;
 
 };
 

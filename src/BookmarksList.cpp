@@ -80,6 +80,11 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
     m_renameBookmark = m_contextMenu->addAction(i18n("Rename bookmark"));
     connect(m_renameBookmark, &QAction::triggered, this, &BookmarksList::renameBookmark);
 
+    m_editCoordinates = m_contextMenu->addAction(i18n("Edit coordinates"));
+    connect(m_editCoordinates, &QAction::triggered, this, &BookmarksList::editCoordinates);
+
+    m_contextMenu->addSeparator();
+
     m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
     connect(m_lookupElevation, &QAction::triggered, this, &BookmarksList::lookupElevation);
 
@@ -104,6 +109,7 @@ void BookmarksList::showContextMenu(const QPoint &point)
     m_lookupElevation->setEnabled(itemSelected && m_settings->lookupElevation());
     m_setElevation->setEnabled(itemSelected);
     m_deleteBookmark->setEnabled(itemSelected);
+    m_editCoordinates->setEnabled(itemSelected);
 
     m_contextMenu->exec(mapToGlobal(point));
 }
@@ -283,4 +289,19 @@ void BookmarksList::setElevation()
 const QHash<QString, KGeoTag::Coordinates> *BookmarksList::bookmarks() const
 {
     return &m_bookmarks;
+}
+
+void BookmarksList::editCoordinates()
+{
+    const auto label = m_contextMenuItem->text();
+    auto &coordinates = m_bookmarks[label];
+
+    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false, coordinates, label);
+    if (! dialog.exec()) {
+        return;
+    }
+
+    coordinates = { dialog.lon(), dialog.lat(), dialog.alt(), true };
+    m_mapWidget->centerCoordinates(coordinates);
+    emit showInfo(coordinates);
 }

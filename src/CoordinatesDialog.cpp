@@ -32,7 +32,8 @@
 #include <QDialogButtonBox>
 
 CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
-                                     const KGeoTag::Coordinates &coordinates, QWidget *parent)
+                                     const KGeoTag::Coordinates &coordinates,
+                                     const QString &target, QWidget *parent)
     : QDialog(parent)
 {
     auto *layout = new QVBoxLayout(this);
@@ -81,6 +82,11 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     case Mode::ManualBookmark:
         setWindowTitle(i18n("New bookmark"));
         titleLabel->setText(i18n("Data for the new bookmark:"));
+        break;
+    case Mode::EditCoordinates:
+        labelLabel->hide();
+        setWindowTitle(i18n("Edit coordinates"));
+        titleLabel->setText(i18n("Coordinates for \"%1\":", target));
         break;
     }
 
