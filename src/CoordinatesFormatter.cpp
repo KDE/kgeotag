@@ -38,7 +38,7 @@ CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale)
 
 QString CoordinatesFormatter::formatLonLat(double value) const
 {
-    return m_locale->toString(std::abs(value), 'f', 5);
+    return m_locale->toString(std::abs(value), 'f', KGeoTag::degreesPrecision);
 }
 
 QString CoordinatesFormatter::lon(const KGeoTag::Coordinates &coordinates) const
@@ -59,5 +59,5 @@ QString CoordinatesFormatter::lat(const KGeoTag::Coordinates &coordinates) const
 
 QString CoordinatesFormatter::alt(const KGeoTag::Coordinates &coordinates) const
 {
-    return m_locale->toString(coordinates.alt, 'f', 1);
+    return m_locale->toString(coordinates.alt, 'f', KGeoTag::altitudePrecision);
 }
