@@ -87,7 +87,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     case Mode::EditCoordinates:
         labelLabel->hide();
         m_label->hide();
-        setWindowTitle(i18n("Edit coordinates"));
+        setWindowTitle(i18n("Manual coordinates"));
         titleLabel->setText(i18n("Coordinates for %1:", target));
         break;
 
