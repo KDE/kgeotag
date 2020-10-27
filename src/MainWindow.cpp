@@ -135,7 +135,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_assignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
-    connect(m_assignedImages, &ImagesList::assignManually, this, &MainWindow::assignManually);
     connect(m_assignedImages, &ImagesList::checkUpdatePreview,
             this, &MainWindow::checkUpdatePreview);
     connect(m_assignedImages, &ImagesList::searchExactMatches,
@@ -332,9 +331,10 @@ void MainWindow::assignToMapCenter(ImagesList *list)
     assignTo(list->selectedPaths(), m_mapWidget->currentCenter());
 }
 
-void MainWindow::assignManually(ImagesList *list)
+void MainWindow::assignManually()
 {
-    const auto paths = list->selectedPaths();
+    const auto paths = m_unAssignedImages->selectedPaths();
+
     QString label;
     if (paths.count() == 1) {
         QFileInfo info(paths.first());

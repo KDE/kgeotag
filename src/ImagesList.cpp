@@ -86,8 +86,7 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
 
     if (m_type == Type::UnAssigned) {
         auto *assignManuallyAction = m_contextMenu->addAction(i18n("Set coordinates manually"));
-        connect(assignManuallyAction, &QAction::triggered,
-                this, std::bind(&ImagesList::assignManually, this, this));
+        connect(assignManuallyAction, &QAction::triggered, this, &ImagesList::assignManually);
     }
 
     if (m_type == Type::Assigned) {

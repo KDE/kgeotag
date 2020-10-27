@@ -68,7 +68,7 @@ signals:
     void removeCoordinates() const;
     void checkUpdatePreview(const QVector<QString> &paths) const;
     void assignToMapCenter(ImagesList *list) const;
-    void assignManually(ImagesList *list) const;
+    void assignManually() const;
     void discardChanges(ImagesList *list) const;
     void searchExactMatches(ImagesList *list) const;
     void searchInterpolatedMatches(ImagesList *list) const;
