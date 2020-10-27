@@ -24,6 +24,7 @@
 #include <KLocalizedString>
 
 // Qt includes
+#include <QApplication>
 #include <QVBoxLayout>
 #include <QGridLayout>
 #include <QLabel>
@@ -33,8 +34,8 @@
 
 CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
                                      const KGeoTag::Coordinates &coordinates,
-                                     const QString &target, QWidget *parent)
-    : QDialog(parent)
+                                     const QString &target)
+    : QDialog(QApplication::activeWindow())
 {
     auto *layout = new QVBoxLayout(this);
     auto *grid = new QGridLayout;
@@ -79,15 +80,19 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     grid->addWidget(m_alt, row++, 1);
 
     switch (mode) {
+
     case Mode::ManualBookmark:
         setWindowTitle(i18n("New bookmark"));
         titleLabel->setText(i18n("Data for the new bookmark:"));
         break;
+
     case Mode::EditCoordinates:
         labelLabel->hide();
+        m_label->hide();
         setWindowTitle(i18n("Edit coordinates"));
         titleLabel->setText(i18n("Coordinates for \"%1\":", target));
         break;
+
     }
 
     if (hideAlt) {

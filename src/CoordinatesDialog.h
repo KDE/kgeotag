@@ -42,7 +42,7 @@ public:
 
     explicit CoordinatesDialog(Mode mode, bool hideAlt,
                                const KGeoTag::Coordinates &coordinates = KGeoTag::NoCoordinates,
-                               const QString &target = QString(), QWidget *parent = nullptr);
+                               const QString &target = QString());
     QString label() const;
     double lon() const;
     double lat() const;
