@@ -31,7 +31,9 @@
 #include <QDoubleSpinBox>
 #include <QDialogButtonBox>
 
-CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, QWidget *parent) : QDialog(parent)
+CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
+                                     const KGeoTag::Coordinates &coordinates, QWidget *parent)
+    : QDialog(parent)
 {
     auto *layout = new QVBoxLayout(this);
     auto *grid = new QGridLayout;
@@ -51,25 +53,28 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, QWidget *parent) :
     auto *lonLabel = new QLabel(i18n("Longitude:"));
     grid->addWidget(lonLabel, row, 0);
     m_lon = new QDoubleSpinBox;
-    m_lon->setDecimals(6);
+    m_lon->setDecimals(KGeoTag::degreesPrecision);
     m_lon->setMinimum(-180.0);
     m_lon->setMaximum(180.0);
+    m_lon->setValue(coordinates.lon);
     grid->addWidget(m_lon, row++, 1);
 
     auto *latLabel = new QLabel(i18n("Latitude:"));
     grid->addWidget(latLabel, row, 0);
     m_lat = new QDoubleSpinBox;
-    m_lat->setDecimals(6);
+    m_lat->setDecimals(KGeoTag::degreesPrecision);
     m_lat->setMinimum(-180.0);
     m_lat->setMaximum(180.0);
+    m_lon->setValue(coordinates.lat);
     grid->addWidget(m_lat, row++, 1);
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
     grid->addWidget(altLabel, row, 0);
     m_alt = new QDoubleSpinBox;
-    m_alt->setDecimals(1);
+    m_alt->setDecimals(KGeoTag::altitudePrecision);
     m_alt->setMinimum(KGeoTag::minimalAltitude);
     m_alt->setMaximum(KGeoTag::maximalAltitude);
+    m_lon->setValue(coordinates.alt);
     grid->addWidget(m_alt, row++, 1);
 
     switch (mode) {

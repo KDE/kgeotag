@@ -39,7 +39,9 @@ public:
         ManualBookmark
     };
 
-    explicit CoordinatesDialog(Mode mode, bool hideAlt, QWidget *parent = nullptr);
+    explicit CoordinatesDialog(Mode mode, bool hideAlt,
+                               const KGeoTag::Coordinates &coordinates = KGeoTag::NoCoordinates,
+                               QWidget *parent = nullptr);
     QString label() const;
     double lon() const;
     double lat() const;
