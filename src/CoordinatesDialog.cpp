@@ -66,7 +66,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     grid->addWidget(latLabel, row, 0);
     m_lat = new QDoubleSpinBox;
     m_lat->setDecimals(KGeoTag::degreesPrecision);
-    m_lat->setRange(-180.0, 180.0);
+    m_lat->setRange(-90.0, 90.0);
     m_lat->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lat->setValue(coordinates.lat);
     grid->addWidget(m_lat, row++, 1);
