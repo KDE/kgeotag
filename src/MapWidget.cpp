@@ -43,6 +43,7 @@
 
 // C++ includes
 #include <functional>
+#include <utility>
 
 static QString s_licenseFloaterId = QStringLiteral("license");
 static QVector<QString> s_unsupportedFloaters = {
@@ -99,9 +100,12 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
 
         auto *action = m_contextMenu->addAction(item->name());
         action->setIcon(item->icon());
+        action->setData(id);
         action->setCheckable(true);
         action->setChecked(visibility.value(id));
         action->setData(id);
+
+        m_floatersActions.append(action);
 
         connect(action, &QAction::toggled,
                 this, std::bind(&MapWidget::changeFloaterVisiblity, this, action));
@@ -117,6 +121,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
         licenseAction->setData(s_licenseFloaterId);
         connect(licenseAction, &QAction::toggled,
                 this, std::bind(&MapWidget::changeFloaterVisiblity, this, licenseAction));
+        m_floatersActions.append(licenseAction);
     }
 
     // Don't use the MarbleWidget context menu, but our own
@@ -128,6 +133,12 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
 
 void MapWidget::showContextMenu(int x, int y)
 {
+    for (auto *action : std::as_const(m_floatersActions)) {
+        action->blockSignals(true);
+        action->setChecked(floatItem(action->data().toString())->visible());
+        action->blockSignals(false);
+    }
+
     m_contextMenu->exec(mapToGlobal(QPoint(x, y)));
 }
 
