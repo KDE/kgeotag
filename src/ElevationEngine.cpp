@@ -19,6 +19,7 @@
 
 // Local includes
 #include "ElevationEngine.h"
+#include "Settings.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -39,7 +40,9 @@
 static constexpr int s_maximumLocations = 100;
 static constexpr int s_msToNextRequest = 1000;
 
-ElevationEngine::ElevationEngine(QObject *parent) : QObject(parent)
+ElevationEngine::ElevationEngine(QObject *parent, Settings *settings)
+    : QObject(parent),
+      m_settings(settings)
 {
     m_manager = new QNetworkAccessManager(this);
     connect(m_manager, &QNetworkAccessManager::finished, this, &ElevationEngine::processReply);
@@ -111,8 +114,8 @@ void ElevationEngine::processNextRequest()
     }
 
     auto *reply = m_manager->get(QNetworkRequest(QUrl(
-        QStringLiteral("https://api.opentopodata.org/v1/aster30m?locations=%1").arg(
-                    m_queuedLocations.takeFirst()))));
+        QStringLiteral("https://api.opentopodata.org/v1/%1?locations=%2").arg(
+                    m_settings->elevationDataset(), m_queuedLocations.takeFirst()))));
     m_requests.insert(reply, { m_queuedTargets.takeFirst(), m_queuedIds.takeFirst() });
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, reply));
 

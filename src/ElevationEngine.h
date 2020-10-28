@@ -28,6 +28,9 @@
 #include <QHash>
 #include <QVector>
 
+// Local classes
+class Settings;
+
 // Qt classes
 class QNetworkAccessManager;
 class QNetworkReply;
@@ -43,7 +46,7 @@ public:
         Bookmark
     };
 
-    explicit ElevationEngine(QObject *parent);
+    explicit ElevationEngine(QObject *parent, Settings *settings);
     void request(Target target, const QVector<QString> &ids,
                  const QVector<KGeoTag::Coordinates> &coordinates);
 
@@ -66,6 +69,8 @@ private: // Variables
         Target target;
         QVector<QString> ids;
     };
+
+    Settings *m_settings;
 
     QNetworkAccessManager *m_manager;
 

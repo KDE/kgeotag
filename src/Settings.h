@@ -74,6 +74,9 @@ public:
     void saveLookupElevation(bool state);
     bool lookupElevation() const;
 
+    void saveElevationDataset(const QString &id);
+    QString elevationDataset() const;
+
     void saveTrackColor(const QColor &color);
     QColor trackColor() const;
 

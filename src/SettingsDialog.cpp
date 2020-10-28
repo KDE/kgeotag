@@ -42,28 +42,30 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
 {
     setWindowTitle(i18n("KGeoTag: Settings"));
+    int row;
 
     auto *layout = new QVBoxLayout(this);
 
     auto *imagesBox = new QGroupBox(i18n("Images"));
     auto *imagesBoxLayout = new QGridLayout(imagesBox);
+    row = -1;
     layout->addWidget(imagesBox);
 
-    imagesBoxLayout->addWidget(new QLabel(i18n("Thumbnail size:")), 0, 0);
+    imagesBoxLayout->addWidget(new QLabel(i18n("Thumbnail size:")), ++row, 0);
     m_thumbnailSize = new QSpinBox;
     m_thumbnailSize->setMinimum(16);
     m_thumbnailSize->setMaximum(512);
     m_thumbnailSize->setValue(m_settings->thumbnailSize().width());
-    imagesBoxLayout->addWidget(m_thumbnailSize, 0, 1);
-    imagesBoxLayout->addWidget(new QLabel(i18n("px")), 0, 2);
+    imagesBoxLayout->addWidget(m_thumbnailSize, row, 1);
+    imagesBoxLayout->addWidget(new QLabel(i18n("px")), row, 2);
 
-    imagesBoxLayout->addWidget(new QLabel(i18n("Preview size:")), 1, 0);
+    imagesBoxLayout->addWidget(new QLabel(i18n("Preview size:")), ++row, 0);
     m_previewSize = new QSpinBox;
     m_previewSize->setMinimum(100);
     m_previewSize->setMaximum(1920);
     m_previewSize->setValue(m_settings->previewSize().width());
-    imagesBoxLayout->addWidget(m_previewSize, 1, 1);
-    imagesBoxLayout->addWidget(new QLabel(i18n("px")), 1, 2);
+    imagesBoxLayout->addWidget(m_previewSize, row, 1);
+    imagesBoxLayout->addWidget(new QLabel(i18n("px")), row, 2);
 
     auto *imagesChangesLabel = new QLabel(i18n("Please restart the program after changes to these "
                                                "values so that they are applied and become "
@@ -75,28 +77,29 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *trackBox = new QGroupBox(i18n("GPX track rendering"));
     auto *trackBoxLayout = new QGridLayout(trackBox);
+    row = -1;
     layout->addWidget(trackBox);
 
-    trackBoxLayout->addWidget(new QLabel(i18n("Color:")), 0, 0);
+    trackBoxLayout->addWidget(new QLabel(i18n("Color:")), ++row, 0);
     m_trackColor = new QPushButton;
     m_trackColor->setFlat(true);
     m_currentTrackColor = m_settings->trackColor();
     connect(m_trackColor, &QPushButton::clicked, this, &SettingsDialog::setTrackColor);
-    trackBoxLayout->addWidget(m_trackColor, 0, 1);
+    trackBoxLayout->addWidget(m_trackColor, row, 1);
 
     m_trackOpacity = new QLabel;
-    trackBoxLayout->addWidget(m_trackOpacity, 0, 2);
+    trackBoxLayout->addWidget(m_trackOpacity, row, 2);
 
     updateTrackColor();
 
-    trackBoxLayout->addWidget(new QLabel(i18n("Line width:")), 1, 0);
+    trackBoxLayout->addWidget(new QLabel(i18n("Line width:")), ++row, 0);
     m_trackWidth = new QSpinBox;
     m_trackWidth->setMinimum(1);
     m_trackWidth->setMaximum(50);
     m_trackWidth->setValue(m_settings->trackWidth());
-    trackBoxLayout->addWidget(m_trackWidth, 1, 1);
+    trackBoxLayout->addWidget(m_trackWidth, row, 1);
 
-    trackBoxLayout->addWidget(new QLabel(i18n("Line style:")), 2, 0);
+    trackBoxLayout->addWidget(new QLabel(i18n("Line style:")), ++row, 0);
     m_trackStyle = new QComboBox;
     m_trackStyle->addItem(i18n("Solid"), static_cast<int>(Qt::SolidLine));
     m_trackStyle->addItem(i18n("Dashes"), static_cast<int>(Qt::DashLine));
@@ -105,46 +108,42 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_trackStyle->addItem(i18n("Dash-Dot-Dot"), static_cast<int>(Qt::DashDotDotLine));
     m_trackStyle->setCurrentIndex(
         m_trackStyle->findData(static_cast<int>(m_settings->trackStyle())));
-    trackBoxLayout->addWidget(m_trackStyle, 2, 1);
+    trackBoxLayout->addWidget(m_trackStyle, row, 1);
 
     // Image assignment
 
-    auto *assignmentBox = new QGroupBox(i18n("Image assignment"));
+    auto *assignmentBox = new QGroupBox(i18n("Automatic image assignment"));
     auto *assignmentBoxLayout = new QGridLayout(assignmentBox);
+    row = -1;
     layout->addWidget(assignmentBox);
-
-    m_lookupElevation = new QCheckBox(i18n("Request and set altitudes automatically using "
-                                           "opentopodata.org"));
-    m_lookupElevation->setChecked(m_settings->lookupElevation());
-    assignmentBoxLayout->addWidget(m_lookupElevation, 0, 0, 1, 3);
 
     auto *exactMatchToleranceLabel = new QLabel(
         i18n("Maximum deviation of the image's time from a GPS point's time for an exact match"));
     exactMatchToleranceLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(exactMatchToleranceLabel, 1, 0);
+    assignmentBoxLayout->addWidget(exactMatchToleranceLabel, ++row, 0);
 
     m_exactMatchTolerance = new QSpinBox;
     m_exactMatchTolerance->setMinimum(0);
     m_exactMatchTolerance->setMaximum(300);
     m_exactMatchTolerance->setValue(m_settings->exactMatchTolerance());
-    assignmentBoxLayout->addWidget(m_exactMatchTolerance, 1, 1);
+    assignmentBoxLayout->addWidget(m_exactMatchTolerance, row, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 1, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), row, 2);
 
     auto *interpolatedMatchLabel = new QLabel(i18n("Boundaries for two coordinates used to "
                                                    "calculate interpolated matches:"));
     interpolatedMatchLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(interpolatedMatchLabel, 2, 0, 1, 3);
+    assignmentBoxLayout->addWidget(interpolatedMatchLabel, ++row, 0, 1, 3);
 
     m_enableMaximumInterpolationInterval = new QCheckBox(i18n("Maximum interval:"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, 3, 0);
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, ++row, 0);
 
     m_maximumInterpolationInterval = new QSpinBox;
     m_maximumInterpolationInterval->setMinimum(0);
     m_maximumInterpolationInterval->setMaximum(86400);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, 3, 1);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, row, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), 3, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), row, 2);
 
     const int interval = m_settings->maximumInterpolationInterval();
     if (interval == -1) {
@@ -158,14 +157,13 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
             this, &SettingsDialog::enableMaximumInterpolationInterval);
 
     m_enableMaximumInterpolationDistance = new QCheckBox(i18n("Maximum distance:"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, 4, 0);
+    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, ++row, 0);
 
     m_maximumInterpolationDistance = new QSpinBox;
-    m_maximumInterpolationDistance->setMinimum(0);
-    m_maximumInterpolationDistance->setMaximum(1000000);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, 4, 1);
+    m_maximumInterpolationDistance->setRange(0, 1000000);
+    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, row, 1);
 
-    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), 4, 2);
+    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), row, 2);
 
     const int distance = m_settings->maximumInterpolationDistance();
     if (distance == -1) {
@@ -178,14 +176,65 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     connect(m_enableMaximumInterpolationDistance, &QCheckBox::toggled,
             this, &SettingsDialog::enableMaximumInterpolationDistance);
 
+    // Elevation lookup
+
+    auto *elevationBox = new QGroupBox(i18n("Elevation lookup"));
+    auto *elevationBoxLayout = new QGridLayout(elevationBox);
+    row = -1;
+    layout->addWidget(elevationBox);
+
+    m_lookupElevation = new QCheckBox(i18n("Request and set altitudes automatically\n"
+                                           "using opentopodata.org's web API"));
+    m_lookupElevation->setChecked(m_settings->lookupElevation());
+    elevationBoxLayout->addWidget(m_lookupElevation, ++row, 0, 1, 2);
+
+    elevationBoxLayout->addWidget(new QLabel(i18n("Elevation dataset:")), ++row, 0);
+
+    m_elevationDataset = new QComboBox;
+    connect(m_lookupElevation, &QCheckBox::toggled, m_elevationDataset, &QWidget::setEnabled);
+    m_elevationDataset->setEnabled(m_settings->lookupElevation());
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "ASTER"),
+                                QStringLiteral("aster30m"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "ETOPO1"),
+                                QStringLiteral("etopo1"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "EU-DEM"),
+                                QStringLiteral("eudem25m"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "Mapzen"),
+                                QStringLiteral("mapzen"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "NED"),
+                                QStringLiteral("ned10m"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "NZ DEM"),
+                                QStringLiteral("nzdem8m"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "SRTM (30 m)"),
+                                QStringLiteral("srtm30m"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "SRTM (90 m)"),
+                                QStringLiteral("srtm90m"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset",
+                                      "EMODnet 2018 Bathymetry"),
+                                QStringLiteral("emod2018"));
+    m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset",
+                                      "GEBCO 2020 Bathymetry"),
+                                QStringLiteral("gebco2020"));
+    elevationBoxLayout->addWidget(m_elevationDataset, row, 1);
+
+    m_elevationDataset->setCurrentIndex(
+        m_elevationDataset->findData(m_settings->elevationDataset()));
+
+    auto *datasetInfoLabel = new QLabel(i18n("Cf. <a href=\"https://www.opentopodata.org/\">"
+                                             "https://www.opentopodata.org/</a> for further "
+                                             "information about the available datasets!"));
+    datasetInfoLabel->setWordWrap(true);
+    datasetInfoLabel->setOpenExternalLinks(true);
+    elevationBoxLayout->addWidget(datasetInfoLabel, ++row, 0, 1, 2);
+
     // Data saving
 
     auto *saveBox = new QGroupBox(i18n("Saving"));
     auto *saveBoxLayout = new QVBoxLayout(saveBox);
     layout->addWidget(saveBox);
 
-    m_createBackups = new QCheckBox(i18n("Create a backup of each image before altering the Exif "
-                                         "header"));
+    m_createBackups = new QCheckBox(i18n("Create a backup of each image before\n"
+                                         "altering the respective Exif header"));
     m_createBackups->setChecked(m_settings->createBackups());
     saveBoxLayout->addWidget(m_createBackups);
 
@@ -247,7 +296,9 @@ void SettingsDialog::accept()
         ? m_maximumInterpolationInterval->value() : -1);
     m_settings->saveMaximumInterpolationDistance(m_enableMaximumInterpolationDistance->isChecked()
         ? m_maximumInterpolationDistance->value() : -1);
+
     m_settings->saveLookupElevation(m_lookupElevation->isChecked());
+    m_settings->saveElevationDataset(m_elevationDataset->currentData().toString());
 
     m_settings->saveCreateBackups(m_createBackups->isChecked());
 

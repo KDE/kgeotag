@@ -80,8 +80,26 @@ static const QString s_assignment_maximumInterpolationInterval
     = s_assignment + QLatin1String("maximum_interpolation_interval");
 static const QString s_assignment_maximumInterpolationDistance
     = s_assignment + QLatin1String("maximum_interpolation_distance");
-static const QString s_assignment_lookupElevation
-    = s_assignment + QLatin1String("lookup_elevation");
+
+// Elevation lookup
+
+static const QLatin1String s_elevationLookup("elevation_lookup/");
+
+static const QString s_elevationLookup_enabled = s_elevationLookup + QLatin1String("enabled");
+
+static const QVector<QString> s_elevationDatasets = {
+    QStringLiteral("aster30m"),
+    QStringLiteral("etopo1"),
+    QStringLiteral("eudem25m"),
+    QStringLiteral("mapzen"),
+    QStringLiteral("ned10m"),
+    QStringLiteral("nzdem8m"),
+    QStringLiteral("srtm30m"),
+    QStringLiteral("srtm90m"),
+    QStringLiteral("emod2018"),
+    QStringLiteral("gebco2020")
+};
+static const QString s_elevationLookup_dataset = s_elevationLookup + QLatin1String("dataset");
 
 // Saving
 
@@ -235,12 +253,23 @@ int Settings::maximumInterpolationInterval() const
 
 void Settings::saveLookupElevation(bool state)
 {
-    setValue(s_assignment_lookupElevation, state);
+    setValue(s_elevationLookup_enabled, state);
 }
 
 bool Settings::lookupElevation() const
 {
-    return value(s_assignment_lookupElevation, false).toBool();
+    return value(s_elevationLookup_enabled, false).toBool();
+}
+
+void Settings::saveElevationDataset(const QString &id)
+{
+    setValue(s_elevationLookup_dataset, id);
+}
+
+QString Settings::elevationDataset() const
+{
+    const auto dataset = value(s_elevationLookup_dataset, QStringLiteral("aster30m")).toString();
+    return s_elevationDatasets.contains(dataset) ? dataset : QStringLiteral("aster30m");
 }
 
 void Settings::saveMaximumInterpolationDistance(int meters)
