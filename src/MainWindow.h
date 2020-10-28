@@ -68,6 +68,7 @@ private slots:
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
     void elevationLookupFailed(const QString &errorMessage);
+    void notAllElevationsPresent(int locationsCount, int elevationsCount);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

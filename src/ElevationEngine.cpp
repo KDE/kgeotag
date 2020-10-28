@@ -115,7 +115,7 @@ void ElevationEngine::processNextRequest()
 
     auto *reply = m_manager->get(QNetworkRequest(QUrl(
         QStringLiteral("https://api.opentopodata.org/v1/%1?locations=%2").arg(
-                    m_settings->elevationDataset(), m_queuedLocations.takeFirst()))));
+                       m_settings->elevationDataset(), m_queuedLocations.takeFirst()))));
     m_requests.insert(reply, { m_queuedTargets.takeFirst(), m_queuedIds.takeFirst() });
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, reply));
 
@@ -148,11 +148,16 @@ void ElevationEngine::processReply(QNetworkReply *request)
     const auto [ target, ids ] = m_requests.value(request);
     removeRequest(request);
 
+    const auto requestData = request->readAll();
     QJsonParseError error;
-    const auto json = QJsonDocument::fromJson(request->readAll(), &error);
+    const auto json = QJsonDocument::fromJson(requestData, &error);
     if (error.error != QJsonParseError::NoError || ! json.isObject()) {
         emit lookupFailed(i18n("Could not parse the server's response: Failed to create a JSON "
-                               "document"));
+                               "document.</p>"
+                               "<p>The error's description was: %1</p>"
+                               "<p>The literal response was:</p>"
+                               "<p><kbd>%2</kbd>", error.errorString(),
+                               QString::fromLocal8Bit(requestData)));
         return;
     }
 
@@ -181,18 +186,22 @@ void ElevationEngine::processReply(QNetworkReply *request)
     }
 
     const auto resultsArray = resultsValue.toArray();
+    bool allPresent = true;
     QVector<double> elevations;
     for (const auto result : resultsArray)  {
         const auto elevation = result.toObject().value(QStringLiteral("elevation"));
         if (elevation.isUndefined()) {
             emit lookupFailed(i18n("Could not parse the server's response: Could not read the "
-                                "elevation value"));
+                                   "elevation value"));
             return;
+        } else if (elevation.isNull()) {
+            allPresent = false;
         }
         elevations.append(elevation.toDouble());
     }
 
-    if (ids.count() > 1 && elevations.count() == 1) {
+    const int originalElevationsCount = elevations.count();
+    if (ids.count() > 1 && originalElevationsCount == 1) {
         // Same coordinates requested multiple times
         const auto coordinates = elevations.first();
         for (int i = 0; i < ids.count() - 1; i++) {
@@ -201,4 +210,8 @@ void ElevationEngine::processReply(QNetworkReply *request)
     }
 
     emit elevationProcessed(target, ids, elevations);
+
+    if (! allPresent) {
+        emit notAllPresent(ids.count(), originalElevationsCount);
+    }
 }

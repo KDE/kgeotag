@@ -52,6 +52,7 @@ public:
 
 signals:
     void lookupFailed(const QString &errorMessage) const;
+    void notAllPresent(int locationsCount, int elevationsCount);
     void elevationProcessed(Target target, const QVector<QString> &ids,
                             const QVector<double> &elevations) const;
 

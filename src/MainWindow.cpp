@@ -187,9 +187,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     // Restore the map's settings
     m_mapWidget->restoreSettings();
 
-    // Handle failed elevation lookups
+    // Handle failed elevation lookups and missing locations
     connect(sharedObjects->elevationEngine(), &ElevationEngine::lookupFailed,
             this, &MainWindow::elevationLookupFailed);
+    connect(sharedObjects->elevationEngine(), &ElevationEngine::notAllPresent,
+            this, &MainWindow::notAllElevationsPresent);
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
@@ -659,13 +661,26 @@ void MainWindow::elevationLookupFailed(const QString &errorMessage)
 {
     QApplication::restoreOverrideCursor();
 
-    if (QMessageBox::warning(this, i18n("Elevation lookup"),
+    QMessageBox::warning(this, i18n("Elevation lookup"),
         i18n("<p>Fetching elevation data from opentopodata.org failed.</p>"
-             "<p>The error message was: %1</p>"
-             "<p>Should the elevation lookup be disabled (cf. the settings)?</p>",
-             errorMessage),
-        QMessageBox::Yes | QMessageBox::No, QMessageBox::Yes) == QMessageBox::Yes) {
+             "<p>The error message was: %1</p>", errorMessage));
+}
 
-        m_settings->saveLookupElevation(false);
+void MainWindow::notAllElevationsPresent(int locationsCount, int elevationsCount)
+{
+    QString message;
+    if (locationsCount == 1) {
+        message = i18n("Fetching elevation data failed: The requested location is not present in "
+                       "the currently chosen elevation dataset.");
+    } else {
+        if (elevationsCount == 0) {
+            message = i18n("Fetching elevation data failed: None of the requested locations are "
+                           "present in the currently chosen elevation dataset.");
+        } else {
+            message = i18n("Fetching elevation data is incomplete: Some of the requested locations "
+                           "are not present in the currently chosen elevation dataset.");
+        }
     }
+
+    QMessageBox::warning(this, i18n("Elevation lookup"), message);
 }
