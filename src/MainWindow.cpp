@@ -135,6 +135,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_assignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
     connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
+    connect(m_assignedImages, &ImagesList::editCoordinates, this, &MainWindow::editCoordinates);
     connect(m_assignedImages, &ImagesList::checkUpdatePreview,
             this, &MainWindow::checkUpdatePreview);
     connect(m_assignedImages, &ImagesList::searchExactMatches,
@@ -346,6 +347,39 @@ void MainWindow::assignManually()
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates,
                              m_settings->lookupElevation(), KGeoTag::NoCoordinates, label);
+    if (! dialog.exec()) {
+        return;
+    }
+
+    assignTo(paths, dialog.coordinates());
+}
+
+void MainWindow::editCoordinates()
+{
+    const auto paths = m_assignedImages->selectedPaths();
+    auto coordinates = m_imageCache->coordinates(paths.first());
+    bool identicalCoordinates = true;
+    for (int i = 1; i < paths.count(); i++) {
+        if (m_imageCache->coordinates(paths.at(i)) != coordinates) {
+            identicalCoordinates = false;
+            break;
+        }
+    }
+
+    QString label;
+    if (paths.count() == 1) {
+        QFileInfo info(paths.first());
+        label = i18nc("A quoted filename", "\"%1\"", info.fileName());
+    } else {
+        // We don't need this for English, but possibly for languages with other plural forms
+        label = i18np("1 image (%2)", "%1 images (%2)", paths.count(),
+                      identicalCoordinates ? i18n("all images have the same coordinates")
+                                           : i18n("coordinates differ across the images"));
+    }
+
+    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false,
+                             identicalCoordinates ? coordinates : KGeoTag::NoCoordinates,
+                             label);
     if (! dialog.exec()) {
         return;
     }

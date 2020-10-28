@@ -69,6 +69,7 @@ signals:
     void checkUpdatePreview(const QVector<QString> &paths) const;
     void assignToMapCenter(ImagesList *list) const;
     void assignManually() const;
+    void editCoordinates() const;
     void discardChanges(ImagesList *list) const;
     void searchExactMatches(ImagesList *list) const;
     void searchInterpolatedMatches(ImagesList *list) const;
@@ -84,7 +85,6 @@ private slots:
     void imageHighlighted(QListWidgetItem *item) const;
     void showContextMenu(const QPoint &point);
     void emitAssignTo(QAction *action);
-    void setElevation();
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
                             const QVector<double> &elevations);
 

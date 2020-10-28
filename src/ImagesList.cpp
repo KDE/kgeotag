@@ -38,7 +38,6 @@
 #include <QMenu>
 #include <QAction>
 #include <QKeyEvent>
-#include <QInputDialog>
 #include <QUrl>
 
 // C++ includes
@@ -87,17 +86,16 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
     if (m_type == Type::UnAssigned) {
         auto *assignManuallyAction = m_contextMenu->addAction(i18n("Set coordinates manually"));
         connect(assignManuallyAction, &QAction::triggered, this, &ImagesList::assignManually);
-    }
 
-    if (m_type == Type::Assigned) {
+    } else if (m_type == Type::Assigned) {
         m_contextMenu->addSeparator();
+
+        auto *editCoordinatesAction = m_contextMenu->addAction(i18n("Edit coordinates"));
+        connect(editCoordinatesAction, &QAction::triggered, this, &ImagesList::editCoordinates);
 
         m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
         connect(m_lookupElevation, &QAction::triggered,
                 this, std::bind(&ImagesList::lookupElevation, this, QVector<QString>()));
-
-        auto *setElevationAction = m_contextMenu->addAction(i18n("Set elevation manually"));
-        connect(setElevationAction, &QAction::triggered, this, &ImagesList::setElevation);
 
         m_contextMenu->addSeparator();
 
@@ -310,37 +308,6 @@ void ImagesList::lookupElevation(const QVector<QString> &paths)
     }
 
     m_elevationEngine->request(ElevationEngine::Target::Image, lookupPaths, coordinates);
-}
-
-void ImagesList::setElevation()
-{
-    const auto paths = selectedPaths();
-    QString label;
-    double preset = 0.0;
-    if (paths.count() == 1) {
-        const auto &path = paths.first();
-        QFileInfo info(path);
-        label = i18nc("A quoted filename", "\"%1\"", info.fileName());
-        preset = m_imageCache->coordinates(path).alt;
-    } else {
-        // We don't need this for English, but possibly for languages with other plural forms
-        label = i18np("1 image", "%1 images", paths.count());
-    }
-
-    bool okay = false;
-    auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
-                                             i18n("Elevation (m) for %1", label), preset,
-                                             KGeoTag::minimalAltitude, KGeoTag::maximalAltitude, 1,
-                                             &okay);
-    if (! okay) {
-        return;
-    }
-
-    QVector<double> elevations;
-    for (int i = 0; i < paths.count(); i++) {
-        elevations.append(elevation);
-    }
-    elevationProcessed(ElevationEngine::Target::Image, paths, elevations);
 }
 
 void ImagesList::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,

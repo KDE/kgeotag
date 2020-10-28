@@ -58,6 +58,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     m_lon = new QDoubleSpinBox;
     m_lon->setDecimals(KGeoTag::degreesPrecision);
     m_lon->setRange(-180.0, 180.0);
+    m_lon->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lon->setValue(coordinates.lon);
     grid->addWidget(m_lon, row++, 1);
 
@@ -66,6 +67,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     m_lat = new QDoubleSpinBox;
     m_lat->setDecimals(KGeoTag::degreesPrecision);
     m_lat->setRange(-180.0, 180.0);
+    m_lat->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lat->setValue(coordinates.lat);
     grid->addWidget(m_lat, row++, 1);
 
@@ -74,6 +76,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt,
     m_alt = new QDoubleSpinBox;
     m_alt->setDecimals(KGeoTag::altitudePrecision);
     m_alt->setRange(KGeoTag::minimalAltitude, KGeoTag::maximalAltitude);
+    m_alt->setSuffix(i18nc("Meters abbreviation", "\u2009m"));
     m_alt->setValue(coordinates.alt);
     grid->addWidget(m_alt, row++, 1);
 
