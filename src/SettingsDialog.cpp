@@ -37,14 +37,33 @@
 #include <QPushButton>
 #include <QColorDialog>
 #include <QCheckBox>
+#include <QScrollArea>
+#include <QScrollBar>
 
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
 {
     setWindowTitle(i18n("KGeoTag: Settings"));
+
+    auto *mainLayout = new QVBoxLayout(this);
+
+    // Header
+
+    auto *header = new QLabel(i18n("KGeoTag settings"));
+    header->setStyleSheet(QStringLiteral("QLabel { font-weight: bold; font-size: %1pt; }").arg(
+        (int) double(header->font().pointSize()) * 1.2));
+    header->setAlignment(Qt::AlignCenter);
+    mainLayout->addWidget(header);
+
+    // All settings
+
+    setStyleSheet(QStringLiteral("QGroupBox { font-weight: bold; }"));
+
+    auto *settingsWidget = new QWidget;
+
     int row;
 
-    auto *layout = new QVBoxLayout(this);
+    auto *layout = new QVBoxLayout(settingsWidget);
 
     auto *imagesBox = new QGroupBox(i18n("Images"));
     auto *imagesBoxLayout = new QGridLayout(imagesBox);
@@ -222,7 +241,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *datasetInfoLabel = new QLabel(i18n("Cf. <a href=\"https://www.opentopodata.org/\">"
                                              "https://www.opentopodata.org/</a> for further "
-                                             "information about the available datasets!"));
+                                             "information about the available datasets, like the "
+                                             "respective coverage!"));
     datasetInfoLabel->setWordWrap(true);
     datasetInfoLabel->setOpenExternalLinks(true);
     elevationBoxLayout->addWidget(datasetInfoLabel, ++row, 0, 1, 2);
@@ -238,12 +258,26 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_createBackups->setChecked(m_settings->createBackups());
     saveBoxLayout->addWidget(m_createBackups);
 
+    // Scroll area
+
+    auto *scrollArea = new QScrollArea;
+    const int styleAddition = scrollArea->width() - scrollArea->viewport()->width();
+    scrollArea->setWidget(settingsWidget);
+    mainLayout->addWidget(scrollArea);
+
+    show();
+    const int widgetWidth = settingsWidget->width() + scrollArea->verticalScrollBar()->width()
+                            + styleAddition;
+    scrollArea->setMinimumWidth(widgetWidth);
+    scrollArea->setMaximumWidth(widgetWidth);
+    setMaximumWidth(width());
+
     // Button box
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Save | QDialogButtonBox::Close);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &SettingsDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
-    layout->addWidget(buttonBox);
+    mainLayout->addWidget(buttonBox);
 }
 
 void SettingsDialog::updateTrackColor()
