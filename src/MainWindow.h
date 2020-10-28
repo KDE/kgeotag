@@ -53,6 +53,7 @@ protected:
     virtual void closeEvent(QCloseEvent *event) override;
 
 private slots:
+    void setDefaultDockArrangement();
     void addGpx();
     void addImages();
     void imagesDropped(const QVector<QString> &paths);
@@ -84,6 +85,13 @@ private: // Variables
     MapWidget *m_mapWidget;
     FixDriftWidget *m_fixDriftWidget;
     BookmarksWidget *m_bookmarksWidget;
+
+    QDockWidget *m_assignedImagesDock;
+    QDockWidget *m_unassignedImagesDock;
+    QDockWidget *m_previewDock;
+    QDockWidget *m_fixDriftDock;
+    QDockWidget *m_bookmarksDock;
+    QDockWidget *m_mapDock;
 
 };
 

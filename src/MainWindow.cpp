@@ -85,13 +85,21 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     fileMenu->addSeparator();
 
-    auto *showSettingsAction = fileMenu->addAction(i18n("Settings"));
-    connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
-
-    fileMenu->addSeparator();
-
     auto *quitAction = fileMenu->addAction(i18n("Quit"));
     connect(quitAction, &QAction::triggered, this, &QWidget::close);
+
+    // Settings
+    auto *settingsMenu = menuBar()->addMenu(i18n("Settings"));
+
+    auto *setDefaultDockArrangementAction = settingsMenu->addAction(i18n("Set default dock "
+                                                                         "arrangement"));
+    connect(setDefaultDockArrangementAction, &QAction::triggered,
+            this, &MainWindow::setDefaultDockArrangement);
+
+    settingsMenu->addSeparator();
+
+    auto *showSettingsAction = settingsMenu->addAction(i18n("Configure KGeoTag"));
+    connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
 
     // Help
     auto *helpMenu = new KHelpMenu;
@@ -104,13 +112,13 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Bookmarks
     m_bookmarksWidget = new BookmarksWidget(sharedObjects);
-    auto *bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarksWidget,
+    m_bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarksWidget,
                                            QStringLiteral("bookmarksDock"));
 
     // Unassigned images
     m_unAssignedImages = new ImagesList(ImagesList::Type::UnAssigned, sharedObjects,
                                         m_bookmarksWidget->bookmarks());
-    auto *unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
+    m_unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
                                                   QStringLiteral("unassignedImagesDock"));
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_unAssignedImages, &ImagesList::updateBookmarks);
@@ -127,7 +135,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     // Assigned images
     m_assignedImages = new ImagesList(ImagesList::Type::Assigned, sharedObjects,
                                       m_bookmarksWidget->bookmarks());
-    auto *assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
+    m_assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
                                                 QStringLiteral("assignedImagesDock"));
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_assignedImages, &ImagesList::updateBookmarks);
@@ -145,7 +153,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Preview
     m_previewWidget = new PreviewWidget(sharedObjects);
-    auto *previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
+    m_previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
     connect(m_assignedImages, &ImagesList::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
@@ -154,12 +162,12 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Fix drift
     m_fixDriftWidget = new FixDriftWidget;
-    auto *fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
+    m_fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
                                           QStringLiteral("fixDriftDock"));
 
     // Map
     m_mapWidget = sharedObjects->mapWidget();
-    createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
+    m_mapDock = createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
@@ -176,12 +184,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
-        splitDockWidget(assignedImagesDock, previewDock, Qt::Vertical);
-        splitDockWidget(assignedImagesDock, unassignedImagesDock, Qt::Horizontal);
-        splitDockWidget(previewDock, fixDriftDock, Qt::Vertical);
-        tabifyDockWidget(previewDock, fixDriftDock);
-        tabifyDockWidget(fixDriftDock, bookmarksDock);
-        previewDock->raise();
+        setDefaultDockArrangement();
     }
 
     // Restore the map's settings
@@ -192,6 +195,29 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
             this, &MainWindow::elevationLookupFailed);
     connect(sharedObjects->elevationEngine(), &ElevationEngine::notAllPresent,
             this, &MainWindow::notAllElevationsPresent);
+}
+
+void MainWindow::setDefaultDockArrangement()
+{
+    addDockWidget(Qt::TopDockWidgetArea, m_assignedImagesDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_unassignedImagesDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_previewDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_fixDriftDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_bookmarksDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_mapDock);
+
+    splitDockWidget(m_assignedImagesDock, m_previewDock, Qt::Vertical);
+    splitDockWidget(m_assignedImagesDock, m_unassignedImagesDock, Qt::Horizontal);
+    splitDockWidget(m_previewDock, m_fixDriftDock, Qt::Vertical);
+
+    tabifyDockWidget(m_previewDock, m_fixDriftDock);
+    tabifyDockWidget(m_fixDriftDock, m_bookmarksDock);
+    m_previewDock->raise();
+
+    const double windowWidth = double(width());
+    resizeDocks({ m_previewDock, m_mapDock },
+                { int(windowWidth * 0.4), int(windowWidth * 0.6) },
+                Qt::Horizontal);
 }
 
 QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
