@@ -84,6 +84,7 @@ private: // Variables
     QPen m_trackPen;
     Marble::GeoDataLatLonAltBox m_gpxBox;
     QMenu *m_contextMenu;
+    QVector<QAction *> m_floatersActions;
 
 };
 
