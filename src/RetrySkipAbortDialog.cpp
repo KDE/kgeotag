@@ -18,7 +18,7 @@
 */
 
 // Local includes
-#include "RetrySkipCancelDialog.h"
+#include "RetrySkipAbortDialog.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -26,8 +26,8 @@
 // Qt includes
 #include <QAbstractButton>
 
-RetrySkipCancelDialog::RetrySkipCancelDialog(QWidget *parent, const QString &title,
-                                             const QString &text, bool isSingleFile)
+RetrySkipAbortDialog::RetrySkipAbortDialog(QWidget *parent, const QString &title,
+                                           const QString &text, bool isSingleFile)
     : QMessageBox(parent)
 {
     setIcon(QMessageBox::Warning);
@@ -43,7 +43,7 @@ RetrySkipCancelDialog::RetrySkipCancelDialog(QWidget *parent, const QString &tit
     setText(text);
 }
 
-int RetrySkipCancelDialog::exec()
+int RetrySkipAbortDialog::exec()
 {
     const auto reply = QMessageBox::exec();
     if (reply == QMessageBox::Discard) {

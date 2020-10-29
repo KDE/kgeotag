@@ -33,7 +33,7 @@
 #include "ElevationEngine.h"
 #include "BookmarksWidget.h"
 #include "CoordinatesDialog.h"
-#include "RetrySkipCancelDialog.h"
+#include "RetrySkipAbortDialog.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -569,7 +569,7 @@ void MainWindow::saveChanges()
 
                     QFileInfo info(path);
 
-                    RetrySkipCancelDialog dialog(this,
+                    RetrySkipAbortDialog dialog(this,
                         i18n("Save changes"),
                         i18n("<p><b>Saving changes failed</b></p>"
                              "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2"
@@ -585,10 +585,10 @@ void MainWindow::saveChanges()
                              isSingleFile);
 
                     const auto reply = dialog.exec();
-                    if (reply == RetrySkipCancelDialog::Skip) {
+                    if (reply == RetrySkipAbortDialog::Skip) {
                         skipImage = true;
                         break;
-                    } else if (reply == RetrySkipCancelDialog::Abort) {
+                    } else if (reply == RetrySkipAbortDialog::Abort) {
                         abortWrite = true;
                         break;
                     }

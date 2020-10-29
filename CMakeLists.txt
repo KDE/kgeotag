@@ -62,7 +62,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/BookmarksWidget.cpp
     ${main_ROOT}/CoordinatesDialog.cpp
     ${main_ROOT}/CoordinatesFormatter.cpp
-    ${main_ROOT}/RetrySkipCancelDialog.cpp
+    ${main_ROOT}/RetrySkipAbortDialog.cpp
 )
 
 # Build the executable

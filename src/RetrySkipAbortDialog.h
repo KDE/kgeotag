@@ -17,13 +17,13 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef RETRYSKIPCANCELDIALOG_H
-#define RETRYSKIPCANCELDIALOG_H
+#ifndef RETRYSKIPABORTDIALOG_H
+#define RETRYSKIPABORTDIALOG_H
 
 // Qt includes
 #include <QMessageBox>
 
-class RetrySkipCancelDialog : public QMessageBox
+class RetrySkipAbortDialog : public QMessageBox
 {
     Q_OBJECT
 
@@ -34,10 +34,10 @@ public:
         Abort
     };
 
-    explicit RetrySkipCancelDialog(QWidget *parent, const QString &title, const QString &text,
-                                   bool isSingleFile);
+    explicit RetrySkipAbortDialog(QWidget *parent, const QString &title, const QString &text,
+                                  bool isSingleFile);
     virtual int exec() override;
 
 };
 
-#endif // RETRYSKIPCANCELDIALOG_H
+#endif // RETRYSKIPABORTDIALOG_H
