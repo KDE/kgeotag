@@ -33,6 +33,7 @@
 #include "ElevationEngine.h"
 #include "BookmarksWidget.h"
 #include "CoordinatesDialog.h"
+#include "RetrySkipCancelDialog.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -545,6 +546,7 @@ void MainWindow::saveChanges()
     bool skipImage = false;
     bool abortWrite = false;
     int savedImages = 0;
+    const bool isSingleFile = files.count() == 1;
 
     int processed = 0;
     for (const QString &path : files) {
@@ -565,39 +567,28 @@ void MainWindow::saveChanges()
                     progress.reset();
                     QApplication::restoreOverrideCursor();
 
-                    QMessageBox messageBox(this);
-                    messageBox.setIcon(QMessageBox::Warning);
-                    messageBox.setWindowTitle(i18n("Save changes"));
-
-                    QString options;
-                    if (files.count() == 1) {
-                        options = i18n("You can retry to create the backup or cancel the write "
-                                       "process.");
-                        messageBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Abort);
-                    } else {
-                        options = i18n("You can retry to create the backup, skip the current file "
-                                       "or cancel the write process.");
-                        messageBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Discard
-                                                      | QMessageBox::Abort);
-                        messageBox.button(QMessageBox::Discard)->setText(
-                            i18n("Skip current image"));
-                    }
-
                     QFileInfo info(path);
-                    messageBox.setText(i18n(
-                        "<p><b>Saving changes failed</b></p>"
-                        "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
-                        "could not be created.</p>"
-                        "<p>Please check if this file doesn't exist yet and be sure to have write "
-                        "access to <kbd>%3</kbd>.</p>"
-                        "<p>%4</p>",
-                        info.fileName(), backupPath, info.dir().path(), options));
 
-                    auto reply = messageBox.exec();
-                    if (reply == QMessageBox::Discard) {
+                    RetrySkipCancelDialog dialog(this,
+                        i18n("Save changes"),
+                        i18n("<p><b>Saving changes failed</b></p>"
+                             "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2"
+                             "</kbd> could not be created.</p>"
+                             "<p>Please check if this file doesn't exist yet and be sure to have "
+                             "write access to <kbd>%3</kbd>.</p>"
+                             "<p>%4</p>",
+                             info.fileName(), backupPath, info.dir().path(),
+                             isSingleFile ? i18n("You can retry to create the backup or cancel the "
+                                                 "write process.")
+                                          : i18n("You can retry to create the backup, skip the "
+                                                 "current file or cancel the write process.")),
+                             isSingleFile);
+
+                    const auto reply = dialog.exec();
+                    if (reply == RetrySkipCancelDialog::Skip) {
                         skipImage = true;
                         break;
-                    } else if (reply == QMessageBox::Abort) {
+                    } else if (reply == RetrySkipCancelDialog::Abort) {
                         abortWrite = true;
                         break;
                     }
