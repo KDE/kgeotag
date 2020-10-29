@@ -53,6 +53,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QCloseEvent>
+#include <QAbstractButton>
 
 // C++ includes
 #include <algorithm>
@@ -541,6 +542,10 @@ void MainWindow::saveChanges()
     const int deviation = m_fixDriftWidget->deviation();
     const bool fixDrift = m_fixDriftWidget->save() && deviation != 0;
 
+    bool skipImage = false;
+    bool abortWrite = false;
+    int savedImages = 0;
+
     int processed = 0;
     for (const QString &path : files) {
         progress.setValue(processed++);
@@ -549,29 +554,70 @@ void MainWindow::saveChanges()
         }
 
         // Create a backup of the file if requested
+        if (createBackups) {
+            bool backupOkay = false;
+            const QString backupPath = path + QStringLiteral(".orig");
 
-        const QString backupPath = path + QStringLiteral(".orig");
+            while (! backupOkay) {
+                backupOkay = QFile::copy(path, backupPath);
 
-        if (createBackups && ! QFile::copy(path, backupPath)) {
-            progress.deleteLater();
-            QApplication::restoreOverrideCursor();
+                if (! backupOkay) {
+                    progress.reset();
+                    QApplication::restoreOverrideCursor();
 
-            QTimer::singleShot(0, [this, path, backupPath]
-            {
-                QFileInfo info(backupPath);
+                    QMessageBox messageBox(this);
+                    messageBox.setIcon(QMessageBox::Warning);
+                    messageBox.setWindowTitle(i18n("Save changes"));
 
-                QMessageBox::warning(this,
-                    i18n("Save changes"),
-                    i18n("<p><b>Saving changes failed</b></p>"
-                         "<p>Could not save changes to <kbd>%1</kbd>: The backup file "
-                         "<kbd>%2</kbd> could not be created.</p>"
-                         "<p>Please check if this file doesn't exist yet and be sure to have "
-                         "write access to <kbd>%3</kbd></p>"
-                         "<p>The writing process will be aborted.</p>",
-                         path, info.fileName(), info.dir().path()));
-            });
+                    QString options;
+                    if (files.count() == 1) {
+                        options = i18n("You can retry to create the backup or cancel the write "
+                                       "process.");
+                        messageBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Abort);
+                    } else {
+                        options = i18n("You can retry to create the backup, skip the current file "
+                                       "or cancel the write process.");
+                        messageBox.setStandardButtons(QMessageBox::Retry | QMessageBox::Discard
+                                                      | QMessageBox::Abort);
+                        messageBox.button(QMessageBox::Discard)->setText(
+                            i18n("Skip current image"));
+                    }
 
-            return;
+                    QFileInfo info(path);
+                    messageBox.setText(i18n(
+                        "<p><b>Saving changes failed</b></p>"
+                        "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
+                        "could not be created.</p>"
+                        "<p>Please check if this file doesn't exist yet and be sure to have write "
+                        "access to <kbd>%3</kbd>.</p>"
+                        "<p>%4</p>",
+                        info.fileName(), backupPath, info.dir().path(), options));
+
+                    auto reply = messageBox.exec();
+                    if (reply == QMessageBox::Discard) {
+                        skipImage = true;
+                        break;
+                    } else if (reply == QMessageBox::Abort) {
+                        abortWrite = true;
+                        break;
+                    }
+
+                    QApplication::setOverrideCursor(Qt::WaitCursor);
+                }
+
+                if (skipImage || abortWrite) {
+                    break;
+                }
+            }
+        }
+
+        if (skipImage) {
+            skipImage = false;
+            continue;
+        }
+
+        if (abortWrite) {
+            break;
         }
 
         // Write the GPS information
@@ -618,11 +664,22 @@ void MainWindow::saveChanges()
         } else {
             m_unAssignedImages->addOrUpdateImage(path);
         }
+
+        savedImages++;
     }
 
     QApplication::restoreOverrideCursor();
-    QMessageBox::information(this, i18n("Save changes"),
-                             i18n("All changes have been successfully saved!"));
+
+    if (savedImages == 0) {
+        QMessageBox::warning(this, i18n("Save changes"), i18n("No changes could be saved!"));
+    } else if (savedImages < files.count()) {
+        QMessageBox::warning(this, i18n("Save changes"),
+                             i18n("Some changes could not be saved. Successfully saved %1 of "
+                                  "%2 images.", savedImages, files.count()));
+    } else {
+        QMessageBox::information(this, i18n("Save changes"),
+                                 i18n("All changes have been successfully saved!"));
+    }
 }
 
 void MainWindow::showSettings()
