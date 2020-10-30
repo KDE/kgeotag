@@ -585,9 +585,9 @@ void MainWindow::saveChanges()
                              backupPath,
                              info.dir().path(),
                              isSingleFile ? i18n("You can retry to create the backup or cancel the "
-                                                 "write process.")
+                                                 "saving process.")
                                           : i18n("You can retry to create the backup, skip the "
-                                                 "current file or cancel the write process.")),
+                                                 "current file or cancel the saving process.")),
                              isSingleFile);
 
                     const auto reply = dialog.exec();
@@ -601,10 +601,6 @@ void MainWindow::saveChanges()
 
                     QApplication::setOverrideCursor(Qt::WaitCursor);
                 }
-
-                if (skipImage || abortWrite) {
-                    break;
-                }
             }
         }
 
@@ -612,14 +608,56 @@ void MainWindow::saveChanges()
             skipImage = false;
             continue;
         }
-
         if (abortWrite) {
             break;
         }
 
         // Write the GPS information
 
-        auto exif = KExiv2Iface::KExiv2(path);
+        // Read the Exif header
+
+        auto exif = KExiv2Iface::KExiv2();
+
+        while (! exif.load(path)) {
+            progress.reset();
+            QApplication::restoreOverrideCursor();
+
+            RetrySkipAbortDialog dialog(this,
+                i18n("Save changes"),
+                i18n("<p><b>Saving changes failed%1</b></p>"
+                        "<p>Could not read exif header from <kbd>%2</kbd>.</p>"
+                        "<p>Please check if this file still exists and if you have read access to "
+                        "it.</p>"
+                        "<p>%3</p>",
+                        isSingleFile ? QString()
+                                    : i18nc("Fraction of processed files", " (%1 of %2)",
+                                            processed, allImages),
+                        path,
+                        isSingleFile ? i18n("You can retry to process the file or cancel the "
+                                            "saving process.")
+                                    : i18n("You can retry to process the file, skip it or cancel "
+                                           "the saving process.")),
+                        isSingleFile);
+
+            const auto reply = dialog.exec();
+            if (reply == RetrySkipAbortDialog::Skip) {
+                skipImage = true;
+                break;
+            } else if (reply == RetrySkipAbortDialog::Abort) {
+                abortWrite = true;
+                break;
+            }
+
+            QApplication::setOverrideCursor(Qt::WaitCursor);
+        }
+
+        if (skipImage) {
+            skipImage = false;
+            continue;
+        }
+        if (abortWrite) {
+            break;
+        }
 
         // Set or remove the coordinates
         const auto coordinates = m_imageCache->coordinates(path);
@@ -638,21 +676,47 @@ void MainWindow::saveChanges()
             exif.setImageDateTime(fixedTime, exif.getDigitizationDateTime() == originalTime);
         }
 
-        if (! exif.save(path)) {
-            progress.deleteLater();
+        // Save the changes
+
+        while (! exif.save(path)) {
+            progress.reset();
             QApplication::restoreOverrideCursor();
 
-            QTimer::singleShot(0, [this, path]
-            {
-                QMessageBox::warning(this,
-                    i18n("Save changes"),
-                    i18n("<p><b>Saving changes failed</b></p>"
-                         "<p>Could not write Exif header to <kbd>%1</kbd>. Please check the file's "
-                         "permissions and be sure to have write access.</p>"
-                         "<p>The writing process will be aborted.</p>", path));
-            });
+            RetrySkipAbortDialog dialog(this,
+                i18n("Save changes"),
+                i18n("<p><b>Saving changes failed%1</b></p>"
+                        "<p>Could not write exif header to <kbd>%2</kbd>.</p>"
+                        "<p>Please check if this file still exists and if you have write access to "
+                        "it.</p>"
+                        "<p>%3</p>",
+                        isSingleFile ? QString()
+                                    : i18nc("Fraction of processed files", " (%1 of %2)",
+                                            processed, allImages),
+                        path,
+                        isSingleFile ? i18n("You can retry to process the file or cancel the "
+                                            "saving process.")
+                                    : i18n("You can retry to process the file, skip it or cancel "
+                                           "the saving process.")),
+                        isSingleFile);
 
-            return;
+            const auto reply = dialog.exec();
+            if (reply == RetrySkipAbortDialog::Skip) {
+                skipImage = true;
+                break;
+            } else if (reply == RetrySkipAbortDialog::Abort) {
+                abortWrite = true;
+                break;
+            }
+
+            QApplication::setOverrideCursor(Qt::WaitCursor);
+        }
+
+        if (skipImage) {
+            skipImage = false;
+            continue;
+        }
+        if (abortWrite) {
+            break;
         }
 
         m_imageCache->setChanged(path, false);
