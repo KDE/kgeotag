@@ -536,9 +536,6 @@ void MainWindow::saveChanges()
     // We sort the list so that the processing order matches the display order
     std::sort(files.begin(), files.end());
 
-    QProgressDialog progress(i18n("Saving changes ..."), i18n("Cancel"), 0, files.count(), this);
-    progress.setWindowModality(Qt::WindowModal);
-
     const bool createBackups = m_settings->createBackups();
     const int deviation = m_fixDriftWidget->deviation();
     const bool fixDrift = m_fixDriftWidget->save() && deviation != 0;
@@ -546,9 +543,13 @@ void MainWindow::saveChanges()
     bool skipImage = false;
     bool abortWrite = false;
     int savedImages = 0;
-    const bool isSingleFile = files.count() == 1;
-
+    const int allImages = files.count();
     int processed = 0;
+    const bool isSingleFile = allImages == 1;
+
+    QProgressDialog progress(i18n("Saving changes ..."), i18n("Cancel"), 0, allImages, this);
+    progress.setWindowModality(Qt::WindowModal);
+
     for (const QString &path : files) {
         progress.setValue(processed++);
         if (progress.wasCanceled()) {
@@ -571,13 +572,18 @@ void MainWindow::saveChanges()
 
                     RetrySkipAbortDialog dialog(this,
                         i18n("Save changes"),
-                        i18n("<p><b>Saving changes failed</b></p>"
-                             "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2"
+                        i18n("<p><b>Saving changes failed%1</b></p>"
+                             "<p>Could not save changes to <kbd>%2</kbd>: The backup file <kbd>%3"
                              "</kbd> could not be created.</p>"
                              "<p>Please check if this file doesn't exist yet and be sure to have "
-                             "write access to <kbd>%3</kbd>.</p>"
-                             "<p>%4</p>",
-                             info.fileName(), backupPath, info.dir().path(),
+                             "write access to <kbd>%4</kbd>.</p>"
+                             "<p>%5</p>",
+                             isSingleFile ? QString()
+                                          : i18nc("Fraction of processed files", " (%1 of %2)",
+                                                  processed, allImages),
+                             info.fileName(),
+                             backupPath,
+                             info.dir().path(),
                              isSingleFile ? i18n("You can retry to create the backup or cancel the "
                                                  "write process.")
                                           : i18n("You can retry to create the backup, skip the "
@@ -663,10 +669,10 @@ void MainWindow::saveChanges()
 
     if (savedImages == 0) {
         QMessageBox::warning(this, i18n("Save changes"), i18n("No changes could be saved!"));
-    } else if (savedImages < files.count()) {
+    } else if (savedImages < allImages) {
         QMessageBox::warning(this, i18n("Save changes"),
                              i18n("Some changes could not be saved. Successfully saved %1 of "
-                                  "%2 images.", savedImages, files.count()));
+                                  "%2 images.", savedImages, allImages));
     } else {
         QMessageBox::information(this, i18n("Save changes"),
                                  i18n("All changes have been successfully saved!"));
