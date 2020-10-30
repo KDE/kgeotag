@@ -1,6 +1,6 @@
 # KGeoTag
 
-**Warning**: This is pre-0.1 beta code. It works ("on my machine" ;-), but until version 0.1 is tagged, use carefully. Have backups.
+**Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet. All beta testing and feedback is greatly appreciated!
 
 ## What is it?
 
