@@ -84,6 +84,6 @@ function(git_get_description DESCVAR)
         return()
     endif()
 
-    string(REGEX REPLACE "^v" "" ${git_output} ${git_output})
+    string(REGEX REPLACE "^v" "" git_output ${git_output})
     set(${DESCVAR} "${git_output}" PARENT_SCOPE)
 endfunction()
