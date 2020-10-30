@@ -309,14 +309,21 @@ void MainWindow::addImages()
         return;
     }
 
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+
     const QFileInfo info(files.at(0));
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-    QProgressDialog progress(i18n("Loading images ..."), i18n("Cancel"), 0, files.count(), this);
+    const int allImages = files.count();
+    const bool isSingleFile = allImages == 1;
+    int processed = 0;
+    int loaded = 0;
+    bool skipImage = false;
+    bool abortLoad = false;
+
+    QProgressDialog progress(i18n("Loading images ..."), i18n("Cancel"), 0, allImages, this);
     progress.setWindowModality(Qt::WindowModal);
 
-    int processed = 0;
     for (const auto &path : files) {
         progress.setValue(processed++);
         if (progress.wasCanceled()) {
@@ -325,8 +332,45 @@ void MainWindow::addImages()
 
         const QFileInfo info(path);
         const QString canonicalPath = info.canonicalFilePath();
-        if (! m_imageCache->addImage(canonicalPath)) {
+        while (! m_imageCache->addImage(canonicalPath)) {
+            progress.reset();
+            QApplication::restoreOverrideCursor();
+
+            RetrySkipAbortDialog dialog(this,
+                i18n("Add images"),
+                i18n("<p><b>Loading image failed%1</b></p>"
+                        "<p>Could not read <kbd>%2</kbd>.</p>"
+                        "<p>Please check if this file is actually an image and if you have read "
+                        "access to it.</p>"
+                        "<p>%3</p>",
+                        isSingleFile ? QString()
+                                    : i18nc("Fraction of processed files", " (%1 of %2)",
+                                            processed, allImages),
+                        path,
+                        isSingleFile ? i18n("You can retry to load this file or cancel the loading "
+                                            "process.")
+                                     : i18n("You can retry to load this file, skip it or cancel "
+                                            "the loading process.")),
+                        isSingleFile);
+
+            const auto reply = dialog.exec();
+            if (reply == RetrySkipAbortDialog::Skip) {
+                skipImage = true;
+                break;
+            } else if (reply == RetrySkipAbortDialog::Abort) {
+                abortLoad = true;
+                break;
+            }
+
+            QApplication::setOverrideCursor(Qt::WaitCursor);
+        }
+
+        if (skipImage) {
+            skipImage = false;
             continue;
+        }
+        if (abortLoad) {
+            break;
         }
 
         const auto coordinates = m_imageCache->coordinates(canonicalPath);
@@ -336,9 +380,30 @@ void MainWindow::addImages()
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
             m_assignedImages->addOrUpdateImage(canonicalPath);
         }
+
+        loaded++;
     }
 
+    progress.reset();
     QApplication::restoreOverrideCursor();
+
+    if (loaded == 0) {
+        QMessageBox::warning(this, i18n("Add images"),
+                             i18n("Could not load any images!"));
+    } else if (loaded < allImages) {
+        QMessageBox::warning(this, i18n("Add images"),
+            i18np("<p>Could not load all images!</p><p>Successfully loaded one image of %2, %3</p>",
+                  "<p>Could not load all images!</p><p>Successfully loaded %1 images of %2, %3</p>",
+                  // Not necessary with wording in English, but for other languages
+                  loaded, allImages, i18np("one failed to load.",
+                                           "%1 failed to load.",
+                                           allImages - loaded)));
+    } else {
+        QMessageBox::information(this, i18n("Add images"),
+                                 i18np("Successfully loaded one image!",
+                                       "Successfully loaded %1 images!",
+                                       allImages));
+    }
 }
 
 void MainWindow::imagesDropped(const QVector<QString> &paths)
@@ -729,6 +794,7 @@ void MainWindow::saveChanges()
         savedImages++;
     }
 
+    progress.reset();
     QApplication::restoreOverrideCursor();
 
     if (savedImages == 0) {

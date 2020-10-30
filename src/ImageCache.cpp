@@ -36,7 +36,7 @@ ImageCache::ImageCache(QObject *parent, Settings *settings)
 bool ImageCache::addImage(const QString &path)
 {
     if (m_imageData.contains(path)) {
-        return false;
+        return true;
     }
 
     QImage image = QImage(path);
@@ -47,7 +47,10 @@ bool ImageCache::addImage(const QString &path)
     ImageData data;
 
     // Read the exif data
-    const auto exif = KExiv2Iface::KExiv2(path);
+    const auto exif = KExiv2Iface::KExiv2();
+    if (! exif.load(path)) {
+        return false;
+    }
 
     // Read the date (falling back to the file's date if nothing is set)
     data.date = exif.getImageDateTime();
