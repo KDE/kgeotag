@@ -45,16 +45,16 @@ QString CoordinatesFormatter::lon(const KGeoTag::Coordinates &coordinates) const
 {
     return i18nc("Formatted longitude with a cardinal direction", "%1° %2",
                  formatLonLat(coordinates.lon),
-                 coordinates.lon >= 0 ? i18nc("Cardinal direction", "E")
-                                      : i18nc("Cardinal direction", "W"));
+                 coordinates.lon >= 0 ? i18nc("Abbreviated cardinal direction \"East\"", "E")
+                                      : i18nc("Abbreviated cardinal direction \"West\"", "W"));
 }
 
 QString CoordinatesFormatter::lat(const KGeoTag::Coordinates &coordinates) const
 {
     return i18nc("Formatted latitude with a cardinal direction", "%1° %2",
                  formatLonLat(coordinates.lat),
-                 coordinates.lat >= 0 ? i18nc("Cardinal direction", "N")
-                                      : i18nc("Cardinal direction", "S"));
+                 coordinates.lat >= 0 ? i18nc("Abbreviated cardinal direction \"North\"", "N")
+                                      : i18nc("Abbreviated cardinal direction \"South\"", "S"));
 }
 
 QString CoordinatesFormatter::alt(const KGeoTag::Coordinates &coordinates) const
