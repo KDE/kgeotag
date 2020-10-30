@@ -45,7 +45,7 @@ int main(int argc, char *argv[])
     aboutData.setDisplayName(i18n("KGeoTag"));
     aboutData.setVersion(VERSION_STRING);
     aboutData.setShortDescription(i18n("Photo geotagging program"));
-    aboutData.setLicense(KAboutLicense::GPL);
+    aboutData.setLicense(KAboutLicense::GPL_V3);
     aboutData.setCopyrightStatement(i18n("Copyright (C) 2020 Tobias Leupold"));
     aboutData.setBugAddress(
         QStringLiteral("https://invent.kde.org/tleupold/kgeotag/-/issues").toUtf8());
