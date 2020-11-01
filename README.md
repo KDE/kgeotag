@@ -8,7 +8,7 @@ KGeoTag is a Free/Libre Open Source photo geotagging program. It's written in C+
 
 ## What is "geotagging"?
 
-JPEG images contain metadata (e. g. the creation date, camera information etc.). Those are stored in the so-called [Exif header](https://en.wikipedia.org/wiki/Exif). This data can also represent geographic coordinates so that it's replicable where the images were taken.
+JPEG images contain metadata (e. g. the creation date, camera information etc.). Those are either stored in the so-called [Exif header](https://en.wikipedia.org/wiki/Exif), in an [XMP sidecar file](https://en.wikipedia.org/wiki/Extensible_Metadata_Platform) or in both. This data can also represent geographic coordinates so that it's replicable where the images were taken.
 
 Most cameras don't have GPS receivers, so, most can't save coordinates when taking images. A common approach is to e. g. carry a small GPS logging device along, which records a track all the time. Later on, the images' dates can be compared to the GPS log's points' dates to figure out where an image was taken.
 
@@ -50,6 +50,8 @@ Optionally, the altitude levels can also be entered by hand. Existing altitude v
 
 ### Making the data persistent
 
-Finally, the assigned coordinates can be saved in the images' Exif header, making them persistent and also accessible for other geodata-aware applications (e. g. [KPhotoAlbum](https://www.kphotoalbum.org/)). If a time drift has been identified and a deviation has been given, the images' dates and times also can be fixed whilst saving.
+Finally, the assigned coordinates can be saved. KGeoTag can either write them to the images' Exif header (which will obviously alter the respective files), to XMP sidecar files (leaving the original files untouched) or to both. By default, a backup of each original file is created if it will be changed during the write process.
 
-By default, a backup of each file changed by KGeoTag is created before anything is written to any file.
+This way, the geodata assignment is made persistent and also accessible for other geodata-aware applications (like e. g. [KPhotoAlbum](https://www.kphotoalbum.org/)).
+
+If a time drift has been identified and a deviation has been given, the images' dates and times also can be fixed whilst saving.
