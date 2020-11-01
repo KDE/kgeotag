@@ -695,13 +695,13 @@ void MainWindow::saveChanges()
                         "it.</p>"
                         "<p>%3</p>",
                         isSingleFile ? QString()
-                                    : i18nc("Fraction of processed files", " (%1 of %2)",
-                                            processed, allImages),
+                                     : i18nc("Fraction of processed files", " (%1 of %2)",
+                                             processed, allImages),
                         path,
                         isSingleFile ? i18n("You can retry to process the file or cancel the "
                                             "saving process.")
-                                    : i18n("You can retry to process the file, skip it or cancel "
-                                           "the saving process.")),
+                                     : i18n("You can retry to process the file, skip it or cancel "
+                                            "the saving process.")),
                         isSingleFile);
 
             const auto reply = dialog.exec();
@@ -750,19 +750,19 @@ void MainWindow::saveChanges()
             RetrySkipAbortDialog dialog(this,
                 i18n("Save changes"),
                 i18n("<p><b>Saving changes failed%1</b></p>"
-                        "<p>Could not write exif header to <kbd>%2</kbd>.</p>"
-                        "<p>Please check if this file still exists and if you have write access to "
-                        "it.</p>"
-                        "<p>%3</p>",
-                        isSingleFile ? QString()
-                                    : i18nc("Fraction of processed files", " (%1 of %2)",
-                                            processed, allImages),
-                        path,
-                        isSingleFile ? i18n("You can retry to process the file or cancel the "
-                                            "saving process.")
-                                    : i18n("You can retry to process the file, skip it or cancel "
-                                           "the saving process.")),
-                        isSingleFile);
+                     "<p>Could not write exif header to <kbd>%2</kbd>.</p>"
+                     "<p>Please check if this file still exists and if you have write access to it."
+                     "</p>"
+                     "<p>%3</p>",
+                     isSingleFile ? QString()
+                                  : i18nc("Fraction of processed files", " (%1 of %2)",
+                                          processed, allImages),
+                     path,
+                     isSingleFile ? i18n("You can retry to process the file or cancel the saving "
+                                         "process.")
+                                  : i18n("You can retry to process the file, skip it or cancel the "
+                                         "saving process.")),
+                     isSingleFile);
 
             const auto reply = dialog.exec();
             if (reply == RetrySkipAbortDialog::Skip) {
@@ -798,11 +798,12 @@ void MainWindow::saveChanges()
     QApplication::restoreOverrideCursor();
 
     if (savedImages == 0) {
-        QMessageBox::warning(this, i18n("Save changes"), i18n("No changes could be saved!"));
+        QMessageBox::warning(this, i18n("Save changes"),
+                             i18n("No changes could be saved!"));
     } else if (savedImages < allImages) {
         QMessageBox::warning(this, i18n("Save changes"),
-                             i18n("Some changes could not be saved. Successfully saved %1 of "
-                                  "%2 images.", savedImages, allImages));
+                             i18n("Some changes could not be saved. Successfully saved %1 of %2 "
+                                  "images.", savedImages, allImages));
     } else {
         QMessageBox::information(this, i18n("Save changes"),
                                  i18n("All changes have been successfully saved!"));
