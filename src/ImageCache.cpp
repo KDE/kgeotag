@@ -47,7 +47,8 @@ bool ImageCache::addImage(const QString &path)
     ImageData data;
 
     // Read the exif data
-    const auto exif = KExiv2Iface::KExiv2();
+    auto exif = KExiv2Iface::KExiv2();
+    exif.setUseXMPSidecar4Reading(true);
     if (! exif.load(path)) {
         return false;
     }
