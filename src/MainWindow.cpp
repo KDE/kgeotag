@@ -313,7 +313,7 @@ void MainWindow::addImages()
     const auto files = QFileDialog::getOpenFileNames(this,
                            i18n("Please select the images to add"),
                            m_settings->lastOpenPath(),
-                           i18n("JPEG Images (*.jpg *.jpeg)"));
+                           i18n("JPEG Images (*.jpg *.jpeg);; All files (*)"));
     if (files.isEmpty()) {
         return;
     }
@@ -348,10 +348,10 @@ void MainWindow::addImages()
             RetrySkipAbortDialog dialog(this,
                 i18n("Add images"),
                 i18n("<p><b>Loading image failed%1</b></p>"
-                        "<p>Could not read <kbd>%2</kbd>.</p>"
-                        "<p>Please check if this file is actually an image and if you have read "
-                        "access to it.</p>"
-                        "<p>%3</p>",
+                     "<p>Could not read <kbd>%2</kbd>.</p>"
+                     "<p>Please check if this file is actually a supported image (JPEG, PNG) and "
+                     "if you have read access to it.</p>"
+                     "<p>%3</p>",
                         isSingleFile ? QString()
                                     : i18nc("Fraction of processed files", " (%1 of %2)",
                                             processed, allImages),
