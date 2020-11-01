@@ -73,6 +73,7 @@ private: // Variables
     QCheckBox *m_lookupElevation;
     QComboBox *m_elevationDataset;
 
+    QComboBox *m_writeMode;
     QCheckBox *m_createBackups;
 
 };

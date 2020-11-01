@@ -250,13 +250,26 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     // Data saving
 
     auto *saveBox = new QGroupBox(i18n("Saving"));
-    auto *saveBoxLayout = new QVBoxLayout(saveBox);
+    auto *saveBoxLayout = new QGridLayout(saveBox);
+    row = -1;
     layout->addWidget(saveBox);
 
-    m_createBackups = new QCheckBox(i18n("Create a backup of each image before\n"
-                                         "altering the respective Exif header"));
+    saveBoxLayout->addWidget(new QLabel(i18n("Write changes to:")), ++row, 0);
+
+    m_writeMode = new QComboBox;
+    m_writeMode->addItem(i18n("Exif header"),
+                         QStringLiteral("WRITETOIMAGEONLY"));
+    m_writeMode->addItem(i18n("XMP sidecar file"),
+                         QStringLiteral("WRITETOSIDECARONLY"));
+    m_writeMode->addItem(i18n("Exif header and XMP sidecar file"),
+                         QStringLiteral("WRITETOSIDECARANDIMAGE"));
+    saveBoxLayout->addWidget(m_writeMode, row, 1);
+
+    m_writeMode->setCurrentIndex(m_writeMode->findData(m_settings->writeMode()));
+
+    m_createBackups = new QCheckBox(i18n("Create a backups before altering a file"));
     m_createBackups->setChecked(m_settings->createBackups());
-    saveBoxLayout->addWidget(m_createBackups);
+    saveBoxLayout->addWidget(m_createBackups, ++row, 0, 1, 2);
 
     // Scroll area
 
@@ -334,6 +347,7 @@ void SettingsDialog::accept()
     m_settings->saveLookupElevation(m_lookupElevation->isChecked());
     m_settings->saveElevationDataset(m_elevationDataset->currentData().toString());
 
+    m_settings->saveWriteMode(m_writeMode->currentData().toString());
     m_settings->saveCreateBackups(m_createBackups->isChecked());
 
     QDialog::accept();

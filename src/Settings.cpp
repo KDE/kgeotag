@@ -99,11 +99,21 @@ static const QVector<QString> s_elevationDatasets = {
     QStringLiteral("emod2018"),
     QStringLiteral("gebco2020")
 };
+static const QString &s_defaultElevationDataset = s_elevationDatasets.at(0);
 static const QString s_elevationLookup_dataset = s_elevationLookup + QLatin1String("dataset");
 
 // Saving
 
 static const QLatin1String s_save("save/");
+
+static const QVector<QString> s_writeModes = {
+    QStringLiteral("WRITETOIMAGEONLY"),
+    QStringLiteral("WRITETOSIDECARONLY"),
+    QStringLiteral("WRITETOSIDECARANDIMAGE")
+};
+static const QString &s_defaultWriteMode = s_writeModes.at(0);
+static const QString s_save_writeMode = s_save + QLatin1String("write_mode");
+
 static const QString s_save_createBackups = s_save + QLatin1String("create_backups");
 
 // Bookmarks
@@ -268,8 +278,8 @@ void Settings::saveElevationDataset(const QString &id)
 
 QString Settings::elevationDataset() const
 {
-    const auto dataset = value(s_elevationLookup_dataset, QStringLiteral("aster30m")).toString();
-    return s_elevationDatasets.contains(dataset) ? dataset : QStringLiteral("aster30m");
+    const auto dataset = value(s_elevationLookup_dataset, s_defaultElevationDataset).toString();
+    return s_elevationDatasets.contains(dataset) ? dataset : s_defaultElevationDataset;
 }
 
 void Settings::saveMaximumInterpolationDistance(int meters)
@@ -330,6 +340,17 @@ void Settings::saveCreateBackups(bool state)
 bool Settings::createBackups() const
 {
     return value(s_save_createBackups, true).toBool();
+}
+
+void Settings::saveWriteMode(const QString &writeMode)
+{
+    setValue(s_save_writeMode, writeMode);
+}
+
+QString Settings::writeMode() const
+{
+    const auto mode = value(s_save_writeMode, s_defaultWriteMode).toString();
+    return s_writeModes.contains(mode) ? mode : s_defaultWriteMode;
 }
 
 void Settings::saveBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks)

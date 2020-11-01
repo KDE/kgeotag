@@ -86,6 +86,9 @@ public:
     void saveTrackStyle(Qt::PenStyle style);
     Qt::PenStyle trackStyle() const;
 
+    void saveWriteMode(const QString &writeMode);
+    QString writeMode() const;
+
     void saveCreateBackups(bool state);
     bool createBackups() const;
 

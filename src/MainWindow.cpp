@@ -59,6 +59,15 @@
 // C++ includes
 #include <algorithm>
 
+static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeModeMap {
+    { QStringLiteral("WRITETOIMAGEONLY"),
+      KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOIMAGEONLY },
+    { QStringLiteral("WRITETOSIDECARONLY"),
+      KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY },
+    { QStringLiteral("WRITETOSIDECARANDIMAGE"),
+      KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARANDIMAGE }
+};
+
 MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 {
     setWindowTitle(i18n("KGeoTag"));
@@ -601,7 +610,10 @@ void MainWindow::saveChanges()
     // We sort the list so that the processing order matches the display order
     std::sort(files.begin(), files.end());
 
-    const bool createBackups = m_settings->createBackups();
+    const auto writeMode = s_writeModeMap.value(m_settings->writeMode());
+    const bool createBackups =
+        writeMode != KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY
+        && m_settings->createBackups();
     const int deviation = m_fixDriftWidget->deviation();
     const bool fixDrift = m_fixDriftWidget->save() && deviation != 0;
 
@@ -682,6 +694,7 @@ void MainWindow::saveChanges()
         // Read the Exif header
 
         auto exif = KExiv2Iface::KExiv2();
+        exif.setUseXMPSidecar4Reading(true);
 
         while (! exif.load(path)) {
             progress.reset();
@@ -692,7 +705,7 @@ void MainWindow::saveChanges()
                 i18n("<p><b>Saving changes failed%1</b></p>"
                         "<p>Could not read exif header from <kbd>%2</kbd>.</p>"
                         "<p>Please check if this file still exists and if you have read access to "
-                        "it.</p>"
+                        "it (and possibly also to an existing XMP sidecar file).</p>"
                         "<p>%3</p>",
                         isSingleFile ? QString()
                                      : i18nc("Fraction of processed files", " (%1 of %2)",
@@ -743,21 +756,33 @@ void MainWindow::saveChanges()
 
         // Save the changes
 
+        exif.setMetadataWritingMode(writeMode);
+
         while (! exif.applyChanges()) {
             progress.reset();
             QApplication::restoreOverrideCursor();
 
+            QString neededWritePermissions;
+            if (writeMode == KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY) {
+                QFileInfo info(path);
+                neededWritePermissions = i18n("Please check if you have write access to <kbd>%1"
+                                             "</kbd>", info.dir().path());
+            } else {
+                neededWritePermissions =  i18n("Please check if this file still exists and if you "
+                                               "have write access to it.");
+            }
+
             RetrySkipAbortDialog dialog(this,
                 i18n("Save changes"),
                 i18n("<p><b>Saving changes failed%1</b></p>"
-                     "<p>Could not write exif header to <kbd>%2</kbd>.</p>"
-                     "<p>Please check if this file still exists and if you have write access to it."
-                     "</p>"
-                     "<p>%3</p>",
+                     "<p>Could not save metadata for <kbd>%2</kbd>.</p>"
+                     "<p>%3""</p>"
+                     "<p>%4</p>",
                      isSingleFile ? QString()
                                   : i18nc("Fraction of processed files", " (%1 of %2)",
                                           processed, allImages),
                      path,
+                     neededWritePermissions,
                      isSingleFile ? i18n("You can retry to process the file or cancel the saving "
                                          "process.")
                                   : i18n("You can retry to process the file, skip it or cancel the "
