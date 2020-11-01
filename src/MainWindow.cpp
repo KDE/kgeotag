@@ -743,7 +743,7 @@ void MainWindow::saveChanges()
 
         // Save the changes
 
-        while (! exif.save(path)) {
+        while (! exif.applyChanges()) {
             progress.reset();
             QApplication::restoreOverrideCursor();
 
