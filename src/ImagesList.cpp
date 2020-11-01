@@ -174,9 +174,6 @@ void ImagesList::addOrUpdateImage(const QString &path)
     bool itemFound = false;
     ImageItem *imageItem;
 
-    const QFileInfo info(path);
-    const QString fileName = info.fileName();
-
     // Check for an existing entry we want to update
     for (int i = 0; i < count(); i++) {
         if (dynamic_cast<ImageItem *>(item(i))->path() == path) {
@@ -188,8 +185,9 @@ void ImagesList::addOrUpdateImage(const QString &path)
 
     if (! itemFound) {
         // We need a new item
+        const QFileInfo info(path);
         imageItem = new ImageItem(QIcon(QPixmap::fromImage(m_imageCache->thumbnail(path))),
-                                  fileName, path);
+                                  info.fileName(), path, m_imageCache->date(path));
     }
 
     imageItem->setChanged(m_imageCache->changed(path));

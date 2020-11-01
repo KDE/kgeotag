@@ -23,21 +23,23 @@
 // KDE includes
 #include <KColorScheme>
 
-ImageItem::ImageItem(const QIcon &icon, const QString &fileName, const QString &path)
+ImageItem::ImageItem(const QIcon &icon, const QString &fileName, const QString &path,
+                     const QDateTime &date)
     : QListWidgetItem(icon, fileName),
       m_fileName(fileName),
-      m_path(path)
+      m_path(path),
+      m_date(date)
 {
-}
-
-QString ImageItem::fileName() const
-{
-    return m_fileName;
 }
 
 QString ImageItem::path() const
 {
     return m_path;
+}
+
+QDateTime ImageItem::date() const
+{
+    return m_date;
 }
 
 void ImageItem::setChanged(bool state)
@@ -66,5 +68,5 @@ void ImageItem::setMatchType(KGeoTag::MatchType matchType)
 
 bool ImageItem::operator<(const QListWidgetItem &other) const
 {
-    return m_fileName < dynamic_cast<const ImageItem *>(&other)->fileName();
+    return m_date < dynamic_cast<const ImageItem *>(&other)->date();
 }

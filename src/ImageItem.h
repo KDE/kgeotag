@@ -25,21 +25,25 @@
 
 // Qt includes
 #include <QListWidgetItem>
+#include <QDateTime>
 
 class ImageItem : public QListWidgetItem
 {
 
 public:
-    explicit ImageItem(const QIcon &icon, const QString &fileName, const QString &path);
-    QString fileName() const;
+    explicit ImageItem(const QIcon &icon, const QString &fileName, const QString &path,
+                       const QDateTime &date);
     QString path() const;
+    QDateTime date() const;
     void setChanged(bool state);
     void setMatchType(KGeoTag::MatchType matchType);
+
     virtual bool operator<(const QListWidgetItem &other) const override;
 
 private: // Variables
     const QString m_fileName;
     const QString m_path;
+    const QDateTime m_date;
 
 };
 
