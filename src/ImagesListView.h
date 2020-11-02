@@ -17,46 +17,22 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SHAREDOBJECTS_H
-#define SHAREDOBJECTS_H
+#ifndef IMAGESLISTVIEW_H
+#define IMAGESLISTVIEW_H
 
 // Qt includes
-#include <QObject>
-#include <QLocale>
+#include <QListView>
 
-// Local classes
-class Settings;
-class ImageCache;
-class ImagesModel;
-class GpxEngine;
-class ElevationEngine;
-class MapWidget;
-class CoordinatesFormatter;
+// Locl classes
+class SharedObjects;
 
-class SharedObjects : public QObject
+class ImagesListView : public QListView
 {
     Q_OBJECT
 
 public:
-    explicit SharedObjects(QObject *parent = nullptr);
-    Settings *settings() const;
-    ImageCache *imageCache() const;
-    ImagesModel *imagesModel() const;
-    GpxEngine *gpxEngine() const;
-    ElevationEngine *elevationEngine() const;
-    MapWidget *mapWidget() const;
-    CoordinatesFormatter *coordinatesFormatter() const;
-
-private: // Variables
-    Settings *m_settings;
-    ImageCache *m_imageCache;
-    ImagesModel *m_imagesModel;
-    GpxEngine *m_gpxEngine;
-    ElevationEngine *m_elevationEngine;
-    MapWidget *m_mapWidget;
-    QLocale m_locale;
-    CoordinatesFormatter *m_coordinatesFormatter;
+    explicit ImagesListView(SharedObjects *sharedObjects, QWidget *parent = nullptr);
 
 };
 
-#endif // SHAREDOBJECTS_H
+#endif // IMAGESLISTVIEW_H

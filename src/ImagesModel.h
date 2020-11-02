@@ -38,7 +38,7 @@ class ImagesModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    explicit ImagesModel(ImageCache *imageCache, QObject *parent = nullptr);
+    explicit ImagesModel(QObject *parent, ImageCache *imageCache);
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     void addImage(const QString &path);

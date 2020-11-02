@@ -35,6 +35,7 @@
 #include "CoordinatesDialog.h"
 #include "RetrySkipAbortDialog.h"
 #include "ImagesModel.h"
+#include "ImagesListView.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -76,8 +77,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_settings = sharedObjects->settings();
     m_imageCache = sharedObjects->imageCache();
     m_gpxEngine = sharedObjects->gpxEngine();
-
-    m_imagesModel = new ImagesModel(m_imageCache, this);
+    m_imagesModel = sharedObjects->imagesModel();
 
     // Menu setup
     // ==========
@@ -187,9 +187,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Test
-    auto *testList = new QListView;
-    testList->setModel(m_imagesModel);
-    createDockWidget(i18n("Test"), testList, QStringLiteral("testDock"));
+    auto *imagesListView = new ImagesListView(sharedObjects);
+    createDockWidget(i18n("imagesListView"), imagesListView, QStringLiteral("imagesListView"));
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {

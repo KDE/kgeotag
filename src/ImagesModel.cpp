@@ -27,7 +27,7 @@
 // Qt includes
 #include <QFileInfo>
 
-ImagesModel::ImagesModel(ImageCache *imageCache, QObject *parent)
+ImagesModel::ImagesModel(QObject *parent, ImageCache *imageCache)
     : QAbstractListModel(parent),
       m_imageCache(imageCache)
 {

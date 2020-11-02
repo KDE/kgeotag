@@ -21,6 +21,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "ImageCache.h"
+#include "ImagesModel.h"
 #include "GpxEngine.h"
 #include "ElevationEngine.h"
 #include "MapWidget.h"
@@ -30,6 +31,7 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
     m_settings = new Settings(this);
     m_imageCache = new ImageCache(this, m_settings);
+    m_imagesModel = new ImagesModel(this, m_imageCache);
     m_gpxEngine = new GpxEngine(this, m_settings);
     m_elevationEngine = new ElevationEngine(this, m_settings);
     m_mapWidget = new MapWidget(this);
@@ -44,6 +46,11 @@ Settings *SharedObjects::settings() const
 ImageCache *SharedObjects::imageCache() const
 {
     return m_imageCache;
+}
+
+ImagesModel *SharedObjects::imagesModel() const
+{
+    return m_imagesModel;
 }
 
 GpxEngine *SharedObjects::gpxEngine() const
