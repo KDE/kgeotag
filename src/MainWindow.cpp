@@ -233,7 +233,7 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if (! m_imageCache->changedImages().isEmpty()) {
+    if (! m_imagesModel->changedImages().isEmpty()) {
         if (QMessageBox::question(this, i18n("Close KGeoTag"),
             i18n("<p>There are pending changes to images that haven't been saved yet. All changes "
                  "will be discarded if KGeoTag is closed now.</p>"
@@ -407,7 +407,6 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     for (const auto &path : paths) {
         m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
-        m_imageCache->setChanged(path, true);
         m_imagesModel->setChanged(path, true);
     }
 
@@ -498,7 +497,6 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
     m_imageCache->setCoordinates(path, coordinates);
-    m_imageCache->setChanged(path, true);
     m_imagesModel->setChanged(path, true);
     m_mapWidget->addImage(path, coordinates);
 }
@@ -586,7 +584,7 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
 
 void MainWindow::saveChanges()
 {
-    auto files = m_imageCache->changedImages();
+    auto files = m_imagesModel->changedImages();
 
     if (files.isEmpty()) {
         QMessageBox::information(this, i18n("Save changes"), i18n("Nothing to do"));
@@ -797,7 +795,6 @@ void MainWindow::saveChanges()
             break;
         }
 
-        m_imageCache->setChanged(path, false);
         m_imagesModel->setChanged(path, false);
 
         savedImages++;
@@ -834,7 +831,6 @@ void MainWindow::removeCoordinates(ImagesListView *list)
     const auto paths = list->selectedPaths();
     for (const QString &path : paths) {
         m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
-        m_imageCache->setChanged(path, true);
         m_imagesModel->setChanged(path, true);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);

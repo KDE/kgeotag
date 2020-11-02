@@ -114,26 +114,6 @@ void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates 
     m_imageData[path].coordinates = coordinates;
 }
 
-void ImageCache::setChanged(const QString &path, bool changed)
-{
-    if (m_imageData.contains(path)) {
-        m_imageData[path].changed = changed;
-    }
-}
-
-QVector<QString> ImageCache::changedImages() const
-{
-    QVector<QString> changed;
-    QHashIterator<QString, ImageData> it(m_imageData);
-    while (it.hasNext()) {
-        it.next();
-        if (it.value().changed) {
-            changed.append(it.key());
-        }
-    }
-    return changed;
-}
-
 void ImageCache::setMatchType(const QString &path, KGeoTag::MatchType matchType)
 {
     m_imageData[path].matchType = matchType;
@@ -142,11 +122,6 @@ void ImageCache::setMatchType(const QString &path, KGeoTag::MatchType matchType)
 KGeoTag::MatchType ImageCache::matchType(const QString &path)
 {
     return m_imageData[path].matchType;
-}
-
-bool ImageCache::changed(const QString &path) const
-{
-    return m_imageData[path].changed;
 }
 
 void ImageCache::resetChanges(const QString &path)

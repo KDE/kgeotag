@@ -29,6 +29,9 @@
 #include <QFileInfo>
 #include <QFont>
 
+// C++ includes
+#include <utility>
+
 ImagesModel::ImagesModel(QObject *parent, ImageCache *imageCache)
     : QAbstractListModel(parent),
       m_imageCache(imageCache)
@@ -57,7 +60,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
                         ? i18nc("Marker for an associated file", "\u2713\u2009")
                         : QString(),
                      data.fileName,
-                     m_imageCache->changed(path)
+                     m_imageData.value(path).changed
                         ? i18nc("Marker for a changed file", "\u2009*")
                         : QString());
 
@@ -85,6 +88,10 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
 
     } else if (role == DataRole::Path) {
         return path;
+
+    } else if (role == DataRole::Changed) {
+        return m_imageData.value(path).changed;
+
     }
 
     return QVariant();
@@ -137,4 +144,15 @@ void ImagesModel::setMatchType(const QString &path, int matchType)
 {
     m_imageData[path].matchType = matchType;
     emitDataChanged(path);
+}
+
+QVector<QString> ImagesModel::changedImages() const
+{
+    QVector<QString> changed;
+    for (const auto &path : std::as_const(m_paths)) {
+        if (m_imageData.value(path).changed) {
+            changed.append(path);
+        }
+    }
+    return changed;
 }

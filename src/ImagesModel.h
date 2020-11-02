@@ -39,7 +39,8 @@ class ImagesModel : public QAbstractListModel
 
 public:
     enum DataRole {
-        Path = Qt::UserRole
+        Path = Qt::UserRole,
+        Changed
     };
 
     explicit ImagesModel(QObject *parent, ImageCache *imageCache);
@@ -48,6 +49,7 @@ public:
     void addImage(const QString &path);
     void setChanged(const QString &path, bool changed);
     void setMatchType(const QString &path, int matchType);
+    QVector<QString> changedImages() const;
 
 private: // Functions
     void emitDataChanged(const QString &path);

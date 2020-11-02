@@ -225,12 +225,16 @@ void ImagesListView::showContextMenu(const QPoint &point)
     }
 
     int hasCoordinates = 0;
-    int changed = 0;
     for (const auto &path : paths) {
         if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
             hasCoordinates++;
         }
-        if (m_imageCache->changed(path)) {
+    }
+
+    int changed = 0;
+    const auto selected = selectedIndexes();
+    for (const auto &index : selected) {
+        if (index.data(ImagesModel::Changed).toBool()) {
             changed++;
         }
     }
