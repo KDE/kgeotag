@@ -23,6 +23,9 @@
 #include "ImagesModel.h"
 #include "ImageCache.h"
 
+// KDE includes
+#include <KLocalizedString>
+
 // Qt includes
 #include <QMouseEvent>
 #include <QApplication>
@@ -30,13 +33,19 @@
 #include <QDrag>
 #include <QDebug>
 #include <QKeyEvent>
+#include <QMenu>
+
+// C++ includes
+#include <functional>
 
 ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
     : QListView(parent),
-      m_imageCache(sharedObjects->imageCache())
+      m_imageCache(sharedObjects->imageCache()),
+      m_bookmarks(sharedObjects->bookmarks())
 {
     setModel(sharedObjects->imagesModel());
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setContextMenuPolicy(Qt::CustomContextMenu);
 
     connect(this, &QAbstractItemView::clicked,
             [this](const QModelIndex &index)
@@ -45,6 +54,56 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
             });
 
     connect(this, &ImagesListView::imageSelected, this, &ImagesListView::checkCenterImage);
+
+    // Context menu
+
+    m_contextMenu = new QMenu(this);
+
+    auto *searchMatchesMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
+    auto *searchExactMatchesAction = searchMatchesMenu->addAction(i18n("Exact match search"));
+
+    auto *searchInterpolatedMatchesAction
+        = searchMatchesMenu->addAction(i18n("Interpolated match search"));
+
+    m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
+    updateBookmarks();
+
+    m_contextMenu->addSeparator();
+
+    auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
+
+    m_assignManually = m_contextMenu->addAction(i18n("Set coordinates manually"));
+
+    m_editCoordinates = m_contextMenu->addAction(i18n("Edit coordinates"));
+
+    m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
+
+    m_contextMenu->addSeparator();
+
+    m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
+
+    m_contextMenu->addSeparator();
+
+    m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
+
+    connect(this, &QListView::customContextMenuRequested, this, &ImagesListView::showContextMenu);
+}
+
+void ImagesListView::updateBookmarks()
+{
+    m_bookmarksMenu->clear();
+    auto bookmarks = m_bookmarks->keys();
+
+    if (bookmarks.count() == 0) {
+        m_bookmarksMenu->addAction(i18n("(No bookmarks defined)"));
+        return;
+    }
+
+    std::sort(bookmarks.begin(), bookmarks.end());
+    for (const auto &label : std::as_const(bookmarks)) {
+        auto *entry = m_bookmarksMenu->addAction(label);
+        entry->setData(label);
+    }
 }
 
 void ImagesListView::mousePressEvent(QMouseEvent *event)
@@ -130,4 +189,32 @@ void ImagesListView::keyPressEvent(QKeyEvent *event)
     if (index.isValid()) {
         emit imageSelected(index.data(ImagesModel::Path).toString());
     }
+}
+
+void ImagesListView::showContextMenu(const QPoint &point)
+{
+    const auto paths = selectedPaths();
+    const int allPaths = paths.count();
+    if (allPaths == 0) {
+        return;
+    }
+
+    int hasCoordinates = 0;
+    int changed = 0;
+    for (const auto &path : paths) {
+        if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
+            hasCoordinates++;
+        }
+        if (m_imageCache->changed(path)) {
+            changed++;
+        }
+    }
+
+    m_assignManually->setVisible(hasCoordinates == 0);
+    m_editCoordinates->setVisible(hasCoordinates > 0);
+    m_lookupElevation->setVisible(hasCoordinates == allPaths);
+    m_removeCoordinates->setVisible(hasCoordinates > 0);
+    m_discardChanges->setVisible(changed > 0);
+
+    m_contextMenu->exec(mapToGlobal(point));
 }

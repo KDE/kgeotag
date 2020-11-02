@@ -20,6 +20,9 @@
 #ifndef IMAGESLISTVIEW_H
 #define IMAGESLISTVIEW_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QListView>
 
@@ -29,6 +32,7 @@ class ImageCache;
 
 // Qt classes
 class QMenu;
+class QAction;
 
 class ImagesListView : public QListView
 {
@@ -37,6 +41,9 @@ class ImagesListView : public QListView
 public:
     explicit ImagesListView(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     QVector<QString> selectedPaths() const;
+
+public slots:
+    void updateBookmarks();
 
 signals:
     void imageSelected(const QString &path) const;
@@ -49,12 +56,22 @@ protected:
 
 private slots:
     void checkCenterImage(const QString &path) const;
+    void showContextMenu(const QPoint &point);
 
 private: // Variables
     ImageCache *m_imageCache;
+    const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;
     QPoint m_dragStartPosition;
+
+    QMenu *m_contextMenu;
+    QMenu *m_bookmarksMenu;
+    QAction *m_assignManually;
+    QAction *m_editCoordinates;
+    QAction *m_lookupElevation;
+    QAction *m_removeCoordinates;
+    QAction *m_discardChanges;
 
 };
 

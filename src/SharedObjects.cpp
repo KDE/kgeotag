@@ -72,3 +72,13 @@ CoordinatesFormatter *SharedObjects::coordinatesFormatter() const
 {
     return m_coordinatesFormatter;
 }
+
+void SharedObjects::setBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks)
+{
+    m_bookmarks = bookmarks;
+}
+
+const QHash<QString, KGeoTag::Coordinates> *SharedObjects::bookmarks() const
+{
+    return m_bookmarks;
+}

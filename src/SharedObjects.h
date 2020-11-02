@@ -20,6 +20,9 @@
 #ifndef SHAREDOBJECTS_H
 #define SHAREDOBJECTS_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QObject>
 #include <QLocale>
@@ -47,6 +50,9 @@ public:
     MapWidget *mapWidget() const;
     CoordinatesFormatter *coordinatesFormatter() const;
 
+    void setBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks);
+    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
+
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
@@ -56,6 +62,8 @@ private: // Variables
     MapWidget *m_mapWidget;
     QLocale m_locale;
     CoordinatesFormatter *m_coordinatesFormatter;
+
+    const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
 };
 

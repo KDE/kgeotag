@@ -126,6 +126,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
     // Bookmarks
     m_bookmarksWidget = new BookmarksWidget(sharedObjects);
+    sharedObjects->setBookmarks(m_bookmarksWidget->bookmarks());
     m_bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarksWidget,
                                            QStringLiteral("bookmarksDock"));
 
@@ -192,6 +193,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(imagesListView, &ImagesListView::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
     connect(imagesListView, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
+    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
+            imagesListView, &ImagesListView::updateBookmarks);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
