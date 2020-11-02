@@ -26,7 +26,6 @@
 #include "PreviewWidget.h"
 #include "MapWidget.h"
 #include "KGeoTag.h"
-#include "ImagesList.h"
 #include "SettingsDialog.h"
 #include "FixDriftWidget.h"
 #include "BookmarksList.h"
@@ -133,34 +132,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarksWidget,
                                            QStringLiteral("bookmarksDock"));
 
-    // Unassigned images
-    m_unAssignedImages = new ImagesList(ImagesList::Type::UnAssigned, sharedObjects,
-                                        m_bookmarksWidget->bookmarks());
-    m_unassignedImagesDock = createDockWidget(i18n("Unassigned images"), m_unAssignedImages,
-                                                  QStringLiteral("unassignedImagesDock"));
-    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
-            m_unAssignedImages, &ImagesList::updateBookmarks);
-    connect(m_unAssignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
-
-    // Assigned images
-    m_assignedImages = new ImagesList(ImagesList::Type::Assigned, sharedObjects,
-                                      m_bookmarksWidget->bookmarks());
-    m_assignedImagesDock = createDockWidget(i18n("Assigned images"), m_assignedImages,
-                                                QStringLiteral("assignedImagesDock"));
-    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
-            m_assignedImages, &ImagesList::updateBookmarks);
-    connect(m_assignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
-    connect(m_assignedImages, &ImagesList::checkUpdatePreview,
-            this, &MainWindow::checkUpdatePreview);
-
     // Preview
     m_previewWidget = new PreviewWidget(sharedObjects);
     m_previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
-    connect(m_assignedImages, &ImagesList::imageSelected,
-            m_previewWidget, &PreviewWidget::setImage);
-    connect(m_unAssignedImages, &ImagesList::imageSelected,
-            m_previewWidget, &PreviewWidget::setImage);
 
     // Fix drift
     m_fixDriftWidget = new FixDriftWidget;
@@ -171,7 +146,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_mapWidget = sharedObjects->mapWidget();
     m_mapDock = createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
-    connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Test
@@ -196,7 +170,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(imagesListView, &ImagesListView::removeCoordinates,
             this, &MainWindow::removeCoordinates);
     connect(imagesListView, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
-    connect(imagesListView, &ImagesListView::lookupElevation, this, &MainWindow::lookupElevation);
+    connect(imagesListView, &ImagesListView::lookupElevation,
+            this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
 
     connect(imagesListView, &ImagesListView::assignTo, this, &MainWindow::assignTo);
 
@@ -227,15 +202,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
 
 void MainWindow::setDefaultDockArrangement()
 {
-    addDockWidget(Qt::TopDockWidgetArea, m_assignedImagesDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_unassignedImagesDock);
     addDockWidget(Qt::TopDockWidgetArea, m_previewDock);
     addDockWidget(Qt::TopDockWidgetArea, m_fixDriftDock);
     addDockWidget(Qt::TopDockWidgetArea, m_bookmarksDock);
     addDockWidget(Qt::TopDockWidgetArea, m_mapDock);
 
-    splitDockWidget(m_assignedImagesDock, m_previewDock, Qt::Vertical);
-    splitDockWidget(m_assignedImagesDock, m_unassignedImagesDock, Qt::Horizontal);
     splitDockWidget(m_previewDock, m_fixDriftDock, Qt::Vertical);
 
     tabifyDockWidget(m_previewDock, m_fixDriftDock);
@@ -400,11 +371,8 @@ void MainWindow::addImages()
         }
 
         const auto coordinates = m_imageCache->coordinates(canonicalPath);
-        if (! coordinates.isSet) {
-            m_unAssignedImages->addOrUpdateImage(canonicalPath);
-        } else {
+        if (coordinates.isSet) {
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
-            m_assignedImages->addOrUpdateImage(canonicalPath);
         }
 
         m_imagesModel->addImage(canonicalPath);
@@ -437,18 +405,16 @@ void MainWindow::addImages()
 void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
     for (const auto &path : paths) {
-        m_unAssignedImages->removeImage(path);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
         m_imageCache->setChanged(path, true);
         m_imagesModel->setChanged(path, true);
-        m_assignedImages->addOrUpdateImage(path);
     }
 
     m_previewWidget->setImage(paths.last());
 
     if (m_settings->lookupElevation()) {
-        m_assignedImages->lookupElevation(paths);
+        lookupElevation(paths);
     }
 }
 
@@ -525,7 +491,7 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
     m_mapWidget->reloadMap();
 
     if (m_settings->lookupElevation()) {
-        m_assignedImages->lookupElevation(paths);
+        lookupElevation(paths);
     }
 }
 
@@ -534,9 +500,7 @@ void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &co
     m_imageCache->setCoordinates(path, coordinates);
     m_imageCache->setChanged(path, true);
     m_imagesModel->setChanged(path, true);
-    m_unAssignedImages->removeImage(path);
     m_mapWidget->addImage(path, coordinates);
-    m_assignedImages->addOrUpdateImage(path);
 }
 
 void MainWindow::searchExactMatches(ImagesListView *list)
@@ -565,7 +529,6 @@ void MainWindow::searchExactMatches(ImagesListView *list)
         m_mapWidget->reloadMap();
         m_mapWidget->centerImage(lastMatchedPath);
         m_previewWidget->setImage(lastMatchedPath);
-        m_assignedImages->scrollToImage(lastMatchedPath);
         QMessageBox::information(this, i18n("Search for exact matches"),
             i18np("1 exact match found!", "%1 exact matches found!", matches));
 
@@ -612,7 +575,6 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
         m_mapWidget->reloadMap();
         m_mapWidget->centerImage(lastMatchedPath);
         m_previewWidget->setImage(lastMatchedPath);
-        m_assignedImages->scrollToImage(lastMatchedPath);
         QMessageBox::information(this, i18n("Search for interpolated matches"),
             i18np("1 interpolated match found!", "%1 interpolated matches found!", matches));
 
@@ -837,11 +799,6 @@ void MainWindow::saveChanges()
 
         m_imageCache->setChanged(path, false);
         m_imagesModel->setChanged(path, false);
-        if (coordinates.isSet) {
-            m_assignedImages->addOrUpdateImage(path);
-        } else {
-            m_unAssignedImages->addOrUpdateImage(path);
-        }
 
         savedImages++;
     }
@@ -881,8 +838,6 @@ void MainWindow::removeCoordinates(ImagesListView *list)
         m_imagesModel->setChanged(path, true);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
-        m_assignedImages->removeImage(path);
-        m_unAssignedImages->addOrUpdateImage(path);
         m_mapWidget->removeImage(path);
     }
 
@@ -895,17 +850,14 @@ void MainWindow::discardChanges(ImagesListView *list)
     const auto paths = list->selectedPaths();
     for (const auto &path : paths) {
         m_imageCache->resetChanges(path);
-        m_assignedImages->removeImage(path);
-        m_unAssignedImages->removeImage(path);
-        m_mapWidget->removeImage(path);
 
         const auto coordinates = m_imageCache->coordinates(path);
         if (coordinates.isSet) {
-            m_assignedImages->addOrUpdateImage(path);
             m_mapWidget->addImage(path, coordinates);
         } else {
-            m_unAssignedImages->addOrUpdateImage(path);
+            m_mapWidget->removeImage(path);
         }
+
     }
 
     m_mapWidget->reloadMap();
@@ -952,9 +904,13 @@ void MainWindow::notAllElevationsPresent(int locationsCount, int elevationsCount
 
 void MainWindow::lookupElevation(ImagesListView *list)
 {
+    lookupElevation(list->selectedPaths());
+}
+
+void MainWindow::lookupElevation(const QVector<QString> &paths)
+{
     QApplication::setOverrideCursor(Qt::BusyCursor);
 
-    const QVector<QString> paths = list->selectedPaths();
     QVector<KGeoTag::Coordinates> coordinates;
     for (const auto &path : paths) {
         coordinates.append(m_imageCache->coordinates(path));

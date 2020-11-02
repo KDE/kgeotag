@@ -32,7 +32,6 @@ class SharedObjects;
 class Settings;
 class ImageCache;
 class GpxEngine;
-class ImagesList;
 class PreviewWidget;
 class MapWidget;
 class FixDriftWidget;
@@ -80,22 +79,19 @@ private slots:
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
     void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void lookupElevation(const QVector<QString> &paths);
 
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     GpxEngine *m_gpxEngine;
     ElevationEngine *m_elevationEngine;
-    ImagesList *m_assignedImages;
-    ImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
     FixDriftWidget *m_fixDriftWidget;
     BookmarksWidget *m_bookmarksWidget;
     ImagesModel *m_imagesModel;
 
-    QDockWidget *m_assignedImagesDock;
-    QDockWidget *m_unassignedImagesDock;
     QDockWidget *m_previewDock;
     QDockWidget *m_fixDriftDock;
     QDockWidget *m_bookmarksDock;
