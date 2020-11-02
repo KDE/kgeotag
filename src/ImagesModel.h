@@ -35,15 +35,18 @@ public:
     explicit ImagesModel(ImageCache *imageCache, QObject *parent = nullptr);
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    virtual bool insertRows(int row, int count, const QModelIndex &parent = QModelIndex()) override;
-    virtual bool setData(const QModelIndex &index, const QVariant &value,
-                         int role = Qt::DisplayRole) override;
-    bool addImage(const QString &path);
+    void addImage(const QString &path);
+    void setChanged(const QString &path, bool changed);
 
 private: // Variables
+    struct ImageData {
+        QString fileName;
+        bool changed;
+    };
+
     ImageCache *m_imageCache;
     QVector<QString> m_paths;
-    QVector<QString> m_fileNames;
+    QHash<QString, ImageData> m_imageData;
 
 };
 

@@ -431,6 +431,7 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
         m_unAssignedImages->removeImage(path);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
         m_imageCache->setChanged(path, true);
+        m_imagesModel->setChanged(path, true);
         m_assignedImages->addOrUpdateImage(path);
     }
 
@@ -521,6 +522,7 @@ void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &co
 {
     m_imageCache->setCoordinates(path, coordinates);
     m_imageCache->setChanged(path, true);
+    m_imagesModel->setChanged(path, true);
     m_unAssignedImages->removeImage(path);
     m_mapWidget->addImage(path, coordinates);
     m_assignedImages->addOrUpdateImage(path);
@@ -820,6 +822,7 @@ void MainWindow::saveChanges()
         }
 
         m_imageCache->setChanged(path, false);
+        m_imagesModel->setChanged(path, false);
         if (coordinates.isSet) {
             m_assignedImages->addOrUpdateImage(path);
         } else {
@@ -861,6 +864,7 @@ void MainWindow::removeCoordinates()
     for (const QString &path : paths) {
         m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
         m_imageCache->setChanged(path, true);
+        m_imagesModel->setChanged(path, true);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
         m_assignedImages->removeImage(path);
         m_unAssignedImages->addOrUpdateImage(path);

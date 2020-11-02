@@ -44,66 +44,23 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
-    const int row = index.row();
+    const auto &path = m_paths.at(index.row());
+    const auto &data = m_imageData[path];
 
     if (role == Qt::DisplayRole){
-        return m_imageCache->changed(m_paths.at(row))
-            ? QStringLiteral("*") + m_fileNames.at(row)
-            : m_fileNames.at(row);
-
+        return m_imageCache->changed(path) ? QStringLiteral("*") + data.fileName : data.fileName;
     } else if (role == Qt::DecorationRole) {
-        return m_imageCache->thumbnail(m_paths.at(row));
+        return m_imageCache->thumbnail(path);
     }
 
     return QVariant();
 }
 
-bool ImagesModel::insertRows(int row, int count, const QModelIndex &parent)
-{
-    if (count < 1 || row < 0 || row > rowCount(parent)) {
-        return false;
-    }
-
-    beginInsertRows(QModelIndex(), row, row + count - 1);
-
-    for (int r = 0; r < count; r++) {
-        m_paths.insert(row, QString());
-        m_fileNames.insert(row, QString());
-    }
-
-    endInsertRows();
-
-    return true;
-}
-
-bool ImagesModel::setData(const QModelIndex &index, const QVariant &value, int role)
-{
-    const int row = index.row();
-
-    if (row >= 0 && row < m_paths.size() && (role == Qt::EditRole || role == Qt::DisplayRole)) {
-        const auto path = value.toString();
-
-        if (m_paths.at(row) == path) {
-            return true;
-        }
-
-        m_paths.replace(row, path);
-
-        const QFileInfo info(path);
-        m_fileNames.replace(row, info.fileName());
-
-        emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
-        return true;
-    }
-
-    return false;
-}
-
-bool ImagesModel::addImage(const QString &path)
+void ImagesModel::addImage(const QString &path)
 {
     // Check if we already have the image
     if (m_paths.contains(path)) {
-        return true;
+        return;
     }
 
     // Find the correct row for the new image (sorted by date)
@@ -117,9 +74,21 @@ bool ImagesModel::addImage(const QString &path)
     }
 
     // Add the image
-    if (insertRows(row, 1)) {
-        return setData(index(row, 0, QModelIndex()), path);
-    }
 
-    return false;
+    beginInsertRows(QModelIndex(), row, row);
+    m_paths.insert(row, path);
+    const QFileInfo info(path);
+    m_imageData[path] = { info.fileName(),
+                          false };
+    endInsertRows();
+
+    const auto modelIndex = index(row, 0, QModelIndex());
+    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+}
+
+void ImagesModel::setChanged(const QString &path, bool changed)
+{
+    m_imageData[path].changed = changed;
+    const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
+    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
