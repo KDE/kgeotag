@@ -21,6 +21,9 @@
 #include "ImagesModel.h"
 #include "ImageCache.h"
 
+// KDE includes
+#include <KLocalizedString>
+
 // Qt includes
 #include <QFileInfo>
 
@@ -45,7 +48,9 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     const auto &data = m_imageData[path];
 
     if (role == Qt::DisplayRole){
-        return m_imageCache->changed(path) ? QStringLiteral("*") + data.fileName : data.fileName;
+        return m_imageCache->changed(path)
+            ? i18nc("Pattern for marking a changed file", "*%1", data.fileName)
+            : data.fileName;
 
     } else if (role == Qt::DecorationRole) {
         return m_imageCache->thumbnail(path);
