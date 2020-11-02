@@ -46,8 +46,10 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole){
         return m_imageCache->changed(path) ? QStringLiteral("*") + data.fileName : data.fileName;
+
     } else if (role == Qt::DecorationRole) {
         return m_imageCache->thumbnail(path);
+
     } else if (role == Qt::ForegroundRole) {
         switch (m_imageData.value(path).matchType) {
         case KGeoTag::MatchType::None:
@@ -95,16 +97,20 @@ void ImagesModel::addImage(const QString &path)
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
+void ImagesModel::emitDataChanged(const QString &path)
+{
+    const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
+    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+}
+
 void ImagesModel::setChanged(const QString &path, bool changed)
 {
     m_imageData[path].changed = changed;
-    const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
-    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    emitDataChanged(path);
 }
 
 void ImagesModel::setMatchType(const QString &path, int matchType)
 {
     m_imageData[path].matchType = matchType;
-    const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
-    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    emitDataChanged(path);
 }

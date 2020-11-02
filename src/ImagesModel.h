@@ -45,6 +45,9 @@ public:
     void setChanged(const QString &path, bool changed);
     void setMatchType(const QString &path, int matchType);
 
+private: // Functions
+    void emitDataChanged(const QString &path);
+
 private: // Variables
     struct ImageData {
         QString fileName;
