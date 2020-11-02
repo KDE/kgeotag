@@ -32,16 +32,25 @@ class ImagesModel : public QAbstractListModel
     Q_OBJECT
 
 public:
+    enum MatchType {
+        None,
+        Exact,
+        Interpolated,
+        Set
+    };
+
     explicit ImagesModel(ImageCache *imageCache, QObject *parent = nullptr);
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     void addImage(const QString &path);
     void setChanged(const QString &path, bool changed);
+    void setMatchType(const QString &path, MatchType matchType);
 
 private: // Variables
     struct ImageData {
         QString fileName;
         bool changed;
+        MatchType matchType;
     };
 
     ImageCache *m_imageCache;

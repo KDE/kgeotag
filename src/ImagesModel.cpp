@@ -79,7 +79,8 @@ void ImagesModel::addImage(const QString &path)
     m_paths.insert(row, path);
     const QFileInfo info(path);
     m_imageData[path] = { info.fileName(),
-                          false };
+                          false,
+                          MatchType::None };
     endInsertRows();
 
     const auto modelIndex = index(row, 0, QModelIndex());
@@ -89,6 +90,13 @@ void ImagesModel::addImage(const QString &path)
 void ImagesModel::setChanged(const QString &path, bool changed)
 {
     m_imageData[path].changed = changed;
+    const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
+    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+}
+
+void ImagesModel::setMatchType(const QString &path, MatchType matchType)
+{
+    m_imageData[path].matchType = matchType;
     const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
