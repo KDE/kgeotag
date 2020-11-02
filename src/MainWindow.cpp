@@ -187,7 +187,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Test
-    auto testList = new QListView;
+    auto *testList = new QListView;
     testList->setModel(m_imagesModel);
     createDockWidget(i18n("Test"), testList, QStringLiteral("testDock"));
 
@@ -430,7 +430,7 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     for (const auto &path : paths) {
         m_unAssignedImages->removeImage(path);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
-        m_imagesModel->setMatchType(path, ImagesModel::MatchType::Set);
+        m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
         m_imageCache->setChanged(path, true);
         m_imagesModel->setChanged(path, true);
         m_assignedImages->addOrUpdateImage(path);
@@ -507,7 +507,7 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
 {
     for (const auto &path : paths) {
         m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
-        m_imagesModel->setMatchType(path, ImagesModel::MatchType::Set);
+        m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
         assignImage(path, coordinates);
         m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
     }
@@ -543,7 +543,7 @@ void MainWindow::searchExactMatches(ImagesList *list)
                                                                    m_fixDriftWidget->deviation());
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
-            m_imagesModel->setMatchType(path, ImagesModel::MatchType::Exact);
+            m_imagesModel->setMatchType(path, KGeoTag::MatchType::Exact);
             assignImage(path, coordinates);
             matches++;
             lastMatchedPath = path;
@@ -589,7 +589,7 @@ void MainWindow::searchInterpolatedMatches(ImagesList *list)
 
         if (coordinates.isSet) {
             m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
-            m_imagesModel->setMatchType(path, ImagesModel::MatchType::Interpolated);
+            m_imagesModel->setMatchType(path, KGeoTag::MatchType::Interpolated);
             assignImage(path, coordinates);
             matches++;
             lastMatchedPath = path;
@@ -870,7 +870,7 @@ void MainWindow::removeCoordinates()
         m_imageCache->setChanged(path, true);
         m_imagesModel->setChanged(path, true);
         m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
-        m_imagesModel->setMatchType(path, ImagesModel::MatchType::None);
+        m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
         m_assignedImages->removeImage(path);
         m_unAssignedImages->addOrUpdateImage(path);
         m_mapWidget->removeImage(path);

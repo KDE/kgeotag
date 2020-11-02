@@ -24,9 +24,6 @@
 // Qt includes
 #include <QFileInfo>
 
-// C++ includes
-#include <functional>
-
 ImagesModel::ImagesModel(ImageCache *imageCache, QObject *parent)
     : QAbstractListModel(parent),
       m_imageCache(imageCache)
@@ -51,6 +48,17 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         return m_imageCache->changed(path) ? QStringLiteral("*") + data.fileName : data.fileName;
     } else if (role == Qt::DecorationRole) {
         return m_imageCache->thumbnail(path);
+    } else if (role == Qt::ForegroundRole) {
+        switch (m_imageData.value(path).matchType) {
+        case KGeoTag::MatchType::None:
+            return m_colorScheme.foreground();
+        case KGeoTag::MatchType::Exact:
+            return m_colorScheme.foreground(KColorScheme::PositiveText);
+        case KGeoTag::MatchType::Interpolated:
+            return m_colorScheme.foreground(KColorScheme::NeutralText);
+        case KGeoTag::MatchType::Set:
+            return m_colorScheme.foreground(KColorScheme::LinkText);
+        }
     }
 
     return QVariant();
@@ -80,7 +88,7 @@ void ImagesModel::addImage(const QString &path)
     const QFileInfo info(path);
     m_imageData[path] = { info.fileName(),
                           false,
-                          MatchType::None };
+                          KGeoTag::MatchType::None };
     endInsertRows();
 
     const auto modelIndex = index(row, 0, QModelIndex());
@@ -94,7 +102,7 @@ void ImagesModel::setChanged(const QString &path, bool changed)
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
-void ImagesModel::setMatchType(const QString &path, MatchType matchType)
+void ImagesModel::setMatchType(const QString &path, int matchType)
 {
     m_imageData[path].matchType = matchType;
     const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());

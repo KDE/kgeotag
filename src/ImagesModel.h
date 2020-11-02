@@ -20,6 +20,12 @@
 #ifndef IMAGESMODEL_H
 #define IMAGESMODEL_H
 
+// Local includes
+#include "KGeoTag.h"
+
+// KDE includes
+#include <KColorScheme>
+
 // Qt includes
 #include <QAbstractListModel>
 #include <QDateTime>
@@ -32,30 +38,25 @@ class ImagesModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    enum MatchType {
-        None,
-        Exact,
-        Interpolated,
-        Set
-    };
-
     explicit ImagesModel(ImageCache *imageCache, QObject *parent = nullptr);
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     void addImage(const QString &path);
     void setChanged(const QString &path, bool changed);
-    void setMatchType(const QString &path, MatchType matchType);
+    void setMatchType(const QString &path, int matchType);
 
 private: // Variables
     struct ImageData {
         QString fileName;
         bool changed;
-        MatchType matchType;
+        int matchType;
     };
 
     ImageCache *m_imageCache;
     QVector<QString> m_paths;
     QHash<QString, ImageData> m_imageData;
+
+    KColorScheme m_colorScheme;
 
 };
 
