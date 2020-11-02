@@ -25,6 +25,7 @@
 
 // Locl classes
 class SharedObjects;
+class ImageCache;
 
 class ImagesListView : public QListView
 {
@@ -32,6 +33,19 @@ class ImagesListView : public QListView
 
 public:
     explicit ImagesListView(SharedObjects *sharedObjects, QWidget *parent = nullptr);
+    QVector<QString> selectedPaths() const;
+
+signals:
+    void imageSelected(const QString &path) const;
+
+protected:
+    virtual void mousePressEvent(QMouseEvent *event) override;
+    virtual void mouseMoveEvent(QMouseEvent *event) override;
+
+private: // Variables
+    ImageCache *m_imageCache;
+    bool m_dragStarted = false;
+    QPoint m_dragStartPosition;
 
 };
 

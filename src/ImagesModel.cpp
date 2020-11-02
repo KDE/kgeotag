@@ -66,6 +66,9 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         case KGeoTag::MatchType::Set:
             return m_colorScheme.foreground(KColorScheme::LinkText);
         }
+
+    } else if (role == Qt::UserRole) {
+        return path;
     }
 
     return QVariant();
