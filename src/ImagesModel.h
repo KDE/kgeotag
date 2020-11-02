@@ -38,6 +38,10 @@ class ImagesModel : public QAbstractListModel
     Q_OBJECT
 
 public:
+    enum DataRole {
+        Path = Qt::UserRole
+    };
+
     explicit ImagesModel(QObject *parent, ImageCache *imageCache);
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;

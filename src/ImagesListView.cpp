@@ -67,7 +67,7 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    const auto path = currentIndex().data(Qt::UserRole).toString();
+    const auto path = currentIndex().data(ImagesModel::Path).toString();
     emit imageSelected(path);
 
     auto *drag = new QDrag(this);
@@ -93,7 +93,7 @@ QVector<QString> ImagesListView::selectedPaths() const
     QVector<QString> paths;
     const auto selected = selectedIndexes();
     for (const auto &index : selected) {
-        paths.append(index.data(Qt::UserRole).toString());
+        paths.append(index.data(ImagesModel::Path).toString());
     }
     return paths;
 }
