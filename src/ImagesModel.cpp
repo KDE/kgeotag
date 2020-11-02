@@ -156,3 +156,8 @@ QVector<QString> ImagesModel::changedImages() const
     }
     return changed;
 }
+
+int ImagesModel::matchType(const QString &path) const
+{
+    return m_imageData.value(path).matchType;
+}

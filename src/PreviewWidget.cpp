@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "CoordinatesFormatter.h"
 #include "ImageCache.h"
+#include "ImagesModel.h"
 #include "ImagePreview.h"
 #include "KGeoTag.h"
 
@@ -38,7 +39,8 @@
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
       m_formatter(sharedObjects->coordinatesFormatter()),
-      m_imageCache(sharedObjects->imageCache())
+      m_imageCache(sharedObjects->imageCache()),
+      m_imagesModel(sharedObjects->imagesModel())
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -103,7 +105,8 @@ void PreviewWidget::setImage(const QString &path)
                                     m_formatter->lon(coordinates),
                                     m_formatter->lat(coordinates),
                                     m_formatter->alt(coordinates),
-                                    m_matchString.value(m_imageCache->matchType(path))));
+                                    m_matchString.value(static_cast<KGeoTag::MatchType>(
+                                        m_imagesModel->matchType(path)))));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));
     }

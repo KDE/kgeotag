@@ -114,20 +114,8 @@ void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates 
     m_imageData[path].coordinates = coordinates;
 }
 
-void ImageCache::setMatchType(const QString &path, KGeoTag::MatchType matchType)
-{
-    m_imageData[path].matchType = matchType;
-}
-
-KGeoTag::MatchType ImageCache::matchType(const QString &path)
-{
-    return m_imageData[path].matchType;
-}
-
 void ImageCache::resetChanges(const QString &path)
 {
     auto &data = m_imageData[path];
     data.coordinates = data.originalCoordinates;
-    data.matchType = KGeoTag::MatchType::None;
-    data.changed = false;
 }

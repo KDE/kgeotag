@@ -50,6 +50,7 @@ public:
     void setChanged(const QString &path, bool changed);
     void setMatchType(const QString &path, int matchType);
     QVector<QString> changedImages() const;
+    int matchType(const QString &path) const;
 
 private: // Functions
     void emitDataChanged(const QString &path);

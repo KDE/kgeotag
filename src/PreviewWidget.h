@@ -31,6 +31,7 @@
 class SharedObjects;
 class CoordinatesFormatter;
 class ImageCache;
+class ImagesModel;
 class ImagePreview;
 
 // Qt classes
@@ -50,6 +51,7 @@ public slots:
 private: // Variables
     CoordinatesFormatter *m_formatter;
     ImageCache *m_imageCache;
+    ImagesModel *m_imagesModel;
 
     ImagePreview *m_preview;
 

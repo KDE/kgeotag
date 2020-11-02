@@ -52,8 +52,6 @@ public:
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
-    void setMatchType(const QString &path, KGeoTag::MatchType matchType);
-    KGeoTag::MatchType matchType(const QString &path);
     void resetChanges(const QString &path);
 
 private: // Structs
@@ -64,8 +62,6 @@ private: // Structs
         QDateTime date;
         KGeoTag::Coordinates originalCoordinates = KGeoTag::NoCoordinates;
         KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
-        KGeoTag::MatchType matchType = KGeoTag::MatchType::None;
-        bool changed = false;
     };
 
 private: // Variables

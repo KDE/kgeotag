@@ -405,7 +405,6 @@ void MainWindow::addImages()
 void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
     for (const auto &path : paths) {
-        m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
         m_imagesModel->setChanged(path, true);
     }
@@ -480,7 +479,6 @@ void MainWindow::editCoordinates(ImagesListView *list)
 void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates)
 {
     for (const auto &path : paths) {
-        m_imageCache->setMatchType(path, KGeoTag::MatchType::Set);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
         assignImage(path, coordinates);
         m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
@@ -513,7 +511,6 @@ void MainWindow::searchExactMatches(ImagesListView *list)
         const auto coordinates = m_gpxEngine->findExactCoordinates(m_imageCache->date(path),
                                                                    m_fixDriftWidget->deviation());
         if (coordinates.isSet) {
-            m_imageCache->setMatchType(path, KGeoTag::MatchType::Exact);
             m_imagesModel->setMatchType(path, KGeoTag::MatchType::Exact);
             assignImage(path, coordinates);
             matches++;
@@ -558,7 +555,6 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
             m_imageCache->date(path), m_fixDriftWidget->deviation());
 
         if (coordinates.isSet) {
-            m_imageCache->setMatchType(path, KGeoTag::MatchType::Interpolated);
             m_imagesModel->setMatchType(path, KGeoTag::MatchType::Interpolated);
             assignImage(path, coordinates);
             matches++;
@@ -832,7 +828,6 @@ void MainWindow::removeCoordinates(ImagesListView *list)
     for (const QString &path : paths) {
         m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
         m_imagesModel->setChanged(path, true);
-        m_imageCache->setMatchType(path, KGeoTag::MatchType::None);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
         m_mapWidget->removeImage(path);
     }
