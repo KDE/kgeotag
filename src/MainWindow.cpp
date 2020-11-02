@@ -189,6 +189,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     // Test
     auto *imagesListView = new ImagesListView(sharedObjects);
     createDockWidget(i18n("imagesListView"), imagesListView, QStringLiteral("imagesListView"));
+    connect(imagesListView, &ImagesListView::imageSelected,
+            m_previewWidget, &PreviewWidget::setImage);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {

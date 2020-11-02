@@ -36,6 +36,12 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
 {
     setModel(sharedObjects->imagesModel());
     setSelectionMode(QAbstractItemView::ExtendedSelection);
+
+    connect(this, &QAbstractItemView::clicked,
+            [this](const QModelIndex &index)
+            {
+                emit imageSelected(index.data(ImagesModel::Path).toString());
+            });
 }
 
 void ImagesListView::mousePressEvent(QMouseEvent *event)
