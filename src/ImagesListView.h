@@ -29,6 +29,7 @@
 // Local classes
 class SharedObjects;
 class ImageCache;
+class ElevationEngine;
 
 // Qt classes
 class QMenu;
@@ -44,10 +45,21 @@ public:
 
 public slots:
     void updateBookmarks();
+    void lookupElevation(const QVector<QString> &paths = QVector<QString>());
 
 signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
+
+    void searchExactMatches(ImagesListView *list) const;
+    void searchInterpolatedMatches(ImagesListView *list) const;
+    void assignToMapCenter(ImagesListView *list) const;
+    void assignManually(ImagesListView *list) const;
+    void editCoordinates(ImagesListView *list) const;
+    void removeCoordinates(ImagesListView *list) const;
+    void discardChanges(ImagesListView *list) const;
+
+    void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -60,6 +72,7 @@ private slots:
 
 private: // Variables
     ImageCache *m_imageCache;
+    ElevationEngine *m_elevationEngine;
     const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;

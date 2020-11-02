@@ -38,6 +38,7 @@ class MapWidget;
 class FixDriftWidget;
 class BookmarksWidget;
 class ImagesModel;
+class ImagesListView;
 
 // Qt classes
 class QDockWidget;
@@ -58,19 +59,20 @@ private slots:
     void addGpx();
     void addImages();
     void imagesDropped(const QVector<QString> &paths);
-    void searchExactMatches(ImagesList *list);
-    void searchInterpolatedMatches(ImagesList *list);
     void saveChanges();
     void showSettings();
-    void removeCoordinates();
-    void discardChanges(ImagesList *list);
-    void assignToMapCenter(ImagesList *list);
-    void assignManually();
-    void editCoordinates();
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
     void elevationLookupFailed(const QString &errorMessage);
     void notAllElevationsPresent(int locationsCount, int elevationsCount);
+
+    void searchExactMatches(ImagesListView *list);
+    void searchInterpolatedMatches(ImagesListView *list);
+    void assignToMapCenter(ImagesListView *list);
+    void assignManually(ImagesListView *list);
+    void editCoordinates(ImagesListView *list);
+    void removeCoordinates(ImagesListView *list);
+    void discardChanges(ImagesListView *list);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);

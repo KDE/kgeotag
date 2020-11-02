@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "ImagesModel.h"
 #include "ImageCache.h"
+#include "ElevationEngine.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -36,11 +37,13 @@
 #include <QMenu>
 
 // C++ includes
+#include <algorithm>
 #include <functional>
 
 ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
     : QListView(parent),
       m_imageCache(sharedObjects->imageCache()),
+      m_elevationEngine(sharedObjects->elevationEngine()),
       m_bookmarks(sharedObjects->bookmarks())
 {
     setModel(sharedObjects->imagesModel());
@@ -61,9 +64,13 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
 
     auto *searchMatchesMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
     auto *searchExactMatchesAction = searchMatchesMenu->addAction(i18n("Exact match search"));
+    connect(searchExactMatchesAction, &QAction::triggered,
+            this, std::bind(&ImagesListView::searchExactMatches, this, this));
 
     auto *searchInterpolatedMatchesAction
         = searchMatchesMenu->addAction(i18n("Interpolated match search"));
+    connect(searchInterpolatedMatchesAction, &QAction::triggered,
+            this, std::bind(&ImagesListView::searchInterpolatedMatches, this, this));
 
     m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
     updateBookmarks();
@@ -71,20 +78,32 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
     m_contextMenu->addSeparator();
 
     auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
+    connect(assignToMapCenterAction, &QAction::triggered,
+            this, std::bind(&ImagesListView::assignToMapCenter, this, this));
 
     m_assignManually = m_contextMenu->addAction(i18n("Set coordinates manually"));
+    connect(m_assignManually, &QAction::triggered,
+            this, std::bind(&ImagesListView::assignManually, this, this));
 
     m_editCoordinates = m_contextMenu->addAction(i18n("Edit coordinates"));
+    connect(m_editCoordinates, &QAction::triggered,
+            this, std::bind(&ImagesListView::editCoordinates, this, this));
 
     m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
+    connect(m_lookupElevation, &QAction::triggered,
+            this, std::bind(&ImagesListView::lookupElevation, this, QVector<QString>()));
 
     m_contextMenu->addSeparator();
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
+    connect(m_removeCoordinates, &QAction::triggered,
+            this, std::bind(&ImagesListView::removeCoordinates, this, this));
 
     m_contextMenu->addSeparator();
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
+    connect(m_discardChanges, &QAction::triggered,
+            this, std::bind(&ImagesListView::discardChanges, this, this));
 
     connect(this, &QListView::customContextMenuRequested, this, &ImagesListView::showContextMenu);
 }
@@ -103,6 +122,12 @@ void ImagesListView::updateBookmarks()
     for (const auto &label : std::as_const(bookmarks)) {
         auto *entry = m_bookmarksMenu->addAction(label);
         entry->setData(label);
+        connect(entry, &QAction::triggered,
+                this, std::bind([this](QAction *action)
+                {
+                    assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
+                },
+                entry));
     }
 }
 
@@ -217,4 +242,23 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_discardChanges->setVisible(changed > 0);
 
     m_contextMenu->exec(mapToGlobal(point));
+}
+
+void ImagesListView::lookupElevation(const QVector<QString> &paths)
+{
+    QApplication::setOverrideCursor(Qt::BusyCursor);
+
+    QVector<QString> lookupPaths;
+    if (paths.isEmpty()) {
+        lookupPaths = selectedPaths();
+    } else {
+        lookupPaths = paths;
+    }
+
+    QVector<KGeoTag::Coordinates> coordinates;
+    for (const auto &path : lookupPaths) {
+        coordinates.append(m_imageCache->coordinates(path));
+    }
+
+    m_elevationEngine->request(ElevationEngine::Target::Image, lookupPaths, coordinates);
 }

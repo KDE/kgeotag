@@ -137,15 +137,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
                                                   QStringLiteral("unassignedImagesDock"));
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_unAssignedImages, &ImagesList::updateBookmarks);
-    connect(m_unAssignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_unAssignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
-    connect(m_unAssignedImages, &ImagesList::assignToMapCenter,
-            this, &MainWindow::assignToMapCenter);
-    connect(m_unAssignedImages, &ImagesList::assignManually, this, &MainWindow::assignManually);
-    connect(m_unAssignedImages, &ImagesList::searchExactMatches,
-            this, &MainWindow::searchExactMatches);
-    connect(m_unAssignedImages, &ImagesList::searchInterpolatedMatches,
-            this, &MainWindow::searchInterpolatedMatches);
 
     // Assigned images
     m_assignedImages = new ImagesList(ImagesList::Type::Assigned, sharedObjects,
@@ -154,17 +146,9 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
                                                 QStringLiteral("assignedImagesDock"));
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             m_assignedImages, &ImagesList::updateBookmarks);
-    connect(m_assignedImages, &ImagesList::removeCoordinates, this, &MainWindow::removeCoordinates);
-    connect(m_assignedImages, &ImagesList::discardChanges, this, &MainWindow::discardChanges);
     connect(m_assignedImages, &ImagesList::assignTo, this, &MainWindow::assignTo);
-    connect(m_assignedImages, &ImagesList::assignToMapCenter, this, &MainWindow::assignToMapCenter);
-    connect(m_assignedImages, &ImagesList::editCoordinates, this, &MainWindow::editCoordinates);
     connect(m_assignedImages, &ImagesList::checkUpdatePreview,
             this, &MainWindow::checkUpdatePreview);
-    connect(m_assignedImages, &ImagesList::searchExactMatches,
-            this, &MainWindow::searchExactMatches);
-    connect(m_assignedImages, &ImagesList::searchInterpolatedMatches,
-            this, &MainWindow::searchInterpolatedMatches);
 
     // Preview
     m_previewWidget = new PreviewWidget(sharedObjects);
@@ -188,13 +172,29 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Test
+
     auto *imagesListView = new ImagesListView(sharedObjects);
     createDockWidget(i18n("imagesListView"), imagesListView, QStringLiteral("imagesListView"));
+
     connect(imagesListView, &ImagesListView::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
     connect(imagesListView, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             imagesListView, &ImagesListView::updateBookmarks);
+
+    connect(imagesListView, &ImagesListView::searchExactMatches,
+            this, &MainWindow::searchExactMatches);
+    connect(imagesListView, &ImagesListView::searchInterpolatedMatches,
+            this, &MainWindow::searchInterpolatedMatches);
+    connect(imagesListView, &ImagesListView::assignToMapCenter,
+            this, &MainWindow::assignToMapCenter);
+    connect(imagesListView, &ImagesListView::assignManually, this, &MainWindow::assignManually);
+    connect(imagesListView, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
+    connect(imagesListView, &ImagesListView::removeCoordinates,
+            this, &MainWindow::removeCoordinates);
+    connect(imagesListView, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
+
+    connect(imagesListView, &ImagesListView::assignTo, this, &MainWindow::assignTo);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -448,14 +448,14 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     }
 }
 
-void MainWindow::assignToMapCenter(ImagesList *list)
+void MainWindow::assignToMapCenter(ImagesListView *list)
 {
     assignTo(list->selectedPaths(), m_mapWidget->currentCenter());
 }
 
-void MainWindow::assignManually()
+void MainWindow::assignManually(ImagesListView *list)
 {
-    const auto paths = m_unAssignedImages->selectedPaths();
+    const auto paths = list->selectedPaths();
 
     QString label;
     if (paths.count() == 1) {
@@ -475,9 +475,9 @@ void MainWindow::assignManually()
     assignTo(paths, dialog.coordinates());
 }
 
-void MainWindow::editCoordinates()
+void MainWindow::editCoordinates(ImagesListView *list)
 {
-    const auto paths = m_assignedImages->selectedPaths();
+    const auto paths = list->selectedPaths();
     auto coordinates = m_imageCache->coordinates(paths.first());
     bool identicalCoordinates = true;
     for (int i = 1; i < paths.count(); i++) {
@@ -535,7 +535,7 @@ void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &co
     m_assignedImages->addOrUpdateImage(path);
 }
 
-void MainWindow::searchExactMatches(ImagesList *list)
+void MainWindow::searchExactMatches(ImagesListView *list)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -571,7 +571,7 @@ void MainWindow::searchExactMatches(ImagesList *list)
     }
 }
 
-void MainWindow::searchInterpolatedMatches(ImagesList *list)
+void MainWindow::searchInterpolatedMatches(ImagesListView *list)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -601,6 +601,7 @@ void MainWindow::searchInterpolatedMatches(ImagesList *list)
         }
     }
 
+    progress.reset();
     QApplication::restoreOverrideCursor();
 
     if (matches > 0) {
@@ -867,9 +868,9 @@ void MainWindow::showSettings()
     m_mapWidget->updateSettings();
 }
 
-void MainWindow::removeCoordinates()
+void MainWindow::removeCoordinates(ImagesListView *list)
 {
-    const auto paths = m_assignedImages->selectedPaths();
+    const auto paths = list->selectedPaths();
     for (const QString &path : paths) {
         m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
         m_imageCache->setChanged(path, true);
@@ -885,7 +886,7 @@ void MainWindow::removeCoordinates()
     m_previewWidget->setImage(m_previewWidget->currentImage());
 }
 
-void MainWindow::discardChanges(ImagesList *list)
+void MainWindow::discardChanges(ImagesListView *list)
 {
     const auto paths = list->selectedPaths();
     for (const auto &path : paths) {
