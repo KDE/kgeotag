@@ -20,12 +20,14 @@
 // Local includes
 #include "ImagesModel.h"
 #include "ImageCache.h"
+#include "KGeoTag.h"
 
 // KDE includes
 #include <KLocalizedString>
 
 // Qt includes
 #include <QFileInfo>
+#include <QFont>
 
 ImagesModel::ImagesModel(QObject *parent, ImageCache *imageCache)
     : QAbstractListModel(parent),
@@ -47,10 +49,17 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     const auto &path = m_paths.at(index.row());
     const auto &data = m_imageData[path];
 
-    if (role == Qt::DisplayRole){
-        return m_imageCache->changed(path)
-            ? i18nc("Pattern for marking a changed file", "*%1", data.fileName)
-            : data.fileName;
+    if (role == Qt::DisplayRole) {
+        return i18nc("Pattern for a display filename with a \"changed\" and a \"associated\" "
+                     "marker",
+                     "%1%2%3",
+                     m_imageCache->coordinates(path) != KGeoTag::NoCoordinates
+                        ? i18nc("Marker for an associated file", "\u2713\u2009")
+                        : QString(),
+                     data.fileName,
+                     m_imageCache->changed(path)
+                        ? i18nc("Marker for a changed file", "\u2009*")
+                        : QString());
 
     } else if (role == Qt::DecorationRole) {
         return m_imageCache->thumbnail(path);
@@ -66,6 +75,13 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         case KGeoTag::MatchType::Set:
             return m_colorScheme.foreground(KColorScheme::LinkText);
         }
+
+    } else if (role == Qt::FontRole) {
+        QFont font;
+        if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
+            font.setBold(true);
+        }
+        return font;
 
     } else if (role == DataRole::Path) {
         return path;
