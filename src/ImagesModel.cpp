@@ -24,6 +24,9 @@
 // Qt includes
 #include <QFileInfo>
 
+// C++ includes
+#include <functional>
+
 ImagesModel::ImagesModel(ImageCache *imageCache, QObject *parent)
     : QAbstractListModel(parent),
       m_imageCache(imageCache)
@@ -41,14 +44,15 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
+    const int row = index.row();
+
     if (role == Qt::DisplayRole){
-        const int row = index.row();
         return m_imageCache->changed(m_paths.at(row))
             ? QStringLiteral("*") + m_fileNames.at(row)
             : m_fileNames.at(row);
 
     } else if (role == Qt::DecorationRole) {
-        return m_imageCache->thumbnail(m_paths.at(index.row()));
+        return m_imageCache->thumbnail(m_paths.at(row));
     }
 
     return QVariant();
@@ -74,19 +78,19 @@ bool ImagesModel::insertRows(int row, int count, const QModelIndex &parent)
 
 bool ImagesModel::setData(const QModelIndex &index, const QVariant &value, int role)
 {
-    if (index.row() >= 0 && index.row() < m_paths.size()
-        && (role == Qt::EditRole || role == Qt::DisplayRole)) {
+    const int row = index.row();
 
+    if (row >= 0 && row < m_paths.size() && (role == Qt::EditRole || role == Qt::DisplayRole)) {
         const auto path = value.toString();
 
-        if (m_paths.at(index.row()) == path) {
+        if (m_paths.at(row) == path) {
             return true;
         }
 
-        m_paths.replace(index.row(), path);
+        m_paths.replace(row, path);
 
         const QFileInfo info(path);
-        m_fileNames.replace(index.row(), info.fileName());
+        m_fileNames.replace(row, info.fileName());
 
         emit dataChanged(index, index, { Qt::DisplayRole, Qt::EditRole });
         return true;
@@ -97,13 +101,25 @@ bool ImagesModel::setData(const QModelIndex &index, const QVariant &value, int r
 
 bool ImagesModel::addImage(const QString &path)
 {
+    // Check if we already have the image
     if (m_paths.contains(path)) {
         return true;
     }
 
-    const int row = m_paths.count();
+    // Find the correct row for the new image (sorted by date)
+    const auto newDate = m_imageCache->date(path);
+    int row = 0;
+    for (const QString &cachePath : m_paths) {
+        if (m_imageCache->date(cachePath) > newDate) {
+            break;
+        }
+        row++;
+    }
+
+    // Add the image
     if (insertRows(row, 1)) {
         return setData(index(row, 0, QModelIndex()), path);
     }
+
     return false;
 }
