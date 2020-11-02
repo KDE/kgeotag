@@ -29,6 +29,7 @@
 #include <QMimeData>
 #include <QDrag>
 #include <QDebug>
+#include <QKeyEvent>
 
 ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
     : QListView(parent),
@@ -42,6 +43,8 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
             {
                 emit imageSelected(index.data(ImagesModel::Path).toString());
             });
+
+    connect(this, &ImagesListView::imageSelected, this, &ImagesListView::checkCenterImage);
 }
 
 void ImagesListView::mousePressEvent(QMouseEvent *event)
@@ -103,4 +106,28 @@ QVector<QString> ImagesListView::selectedPaths() const
         paths.append(index.data(ImagesModel::Path).toString());
     }
     return paths;
+}
+
+void ImagesListView::checkCenterImage(const QString &path) const
+{
+    if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
+        emit centerImage(path);
+    }
+}
+
+void ImagesListView::keyPressEvent(QKeyEvent *event)
+{
+    QListView::keyPressEvent(event);
+
+    const auto key = event->key();
+    if (! (key == Qt::Key_Up || key == Qt::Key_Down
+           || key == Qt::Key_PageUp || key == Qt::Key_PageDown)) {
+
+        return;
+    }
+
+    const auto index = currentIndex();
+    if (index.isValid()) {
+        emit imageSelected(index.data(ImagesModel::Path).toString());
+    }
 }

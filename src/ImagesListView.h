@@ -23,9 +23,12 @@
 // Qt includes
 #include <QListView>
 
-// Locl classes
+// Local classes
 class SharedObjects;
 class ImageCache;
+
+// Qt classes
+class QMenu;
 
 class ImagesListView : public QListView
 {
@@ -37,13 +40,19 @@ public:
 
 signals:
     void imageSelected(const QString &path) const;
+    void centerImage(const QString &path) const;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
+
+private slots:
+    void checkCenterImage(const QString &path) const;
 
 private: // Variables
     ImageCache *m_imageCache;
+
     bool m_dragStarted = false;
     QPoint m_dragStartPosition;
 

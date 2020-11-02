@@ -191,6 +191,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     createDockWidget(i18n("imagesListView"), imagesListView, QStringLiteral("imagesListView"));
     connect(imagesListView, &ImagesListView::imageSelected,
             m_previewWidget, &PreviewWidget::setImage);
+    connect(imagesListView, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
