@@ -198,13 +198,13 @@ void MapWidget::saveSettings()
 
 void MapWidget::restoreSettings()
 {
-    // Restore the floaters visiblility
-    const auto floatersVisiblility = m_settings->floatersVisibility();
+    // Restore the floaters visibility
+    const auto floatersVisibility = m_settings->floatersVisibility();
     const auto floatItemsList = floatItems();
     for (const auto &item : floatItemsList) {
         const auto name = item->nameId();
-        if (floatersVisiblility.contains(name)) {
-            item->setVisible(floatersVisiblility.value(name));
+        if (floatersVisibility.contains(name)) {
+            item->setVisible(floatersVisibility.value(name));
         }
     }
 
