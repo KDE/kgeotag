@@ -63,6 +63,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/CoordinatesDialog.cpp
     ${main_ROOT}/CoordinatesFormatter.cpp
     ${main_ROOT}/RetrySkipAbortDialog.cpp
+    ${main_ROOT}/ImagesModel.cpp
 )
 
 # Build the executable

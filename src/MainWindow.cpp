@@ -34,6 +34,7 @@
 #include "BookmarksWidget.h"
 #include "CoordinatesDialog.h"
 #include "RetrySkipAbortDialog.h"
+#include "ImagesModel.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -75,6 +76,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_settings = sharedObjects->settings();
     m_imageCache = sharedObjects->imageCache();
     m_gpxEngine = sharedObjects->gpxEngine();
+
+    m_imagesModel = new ImagesModel(m_imageCache, this);
 
     // Menu setup
     // ==========
@@ -182,6 +185,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_assignedImages, &ImagesList::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
+
+    // Test
+    auto testList = new QListView;
+    testList->setModel(m_imagesModel);
+    createDockWidget(i18n("Test"), testList, QStringLiteral("testDock"));
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -389,6 +397,8 @@ void MainWindow::addImages()
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
             m_assignedImages->addOrUpdateImage(canonicalPath);
         }
+
+        m_imagesModel->addImage(canonicalPath);
 
         loaded++;
     }
