@@ -22,7 +22,6 @@
 #include "SharedObjects.h"
 #include "ImagesModel.h"
 #include "ImageCache.h"
-#include "ElevationEngine.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -43,7 +42,6 @@
 ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
     : QListView(parent),
       m_imageCache(sharedObjects->imageCache()),
-      m_elevationEngine(sharedObjects->elevationEngine()),
       m_bookmarks(sharedObjects->bookmarks())
 {
     setModel(sharedObjects->imagesModel());
@@ -91,7 +89,7 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
 
     m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
     connect(m_lookupElevation, &QAction::triggered,
-            this, std::bind(&ImagesListView::lookupElevation, this, QVector<QString>()));
+            this, std::bind(&ImagesListView::lookupElevation, this, this));
 
     m_contextMenu->addSeparator();
 
@@ -242,23 +240,4 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_discardChanges->setVisible(changed > 0);
 
     m_contextMenu->exec(mapToGlobal(point));
-}
-
-void ImagesListView::lookupElevation(const QVector<QString> &paths)
-{
-    QApplication::setOverrideCursor(Qt::BusyCursor);
-
-    QVector<QString> lookupPaths;
-    if (paths.isEmpty()) {
-        lookupPaths = selectedPaths();
-    } else {
-        lookupPaths = paths;
-    }
-
-    QVector<KGeoTag::Coordinates> coordinates;
-    for (const auto &path : lookupPaths) {
-        coordinates.append(m_imageCache->coordinates(path));
-    }
-
-    m_elevationEngine->request(ElevationEngine::Target::Image, lookupPaths, coordinates);
 }

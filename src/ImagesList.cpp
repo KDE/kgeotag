@@ -53,9 +53,6 @@ ImagesList::ImagesList(ImagesList::Type type, SharedObjects *sharedObjects,
       m_elevationEngine(sharedObjects->elevationEngine()),
       m_bookmarks(bookmarks)
 {
-    connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
-            this, &ImagesList::elevationProcessed);
-
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setSortingEnabled(true);
     setIconSize(m_imageCache->thumbnailSize());

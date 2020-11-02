@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "ElevationEngine.h"
 
 // Qt includes
 #include <QMainWindow>
@@ -31,7 +32,6 @@ class SharedObjects;
 class Settings;
 class ImageCache;
 class GpxEngine;
-class ElevationEngine;
 class ImagesList;
 class PreviewWidget;
 class MapWidget;
@@ -63,6 +63,8 @@ private slots:
     void showSettings();
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
+    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
+                            const QVector<double> &elevations);
     void elevationLookupFailed(const QString &errorMessage);
     void notAllElevationsPresent(int locationsCount, int elevationsCount);
 
@@ -73,6 +75,7 @@ private slots:
     void editCoordinates(ImagesListView *list);
     void removeCoordinates(ImagesListView *list);
     void discardChanges(ImagesListView *list);
+    void lookupElevation(ImagesListView *list);
 
 private: // Functions
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
@@ -82,6 +85,7 @@ private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
     GpxEngine *m_gpxEngine;
+    ElevationEngine *m_elevationEngine;
     ImagesList *m_assignedImages;
     ImagesList *m_unAssignedImages;
     PreviewWidget *m_previewWidget;

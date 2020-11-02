@@ -77,6 +77,9 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_settings = sharedObjects->settings();
     m_imageCache = sharedObjects->imageCache();
     m_gpxEngine = sharedObjects->gpxEngine();
+    m_elevationEngine = sharedObjects->elevationEngine();
+    connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
+            this, &MainWindow::elevationProcessed);
     m_imagesModel = sharedObjects->imagesModel();
 
     // Menu setup
@@ -193,6 +196,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     connect(imagesListView, &ImagesListView::removeCoordinates,
             this, &MainWindow::removeCoordinates);
     connect(imagesListView, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
+    connect(imagesListView, &ImagesListView::lookupElevation, this, &MainWindow::lookupElevation);
 
     connect(imagesListView, &ImagesListView::assignTo, this, &MainWindow::assignTo);
 
@@ -944,4 +948,36 @@ void MainWindow::notAllElevationsPresent(int locationsCount, int elevationsCount
     }
 
     QMessageBox::warning(this, i18n("Elevation lookup"), message);
+}
+
+void MainWindow::lookupElevation(ImagesListView *list)
+{
+    QApplication::setOverrideCursor(Qt::BusyCursor);
+
+    const QVector<QString> paths = list->selectedPaths();
+    QVector<KGeoTag::Coordinates> coordinates;
+    for (const auto &path : paths) {
+        coordinates.append(m_imageCache->coordinates(path));
+    }
+
+    m_elevationEngine->request(ElevationEngine::Target::Image, paths, coordinates);
+}
+
+void MainWindow::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
+                                    const QVector<double> &elevations)
+{
+    if (target != ElevationEngine::Target::Image) {
+        return;
+    }
+
+    for (int i = 0; i < paths.count(); i++) {
+        const auto &path = paths.at(i);
+        const auto &elevation = elevations.at(i);
+        auto coordinates = m_imageCache->coordinates(path);
+        coordinates.alt = elevation;
+        m_imageCache->setCoordinates(path, coordinates);
+    }
+
+    emit checkUpdatePreview(paths);
+    QApplication::restoreOverrideCursor();
 }
