@@ -47,9 +47,11 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
 void ImagesListView::mousePressEvent(QMouseEvent *event)
 {
     const auto pos = event->pos();
-    if (event->button() == Qt::LeftButton && indexAt(pos).isValid()) {
+    const auto selectedIndex = indexAt(pos);
+    if (event->button() == Qt::LeftButton && selectedIndex.isValid()) {
         m_dragStarted = true;
         m_dragStartPosition = event->pos();
+        emit imageSelected(selectedIndex.data(ImagesModel::Path).toString());
     } else {
         m_dragStarted = false;
     }
@@ -74,7 +76,6 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
     }
 
     const auto path = currentIndex().data(ImagesModel::Path).toString();
-    emit imageSelected(path);
 
     auto *drag = new QDrag(this);
     const auto paths = selectedPaths();
