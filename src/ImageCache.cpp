@@ -99,11 +99,6 @@ QDateTime ImageCache::date(const QString &path) const
     return m_imageData[path].date;
 }
 
-QSize ImageCache::thumbnailSize() const
-{
-    return m_settings->thumbnailSize();
-}
-
 KGeoTag::Coordinates ImageCache::coordinates(const QString &path) const
 {
     return m_imageData[path].coordinates;

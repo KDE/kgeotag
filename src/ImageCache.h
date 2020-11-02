@@ -49,7 +49,6 @@ public:
     QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
-    QSize thumbnailSize() const;
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);

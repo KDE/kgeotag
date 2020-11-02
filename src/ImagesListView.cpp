@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "ImagesModel.h"
 #include "ImageCache.h"
+#include "Settings.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -47,6 +48,7 @@ ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
     setModel(sharedObjects->imagesModel());
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);
+    setIconSize(sharedObjects->settings()->thumbnailSize());
 
     connect(this, &QAbstractItemView::clicked,
             [this](const QModelIndex &index)
