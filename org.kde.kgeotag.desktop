@@ -1,6 +1,20 @@
 [Desktop Entry]
 Name=KGeoTag
+Name[ca]=KGeoTag
+Name[ca@valencia]=KGeoTag
+Name[es]=KGeoTag
+Name[nn]=KGeoTag
+Name[sv]=Kgeotag
+Name[uk]=KGeoTag
+Name[x-test]=xxKGeoTagxx
 GenericName=Photo geotagging program
+GenericName[ca]=Programa de geoetiquetatge de fotos
+GenericName[ca@valencia]=Programa de geoetiquetatge de fotos
+GenericName[es]=Programa para geoetiquetado de fotos
+GenericName[nn]=Geografisk stadfesting av foto
+GenericName[sv]=Program för geografisk lokalisering av foton
+GenericName[uk]=Програма для роботи з геомітками фотографій
+GenericName[x-test]=xxPhoto geotagging programxx
 Type=Application
 Icon=kgeotag
 Exec=kgeotag
