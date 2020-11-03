@@ -84,11 +84,6 @@ bool ImageCache::contains(const QString &path) const
     return m_imageData.contains(path);
 }
 
-QDateTime ImageCache::date(const QString &path) const
-{
-    return m_imageData[path].date;
-}
-
 KGeoTag::Coordinates ImageCache::coordinates(const QString &path) const
 {
     return m_imageData[path].coordinates;

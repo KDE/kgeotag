@@ -60,6 +60,7 @@ public:
     int matchType(const QString &path) const;
     QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
+    QDateTime date(const QString &path) const;
 
 private: // Functions
     void emitDataChanged(const QString &path);

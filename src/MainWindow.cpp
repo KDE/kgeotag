@@ -533,7 +533,7 @@ void MainWindow::searchExactMatches(ImagesListView *list)
     QString lastMatchedPath;
 
     for (const auto &path : paths) {
-        const auto coordinates = m_gpxEngine->findExactCoordinates(m_imageCache->date(path),
+        const auto coordinates = m_gpxEngine->findExactCoordinates(m_imagesModel->date(path),
                                                                    m_fixDriftWidget->deviation());
         if (coordinates.isSet) {
             m_imagesModel->setMatchType(path, KGeoTag::MatchType::Exact);
@@ -577,7 +577,7 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
         }
 
         const auto coordinates = m_gpxEngine->findInterpolatedCoordinates(
-            m_imageCache->date(path), m_fixDriftWidget->deviation());
+            m_imagesModel->date(path), m_fixDriftWidget->deviation());
 
         if (coordinates.isSet) {
             m_imagesModel->setMatchType(path, KGeoTag::MatchType::Interpolated);
@@ -754,7 +754,7 @@ void MainWindow::saveChanges()
 
         // Fix the time drift if requested
         if (fixDrift) {
-            const QDateTime originalTime = m_imageCache->date(path);
+            const QDateTime originalTime = m_imagesModel->date(path);
             const QDateTime fixedTime = originalTime.addSecs(deviation);
             // If the Digitization time is equal to the original time, update it as well.
             // Otherwise, only update the image's timestamp.

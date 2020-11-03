@@ -157,8 +157,8 @@ bool ImagesModel::addImage(const QString &path)
 
     // Find the correct row for the new image (sorted by date)
     int row = 0;
-    for (const QString &cachePath : m_paths) {
-        if (m_imageCache->date(cachePath) > data.date) {
+    for (const QString &path : m_paths) {
+        if (m_imageData.value(path).date > data.date) {
             break;
         }
         row++;
@@ -219,4 +219,9 @@ QImage ImagesModel::thumbnail(const QString &path) const
 QImage ImagesModel::preview(const QString &path) const
 {
     return m_imageData.value(path).preview;
+}
+
+QDateTime ImagesModel::date(const QString &path) const
+{
+    return m_imageData.value(path).date;
 }
