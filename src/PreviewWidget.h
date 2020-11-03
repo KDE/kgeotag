@@ -26,11 +26,11 @@
 // Qt includes
 #include <QWidget>
 #include <QHash>
+#include <QModelIndex>
 
 // Local classes
 class SharedObjects;
 class CoordinatesFormatter;
-class ImagesModel;
 class ImagePreview;
 
 // Qt classes
@@ -45,11 +45,10 @@ public:
     QString currentImage() const;
 
 public slots:
-    void setImage(const QString &path);
+    void setImage(const QModelIndex &index = QModelIndex());
 
 private: // Variables
     CoordinatesFormatter *m_formatter;
-    ImagesModel *m_imagesModel;
 
     ImagePreview *m_preview;
 

@@ -435,7 +435,7 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
         m_imagesModel->setChanged(path, true);
     }
 
-    m_previewWidget->setImage(paths.last());
+    m_previewWidget->setImage(m_imagesModel->indexFor(paths.last()));
 
     if (m_settings->lookupElevation()) {
         lookupElevation(paths);
@@ -548,8 +548,9 @@ void MainWindow::searchExactMatches(ImagesListView *list)
 
     if (matches > 0) {
         m_mapWidget->reloadMap();
-        m_mapWidget->centerImage(m_imagesModel->indexFor(lastMatchedPath));
-        m_previewWidget->setImage(lastMatchedPath);
+        const auto index = m_imagesModel->indexFor(lastMatchedPath);
+        m_mapWidget->centerImage(index);
+        m_previewWidget->setImage(index);
         QMessageBox::information(this, i18n("Search for exact matches"),
             i18np("1 exact match found!", "%1 exact matches found!", matches));
 
@@ -593,8 +594,9 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
 
     if (matches > 0) {
         m_mapWidget->reloadMap();
-        m_mapWidget->centerImage(m_imagesModel->indexFor(lastMatchedPath));
-        m_previewWidget->setImage(lastMatchedPath);
+        const auto index = m_imagesModel->indexFor(lastMatchedPath);
+        m_mapWidget->centerImage(index);
+        m_previewWidget->setImage(index);
         QMessageBox::information(this, i18n("Search for interpolated matches"),
             i18np("1 interpolated match found!", "%1 interpolated matches found!", matches));
 
@@ -859,7 +861,7 @@ void MainWindow::removeCoordinates(ImagesListView *list)
     }
 
     m_mapWidget->reloadMap();
-    m_previewWidget->setImage(m_previewWidget->currentImage());
+    m_previewWidget->setImage();
 }
 
 void MainWindow::discardChanges(ImagesListView *list)
@@ -878,14 +880,14 @@ void MainWindow::discardChanges(ImagesListView *list)
     }
 
     m_mapWidget->reloadMap();
-    m_previewWidget->setImage(m_previewWidget->currentImage());
+    m_previewWidget->setImage();
 }
 
 void MainWindow::checkUpdatePreview(const QVector<QString> &paths)
 {
     for (const QString &path : paths) {
         if (m_previewWidget->currentImage() == path) {
-            m_previewWidget->setImage(path);
+            m_previewWidget->setImage(m_imagesModel->indexFor(path));
             break;
         }
     }

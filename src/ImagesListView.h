@@ -46,7 +46,7 @@ public slots:
     void updateBookmarks();
 
 signals:
-    void imageSelected(const QString &path) const;
+    void imageSelected(const QModelIndex &index) const;
     void centerImage(const QModelIndex &index) const;
 
     void searchExactMatches(ImagesListView *list) const;

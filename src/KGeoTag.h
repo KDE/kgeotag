@@ -86,5 +86,6 @@ enum ImagesListType {
 }
 
 Q_DECLARE_METATYPE(KGeoTag::Coordinates)
+Q_DECLARE_METATYPE(KGeoTag::MatchType)
 
 #endif // KGEOTAG_H

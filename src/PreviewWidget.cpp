@@ -37,8 +37,7 @@
 
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
-      m_formatter(sharedObjects->coordinatesFormatter()),
-      m_imagesModel(sharedObjects->imagesModel())
+      m_formatter(sharedObjects->coordinatesFormatter())
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -72,7 +71,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_coordinates->setWordWrap(true);
     infoLayout->addWidget(m_coordinates, 2, 1);
 
-    m_preview = new ImagePreview(sharedObjects);
+    m_preview = new ImagePreview;
     layout->addWidget(m_preview);
 
     m_matchString[KGeoTag::MatchType::None] = i18n("read from file");
@@ -81,35 +80,37 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_matchString[KGeoTag::MatchType::Set] = i18n("manually set");
 }
 
-void PreviewWidget::setImage(const QString &path)
+void PreviewWidget::setImage(const QModelIndex &index)
 {
-    m_currentImage = path;
+    if (index.isValid()) {
+        m_currentImage = index.data(ImagesModel::Path).toString();
+    }
 
-    if (path.isEmpty()) {
-        m_path->setText(path);
-        m_date->setText(path);
-        m_coordinates->setText(path);
-        m_preview->setImage(path);
+    if (m_currentImage.isEmpty()) {
+        m_path->clear();
+        m_date->clear();
+        m_coordinates->clear();
+        m_preview->setImage(QModelIndex());
         return;
     }
 
-    m_path->setText(path);
+    m_path->setText(m_currentImage);
     QLocale locale;
-    m_date->setText(m_imagesModel->date(path).toString(locale.dateTimeFormat()));
+    m_date->setText(index.data(ImagesModel::Date).value<QDateTime>().toString(
+                        locale.dateTimeFormat()));
 
-    const auto coordinates = m_imagesModel->coordinates(path);
+    const auto coordinates = index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
     if (coordinates.isSet) {
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
-                                    m_formatter->lon(coordinates),
-                                    m_formatter->lat(coordinates),
-                                    m_formatter->alt(coordinates),
-                                    m_matchString.value(static_cast<KGeoTag::MatchType>(
-                                        m_imagesModel->matchType(path)))));
+            m_formatter->lon(coordinates),
+            m_formatter->lat(coordinates),
+            m_formatter->alt(coordinates),
+            m_matchString.value(index.data(ImagesModel::MatchType).value<KGeoTag::MatchType>())));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));
     }
 
-    m_preview->setImage(path);
+    m_preview->setImage(index);
 }
 
 QString PreviewWidget::currentImage() const

@@ -45,6 +45,8 @@ public:
         Date,
         Coordinates,
         Thumbnail,
+        Preview,
+        MatchType,
         Changed
     };
 

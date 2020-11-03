@@ -24,10 +24,6 @@
 #include <QLabel>
 #include <QImage>
 
-// Local classes
-class SharedObjects;
-class ImagesModel;
-
 // Qt classes
 class QTimer;
 
@@ -36,8 +32,8 @@ class ImagePreview : public QLabel
     Q_OBJECT
 
 public:
-    explicit ImagePreview(SharedObjects *sharedObjects, QWidget *parent = nullptr);
-    void setImage(const QString &path);
+    explicit ImagePreview(QWidget *parent = nullptr);
+    void setImage(const QModelIndex &index);
 
 protected:
     virtual void resizeEvent(QResizeEvent *event) override;
@@ -46,7 +42,6 @@ private slots:
     void setScaledPreview();
 
 private: // Variables
-    ImagesModel *m_imagesModel;
     QImage m_currentImage;
     QTimer *m_smoothTimer;
 

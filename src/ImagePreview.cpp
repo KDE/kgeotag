@@ -25,9 +25,7 @@
 // Qt includes
 #include <QTimer>
 
-ImagePreview::ImagePreview(SharedObjects *sharedObjects, QWidget *parent)
-    : QLabel(parent),
-      m_imagesModel(sharedObjects->imagesModel())
+ImagePreview::ImagePreview(QWidget *parent) : QLabel(parent)
 {
     setAlignment(Qt::AlignCenter);
     setMinimumSize(128, 128);
@@ -38,9 +36,9 @@ ImagePreview::ImagePreview(SharedObjects *sharedObjects, QWidget *parent)
     connect(m_smoothTimer, &QTimer::timeout, this, &ImagePreview::setScaledPreview);
 }
 
-void ImagePreview::setImage(const QString &path)
+void ImagePreview::setImage(const QModelIndex &index)
 {
-    m_currentImage = ! path.isEmpty() ? m_imagesModel->preview(path) : QImage();
+    m_currentImage = index.isValid() ? index.data(ImagesModel::Preview).value<QImage>() : QImage();
     setScaledPreview();
 }
 

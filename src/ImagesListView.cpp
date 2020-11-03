@@ -135,7 +135,7 @@ void ImagesListView::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton && selectedIndex.isValid()) {
         m_dragStarted = true;
         m_dragStartPosition = event->pos();
-        emit imageSelected(selectedIndex.data(ImagesModel::Path).toString());
+        emit imageSelected(selectedIndex);
     } else {
         m_dragStarted = false;
     }
@@ -190,8 +190,7 @@ QVector<QString> ImagesListView::selectedPaths() const
 
 void ImagesListView::processImageClicked(const QModelIndex &index) const
 {
-    const auto path = index.data(ImagesModel::Path).toString();
-    emit imageSelected(path);
+    emit imageSelected(index);
     checkCenterImage(index);
 }
 
@@ -217,8 +216,7 @@ void ImagesListView::keyPressEvent(QKeyEvent *event)
 
     const auto index = currentIndex();
     if (index.isValid()) {
-        const auto path = index.data(ImagesModel::Path).toString();
-        emit imageSelected(path);
+        emit imageSelected(index);
         checkCenterImage(index);
     }
 }

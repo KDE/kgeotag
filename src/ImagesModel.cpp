@@ -93,6 +93,9 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     } else if (role == DataRole::Path) {
         return path;
 
+    } else if (role == DataRole::Date) {
+        return data.date;
+
     } else if (role == DataRole::Coordinates) {
         QVariant coordinates;
         coordinates.setValue(data.coordinates);
@@ -100,6 +103,14 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
 
     } else if (role == DataRole::Thumbnail) {
         return data.thumbnail;
+
+    } else if (role == DataRole::Preview) {
+        return data.preview;
+
+    } else if (role == DataRole::MatchType) {
+        QVariant matchType;
+        matchType.setValue(data.matchType);
+        return matchType;
 
     } else if (role == DataRole::Changed) {
         return data.changed;
