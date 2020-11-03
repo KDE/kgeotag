@@ -71,8 +71,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     row = -1;
     layout->addWidget(imagesBox);
 
-    m_splitImagesList = new QCheckBox(i18n("Split the images list to an \"Unassigned images\"\n"
-                                           "and an \"Assigned images\" list"));
+    m_splitImagesList = new QCheckBox(i18n("Show two image lists: One for unassigned images and\n"
+                                           "one for assigned ones instead of one list for all"));
     m_originalSplitImagesListValue = m_settings->splitImagesList();
     m_splitImagesList->setChecked(m_originalSplitImagesListValue);
     imagesBoxLayout->addWidget(m_splitImagesList, ++row, 0, 1, 3);
