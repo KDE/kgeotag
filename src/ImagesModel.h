@@ -34,7 +34,6 @@
 // Local classes
 class SharedObjects;
 class Settings;
-class ImageCache;
 
 class ImagesModel : public QAbstractListModel
 {
@@ -83,7 +82,6 @@ private: // Variables
     };
 
     Settings *m_settings;
-    ImageCache *m_imageCache;
 
     KColorScheme m_colorScheme;
     QVector<QString> m_paths;

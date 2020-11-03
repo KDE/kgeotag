@@ -28,7 +28,6 @@
 
 // Local classes
 class SharedObjects;
-class ImageCache;
 class ImagesModel;
 
 class ImagesViewFilter : public QSortFilterProxyModel
@@ -44,7 +43,6 @@ protected:
 
 private: // Variables
     KGeoTag::ImagesListType m_type;
-    ImageCache *m_imageCache;
     ImagesModel *m_imagesModel;
 
 };

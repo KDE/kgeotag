@@ -21,14 +21,12 @@
 #include "ImagePreview.h"
 #include "SharedObjects.h"
 #include "ImagesModel.h"
-#include "ImageCache.h"
 
 // Qt includes
 #include <QTimer>
 
 ImagePreview::ImagePreview(SharedObjects *sharedObjects, QWidget *parent)
     : QLabel(parent),
-      m_imageCache(sharedObjects->imageCache()),
       m_imagesModel(sharedObjects->imagesModel())
 {
     setAlignment(Qt::AlignCenter);

@@ -29,7 +29,6 @@
 
 // Local classes
 class Settings;
-class ImageCache;
 class ImagesModel;
 class GpxEngine;
 class ElevationEngine;
@@ -43,7 +42,6 @@ class SharedObjects : public QObject
 public:
     explicit SharedObjects(QObject *parent = nullptr);
     Settings *settings() const;
-    ImageCache *imageCache() const;
     ImagesModel *imagesModel() const;
     GpxEngine *gpxEngine() const;
     ElevationEngine *elevationEngine() const;
@@ -55,7 +53,6 @@ public:
 
 private: // Variables
     Settings *m_settings;
-    ImageCache *m_imageCache;
     ImagesModel *m_imagesModel;
     GpxEngine *m_gpxEngine;
     ElevationEngine *m_elevationEngine;

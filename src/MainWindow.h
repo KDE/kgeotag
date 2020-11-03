@@ -30,7 +30,6 @@
 // Local classes
 class SharedObjects;
 class Settings;
-class ImageCache;
 class GpxEngine;
 class PreviewWidget;
 class MapWidget;
@@ -86,7 +85,6 @@ private: // Functions
 private: // Variables
     SharedObjects *m_sharedObjects;
     Settings *m_settings;
-    ImageCache *m_imageCache;
     GpxEngine *m_gpxEngine;
     ElevationEngine *m_elevationEngine;
     PreviewWidget *m_previewWidget;

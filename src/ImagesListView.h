@@ -28,7 +28,6 @@
 
 // Local classes
 class SharedObjects;
-class ImageCache;
 class ImagesModel;
 
 // Qt classes
@@ -72,7 +71,6 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private: // Variables
-    ImageCache *m_imageCache;
     ImagesModel *m_imagesModel;
     const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 

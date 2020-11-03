@@ -20,7 +20,6 @@
 // Local includes
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "ImageCache.h"
 #include "ImagesModel.h"
 #include "GpxEngine.h"
 #include "ElevationEngine.h"
@@ -30,7 +29,6 @@
 SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
     m_settings = new Settings(this);
-    m_imageCache = new ImageCache(this, m_settings);
     m_imagesModel = new ImagesModel(this, this);
     m_gpxEngine = new GpxEngine(this, m_settings);
     m_elevationEngine = new ElevationEngine(this, m_settings);
@@ -41,11 +39,6 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 Settings *SharedObjects::settings() const
 {
     return m_settings;
-}
-
-ImageCache *SharedObjects::imageCache() const
-{
-    return m_imageCache;
 }
 
 ImagesModel *SharedObjects::imagesModel() const

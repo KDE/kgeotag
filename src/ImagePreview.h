@@ -26,7 +26,6 @@
 
 // Local classes
 class SharedObjects;
-class ImageCache;
 class ImagesModel;
 
 // Qt classes
@@ -47,7 +46,6 @@ private slots:
     void setScaledPreview();
 
 private: // Variables
-    ImageCache *m_imageCache;
     ImagesModel *m_imagesModel;
     QImage m_currentImage;
     QTimer *m_smoothTimer;

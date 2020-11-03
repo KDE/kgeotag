@@ -21,7 +21,6 @@
 #include "PreviewWidget.h"
 #include "SharedObjects.h"
 #include "CoordinatesFormatter.h"
-#include "ImageCache.h"
 #include "ImagesModel.h"
 #include "ImagePreview.h"
 #include "KGeoTag.h"
@@ -39,7 +38,6 @@
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
       m_formatter(sharedObjects->coordinatesFormatter()),
-      m_imageCache(sharedObjects->imageCache()),
       m_imagesModel(sharedObjects->imagesModel())
 {
     auto *layout = new QVBoxLayout(this);

@@ -21,7 +21,6 @@
 #include "ImagesViewFilter.h"
 #include "SharedObjects.h"
 #include "ImagesModel.h"
-#include "ImageCache.h"
 
 // Qt includes
 #include <QDebug>
@@ -30,7 +29,6 @@ ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type
                                    SharedObjects *sharedObjects)
     : QSortFilterProxyModel(parent),
       m_type(type),
-      m_imageCache(sharedObjects->imageCache()),
       m_imagesModel(sharedObjects->imagesModel())
 {
 }

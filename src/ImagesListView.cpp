@@ -21,7 +21,6 @@
 #include "ImagesListView.h"
 #include "SharedObjects.h"
 #include "ImagesModel.h"
-#include "ImageCache.h"
 #include "Settings.h"
 #include "ImagesViewFilter.h"
 
@@ -44,7 +43,6 @@
 ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
                                QWidget *parent)
     : QListView(parent),
-      m_imageCache(sharedObjects->imageCache()),
       m_imagesModel(sharedObjects->imagesModel()),
       m_bookmarks(sharedObjects->bookmarks())
 {

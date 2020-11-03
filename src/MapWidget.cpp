@@ -21,7 +21,6 @@
 #include "MapWidget.h"
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "ImageCache.h"
 #include "KGeoTag.h"
 #include "ImagesModel.h"
 
@@ -59,7 +58,6 @@ static QVector<QString> s_unsupportedFloaters = {
 MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     : Marble::MarbleWidget(parent),
       m_settings(sharedObjects->settings()),
-      m_imageCache(sharedObjects->imageCache()),
       m_imagesModel(sharedObjects->imagesModel())
 {
     setAcceptDrops(true);

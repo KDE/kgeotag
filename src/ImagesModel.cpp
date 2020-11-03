@@ -21,7 +21,6 @@
 #include "ImagesModel.h"
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "ImageCache.h"
 #include "KGeoTag.h"
 
 // KDE includes
@@ -37,8 +36,7 @@
 
 ImagesModel::ImagesModel(QObject *parent, SharedObjects *sharedObjects)
     : QAbstractListModel(parent),
-      m_settings(sharedObjects->settings()),
-      m_imageCache(sharedObjects->imageCache())
+      m_settings(sharedObjects->settings())
 {
 }
 

@@ -21,7 +21,6 @@
 #include "MainWindow.h"
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "ImageCache.h"
 #include "GpxEngine.h"
 #include "PreviewWidget.h"
 #include "MapWidget.h"
@@ -71,17 +70,16 @@ static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeMod
 
 MainWindow::MainWindow(SharedObjects *sharedObjects)
     : QMainWindow(),
-      m_sharedObjects(sharedObjects)
+      m_sharedObjects(sharedObjects),
+      m_settings(sharedObjects->settings()),
+      m_gpxEngine(sharedObjects->gpxEngine()),
+      m_elevationEngine(sharedObjects->elevationEngine()),
+      m_imagesModel(sharedObjects->imagesModel())
 {
-    m_settings = m_sharedObjects->settings();
-    m_imageCache = m_sharedObjects->imageCache();
-    m_gpxEngine = m_sharedObjects->gpxEngine();
-    m_elevationEngine = m_sharedObjects->elevationEngine();
+    setWindowTitle(i18n("KGeoTag"));
+
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &MainWindow::elevationProcessed);
-    m_imagesModel = m_sharedObjects->imagesModel();
-
-    setWindowTitle(i18n("KGeoTag"));
 
     // Menu setup
     // ==========
@@ -355,8 +353,7 @@ void MainWindow::addImages()
 
         const QFileInfo info(path);
         const QString canonicalPath = info.canonicalFilePath();
-        while (! m_imageCache->addImage(canonicalPath)
-               || ! m_imagesModel->addImage(canonicalPath)) {
+        while (! m_imagesModel->addImage(canonicalPath)) {
             progress.reset();
             QApplication::restoreOverrideCursor();
 
