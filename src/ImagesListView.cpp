@@ -200,7 +200,7 @@ void ImagesListView::checkCenterImage(const QModelIndex &index) const
     if (index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>()
         != KGeoTag::NoCoordinates) {
 
-        emit centerImage(index.data(ImagesModel::Path).toString());
+        emit centerImage(index);
     }
 }
 

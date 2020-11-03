@@ -182,7 +182,7 @@ bool ImagesModel::addImage(const QString &path)
 
 void ImagesModel::emitDataChanged(const QString &path)
 {
-    const auto modelIndex = index(m_paths.indexOf(path), 0, QModelIndex());
+    const auto modelIndex = indexFor(path);
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
@@ -256,4 +256,9 @@ void ImagesModel::resetChanges(const QString &path)
     data.matchType = KGeoTag::None;
     data.changed = false;
     emitDataChanged(path);
+}
+
+QModelIndex ImagesModel::indexFor(const QString &path) const
+{
+    return index(m_paths.indexOf(path), 0, QModelIndex());
 }

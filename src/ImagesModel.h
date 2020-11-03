@@ -67,6 +67,8 @@ public:
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
     void resetChanges(const QString &path);
 
+    QModelIndex indexFor(const QString &path) const;
+
 private: // Functions
     void emitDataChanged(const QString &path);
 

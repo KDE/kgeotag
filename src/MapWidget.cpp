@@ -296,9 +296,9 @@ void MapWidget::removeImage(const QString &path)
     m_images.remove(path);
 }
 
-void MapWidget::centerImage(const QString &path)
+void MapWidget::centerImage(const QModelIndex &index)
 {
-    centerCoordinates(m_imagesModel->coordinates(path));
+    centerCoordinates(index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>());
 }
 
 void MapWidget::centerCoordinates(const KGeoTag::Coordinates &coordinates)

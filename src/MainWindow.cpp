@@ -548,7 +548,7 @@ void MainWindow::searchExactMatches(ImagesListView *list)
 
     if (matches > 0) {
         m_mapWidget->reloadMap();
-        m_mapWidget->centerImage(lastMatchedPath);
+        m_mapWidget->centerImage(m_imagesModel->indexFor(lastMatchedPath));
         m_previewWidget->setImage(lastMatchedPath);
         QMessageBox::information(this, i18n("Search for exact matches"),
             i18np("1 exact match found!", "%1 exact matches found!", matches));
@@ -593,7 +593,7 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
 
     if (matches > 0) {
         m_mapWidget->reloadMap();
-        m_mapWidget->centerImage(lastMatchedPath);
+        m_mapWidget->centerImage(m_imagesModel->indexFor(lastMatchedPath));
         m_previewWidget->setImage(lastMatchedPath);
         QMessageBox::information(this, i18n("Search for interpolated matches"),
             i18np("1 interpolated match found!", "%1 interpolated matches found!", matches));

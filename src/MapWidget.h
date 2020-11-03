@@ -57,7 +57,7 @@ public:
     void addImage(const QString &path, double lon, double lat);
     void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
     void removeImage(const QString &path);
-    void centerImage(const QString &path);
+    void centerImage(const QModelIndex &index);
     void centerCoordinates(const KGeoTag::Coordinates &coordinates);
     void zoomToGpxBox();
     KGeoTag::Coordinates currentCenter() const;

@@ -47,7 +47,7 @@ public slots:
 
 signals:
     void imageSelected(const QString &path) const;
-    void centerImage(const QString &path) const;
+    void centerImage(const QModelIndex &index) const;
 
     void searchExactMatches(ImagesListView *list) const;
     void searchInterpolatedMatches(ImagesListView *list) const;
