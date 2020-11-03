@@ -39,7 +39,8 @@ class ImagesListView : public QListView
     Q_OBJECT
 
 public:
-    explicit ImagesListView(SharedObjects *sharedObjects, QWidget *parent = nullptr);
+    explicit ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
+                            QWidget *parent = nullptr);
     QVector<QString> selectedPaths() const;
 
 public slots:

@@ -151,9 +151,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Images lists
-    m_unAssignedImagesDock = createImagesDock(i18n("Unassigned images"),
+    m_unAssignedImagesDock = createImagesDock(KGeoTag::ImagesListType::UnAssigned,
+                                              i18n("Unassigned images"),
                                               QStringLiteral("unAssignedImagesDock"));
-    m_assignedImagesDock = createImagesDock(i18n("Assigned images"),
+    m_assignedImagesDock = createImagesDock(KGeoTag::ImagesListType::Assigned,
+                                            i18n("Assigned images"),
                                             QStringLiteral("assignedImagesDock"));
 
     // Size initialization/restoration
@@ -181,9 +183,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             this, &MainWindow::notAllElevationsPresent);
 }
 
-QDockWidget *MainWindow::createImagesDock(const QString &title, const QString &dockId)
+QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QString &title,
+                                          const QString &dockId)
 {
-    auto *list = new ImagesListView(m_sharedObjects);
+    auto *list = new ImagesListView(type, m_sharedObjects);
 
     connect(list, &ImagesListView::imageSelected, m_previewWidget, &PreviewWidget::setImage);
     connect(list, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);

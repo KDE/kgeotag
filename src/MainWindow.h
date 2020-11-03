@@ -77,7 +77,8 @@ private slots:
     void lookupElevation(ImagesListView *list);
 
 private: // Functions
-    QDockWidget *createImagesDock(const QString &title, const QString &dockId);
+    QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
+                                  const QString &dockId);
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
     void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates);
     void lookupElevation(const QVector<QString> &paths);

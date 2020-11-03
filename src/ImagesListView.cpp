@@ -23,6 +23,7 @@
 #include "ImagesModel.h"
 #include "ImageCache.h"
 #include "Settings.h"
+#include "ImagesViewFilter.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -40,12 +41,16 @@
 #include <algorithm>
 #include <functional>
 
-ImagesListView::ImagesListView(SharedObjects *sharedObjects, QWidget *parent)
+ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
+                               QWidget *parent)
     : QListView(parent),
       m_imageCache(sharedObjects->imageCache()),
       m_bookmarks(sharedObjects->bookmarks())
 {
-    setModel(sharedObjects->imagesModel());
+    auto *filterModel = new ImagesViewFilter(this, type, m_imageCache);
+    filterModel->setSourceModel(sharedObjects->imagesModel());
+    setModel(filterModel);
+
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);
     setIconSize(sharedObjects->settings()->thumbnailSize());
