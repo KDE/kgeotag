@@ -70,6 +70,11 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     row = -1;
     layout->addWidget(imagesBox);
 
+    m_splitImagesList = new QCheckBox(i18n("Split the images list to an \"Unassigned images\"\n"
+                                           "and an \"Assigned images\" list"));
+    m_splitImagesList->setChecked(m_settings->splitImagesList());
+    imagesBoxLayout->addWidget(m_splitImagesList, ++row, 0, 1, 3);
+
     imagesBoxLayout->addWidget(new QLabel(i18n("Thumbnail size:")), ++row, 0);
     m_thumbnailSize = new QSpinBox;
     m_thumbnailSize->setMinimum(16);
@@ -90,7 +95,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
                                                "values so that they are applied and become "
                                                "visible."));
     imagesChangesLabel->setWordWrap(true);
-    imagesBoxLayout->addWidget(imagesChangesLabel, 2, 0, 1, 3);
+    imagesBoxLayout->addWidget(imagesChangesLabel, ++row, 0, 1, 3);
 
     // GPX track rendering
 
@@ -331,6 +336,7 @@ void SettingsDialog::enableMaximumInterpolationDistance(bool state)
 
 void SettingsDialog::accept()
 {
+    m_settings->saveSplitImagesList(m_splitImagesList->isChecked());
     m_settings->saveThumbnailSize(m_thumbnailSize->value());
     m_settings->savePreviewSize(m_previewSize->value());
 

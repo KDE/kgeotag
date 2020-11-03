@@ -32,9 +32,10 @@
 // C++ includes
 #include <utility>
 
-ImagesModel::ImagesModel(QObject *parent, ImageCache *imageCache)
+ImagesModel::ImagesModel(QObject *parent, ImageCache *imageCache, bool splitImagesList)
     : QAbstractListModel(parent),
-      m_imageCache(imageCache)
+      m_imageCache(imageCache),
+      m_splitImagesList(splitImagesList)
 {
 }
 
@@ -53,16 +54,18 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     const auto &data = m_imageData[path];
 
     if (role == Qt::DisplayRole) {
+        const QString associatedMarker
+            = (! m_splitImagesList && m_imageCache->coordinates(path) != KGeoTag::NoCoordinates)
+            ? i18nc("Marker for an associated file", "\u2713\u2009")
+            : QString();
+        const QString changedmarker = m_imageData.value(path).changed
+            ? i18nc("Marker for a changed file", "\u2009*")
+            : QString();
         return i18nc("Pattern for a display filename with a \"changed\" and a \"associated\" "
-                     "marker",
+                     "marker. The first option is the \"associated\" marker, the second one the "
+                     "filename and the third one the \"changed\" marker.",
                      "%1%2%3",
-                     m_imageCache->coordinates(path) != KGeoTag::NoCoordinates
-                        ? i18nc("Marker for an associated file", "\u2713\u2009")
-                        : QString(),
-                     data.fileName,
-                     m_imageData.value(path).changed
-                        ? i18nc("Marker for a changed file", "\u2009*")
-                        : QString());
+                     associatedMarker, data.fileName, changedmarker);
 
     } else if (role == Qt::DecorationRole) {
         return m_imageCache->thumbnail(path);
@@ -79,7 +82,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
             return m_colorScheme.foreground(KColorScheme::LinkText);
         }
 
-    } else if (role == Qt::FontRole) {
+    } else if (! m_splitImagesList && role == Qt::FontRole) {
         QFont font;
         if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
             font.setBold(true);

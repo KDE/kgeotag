@@ -55,6 +55,7 @@ private: // Functions
 private: // Variables
     Settings *m_settings;
 
+    QCheckBox *m_splitImagesList;
     QSpinBox *m_thumbnailSize;
     QSpinBox *m_previewSize;
 

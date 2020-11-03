@@ -43,7 +43,7 @@ public:
         Changed
     };
 
-    explicit ImagesModel(QObject *parent, ImageCache *imageCache);
+    explicit ImagesModel(QObject *parent, ImageCache *imageCache, bool splitImagesList);
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
     void addImage(const QString &path);
@@ -63,6 +63,7 @@ private: // Variables
     };
 
     ImageCache *m_imageCache;
+    bool m_splitImagesList;
     QVector<QString> m_paths;
     QHash<QString, ImageData> m_imageData;
 

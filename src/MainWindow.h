@@ -100,7 +100,7 @@ private: // Variables
     QDockWidget *m_bookmarksDock;
     QDockWidget *m_mapDock;
     QDockWidget *m_unAssignedImagesDock;
-    QDockWidget *m_assignedImagesDock;
+    QDockWidget *m_assignedOrAllImagesDock;
 
 };
 

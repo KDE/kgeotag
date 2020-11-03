@@ -151,12 +151,19 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
     // Images lists
+
     m_unAssignedImagesDock = createImagesDock(KGeoTag::ImagesListType::UnAssigned,
                                               i18n("Unassigned images"),
                                               QStringLiteral("unAssignedImagesDock"));
-    m_assignedImagesDock = createImagesDock(KGeoTag::ImagesListType::Assigned,
-                                            i18n("Assigned images"),
-                                            QStringLiteral("assignedImagesDock"));
+    if (m_settings->splitImagesList()) {
+        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::ImagesListType::Assigned,
+                                                     i18n("Assigned images"),
+                                                     QStringLiteral("assignedOrAllImagesDock"));
+    } else {
+        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::ImagesListType::All,
+                                                     i18n("Images"),
+                                                     QStringLiteral("assignedOrAllImagesDock"));
+    }
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -171,6 +178,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
         setDefaultDockArrangement();
+    } else {
+        m_unAssignedImagesDock->setVisible(m_settings->splitImagesList());
     }
 
     // Restore the map's settings
@@ -209,22 +218,22 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
 
 void MainWindow::setDefaultDockArrangement()
 {
-    m_assignedImagesDock->setFloating(false);
+    m_assignedOrAllImagesDock->setFloating(false);
     m_unAssignedImagesDock->setFloating(false);
     m_mapDock->setFloating(false);
     m_previewDock->setFloating(false);
     m_fixDriftDock->setFloating(false);
     m_bookmarksDock->setFloating(false);
 
-    addDockWidget(Qt::TopDockWidgetArea, m_assignedImagesDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_assignedOrAllImagesDock);
     addDockWidget(Qt::TopDockWidgetArea, m_unAssignedImagesDock);
     addDockWidget(Qt::TopDockWidgetArea, m_mapDock);
     addDockWidget(Qt::TopDockWidgetArea, m_previewDock);
     addDockWidget(Qt::TopDockWidgetArea, m_fixDriftDock);
     addDockWidget(Qt::TopDockWidgetArea, m_bookmarksDock);
 
-    splitDockWidget(m_assignedImagesDock, m_previewDock, Qt::Vertical);
-    splitDockWidget(m_assignedImagesDock, m_unAssignedImagesDock, Qt::Horizontal);
+    splitDockWidget(m_assignedOrAllImagesDock, m_previewDock, Qt::Vertical);
+    splitDockWidget(m_assignedOrAllImagesDock, m_unAssignedImagesDock, Qt::Horizontal);
 
     tabifyDockWidget(m_previewDock, m_fixDriftDock);
     tabifyDockWidget(m_fixDriftDock, m_bookmarksDock);
