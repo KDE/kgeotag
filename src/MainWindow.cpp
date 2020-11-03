@@ -216,19 +216,23 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
 
 void MainWindow::setDefaultDockArrangement()
 {
-    m_assignedOrAllImagesDock->setFloating(false);
-    m_unAssignedImagesDock->setFloating(false);
-    m_mapDock->setFloating(false);
-    m_previewDock->setFloating(false);
-    m_fixDriftDock->setFloating(false);
-    m_bookmarksDock->setFloating(false);
+    const QVector<QDockWidget *> allDocks = {
+        m_assignedOrAllImagesDock,
+        m_unAssignedImagesDock,
+        m_mapDock,
+        m_previewDock,
+        m_fixDriftDock,
+        m_bookmarksDock
+    };
 
-    addDockWidget(Qt::TopDockWidgetArea, m_assignedOrAllImagesDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_unAssignedImagesDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_mapDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_previewDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_fixDriftDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_bookmarksDock);
+    for (auto *dock : allDocks) {
+        dock->setFloating(false);
+        addDockWidget(Qt::TopDockWidgetArea, dock);
+    }
+
+    for (int i = 1; i < allDocks.count(); i++) {
+        splitDockWidget(allDocks.at(i - 1), allDocks.at(i), Qt::Horizontal);
+    }
 
     splitDockWidget(m_assignedOrAllImagesDock, m_previewDock, Qt::Vertical);
     splitDockWidget(m_assignedOrAllImagesDock, m_unAssignedImagesDock, Qt::Horizontal);
