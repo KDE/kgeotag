@@ -220,19 +220,9 @@ QVector<QString> ImagesModel::changedImages() const
     return changed;
 }
 
-int ImagesModel::matchType(const QString &path) const
-{
-    return m_imageData.value(path).matchType;
-}
-
 QImage ImagesModel::thumbnail(const QString &path) const
 {
     return m_imageData.value(path).thumbnail;
-}
-
-QImage ImagesModel::preview(const QString &path) const
-{
-    return m_imageData.value(path).preview;
 }
 
 QDateTime ImagesModel::date(const QString &path) const

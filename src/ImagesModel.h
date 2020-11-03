@@ -59,9 +59,7 @@ public:
     void setChanged(const QString &path, bool changed);
     void setMatchType(const QString &path, int matchType);
     QVector<QString> changedImages() const;
-    int matchType(const QString &path) const;
     QImage thumbnail(const QString &path) const;
-    QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
     bool contains(const QString &path) const;
     KGeoTag::Coordinates coordinates(const QString &path) const;
