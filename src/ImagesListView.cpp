@@ -43,10 +43,9 @@
 ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
                                QWidget *parent)
     : QListView(parent),
-      m_imagesModel(sharedObjects->imagesModel()),
       m_bookmarks(sharedObjects->bookmarks())
 {
-    auto *filterModel = new ImagesViewFilter(this, type, sharedObjects);
+    auto *filterModel = new ImagesViewFilter(this, type);
     filterModel->setSourceModel(sharedObjects->imagesModel());
     setModel(filterModel);
 
@@ -193,13 +192,15 @@ void ImagesListView::processImageClicked(const QModelIndex &index) const
 {
     const auto path = index.data(ImagesModel::Path).toString();
     emit imageSelected(path);
-    checkCenterImage(path);
+    checkCenterImage(index);
 }
 
-void ImagesListView::checkCenterImage(const QString &path) const
+void ImagesListView::checkCenterImage(const QModelIndex &index) const
 {
-    if (m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates) {
-        emit centerImage(path);
+    if (index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>()
+        != KGeoTag::NoCoordinates) {
+
+        emit centerImage(index.data(ImagesModel::Path).toString());
     }
 }
 
@@ -218,28 +219,29 @@ void ImagesListView::keyPressEvent(QKeyEvent *event)
     if (index.isValid()) {
         const auto path = index.data(ImagesModel::Path).toString();
         emit imageSelected(path);
-        checkCenterImage(path);
+        checkCenterImage(index);
     }
 }
 
 void ImagesListView::showContextMenu(const QPoint &point)
 {
-    const auto paths = selectedPaths();
-    const int allPaths = paths.count();
-    if (allPaths == 0) {
+    const auto selected = selectedIndexes();
+    const int allSelected = selected.count();
+
+    if (allSelected == 0) {
         return;
     }
 
     int hasCoordinates = 0;
-    for (const auto &path : paths) {
-        if (m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates) {
+    int changed = 0;
+
+    for (const auto &index : selected) {
+        if (index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>()
+            != KGeoTag::NoCoordinates) {
+
             hasCoordinates++;
         }
-    }
 
-    int changed = 0;
-    const auto selected = selectedIndexes();
-    for (const auto &index : selected) {
         if (index.data(ImagesModel::Changed).toBool()) {
             changed++;
         }
@@ -247,7 +249,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
 
     m_assignManually->setVisible(hasCoordinates == 0);
     m_editCoordinates->setVisible(hasCoordinates > 0);
-    m_lookupElevation->setVisible(hasCoordinates == allPaths);
+    m_lookupElevation->setVisible(hasCoordinates == allSelected);
     m_removeCoordinates->setVisible(hasCoordinates > 0);
     m_discardChanges->setVisible(changed > 0);
 

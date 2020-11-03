@@ -19,17 +19,14 @@
 
 // Local includes
 #include "ImagesViewFilter.h"
-#include "SharedObjects.h"
 #include "ImagesModel.h"
 
 // Qt includes
 #include <QDebug>
 
-ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type,
-                                   SharedObjects *sharedObjects)
+ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type)
     : QSortFilterProxyModel(parent),
-      m_type(type),
-      m_imagesModel(sharedObjects->imagesModel())
+      m_type(type)
 {
 }
 
@@ -39,12 +36,11 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
         return true;
     }
 
-    const auto path = sourceModel()->index(sourceRow, 0).data(
-                          ImagesModel::DataRole::Path).toString();
-
+    const auto coordinates = sourceModel()->index(sourceRow, 0).data(
+        ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
     if (m_type == KGeoTag::ImagesListType::Assigned) {
-        return m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates;
+        return coordinates != KGeoTag::NoCoordinates;
     } else {
-        return m_imagesModel->coordinates(path) == KGeoTag::NoCoordinates;
+        return coordinates == KGeoTag::NoCoordinates;
     }
 }

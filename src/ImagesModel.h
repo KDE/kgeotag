@@ -43,6 +43,7 @@ public:
     enum DataRole {
         Path = Qt::UserRole,
         Date,
+        Coordinates,
         Thumbnail,
         Changed
     };

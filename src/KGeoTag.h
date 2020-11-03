@@ -22,6 +22,7 @@
 
 // Qt includes
 #include <QString>
+#include <QMetaType>
 
 namespace KGeoTag
 {
@@ -83,5 +84,7 @@ enum ImagesListType {
 };
 
 }
+
+Q_DECLARE_METATYPE(KGeoTag::Coordinates)
 
 #endif // KGEOTAG_H

@@ -93,6 +93,11 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     } else if (role == DataRole::Path) {
         return path;
 
+    } else if (role == DataRole::Coordinates) {
+        QVariant coordinates;
+        coordinates.setValue(data.coordinates);
+        return coordinates;
+
     } else if (role == DataRole::Thumbnail) {
         return data.thumbnail;
 

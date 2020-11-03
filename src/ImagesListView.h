@@ -28,7 +28,6 @@
 
 // Local classes
 class SharedObjects;
-class ImagesModel;
 
 // Qt classes
 class QMenu;
@@ -71,10 +70,9 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private: // Functions
-    void checkCenterImage(const QString &path) const;
+    void checkCenterImage(const QModelIndex &index) const;
 
 private: // Variables
-    ImagesModel *m_imagesModel;
     const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;

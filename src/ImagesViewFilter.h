@@ -28,22 +28,19 @@
 
 // Local classes
 class SharedObjects;
-class ImagesModel;
 
 class ImagesViewFilter : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    explicit ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type,
-                              SharedObjects *sharedObjects);
+    explicit ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type);
 
 protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
 
 private: // Variables
     KGeoTag::ImagesListType m_type;
-    ImagesModel *m_imagesModel;
 
 };
 
