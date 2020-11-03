@@ -69,17 +69,19 @@ static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeMod
       KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARANDIMAGE }
 };
 
-MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
+MainWindow::MainWindow(SharedObjects *sharedObjects)
+    : QMainWindow(),
+      m_sharedObjects(sharedObjects)
 {
-    setWindowTitle(i18n("KGeoTag"));
-
-    m_settings = sharedObjects->settings();
-    m_imageCache = sharedObjects->imageCache();
-    m_gpxEngine = sharedObjects->gpxEngine();
-    m_elevationEngine = sharedObjects->elevationEngine();
+    m_settings = m_sharedObjects->settings();
+    m_imageCache = m_sharedObjects->imageCache();
+    m_gpxEngine = m_sharedObjects->gpxEngine();
+    m_elevationEngine = m_sharedObjects->elevationEngine();
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &MainWindow::elevationProcessed);
-    m_imagesModel = sharedObjects->imagesModel();
+    m_imagesModel = m_sharedObjects->imagesModel();
+
+    setWindowTitle(i18n("KGeoTag"));
 
     // Menu setup
     // ==========
@@ -127,13 +129,13 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     setDockNestingEnabled(true);
 
     // Bookmarks
-    m_bookmarksWidget = new BookmarksWidget(sharedObjects);
-    sharedObjects->setBookmarks(m_bookmarksWidget->bookmarks());
+    m_bookmarksWidget = new BookmarksWidget(m_sharedObjects);
+    m_sharedObjects->setBookmarks(m_bookmarksWidget->bookmarks());
     m_bookmarksDock = createDockWidget(i18n("Bookmarks"), m_bookmarksWidget,
                                            QStringLiteral("bookmarksDock"));
 
     // Preview
-    m_previewWidget = new PreviewWidget(sharedObjects);
+    m_previewWidget = new PreviewWidget(m_sharedObjects);
     m_previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
 
@@ -143,37 +145,16 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
                                           QStringLiteral("fixDriftDock"));
 
     // Map
-    m_mapWidget = sharedObjects->mapWidget();
+    m_mapWidget = m_sharedObjects->mapWidget();
     m_mapDock = createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
 
-    // Test
-
-    auto *imagesListView = new ImagesListView(sharedObjects);
-    createDockWidget(i18n("imagesListView"), imagesListView, QStringLiteral("imagesListView"));
-
-    connect(imagesListView, &ImagesListView::imageSelected,
-            m_previewWidget, &PreviewWidget::setImage);
-    connect(imagesListView, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
-    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
-            imagesListView, &ImagesListView::updateBookmarks);
-
-    connect(imagesListView, &ImagesListView::searchExactMatches,
-            this, &MainWindow::searchExactMatches);
-    connect(imagesListView, &ImagesListView::searchInterpolatedMatches,
-            this, &MainWindow::searchInterpolatedMatches);
-    connect(imagesListView, &ImagesListView::assignToMapCenter,
-            this, &MainWindow::assignToMapCenter);
-    connect(imagesListView, &ImagesListView::assignManually, this, &MainWindow::assignManually);
-    connect(imagesListView, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
-    connect(imagesListView, &ImagesListView::removeCoordinates,
-            this, &MainWindow::removeCoordinates);
-    connect(imagesListView, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
-    connect(imagesListView, &ImagesListView::lookupElevation,
-            this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
-
-    connect(imagesListView, &ImagesListView::assignTo, this, &MainWindow::assignTo);
+    // Images lists
+    m_unAssignedImagesDock = createImagesDock(i18n("Unassigned images"),
+                                              QStringLiteral("unAssignedImagesDock"));
+    m_assignedImagesDock = createImagesDock(i18n("Assigned images"),
+                                            QStringLiteral("assignedImagesDock"));
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -194,20 +175,53 @@ MainWindow::MainWindow(SharedObjects *sharedObjects) : QMainWindow()
     m_mapWidget->restoreSettings();
 
     // Handle failed elevation lookups and missing locations
-    connect(sharedObjects->elevationEngine(), &ElevationEngine::lookupFailed,
+    connect(m_sharedObjects->elevationEngine(), &ElevationEngine::lookupFailed,
             this, &MainWindow::elevationLookupFailed);
-    connect(sharedObjects->elevationEngine(), &ElevationEngine::notAllPresent,
+    connect(m_sharedObjects->elevationEngine(), &ElevationEngine::notAllPresent,
             this, &MainWindow::notAllElevationsPresent);
+}
+
+QDockWidget *MainWindow::createImagesDock(const QString &title, const QString &dockId)
+{
+    auto *list = new ImagesListView(m_sharedObjects);
+
+    connect(list, &ImagesListView::imageSelected, m_previewWidget, &PreviewWidget::setImage);
+    connect(list, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
+    connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
+            list, &ImagesListView::updateBookmarks);
+    connect(list, &ImagesListView::searchExactMatches, this, &MainWindow::searchExactMatches);
+    connect(list, &ImagesListView::searchInterpolatedMatches,
+            this, &MainWindow::searchInterpolatedMatches);
+    connect(list, &ImagesListView::assignToMapCenter, this, &MainWindow::assignToMapCenter);
+    connect(list, &ImagesListView::assignManually, this, &MainWindow::assignManually);
+    connect(list, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
+    connect(list, &ImagesListView::removeCoordinates, this, &MainWindow::removeCoordinates);
+    connect(list, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
+    connect(list, &ImagesListView::lookupElevation,
+            this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
+    connect(list, &ImagesListView::assignTo, this, &MainWindow::assignTo);
+
+    return createDockWidget(title, list, dockId);
 }
 
 void MainWindow::setDefaultDockArrangement()
 {
+    m_assignedImagesDock->setFloating(false);
+    m_unAssignedImagesDock->setFloating(false);
+    m_mapDock->setFloating(false);
+    m_previewDock->setFloating(false);
+    m_fixDriftDock->setFloating(false);
+    m_bookmarksDock->setFloating(false);
+
+    addDockWidget(Qt::TopDockWidgetArea, m_assignedImagesDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_unAssignedImagesDock);
+    addDockWidget(Qt::TopDockWidgetArea, m_mapDock);
     addDockWidget(Qt::TopDockWidgetArea, m_previewDock);
     addDockWidget(Qt::TopDockWidgetArea, m_fixDriftDock);
     addDockWidget(Qt::TopDockWidgetArea, m_bookmarksDock);
-    addDockWidget(Qt::TopDockWidgetArea, m_mapDock);
 
-    splitDockWidget(m_previewDock, m_fixDriftDock, Qt::Vertical);
+    splitDockWidget(m_assignedImagesDock, m_previewDock, Qt::Vertical);
+    splitDockWidget(m_assignedImagesDock, m_unAssignedImagesDock, Qt::Horizontal);
 
     tabifyDockWidget(m_previewDock, m_fixDriftDock);
     tabifyDockWidget(m_fixDriftDock, m_bookmarksDock);
