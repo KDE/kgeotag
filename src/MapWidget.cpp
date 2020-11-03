@@ -149,10 +149,17 @@ void MapWidget::changeFloaterVisiblity(QAction *action)
 
 void MapWidget::customPaint(Marble::GeoPainter *painter)
 {
-    const auto images = m_images.keys();
-    for (const auto &image : images) {
-        painter->drawPixmap(m_images.value(image),
-                            QPixmap::fromImage(m_imagesModel->thumbnail(image)));
+    for (int row = 0; row < m_imagesModel->rowCount(); row++) {
+        const auto index = m_imagesModel->index(row, 0);
+        const auto coordinates = index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
+        if (! coordinates.isSet) {
+            continue;
+        }
+
+        const auto marbleCoordinates = Marble::GeoDataCoordinates(
+            coordinates.lon, coordinates.lat, coordinates.alt, Marble::GeoDataCoordinates::Degree);
+        painter->drawPixmap(marbleCoordinates,
+            QPixmap::fromImage(index.data(ImagesModel::Thumbnail).value<QImage>()));
     }
 
     painter->setPen(m_trackPen);
@@ -270,7 +277,6 @@ void MapWidget::dropEvent(QDropEvent *event)
     const auto urls = event->mimeData()->urls();
     for (const auto &url : urls) {
         const auto path = url.toLocalFile();
-        addImage(path, lon, lat);
         m_imagesModel->setCoordinates(path, lon, lat, 0.0);
         paths.append(path);
     }
@@ -279,21 +285,6 @@ void MapWidget::dropEvent(QDropEvent *event)
     emit imagesDropped(paths);
 
     event->acceptProposedAction();
-}
-
-void MapWidget::addImage(const QString &path, const KGeoTag::Coordinates &coordinates)
-{
-    addImage(path, coordinates.lon, coordinates.lat);
-}
-
-void MapWidget::addImage(const QString &path, double lon, double lat)
-{
-    m_images[path] = Marble::GeoDataCoordinates(lon, lat, 0.0, Marble::GeoDataCoordinates::Degree);
-}
-
-void MapWidget::removeImage(const QString &path)
-{
-    m_images.remove(path);
 }
 
 void MapWidget::centerImage(const QModelIndex &index)

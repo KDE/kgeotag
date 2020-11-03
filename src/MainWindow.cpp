@@ -398,15 +398,11 @@ void MainWindow::addImages()
             break;
         }
 
-        const auto coordinates = m_imagesModel->coordinates(canonicalPath);
-        if (coordinates.isSet) {
-            m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
-        }
-
         loaded++;
     }
 
     progress.reset();
+    m_mapWidget->reloadMap();
     QApplication::restoreOverrideCursor();
 
     if (loaded == 0) {
@@ -507,7 +503,6 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
     for (const auto &path : paths) {
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
         assignImage(path, coordinates);
-        m_mapWidget->addImage(path, coordinates.lon, coordinates.lat);
     }
 
     m_mapWidget->centerCoordinates(coordinates);
@@ -522,7 +517,6 @@ void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &co
 {
     m_imagesModel->setCoordinates(path, coordinates);
     m_imagesModel->setChanged(path, true);
-    m_mapWidget->addImage(path, coordinates);
 }
 
 void MainWindow::searchExactMatches(ImagesListView *list)
@@ -857,7 +851,6 @@ void MainWindow::removeCoordinates(ImagesListView *list)
         m_imagesModel->setCoordinates(path, KGeoTag::NoCoordinates);
         m_imagesModel->setChanged(path, true);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
-        m_mapWidget->removeImage(path);
     }
 
     m_mapWidget->reloadMap();
@@ -869,14 +862,6 @@ void MainWindow::discardChanges(ImagesListView *list)
     const auto paths = list->selectedPaths();
     for (const auto &path : paths) {
         m_imagesModel->resetChanges(path);
-
-        const auto coordinates = m_imagesModel->coordinates(path);
-        if (coordinates.isSet) {
-            m_mapWidget->addImage(path, coordinates);
-        } else {
-            m_mapWidget->removeImage(path);
-        }
-
     }
 
     m_mapWidget->reloadMap();

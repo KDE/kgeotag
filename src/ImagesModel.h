@@ -52,7 +52,7 @@ public:
 
     explicit ImagesModel(QObject *parent, SharedObjects *sharedObjects);
 
-    virtual int rowCount(const QModelIndex &) const override;
+    virtual int rowCount(const QModelIndex & = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     bool addImage(const QString &path);

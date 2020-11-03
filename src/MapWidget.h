@@ -54,9 +54,6 @@ public:
     virtual void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
-    void addImage(const QString &path, double lon, double lat);
-    void addImage(const QString &path, const KGeoTag::Coordinates &coordinates);
-    void removeImage(const QString &path);
     void centerImage(const QModelIndex &index);
     void centerCoordinates(const KGeoTag::Coordinates &coordinates);
     void zoomToGpxBox();
@@ -79,7 +76,6 @@ private slots:
 private: // Variables
     Settings *m_settings;
     ImagesModel *m_imagesModel;
-    QHash<QString, Marble::GeoDataCoordinates> m_images;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     Marble::GeoDataLatLonAltBox m_gpxBox;
