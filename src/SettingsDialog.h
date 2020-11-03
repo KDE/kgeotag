@@ -58,6 +58,9 @@ private: // Variables
     QCheckBox *m_splitImagesList;
     QSpinBox *m_thumbnailSize;
     QSpinBox *m_previewSize;
+    bool m_originalSplitImagesListValue;
+    int m_originalThumbnailSizeValue;
+    int m_originalPreviewSizeValue;
 
     QColor m_currentTrackColor;
     QPushButton *m_trackColor;

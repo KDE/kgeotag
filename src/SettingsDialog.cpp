@@ -39,6 +39,7 @@
 #include <QCheckBox>
 #include <QScrollArea>
 #include <QScrollBar>
+#include <QMessageBox>
 
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
@@ -72,14 +73,16 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     m_splitImagesList = new QCheckBox(i18n("Split the images list to an \"Unassigned images\"\n"
                                            "and an \"Assigned images\" list"));
-    m_splitImagesList->setChecked(m_settings->splitImagesList());
+    m_originalSplitImagesListValue = m_settings->splitImagesList();
+    m_splitImagesList->setChecked(m_originalSplitImagesListValue);
     imagesBoxLayout->addWidget(m_splitImagesList, ++row, 0, 1, 3);
 
     imagesBoxLayout->addWidget(new QLabel(i18n("Thumbnail size:")), ++row, 0);
     m_thumbnailSize = new QSpinBox;
     m_thumbnailSize->setMinimum(16);
     m_thumbnailSize->setMaximum(512);
-    m_thumbnailSize->setValue(m_settings->thumbnailSize().width());
+    m_originalThumbnailSizeValue = m_settings->thumbnailSize().width();
+    m_thumbnailSize->setValue(m_originalThumbnailSizeValue);
     imagesBoxLayout->addWidget(m_thumbnailSize, row, 1);
     imagesBoxLayout->addWidget(new QLabel(i18n("px")), row, 2);
 
@@ -87,7 +90,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_previewSize = new QSpinBox;
     m_previewSize->setMinimum(100);
     m_previewSize->setMaximum(1920);
-    m_previewSize->setValue(m_settings->previewSize().width());
+    m_originalPreviewSizeValue = m_settings->previewSize().width();
+    m_previewSize->setValue(m_originalPreviewSizeValue);
     imagesBoxLayout->addWidget(m_previewSize, row, 1);
     imagesBoxLayout->addWidget(new QLabel(i18n("px")), row, 2);
 
@@ -336,9 +340,12 @@ void SettingsDialog::enableMaximumInterpolationDistance(bool state)
 
 void SettingsDialog::accept()
 {
-    m_settings->saveSplitImagesList(m_splitImagesList->isChecked());
-    m_settings->saveThumbnailSize(m_thumbnailSize->value());
-    m_settings->savePreviewSize(m_previewSize->value());
+    const auto splitImagesList = m_splitImagesList->isChecked();
+    m_settings->saveSplitImagesList(splitImagesList);
+    const auto thumbnailSize = m_thumbnailSize->value();
+    m_settings->saveThumbnailSize(thumbnailSize);
+    const auto previewSize = m_previewSize->value();
+    m_settings->savePreviewSize(previewSize);
 
     m_settings->saveTrackColor(m_currentTrackColor);
     m_settings->saveTrackWidth(m_trackWidth->value());
@@ -355,6 +362,14 @@ void SettingsDialog::accept()
 
     m_settings->saveWriteMode(m_writeMode->currentData().toString());
     m_settings->saveCreateBackups(m_createBackups->isChecked());
+
+    if (   splitImagesList != m_originalSplitImagesListValue
+        || thumbnailSize != m_originalThumbnailSizeValue
+        || previewSize != m_originalPreviewSizeValue) {
+
+        QMessageBox::information(this, i18n("Settings changed"),
+            i18n("Please restart KGeoTag to apply the changed settings and make them visible!"));
+    }
 
     QDialog::accept();
 }
