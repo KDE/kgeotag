@@ -67,8 +67,11 @@ protected:
     virtual void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
-    void checkCenterImage(const QString &path) const;
+    void processImageClicked(const QModelIndex &index) const;
     void showContextMenu(const QPoint &point);
+
+private: // Functions
+    void checkCenterImage(const QString &path) const;
 
 private: // Variables
     ImagesModel *m_imagesModel;

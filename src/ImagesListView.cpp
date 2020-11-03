@@ -54,13 +54,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     setContextMenuPolicy(Qt::CustomContextMenu);
     setIconSize(sharedObjects->settings()->thumbnailSize());
 
-    connect(this, &QAbstractItemView::clicked,
-            [this](const QModelIndex &index)
-            {
-                emit imageSelected(index.data(ImagesModel::Path).toString());
-            });
-
-    connect(this, &ImagesListView::imageSelected, this, &ImagesListView::checkCenterImage);
+    connect(this, &QAbstractItemView::clicked, this, &ImagesListView::processImageClicked);
 
     // Context menu
 
@@ -195,6 +189,13 @@ QVector<QString> ImagesListView::selectedPaths() const
     return paths;
 }
 
+void ImagesListView::processImageClicked(const QModelIndex &index) const
+{
+    const auto path = index.data(ImagesModel::Path).toString();
+    emit imageSelected(path);
+    checkCenterImage(path);
+}
+
 void ImagesListView::checkCenterImage(const QString &path) const
 {
     if (m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates) {
@@ -215,7 +216,9 @@ void ImagesListView::keyPressEvent(QKeyEvent *event)
 
     const auto index = currentIndex();
     if (index.isValid()) {
-        emit imageSelected(index.data(ImagesModel::Path).toString());
+        const auto path = index.data(ImagesModel::Path).toString();
+        emit imageSelected(path);
+        checkCenterImage(path);
     }
 }
 
