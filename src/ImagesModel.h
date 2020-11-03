@@ -29,8 +29,11 @@
 // Qt includes
 #include <QAbstractListModel>
 #include <QDateTime>
+#include <QImage>
 
 // Local classes
+class SharedObjects;
+class Settings;
 class ImageCache;
 
 class ImagesModel : public QAbstractListModel
@@ -40,17 +43,22 @@ class ImagesModel : public QAbstractListModel
 public:
     enum DataRole {
         Path = Qt::UserRole,
+        Date,
+        Thumbnail,
         Changed
     };
 
-    explicit ImagesModel(QObject *parent, ImageCache *imageCache, bool splitImagesList);
+    explicit ImagesModel(QObject *parent, SharedObjects *sharedObjects);
+
     virtual int rowCount(const QModelIndex &) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
-    void addImage(const QString &path);
+
+    bool addImage(const QString &path);
     void setChanged(const QString &path, bool changed);
     void setMatchType(const QString &path, int matchType);
     QVector<QString> changedImages() const;
     int matchType(const QString &path) const;
+    QImage thumbnail(const QString &path) const;
 
 private: // Functions
     void emitDataChanged(const QString &path);
@@ -58,16 +66,21 @@ private: // Functions
 private: // Variables
     struct ImageData {
         QString fileName;
-        bool changed;
-        int matchType;
+        QDateTime date;
+        KGeoTag::Coordinates originalCoordinates = KGeoTag::NoCoordinates;
+        KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
+        QImage thumbnail;
+        QImage preview;
+        bool changed = false;
+        int matchType = KGeoTag::MatchType::None;
     };
 
+    Settings *m_settings;
     ImageCache *m_imageCache;
-    bool m_splitImagesList;
-    QVector<QString> m_paths;
-    QHash<QString, ImageData> m_imageData;
 
     KColorScheme m_colorScheme;
+    QVector<QString> m_paths;
+    QHash<QString, ImageData> m_imageData;
 
 };
 

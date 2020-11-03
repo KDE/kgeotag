@@ -46,7 +46,6 @@ public:
     explicit ImageCache(QObject *parent, Settings *settings);
     bool addImage(const QString &path);
     bool contains(const QString &path) const;
-    QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
     KGeoTag::Coordinates coordinates(const QString &path) const;

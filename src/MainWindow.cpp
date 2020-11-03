@@ -355,7 +355,8 @@ void MainWindow::addImages()
 
         const QFileInfo info(path);
         const QString canonicalPath = info.canonicalFilePath();
-        while (! m_imageCache->addImage(canonicalPath)) {
+        while (! m_imageCache->addImage(canonicalPath)
+               || ! m_imagesModel->addImage(canonicalPath)) {
             progress.reset();
             QApplication::restoreOverrideCursor();
 
@@ -400,8 +401,6 @@ void MainWindow::addImages()
         if (coordinates.isSet) {
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
         }
-
-        m_imagesModel->addImage(canonicalPath);
 
         loaded++;
     }

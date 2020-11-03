@@ -39,6 +39,7 @@
 class SharedObjects;
 class Settings;
 class ImageCache;
+class ImagesModel;
 
 // Qt classes
 class QDragEnterEvent;
@@ -79,6 +80,7 @@ private slots:
 private: // Variables
     Settings *m_settings;
     ImageCache *m_imageCache;
+    ImagesModel *m_imagesModel;
     QHash<QString, Marble::GeoDataCoordinates> m_images;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;

@@ -84,11 +84,6 @@ bool ImageCache::contains(const QString &path) const
     return m_imageData.contains(path);
 }
 
-QImage ImageCache::thumbnail(const QString &path) const
-{
-    return m_imageData[path].thumbnail;
-}
-
 QImage ImageCache::preview(const QString &path) const
 {
     return m_imageData[path].preview;

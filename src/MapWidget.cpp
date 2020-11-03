@@ -23,6 +23,7 @@
 #include "Settings.h"
 #include "ImageCache.h"
 #include "KGeoTag.h"
+#include "ImagesModel.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -58,7 +59,8 @@ static QVector<QString> s_unsupportedFloaters = {
 MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     : Marble::MarbleWidget(parent),
       m_settings(sharedObjects->settings()),
-      m_imageCache(sharedObjects->imageCache())
+      m_imageCache(sharedObjects->imageCache()),
+      m_imagesModel(sharedObjects->imagesModel())
 {
     setAcceptDrops(true);
 
@@ -152,7 +154,7 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
     const auto images = m_images.keys();
     for (const auto &image : images) {
         painter->drawPixmap(m_images.value(image),
-                            QPixmap::fromImage(m_imageCache->thumbnail(image)));
+                            QPixmap::fromImage(m_imagesModel->thumbnail(image)));
     }
 
     painter->setPen(m_trackPen);

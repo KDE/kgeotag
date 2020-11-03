@@ -167,13 +167,12 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
         return;
     }
 
-    const auto path = currentIndex().data(ImagesModel::Path).toString();
-
     auto *drag = new QDrag(this);
     const auto paths = selectedPaths();
 
     if (paths.count() == 1) {
-        drag->setPixmap(QPixmap::fromImage(m_imageCache->thumbnail(path)));
+        const auto image = currentIndex().data(ImagesModel::Thumbnail);
+        drag->setPixmap(QPixmap::fromImage(image.value<QImage>()));
     }
 
     QMimeData *mimeData = new QMimeData;

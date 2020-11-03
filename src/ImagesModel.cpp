@@ -19,11 +19,14 @@
 
 // Local includes
 #include "ImagesModel.h"
+#include "SharedObjects.h"
+#include "Settings.h"
 #include "ImageCache.h"
 #include "KGeoTag.h"
 
 // KDE includes
 #include <KLocalizedString>
+#include <KExiv2/KExiv2>
 
 // Qt includes
 #include <QFileInfo>
@@ -32,10 +35,10 @@
 // C++ includes
 #include <utility>
 
-ImagesModel::ImagesModel(QObject *parent, ImageCache *imageCache, bool splitImagesList)
+ImagesModel::ImagesModel(QObject *parent, SharedObjects *sharedObjects)
     : QAbstractListModel(parent),
-      m_imageCache(imageCache),
-      m_splitImagesList(splitImagesList)
+      m_settings(sharedObjects->settings()),
+      m_imageCache(sharedObjects->imageCache())
 {
 }
 
@@ -54,11 +57,11 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     const auto &data = m_imageData[path];
 
     if (role == Qt::DisplayRole) {
-        const QString associatedMarker
-            = (! m_splitImagesList && m_imageCache->coordinates(path) != KGeoTag::NoCoordinates)
+        const QString associatedMarker = (! m_settings->splitImagesList()
+                                          && data.coordinates != KGeoTag::NoCoordinates)
             ? i18nc("Marker for an associated file", "\u2713\u2009")
             : QString();
-        const QString changedmarker = m_imageData.value(path).changed
+        const QString changedmarker = data.changed
             ? i18nc("Marker for a changed file", "\u2009*")
             : QString();
         return i18nc("Pattern for a display filename with a \"changed\" and a \"associated\" "
@@ -68,10 +71,10 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
                      associatedMarker, data.fileName, changedmarker);
 
     } else if (role == Qt::DecorationRole) {
-        return m_imageCache->thumbnail(path);
+        return data.thumbnail;
 
     } else if (role == Qt::ForegroundRole) {
-        switch (m_imageData.value(path).matchType) {
+        switch (data.matchType) {
         case KGeoTag::MatchType::None:
             return m_colorScheme.foreground();
         case KGeoTag::MatchType::Exact:
@@ -82,9 +85,9 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
             return m_colorScheme.foreground(KColorScheme::LinkText);
         }
 
-    } else if (! m_splitImagesList && role == Qt::FontRole) {
+    } else if (! m_settings->splitImagesList() && role == Qt::FontRole) {
         QFont font;
-        if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
+        if (data.coordinates != KGeoTag::NoCoordinates) {
             font.setBold(true);
         }
         return font;
@@ -92,26 +95,70 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     } else if (role == DataRole::Path) {
         return path;
 
+    } else if (role == DataRole::Thumbnail) {
+        return data.thumbnail;
+
     } else if (role == DataRole::Changed) {
-        return m_imageData.value(path).changed;
+        return data.changed;
 
     }
 
     return QVariant();
 }
 
-void ImagesModel::addImage(const QString &path)
+bool ImagesModel::addImage(const QString &path)
 {
     // Check if we already have the image
     if (m_paths.contains(path)) {
-        return;
+        return true;
     }
 
+    // Read the image
+    QImage image = QImage(path);
+    if (image.isNull()) {
+        return false;
+    }
+
+    // Read the exif data
+    auto exif = KExiv2Iface::KExiv2();
+    exif.setUseXMPSidecar4Reading(true);
+    if (! exif.load(path)) {
+        return false;
+    }
+
+    // Prepare the images's data struct
+    ImageData data;
+
+    // Add the filename
+    const QFileInfo info(path);
+    data.fileName = info.fileName();
+
+    // Read the date (falling back to the file's date if nothing is set)
+    data.date = exif.getImageDateTime();
+
+    // Try to read gps information
+    double altitude;
+    double latitude;
+    double longitude;
+    if (exif.getGPSInfo(altitude, latitude, longitude)) {
+        data.originalCoordinates = KGeoTag::Coordinates { longitude, latitude, altitude, true };
+        data.coordinates = KGeoTag::Coordinates { longitude, latitude, altitude, true };
+    }
+
+    // Fix the image's orientation
+    exif.rotateExifQImage(image, exif.getImageOrientation());
+
+    // Create a smaller thumbnail
+    data.thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
+                                  Qt::SmoothTransformation);
+
+    // Create a bigger preview (to be scaled according to the view size)
+    data.preview = image.scaled(m_settings->previewSize(), Qt::KeepAspectRatio);
+
     // Find the correct row for the new image (sorted by date)
-    const auto newDate = m_imageCache->date(path);
     int row = 0;
     for (const QString &cachePath : m_paths) {
-        if (m_imageCache->date(cachePath) > newDate) {
+        if (m_imageCache->date(cachePath) > data.date) {
             break;
         }
         row++;
@@ -121,14 +168,13 @@ void ImagesModel::addImage(const QString &path)
 
     beginInsertRows(QModelIndex(), row, row);
     m_paths.insert(row, path);
-    const QFileInfo info(path);
-    m_imageData[path] = { info.fileName(),
-                          false,
-                          KGeoTag::MatchType::None };
+    m_imageData.insert(path, data);
     endInsertRows();
 
     const auto modelIndex = index(row, 0, QModelIndex());
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+
+    return true;
 }
 
 void ImagesModel::emitDataChanged(const QString &path)
@@ -163,4 +209,9 @@ QVector<QString> ImagesModel::changedImages() const
 int ImagesModel::matchType(const QString &path) const
 {
     return m_imageData.value(path).matchType;
+}
+
+QImage ImagesModel::thumbnail(const QString &path) const
+{
+    return m_imageData.value(path).thumbnail;
 }
