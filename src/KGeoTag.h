@@ -76,6 +76,12 @@ enum MatchType {
     Set
 };
 
+enum ImagesListType {
+    UnAssigned,
+    Assigned,
+    All
+};
+
 }
 
 #endif // KGEOTAG_H

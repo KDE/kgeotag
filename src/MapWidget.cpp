@@ -21,8 +21,8 @@
 #include "MapWidget.h"
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "ImageCache.h"
 #include "KGeoTag.h"
+#include "ImagesModel.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -58,7 +58,7 @@ static QVector<QString> s_unsupportedFloaters = {
 MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     : Marble::MarbleWidget(parent),
       m_settings(sharedObjects->settings()),
-      m_imageCache(sharedObjects->imageCache())
+      m_imagesModel(sharedObjects->imagesModel())
 {
     setAcceptDrops(true);
 
@@ -152,7 +152,7 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
     const auto images = m_images.keys();
     for (const auto &image : images) {
         painter->drawPixmap(m_images.value(image),
-                            QPixmap::fromImage(m_imageCache->thumbnail(image)));
+                            QPixmap::fromImage(m_imagesModel->thumbnail(image)));
     }
 
     painter->setPen(m_trackPen);
@@ -247,7 +247,7 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 
     const auto urls = mimeData->urls();
     for (const auto &url : urls) {
-        if (! m_imageCache->contains(url.toLocalFile())) {
+        if (! m_imagesModel->contains(url.toLocalFile())) {
             return;
         }
     }
@@ -271,7 +271,7 @@ void MapWidget::dropEvent(QDropEvent *event)
     for (const auto &url : urls) {
         const auto path = url.toLocalFile();
         addImage(path, lon, lat);
-        m_imageCache->setCoordinates(path, lon, lat, 0.0);
+        m_imagesModel->setCoordinates(path, lon, lat, 0.0);
         paths.append(path);
     }
 
@@ -298,7 +298,7 @@ void MapWidget::removeImage(const QString &path)
 
 void MapWidget::centerImage(const QString &path)
 {
-    centerCoordinates(m_imageCache->coordinates(path));
+    centerCoordinates(m_imagesModel->coordinates(path));
 }
 
 void MapWidget::centerCoordinates(const KGeoTag::Coordinates &coordinates)

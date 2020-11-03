@@ -17,39 +17,34 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGEPREVIEW_H
-#define IMAGEPREVIEW_H
+// Local includes
+#include "ImagesViewFilter.h"
+#include "SharedObjects.h"
+#include "ImagesModel.h"
 
 // Qt includes
-#include <QLabel>
-#include <QImage>
+#include <QDebug>
 
-// Local classes
-class SharedObjects;
-class ImagesModel;
-
-// Qt classes
-class QTimer;
-
-class ImagePreview : public QLabel
+ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type,
+                                   SharedObjects *sharedObjects)
+    : QSortFilterProxyModel(parent),
+      m_type(type),
+      m_imagesModel(sharedObjects->imagesModel())
 {
-    Q_OBJECT
+}
 
-public:
-    explicit ImagePreview(SharedObjects *sharedObjects, QWidget *parent = nullptr);
-    void setImage(const QString &path);
+bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
+{
+    if (m_type == KGeoTag::ImagesListType::All) {
+        return true;
+    }
 
-protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
+    const auto path = sourceModel()->index(sourceRow, 0).data(
+                          ImagesModel::DataRole::Path).toString();
 
-private slots:
-    void setScaledPreview();
-
-private: // Variables
-    ImagesModel *m_imagesModel;
-    QImage m_currentImage;
-    QTimer *m_smoothTimer;
-
-};
-
-#endif // IMAGEPREVIEW_H
+    if (m_type == KGeoTag::ImagesListType::Assigned) {
+        return m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates;
+    } else {
+        return m_imagesModel->coordinates(path) == KGeoTag::NoCoordinates;
+    }
+}

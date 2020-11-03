@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "ElevationEngine.h"
 
 // Qt includes
 #include <QMainWindow>
@@ -29,14 +30,13 @@
 // Local classes
 class SharedObjects;
 class Settings;
-class ImageCache;
 class GpxEngine;
-class ElevationEngine;
-class ImagesList;
 class PreviewWidget;
 class MapWidget;
 class FixDriftWidget;
 class BookmarksWidget;
+class ImagesModel;
+class ImagesListView;
 
 // Qt classes
 class QDockWidget;
@@ -57,41 +57,48 @@ private slots:
     void addGpx();
     void addImages();
     void imagesDropped(const QVector<QString> &paths);
-    void searchExactMatches(ImagesList *list);
-    void searchInterpolatedMatches(ImagesList *list);
     void saveChanges();
     void showSettings();
-    void removeCoordinates();
-    void discardChanges(ImagesList *list);
-    void assignToMapCenter(ImagesList *list);
-    void assignManually();
-    void editCoordinates();
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
+    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
+                            const QVector<double> &elevations);
     void elevationLookupFailed(const QString &errorMessage);
     void notAllElevationsPresent(int locationsCount, int elevationsCount);
 
+    void searchExactMatches(ImagesListView *list);
+    void searchInterpolatedMatches(ImagesListView *list);
+    void assignToMapCenter(ImagesListView *list);
+    void assignManually(ImagesListView *list);
+    void editCoordinates(ImagesListView *list);
+    void removeCoordinates(ImagesListView *list);
+    void discardChanges(ImagesListView *list);
+    void lookupElevation(ImagesListView *list);
+
 private: // Functions
+    QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
+                                  const QString &dockId);
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
     void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void lookupElevation(const QVector<QString> &paths);
 
 private: // Variables
+    SharedObjects *m_sharedObjects;
     Settings *m_settings;
-    ImageCache *m_imageCache;
     GpxEngine *m_gpxEngine;
-    ImagesList *m_assignedImages;
-    ImagesList *m_unAssignedImages;
+    ElevationEngine *m_elevationEngine;
     PreviewWidget *m_previewWidget;
     MapWidget *m_mapWidget;
     FixDriftWidget *m_fixDriftWidget;
     BookmarksWidget *m_bookmarksWidget;
+    ImagesModel *m_imagesModel;
 
-    QDockWidget *m_assignedImagesDock;
-    QDockWidget *m_unassignedImagesDock;
     QDockWidget *m_previewDock;
     QDockWidget *m_fixDriftDock;
     QDockWidget *m_bookmarksDock;
     QDockWidget *m_mapDock;
+    QDockWidget *m_unAssignedImagesDock;
+    QDockWidget *m_assignedOrAllImagesDock;
 
 };
 

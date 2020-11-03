@@ -20,7 +20,7 @@
 // Local includes
 #include "SharedObjects.h"
 #include "Settings.h"
-#include "ImageCache.h"
+#include "ImagesModel.h"
 #include "GpxEngine.h"
 #include "ElevationEngine.h"
 #include "MapWidget.h"
@@ -29,7 +29,7 @@
 SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
     m_settings = new Settings(this);
-    m_imageCache = new ImageCache(this, m_settings);
+    m_imagesModel = new ImagesModel(this, this);
     m_gpxEngine = new GpxEngine(this, m_settings);
     m_elevationEngine = new ElevationEngine(this, m_settings);
     m_mapWidget = new MapWidget(this);
@@ -41,9 +41,9 @@ Settings *SharedObjects::settings() const
     return m_settings;
 }
 
-ImageCache *SharedObjects::imageCache() const
+ImagesModel *SharedObjects::imagesModel() const
 {
-    return m_imageCache;
+    return m_imagesModel;
 }
 
 GpxEngine *SharedObjects::gpxEngine() const
@@ -64,4 +64,14 @@ MapWidget *SharedObjects::mapWidget() const
 CoordinatesFormatter *SharedObjects::coordinatesFormatter() const
 {
     return m_coordinatesFormatter;
+}
+
+void SharedObjects::setBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks)
+{
+    m_bookmarks = bookmarks;
+}
+
+const QHash<QString, KGeoTag::Coordinates> *SharedObjects::bookmarks() const
+{
+    return m_bookmarks;
 }

@@ -47,9 +47,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/main.cpp
     ${main_ROOT}/SharedObjects.cpp
     ${main_ROOT}/Settings.cpp
-    ${main_ROOT}/ImageCache.cpp
     ${main_ROOT}/MainWindow.cpp
-    ${main_ROOT}/ImagesList.cpp
     ${main_ROOT}/PreviewWidget.cpp
     ${main_ROOT}/MapWidget.cpp
     ${main_ROOT}/ImagePreview.cpp
@@ -63,6 +61,9 @@ set(kgeotag_SOURCES
     ${main_ROOT}/CoordinatesDialog.cpp
     ${main_ROOT}/CoordinatesFormatter.cpp
     ${main_ROOT}/RetrySkipAbortDialog.cpp
+    ${main_ROOT}/ImagesModel.cpp
+    ${main_ROOT}/ImagesListView.cpp
+    ${main_ROOT}/ImagesViewFilter.cpp
 )
 
 # Build the executable

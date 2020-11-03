@@ -21,7 +21,7 @@
 #include "PreviewWidget.h"
 #include "SharedObjects.h"
 #include "CoordinatesFormatter.h"
-#include "ImageCache.h"
+#include "ImagesModel.h"
 #include "ImagePreview.h"
 #include "KGeoTag.h"
 
@@ -38,7 +38,7 @@
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
       m_formatter(sharedObjects->coordinatesFormatter()),
-      m_imageCache(sharedObjects->imageCache())
+      m_imagesModel(sharedObjects->imagesModel())
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -72,7 +72,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_coordinates->setWordWrap(true);
     infoLayout->addWidget(m_coordinates, 2, 1);
 
-    m_preview = new ImagePreview(m_imageCache);
+    m_preview = new ImagePreview(sharedObjects);
     layout->addWidget(m_preview);
 
     m_matchString[KGeoTag::MatchType::None] = i18n("read from file");
@@ -95,15 +95,16 @@ void PreviewWidget::setImage(const QString &path)
 
     m_path->setText(path);
     QLocale locale;
-    m_date->setText(m_imageCache->date(path).toString(locale.dateTimeFormat()));
+    m_date->setText(m_imagesModel->date(path).toString(locale.dateTimeFormat()));
 
-    const auto coordinates = m_imageCache->coordinates(path);
+    const auto coordinates = m_imagesModel->coordinates(path);
     if (coordinates.isSet) {
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
                                     m_formatter->lon(coordinates),
                                     m_formatter->lat(coordinates),
                                     m_formatter->alt(coordinates),
-                                    m_matchString.value(m_imageCache->matchType(path))));
+                                    m_matchString.value(static_cast<KGeoTag::MatchType>(
+                                        m_imagesModel->matchType(path)))));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));
     }

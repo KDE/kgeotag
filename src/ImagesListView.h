@@ -17,92 +17,77 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGESLIST_H
-#define IMAGESLIST_H
+#ifndef IMAGESLISTVIEW_H
+#define IMAGESLISTVIEW_H
 
 // Local includes
 #include "KGeoTag.h"
-#include "ElevationEngine.h"
 
 // Qt includes
-#include <QListWidget>
+#include <QListView>
 
 // Local classes
 class SharedObjects;
-class Settings;
-class ImageCache;
-class ElevationEngine;
+class ImagesModel;
 
 // Qt classes
-class QMouseEvent;
 class QMenu;
 class QAction;
-class QKeyEvent;
 
-class ImagesList : public QListWidget
+class ImagesListView : public QListView
 {
     Q_OBJECT
 
 public:
-    enum Type {
-        UnAssigned,
-        Assigned
-    };
-
-    explicit ImagesList(Type type, SharedObjects *sharedObjects,
-                        const QHash<QString, KGeoTag::Coordinates> *bookmarks,
-                        QWidget *parent = nullptr);
-    void addOrUpdateImage(const QString &path);
-    void removeImage(const QString &path);
-    void scrollToImage(const QString &path);
+    explicit ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
+                            QWidget *parent = nullptr);
     QVector<QString> selectedPaths() const;
 
 public slots:
     void updateBookmarks();
-    void lookupElevation(const QVector<QString> &paths = QVector<QString>());
 
 signals:
     void imageSelected(const QString &path) const;
     void centerImage(const QString &path) const;
+
+    void searchExactMatches(ImagesListView *list) const;
+    void searchInterpolatedMatches(ImagesListView *list) const;
+    void assignToMapCenter(ImagesListView *list) const;
+    void assignManually(ImagesListView *list) const;
+    void editCoordinates(ImagesListView *list) const;
+    void lookupElevation(ImagesListView *list) const;
+    void removeCoordinates(ImagesListView *list) const;
+    void discardChanges(ImagesListView *list) const;
+
     void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
-    void removeCoordinates() const;
-    void checkUpdatePreview(const QVector<QString> &paths) const;
-    void assignToMapCenter(ImagesList *list) const;
-    void assignManually() const;
-    void editCoordinates() const;
-    void discardChanges(ImagesList *list) const;
-    void searchExactMatches(ImagesList *list) const;
-    void searchInterpolatedMatches(ImagesList *list) const;
 
 protected:
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void keyReleaseEvent(QKeyEvent *event) override;
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
+    virtual void keyPressEvent(QKeyEvent *event) override;
 
 private slots:
-    void processItemClicked(QListWidgetItem *item);
-    void imageHighlighted(QListWidgetItem *item) const;
+    void processImageClicked(const QModelIndex &index) const;
     void showContextMenu(const QPoint &point);
-    void emitAssignTo(QAction *action);
-    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
-                            const QVector<double> &elevations);
+
+private: // Functions
+    void checkCenterImage(const QString &path) const;
 
 private: // Variables
-    Type m_type;
-    Settings *m_settings;
-    ImageCache *m_imageCache;
-    ElevationEngine *m_elevationEngine;
+    ImagesModel *m_imagesModel;
     const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
-    QListWidgetItem *m_itemBeforeKeyPress = nullptr;
+    bool m_dragStarted = false;
     QPoint m_dragStartPosition;
 
     QMenu *m_contextMenu;
     QMenu *m_bookmarksMenu;
-    QAction *m_lookupElevation = nullptr;
+    QAction *m_assignManually;
+    QAction *m_editCoordinates;
+    QAction *m_lookupElevation;
+    QAction *m_removeCoordinates;
     QAction *m_discardChanges;
 
 };
 
-#endif // IMAGESLIST_H
+#endif // IMAGESLISTVIEW_H

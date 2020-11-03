@@ -68,6 +68,7 @@ static const QVector<QString> s_track_styleString {
 // Images
 
 static const QLatin1String s_images("images/");
+static const QString s_images_spitImagesList = s_images + QLatin1String("split_images_list");
 static const QString s_images_thumnailSize = s_images + QLatin1String("thumbnail_size");
 static const QString s_images_previewSize = s_images + QLatin1String("preview_size");
 
@@ -403,4 +404,14 @@ QHash<QString, KGeoTag::Coordinates> Settings::bookmarks() const
     }
 
     return bookmarks;
+}
+
+void Settings::saveSplitImagesList(bool state)
+{
+    setValue(s_images_spitImagesList, state);
+}
+
+bool Settings::splitImagesList() const
+{
+    return value(s_images_spitImagesList, true).toBool();
 }

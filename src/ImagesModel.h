@@ -17,65 +17,76 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef IMAGECACHE_H
-#define IMAGECACHE_H
+#ifndef IMAGESMODEL_H
+#define IMAGESMODEL_H
 
 // Local includes
 #include "KGeoTag.h"
 
+// KDE includes
+#include <KColorScheme>
+
 // Qt includes
-#include <QObject>
-#include <QHash>
-#include <QImage>
+#include <QAbstractListModel>
 #include <QDateTime>
+#include <QImage>
 
 // Local classes
+class SharedObjects;
 class Settings;
 
-// exiv2 classes
-namespace Exiv2
-{
-class ExifData;
-}
-
-class ImageCache : public QObject
+class ImagesModel : public QAbstractListModel
 {
     Q_OBJECT
 
 public:
-    explicit ImageCache(QObject *parent, Settings *settings);
+    enum DataRole {
+        Path = Qt::UserRole,
+        Date,
+        Thumbnail,
+        Changed
+    };
+
+    explicit ImagesModel(QObject *parent, SharedObjects *sharedObjects);
+
+    virtual int rowCount(const QModelIndex &) const override;
+    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+
     bool addImage(const QString &path);
-    bool contains(const QString &path) const;
+    void setChanged(const QString &path, bool changed);
+    void setMatchType(const QString &path, int matchType);
+    QVector<QString> changedImages() const;
+    int matchType(const QString &path) const;
     QImage thumbnail(const QString &path) const;
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
-    QSize thumbnailSize() const;
+    bool contains(const QString &path) const;
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
-    void setChanged(const QString &path, bool changed);
-    QVector<QString> changedImages() const;
-    void setMatchType(const QString &path, KGeoTag::MatchType matchType);
-    KGeoTag::MatchType matchType(const QString &path);
-    bool changed(const QString &path) const;
     void resetChanges(const QString &path);
 
-private: // Structs
-    struct ImageData
-    {
-        QImage thumbnail;
-        QImage preview;
+private: // Functions
+    void emitDataChanged(const QString &path);
+
+private: // Variables
+    struct ImageData {
+        QString fileName;
         QDateTime date;
         KGeoTag::Coordinates originalCoordinates = KGeoTag::NoCoordinates;
         KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
-        KGeoTag::MatchType matchType = KGeoTag::MatchType::None;
+        QImage thumbnail;
+        QImage preview;
         bool changed = false;
+        int matchType = KGeoTag::MatchType::None;
     };
 
-private: // Variables
     Settings *m_settings;
+
+    KColorScheme m_colorScheme;
+    QVector<QString> m_paths;
     QHash<QString, ImageData> m_imageData;
 
 };
 
-#endif // IMAGECACHE_H
+#endif // IMAGESMODEL_H

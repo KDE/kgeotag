@@ -17,51 +17,34 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SHAREDOBJECTS_H
-#define SHAREDOBJECTS_H
+#ifndef IMAGESVIEWFILTER_H
+#define IMAGESVIEWFILTER_H
 
 // Local includes
 #include "KGeoTag.h"
 
 // Qt includes
-#include <QObject>
-#include <QLocale>
+#include <QSortFilterProxyModel>
 
 // Local classes
-class Settings;
+class SharedObjects;
 class ImagesModel;
-class GpxEngine;
-class ElevationEngine;
-class MapWidget;
-class CoordinatesFormatter;
 
-class SharedObjects : public QObject
+class ImagesViewFilter : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    explicit SharedObjects(QObject *parent = nullptr);
-    Settings *settings() const;
-    ImagesModel *imagesModel() const;
-    GpxEngine *gpxEngine() const;
-    ElevationEngine *elevationEngine() const;
-    MapWidget *mapWidget() const;
-    CoordinatesFormatter *coordinatesFormatter() const;
+    explicit ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type,
+                              SharedObjects *sharedObjects);
 
-    void setBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks);
-    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
+protected:
+    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
 
 private: // Variables
-    Settings *m_settings;
+    KGeoTag::ImagesListType m_type;
     ImagesModel *m_imagesModel;
-    GpxEngine *m_gpxEngine;
-    ElevationEngine *m_elevationEngine;
-    MapWidget *m_mapWidget;
-    QLocale m_locale;
-    CoordinatesFormatter *m_coordinatesFormatter;
-
-    const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
 };
 
-#endif // SHAREDOBJECTS_H
+#endif // IMAGESVIEWFILTER_H

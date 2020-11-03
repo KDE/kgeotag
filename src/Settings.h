@@ -56,6 +56,9 @@ public:
     void saveLastOpenPath(const QString &path);
     QString lastOpenPath() const;
 
+    void saveSplitImagesList(bool state);
+    bool splitImagesList() const;
+
     void saveThumbnailSize(int size);
     QSize thumbnailSize() const;
 
