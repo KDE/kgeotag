@@ -19,13 +19,17 @@
 
 // Local includes
 #include "ImagePreview.h"
+#include "SharedObjects.h"
+#include "ImagesModel.h"
 #include "ImageCache.h"
 
 // Qt includes
 #include <QTimer>
 
-ImagePreview::ImagePreview(ImageCache *imageCache, QWidget *parent)
-    : QLabel(parent), m_imageCache(imageCache)
+ImagePreview::ImagePreview(SharedObjects *sharedObjects, QWidget *parent)
+    : QLabel(parent),
+      m_imageCache(sharedObjects->imageCache()),
+      m_imagesModel(sharedObjects->imagesModel())
 {
     setAlignment(Qt::AlignCenter);
     setMinimumSize(128, 128);
@@ -38,7 +42,7 @@ ImagePreview::ImagePreview(ImageCache *imageCache, QWidget *parent)
 
 void ImagePreview::setImage(const QString &path)
 {
-    m_currentImage = ! path.isEmpty() ? m_imageCache->preview(path) : QImage();
+    m_currentImage = ! path.isEmpty() ? m_imagesModel->preview(path) : QImage();
     setScaledPreview();
 }
 

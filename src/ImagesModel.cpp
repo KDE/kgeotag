@@ -215,3 +215,8 @@ QImage ImagesModel::thumbnail(const QString &path) const
 {
     return m_imageData.value(path).thumbnail;
 }
+
+QImage ImagesModel::preview(const QString &path) const
+{
+    return m_imageData.value(path).preview;
+}

@@ -25,7 +25,9 @@
 #include <QImage>
 
 // Local classes
+class SharedObjects;
 class ImageCache;
+class ImagesModel;
 
 // Qt classes
 class QTimer;
@@ -35,7 +37,7 @@ class ImagePreview : public QLabel
     Q_OBJECT
 
 public:
-    explicit ImagePreview(ImageCache *imageCache, QWidget *parent = nullptr);
+    explicit ImagePreview(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     void setImage(const QString &path);
 
 protected:
@@ -46,6 +48,7 @@ private slots:
 
 private: // Variables
     ImageCache *m_imageCache;
+    ImagesModel *m_imagesModel;
     QImage m_currentImage;
     QTimer *m_smoothTimer;
 

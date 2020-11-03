@@ -74,7 +74,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_coordinates->setWordWrap(true);
     infoLayout->addWidget(m_coordinates, 2, 1);
 
-    m_preview = new ImagePreview(m_imageCache);
+    m_preview = new ImagePreview(sharedObjects);
     layout->addWidget(m_preview);
 
     m_matchString[KGeoTag::MatchType::None] = i18n("read from file");
