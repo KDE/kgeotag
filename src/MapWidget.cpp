@@ -249,7 +249,7 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 
     const auto urls = mimeData->urls();
     for (const auto &url : urls) {
-        if (! m_imageCache->contains(url.toLocalFile())) {
+        if (! m_imagesModel->contains(url.toLocalFile())) {
             return;
         }
     }

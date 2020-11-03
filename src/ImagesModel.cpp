@@ -225,3 +225,8 @@ QDateTime ImagesModel::date(const QString &path) const
 {
     return m_imageData.value(path).date;
 }
+
+bool ImagesModel::contains(const QString &path) const
+{
+    return m_paths.contains(path);
+}

@@ -45,7 +45,6 @@ class ImageCache : public QObject
 public:
     explicit ImageCache(QObject *parent, Settings *settings);
     bool addImage(const QString &path);
-    bool contains(const QString &path) const;
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);

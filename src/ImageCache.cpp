@@ -79,11 +79,6 @@ bool ImageCache::addImage(const QString &path)
     return true;
 }
 
-bool ImageCache::contains(const QString &path) const
-{
-    return m_imageData.contains(path);
-}
-
 KGeoTag::Coordinates ImageCache::coordinates(const QString &path) const
 {
     return m_imageData[path].coordinates;
