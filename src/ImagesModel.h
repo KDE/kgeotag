@@ -65,6 +65,7 @@ public:
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void resetChanges(const QString &path);
 
 private: // Functions
     void emitDataChanged(const QString &path);

@@ -78,9 +78,3 @@ bool ImageCache::addImage(const QString &path)
     m_imageData.insert(path, data);
     return true;
 }
-
-void ImageCache::resetChanges(const QString &path)
-{
-    auto &data = m_imageData[path];
-    data.coordinates = data.originalCoordinates;
-}

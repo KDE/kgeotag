@@ -865,7 +865,7 @@ void MainWindow::discardChanges(ImagesListView *list)
 {
     const auto paths = list->selectedPaths();
     for (const auto &path : paths) {
-        m_imageCache->resetChanges(path);
+        m_imagesModel->resetChanges(path);
 
         const auto coordinates = m_imagesModel->coordinates(path);
         if (coordinates.isSet) {

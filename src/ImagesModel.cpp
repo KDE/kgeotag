@@ -245,3 +245,12 @@ void ImagesModel::setCoordinates(const QString &path, const KGeoTag::Coordinates
 {
     m_imageData[path].coordinates = coordinates;
 }
+
+void ImagesModel::resetChanges(const QString &path)
+{
+    auto &data = m_imageData[path];
+    data.coordinates = data.originalCoordinates;
+    data.matchType = KGeoTag::None;
+    data.changed = false;
+    emitDataChanged(path);
+}

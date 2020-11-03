@@ -45,7 +45,6 @@ class ImageCache : public QObject
 public:
     explicit ImageCache(QObject *parent, Settings *settings);
     bool addImage(const QString &path);
-    void resetChanges(const QString &path);
 
 private: // Structs
     struct ImageData
