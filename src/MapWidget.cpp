@@ -28,6 +28,7 @@
 #include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
 #include <marble/MarbleWidgetInputHandler.h>
+#include <marble/ViewportParams.h>
 
 // KDE includes
 #include <KLocalizedString>
@@ -149,6 +150,8 @@ void MapWidget::changeFloaterVisiblity(QAction *action)
 
 void MapWidget::customPaint(Marble::GeoPainter *painter)
 {
+    const auto viewportCoordinates = viewport()->viewLatLonAltBox();
+
     for (int row = 0; row < m_imagesModel->rowCount(); row++) {
         const auto index = m_imagesModel->index(row, 0);
         const auto coordinates = index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
@@ -158,6 +161,10 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
 
         const auto marbleCoordinates = Marble::GeoDataCoordinates(
             coordinates.lon, coordinates.lat, coordinates.alt, Marble::GeoDataCoordinates::Degree);
+        if (! viewportCoordinates.contains(marbleCoordinates)) {
+            continue;
+        }
+
         painter->drawPixmap(marbleCoordinates,
             QPixmap::fromImage(index.data(ImagesModel::Thumbnail).value<QImage>()));
     }
