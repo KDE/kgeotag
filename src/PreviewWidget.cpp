@@ -99,7 +99,7 @@ void PreviewWidget::setImage(const QString &path)
     QLocale locale;
     m_date->setText(m_imagesModel->date(path).toString(locale.dateTimeFormat()));
 
-    const auto coordinates = m_imageCache->coordinates(path);
+    const auto coordinates = m_imagesModel->coordinates(path);
     if (coordinates.isSet) {
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
                                     m_formatter->lon(coordinates),

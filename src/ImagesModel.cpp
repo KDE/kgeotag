@@ -230,3 +230,18 @@ bool ImagesModel::contains(const QString &path) const
 {
     return m_paths.contains(path);
 }
+
+KGeoTag::Coordinates ImagesModel::coordinates(const QString &path) const
+{
+    return m_imageData.value(path).coordinates;
+}
+
+void ImagesModel::setCoordinates(const QString &path, double lon, double lat, double alt)
+{
+    setCoordinates(path, KGeoTag::Coordinates { lon, lat, alt, true });
+}
+
+void ImagesModel::setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates)
+{
+    m_imageData[path].coordinates = coordinates;
+}

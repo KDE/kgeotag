@@ -19,6 +19,7 @@
 
 // Local includes
 #include "ImagesViewFilter.h"
+#include "SharedObjects.h"
 #include "ImagesModel.h"
 #include "ImageCache.h"
 
@@ -26,10 +27,11 @@
 #include <QDebug>
 
 ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type,
-                                   ImageCache *imageCache)
+                                   SharedObjects *sharedObjects)
     : QSortFilterProxyModel(parent),
       m_type(type),
-      m_imageCache(imageCache)
+      m_imageCache(sharedObjects->imageCache()),
+      m_imagesModel(sharedObjects->imagesModel())
 {
 }
 
@@ -43,8 +45,8 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
                           ImagesModel::DataRole::Path).toString();
 
     if (m_type == KGeoTag::ImagesListType::Assigned) {
-        return m_imageCache->coordinates(path) != KGeoTag::NoCoordinates;
+        return m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates;
     } else {
-        return m_imageCache->coordinates(path) == KGeoTag::NoCoordinates;
+        return m_imagesModel->coordinates(path) == KGeoTag::NoCoordinates;
     }
 }

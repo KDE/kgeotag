@@ -273,7 +273,7 @@ void MapWidget::dropEvent(QDropEvent *event)
     for (const auto &url : urls) {
         const auto path = url.toLocalFile();
         addImage(path, lon, lat);
-        m_imageCache->setCoordinates(path, lon, lat, 0.0);
+        m_imagesModel->setCoordinates(path, lon, lat, 0.0);
         paths.append(path);
     }
 
@@ -300,7 +300,7 @@ void MapWidget::removeImage(const QString &path)
 
 void MapWidget::centerImage(const QString &path)
 {
-    centerCoordinates(m_imageCache->coordinates(path));
+    centerCoordinates(m_imagesModel->coordinates(path));
 }
 
 void MapWidget::centerCoordinates(const KGeoTag::Coordinates &coordinates)

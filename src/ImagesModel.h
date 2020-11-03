@@ -62,6 +62,9 @@ public:
     QImage preview(const QString &path) const;
     QDateTime date(const QString &path) const;
     bool contains(const QString &path) const;
+    KGeoTag::Coordinates coordinates(const QString &path) const;
+    void setCoordinates(const QString &path, double lon, double lat, double alt);
+    void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
 
 private: // Functions
     void emitDataChanged(const QString &path);

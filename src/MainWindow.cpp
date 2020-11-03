@@ -397,7 +397,7 @@ void MainWindow::addImages()
             break;
         }
 
-        const auto coordinates = m_imageCache->coordinates(canonicalPath);
+        const auto coordinates = m_imagesModel->coordinates(canonicalPath);
         if (coordinates.isSet) {
             m_mapWidget->addImage(canonicalPath, coordinates.lon, coordinates.lat);
         }
@@ -471,10 +471,10 @@ void MainWindow::assignManually(ImagesListView *list)
 void MainWindow::editCoordinates(ImagesListView *list)
 {
     const auto paths = list->selectedPaths();
-    auto coordinates = m_imageCache->coordinates(paths.first());
+    auto coordinates = m_imagesModel->coordinates(paths.first());
     bool identicalCoordinates = true;
     for (int i = 1; i < paths.count(); i++) {
-        if (m_imageCache->coordinates(paths.at(i)) != coordinates) {
+        if (m_imagesModel->coordinates(paths.at(i)) != coordinates) {
             identicalCoordinates = false;
             break;
         }
@@ -519,7 +519,7 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
 
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
-    m_imageCache->setCoordinates(path, coordinates);
+    m_imagesModel->setCoordinates(path, coordinates);
     m_imagesModel->setChanged(path, true);
     m_mapWidget->addImage(path, coordinates);
 }
@@ -745,7 +745,7 @@ void MainWindow::saveChanges()
         }
 
         // Set or remove the coordinates
-        const auto coordinates = m_imageCache->coordinates(path);
+        const auto coordinates = m_imagesModel->coordinates(path);
         if (coordinates.isSet) {
             exif.setGPSInfo(coordinates.alt, coordinates.lat, coordinates.lon);
         } else {
@@ -851,7 +851,7 @@ void MainWindow::removeCoordinates(ImagesListView *list)
 {
     const auto paths = list->selectedPaths();
     for (const QString &path : paths) {
-        m_imageCache->setCoordinates(path, KGeoTag::NoCoordinates);
+        m_imagesModel->setCoordinates(path, KGeoTag::NoCoordinates);
         m_imagesModel->setChanged(path, true);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
         m_mapWidget->removeImage(path);
@@ -867,7 +867,7 @@ void MainWindow::discardChanges(ImagesListView *list)
     for (const auto &path : paths) {
         m_imageCache->resetChanges(path);
 
-        const auto coordinates = m_imageCache->coordinates(path);
+        const auto coordinates = m_imagesModel->coordinates(path);
         if (coordinates.isSet) {
             m_mapWidget->addImage(path, coordinates);
         } else {
@@ -929,7 +929,7 @@ void MainWindow::lookupElevation(const QVector<QString> &paths)
 
     QVector<KGeoTag::Coordinates> coordinates;
     for (const auto &path : paths) {
-        coordinates.append(m_imageCache->coordinates(path));
+        coordinates.append(m_imagesModel->coordinates(path));
     }
 
     m_elevationEngine->request(ElevationEngine::Target::Image, paths, coordinates);
@@ -945,9 +945,9 @@ void MainWindow::elevationProcessed(ElevationEngine::Target target, const QVecto
     for (int i = 0; i < paths.count(); i++) {
         const auto &path = paths.at(i);
         const auto &elevation = elevations.at(i);
-        auto coordinates = m_imageCache->coordinates(path);
+        auto coordinates = m_imagesModel->coordinates(path);
         coordinates.alt = elevation;
-        m_imageCache->setCoordinates(path, coordinates);
+        m_imagesModel->setCoordinates(path, coordinates);
     }
 
     emit checkUpdatePreview(paths);

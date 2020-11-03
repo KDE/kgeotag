@@ -27,7 +27,9 @@
 #include <QSortFilterProxyModel>
 
 // Local classes
+class SharedObjects;
 class ImageCache;
+class ImagesModel;
 
 class ImagesViewFilter : public QSortFilterProxyModel
 {
@@ -35,7 +37,7 @@ class ImagesViewFilter : public QSortFilterProxyModel
 
 public:
     explicit ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type,
-                              ImageCache *imageCache);
+                              SharedObjects *sharedObjects);
 
 protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
@@ -43,6 +45,7 @@ protected:
 private: // Variables
     KGeoTag::ImagesListType m_type;
     ImageCache *m_imageCache;
+    ImagesModel *m_imagesModel;
 
 };
 

@@ -45,9 +45,10 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
                                QWidget *parent)
     : QListView(parent),
       m_imageCache(sharedObjects->imageCache()),
+      m_imagesModel(sharedObjects->imagesModel()),
       m_bookmarks(sharedObjects->bookmarks())
 {
-    auto *filterModel = new ImagesViewFilter(this, type, m_imageCache);
+    auto *filterModel = new ImagesViewFilter(this, type, sharedObjects);
     filterModel->setSourceModel(sharedObjects->imagesModel());
     setModel(filterModel);
 
@@ -198,7 +199,7 @@ QVector<QString> ImagesListView::selectedPaths() const
 
 void ImagesListView::checkCenterImage(const QString &path) const
 {
-    if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
+    if (m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates) {
         emit centerImage(path);
     }
 }
@@ -230,7 +231,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
 
     int hasCoordinates = 0;
     for (const auto &path : paths) {
-        if (m_imageCache->coordinates(path) != KGeoTag::NoCoordinates) {
+        if (m_imagesModel->coordinates(path) != KGeoTag::NoCoordinates) {
             hasCoordinates++;
         }
     }

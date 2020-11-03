@@ -79,21 +79,6 @@ bool ImageCache::addImage(const QString &path)
     return true;
 }
 
-KGeoTag::Coordinates ImageCache::coordinates(const QString &path) const
-{
-    return m_imageData[path].coordinates;
-}
-
-void ImageCache::setCoordinates(const QString &path, double lon, double lat, double alt)
-{
-    setCoordinates(path, KGeoTag::Coordinates { lon, lat, alt, true });
-}
-
-void ImageCache::setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates)
-{
-    m_imageData[path].coordinates = coordinates;
-}
-
 void ImageCache::resetChanges(const QString &path)
 {
     auto &data = m_imageData[path];

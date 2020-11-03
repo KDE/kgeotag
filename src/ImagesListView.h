@@ -29,6 +29,7 @@
 // Local classes
 class SharedObjects;
 class ImageCache;
+class ImagesModel;
 
 // Qt classes
 class QMenu;
@@ -72,6 +73,7 @@ private slots:
 
 private: // Variables
     ImageCache *m_imageCache;
+    ImagesModel *m_imagesModel;
     const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;
