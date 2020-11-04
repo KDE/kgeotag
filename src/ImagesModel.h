@@ -80,7 +80,7 @@ private: // Variables
         KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
         QImage thumbnail;
         QImage preview;
-        int matchType = KGeoTag::MatchType::None;
+        int matchType = KGeoTag::NotMatched;
     };
 
     Settings *m_settings;

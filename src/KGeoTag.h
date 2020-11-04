@@ -71,16 +71,16 @@ struct Coordinates
 const Coordinates NoCoordinates { 0.0, 0.0, 0.0, false };
 
 enum MatchType {
-    None,
-    Exact,
-    Interpolated,
-    Set
+    NotMatched,
+    ExactMatch,
+    InterpolatedMatch,
+    ManuallySet
 };
 
 enum ImagesListType {
-    UnAssigned,
-    Assigned,
-    All
+    UnAssignedImages,
+    AssignedImages,
+    AllImages
 };
 
 }

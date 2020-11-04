@@ -32,13 +32,13 @@ ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type
 
 bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
 {
-    if (m_type == KGeoTag::ImagesListType::All) {
+    if (m_type == KGeoTag::AllImages) {
         return true;
     }
 
     const auto coordinates = sourceModel()->index(sourceRow, 0).data(
         ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
-    if (m_type == KGeoTag::ImagesListType::Assigned) {
+    if (m_type == KGeoTag::AssignedImages) {
         return coordinates != KGeoTag::NoCoordinates;
     } else {
         return coordinates == KGeoTag::NoCoordinates;

@@ -73,13 +73,13 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
 
     } else if (role == Qt::ForegroundRole) {
         switch (data.matchType) {
-        case KGeoTag::MatchType::None:
+        case KGeoTag::NotMatched:
             return m_colorScheme.foreground();
-        case KGeoTag::MatchType::Exact:
+        case KGeoTag::ExactMatch:
             return m_colorScheme.foreground(KColorScheme::PositiveText);
-        case KGeoTag::MatchType::Interpolated:
+        case KGeoTag::InterpolatedMatch:
             return m_colorScheme.foreground(KColorScheme::NeutralText);
-        case KGeoTag::MatchType::Set:
+        case KGeoTag::ManuallySet:
             return m_colorScheme.foreground(KColorScheme::LinkText);
         }
 
@@ -249,7 +249,7 @@ void ImagesModel::resetChanges(const QString &path)
 {
     auto &data = m_imageData[path];
     data.coordinates = data.originalCoordinates;
-    data.matchType = KGeoTag::None;
+    data.matchType = KGeoTag::NotMatched;
     emitDataChanged(path);
 }
 

@@ -74,10 +74,10 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_preview = new ImagePreview;
     layout->addWidget(m_preview);
 
-    m_matchString[KGeoTag::MatchType::None] = i18n("read from file");
-    m_matchString[KGeoTag::MatchType::Exact] = i18n("exact match");
-    m_matchString[KGeoTag::MatchType::Interpolated] = i18n("interpolated match");
-    m_matchString[KGeoTag::MatchType::Set] = i18n("manually set");
+    m_matchString[KGeoTag::NotMatched] = i18n("read from file");
+    m_matchString[KGeoTag::ExactMatch] = i18n("exact match");
+    m_matchString[KGeoTag::InterpolatedMatch] = i18n("interpolated match");
+    m_matchString[KGeoTag::ManuallySet] = i18n("manually set");
 }
 
 void PreviewWidget::setImage(const QModelIndex &index)

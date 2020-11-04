@@ -150,15 +150,15 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     // Images lists
 
-    m_unAssignedImagesDock = createImagesDock(KGeoTag::ImagesListType::UnAssigned,
+    m_unAssignedImagesDock = createImagesDock(KGeoTag::UnAssignedImages,
                                               i18n("Unassigned images"),
                                               QStringLiteral("unAssignedImagesDock"));
     if (m_settings->splitImagesList()) {
-        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::ImagesListType::Assigned,
+        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::AssignedImages,
                                                      i18n("Assigned images"),
                                                      QStringLiteral("assignedOrAllImagesDock"));
     } else {
-        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::ImagesListType::All,
+        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::AllImages,
                                                      i18n("Images"),
                                                      QStringLiteral("assignedOrAllImagesDock"));
     }
@@ -427,7 +427,7 @@ void MainWindow::addImages()
 void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
     for (const auto &path : paths) {
-        m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
+        m_imagesModel->setMatchType(path, KGeoTag::ManuallySet);
     }
 
     m_previewWidget->setImage(m_imagesModel->indexFor(paths.last()));
@@ -500,7 +500,7 @@ void MainWindow::editCoordinates(ImagesListView *list)
 void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates)
 {
     for (const auto &path : paths) {
-        m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
+        m_imagesModel->setMatchType(path, KGeoTag::ManuallySet);
         assignImage(path, coordinates);
     }
 
@@ -529,7 +529,7 @@ void MainWindow::searchExactMatches(ImagesListView *list)
         const auto coordinates = m_gpxEngine->findExactCoordinates(m_imagesModel->date(path),
                                                                    m_fixDriftWidget->deviation());
         if (coordinates.isSet) {
-            m_imagesModel->setMatchType(path, KGeoTag::MatchType::Exact);
+            m_imagesModel->setMatchType(path, KGeoTag::ExactMatch);
             assignImage(path, coordinates);
             matches++;
             lastMatchedPath = path;
@@ -574,7 +574,7 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
             m_imagesModel->date(path), m_fixDriftWidget->deviation());
 
         if (coordinates.isSet) {
-            m_imagesModel->setMatchType(path, KGeoTag::MatchType::Interpolated);
+            m_imagesModel->setMatchType(path, KGeoTag::InterpolatedMatch);
             assignImage(path, coordinates);
             matches++;
             lastMatchedPath = path;
@@ -847,7 +847,7 @@ void MainWindow::removeCoordinates(ImagesListView *list)
     const auto paths = list->selectedPaths();
     for (const QString &path : paths) {
         m_imagesModel->setCoordinates(path, KGeoTag::NoCoordinates);
-        m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
+        m_imagesModel->setMatchType(path, KGeoTag::NotMatched);
     }
 
     m_mapWidget->reloadMap();
