@@ -286,7 +286,7 @@ void MapWidget::dropEvent(QDropEvent *event)
     const auto urls = event->mimeData()->urls();
     for (const auto &url : urls) {
         const auto path = url.toLocalFile();
-        m_imagesModel->setCoordinates(path, lon, lat, 0.0);
+        m_imagesModel->setCoordinates(path, Coordinates(lon, lat, 0.0, true), KGeoTag::ManuallySet);
         paths.append(path);
     }
 

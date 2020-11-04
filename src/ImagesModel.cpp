@@ -198,12 +198,6 @@ void ImagesModel::emitDataChanged(const QString &path)
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
-void ImagesModel::setMatchType(const QString &path, int matchType)
-{
-    m_imageData[path].matchType = matchType;
-    emitDataChanged(path);
-}
-
 QVector<QString> ImagesModel::changedImages() const
 {
     QVector<QString> changed;
@@ -236,14 +230,16 @@ Coordinates ImagesModel::coordinates(const QString &path) const
     return m_imageData.value(path).coordinates;
 }
 
-void ImagesModel::setCoordinates(const QString &path, double lon, double lat, double alt)
+void ImagesModel::setCoordinates(const QString &path, const Coordinates &coordinates, int matchType)
 {
-    setCoordinates(path, Coordinates(lon, lat, alt, true));
+    m_imageData[path].matchType = matchType;
+    m_imageData[path].coordinates = coordinates;
+    emitDataChanged(path);
 }
 
-void ImagesModel::setCoordinates(const QString &path, const Coordinates &coordinates)
+void ImagesModel::setElevation(const QString &path, double elevation)
 {
-    m_imageData[path].coordinates = coordinates;
+    m_imageData[path].coordinates.setAlt(elevation);
 }
 
 void ImagesModel::resetChanges(const QString &path)

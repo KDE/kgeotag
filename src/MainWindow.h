@@ -80,7 +80,6 @@ private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
                                   const QString &dockId);
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void assignImage(const QString &path, const Coordinates &coordinates);
     void lookupElevation(const QVector<QString> &paths);
 
 private: // Variables

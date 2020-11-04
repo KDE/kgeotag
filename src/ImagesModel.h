@@ -47,13 +47,12 @@ public:
 
     bool contains(const QString &path) const;
     bool addImage(const QString &path);
-    void setMatchType(const QString &path, int matchType);
     QVector<QString> changedImages() const;
     QImage thumbnail(const QString &path) const;
     QDateTime date(const QString &path) const;
+    void setCoordinates(const QString &path, const Coordinates &coordinates, int matchType);
+    void setElevation(const QString &path, double elevation);
     Coordinates coordinates(const QString &path) const;
-    void setCoordinates(const QString &path, double lon, double lat, double alt);
-    void setCoordinates(const QString &path, const Coordinates &coordinates);
     void resetChanges(const QString &path);
     void setSaved(const QString &path);
 
