@@ -39,8 +39,8 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
     const auto coordinates = sourceModel()->index(sourceRow, 0).data(
                                  KGeoTag::CoordinatesRole).value<Coordinates>();
     if (m_type == KGeoTag::AssignedImages) {
-        return coordinates != KGeoTag::NoCoordinates;
+        return coordinates.isSet();
     } else {
-        return coordinates == KGeoTag::NoCoordinates;
+        return ! coordinates.isSet();
     }
 }

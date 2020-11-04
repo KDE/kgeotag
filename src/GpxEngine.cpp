@@ -141,7 +141,7 @@ Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) const
     }
 
     // No match found
-    return KGeoTag::NoCoordinates;
+    return Coordinates();
 }
 
 Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time, int deviation) const
@@ -158,13 +158,13 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 {
     // This only works if we at least have at least 2 points ;-)
     if (m_allTimes.count() < 2) {
-        return KGeoTag::NoCoordinates;
+        return Coordinates();
     }
 
     // If the image's date is before the first or after the last point we have,
     // it can't be assigned.
     if (time < m_allTimes.first() || time > m_allTimes.last()) {
-        return KGeoTag::NoCoordinates;
+        return Coordinates();
     }
 
     // Check for an exact match (without tolerance)
@@ -210,7 +210,7 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 
     // Check for a maximum time interval between the points if requested
     if (maximumInterval != -1 && closestBefore.secsTo(closestAfter) > maximumInterval) {
-        return KGeoTag::NoCoordinates;
+        return Coordinates();
     }
 
     // Create Marble coordinates from the cache for further calculations
@@ -229,7 +229,7 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
         && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * KGeoTag::earthRadius
         > maximumDistance) {
 
-        return KGeoTag::NoCoordinates;
+        return Coordinates();
     }
 
     // Calculate an interpolated position between the coordinates

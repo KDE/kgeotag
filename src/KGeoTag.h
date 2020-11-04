@@ -46,8 +46,6 @@ constexpr const int degreesPrecision = 5;
 // Same for 0,1 m altitude precision ;-)
 constexpr const int altitudePrecision = 1;
 
-const auto NoCoordinates = Coordinates(0.0, 0.0, 0.0, false);
-
 enum MatchType {
     NotMatched,
     ExactMatch,

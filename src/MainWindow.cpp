@@ -457,7 +457,7 @@ void MainWindow::assignManually(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates,
-                             m_settings->lookupElevation(), KGeoTag::NoCoordinates, label);
+                             m_settings->lookupElevation(), Coordinates(), label);
     if (! dialog.exec()) {
         return;
     }
@@ -489,7 +489,7 @@ void MainWindow::editCoordinates(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false,
-                             identicalCoordinates ? coordinates : KGeoTag::NoCoordinates,
+                             identicalCoordinates ? coordinates : Coordinates(),
                              label);
     if (! dialog.exec()) {
         return;
@@ -847,7 +847,7 @@ void MainWindow::removeCoordinates(ImagesListView *list)
 {
     const auto paths = list->selectedPaths();
     for (const QString &path : paths) {
-        m_imagesModel->setCoordinates(path, KGeoTag::NoCoordinates);
+        m_imagesModel->setCoordinates(path, Coordinates());
         m_imagesModel->setMatchType(path, KGeoTag::NotMatched);
     }
 

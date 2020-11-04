@@ -57,7 +57,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
 
     if (role == Qt::DisplayRole) {
         const QString associatedMarker = (! m_settings->splitImagesList()
-                                          && data.coordinates != KGeoTag::NoCoordinates)
+                                          && data.coordinates.isSet())
             ? i18nc("Marker for an associated file", "\u2713\u2009")
             : QString();
         const QString changedmarker = data.coordinates != data.originalCoordinates
@@ -86,7 +86,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
 
     } else if (! m_settings->splitImagesList() && role == Qt::FontRole) {
         QFont font;
-        if (data.coordinates != KGeoTag::NoCoordinates) {
+        if (data.coordinates.isSet()) {
             font.setBold(true);
         }
         return font;

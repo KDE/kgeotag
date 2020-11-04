@@ -72,3 +72,20 @@ bool Coordinates::operator!=(const Coordinates &other) const
             || m_alt != other.alt()
             || m_isSet != other.isSet();
 }
+
+QDebug operator<<(QDebug debug, const Coordinates &coordinates)
+{
+    QDebugStateSaver saver(debug);
+
+    if (! coordinates.isSet()) {
+        debug.nospace() << "Coordinates(not set)";
+    } else {
+        debug.nospace() << "Coordinates("
+                        <<   "lon: " << coordinates.lon()
+                        << ", lat: " << coordinates.lat()
+                        << ", alt: " << coordinates.alt()
+                        << ')';
+    }
+
+    return debug;
+}

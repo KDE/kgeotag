@@ -22,6 +22,7 @@
 
 // Qt includes
 #include <QMetaType>
+#include <QDebug>
 
 class Coordinates
 {
@@ -44,6 +45,8 @@ private: // Variables
     bool m_isSet = false;
 
 };
+
+QDebug operator<<(QDebug debug, const Coordinates &coordinates);
 
 Q_DECLARE_METATYPE(Coordinates)
 

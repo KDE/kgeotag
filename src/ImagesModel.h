@@ -66,8 +66,8 @@ private: // Variables
     struct ImageData {
         QString fileName;
         QDateTime date;
-        Coordinates originalCoordinates = KGeoTag::NoCoordinates;
-        Coordinates coordinates = KGeoTag::NoCoordinates;
+        Coordinates originalCoordinates;
+        Coordinates coordinates;
         QImage thumbnail;
         QImage preview;
         int matchType = KGeoTag::NotMatched;
