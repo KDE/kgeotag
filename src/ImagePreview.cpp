@@ -61,6 +61,11 @@ void ImagePreview::resizeEvent(QResizeEvent *event)
 
 void ImagePreview::setScaledPreview()
 {
+    if (m_currentImage.isNull()) {
+        setPixmap(QPixmap());
+        return;
+    }
+
     const QImage scaledImage = m_currentImage.scaled(size(), Qt::KeepAspectRatio,
                                                      Qt::SmoothTransformation);
     setPixmap(QPixmap::fromImage(scaledImage));

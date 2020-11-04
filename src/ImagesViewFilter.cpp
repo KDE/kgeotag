@@ -36,11 +36,9 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
         return true;
     }
 
-    const auto coordinates = sourceModel()->index(sourceRow, 0).data(
-                                 KGeoTag::CoordinatesRole).value<Coordinates>();
-    if (m_type == KGeoTag::AssignedImages) {
-        return coordinates.isSet();
-    } else {
-        return ! coordinates.isSet();
-    }
+    const bool coordinatesSet = sourceModel()->index(sourceRow, 0).data(
+                                    KGeoTag::CoordinatesRole).value<Coordinates>().isSet();
+
+    return    (m_type == KGeoTag::AssignedImages   &&   coordinatesSet)
+           || (m_type == KGeoTag::UnAssignedImages && ! coordinatesSet);
 }

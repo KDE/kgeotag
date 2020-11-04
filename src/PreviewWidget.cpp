@@ -82,9 +82,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
 
 void PreviewWidget::setImage(const QModelIndex &index)
 {
-    if (index.isValid()) {
-        m_currentImage = index.data(KGeoTag::PathRole).toString();
-    }
+    m_currentImage = index.isValid() ? index.data(KGeoTag::PathRole).toString() : QString();
 
     if (m_currentImage.isEmpty()) {
         m_path->clear();
