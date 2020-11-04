@@ -31,6 +31,7 @@
 // Qt includes
 #include <QFileInfo>
 #include <QFont>
+#include <QMimeData>
 
 // C++ includes
 #include <utility>
@@ -248,6 +249,37 @@ void ImagesModel::resetChanges(const QString &path)
 QModelIndex ImagesModel::indexFor(const QString &path) const
 {
     return index(m_paths.indexOf(path), 0, QModelIndex());
+}
+
+Qt::DropActions ImagesModel::supportedDropActions() const
+{
+    return Qt::CopyAction;
+}
+
+Qt::ItemFlags ImagesModel::flags(const QModelIndex &index) const
+{
+    auto defaultFlags = QAbstractListModel::flags(index);
+
+    if (index.isValid()) {
+        return defaultFlags;
+    } else {
+        return Qt::ItemIsDropEnabled | defaultFlags;
+    }
+}
+
+bool ImagesModel::canDropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) const
+{
+    Q_UNUSED(action);
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    Q_UNUSED(parent);
+
+    if (data->hasUrls())
+        return true;
+
+    // TODO: check type of URLs
+
+    return false;
 }
 
 void ImagesModel::setSaved(const QString &path)

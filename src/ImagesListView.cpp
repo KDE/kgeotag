@@ -45,6 +45,10 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     : QListView(parent),
       m_bookmarks(sharedObjects->bookmarks())
 {
+    viewport()->setAcceptDrops(true);
+    setDropIndicatorShown(true);
+    setDragDropMode(QAbstractItemView::DropOnly);
+
     auto *filterModel = new ImagesViewFilter(this, type);
     filterModel->setSourceModel(sharedObjects->imagesModel());
     setModel(filterModel);
