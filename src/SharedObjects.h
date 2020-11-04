@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QObject>
@@ -48,8 +49,8 @@ public:
     MapWidget *mapWidget() const;
     CoordinatesFormatter *coordinatesFormatter() const;
 
-    void setBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks);
-    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
+    void setBookmarks(const QHash<QString, Coordinates> *bookmarks);
+    const QHash<QString, Coordinates> *bookmarks() const;
 
 private: // Variables
     Settings *m_settings;
@@ -60,7 +61,7 @@ private: // Variables
     QLocale m_locale;
     CoordinatesFormatter *m_coordinatesFormatter;
 
-    const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
+    const QHash<QString, Coordinates> *m_bookmarks;
 
 };
 

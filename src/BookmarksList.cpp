@@ -139,10 +139,10 @@ void BookmarksList::newManualBookmark()
     }
 
     saveBookmark(dialog.label(),
-                 KGeoTag::Coordinates { dialog.lon(), dialog.lat(), dialog.alt(), true });
+                 Coordinates(dialog.lon(), dialog.lat(), dialog.alt(), true));
 }
 
-void BookmarksList::saveBookmark(QString label, const KGeoTag::Coordinates &coordinates)
+void BookmarksList::saveBookmark(QString label, const Coordinates &coordinates)
 {
     const QString originalLabel = label;
     QString searchLabel = label;
@@ -253,7 +253,7 @@ void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QVe
 
     restoreAfterElevationLookup();
     const auto id = ids.at(0);
-    m_bookmarks[id].alt = elevations.at(0);
+    m_bookmarks[id].setAlt(elevations.at(0));
     emit showInfo(m_bookmarks.value(id));
 }
 
@@ -277,7 +277,7 @@ void BookmarksList::setElevation()
     bool okay = false;
     auto elevation = QInputDialog::getDouble(this, i18n("Set elevation"),
                                              i18n("Elevation for \"%1\" (m)", id),
-                                             m_bookmarks.value(id).alt, KGeoTag::minimalAltitude,
+                                             m_bookmarks.value(id).alt(), KGeoTag::minimalAltitude,
                                              KGeoTag::maximalAltitude, 1, &okay);
     if (! okay) {
         return;
@@ -286,7 +286,7 @@ void BookmarksList::setElevation()
     elevationProcessed(ElevationEngine::Target::Bookmark, { id }, { elevation });
 }
 
-const QHash<QString, KGeoTag::Coordinates> *BookmarksList::bookmarks() const
+const QHash<QString, Coordinates> *BookmarksList::bookmarks() const
 {
     return &m_bookmarks;
 }

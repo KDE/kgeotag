@@ -51,9 +51,9 @@ public:
     QVector<QString> changedImages() const;
     QImage thumbnail(const QString &path) const;
     QDateTime date(const QString &path) const;
-    KGeoTag::Coordinates coordinates(const QString &path) const;
+    Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
-    void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void setCoordinates(const QString &path, const Coordinates &coordinates);
     void resetChanges(const QString &path);
     void setSaved(const QString &path);
 
@@ -66,8 +66,8 @@ private: // Variables
     struct ImageData {
         QString fileName;
         QDateTime date;
-        KGeoTag::Coordinates originalCoordinates = KGeoTag::NoCoordinates;
-        KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
+        Coordinates originalCoordinates = KGeoTag::NoCoordinates;
+        Coordinates coordinates = KGeoTag::NoCoordinates;
         QImage thumbnail;
         QImage preview;
         int matchType = KGeoTag::NotMatched;

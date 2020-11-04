@@ -20,6 +20,7 @@
 // Local includes
 #include "ElevationEngine.h"
 #include "Settings.h"
+#include "Coordinates.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -54,7 +55,7 @@ ElevationEngine::ElevationEngine(QObject *parent, Settings *settings)
 }
 
 void ElevationEngine::request(ElevationEngine::Target target, const QVector<QString> &ids,
-                              const QVector<KGeoTag::Coordinates> &coordinates)
+                              const QVector<Coordinates> &coordinates)
 {
     // Check if we want to lookup different coordinates
     bool identicalCoordinates = true;
@@ -74,15 +75,15 @@ void ElevationEngine::request(ElevationEngine::Target target, const QVector<QStr
         m_queuedIds.append(ids);
         const auto &firstCoordinates = coordinates.first();
         m_queuedLocations.append(QStringLiteral("%1,%2").arg(
-                                                QString::number(firstCoordinates.lat),
-                                                QString::number(firstCoordinates.lon)));
+                                                QString::number(firstCoordinates.lat()),
+                                                QString::number(firstCoordinates.lon())));
     } else {
         // Create clusters of locations with at most s_maximumLocations locations per cluster
 
         QStringList locations;
         for (const auto &singleCoordinate : coordinates) {
-            locations.append(QStringLiteral("%1,%2").arg(QString::number(singleCoordinate.lat),
-                                                        QString::number(singleCoordinate.lon)));
+            locations.append(QStringLiteral("%1,%2").arg(QString::number(singleCoordinate.lat()),
+                                                         QString::number(singleCoordinate.lon())));
         }
 
         // Group all requested coordinates to groups with at most s_maximumLocations entries

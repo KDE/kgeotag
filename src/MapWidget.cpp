@@ -154,13 +154,15 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
 
     for (int row = 0; row < m_imagesModel->rowCount(); row++) {
         const auto index = m_imagesModel->index(row, 0);
-        const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>();
-        if (! coordinates.isSet) {
+        const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
+        if (! coordinates.isSet()) {
             continue;
         }
 
         const auto marbleCoordinates = Marble::GeoDataCoordinates(
-            coordinates.lon, coordinates.lat, coordinates.alt, Marble::GeoDataCoordinates::Degree);
+            coordinates.lon(), coordinates.lat(), coordinates.alt(),
+            Marble::GeoDataCoordinates::Degree);
+
         if (! viewportCoordinates.contains(marbleCoordinates)) {
             continue;
         }
@@ -223,20 +225,20 @@ void MapWidget::restoreSettings()
     }
 
     // Restore map's last center point
-    const auto [ lon, lat, alt, isSet ] = m_settings->mapCenter();
-    centerOn(lon, lat);
+    const auto center = m_settings->mapCenter();
+    centerOn(center.lon(), center.lat());
 
     // Restore the last zoom level
     setZoom(m_settings->zoom());
 }
 
-void MapWidget::addSegment(const QVector<KGeoTag::Coordinates> &segment)
+void MapWidget::addSegment(const QVector<Coordinates> &segment)
 {
     Marble::GeoDataLineString lineString;
 
     for (const auto &coordinates : segment) {
         const Marble::GeoDataCoordinates marbleCoordinates
-            = Marble::GeoDataCoordinates(coordinates.lon, coordinates.lat, 0.0,
+            = Marble::GeoDataCoordinates(coordinates.lon(), coordinates.lat(), 0.0,
                                          Marble::GeoDataCoordinates::Degree);
         lineString.append(marbleCoordinates);
     }
@@ -296,12 +298,12 @@ void MapWidget::dropEvent(QDropEvent *event)
 
 void MapWidget::centerImage(const QModelIndex &index)
 {
-    centerCoordinates(index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>());
+    centerCoordinates(index.data(KGeoTag::CoordinatesRole).value<Coordinates>());
 }
 
-void MapWidget::centerCoordinates(const KGeoTag::Coordinates &coordinates)
+void MapWidget::centerCoordinates(const Coordinates &coordinates)
 {
-    centerOn(coordinates.lon, coordinates.lat);
+    centerOn(coordinates.lon(), coordinates.lat());
 }
 
 void MapWidget::zoomToGpxBox()
@@ -310,10 +312,11 @@ void MapWidget::zoomToGpxBox()
     m_gpxBox.clear();
 }
 
-KGeoTag::Coordinates MapWidget::currentCenter() const
+Coordinates MapWidget::currentCenter() const
 {
     const auto center = focusPoint();
-    return KGeoTag::Coordinates { center.longitude(Marble::GeoDataCoordinates::Degree),
-                                  center.latitude(Marble::GeoDataCoordinates::Degree),
-                                  0.0, true };
+    return Coordinates(center.longitude(Marble::GeoDataCoordinates::Degree),
+                       center.latitude(Marble::GeoDataCoordinates::Degree),
+                       0.0,
+                       true);
 }

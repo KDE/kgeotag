@@ -22,7 +22,7 @@
 #include "SharedObjects.h"
 #include "CoordinatesFormatter.h"
 #include "ImagePreview.h"
-#include "KGeoTag.h"
+#include "Coordinates.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -99,8 +99,8 @@ void PreviewWidget::setImage(const QModelIndex &index)
     m_date->setText(index.data(KGeoTag::DateRole).value<QDateTime>().toString(
                         locale.dateTimeFormat()));
 
-    const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>();
-    if (coordinates.isSet) {
+    const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
+    if (coordinates.isSet()) {
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
             m_formatter->lon(coordinates),
             m_formatter->lat(coordinates),

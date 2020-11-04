@@ -17,45 +17,58 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef COORDINATESDIALOG_H
-#define COORDINATESDIALOG_H
-
 // Local includes
-#include "KGeoTag.h"
 #include "Coordinates.h"
 
-// Qt includes
-#include <QDialog>
-
-// Qt classes
-class QLineEdit;
-class QDoubleSpinBox;
-
-class CoordinatesDialog : public QDialog
+Coordinates::Coordinates()
 {
-    Q_OBJECT
+}
 
-public:
-    enum Mode {
-        ManualBookmark,
-        EditCoordinates
-    };
+Coordinates::Coordinates(double lon, double lat, double alt, bool isSet)
+    : m_lon(lon),
+      m_lat(lat),
+      m_alt(alt),
+      m_isSet(isSet)
+{
+}
 
-    explicit CoordinatesDialog(Mode mode, bool hideAlt,
-                               const Coordinates &coordinates = KGeoTag::NoCoordinates,
-                               const QString &target = QString());
-    QString label() const;
-    double lon() const;
-    double lat() const;
-    double alt() const;
-    Coordinates coordinates() const;
+double Coordinates::lon() const
+{
+    return m_lon;
+}
 
-private: // Variables
-    QLineEdit *m_label;
-    QDoubleSpinBox *m_lon;
-    QDoubleSpinBox *m_lat;
-    QDoubleSpinBox *m_alt;
+double Coordinates::lat() const
+{
+    return m_lat;
+}
 
-};
+void Coordinates::setAlt(double alt)
+{
+    m_alt = alt;
+}
 
-#endif // COORDINATESDIALOG_H
+double Coordinates::alt() const
+{
+    return m_alt;
+}
+
+bool Coordinates::isSet() const
+{
+    return m_isSet;
+}
+
+bool Coordinates::operator==(const Coordinates &other) const
+{
+    return     m_lon == other.lon()
+            && m_lat == other.lat()
+            && m_alt == other.alt()
+            && m_isSet == other.isSet();
+}
+
+bool Coordinates::operator!=(const Coordinates &other) const
+{
+    return     m_lon != other.lon()
+            || m_lat != other.lat()
+            || m_alt != other.alt()
+            || m_isSet != other.isSet();
+}

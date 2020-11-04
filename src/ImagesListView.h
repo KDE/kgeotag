@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QListView>
@@ -58,7 +59,7 @@ signals:
     void removeCoordinates(ImagesListView *list) const;
     void discardChanges(ImagesListView *list) const;
 
-    void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates) const;
+    void assignTo(const QVector<QString> &paths, const Coordinates &coordinates) const;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
@@ -73,7 +74,7 @@ private: // Functions
     void checkCenterImage(const QModelIndex &index) const;
 
 private: // Variables
-    const QHash<QString, KGeoTag::Coordinates> *m_bookmarks;
+    const QHash<QString, Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;
     QPoint m_dragStartPosition;

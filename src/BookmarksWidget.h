@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QWidget>
@@ -40,13 +41,13 @@ class BookmarksWidget : public QWidget
 
 public:
     explicit BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
-    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
+    const QHash<QString, Coordinates> *bookmarks() const;
 
 signals:
     void bookmarksChanged() const;
 
 private slots:
-    void showInfo(const KGeoTag::Coordinates &coordinates);
+    void showInfo(const Coordinates &coordinates);
 
 private: // Variables
     CoordinatesFormatter *m_formatter;

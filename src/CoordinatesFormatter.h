@@ -23,11 +23,8 @@
 // Qt includes
 #include <QObject>
 
-// Local structs
-namespace KGeoTag
-{
-struct Coordinates;
-}
+// Local classes
+class Coordinates;
 
 // Qt classes
 class QLocale;
@@ -38,9 +35,9 @@ class CoordinatesFormatter : public QObject
 
 public:
     explicit CoordinatesFormatter(QObject *parent, QLocale *locale);
-    QString lon(const KGeoTag::Coordinates &coordinates) const;
-    QString lat(const KGeoTag::Coordinates &coordinates) const;
-    QString alt(const KGeoTag::Coordinates &coordinates) const;
+    QString lon(const Coordinates &coordinates) const;
+    QString lat(const Coordinates &coordinates) const;
+    QString alt(const Coordinates &coordinates) const;
 
 private: // Functions
     QString formatLonLat(double value) const;

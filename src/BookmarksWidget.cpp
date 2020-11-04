@@ -47,14 +47,14 @@ BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent)
     layout->addWidget(m_info);
 }
 
-const QHash<QString, KGeoTag::Coordinates> *BookmarksWidget::bookmarks() const
+const QHash<QString, Coordinates> *BookmarksWidget::bookmarks() const
 {
     return m_bookmarksList->bookmarks();
 }
 
-void BookmarksWidget::showInfo(const KGeoTag::Coordinates &coordinates)
+void BookmarksWidget::showInfo(const Coordinates &coordinates)
 {
-    if (! coordinates.isSet) {
+    if (! coordinates.isSet()) {
         m_info->clear();
     } else {
         m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",

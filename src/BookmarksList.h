@@ -22,6 +22,7 @@
 
 // Local includes
 #include "ElevationEngine.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QListWidget>
@@ -42,10 +43,10 @@ class BookmarksList : public QListWidget
 
 public:
     explicit BookmarksList(SharedObjects *sharedObjects, QWidget *parent = nullptr);
-    const QHash<QString, KGeoTag::Coordinates> *bookmarks() const;
+    const QHash<QString, Coordinates> *bookmarks() const;
 
 signals:
-    void showInfo(const KGeoTag::Coordinates &coordinates) const;
+    void showInfo(const Coordinates &coordinates) const;
     void bookmarksChanged() const;
 
 private: // Structs
@@ -73,7 +74,7 @@ private slots:
 
 
 private: // Functions
-    void saveBookmark(QString label, const KGeoTag::Coordinates &coordinates);
+    void saveBookmark(QString label, const Coordinates &coordinates);
     EnteredString getString(const QString &title, const QString &label,
                             const QString &text = QString());
     void requestElevation(const QString &id);
@@ -83,7 +84,7 @@ private: // Variables
     ElevationEngine *m_elevationEngine;
     MapWidget *m_mapWidget;
 
-    QHash<QString, KGeoTag::Coordinates> m_bookmarks;
+    QHash<QString, Coordinates> m_bookmarks;
 
     QListWidgetItem *m_contextMenuItem = nullptr;
     QMenu *m_contextMenu;

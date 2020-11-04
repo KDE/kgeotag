@@ -196,7 +196,7 @@ void ImagesListView::processImageClicked(const QModelIndex &index) const
 
 void ImagesListView::checkCenterImage(const QModelIndex &index) const
 {
-    if (index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>()
+    if (index.data(KGeoTag::CoordinatesRole).value<Coordinates>()
         != KGeoTag::NoCoordinates) {
 
         emit centerImage(index);
@@ -234,7 +234,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
     int changed = 0;
 
     for (const auto &index : selected) {
-        if (index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>()
+        if (index.data(KGeoTag::CoordinatesRole).value<Coordinates>()
             != KGeoTag::NoCoordinates) {
 
             hasCoordinates++;

@@ -20,9 +20,6 @@
 #ifndef ELEVATIONENGINE_H
 #define ELEVATIONENGINE_H
 
-// Local includes
-#include "KGeoTag.h"
-
 // Qt includes
 #include <QObject>
 #include <QHash>
@@ -30,6 +27,7 @@
 
 // Local classes
 class Settings;
+class Coordinates;
 
 // Qt classes
 class QNetworkAccessManager;
@@ -48,7 +46,7 @@ public:
 
     explicit ElevationEngine(QObject *parent, Settings *settings);
     void request(Target target, const QVector<QString> &ids,
-                 const QVector<KGeoTag::Coordinates> &coordinates);
+                 const QVector<Coordinates> &coordinates);
 
 signals:
     void lookupFailed(const QString &errorMessage) const;

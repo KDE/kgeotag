@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QObject>
@@ -52,20 +53,20 @@ public:
 
     explicit GpxEngine(QObject *parent, Settings *settings);
     GpxEngine::LoadInfo load(const QString &path);
-    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
-    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
+    Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
+    Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
 
 signals:
-    void segmentLoaded(const QVector<KGeoTag::Coordinates> &segment) const;
+    void segmentLoaded(const QVector<Coordinates> &segment) const;
 
 private: // Functions
-    KGeoTag::Coordinates findExactCoordinates(const QDateTime &time) const;
-    KGeoTag::Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
+    Coordinates findExactCoordinates(const QDateTime &time) const;
+    Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
 
 private: // Variables
     Settings *m_settings;
     QVector<QDateTime> m_allTimes;
-    QHash<QDateTime, KGeoTag::Coordinates> m_coordinates;
+    QHash<QDateTime, Coordinates> m_coordinates;
 
 };
 

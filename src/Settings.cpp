@@ -187,17 +187,18 @@ QHash<QString, bool> Settings::floatersVisibility()
     return data;
 }
 
-void Settings::saveMapCenter(const KGeoTag::Coordinates &coordinates)
+void Settings::saveMapCenter(const Coordinates &coordinates)
 {
-    setValue(s_map_centerLon, coordinates.lon);
-    setValue(s_map_centerLat, coordinates.lat);
+    setValue(s_map_centerLon, coordinates.lon());
+    setValue(s_map_centerLat, coordinates.lat());
 }
 
-KGeoTag::Coordinates Settings::mapCenter() const
+Coordinates Settings::mapCenter() const
 {
-    return KGeoTag::Coordinates { value(s_map_centerLon, 0).toDouble(),
-                                  value(s_map_centerLat, 0).toDouble(),
-                                  0.0, true };
+    return Coordinates(value(s_map_centerLon, 0).toDouble(),
+                       value(s_map_centerLat, 0).toDouble(),
+                       0.0,
+                       true);
 }
 
 void Settings::saveZoom(int zoom)
@@ -354,7 +355,7 @@ QString Settings::writeMode() const
     return s_writeModes.contains(mode) ? mode : s_defaultWriteMode;
 }
 
-void Settings::saveBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks)
+void Settings::saveBookmarks(const QHash<QString, Coordinates> *bookmarks)
 {
     QJsonArray data;
 
@@ -362,16 +363,16 @@ void Settings::saveBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmar
     for (const auto &label : labels) {
         const auto coordinates = bookmarks->value(label);
         data.append(QJsonObject { { s_bookmarksDataLabel, label },
-                                  { s_bookmarksDataLon, coordinates.lon },
-                                  { s_bookmarksDataLat, coordinates.lat },
-                                  { s_bookmarksDataAlt, coordinates.alt } });
+                                  { s_bookmarksDataLon, coordinates.lon() },
+                                  { s_bookmarksDataLat, coordinates.lat() },
+                                  { s_bookmarksDataAlt, coordinates.alt() } });
     }
 
     setValue(s_bookmarks_version, s_bookmarksDataVersion);
     setValue(s_bookmarks_data, QJsonDocument(data).toJson(QJsonDocument::Compact));
 }
 
-QHash<QString, KGeoTag::Coordinates> Settings::bookmarks() const
+QHash<QString, Coordinates> Settings::bookmarks() const
 {
     const auto version = value(s_bookmarks_version, 0).toInt();
     if (version != s_bookmarksDataVersion) {
@@ -385,7 +386,7 @@ QHash<QString, KGeoTag::Coordinates> Settings::bookmarks() const
         return {};
     }
 
-    QHash<QString, KGeoTag::Coordinates> bookmarks;
+    QHash<QString, Coordinates> bookmarks;
 
     const auto data = document.array();
     for (const auto &entry : data) {
@@ -399,8 +400,8 @@ QHash<QString, KGeoTag::Coordinates> Settings::bookmarks() const
             return {};
         }
 
-        bookmarks.insert(label.toString(), KGeoTag::Coordinates { lon.toDouble(), lat.toDouble(),
-                                                                  alt.toDouble(), true });
+        bookmarks.insert(label.toString(),
+                         Coordinates(lon.toDouble(), lat.toDouble(), alt.toDouble(), true));
     }
 
     return bookmarks;

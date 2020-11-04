@@ -23,6 +23,7 @@
 // Local includes
 #include "KGeoTag.h"
 #include "ElevationEngine.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QMainWindow>
@@ -59,7 +60,7 @@ private slots:
     void imagesDropped(const QVector<QString> &paths);
     void saveChanges();
     void showSettings();
-    void assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates);
+    void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
                             const QVector<double> &elevations);
@@ -79,7 +80,7 @@ private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
                                   const QString &dockId);
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void assignImage(const QString &path, const KGeoTag::Coordinates &coordinates);
+    void assignImage(const QString &path, const Coordinates &coordinates);
     void lookupElevation(const QVector<QString> &paths);
 
 private: // Variables

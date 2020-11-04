@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // Marble includes
 #include <marble/MarbleWidget.h>
@@ -55,12 +56,12 @@ public:
     void saveSettings();
     void restoreSettings();
     void centerImage(const QModelIndex &index);
-    void centerCoordinates(const KGeoTag::Coordinates &coordinates);
+    void centerCoordinates(const Coordinates &coordinates);
     void zoomToGpxBox();
-    KGeoTag::Coordinates currentCenter() const;
+    Coordinates currentCenter() const;
 
 public slots:
-    void addSegment(const QVector<KGeoTag::Coordinates> &segment);
+    void addSegment(const QVector<Coordinates> &segment);
 
 signals:
     void imagesDropped(const QVector<QString> &paths) const;

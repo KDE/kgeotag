@@ -50,7 +50,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     QDateTime time;
 
     QVector<QDateTime> segmentTimes;
-    QVector<KGeoTag::Coordinates> segmentCoordinates;
+    QVector<Coordinates> segmentCoordinates;
 
     bool trackStartFound = false;
     int points = 0;
@@ -86,7 +86,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
         } else if (token == QXmlStreamReader::EndElement) {
             if (name == QStringLiteral("trkpt")) {
                 segmentTimes.append(time);
-                segmentCoordinates.append({ lon, lat, alt, true });
+                segmentCoordinates.append(Coordinates(lon, lat, alt, true));
                 alt = 0.0;
                 time = QDateTime();
                 points++;
@@ -111,7 +111,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     return { LoadResult::Okay, points, segments };
 }
 
-KGeoTag::Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation) const
+Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation) const
 {
     if (deviation == 0) {
         return findExactCoordinates(time);
@@ -121,7 +121,7 @@ KGeoTag::Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int 
     }
 }
 
-KGeoTag::Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) const
+Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) const
 {
     // Check for an exact match
     if (m_coordinates.contains(time)) {
@@ -144,8 +144,7 @@ KGeoTag::Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) cons
     return KGeoTag::NoCoordinates;
 }
 
-KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time,
-                                                            int deviation) const
+Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time, int deviation) const
 {
     if (deviation == 0) {
         return findInterpolatedCoordinates(time);
@@ -155,7 +154,7 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
     }
 }
 
-KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
+Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 {
     // This only works if we at least have at least 2 points ;-)
     if (m_allTimes.count() < 2) {
@@ -218,9 +217,11 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
     const auto &pointBefore = m_coordinates[closestBefore];
     const auto &pointAfter = m_coordinates[closestAfter];
     const auto coordinatesBefore = Marble::GeoDataCoordinates(
-        pointBefore.lon, pointBefore.lat, pointBefore.alt, Marble::GeoDataCoordinates::Degree);
+        pointBefore.lon(), pointBefore.lat(), pointBefore.alt(),
+        Marble::GeoDataCoordinates::Degree);
     const auto coordinatesAfter = Marble::GeoDataCoordinates(
-        pointAfter.lon, pointAfter.lat, pointAfter.alt, Marble::GeoDataCoordinates::Degree);
+        pointAfter.lon(), pointAfter.lat(), pointAfter.alt(),
+        Marble::GeoDataCoordinates::Degree);
 
     // Check for a maximum distance between the points if requested
 
@@ -238,7 +239,8 @@ KGeoTag::Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &tim
                             / double(secondsBefore + time.secsTo(closestAfter));
     const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
 
-    return KGeoTag::Coordinates { interpolated.longitude(Marble::GeoDataCoordinates::Degree),
-                                  interpolated.latitude(Marble::GeoDataCoordinates::Degree),
-                                  interpolated.altitude(), true };
+    return Coordinates(interpolated.longitude(Marble::GeoDataCoordinates::Degree),
+                       interpolated.latitude(Marble::GeoDataCoordinates::Degree),
+                       interpolated.altitude(),
+                       true);
 }

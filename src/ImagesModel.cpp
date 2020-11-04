@@ -22,6 +22,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -155,8 +156,8 @@ bool ImagesModel::addImage(const QString &path)
     double latitude;
     double longitude;
     if (exif.getGPSInfo(altitude, latitude, longitude)) {
-        data.originalCoordinates = KGeoTag::Coordinates { longitude, latitude, altitude, true };
-        data.coordinates = KGeoTag::Coordinates { longitude, latitude, altitude, true };
+        data.originalCoordinates = Coordinates(longitude, latitude, altitude, true);
+        data.coordinates = Coordinates(longitude, latitude, altitude, true);
     }
 
     // Fix the image's orientation
@@ -230,17 +231,17 @@ bool ImagesModel::contains(const QString &path) const
     return m_paths.contains(path);
 }
 
-KGeoTag::Coordinates ImagesModel::coordinates(const QString &path) const
+Coordinates ImagesModel::coordinates(const QString &path) const
 {
     return m_imageData.value(path).coordinates;
 }
 
 void ImagesModel::setCoordinates(const QString &path, double lon, double lat, double alt)
 {
-    setCoordinates(path, KGeoTag::Coordinates { lon, lat, alt, true });
+    setCoordinates(path, Coordinates(lon, lat, alt, true));
 }
 
-void ImagesModel::setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates)
+void ImagesModel::setCoordinates(const QString &path, const Coordinates &coordinates)
 {
     m_imageData[path].coordinates = coordinates;
 }

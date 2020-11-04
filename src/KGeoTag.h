@@ -20,6 +20,9 @@
 #ifndef KGEOTAG_H
 #define KGEOTAG_H
 
+// Local includes
+#include "Coordinates.h"
+
 // Qt includes
 #include <QString>
 #include <QMetaType>
@@ -43,32 +46,7 @@ constexpr const int degreesPrecision = 5;
 // Same for 0,1 m altitude precision ;-)
 constexpr const int altitudePrecision = 1;
 
-struct Coordinates
-{
-    double lon;
-    double lat;
-    double alt;
-
-    bool isSet;
-
-    bool operator ==(const Coordinates &other) const
-    {
-        return    this->lon == other.lon
-               && this->lat == other.lat
-               && this->alt == other.alt
-               && this->isSet == other.isSet;
-    }
-
-    bool operator !=(const Coordinates &other) const
-    {
-        return    this->lon != other.lon
-               || this->lat != other.lat
-               || this->alt != other.alt
-               || this->isSet != other.isSet;
-    }
-};
-
-const Coordinates NoCoordinates { 0.0, 0.0, 0.0, false };
+const auto NoCoordinates = Coordinates(0.0, 0.0, 0.0, false);
 
 enum MatchType {
     NotMatched,
@@ -95,7 +73,6 @@ enum CustomDataRoles {
 
 }
 
-Q_DECLARE_METATYPE(KGeoTag::Coordinates)
 Q_DECLARE_METATYPE(KGeoTag::MatchType)
 
 #endif // KGEOTAG_H

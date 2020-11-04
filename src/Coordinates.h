@@ -17,45 +17,34 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef COORDINATESDIALOG_H
-#define COORDINATESDIALOG_H
-
-// Local includes
-#include "KGeoTag.h"
-#include "Coordinates.h"
+#ifndef COORDINATES_H
+#define COORDINATES_H
 
 // Qt includes
-#include <QDialog>
+#include <QMetaType>
 
-// Qt classes
-class QLineEdit;
-class QDoubleSpinBox;
-
-class CoordinatesDialog : public QDialog
+class Coordinates
 {
-    Q_OBJECT
 
 public:
-    enum Mode {
-        ManualBookmark,
-        EditCoordinates
-    };
-
-    explicit CoordinatesDialog(Mode mode, bool hideAlt,
-                               const Coordinates &coordinates = KGeoTag::NoCoordinates,
-                               const QString &target = QString());
-    QString label() const;
+    explicit Coordinates();
+    explicit Coordinates(double lon, double lat, double alt, bool isSet);
     double lon() const;
     double lat() const;
+    void setAlt(double alt);
     double alt() const;
-    Coordinates coordinates() const;
+    bool isSet() const;
+    bool operator==(const Coordinates &other) const;
+    bool operator!=(const Coordinates &other) const;
 
 private: // Variables
-    QLineEdit *m_label;
-    QDoubleSpinBox *m_lon;
-    QDoubleSpinBox *m_lat;
-    QDoubleSpinBox *m_alt;
+    double m_lon = 0.0;
+    double m_lat = 0.0;
+    double m_alt = 0.0;
+    bool m_isSet = false;
 
 };
 
-#endif // COORDINATESDIALOG_H
+Q_DECLARE_METATYPE(Coordinates)
+
+#endif // COORDINATES_H

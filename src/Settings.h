@@ -22,6 +22,7 @@
 
 // Local includes
 #include "KGeoTag.h"
+#include "Coordinates.h"
 
 // Qt includes
 #include <QSettings>
@@ -47,8 +48,8 @@ public:
     void saveFloatersVisibility(const QHash<QString, bool> &data);
     QHash<QString, bool> floatersVisibility();
 
-    void saveMapCenter(const KGeoTag::Coordinates &coordinates);
-    KGeoTag::Coordinates mapCenter() const;
+    void saveMapCenter(const Coordinates &coordinates);
+    Coordinates mapCenter() const;
 
     void saveZoom(int zoom);
     int zoom() const;
@@ -95,8 +96,8 @@ public:
     void saveCreateBackups(bool state);
     bool createBackups() const;
 
-    void saveBookmarks(const QHash<QString, KGeoTag::Coordinates> *bookmarks);
-    QHash<QString, KGeoTag::Coordinates> bookmarks() const;
+    void saveBookmarks(const QHash<QString, Coordinates> *bookmarks);
+    QHash<QString, Coordinates> bookmarks() const;
 
 };
 

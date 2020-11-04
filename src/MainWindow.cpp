@@ -34,6 +34,7 @@
 #include "RetrySkipAbortDialog.h"
 #include "ImagesModel.h"
 #include "ImagesListView.h"
+#include "Coordinates.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -497,7 +498,7 @@ void MainWindow::editCoordinates(ImagesListView *list)
     assignTo(paths, dialog.coordinates());
 }
 
-void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordinates &coordinates)
+void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coordinates)
 {
     for (const auto &path : paths) {
         m_imagesModel->setMatchType(path, KGeoTag::ManuallySet);
@@ -512,7 +513,7 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
     }
 }
 
-void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
+void MainWindow::assignImage(const QString &path, const Coordinates &coordinates)
 {
     m_imagesModel->setCoordinates(path, coordinates);
 }
@@ -528,7 +529,7 @@ void MainWindow::searchExactMatches(ImagesListView *list)
     for (const auto &path : paths) {
         const auto coordinates = m_gpxEngine->findExactCoordinates(m_imagesModel->date(path),
                                                                    m_fixDriftWidget->deviation());
-        if (coordinates.isSet) {
+        if (coordinates.isSet()) {
             m_imagesModel->setMatchType(path, KGeoTag::ExactMatch);
             assignImage(path, coordinates);
             matches++;
@@ -573,7 +574,7 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
         const auto coordinates = m_gpxEngine->findInterpolatedCoordinates(
             m_imagesModel->date(path), m_fixDriftWidget->deviation());
 
-        if (coordinates.isSet) {
+        if (coordinates.isSet()) {
             m_imagesModel->setMatchType(path, KGeoTag::InterpolatedMatch);
             assignImage(path, coordinates);
             matches++;
@@ -741,8 +742,8 @@ void MainWindow::saveChanges()
 
         // Set or remove the coordinates
         const auto coordinates = m_imagesModel->coordinates(path);
-        if (coordinates.isSet) {
-            exif.setGPSInfo(coordinates.alt, coordinates.lat, coordinates.lon);
+        if (coordinates.isSet()) {
+            exif.setGPSInfo(coordinates.alt(), coordinates.lat(), coordinates.lon());
         } else {
             exif.removeGPSInfo();
         }
@@ -912,7 +913,7 @@ void MainWindow::lookupElevation(const QVector<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::BusyCursor);
 
-    QVector<KGeoTag::Coordinates> coordinates;
+    QVector<Coordinates> coordinates;
     for (const auto &path : paths) {
         coordinates.append(m_imagesModel->coordinates(path));
     }
@@ -931,7 +932,7 @@ void MainWindow::elevationProcessed(ElevationEngine::Target target, const QVecto
         const auto &path = paths.at(i);
         const auto &elevation = elevations.at(i);
         auto coordinates = m_imagesModel->coordinates(path);
-        coordinates.alt = elevation;
+        coordinates.setAlt(elevation);
         m_imagesModel->setCoordinates(path, coordinates);
     }
 
