@@ -53,7 +53,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     setContextMenuPolicy(Qt::CustomContextMenu);
     setIconSize(sharedObjects->settings()->thumbnailSize());
 
-    connect(this, &QAbstractItemView::clicked, this, &ImagesListView::processImageClicked);
+    connect(this, &QAbstractItemView::clicked, this, &ImagesListView::centerImage);
 
     // Context menu
 
@@ -105,6 +105,13 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     connect(this, &QListView::customContextMenuRequested, this, &ImagesListView::showContextMenu);
 }
 
+void ImagesListView::currentChanged(const QModelIndex &current, const QModelIndex &)
+{
+    if (current.isValid()) {
+        emit imageSelected(current);
+    }
+}
+
 void ImagesListView::updateBookmarks()
 {
     m_bookmarksMenu->clear();
@@ -135,7 +142,6 @@ void ImagesListView::mousePressEvent(QMouseEvent *event)
     if (event->button() == Qt::LeftButton && selectedIndex.isValid()) {
         m_dragStarted = true;
         m_dragStartPosition = event->pos();
-        emit imageSelected(selectedIndex);
     } else {
         m_dragStarted = false;
     }
@@ -188,19 +194,6 @@ QVector<QString> ImagesListView::selectedPaths() const
     return paths;
 }
 
-void ImagesListView::processImageClicked(const QModelIndex &index) const
-{
-    emit imageSelected(index);
-    checkCenterImage(index);
-}
-
-void ImagesListView::checkCenterImage(const QModelIndex &index) const
-{
-    if (index.data(KGeoTag::CoordinatesRole).value<Coordinates>().isSet()) {
-        emit centerImage(index);
-    }
-}
-
 void ImagesListView::keyPressEvent(QKeyEvent *event)
 {
     QListView::keyPressEvent(event);
@@ -212,11 +205,7 @@ void ImagesListView::keyPressEvent(QKeyEvent *event)
         return;
     }
 
-    const auto index = currentIndex();
-    if (index.isValid()) {
-        emit imageSelected(index);
-        checkCenterImage(index);
-    }
+    emit centerImage(currentIndex());
 }
 
 void ImagesListView::showContextMenu(const QPoint &point)

@@ -65,13 +65,10 @@ protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;
     virtual void keyPressEvent(QKeyEvent *event) override;
+    virtual void currentChanged(const QModelIndex &current, const QModelIndex &) override;
 
 private slots:
-    void processImageClicked(const QModelIndex &index) const;
     void showContextMenu(const QPoint &point);
-
-private: // Functions
-    void checkCenterImage(const QModelIndex &index) const;
 
 private: // Variables
     const QHash<QString, Coordinates> *m_bookmarks;

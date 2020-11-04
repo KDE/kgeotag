@@ -298,7 +298,14 @@ void MapWidget::dropEvent(QDropEvent *event)
 
 void MapWidget::centerImage(const QModelIndex &index)
 {
-    centerCoordinates(index.data(KGeoTag::CoordinatesRole).value<Coordinates>());
+    if (! index.isValid()) {
+        return;
+    }
+
+    const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
+    if (coordinates.isSet()) {
+        centerCoordinates(coordinates);
+    }
 }
 
 void MapWidget::centerCoordinates(const Coordinates &coordinates)
