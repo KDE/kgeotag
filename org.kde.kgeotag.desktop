@@ -2,6 +2,7 @@
 Name=KGeoTag
 Name[ca]=KGeoTag
 Name[ca@valencia]=KGeoTag
+Name[de]=KGeoTag
 Name[es]=KGeoTag
 Name[nl]=KGeoTag
 Name[nn]=KGeoTag
@@ -12,6 +13,7 @@ Name[x-test]=xxKGeoTagxx
 GenericName=Photo geotagging program
 GenericName[ca]=Programa de geoetiquetatge de fotos
 GenericName[ca@valencia]=Programa de geoetiquetatge de fotos
+GenericName[de]=Programm zum Geotaggen von Fotos
 GenericName[es]=Programa para geoetiquetado de fotos
 GenericName[nl]=Fotoprogramma voor geven van geotags
 GenericName[nn]=Geografisk stadfesting av foto
