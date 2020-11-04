@@ -48,7 +48,6 @@ public:
     bool contains(const QString &path) const;
     bool addImage(const QString &path);
     QVector<QString> changedImages() const;
-    QImage thumbnail(const QString &path) const;
     QDateTime date(const QString &path) const;
     void setCoordinates(const QString &path, const Coordinates &coordinates, int matchType);
     void setElevation(const QString &path, double elevation);
