@@ -298,27 +298,48 @@ void MainWindow::addGpx()
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    const auto [ result, points, segments ] = m_gpxEngine->load(path);
+    const auto [ result, tracks, segments, points ] = m_gpxEngine->load(path);
     m_mapWidget->zoomToGpxBox();
     QApplication::restoreOverrideCursor();
 
     switch (result) {
-    case GpxEngine::LoadResult::Okay:
+    case GpxEngine::Okay:
         QMessageBox::information(this, i18n("Add GPX file"),
-            i18nc("E. g. \"Successfully loaded 18,000 waypoints from 8 track segments\", the "
-                  "plural forms are compiled in the following two i18np calls.",
-                  "<p>Successfully loaded %1 from %2!</p>",
-                 i18np("1 waypoint", "%1 waypoints", points),
-                 i18np("1 track segment", "%1 track segments", segments)));
+            i18nc("E. g. \"Successfully loaded 18,000 waypoints from 8 segments in 2 tracks\"",
+                  "Successfully loaded %1 from %2%3!",
+                  i18np("1 waypoint", "%1 waypoints", points),
+                  (segments > 1 && segments != tracks)
+                      ? i18np("1 segment and ", "%1 segments and ", segments) : QString(),
+                  tracks > 1
+                      ? i18np("1 track", "%1 tracks", tracks) : QString()));
         break;
-    case GpxEngine::LoadResult::OpenFailed:
+
+    case GpxEngine::OpenFailed:
         QMessageBox::warning(this, i18n("Add GPX file"),
-            i18n("<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
+            i18n("<p><b>Reading geodata failed</b></p>"
+                 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
                  "file.</p>", path));
         break;
-    case GpxEngine::LoadResult::XmlError:
+
+    case GpxEngine::NoGpxElement:
         QMessageBox::warning(this, i18n("Add GPX file"),
-            i18n("<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
+            i18n("<p><b>Reading geodata failed</b></p>"
+                 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</kbd> "
+                 "root element. Apparently, this is no GPX file!</p>",
+                 path));
+        break;
+
+    case GpxEngine::NoGeoData:
+        QMessageBox::warning(this, i18n("Add GPX file"),
+            i18n("<p><b>Reading geodata failed</b></p>"
+                 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>",
+                 path));
+        break;
+
+    case GpxEngine::XmlError:
+        QMessageBox::warning(this, i18n("Add GPX file"),
+            i18n("<p><b>Reading geodata failed</b></p>"
+                 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
                  "all, or only a part of it.</p>",
                  path));
         break;

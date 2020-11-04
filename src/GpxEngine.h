@@ -39,16 +39,19 @@ class GpxEngine : public QObject
 
 public:
     enum LoadResult {
-        Okay,
         OpenFailed,
-        XmlError
+        XmlError,
+        NoGpxElement,
+        NoGeoData,
+        Okay
     };
 
     struct LoadInfo
     {
         LoadResult result;
-        int points = 0;
+        int tracks = 0;
         int segments = 0;
+        int points = 0;
     };
 
     explicit GpxEngine(QObject *parent, Settings *settings);

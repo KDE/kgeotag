@@ -29,6 +29,15 @@
 #include <QFile>
 #include <QXmlStreamReader>
 
+static const auto s_gpx    = QStringLiteral("gpx");
+static const auto s_trk    = QStringLiteral("trk");
+static const auto s_trkpt  = QStringLiteral("trkpt");
+static const auto s_lon    = QStringLiteral("lon");
+static const auto s_lat    = QStringLiteral("lat");
+static const auto s_ele    = QStringLiteral("ele");
+static const auto s_time   = QStringLiteral("time");
+static const auto s_trkseg = QStringLiteral("trkseg");
+
 GpxEngine::GpxEngine(QObject *parent, Settings *settings)
     : QObject(parent), m_settings(settings)
 {
@@ -52,9 +61,12 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     QVector<QDateTime> segmentTimes;
     QVector<Coordinates> segmentCoordinates;
 
+    bool gpxFound = false;
     bool trackStartFound = false;
-    int points = 0;
+
+    int tracks = 0;
     int segments = 0;
+    int points = 0;
 
     while (! xml.atEnd()) {
         if (xml.hasError()) {
@@ -64,33 +76,50 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
         const QXmlStreamReader::TokenType token = xml.readNext();
         const QStringRef name = xml.name();
 
-        if (! trackStartFound && name != QStringLiteral("trk")) {
-            continue;
-        } else {
-            trackStartFound = true;
-        }
-
         if (token == QXmlStreamReader::StartElement) {
-            if (name == QStringLiteral("trkpt")) {
+            if (! gpxFound) {
+                if (name != s_gpx) {
+                    continue;
+                } else {
+                    gpxFound = true;
+                }
+            }
+
+            if (! trackStartFound) {
+                if (name != s_trk) {
+                    continue;
+                } else {
+                    trackStartFound = true;
+                    tracks++;
+                }
+            }
+
+            if (name == s_trkseg) {
+                segments++;
+
+            } else if (name == s_trkpt) {
                 QXmlStreamAttributes attributes = xml.attributes();
-                lon = attributes.value(QStringLiteral("lon")).toDouble();
-                lat = attributes.value(QStringLiteral("lat")).toDouble();
-            } else if (name == QStringLiteral("ele")) {
+                lon = attributes.value(s_lon).toDouble();
+                lat = attributes.value(s_lat).toDouble();
+                points++;
+
+            } else if (name == s_ele) {
                 xml.readNext();
                 alt = xml.text().toDouble();
-            } else if (name == QStringLiteral("time")) {
+
+            } else if (name == s_time) {
                 xml.readNext();
                 time = QDateTime::fromString(xml.text().toString(), Qt::ISODate);
             }
 
         } else if (token == QXmlStreamReader::EndElement) {
-            if (name == QStringLiteral("trkpt")) {
+            if (name == s_trkpt) {
                 segmentTimes.append(time);
                 segmentCoordinates.append(Coordinates(lon, lat, alt, true));
                 alt = 0.0;
                 time = QDateTime();
-                points++;
-            } else if (name == QStringLiteral("trkseg") && ! segmentCoordinates.isEmpty()) {
+
+            } else if (name == s_trkseg && ! segmentCoordinates.isEmpty()) {
                 emit segmentLoaded(segmentCoordinates);
                 for (int i = 0; i < segmentTimes.count(); i++) {
                     const auto &time = segmentTimes.at(i);
@@ -99,16 +128,21 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
                 }
                 segmentTimes.clear();
                 segmentCoordinates.clear();
-                segments++;
-            } else if (name == QStringLiteral("trk")) {
+
+            } else if (name == s_trk) {
                 trackStartFound = false;
             }
         }
     }
 
-    std::sort(m_allTimes.begin(), m_allTimes.end());
-
-    return { LoadResult::Okay, points, segments };
+    if (! gpxFound) {
+        return { LoadResult::NoGpxElement, tracks, segments, points };
+    } else if (points == 0) {
+        return { LoadResult::NoGeoData, tracks, segments, points };
+    } else {
+        std::sort(m_allTimes.begin(), m_allTimes.end());
+        return { LoadResult::Okay, tracks, segments, points };
+    }
 }
 
 Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation) const
