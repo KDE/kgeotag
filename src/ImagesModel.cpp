@@ -59,7 +59,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
                                           && data.coordinates != KGeoTag::NoCoordinates)
             ? i18nc("Marker for an associated file", "\u2713\u2009")
             : QString();
-        const QString changedmarker = data.changed
+        const QString changedmarker = data.coordinates != data.originalCoordinates
             ? i18nc("Marker for a changed file", "\u2009*")
             : QString();
         return i18nc("Pattern for a display filename with a \"changed\" and a \"associated\" "
@@ -113,7 +113,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         return matchType;
 
     } else if (role == DataRole::Changed) {
-        return data.changed;
+        return data.originalCoordinates != data.coordinates;
 
     }
 
@@ -197,12 +197,6 @@ void ImagesModel::emitDataChanged(const QString &path)
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
-void ImagesModel::setChanged(const QString &path, bool changed)
-{
-    m_imageData[path].changed = changed;
-    emitDataChanged(path);
-}
-
 void ImagesModel::setMatchType(const QString &path, int matchType)
 {
     m_imageData[path].matchType = matchType;
@@ -213,7 +207,8 @@ QVector<QString> ImagesModel::changedImages() const
 {
     QVector<QString> changed;
     for (const auto &path : std::as_const(m_paths)) {
-        if (m_imageData.value(path).changed) {
+        const auto &data = m_imageData[path];
+        if (data.coordinates != data.originalCoordinates) {
             changed.append(path);
         }
     }
@@ -255,11 +250,16 @@ void ImagesModel::resetChanges(const QString &path)
     auto &data = m_imageData[path];
     data.coordinates = data.originalCoordinates;
     data.matchType = KGeoTag::None;
-    data.changed = false;
     emitDataChanged(path);
 }
 
 QModelIndex ImagesModel::indexFor(const QString &path) const
 {
     return index(m_paths.indexOf(path), 0, QModelIndex());
+}
+
+void ImagesModel::setSaved(const QString &path)
+{
+    auto &data = m_imageData[path];
+    data.originalCoordinates = data.coordinates;
 }

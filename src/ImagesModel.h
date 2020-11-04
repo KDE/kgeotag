@@ -55,17 +55,17 @@ public:
     virtual int rowCount(const QModelIndex & = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    bool contains(const QString &path) const;
     bool addImage(const QString &path);
-    void setChanged(const QString &path, bool changed);
     void setMatchType(const QString &path, int matchType);
     QVector<QString> changedImages() const;
     QImage thumbnail(const QString &path) const;
     QDateTime date(const QString &path) const;
-    bool contains(const QString &path) const;
     KGeoTag::Coordinates coordinates(const QString &path) const;
     void setCoordinates(const QString &path, double lon, double lat, double alt);
     void setCoordinates(const QString &path, const KGeoTag::Coordinates &coordinates);
     void resetChanges(const QString &path);
+    void setSaved(const QString &path);
 
     QModelIndex indexFor(const QString &path) const;
 
@@ -80,7 +80,6 @@ private: // Variables
         KGeoTag::Coordinates coordinates = KGeoTag::NoCoordinates;
         QImage thumbnail;
         QImage preview;
-        bool changed = false;
         int matchType = KGeoTag::MatchType::None;
     };
 

@@ -428,7 +428,6 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
     for (const auto &path : paths) {
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::Set);
-        m_imagesModel->setChanged(path, true);
     }
 
     m_previewWidget->setImage(m_imagesModel->indexFor(paths.last()));
@@ -516,7 +515,6 @@ void MainWindow::assignTo(const QVector<QString> &paths, const KGeoTag::Coordina
 void MainWindow::assignImage(const QString &path, const KGeoTag::Coordinates &coordinates)
 {
     m_imagesModel->setCoordinates(path, coordinates);
-    m_imagesModel->setChanged(path, true);
 }
 
 void MainWindow::searchExactMatches(ImagesListView *list)
@@ -813,7 +811,7 @@ void MainWindow::saveChanges()
             break;
         }
 
-        m_imagesModel->setChanged(path, false);
+        m_imagesModel->setSaved(path);
 
         savedImages++;
     }
@@ -849,7 +847,6 @@ void MainWindow::removeCoordinates(ImagesListView *list)
     const auto paths = list->selectedPaths();
     for (const QString &path : paths) {
         m_imagesModel->setCoordinates(path, KGeoTag::NoCoordinates);
-        m_imagesModel->setChanged(path, true);
         m_imagesModel->setMatchType(path, KGeoTag::MatchType::None);
     }
 
