@@ -89,11 +89,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
 
-    auto *addGpxAction = fileMenu->addAction(i18n("Add GPX track"));
-    connect(addGpxAction, &QAction::triggered, this, &MainWindow::addGpx);
-
     auto *addImagesAction = fileMenu->addAction(i18n("Add images"));
     connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
+
+    auto *addGpxAction = fileMenu->addAction(i18n("Add GPX tracks"));
+    connect(addGpxAction, &QAction::triggered, this, &MainWindow::addGpx);
 
     fileMenu->addSeparator();
 
@@ -286,64 +286,99 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::addGpx()
 {
-    const auto path = QFileDialog::getOpenFileName(this,
-                          i18n("Please select the GPX track to add"),
-                          m_settings->lastOpenPath(),
-                          i18n("GPX tracks (*.gpx)"));
-    if (path.isEmpty()) {
+    const auto files = QFileDialog::getOpenFileNames(this,
+                           i18n("Please select the GPX track(s) to add"),
+                           m_settings->lastOpenPath(),
+                           i18n("GPX tracks (*.gpx);; All files (*)"));
+    if (files.isEmpty()) {
         return;
     }
 
-    const QFileInfo info(path);
-    m_settings->saveLastOpenPath(info.dir().absolutePath());
+    const int filesCount = files.count();
+    int processed = 0;
+    int failed = 0;
+    int allFiles = 0;
+    int allTracks = 0;
+    int allSegments = 0;
+    int allPoints = 0;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
-    const auto [ result, tracks, segments, points ] = m_gpxEngine->load(path);
+
+    QString errorString;
+
+    for (const auto path : files) {
+        processed++;
+
+        const QFileInfo info(path);
+        m_settings->saveLastOpenPath(info.dir().absolutePath());
+
+        const auto [ result, tracks, segments, points ] = m_gpxEngine->load(path);
+
+        switch (result) {
+        case GpxEngine::Okay:
+            allFiles++;
+            allTracks += tracks;
+            allSegments += segments;
+            allPoints += points;
+            errorString.clear();
+            break;
+
+        case GpxEngine::OpenFailed:
+            errorString = i18n("Opening <kbd>%1</kbd> failed. Please be sure to have read access "
+                               "to this file.</p>", path);
+            break;
+
+        case GpxEngine::NoGpxElement:
+            errorString = i18n("Could not read geodata from <kbd>%1</kbd>: Could not find the "
+                               "<kbd>gpx</kbd> root element. Apparently, this is not a GPX file!",
+                               path);
+            break;
+
+        case GpxEngine::NoGeoData:
+            errorString = i18n("<kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!",
+                               path);
+            break;
+
+        case GpxEngine::XmlError:
+            errorString = i18n("XML parsing failed for <kbd>%1</kbd>. Either, no data could be "
+                               "loaded at all, or only a part of it.", path);
+            break;
+        }
+
+        if (! errorString.isEmpty()) {
+            failed++;
+            QApplication::restoreOverrideCursor();
+
+            QString continueString;
+            if (processed < filesCount) {
+                continueString = i18n("<p>The next GPX file will be loaded now.</p>");
+            }
+
+            QMessageBox::warning(this, i18n("Load GPX data"),
+                i18n("<p><b>Loading GPX file failed%1</b></p><p>%2</p>%3",
+                     filesCount == 1 ? QString() : i18n(" (%1/%2)", processed, filesCount),
+                     errorString, continueString));
+
+            QApplication::setOverrideCursor(Qt::WaitCursor);
+        }
+    }
+
     m_mapWidget->zoomToGpxBox();
     QApplication::restoreOverrideCursor();
 
-    switch (result) {
-    case GpxEngine::Okay:
-        QMessageBox::information(this, i18n("Add GPX file"),
-            i18nc("E. g. \"Successfully loaded 18,000 waypoints from 8 segments in 2 tracks\"",
-                  "Successfully loaded %1 from %2%3!",
-                  i18np("1 waypoint", "%1 waypoints", points),
-                  (segments > 1 && segments != tracks)
-                      ? i18np("1 segment and ", "%1 segments and ", segments) : QString(),
-                  tracks > 1
-                      ? i18np("1 track", "%1 tracks", tracks) : QString()));
-        break;
+    QMessageBox::information(this, i18n("Load GPX data"),
+        i18n("<p>%1</p><p>%2</p>",
 
-    case GpxEngine::OpenFailed:
-        QMessageBox::warning(this, i18n("Add GPX file"),
-            i18n("<p><b>Reading geodata failed</b></p>"
-                 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
-                 "file.</p>", path));
-        break;
+             i18np("Processed one file%2", "Processed %1 files%2", processed,
+                   failed == 0
+                       ? QString()
+                       : i18np(", one file failed", ", %1 files failed", failed)),
 
-    case GpxEngine::NoGpxElement:
-        QMessageBox::warning(this, i18n("Add GPX file"),
-            i18n("<p><b>Reading geodata failed</b></p>"
-                 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</kbd> "
-                 "root element. Apparently, this is no GPX file!</p>",
-                 path));
-        break;
-
-    case GpxEngine::NoGeoData:
-        QMessageBox::warning(this, i18n("Add GPX file"),
-            i18n("<p><b>Reading geodata failed</b></p>"
-                 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>",
-                 path));
-        break;
-
-    case GpxEngine::XmlError:
-        QMessageBox::warning(this, i18n("Add GPX file"),
-            i18n("<p><b>Reading geodata failed</b></p>"
-                 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
-                 "all, or only a part of it.</p>",
-                 path));
-        break;
-    }
+             i18np("Loaded one waypoint from %2", "Loaded %1 waypoints from %2", allPoints,
+                   i18np("one track%2", "%1 tracks%2", allTracks,
+                   allSegments != allTracks
+                       ? i18np(" and one segment", " and %1 segments", allSegments)
+                       : QString()))));
 }
 
 void MainWindow::addImages()
