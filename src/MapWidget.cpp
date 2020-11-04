@@ -154,7 +154,7 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
 
     for (int row = 0; row < m_imagesModel->rowCount(); row++) {
         const auto index = m_imagesModel->index(row, 0);
-        const auto coordinates = index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
+        const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>();
         if (! coordinates.isSet) {
             continue;
         }
@@ -166,7 +166,7 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
         }
 
         painter->drawPixmap(marbleCoordinates,
-            QPixmap::fromImage(index.data(ImagesModel::Thumbnail).value<QImage>()));
+            QPixmap::fromImage(index.data(KGeoTag::ThumbnailRole).value<QImage>()));
     }
 
     painter->setPen(m_trackPen);
@@ -296,7 +296,7 @@ void MapWidget::dropEvent(QDropEvent *event)
 
 void MapWidget::centerImage(const QModelIndex &index)
 {
-    centerCoordinates(index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>());
+    centerCoordinates(index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>());
 }
 
 void MapWidget::centerCoordinates(const KGeoTag::Coordinates &coordinates)

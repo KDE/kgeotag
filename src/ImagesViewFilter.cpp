@@ -19,7 +19,6 @@
 
 // Local includes
 #include "ImagesViewFilter.h"
-#include "ImagesModel.h"
 
 // Qt includes
 #include <QDebug>
@@ -37,7 +36,7 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
     }
 
     const auto coordinates = sourceModel()->index(sourceRow, 0).data(
-        ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
+                                 KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>();
     if (m_type == KGeoTag::AssignedImages) {
         return coordinates != KGeoTag::NoCoordinates;
     } else {

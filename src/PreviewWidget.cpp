@@ -21,7 +21,6 @@
 #include "PreviewWidget.h"
 #include "SharedObjects.h"
 #include "CoordinatesFormatter.h"
-#include "ImagesModel.h"
 #include "ImagePreview.h"
 #include "KGeoTag.h"
 
@@ -34,6 +33,7 @@
 #include <QLabel>
 #include <QLocale>
 #include <QGridLayout>
+#include <QDateTime>
 
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
@@ -83,7 +83,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
 void PreviewWidget::setImage(const QModelIndex &index)
 {
     if (index.isValid()) {
-        m_currentImage = index.data(ImagesModel::Path).toString();
+        m_currentImage = index.data(KGeoTag::PathRole).toString();
     }
 
     if (m_currentImage.isEmpty()) {
@@ -96,16 +96,16 @@ void PreviewWidget::setImage(const QModelIndex &index)
 
     m_path->setText(m_currentImage);
     QLocale locale;
-    m_date->setText(index.data(ImagesModel::Date).value<QDateTime>().toString(
+    m_date->setText(index.data(KGeoTag::DateRole).value<QDateTime>().toString(
                         locale.dateTimeFormat()));
 
-    const auto coordinates = index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>();
+    const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>();
     if (coordinates.isSet) {
         m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
             m_formatter->lon(coordinates),
             m_formatter->lat(coordinates),
             m_formatter->alt(coordinates),
-            m_matchString.value(index.data(ImagesModel::MatchType).value<KGeoTag::MatchType>())));
+            m_matchString.value(index.data(KGeoTag::MatchTypeRole).value<KGeoTag::MatchType>())));
     } else {
         m_coordinates->setText(i18n("<i>No coordinates set</i>"));
     }

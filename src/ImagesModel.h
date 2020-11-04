@@ -40,16 +40,6 @@ class ImagesModel : public QAbstractListModel
     Q_OBJECT
 
 public:
-    enum DataRole {
-        Path = Qt::UserRole,
-        Date,
-        Coordinates,
-        Thumbnail,
-        Preview,
-        MatchType,
-        Changed
-    };
-
     explicit ImagesModel(QObject *parent, SharedObjects *sharedObjects);
 
     virtual int rowCount(const QModelIndex & = QModelIndex()) const override;

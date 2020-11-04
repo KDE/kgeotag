@@ -163,7 +163,7 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
     const auto paths = selectedPaths();
 
     if (paths.count() == 1) {
-        const auto image = currentIndex().data(ImagesModel::Thumbnail);
+        const auto image = currentIndex().data(KGeoTag::ThumbnailRole);
         drag->setPixmap(QPixmap::fromImage(image.value<QImage>()));
     }
 
@@ -183,7 +183,7 @@ QVector<QString> ImagesListView::selectedPaths() const
     QVector<QString> paths;
     const auto selected = selectedIndexes();
     for (const auto &index : selected) {
-        paths.append(index.data(ImagesModel::Path).toString());
+        paths.append(index.data(KGeoTag::PathRole).toString());
     }
     return paths;
 }
@@ -196,7 +196,7 @@ void ImagesListView::processImageClicked(const QModelIndex &index) const
 
 void ImagesListView::checkCenterImage(const QModelIndex &index) const
 {
-    if (index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>()
+    if (index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>()
         != KGeoTag::NoCoordinates) {
 
         emit centerImage(index);
@@ -234,13 +234,13 @@ void ImagesListView::showContextMenu(const QPoint &point)
     int changed = 0;
 
     for (const auto &index : selected) {
-        if (index.data(ImagesModel::Coordinates).value<KGeoTag::Coordinates>()
+        if (index.data(KGeoTag::CoordinatesRole).value<KGeoTag::Coordinates>()
             != KGeoTag::NoCoordinates) {
 
             hasCoordinates++;
         }
 
-        if (index.data(ImagesModel::Changed).toBool()) {
+        if (index.data(KGeoTag::ChangedRole).toBool()) {
             changed++;
         }
     }

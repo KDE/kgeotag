@@ -83,6 +83,16 @@ enum ImagesListType {
     AllImages
 };
 
+enum CustomDataRoles {
+    PathRole = Qt::UserRole,
+    DateRole,
+    CoordinatesRole,
+    ThumbnailRole,
+    PreviewRole,
+    MatchTypeRole,
+    ChangedRole
+};
+
 }
 
 Q_DECLARE_METATYPE(KGeoTag::Coordinates)

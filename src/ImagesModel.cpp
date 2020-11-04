@@ -90,29 +90,29 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         }
         return font;
 
-    } else if (role == DataRole::Path) {
+    } else if (role == KGeoTag::PathRole) {
         return path;
 
-    } else if (role == DataRole::Date) {
+    } else if (role == KGeoTag::DateRole) {
         return data.date;
 
-    } else if (role == DataRole::Coordinates) {
+    } else if (role == KGeoTag::CoordinatesRole) {
         QVariant coordinates;
         coordinates.setValue(data.coordinates);
         return coordinates;
 
-    } else if (role == DataRole::Thumbnail) {
+    } else if (role == KGeoTag::ThumbnailRole) {
         return data.thumbnail;
 
-    } else if (role == DataRole::Preview) {
+    } else if (role == KGeoTag::PreviewRole) {
         return data.preview;
 
-    } else if (role == DataRole::MatchType) {
+    } else if (role == KGeoTag::MatchTypeRole) {
         QVariant matchType;
         matchType.setValue(data.matchType);
         return matchType;
 
-    } else if (role == DataRole::Changed) {
+    } else if (role == KGeoTag::ChangedRole) {
         return data.originalCoordinates != data.coordinates;
 
     }

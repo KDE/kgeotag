@@ -20,10 +20,10 @@
 // Local includes
 #include "ImagePreview.h"
 #include "SharedObjects.h"
-#include "ImagesModel.h"
 
 // Qt includes
 #include <QTimer>
+#include <QModelIndex>
 
 ImagePreview::ImagePreview(QWidget *parent) : QLabel(parent)
 {
@@ -38,7 +38,7 @@ ImagePreview::ImagePreview(QWidget *parent) : QLabel(parent)
 
 void ImagePreview::setImage(const QModelIndex &index)
 {
-    m_currentImage = index.isValid() ? index.data(ImagesModel::Preview).value<QImage>() : QImage();
+    m_currentImage = index.isValid() ? index.data(KGeoTag::PreviewRole).value<QImage>() : QImage();
     setScaledPreview();
 }
 
