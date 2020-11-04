@@ -129,7 +129,7 @@ void ImagesListView::updateBookmarks()
         connect(entry, &QAction::triggered,
                 this, std::bind([this](QAction *action)
                 {
-                    assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
+                    emit assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
                 },
                 entry));
     }
