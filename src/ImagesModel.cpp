@@ -269,17 +269,42 @@ Qt::ItemFlags ImagesModel::flags(const QModelIndex &index) const
 
 bool ImagesModel::canDropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent) const
 {
-    Q_UNUSED(action);
     Q_UNUSED(row);
     Q_UNUSED(column);
     Q_UNUSED(parent);
 
-    if (data->hasUrls())
-        return true;
+    if (action != Qt::CopyAction)
+        return false;
+
+    if (!data->hasUrls())
+        return false;
 
     // TODO: check type of URLs
 
-    return false;
+    return true;
+}
+
+bool ImagesModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int row, int column, const QModelIndex &parent)
+{
+    // we don't care where the drop occurs:
+    Q_UNUSED(row);
+    Q_UNUSED(column);
+    Q_UNUSED(parent);
+
+    if (action != Qt::CopyAction)
+        return false;
+
+    if (data->hasUrls()) {
+        qDebug() << "Accepting drop data:";
+        for (const auto &url : data->urls()) {
+            qDebug() << url;
+            if (url.isLocalFile())
+                addImage(url.toLocalFile());
+            else
+                qWarning() << url << "is not a local file! Ignoring...";
+        }
+    }
+    return true;
 }
 
 void ImagesModel::setSaved(const QString &path)
