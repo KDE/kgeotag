@@ -148,8 +148,19 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     const QFileInfo info(path);
     data.fileName = info.fileName();
 
-    // Read the date (falling back to the file's date if nothing is set)
+    // Read the date
     data.date = exif.getImageDateTime();
+
+    // If no date could be read from the metadata, fall back to file properties
+    if (! data.date.isValid()) {
+        // First try to get the file's initial creation date
+        data.date = info.birthTime();
+
+        // If that fails, fall back to the file's mtime
+        if (! data.date.isValid()) {
+            data.date = info.lastModified();
+        }
+    }
 
     // Try to read gps information
     double altitude;
