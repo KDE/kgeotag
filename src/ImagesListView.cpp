@@ -63,6 +63,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     setIconSize(sharedObjects->settings()->thumbnailSize());
 
     connect(this, &QAbstractItemView::clicked, this, &ImagesListView::centerImage);
+    connect(this, &QAbstractItemView::clicked, this, &ImagesListView::imageSelected);
 
     // Context menu
 
