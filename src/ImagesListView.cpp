@@ -45,9 +45,17 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     : QListView(parent),
       m_bookmarks(sharedObjects->bookmarks())
 {
+    viewport()->setAcceptDrops(true);
+    setDropIndicatorShown(true);
+    setDragDropMode(QAbstractItemView::DropOnly);
+
     auto *filterModel = new ImagesViewFilter(this, type);
     filterModel->setSourceModel(sharedObjects->imagesModel());
     setModel(filterModel);
+    connect(filterModel, &ImagesViewFilter::requestAddingImages,
+            this, &ImagesListView::requestAddingImages);
+    connect(filterModel, &ImagesViewFilter::requestRemoveCoordinates,
+            this, QOverload<const QVector<QString> &>::of(&ImagesListView::removeCoordinates));
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -94,7 +102,8 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
     connect(m_removeCoordinates, &QAction::triggered,
-            this, std::bind(&ImagesListView::removeCoordinates, this, this));
+            this, std::bind(QOverload<ImagesListView *>::of(&ImagesListView::removeCoordinates),
+                            this, this));
 
     m_contextMenu->addSeparator();
 

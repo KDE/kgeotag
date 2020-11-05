@@ -20,14 +20,23 @@
 // Local includes
 #include "ImagesViewFilter.h"
 #include "Coordinates.h"
+#include "ImagesModel.h"
 
 // Qt includes
 #include <QDebug>
+#include <QMimeData>
+#include <QUrl>
 
 ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type)
     : QSortFilterProxyModel(parent),
       m_type(type)
 {
+}
+
+void ImagesViewFilter::setSourceModel(QAbstractItemModel *sourceModel)
+{
+    QSortFilterProxyModel::setSourceModel(sourceModel);
+    m_imagesModel = qobject_cast<ImagesModel *>(sourceModel);
 }
 
 bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
@@ -41,4 +50,62 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
 
     return    (m_type == KGeoTag::AssignedImages   &&   coordinatesSet)
            || (m_type == KGeoTag::UnAssignedImages && ! coordinatesSet);
+}
+
+Qt::DropActions ImagesViewFilter::supportedDropActions() const
+{
+    return Qt::CopyAction | Qt::MoveAction;
+}
+
+Qt::ItemFlags ImagesViewFilter::flags(const QModelIndex &index) const
+{
+    auto defaultFlags = QSortFilterProxyModel::flags(index);
+
+    if (index.isValid()) {
+        return defaultFlags;
+    } else {
+        return Qt::ItemIsDropEnabled | defaultFlags;
+    }
+}
+
+bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                       const QModelIndex &) const
+{
+    return (action & (Qt::CopyAction | Qt::MoveAction)) && data->hasUrls();
+}
+
+bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                    const QModelIndex &)
+{
+    if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {
+        return false;
+    }
+
+    QVector<QString> paths;
+    QVector<QString> removeCoordinates;
+
+    for (const auto &url : data->urls()) {
+        if (! url.isLocalFile()) {
+            continue;
+        }
+
+        const auto path = url.toLocalFile();
+        if (! m_imagesModel->contains(path)) {
+            paths.append(path);
+        } else {
+            if (m_type == KGeoTag::UnAssignedImages && m_imagesModel->coordinates(path).isSet()) {
+                removeCoordinates.append(path);
+            }
+        }
+    }
+
+    if (! removeCoordinates.isEmpty()) {
+        emit requestRemoveCoordinates(removeCoordinates);
+    }
+
+    if (! paths.isEmpty()) {
+        emit requestAddingImages(paths);
+    }
+
+    return true;
 }

@@ -57,9 +57,12 @@ signals:
     void editCoordinates(ImagesListView *list) const;
     void lookupElevation(ImagesListView *list) const;
     void removeCoordinates(ImagesListView *list) const;
+    void removeCoordinates(const QVector<QString> &paths) const;
     void discardChanges(ImagesListView *list) const;
 
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates) const;
+
+    void requestAddingImages(const QVector<QString> &paths) const;
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
