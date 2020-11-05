@@ -256,11 +256,15 @@ void MapWidget::addSegment(const QVector<Coordinates> &segment)
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 {
     const auto mimeData = event->mimeData();
+    const auto source = mimeData->data(KGeoTag::SourceImagesListMimeType);
 
-    if (! mimeData->hasFormat(QStringLiteral("text/uri-list"))) {
+    if (source.isEmpty()) {
+        // Not dragged from an image list
         return;
     }
 
+    // The drag most probably comes from a KGeoTag images list.
+    // Nevertheless, we check if all URLs are present in the images model ;-)
     const auto urls = mimeData->urls();
     for (const auto &url : urls) {
         if (! m_imagesModel->contains(url.toLocalFile())) {
