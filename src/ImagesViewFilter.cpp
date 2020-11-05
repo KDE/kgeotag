@@ -71,14 +71,18 @@ Qt::ItemFlags ImagesViewFilter::flags(const QModelIndex &index) const
 bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                                        const QModelIndex &) const
 {
-    if (   ! (action & (Qt::CopyAction | Qt::MoveAction))
-        || ! data->hasUrls()) {
-
+    if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {
         return false;
     }
 
+    // Check if the drag's origin is an image list
     const auto source = data->data(KGeoTag::SourceImagesListMimeType);
     if (! source.isEmpty()) {
+        // Don't allow drops on the "assigned" images list
+        if (m_type == KGeoTag::AssignedImages) {
+            return false;
+        }
+        // Don't allow drops on the origin list
         if (source == KGeoTag::SourceImagesList.value(m_type)) {
             return false;
         }
