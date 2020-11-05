@@ -20,6 +20,7 @@
 // Local includes
 #include "ImagesViewFilter.h"
 #include "Coordinates.h"
+#include "ImagesModel.h"
 
 // Qt includes
 #include <QDebug>
@@ -30,6 +31,12 @@ ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type
     : QSortFilterProxyModel(parent),
       m_type(type)
 {
+}
+
+void ImagesViewFilter::setSourceModel(QAbstractItemModel *sourceModel)
+{
+    QSortFilterProxyModel::setSourceModel(sourceModel);
+    m_imagesModel = qobject_cast<ImagesModel *>(sourceModel);
 }
 
 bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
@@ -70,17 +77,30 @@ bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction act
 bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                                     const QModelIndex &)
 {
-    if (! (action & (Qt::CopyAction | Qt::MoveAction))) {
+    if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {
         return false;
     }
 
     QVector<QString> paths;
-    if (data->hasUrls()) {
-        for (const auto &url : data->urls()) {
-            if (url.isLocalFile()) {
-                paths.append(url.toLocalFile());
+    QVector<QString> removeCoordinates;
+
+    for (const auto &url : data->urls()) {
+        if (! url.isLocalFile()) {
+            continue;
+        }
+
+        const auto path = url.toLocalFile();
+        if (! m_imagesModel->contains(path)) {
+            paths.append(path);
+        } else {
+            if (m_type == KGeoTag::UnAssignedImages && m_imagesModel->coordinates(path).isSet()) {
+                removeCoordinates.append(path);
             }
         }
+    }
+
+    if (! removeCoordinates.isEmpty()) {
+        emit requestRemoveCoordinates(removeCoordinates);
     }
 
     if (! paths.isEmpty()) {

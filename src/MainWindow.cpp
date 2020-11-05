@@ -58,7 +58,6 @@
 #include <QAbstractButton>
 
 // C++ includes
-#include <algorithm>
 #include <functional>
 
 static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeModeMap {
@@ -208,7 +207,10 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::assignToMapCenter, this, &MainWindow::assignToMapCenter);
     connect(list, &ImagesListView::assignManually, this, &MainWindow::assignManually);
     connect(list, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
-    connect(list, &ImagesListView::removeCoordinates, this, &MainWindow::removeCoordinates);
+    connect(list, QOverload<ImagesListView *>::of(&ImagesListView::removeCoordinates),
+            this, QOverload<ImagesListView *>::of(&MainWindow::removeCoordinates));
+    connect(list, QOverload<const QVector<QString> &>::of(&ImagesListView::removeCoordinates),
+            this, QOverload<const QVector<QString> &>::of(&MainWindow::removeCoordinates));
     connect(list, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
     connect(list, &ImagesListView::lookupElevation,
             this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
@@ -899,7 +901,11 @@ void MainWindow::showSettings()
 
 void MainWindow::removeCoordinates(ImagesListView *list)
 {
-    const auto paths = list->selectedPaths();
+    removeCoordinates(list->selectedPaths());
+}
+
+void MainWindow::removeCoordinates(const QVector<QString> &paths)
+{
     for (const QString &path : paths) {
         m_imagesModel->setCoordinates(path, Coordinates(), KGeoTag::NotMatched);
     }

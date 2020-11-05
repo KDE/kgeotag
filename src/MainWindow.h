@@ -73,6 +73,7 @@ private slots:
     void assignManually(ImagesListView *list);
     void editCoordinates(ImagesListView *list);
     void removeCoordinates(ImagesListView *list);
+    void removeCoordinates(const QVector<QString> &paths);
     void discardChanges(ImagesListView *list);
     void lookupElevation(ImagesListView *list);
 
