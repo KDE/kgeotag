@@ -7,9 +7,11 @@
   <name>KGeoTag</name>
   <name xml:lang="ca">KGeoTag</name>
   <name xml:lang="ca-valencia">KGeoTag</name>
-  <name xml:lang="de">KGeoTag</name>
   <name xml:lang="es">KGeoTag</name>
+  <name xml:lang="fr">KGeoTag</name>
+  <name xml:lang="nl">KGeoTag</name>
   <name xml:lang="nn">KGeoTag</name>
+  <name xml:lang="pt">KGeoTag</name>
   <name xml:lang="sl">KGeoTag</name>
   <name xml:lang="sv">Kgeotag</name>
   <name xml:lang="uk">KGeoTag</name>
@@ -17,24 +19,17 @@
   <summary>Photo geotagging program</summary>
   <summary xml:lang="ca">Programa de geoetiquetatge de fotos</summary>
   <summary xml:lang="ca-valencia">Programa de geoetiquetatge de fotos</summary>
-  <summary xml:lang="de">Programm zum Geotaggen von Fotos</summary>
   <summary xml:lang="es">Programa para geoetiquetado de fotos</summary>
+  <summary xml:lang="fr">Programme pour photos géolocalisées</summary>
+  <summary xml:lang="nl">Fotoprogramma voor geven van geotags</summary>
   <summary xml:lang="nn">Geografisk stadfesting av foto</summary>
+  <summary xml:lang="pt">Programa de georeferenciação de fotografias</summary>
   <summary xml:lang="sl">Program za geokodiranje fotografij</summary>
   <summary xml:lang="sv">Program för geografisk lokalisering av foton</summary>
   <summary xml:lang="uk">Програма для роботи з геомітками фотографій</summary>
   <summary xml:lang="x-test">xxPhoto geotagging programxx</summary>
   <description>
     <p>KGeoTag is a standalone geotagging program for the KDE desktop. Images can be associated with geographic coordinates by different means: On the one hand, a matching with GPX encoded geodata can be done, on the other hand, the coordinates can be set manually, either via drag and drop onto a map, via bookmarks or by manually supplying them. The coordinates can be stored in the images' Exif header and/or in XMP sidecar files.</p>
-    <p xml:lang="ca">El KGeoTag és un programa autònom de geoetiquetatge de fotos per a l'ecosistema KDE, que té en compte la filosofia Unix («fer una cosa i fer-la bé»). Mostra un mapa a on es poden arrossegar i deixar anar imatges i també proporciona concordança automàtica (exacta i també interpolada) amb les geodades codificades GPX. Les coordenades es poden emmagatzemar a la capçalera Exif de les imatges.</p>
-    <p xml:lang="ca-valencia">El KGeoTag és un programa autònom de geoetiquetatge de fotos per a l'ecosistema KDE, que té en compte la filosofia Unix («fer una cosa i fer-la bé»). Mostra un mapa a on es poden arrossegar i deixar anar imatges i també proporciona concordança automàtica (exacta i també interpolada) amb les geodades codificades GPX. Les coordenades es poden emmagatzemar a la capçalera Exif de les imatges.</p>
-    <p xml:lang="de">KGeoTag ist ein eigenständiges Geotagging-Program für den KDE-Desktop. Bilder können damit auf verschiedene Art mit geografischen Koordinaten verknüpft werden: Es kann zum einen ein automatischer Abgleich mit GPX-kodierten Geodaten vorgenommen werden, zum anderen können die Koordinaten auch manuell mittels Drag-and-Drop auf eine Karte, über Lesezeichen oder mittels manueller Eingabe gesetzt werden. Die Koordinaten können im Exif-Header der Bilder und/oder in XMP-Nebendateien gespeichert werden.</p>
-    <p xml:lang="es">KGeoTag es un programa autónomo de geoetiquetado de fotos para el ecosistema KDE, con la filosofía Unix en mente («haz solo una cosa y hazla bien»). Muestra un mapa en el que se pueden arrastrar y soltar imágenes, además de proporcionar coincidencia automática (exacta y también interpolada) con geodatos codificados en GPX. Las coordenadas se pueden guardar en la cabecera Exif de las imágenes.</p>
-    <p xml:lang="nn">KGeoTag er eit program for geografisk stadfesting av foto, bygd på Unix-filosofien («gjer éin ting – og gjer denne skikkeleg»). Det viser eit kart som du kan dra foto til, og det kan òg automatisk stadfesta foto geografisk ved hjelp av (nøyaktig eller interpolerte) GPX-geodata. Koordinatane kan så lagrast i Exif-metadata i biletfilene.</p>
-    <p xml:lang="sl">KGeoTag je samostojni program za geokodiranje fotografij za ekosistem KDE z miselno filozofijo Unixa ("naredi eno stvar in to dobro"). Prikazuje zemljevid, kamor lahko povlečete in spustite slike, poleg tega pa nudi samodejno ujemanje (natančno in tudi interpolirano) s kodiranimi geopodatki v GPX. Koordinate lahko nato shranite v glavo slike Exif.</p>
-    <p xml:lang="sv">Kgeotag är ett fristående program för geografisk lokalisering av foton för KDE:s ekosystem, men filosofin hos Unix i åtanke ("gör en sak och gör det bra"). Det visar en kartbild som man kan dra och släppa på, samt tillhandahåller också automatisk matchning (exakt och interpolerad) med GPX-kodad geografisk data. Koordinaterna kan därefter lagras i bildernas Exif-huvuden.</p>
-    <p xml:lang="uk">KGeoTag — окрема програма для роботи із геомітками для екосистеми KDE, яку створено із врахуванням філософії Unix («робити одну річ, і робити її добре»). Вона показує зображення карт із можливостями перетягування і скидання, а також надає можливості автоматичного встановлення відповідності (точно і наближено) із закодованими геоданими GPX. Координати можуть бути збережені у заголовках Exif зображень.</p>
-    <p xml:lang="x-test">xxKGeoTag is a standalone geotagging program for the KDE desktop. Images can be associated with geographic coordinates by different means: On the one hand, a matching with GPX encoded geodata can be done, on the other hand, the coordinates can be set manually, either via drag and drop onto a map, via bookmarks or by manually supplying them. The coordinates can be stored in the images' Exif header and/or in XMP sidecar files.xx</p>
   </description>
   <url type="homepage">https://invent.kde.org/graphics/kgeotag</url>
   <provides>
