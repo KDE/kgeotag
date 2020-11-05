@@ -43,6 +43,7 @@ public:
         XmlError,
         NoGpxElement,
         NoGeoData,
+        AlreadyLoaded,
         Okay
     };
 
@@ -70,6 +71,7 @@ private: // Variables
     Settings *m_settings;
     QVector<QDateTime> m_allTimes;
     QHash<QDateTime, Coordinates> m_coordinates;
+    QVector<QString> m_loadedPaths;
 
 };
 

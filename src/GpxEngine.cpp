@@ -45,6 +45,10 @@ GpxEngine::GpxEngine(QObject *parent, Settings *settings)
 
 GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 {
+    if (m_loadedPaths.contains(path)) {
+        return { LoadResult::AlreadyLoaded };
+    }
+
     QFile gpxFile(path);
 
     if (! gpxFile.open(QIODevice::ReadOnly | QIODevice::Text)) {
@@ -137,12 +141,16 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     if (! gpxFound) {
         return { LoadResult::NoGpxElement, tracks, segments, points };
-    } else if (points == 0) {
-        return { LoadResult::NoGeoData, tracks, segments, points };
-    } else {
-        std::sort(m_allTimes.begin(), m_allTimes.end());
-        return { LoadResult::Okay, tracks, segments, points };
     }
+
+    if (points == 0) {
+        return { LoadResult::NoGeoData, tracks, segments, points };
+    }
+
+    // All okay :-)
+    m_loadedPaths.append(path);
+    std::sort(m_allTimes.begin(), m_allTimes.end());
+    return { LoadResult::Okay, tracks, segments, points };
 }
 
 Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation) const

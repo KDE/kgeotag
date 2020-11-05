@@ -306,6 +306,7 @@ void MainWindow::addGpx()
     int allTracks = 0;
     int allSegments = 0;
     int allPoints = 0;
+    int alreadyLoaded = 0;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -317,7 +318,8 @@ void MainWindow::addGpx()
         const QFileInfo info(path);
         m_settings->saveLastOpenPath(info.dir().absolutePath());
 
-        const auto [ result, tracks, segments, points ] = m_gpxEngine->load(path);
+        const auto [ result, tracks, segments, points ]
+            = m_gpxEngine->load(info.canonicalFilePath());
 
         switch (result) {
         case GpxEngine::Okay:
@@ -325,6 +327,11 @@ void MainWindow::addGpx()
             allTracks += tracks;
             allSegments += segments;
             allPoints += points;
+            errorString.clear();
+            break;
+
+        case GpxEngine::AlreadyLoaded:
+            alreadyLoaded++;
             errorString.clear();
             break;
 
@@ -374,10 +381,14 @@ void MainWindow::addGpx()
     QMessageBox::information(this, i18n("Load GPX data"),
         i18n("<p>%1</p><p>%2</p>",
 
-             i18np("Processed one file%2", "Processed %1 files%2", processed,
+             i18np("Processed one file%2%3", "Processed %1 files%2%3", processed,
                    failed == 0
                        ? QString()
-                       : i18np(", one file failed", ", %1 files failed", failed)),
+                       : i18np(", one file failed", ", %1 files failed", failed),
+                   alreadyLoaded == 0
+                       ? QString()
+                       : i18np(", one already loaded file skipped",
+                               ", %1 already loaded files skipped", alreadyLoaded)),
 
              i18np("Loaded one waypoint from %2", "Loaded %1 waypoints from %2", allPoints,
                    i18np("one track%2", "%1 tracks%2", allTracks,
