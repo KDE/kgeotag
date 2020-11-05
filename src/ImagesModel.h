@@ -40,13 +40,20 @@ class ImagesModel : public QAbstractListModel
     Q_OBJECT
 
 public:
+    enum LoadResult {
+        LoadingImageFailed,
+        LoadingMetadataFailed,
+        AlreadyLoaded,
+        LoadingSucceeded
+    };
+
     explicit ImagesModel(QObject *parent, SharedObjects *sharedObjects);
 
     virtual int rowCount(const QModelIndex & = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     bool contains(const QString &path) const;
-    bool addImage(const QString &path);
+    LoadResult addImage(const QString &path);
     QVector<QString> changedImages() const;
     QDateTime date(const QString &path) const;
     void setCoordinates(const QString &path, const Coordinates &coordinates, int matchType);

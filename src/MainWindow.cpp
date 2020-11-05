@@ -427,6 +427,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
     const bool isSingleFile = allImages == 1;
     int processed = 0;
     int loaded = 0;
+    int alreadyLoaded = 0;
     bool skipImage = false;
     bool abortLoad = false;
 
@@ -440,27 +441,63 @@ void MainWindow::addImages(const QVector<QString> &paths)
         }
 
         const QFileInfo info(path);
-        const QString canonicalPath = info.canonicalFilePath();
-        while (! m_imagesModel->addImage(canonicalPath)) {
+
+        while (true) {
+            QString errorString;
+            bool exitLoop = false;
+
+            switch (m_imagesModel->addImage(info.canonicalFilePath())) {
+            case ImagesModel::LoadingSucceeded:
+                exitLoop = true;
+                break;
+
+            case ImagesModel::AlreadyLoaded:
+                alreadyLoaded++;
+                exitLoop = true;
+                break;
+
+            case ImagesModel::LoadingImageFailed:
+                errorString = i18n(
+                    "<p><b>Loading image failed%1</b></p>"
+                    "<p>Could not read <kbd>%2</kbd>.</p>",
+                    isSingleFile ? QString() : i18nc("Fraction of processed files", " (%1 of %2)",
+                                                     processed, allImages),
+                    path);
+                errorString.append(i18n("<p>Please check if this file is actually a supported "
+                                        "image (JPEG, PNG) and if you have read access to it."
+                                        "</p>"));
+                break;
+
+            case ImagesModel::LoadingMetadataFailed:
+                errorString = i18n(
+                    "<p><b>Loading image's Exif header or XMP sidecar file failed%1</b></p>"
+                    "<p>Could not read <kbd>%2</kbd>.</p>",
+                    isSingleFile ? QString() : i18nc("Fraction of processed files", " (%1 of %2)",
+                                                     processed, allImages),
+                    path);
+                errorString.append(i18n("<p>Please check if this file is actually a supported "
+                                        "image (JPEG, PNG) and if you have read access to it."
+                                        "</p>"));
+                break;
+            }
+
+            if (exitLoop) {
+                break;
+            }
+
             progress.reset();
             QApplication::restoreOverrideCursor();
 
             RetrySkipAbortDialog dialog(this,
                 i18n("Add images"),
-                i18n("<p><b>Loading image failed%1</b></p>"
-                     "<p>Could not read <kbd>%2</kbd>.</p>"
-                     "<p>Please check if this file is actually a supported image (JPEG, PNG) and "
-                     "if you have read access to it.</p>"
-                     "<p>%3</p>",
-                        isSingleFile ? QString()
-                                    : i18nc("Fraction of processed files", " (%1 of %2)",
-                                            processed, allImages),
-                        path,
-                        isSingleFile ? i18n("You can retry to load this file or cancel the loading "
-                                            "process.")
-                                     : i18n("You can retry to load this file, skip it or cancel "
-                                            "the loading process.")),
-                        isSingleFile);
+                i18n("<p>%1</p>"
+                     "<p>%2</p>",
+                     errorString,
+                     isSingleFile ? i18n("You can retry to load this file or cancel the loading "
+                                         "process.")
+                                  : i18n("You can retry to load this file, skip it or cancel "
+                                         "the loading process.")),
+                isSingleFile);
 
             const auto reply = dialog.exec();
             if (reply == RetrySkipAbortDialog::Skip) {
@@ -489,9 +526,15 @@ void MainWindow::addImages(const QVector<QString> &paths)
     m_mapWidget->reloadMap();
     QApplication::restoreOverrideCursor();
 
-    if (loaded == 0) {
+    if (loaded - alreadyLoaded == 0 && alreadyLoaded > 0) {
+        QMessageBox::warning(this, i18n("Add images"),
+                             i18n("Could not load new images: All requested images are already "
+                                  "loaded!"));
+
+    } else if (loaded == 0) {
         QMessageBox::warning(this, i18n("Add images"),
                              i18n("Could not load any images!"));
+
     } else if (loaded < allImages) {
         QMessageBox::warning(this, i18n("Add images"),
             i18np("<p>Could not load all images!</p><p>Successfully loaded one image of %2, %3</p>",
@@ -500,11 +543,16 @@ void MainWindow::addImages(const QVector<QString> &paths)
                   loaded, allImages, i18np("one failed to load.",
                                            "%1 failed to load.",
                                            allImages - loaded)));
+
     } else {
         QMessageBox::information(this, i18n("Add images"),
-                                 i18np("Successfully loaded one image!",
-                                       "Successfully loaded %1 images!",
-                                       allImages));
+            i18np("Successfully loaded one image%2!",
+                  "Successfully loaded %1 images%2!",
+                  allImages - alreadyLoaded,
+                  alreadyLoaded > 0 ? i18np(" (skipped one already loaded image)",
+                                            " (skipped %1 already loaded images)",
+                                            alreadyLoaded)
+                                    : QString()));
     }
 }
 

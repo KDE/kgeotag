@@ -121,24 +121,24 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
-bool ImagesModel::addImage(const QString &path)
+ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
 {
     // Check if we already have the image
     if (m_paths.contains(path)) {
-        return true;
+        return LoadResult::AlreadyLoaded;
     }
 
     // Read the image
     QImage image = QImage(path);
     if (image.isNull()) {
-        return false;
+        return LoadResult::LoadingImageFailed;
     }
 
     // Read the exif data
     auto exif = KExiv2Iface::KExiv2();
     exif.setUseXMPSidecar4Reading(true);
     if (! exif.load(path)) {
-        return false;
+        return LoadResult::LoadingMetadataFailed;
     }
 
     // Prepare the images's data struct
@@ -189,7 +189,7 @@ bool ImagesModel::addImage(const QString &path)
     const auto modelIndex = index(row, 0, QModelIndex());
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 
-    return true;
+    return LoadResult::LoadingSucceeded;
 }
 
 void ImagesModel::emitDataChanged(const QString &path)
