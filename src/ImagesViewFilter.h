@@ -26,9 +26,6 @@
 // Qt includes
 #include <QSortFilterProxyModel>
 
-// Local classes
-class SharedObjects;
-
 class ImagesViewFilter : public QSortFilterProxyModel
 {
     Q_OBJECT
@@ -42,6 +39,9 @@ public:
                                  const QModelIndex &) const override;
     virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                               const QModelIndex &) override;
+
+signals:
+    void requestAddingImages(const QVector<QString> &paths) const;
 
 protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;

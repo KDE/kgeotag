@@ -61,6 +61,8 @@ signals:
 
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates) const;
 
+    void requestAddingImages(const QVector<QString> &paths) const;
+
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;
     virtual void mouseMoveEvent(QMouseEvent *event) override;

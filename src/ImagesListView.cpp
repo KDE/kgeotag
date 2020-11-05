@@ -52,6 +52,8 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     auto *filterModel = new ImagesViewFilter(this, type);
     filterModel->setSourceModel(sharedObjects->imagesModel());
     setModel(filterModel);
+    connect(filterModel, &ImagesViewFilter::requestAddingImages,
+            this, &ImagesListView::requestAddingImages);
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);

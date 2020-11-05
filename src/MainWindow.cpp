@@ -59,6 +59,7 @@
 
 // C++ includes
 #include <algorithm>
+#include <functional>
 
 static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeModeMap {
     { QStringLiteral("WRITETOIMAGEONLY"),
@@ -90,7 +91,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
 
     auto *addImagesAction = fileMenu->addAction(i18n("Add images"));
-    connect(addImagesAction, &QAction::triggered, this, &MainWindow::addImages);
+    connect(addImagesAction, &QAction::triggered,
+            this, std::bind(&MainWindow::addImages, this, QVector<QString>()));
 
     auto *addGpxAction = fileMenu->addAction(i18n("Add GPX tracks"));
     connect(addGpxAction, &QAction::triggered, this, &MainWindow::addGpx);
@@ -211,6 +213,7 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::lookupElevation,
             this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
     connect(list, &ImagesListView::assignTo, this, &MainWindow::assignTo);
+    connect(list, &ImagesListView::requestAddingImages, this, &MainWindow::addImages);
 
     return createDockWidget(title, list, dockId);
 }
@@ -381,12 +384,23 @@ void MainWindow::addGpx()
                        : QString()))));
 }
 
-void MainWindow::addImages()
+void MainWindow::addImages(const QVector<QString> &paths)
 {
-    const auto files = QFileDialog::getOpenFileNames(this,
-                           i18n("Please select the images to add"),
-                           m_settings->lastOpenPath(),
-                           i18n("JPEG Images (*.jpg *.jpeg);; All files (*)"));
+    QVector<QString> files;
+    if (paths.isEmpty()) {
+        const auto selection = QFileDialog::getOpenFileNames(this,
+                                   i18n("Please select the images to add"),
+                                   m_settings->lastOpenPath(),
+                                   i18n("JPEG Images (*.jpg *.jpeg);; All files (*)"));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        files = QVector<QString>(selection.begin(), selection.end());
+#else
+        files = selection.toVector();
+#endif
+    } else {
+        files = paths;
+    }
+
     if (files.isEmpty()) {
         return;
     }
@@ -644,7 +658,7 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
 
 void MainWindow::saveChanges()
 {
-    auto files = m_imagesModel->changedImages();
+    const auto files = m_imagesModel->changedImages();
 
     if (files.isEmpty()) {
         QMessageBox::information(this, i18n("Save changes"), i18n("Nothing to do"));
@@ -652,9 +666,6 @@ void MainWindow::saveChanges()
     }
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    // We sort the list so that the processing order matches the display order
-    std::sort(files.begin(), files.end());
 
     const auto writeMode = s_writeModeMap.value(m_settings->writeMode());
     const bool createBackups =

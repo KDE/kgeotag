@@ -74,14 +74,17 @@ bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action
         return false;
     }
 
+    QVector<QString> paths;
     if (data->hasUrls()) {
-        qDebug() << "Accepting drop data:";
         for (const auto &url : data->urls()) {
-            if (url.isLocalFile())
-                qDebug() << url << "dropped";
-            else
-                qWarning() << url << "is not a local file! Ignoring...";
+            if (url.isLocalFile()) {
+                paths.append(url.toLocalFile());
+            }
         }
+    }
+
+    if (! paths.isEmpty()) {
+        emit requestAddingImages(paths);
     }
 
     return true;
