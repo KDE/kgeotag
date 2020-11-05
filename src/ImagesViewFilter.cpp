@@ -23,6 +23,8 @@
 
 // Qt includes
 #include <QDebug>
+#include <QMimeData>
+#include <QUrl>
 
 ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type)
     : QSortFilterProxyModel(parent),
@@ -41,4 +43,46 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
 
     return    (m_type == KGeoTag::AssignedImages   &&   coordinatesSet)
            || (m_type == KGeoTag::UnAssignedImages && ! coordinatesSet);
+}
+
+Qt::DropActions ImagesViewFilter::supportedDropActions() const
+{
+    return Qt::CopyAction | Qt::MoveAction;
+}
+
+Qt::ItemFlags ImagesViewFilter::flags(const QModelIndex &index) const
+{
+    auto defaultFlags = QSortFilterProxyModel::flags(index);
+
+    if (index.isValid()) {
+        return defaultFlags;
+    } else {
+        return Qt::ItemIsDropEnabled | defaultFlags;
+    }
+}
+
+bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                       const QModelIndex &) const
+{
+    return (action & (Qt::CopyAction | Qt::MoveAction)) && data->hasUrls();
+}
+
+bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                    const QModelIndex &)
+{
+    if (! (action & (Qt::CopyAction | Qt::MoveAction))) {
+        return false;
+    }
+
+    if (data->hasUrls()) {
+        qDebug() << "Accepting drop data:";
+        for (const auto &url : data->urls()) {
+            if (url.isLocalFile())
+                qDebug() << url << "dropped";
+            else
+                qWarning() << url << "is not a local file! Ignoring...";
+        }
+    }
+
+    return true;
 }

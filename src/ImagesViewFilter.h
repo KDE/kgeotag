@@ -36,6 +36,13 @@ class ImagesViewFilter : public QSortFilterProxyModel
 public:
     explicit ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type);
 
+    virtual Qt::DropActions supportedDropActions() const override;
+    virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
+    virtual bool canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                 const QModelIndex &) const override;
+    virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                              const QModelIndex &) override;
+
 protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
 
