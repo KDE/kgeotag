@@ -72,6 +72,7 @@ protected:
 
 private slots:
     void showContextMenu(const QPoint &point);
+    void selectImages(bool coordinatesSet);
 
 private: // Variables
     const KGeoTag::ImagesListType m_type;
@@ -81,7 +82,12 @@ private: // Variables
     QPoint m_dragStartPosition;
 
     QMenu *m_contextMenu;
+    QMenu *m_automaticMatchingMenu;
     QMenu *m_bookmarksMenu;
+    QMenu *m_selectMenu;
+
+    QAction *m_selectAll;
+    QAction *m_assignToMapCenter;
     QAction *m_assignManually;
     QAction *m_editCoordinates;
     QAction *m_lookupElevation;

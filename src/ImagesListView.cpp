@@ -69,13 +69,30 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     m_contextMenu = new QMenu(this);
 
-    auto *searchMatchesMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
-    auto *searchExactMatchesAction = searchMatchesMenu->addAction(i18n("Exact match search"));
+    if (m_type != KGeoTag::AllImages) {
+        m_selectAll = m_contextMenu->addAction(i18n("Select all images"));
+        connect(m_selectAll, &QAction::triggered, this, &QListView::selectAll);
+    } else {
+        m_selectMenu = m_contextMenu->addMenu(i18n("Select"));
+        auto *all = m_selectMenu->addAction(i18n("All images"));
+        connect(all, &QAction::triggered, this, &QListView::selectAll);
+        auto *without = m_selectMenu->addAction(i18n("All images without coordinates"));
+        connect(without, &QAction::triggered,
+                this, std::bind(&ImagesListView::selectImages, this, false));
+        auto *with = m_selectMenu->addAction(i18n("All images with coordinates"));
+        connect(with, &QAction::triggered,
+                this, std::bind(&ImagesListView::selectImages, this, true));
+    }
+
+    m_contextMenu->addSeparator();
+
+    m_automaticMatchingMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
+    auto *searchExactMatchesAction = m_automaticMatchingMenu->addAction(i18n("Exact match search"));
     connect(searchExactMatchesAction, &QAction::triggered,
             this, std::bind(&ImagesListView::searchExactMatches, this, this));
 
     auto *searchInterpolatedMatchesAction
-        = searchMatchesMenu->addAction(i18n("Interpolated match search"));
+        = m_automaticMatchingMenu->addAction(i18n("Interpolated match search"));
     connect(searchInterpolatedMatchesAction, &QAction::triggered,
             this, std::bind(&ImagesListView::searchInterpolatedMatches, this, this));
 
@@ -84,8 +101,8 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     m_contextMenu->addSeparator();
 
-    auto *assignToMapCenterAction = m_contextMenu->addAction(i18n("Assign to map center"));
-    connect(assignToMapCenterAction, &QAction::triggered,
+    m_assignToMapCenter = m_contextMenu->addAction(i18n("Assign to map center"));
+    connect(m_assignToMapCenter, &QAction::triggered,
             this, std::bind(&ImagesListView::assignToMapCenter, this, this));
 
     m_assignManually = m_contextMenu->addAction(i18n("Set coordinates manually"));
@@ -226,10 +243,22 @@ void ImagesListView::showContextMenu(const QPoint &point)
 {
     const auto selected = selectedIndexes();
     const int allSelected = selected.count();
+    const bool anySelected = allSelected > 0;
 
-    if (allSelected == 0) {
-        return;
+    if (m_type == KGeoTag::AllImages) {
+        m_selectMenu->setEnabled(model()->rowCount() > 0);
+    } else {
+        m_selectAll->setEnabled(model()->rowCount() > 0);
     }
+
+    m_automaticMatchingMenu->setEnabled(anySelected);
+    m_bookmarksMenu->setEnabled(anySelected);
+    m_assignToMapCenter->setEnabled(anySelected);
+    m_assignManually->setEnabled(anySelected);
+    m_editCoordinates->setEnabled(anySelected);
+    m_lookupElevation->setEnabled(anySelected);
+    m_removeCoordinates->setEnabled(anySelected);
+    m_discardChanges->setEnabled(anySelected);
 
     int hasCoordinates = 0;
     int changed = 0;
@@ -251,4 +280,15 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_discardChanges->setVisible(changed > 0);
 
     m_contextMenu->exec(mapToGlobal(point));
+}
+
+void ImagesListView::selectImages(bool coordinatesSet)
+{
+    clearSelection();
+    for (int i = 0; i < model()->rowCount(); i++) {
+        const auto index = model()->index(i, 0);
+        if (index.data(KGeoTag::CoordinatesRole).value<Coordinates>().isSet() == coordinatesSet) {
+            selectionModel()->select(index, QItemSelectionModel::Select);
+        }
+    }
 }
