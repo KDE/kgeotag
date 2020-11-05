@@ -74,6 +74,7 @@ private slots:
     void showContextMenu(const QPoint &point);
 
 private: // Variables
+    const KGeoTag::ImagesListType m_type;
     const QHash<QString, Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;

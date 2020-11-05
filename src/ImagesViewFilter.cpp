@@ -71,7 +71,20 @@ Qt::ItemFlags ImagesViewFilter::flags(const QModelIndex &index) const
 bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                                        const QModelIndex &) const
 {
-    return (action & (Qt::CopyAction | Qt::MoveAction)) && data->hasUrls();
+    if (   ! (action & (Qt::CopyAction | Qt::MoveAction))
+        || ! data->hasUrls()) {
+
+        return false;
+    }
+
+    const auto source = data->data(KGeoTag::SourceImagesListMimeType);
+    if (! source.isEmpty()) {
+        if (source == KGeoTag::SourceImagesList.value(m_type)) {
+            return false;
+        }
+    }
+
+    return true;
 }
 
 bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,

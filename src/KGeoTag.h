@@ -26,6 +26,7 @@
 // Qt includes
 #include <QString>
 #include <QMetaType>
+#include <QHash>
 
 namespace KGeoTag
 {
@@ -57,6 +58,13 @@ enum ImagesListType {
     UnAssignedImages,
     AssignedImages,
     AllImages
+};
+
+const auto SourceImagesListMimeType = QStringLiteral("application/x-kgeotag-source_images_list");
+const QHash<ImagesListType, QByteArray> SourceImagesList {
+    { ImagesListType::UnAssignedImages, QByteArray("UnAssignedImages") },
+    { ImagesListType::AssignedImages,   QByteArray("AssignedImages") },
+    { ImagesListType::AllImages,        QByteArray("AllImages") }
 };
 
 enum CustomDataRoles {

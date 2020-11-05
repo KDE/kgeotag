@@ -43,6 +43,7 @@
 ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
                                QWidget *parent)
     : QListView(parent),
+      m_type(type),
       m_bookmarks(sharedObjects->bookmarks())
 {
     viewport()->setAcceptDrops(true);
@@ -188,6 +189,9 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
         urls.append(QUrl::fromLocalFile(path));
     }
     mimeData->setUrls(urls);
+
+    mimeData->setData(KGeoTag::SourceImagesListMimeType,
+                      KGeoTag::SourceImagesList.value(m_type));
 
     drag->setMimeData(mimeData);
     drag->exec(Qt::MoveAction);
