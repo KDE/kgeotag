@@ -87,14 +87,26 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_contextMenu->addSeparator();
 
     m_automaticMatchingMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
-    auto *searchExactMatchesAction = m_automaticMatchingMenu->addAction(i18n("Exact match search"));
-    connect(searchExactMatchesAction, &QAction::triggered,
-            this, std::bind(&ImagesListView::searchExactMatches, this, this));
 
-    auto *searchInterpolatedMatchesAction
-        = m_automaticMatchingMenu->addAction(i18n("Interpolated match search"));
+    auto *combinedMatchSearchAction = m_automaticMatchingMenu->addAction(
+        i18n("Combined match search"));
+    connect(combinedMatchSearchAction, &QAction::triggered,
+            this, std::bind(&ImagesListView::requestAutomaticMatching, this,
+                            this, KGeoTag::CombinedMatchSearch));
+
+    m_automaticMatchingMenu->addSeparator();
+
+    auto *searchExactMatchesAction = m_automaticMatchingMenu->addAction(
+        i18n("Search exact matches only"));
+    connect(searchExactMatchesAction, &QAction::triggered,
+            this, std::bind(&ImagesListView::requestAutomaticMatching, this,
+                            this, KGeoTag::ExactMatchSearch));
+
+    auto *searchInterpolatedMatchesAction = m_automaticMatchingMenu->addAction(
+        i18n("Search interpolated matches only"));
     connect(searchInterpolatedMatchesAction, &QAction::triggered,
-            this, std::bind(&ImagesListView::searchInterpolatedMatches, this, this));
+            this, std::bind(&ImagesListView::requestAutomaticMatching, this,
+                            this, KGeoTag::InterpolatedMatchSearch));
 
     m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
     updateBookmarks();

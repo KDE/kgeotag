@@ -201,9 +201,7 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             list, &ImagesListView::updateBookmarks);
-    connect(list, &ImagesListView::searchExactMatches, this, &MainWindow::searchExactMatches);
-    connect(list, &ImagesListView::searchInterpolatedMatches,
-            this, &MainWindow::searchInterpolatedMatches);
+    connect(list, &ImagesListView::requestAutomaticMatching, this, &MainWindow::automaticMatching);
     connect(list, &ImagesListView::assignToMapCenter, this, &MainWindow::assignToMapCenter);
     connect(list, &ImagesListView::assignManually, this, &MainWindow::assignManually);
     connect(list, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
@@ -638,46 +636,13 @@ void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coor
     }
 }
 
-void MainWindow::searchExactMatches(ImagesListView *list)
+void MainWindow::automaticMatching(ImagesListView *list, KGeoTag::SearchType searchType)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     const auto paths = list->selectedPaths();
-    int matches = 0;
-    QString lastMatchedPath;
-
-    for (const auto &path : paths) {
-        const auto coordinates = m_gpxEngine->findExactCoordinates(m_imagesModel->date(path),
-                                                                   m_fixDriftWidget->deviation());
-        if (coordinates.isSet()) {
-            m_imagesModel->setCoordinates(path, coordinates, KGeoTag::ExactMatch);
-            matches++;
-            lastMatchedPath = path;
-        }
-    }
-
-    QApplication::restoreOverrideCursor();
-
-    if (matches > 0) {
-        m_mapWidget->reloadMap();
-        const auto index = m_imagesModel->indexFor(lastMatchedPath);
-        m_mapWidget->centerImage(index);
-        m_previewWidget->setImage(index);
-        QMessageBox::information(this, i18n("Search for exact matches"),
-            i18np("1 exact match found!", "%1 exact matches found!", matches));
-
-    } else {
-        QMessageBox::warning(this, i18n("Search for exact matches"),
-            i18n("Could not find any exact matches!"));
-    }
-}
-
-void MainWindow::searchInterpolatedMatches(ImagesListView *list)
-{
-    QApplication::setOverrideCursor(Qt::WaitCursor);
-
-    const auto paths = list->selectedPaths();
-    int matches = 0;
+    int exactMatches = 0;
+    int interpolatedMatches = 0;
     QString lastMatchedPath;
 
     QProgressDialog progress(i18n("Assigning images ..."), i18n("Cancel"), 0, paths.count(), this);
@@ -690,30 +655,107 @@ void MainWindow::searchInterpolatedMatches(ImagesListView *list)
             break;
         }
 
-        const auto coordinates = m_gpxEngine->findInterpolatedCoordinates(
-            m_imagesModel->date(path), m_fixDriftWidget->deviation());
+        Coordinates coordinates;
+
+        // Search for exact matches if requested
+
+        if (searchType == KGeoTag::CombinedMatchSearch
+            || searchType == KGeoTag::ExactMatchSearch) {
+
+            coordinates = m_gpxEngine->findExactCoordinates(m_imagesModel->date(path),
+                                                            m_fixDriftWidget->deviation());
+        }
+
+        if (coordinates.isSet()) {
+            m_imagesModel->setCoordinates(path, coordinates, KGeoTag::ExactMatch);
+            exactMatches++;
+            lastMatchedPath = path;
+            continue;
+        }
+
+        // Search for interpolated matches if requested
+
+        if (searchType == KGeoTag::CombinedMatchSearch
+            || searchType == KGeoTag::InterpolatedMatchSearch) {
+
+            coordinates = m_gpxEngine->findInterpolatedCoordinates(m_imagesModel->date(path),
+                                                                   m_fixDriftWidget->deviation());
+        }
 
         if (coordinates.isSet()) {
             m_imagesModel->setCoordinates(path, coordinates, KGeoTag::InterpolatedMatch);
-            matches++;
+            interpolatedMatches++;
             lastMatchedPath = path;
         }
     }
 
     progress.reset();
+
+    const int noMatches = paths.count() - exactMatches - interpolatedMatches;
+
+    QString title;
+    QString text;
+
+    switch (searchType) {
+    case KGeoTag::CombinedMatchSearch:
+        title = i18n("Combined match search");
+        if (exactMatches > 0 || interpolatedMatches > 0) {
+            text = i18n("%1 %2%3!",
+                        i18np("Found one exact match",
+                              "Found %1 exact matches",
+                              exactMatches),
+                        i18np("and one interpolated match",
+                              "and %1 interpolated matches",
+                              interpolatedMatches),
+                              noMatches == 0 ? QString()
+                                             : i18np(" (one image had no exact match)",
+                                                     " (%1 images had no exact match)",
+                                                     noMatches));
+        } else {
+            text = i18n("Could neither find any exact, nor any interpolated matches!");
+        }
+        break;
+
+    case KGeoTag::ExactMatchSearch:
+        title = i18n("Exact matches search");
+        if (exactMatches > 0) {
+            text = i18np("Found one exact match%2!", "Found %1 exact matches%2!",
+                         exactMatches,
+                         noMatches == 0 ? QString()
+                                        : i18np(" (one image had no exact match)",
+                                                " (%1 images had no exact match)",
+                                                noMatches));
+        } else {
+            text = i18n("Could not find any exact matches!");
+        }
+        break;
+
+    case KGeoTag::InterpolatedMatchSearch:
+        title = i18n("Interpolated matches search");
+        if (interpolatedMatches > 0) {
+            text = i18np("Found one interpolated match%2!",
+                         "Found %1 interpolated matches%2!",
+                         interpolatedMatches,
+                         noMatches == 0 ? QString()
+                                        : i18np(" (one image had no interpolated match)",
+                                                " (%1 images had no interpolated match)",
+                                                noMatches));
+        } else {
+            text = i18n("Could not find any interpolated matches!");
+        }
+        break;
+    }
+
     QApplication::restoreOverrideCursor();
 
-    if (matches > 0) {
+    if (exactMatches > 0 || interpolatedMatches > 0) {
         m_mapWidget->reloadMap();
         const auto index = m_imagesModel->indexFor(lastMatchedPath);
         m_mapWidget->centerImage(index);
         m_previewWidget->setImage(index);
-        QMessageBox::information(this, i18n("Search for interpolated matches"),
-            i18np("1 interpolated match found!", "%1 interpolated matches found!", matches));
-
+        QMessageBox::information(this, title, text);
     } else {
-        QMessageBox::warning(this, i18n("Search for interpolated matches"),
-            i18n("Could not find any interpolated matches!"));
+        QMessageBox::warning(this, title, text);
     }
 }
 

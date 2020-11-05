@@ -49,9 +49,7 @@ public slots:
 signals:
     void imageSelected(const QModelIndex &index) const;
     void centerImage(const QModelIndex &index) const;
-
-    void searchExactMatches(ImagesListView *list) const;
-    void searchInterpolatedMatches(ImagesListView *list) const;
+    void requestAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType) const;
     void assignToMapCenter(ImagesListView *list) const;
     void assignManually(ImagesListView *list) const;
     void editCoordinates(ImagesListView *list) const;
@@ -59,9 +57,7 @@ signals:
     void removeCoordinates(ImagesListView *list) const;
     void removeCoordinates(const QVector<QString> &paths) const;
     void discardChanges(ImagesListView *list) const;
-
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates) const;
-
     void requestAddingImages(const QVector<QString> &paths) const;
 
 protected:

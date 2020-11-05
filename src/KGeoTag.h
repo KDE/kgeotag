@@ -47,6 +47,12 @@ constexpr const int degreesPrecision = 5;
 // Same for 0,1 m altitude precision ;-)
 constexpr const int altitudePrecision = 1;
 
+enum SearchType {
+    CombinedMatchSearch,
+    ExactMatchSearch,
+    InterpolatedMatchSearch
+};
+
 enum MatchType {
     NotMatched,
     ExactMatch,
