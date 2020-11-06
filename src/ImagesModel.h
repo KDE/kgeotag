@@ -72,7 +72,7 @@ private: // Variables
         QDateTime date;
         Coordinates originalCoordinates;
         Coordinates coordinates;
-        QImage thumbnail;
+        QPixmap thumbnail;
         QImage preview;
         KGeoTag::MatchType matchType = KGeoTag::NotMatched;
     };

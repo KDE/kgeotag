@@ -210,8 +210,7 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
     const auto paths = selectedPaths();
 
     if (paths.count() == 1) {
-        const auto image = currentIndex().data(KGeoTag::ThumbnailRole);
-        drag->setPixmap(QPixmap::fromImage(image.value<QImage>()));
+        drag->setPixmap(currentIndex().data(KGeoTag::ThumbnailRole).value<QPixmap>());
     }
 
     QMimeData *mimeData = new QMimeData;

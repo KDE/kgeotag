@@ -174,7 +174,8 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     exif.rotateExifQImage(image, exif.getImageOrientation());
 
     // Create a smaller thumbnail
-    data.thumbnail = image.scaled(m_thumbnailSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    data.thumbnail = QPixmap::fromImage(image.scaled(m_thumbnailSize, Qt::KeepAspectRatio,
+                                                     Qt::SmoothTransformation));
 
     // Create a bigger preview (to be scaled according to the view size)
     data.preview = image.scaled(m_previewSize, Qt::KeepAspectRatio);

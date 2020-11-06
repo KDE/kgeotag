@@ -167,8 +167,7 @@ void MapWidget::customPaint(Marble::GeoPainter *painter)
             continue;
         }
 
-        painter->drawPixmap(marbleCoordinates,
-            QPixmap::fromImage(index.data(KGeoTag::ThumbnailRole).value<QImage>()));
+        painter->drawPixmap(marbleCoordinates, index.data(KGeoTag::ThumbnailRole).value<QPixmap>());
     }
 
     painter->setPen(m_trackPen);
