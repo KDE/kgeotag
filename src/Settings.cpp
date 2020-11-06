@@ -33,6 +33,7 @@ static const QLatin1String s_main("main/");
 static const QString s_main_windowGeometry = s_main + QLatin1String("window_geometry");
 static const QString s_main_windowState = s_main + QLatin1String("window_state");
 static const QString s_main_lastOpenPath = s_main + QLatin1String("last_open_path");
+static const QString s_main_spitImagesList = s_main + QLatin1String("split_images_list");
 
 // Map
 
@@ -68,7 +69,6 @@ static const QVector<QString> s_track_styleString {
 // Images
 
 static const QLatin1String s_images("images/");
-static const QString s_images_spitImagesList = s_images + QLatin1String("split_images_list");
 static const QString s_images_thumnailSize = s_images + QLatin1String("thumbnail_size");
 static const QString s_images_previewSize = s_images + QLatin1String("preview_size");
 
@@ -409,10 +409,10 @@ QHash<QString, Coordinates> Settings::bookmarks() const
 
 void Settings::saveSplitImagesList(bool state)
 {
-    setValue(s_images_spitImagesList, state);
+    setValue(s_main_spitImagesList, state);
 }
 
 bool Settings::splitImagesList() const
 {
-    return value(s_images_spitImagesList, true).toBool();
+    return value(s_main_spitImagesList, true).toBool();
 }
