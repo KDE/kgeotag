@@ -64,6 +64,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/ImagesListView.cpp
     ${main_ROOT}/ImagesViewFilter.cpp
     ${main_ROOT}/Coordinates.cpp
+    ${main_ROOT}/AutomaticMatchingWidget.cpp
 )
 
 # Build the executable

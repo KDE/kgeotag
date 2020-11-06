@@ -31,7 +31,6 @@
 #include <QGroupBox>
 #include <QGridLayout>
 #include <QLabel>
-#include <QPushButton>
 #include <QComboBox>
 #include <QSpinBox>
 #include <QPushButton>
@@ -137,72 +136,6 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_trackStyle->setCurrentIndex(
         m_trackStyle->findData(static_cast<int>(m_settings->trackStyle())));
     trackBoxLayout->addWidget(m_trackStyle, row, 1);
-
-    // Image assignment
-
-    auto *assignmentBox = new QGroupBox(i18n("Automatic image assignment"));
-    auto *assignmentBoxLayout = new QGridLayout(assignmentBox);
-    row = -1;
-    layout->addWidget(assignmentBox);
-
-    auto *exactMatchToleranceLabel = new QLabel(
-        i18n("Maximum deviation of the image's time from a GPS point's time for an exact match"));
-    exactMatchToleranceLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(exactMatchToleranceLabel, ++row, 0);
-
-    m_exactMatchTolerance = new QSpinBox;
-    m_exactMatchTolerance->setMinimum(0);
-    m_exactMatchTolerance->setMaximum(300);
-    m_exactMatchTolerance->setValue(m_settings->exactMatchTolerance());
-    assignmentBoxLayout->addWidget(m_exactMatchTolerance, row, 1);
-
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), row, 2);
-
-    auto *interpolatedMatchLabel = new QLabel(i18n("Boundaries for two coordinates used to "
-                                                   "calculate interpolated matches:"));
-    interpolatedMatchLabel->setWordWrap(true);
-    assignmentBoxLayout->addWidget(interpolatedMatchLabel, ++row, 0, 1, 3);
-
-    m_enableMaximumInterpolationInterval = new QCheckBox(i18n("Maximum interval:"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationInterval, ++row, 0);
-
-    m_maximumInterpolationInterval = new QSpinBox;
-    m_maximumInterpolationInterval->setMinimum(0);
-    m_maximumInterpolationInterval->setMaximum(86400);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationInterval, row, 1);
-
-    assignmentBoxLayout->addWidget(new QLabel(i18n("seconds")), row, 2);
-
-    const int interval = m_settings->maximumInterpolationInterval();
-    if (interval == -1) {
-        enableMaximumInterpolationInterval(false);
-    } else {
-        m_enableMaximumInterpolationInterval->setChecked(true);
-        m_maximumInterpolationInterval->setValue(interval);
-    }
-
-    connect(m_enableMaximumInterpolationInterval, &QCheckBox::toggled,
-            this, &SettingsDialog::enableMaximumInterpolationInterval);
-
-    m_enableMaximumInterpolationDistance = new QCheckBox(i18n("Maximum distance:"));
-    assignmentBoxLayout->addWidget(m_enableMaximumInterpolationDistance, ++row, 0);
-
-    m_maximumInterpolationDistance = new QSpinBox;
-    m_maximumInterpolationDistance->setRange(0, 1000000);
-    assignmentBoxLayout->addWidget(m_maximumInterpolationDistance, row, 1);
-
-    assignmentBoxLayout->addWidget(new QLabel(i18n("meters")), row, 2);
-
-    const int distance = m_settings->maximumInterpolationDistance();
-    if (distance == -1) {
-        enableMaximumInterpolationDistance(false);
-    } else {
-        m_enableMaximumInterpolationDistance->setChecked(true);
-        m_maximumInterpolationDistance->setValue(distance);
-    }
-
-    connect(m_enableMaximumInterpolationDistance, &QCheckBox::toggled,
-            this, &SettingsDialog::enableMaximumInterpolationDistance);
 
     // Elevation lookup
 
@@ -322,22 +255,6 @@ void SettingsDialog::setTrackColor()
     updateTrackColor();
 }
 
-void SettingsDialog::enableMaximumInterpolationInterval(bool state)
-{
-    m_maximumInterpolationInterval->setEnabled(state);
-    if (! state) {
-        m_maximumInterpolationInterval->setValue(3600);
-    }
-}
-
-void SettingsDialog::enableMaximumInterpolationDistance(bool state)
-{
-    m_maximumInterpolationDistance->setEnabled(state);
-    if (! state) {
-        m_maximumInterpolationDistance->setValue(500);
-    }
-}
-
 void SettingsDialog::accept()
 {
     const auto splitImagesList = m_splitImagesList->isChecked();
@@ -350,12 +267,6 @@ void SettingsDialog::accept()
     m_settings->saveTrackColor(m_currentTrackColor);
     m_settings->saveTrackWidth(m_trackWidth->value());
     m_settings->saveTrackStyle(static_cast<Qt::PenStyle>(m_trackStyle->currentData().toInt()));
-
-    m_settings->saveExactMatchTolerance(m_exactMatchTolerance->value());
-    m_settings->saveMaximumInterpolationInterval(m_enableMaximumInterpolationInterval->isChecked()
-        ? m_maximumInterpolationInterval->value() : -1);
-    m_settings->saveMaximumInterpolationDistance(m_enableMaximumInterpolationDistance->isChecked()
-        ? m_maximumInterpolationDistance->value() : -1);
 
     m_settings->saveLookupElevation(m_lookupElevation->isChecked());
     m_settings->saveElevationDataset(m_elevationDataset->currentData().toString());

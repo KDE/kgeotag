@@ -35,6 +35,7 @@
 #include "ImagesModel.h"
 #include "ImagesListView.h"
 #include "Coordinates.h"
+#include "AutomaticMatchingWidget.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -140,6 +141,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     m_previewDock = createDockWidget(i18n("Preview"), m_previewWidget,
                                          QStringLiteral("previewDock"));
 
+    // Automatic matching
+    auto *automaticMatchingWidget = new AutomaticMatchingWidget(m_settings);
+    m_automaticMatchingDock = createDockWidget(i18n("Automatic matching"), automaticMatchingWidget,
+                                               QStringLiteral("automaticMatchingDock"));
+
     // Fix drift
     m_fixDriftWidget = new FixDriftWidget;
     m_fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
@@ -225,10 +231,11 @@ void MainWindow::setDefaultDockArrangement()
     const QVector<QDockWidget *> allDocks = {
         m_assignedOrAllImagesDock,
         m_unAssignedImagesDock,
-        m_mapDock,
         m_previewDock,
         m_fixDriftDock,
-        m_bookmarksDock
+        m_automaticMatchingDock,
+        m_bookmarksDock,
+        m_mapDock
     };
 
     for (auto *dock : allDocks) {
@@ -243,9 +250,17 @@ void MainWindow::setDefaultDockArrangement()
     splitDockWidget(m_assignedOrAllImagesDock, m_previewDock, Qt::Vertical);
     splitDockWidget(m_assignedOrAllImagesDock, m_unAssignedImagesDock, Qt::Horizontal);
 
-    tabifyDockWidget(m_previewDock, m_fixDriftDock);
-    tabifyDockWidget(m_fixDriftDock, m_bookmarksDock);
-    m_previewDock->raise();
+    const QVector<QDockWidget *> toTabify = {
+        m_previewDock,
+        m_fixDriftDock,
+        m_automaticMatchingDock,
+        m_bookmarksDock
+    };
+
+    for (int i = 0; i < toTabify.count() - 1; i++) {
+        tabifyDockWidget(toTabify.at(i), toTabify.at(i + 1));
+    }
+    toTabify.first()->raise();
 
     const double windowWidth = double(width());
     resizeDocks({ m_previewDock, m_mapDock },

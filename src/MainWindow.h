@@ -94,6 +94,7 @@ private: // Variables
 
     QDockWidget *m_previewDock;
     QDockWidget *m_fixDriftDock;
+    QDockWidget *m_automaticMatchingDock;
     QDockWidget *m_bookmarksDock;
     QDockWidget *m_mapDock;
     QDockWidget *m_unAssignedImagesDock;

@@ -17,61 +17,40 @@
    along with this program. If not, see <http://www.gnu.org/licenses/>.
 */
 
-#ifndef SETTINGSDIALOG_H
-#define SETTINGSDIALOG_H
+#ifndef AUTOMATICMATCHINGWIDGET_H
+#define AUTOMATICMATCHINGWIDGET_H
 
 // Qt includes
-#include <QDialog>
-#include <QColor>
+#include <QWidget>
 
 // Local classes
 class Settings;
 
 // Qt classes
-class QPushButton;
-class QLabel;
 class QSpinBox;
-class QComboBox;
 class QCheckBox;
 
-class SettingsDialog : public QDialog
+class AutomaticMatchingWidget : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit SettingsDialog(Settings *settings, QWidget *parent);
-
-protected:
-    virtual void accept() override;
+    explicit AutomaticMatchingWidget(Settings *settings, QWidget *parent = nullptr);
 
 private slots:
-    void setTrackColor();
-
-private: // Functions
-    void updateTrackColor();
+    void enableMaximumInterpolationInterval(bool state);
+    void enableMaximumInterpolationDistance(bool state);
+    void saveAsDefault();
 
 private: // Variables
     Settings *m_settings;
 
-    QCheckBox *m_splitImagesList;
-    QSpinBox *m_thumbnailSize;
-    QSpinBox *m_previewSize;
-    bool m_originalSplitImagesListValue;
-    int m_originalThumbnailSizeValue;
-    int m_originalPreviewSizeValue;
-
-    QColor m_currentTrackColor;
-    QPushButton *m_trackColor;
-    QLabel *m_trackOpacity;
-    QSpinBox *m_trackWidth;
-    QComboBox *m_trackStyle;
-
-    QCheckBox *m_lookupElevation;
-    QComboBox *m_elevationDataset;
-
-    QComboBox *m_writeMode;
-    QCheckBox *m_createBackups;
+    QSpinBox *m_exactMatchTolerance;
+    QCheckBox *m_enableMaximumInterpolationInterval;
+    QSpinBox *m_maximumInterpolationInterval;
+    QCheckBox *m_enableMaximumInterpolationDistance;
+    QSpinBox *m_maximumInterpolationDistance;
 
 };
 
-#endif // SETTINGSDIALOG_H
+#endif // AUTOMATICMATCHINGWIDGET_H
