@@ -258,16 +258,32 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
     const auto mimeData = event->mimeData();
     const auto source = mimeData->data(KGeoTag::SourceImagesListMimeType);
 
-    if (source.isEmpty()) {
-        // Not dragged from an image list
-        return;
-    }
+    if (! source.isEmpty()) {
+        // The drag most probably comes from a KGeoTag images list.
+        // Nevertheless, we check if all URLs are present in the images model ;-)
+        const auto urls = mimeData->urls();
+        for (const auto &url : urls) {
+            if (! m_imagesModel->contains(url.toLocalFile())) {
+                return;
+            }
+        }
 
-    // The drag most probably comes from a KGeoTag images list.
-    // Nevertheless, we check if all URLs are present in the images model ;-)
-    const auto urls = mimeData->urls();
-    for (const auto &url : urls) {
-        if (! m_imagesModel->contains(url.toLocalFile())) {
+    } else {
+        // Possibly a request to load a GPX file
+
+        if (! mimeData->hasUrls()) {
+            return;
+        }
+
+        // Check if we have local paths in the URL list
+        QVector<QString> paths;
+        const auto urls = mimeData->urls();
+        for (const auto &url : urls) {
+            if (url.isLocalFile()) {
+                paths.append(url.toLocalFile());
+            }
+        }
+        if (paths.isEmpty()) {
             return;
         }
     }
@@ -277,25 +293,44 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 
 void MapWidget::dropEvent(QDropEvent *event)
 {
-    const auto dropPosition = event->pos();
+    const auto mimeData = event->mimeData();
+    const auto source = mimeData->data(KGeoTag::SourceImagesListMimeType);
 
-    qreal lon;
-    qreal lat;
-    if (! geoCoordinates(dropPosition.x(), dropPosition.y(), lon, lat,
-                         Marble::GeoDataCoordinates::Degree)) {
-        return;
+    if (! source.isEmpty()) {
+        // Images dragged from an images list
+
+        const auto dropPosition = event->pos();
+
+        qreal lon;
+        qreal lat;
+        if (! geoCoordinates(dropPosition.x(), dropPosition.y(), lon, lat,
+                            Marble::GeoDataCoordinates::Degree)) {
+            return;
+        }
+
+        QVector<QString> paths;
+        const auto urls = mimeData->urls();
+        for (const auto &url : urls) {
+            const auto path = url.toLocalFile();
+            m_imagesModel->setCoordinates(path, Coordinates(lon, lat, 0.0, true),
+                                          KGeoTag::ManuallySet);
+            paths.append(path);
+        }
+
+        reloadMap();
+        emit imagesDropped(paths);
+
+    } else {
+        // Request to load a GPX file
+        QVector<QString> paths;
+        const auto urls = event->mimeData()->urls();
+        for (const auto &url : urls) {
+            if (url.isLocalFile()) {
+                paths.append(url.toLocalFile());
+            }
+        }
+        emit requestLoadGpx(paths);
     }
-
-    QVector<QString> paths;
-    const auto urls = event->mimeData()->urls();
-    for (const auto &url : urls) {
-        const auto path = url.toLocalFile();
-        m_imagesModel->setCoordinates(path, Coordinates(lon, lat, 0.0, true), KGeoTag::ManuallySet);
-        paths.append(path);
-    }
-
-    reloadMap();
-    emit imagesDropped(paths);
 
     event->acceptProposedAction();
 }

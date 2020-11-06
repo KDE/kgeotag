@@ -55,7 +55,7 @@ protected:
 
 private slots:
     void setDefaultDockArrangement();
-    void addGpx();
+    void addGpx(const QVector<QString> &paths);
     void addImages(const QVector<QString> &paths);
     void imagesDropped(const QVector<QString> &paths);
     void saveChanges();

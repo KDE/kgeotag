@@ -94,7 +94,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             this, std::bind(&MainWindow::addImages, this, QVector<QString>()));
 
     auto *addGpxAction = fileMenu->addAction(i18n("Add GPX tracks"));
-    connect(addGpxAction, &QAction::triggered, this, &MainWindow::addGpx);
+    connect(addGpxAction, &QAction::triggered,
+            this, std::bind(&MainWindow::addGpx, this, QVector<QString>()));
 
     fileMenu->addSeparator();
 
@@ -149,6 +150,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     m_mapDock = createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
+    connect(m_mapWidget, &MapWidget::requestLoadGpx, this, &MainWindow::addGpx);
 
     // Images lists
 
@@ -287,12 +289,18 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QApplication::quit();
 }
 
-void MainWindow::addGpx()
+void MainWindow::addGpx(const QVector<QString> &paths)
 {
-    const auto files = QFileDialog::getOpenFileNames(this,
-                           i18n("Please select the GPX track(s) to add"),
-                           m_settings->lastOpenPath(),
-                           i18n("GPX tracks (*.gpx);; All files (*)"));
+    QVector<QString> files;
+    if (paths.isEmpty()) {
+        const auto files = QFileDialog::getOpenFileNames(this,
+                            i18n("Please select the GPX track(s) to add"),
+                            m_settings->lastOpenPath(),
+                            i18n("GPX tracks (*.gpx);; All files (*)"));
+    } else {
+        files = paths;
+    }
+
     if (files.isEmpty()) {
         return;
     }
@@ -388,11 +396,14 @@ void MainWindow::addGpx()
                        : i18np(", one already loaded file skipped",
                                ", %1 already loaded files skipped", alreadyLoaded)),
 
-             i18np("Loaded one waypoint from %2", "Loaded %1 waypoints from %2", allPoints,
-                   i18np("one track%2", "%1 tracks%2", allTracks,
-                   allSegments != allTracks
-                       ? i18np(" and one segment", " and %1 segments", allSegments)
-                       : QString()))));
+             i18np("Loaded one waypoint%2", "Loaded %1 waypoints%2", allPoints,
+                   allTracks > 0
+                       ? i18np(" from one track%2", " from %1 tracks%2",
+                               allTracks,
+                               allSegments != allTracks
+                                   ? i18np(" and one segment", " and %1 segments", allSegments)
+                                   : QString())
+                       : QString())));
 }
 
 void MainWindow::addImages(const QVector<QString> &paths)

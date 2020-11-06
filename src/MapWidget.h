@@ -65,6 +65,7 @@ public slots:
 
 signals:
     void imagesDropped(const QVector<QString> &paths) const;
+    void requestLoadGpx(const QVector<QString> &paths) const;
 
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;
