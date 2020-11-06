@@ -478,10 +478,11 @@ void MainWindow::addImages(const QVector<QString> &paths)
 
         const QFileInfo info(path);
         const QMimeType mimeType = mimeDB.mimeTypeForFile(path);
+
         // ignore gpx files and sidecar files silently:
         if (mimeType.inherits(QStringLiteral("application/x-gpx+xml"))
-                || mimeType.inherits(QStringLiteral("text/plain"))
-                ) {
+            || mimeType.inherits(QStringLiteral("text/plain"))) {
+
             qInfo() << "Ignoring file" << path << "because mimetype is" << mimeType;
             allImages--;
             continue;
