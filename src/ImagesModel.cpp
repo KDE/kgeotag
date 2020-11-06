@@ -19,8 +19,6 @@
 
 // Local includes
 #include "ImagesModel.h"
-#include "SharedObjects.h"
-#include "Settings.h"
 #include "KGeoTag.h"
 #include "Coordinates.h"
 
@@ -35,9 +33,11 @@
 // C++ includes
 #include <utility>
 
-ImagesModel::ImagesModel(QObject *parent, SharedObjects *sharedObjects)
+ImagesModel::ImagesModel(QObject *parent, bool splitImagesList, int thumbnailSize, int previewSize)
     : QAbstractListModel(parent),
-      m_settings(sharedObjects->settings())
+      m_splitImagesList(splitImagesList),
+      m_thumbnailSize(QSize(thumbnailSize, thumbnailSize)),
+      m_previewSize(QSize(previewSize, previewSize))
 {
 }
 
@@ -56,8 +56,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
     const auto &data = m_imageData[path];
 
     if (role == Qt::DisplayRole) {
-        const QString associatedMarker = (! m_settings->splitImagesList()
-                                          && data.coordinates.isSet())
+        const QString associatedMarker = (! m_splitImagesList && data.coordinates.isSet())
             ? i18nc("Marker for an associated file", "\u2713\u2009")
             : QString();
         const QString changedmarker = data.coordinates != data.originalCoordinates
@@ -84,7 +83,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
             return m_colorScheme.foreground(KColorScheme::LinkText);
         }
 
-    } else if (! m_settings->splitImagesList() && role == Qt::FontRole) {
+    } else if (! m_splitImagesList && role == Qt::FontRole) {
         QFont font;
         if (data.coordinates.isSet()) {
             font.setBold(true);
@@ -175,11 +174,10 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     exif.rotateExifQImage(image, exif.getImageOrientation());
 
     // Create a smaller thumbnail
-    data.thumbnail = image.scaled(m_settings->thumbnailSize(), Qt::KeepAspectRatio,
-                                  Qt::SmoothTransformation);
+    data.thumbnail = image.scaled(m_thumbnailSize, Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
     // Create a bigger preview (to be scaled according to the view size)
-    data.preview = image.scaled(m_settings->previewSize(), Qt::KeepAspectRatio);
+    data.preview = image.scaled(m_previewSize, Qt::KeepAspectRatio);
 
     // Find the correct row for the new image (sorted by date)
     int row = 0;

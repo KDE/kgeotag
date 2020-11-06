@@ -60,7 +60,8 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);
-    setIconSize(sharedObjects->settings()->thumbnailSize());
+    const int iconSize = sharedObjects->settings()->thumbnailSize();
+    setIconSize(QSize(iconSize, iconSize));
 
     connect(this, &QAbstractItemView::clicked, this, &ImagesListView::centerImage);
     connect(this, &QAbstractItemView::clicked, this, &ImagesListView::imageSelected);

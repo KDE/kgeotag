@@ -112,7 +112,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_thumbnailSize = new QSpinBox;
     m_thumbnailSize->setMinimum(16);
     m_thumbnailSize->setMaximum(512);
-    m_originalThumbnailSizeValue = m_settings->thumbnailSize().width();
+    m_originalThumbnailSizeValue = m_settings->thumbnailSize();
     m_thumbnailSize->setValue(m_originalThumbnailSizeValue);
     sizesLayout->addWidget(m_thumbnailSize, row, 1);
     sizesLayout->addWidget(new QLabel(i18n("px")), row, 2);
@@ -121,7 +121,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_previewSize = new QSpinBox;
     m_previewSize->setMinimum(100);
     m_previewSize->setMaximum(1920);
-    m_originalPreviewSizeValue = m_settings->previewSize().width();
+    m_originalPreviewSizeValue = m_settings->previewSize();
     m_previewSize->setValue(m_originalPreviewSizeValue);
     sizesLayout->addWidget(m_previewSize, row, 1);
     sizesLayout->addWidget(new QLabel(i18n("px")), row, 2);

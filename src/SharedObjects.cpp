@@ -29,7 +29,8 @@
 SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
     m_settings = new Settings(this);
-    m_imagesModel = new ImagesModel(this, this);
+    m_imagesModel = new ImagesModel(this, m_settings->splitImagesList(),
+                                    m_settings->thumbnailSize(), m_settings->previewSize());
     m_gpxEngine = new GpxEngine(this);
     m_elevationEngine = new ElevationEngine(this, m_settings);
     m_mapWidget = new MapWidget(this);

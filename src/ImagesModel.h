@@ -30,10 +30,7 @@
 #include <QAbstractListModel>
 #include <QDateTime>
 #include <QImage>
-
-// Local classes
-class SharedObjects;
-class Settings;
+#include <QSize>
 
 class ImagesModel : public QAbstractListModel
 {
@@ -47,7 +44,7 @@ public:
         LoadingSucceeded
     };
 
-    explicit ImagesModel(QObject *parent, SharedObjects *sharedObjects);
+    explicit ImagesModel(QObject *parent, bool splitImagesList, int thumbnailSize, int previewSize);
 
     virtual int rowCount(const QModelIndex & = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
@@ -80,7 +77,9 @@ private: // Variables
         KGeoTag::MatchType matchType = KGeoTag::NotMatched;
     };
 
-    Settings *m_settings;
+    bool m_splitImagesList;
+    QSize m_thumbnailSize;
+    QSize m_previewSize;
 
     KColorScheme m_colorScheme;
     QVector<QString> m_paths;

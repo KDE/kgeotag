@@ -22,7 +22,6 @@
 
 // Qt includes
 #include <QDebug>
-#include <QSize>
 #include <QJsonArray>
 #include <QJsonObject>
 #include <QJsonDocument>
@@ -228,10 +227,9 @@ void Settings::saveThumbnailSize(int size)
     setValue(s_images_thumnailSize, size);
 }
 
-QSize Settings::thumbnailSize() const
+int Settings::thumbnailSize() const
 {
-    const int size = value(s_images_thumnailSize, 32).toInt();
-    return QSize(size, size);
+    return value(s_images_thumnailSize, 32).toInt();
 }
 
 void Settings::savePreviewSize(int size)
@@ -239,10 +237,9 @@ void Settings::savePreviewSize(int size)
     setValue(s_images_previewSize, size);
 }
 
-QSize Settings::previewSize() const
+int Settings::previewSize() const
 {
-    const int size = value(s_images_previewSize, 400).toInt();
-    return QSize(size, size);
+    return value(s_images_previewSize, 400).toInt();
 }
 
 void Settings::saveExactMatchTolerance(int seconds)

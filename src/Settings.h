@@ -61,10 +61,10 @@ public:
     bool splitImagesList() const;
 
     void saveThumbnailSize(int size);
-    QSize thumbnailSize() const;
+    int thumbnailSize() const;
 
     void savePreviewSize(int size);
-    QSize previewSize() const;
+    int previewSize() const;
 
     void saveExactMatchTolerance(int seconds);
     int exactMatchTolerance() const;
