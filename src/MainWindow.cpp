@@ -142,10 +142,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                                          QStringLiteral("previewDock"));
 
     // Automatic matching
-    auto *automaticMatchingWidget = new AutomaticMatchingWidget(m_settings);
-    m_automaticMatchingDock = createDockWidget(i18n("Automatic matching"), automaticMatchingWidget,
+    m_automaticMatchingWidget = new AutomaticMatchingWidget(m_settings);
+    m_automaticMatchingDock = createDockWidget(i18n("Automatic matching"),
+                                               m_automaticMatchingWidget,
                                                QStringLiteral("automaticMatchingDock"));
-    connect(automaticMatchingWidget, &AutomaticMatchingWidget::requestReassignment,
+    connect(m_automaticMatchingWidget, &AutomaticMatchingWidget::requestReassignment,
             this, &MainWindow::triggerCompleteAutomaticMatching);
 
     // Fix drift
@@ -311,10 +312,15 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 {
     QVector<QString> files;
     if (paths.isEmpty()) {
-        const auto files = QFileDialog::getOpenFileNames(this,
-                            i18n("Please select the GPX track(s) to add"),
-                            m_settings->lastOpenPath(),
-                            i18n("GPX tracks (*.gpx);; All files (*)"));
+        const auto selection = QFileDialog::getOpenFileNames(this,
+                                   i18n("Please select the GPX track(s) to add"),
+                                   m_settings->lastOpenPath(),
+                                   i18n("GPX tracks (*.gpx);; All files (*)"));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+        files = QVector<QString>(selection.begin(), selection.end());
+#else
+        files = selection.toVector();
+#endif
     } else {
         files = paths;
     }
@@ -671,9 +677,9 @@ void MainWindow::triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchT
     matchAutomatically(paths, searchType);
 }
 
-void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType,
-                                                  bool excludeManuallyTagged)
+void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType)
 {
+    const bool excludeManuallyTagged = m_automaticMatchingWidget->excludeManuallyTagged();
     QVector<QString> paths;
     for (const auto &path : m_imagesModel->allImages()) {
         if (excludeManuallyTagged && m_imagesModel->matchType(path) == KGeoTag::ManuallySet) {
@@ -687,6 +693,10 @@ void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType
 void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
+
+    m_gpxEngine->setMatchParameters(m_automaticMatchingWidget->exactMatchTolerance(),
+                                    m_automaticMatchingWidget->maximumInterpolationInterval(),
+                                    m_automaticMatchingWidget->maximumInterpolationDistance());
 
     int exactMatches = 0;
     int interpolatedMatches = 0;

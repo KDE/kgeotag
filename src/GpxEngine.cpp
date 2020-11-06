@@ -19,7 +19,6 @@
 
 // Local includes
 #include "GpxEngine.h"
-#include "Settings.h"
 
 // Marble includes
 #include <marble/GeoDataCoordinates.h>
@@ -38,8 +37,7 @@ static const auto s_ele    = QStringLiteral("ele");
 static const auto s_time   = QStringLiteral("time");
 static const auto s_trkseg = QStringLiteral("trkseg");
 
-GpxEngine::GpxEngine(QObject *parent, Settings *settings)
-    : QObject(parent), m_settings(settings)
+GpxEngine::GpxEngine(QObject *parent) : QObject(parent)
 {
 }
 
@@ -153,6 +151,14 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     return { LoadResult::Okay, tracks, segments, points };
 }
 
+void GpxEngine::setMatchParameters(int exactMatchTolerance, int maximumInterpolationInterval,
+                                   int maximumInterpolationDistance)
+{
+    m_exactMatchTolerance = exactMatchTolerance;
+    m_maximumInterpolationInterval = maximumInterpolationInterval;
+    m_maximumInterpolationDistance = maximumInterpolationDistance;
+}
+
 Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation) const
 {
     if (deviation == 0) {
@@ -171,7 +177,7 @@ Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) const
     }
 
     // Check for a match with +/- the maximum tolerable deviation
-    for (int i = 1; i <= m_settings->exactMatchTolerance(); i++) {
+    for (int i = 1; i <= m_exactMatchTolerance; i++) {
         const auto timeBefore = time.addSecs(i * -1);
         if (m_coordinates.contains(timeBefore)) {
             return m_coordinates.value(timeBefore);
@@ -247,11 +253,11 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
     // Interpolate between the two coordinates
 
     const auto &closestAfter = m_allTimes.at(index + 1);
-    const int maximumInterval = m_settings->maximumInterpolationInterval();
-    const int maximumDistance = m_settings->maximumInterpolationDistance();
 
     // Check for a maximum time interval between the points if requested
-    if (maximumInterval != -1 && closestBefore.secsTo(closestAfter) > maximumInterval) {
+    if (m_maximumInterpolationInterval != -1
+        && closestBefore.secsTo(closestAfter) > m_maximumInterpolationInterval) {
+
         return Coordinates();
     }
 
@@ -267,9 +273,9 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 
     // Check for a maximum distance between the points if requested
 
-    if (maximumDistance != -1
+    if (m_maximumInterpolationDistance != -1
         && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * KGeoTag::earthRadius
-        > maximumDistance) {
+           > m_maximumInterpolationDistance) {
 
         return Coordinates();
     }

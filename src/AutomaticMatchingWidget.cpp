@@ -82,8 +82,9 @@ AutomaticMatchingWidget::AutomaticMatchingWidget(Settings *settings, QWidget *pa
     auto *interpolatedMatchBoxLayout = new QVBoxLayout(interpolatedMatchBox);
     layout->addWidget(interpolatedMatchBox);
 
-    auto *interpolatedMatchLabel = new QLabel(i18n("Boundaries for two coordinates used to "
-                                                   "calculate interpolated matches:"));
+    auto *interpolatedMatchLabel = new QLabel(i18n(
+        "Spatial and temporal boundaries for two coordinates used to calculate an interpolated "
+        "match:"));
     interpolatedMatchLabel->setWordWrap(true);
     interpolatedMatchBoxLayout->addWidget(interpolatedMatchLabel);
 
@@ -157,19 +158,19 @@ AutomaticMatchingWidget::AutomaticMatchingWidget(Settings *settings, QWidget *pa
 
     auto *combinedSearch = reassignMenu->addAction(i18n("Combined match search"));
     connect(combinedSearch, &QAction::triggered,
-            this, std::bind(&AutomaticMatchingWidget::emitRequestReassignment, this,
+            this, std::bind(&AutomaticMatchingWidget::requestReassignment, this,
                             KGeoTag::CombinedMatchSearch));
 
     reassignMenu->addSeparator();
 
     auto *exactSearch = reassignMenu->addAction(i18n("Search exact matches only"));
     connect(exactSearch, &QAction::triggered,
-            this, std::bind(&AutomaticMatchingWidget::emitRequestReassignment, this,
+            this, std::bind(&AutomaticMatchingWidget::requestReassignment, this,
                             KGeoTag::ExactMatchSearch));
 
     auto *interpolatedSearch = reassignMenu->addAction(i18n("Search interpolated matches only"));
     connect(interpolatedSearch, &QAction::triggered,
-            this, std::bind(&AutomaticMatchingWidget::emitRequestReassignment, this,
+            this, std::bind(&AutomaticMatchingWidget::requestReassignment, this,
                             KGeoTag::InterpolatedMatchSearch));
 
     reassignMenu->addSeparator();
@@ -210,7 +211,26 @@ void AutomaticMatchingWidget::saveSettings()
     QMessageBox::information(this, i18n("Save as default"), i18n("Settings saved!"));
 }
 
-void AutomaticMatchingWidget::emitRequestReassignment(KGeoTag::SearchType searchType) const
+bool AutomaticMatchingWidget::excludeManuallyTagged() const
 {
-    emit requestReassignment(searchType, m_excludeManuallyTagged->isChecked());
+    return m_excludeManuallyTagged->isChecked();
+}
+
+int AutomaticMatchingWidget::exactMatchTolerance() const
+{
+    return m_exactMatchTolerance->value();
+}
+
+int AutomaticMatchingWidget::maximumInterpolationInterval() const
+{
+    return m_enableMaximumInterpolationInterval->isChecked()
+               ? m_maximumInterpolationInterval->value()
+               : -1;
+}
+
+int AutomaticMatchingWidget::maximumInterpolationDistance() const
+{
+    return m_enableMaximumInterpolationDistance->isChecked()
+               ? m_maximumInterpolationDistance->value()
+               : -1;
 }

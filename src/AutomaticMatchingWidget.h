@@ -40,15 +40,18 @@ class AutomaticMatchingWidget : public QWidget
 
 public:
     explicit AutomaticMatchingWidget(Settings *settings, QWidget *parent = nullptr);
+    bool excludeManuallyTagged() const;
+    int exactMatchTolerance() const;
+    int maximumInterpolationInterval() const;
+    int maximumInterpolationDistance() const;
 
 signals:
-    void requestReassignment(KGeoTag::SearchType searchType, bool excludeManuallyTagged) const;
+    void requestReassignment(KGeoTag::SearchType searchType) const;
 
 private slots:
     void enableMaximumInterpolationInterval(bool state);
     void enableMaximumInterpolationDistance(bool state);
     void saveSettings();
-    void emitRequestReassignment(KGeoTag::SearchType searchType) const;
 
 private: // Variables
     Settings *m_settings;

@@ -38,6 +38,7 @@ class FixDriftWidget;
 class BookmarksWidget;
 class ImagesModel;
 class ImagesListView;
+class AutomaticMatchingWidget;
 
 // Qt classes
 class QDockWidget;
@@ -67,8 +68,7 @@ private slots:
     void elevationLookupFailed(const QString &errorMessage);
     void notAllElevationsPresent(int locationsCount, int elevationsCount);
     void triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType);
-    void triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType,
-                                          bool excludeManuallyTagged);
+    void triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType);
     void matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType);
     void assignToMapCenter(ImagesListView *list);
     void assignManually(ImagesListView *list);
@@ -94,6 +94,7 @@ private: // Variables
     FixDriftWidget *m_fixDriftWidget;
     BookmarksWidget *m_bookmarksWidget;
     ImagesModel *m_imagesModel;
+    AutomaticMatchingWidget *m_automaticMatchingWidget;
 
     QDockWidget *m_previewDock;
     QDockWidget *m_fixDriftDock;

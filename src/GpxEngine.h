@@ -30,9 +30,6 @@
 #include <QHash>
 #include <QDateTime>
 
-// Local classes
-class Settings;
-
 class GpxEngine : public QObject
 {
     Q_OBJECT
@@ -55,10 +52,12 @@ public:
         int points = 0;
     };
 
-    explicit GpxEngine(QObject *parent, Settings *settings);
+    explicit GpxEngine(QObject *parent);
     GpxEngine::LoadInfo load(const QString &path);
     Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
     Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
+    void setMatchParameters(int exactMatchTolerance, int maximumInterpolationInterval,
+                            int maximumInterpolationDistance);
 
 signals:
     void segmentLoaded(const QVector<Coordinates> &segment) const;
@@ -68,10 +67,13 @@ private: // Functions
     Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
 
 private: // Variables
-    Settings *m_settings;
     QVector<QDateTime> m_allTimes;
     QHash<QDateTime, Coordinates> m_coordinates;
     QVector<QString> m_loadedPaths;
+
+    int m_exactMatchTolerance;
+    int m_maximumInterpolationInterval;
+    int m_maximumInterpolationDistance;
 
 };
 

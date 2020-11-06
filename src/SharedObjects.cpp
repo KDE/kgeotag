@@ -30,7 +30,7 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
     m_settings = new Settings(this);
     m_imagesModel = new ImagesModel(this, this);
-    m_gpxEngine = new GpxEngine(this, m_settings);
+    m_gpxEngine = new GpxEngine(this);
     m_elevationEngine = new ElevationEngine(this, m_settings);
     m_mapWidget = new MapWidget(this);
     m_coordinatesFormatter = new CoordinatesFormatter(this, &m_locale);
