@@ -1,5 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<!-- Copyright 2020 Tobias Leupold <tobias.leupold@gmx.de> -->
+<!--
+SPDX-FileCopyrightText: none
+SPDX-License-Identifier: CC0-1.0
+-->
 <component type="desktop-application">
   <id>org.kde.kgeotag</id>
   <metadata_license>CC0-1.0</metadata_license>
