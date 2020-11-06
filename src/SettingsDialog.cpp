@@ -39,6 +39,7 @@
 #include <QScrollArea>
 #include <QScrollBar>
 #include <QMessageBox>
+#include <QHBoxLayout>
 
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
@@ -55,7 +56,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     header->setAlignment(Qt::AlignCenter);
     mainLayout->addWidget(header);
 
-    // All settings
+    // Settings
 
     setStyleSheet(QStringLiteral("QGroupBox { font-weight: bold; }"));
 
@@ -65,68 +66,101 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *layout = new QVBoxLayout(settingsWidget);
 
-    auto *imagesBox = new QGroupBox(i18n("Images"));
-    auto *imagesBoxLayout = new QGridLayout(imagesBox);
-    row = -1;
+    // General
+
+    auto *listsBox = new QGroupBox(i18n("Image lists"));
+    layout->addWidget(listsBox);
+
+    auto *listsBoxLayout = new QHBoxLayout(listsBox);
+    auto *listsModeLayout = new QVBoxLayout;
+    listsBoxLayout->addLayout(listsModeLayout);
+
+    auto *listsModeLabel = new QLabel(i18n(
+        "<p>Loaded images can either be listed in two different lists (one for all images without "
+        "and one for images with coordinates, or using a combined consecutive list for all images."
+        "</p>"
+        "<p>Use the folling images list(s) mode:</p>"));
+    listsModeLabel->setWordWrap(true);
+    listsModeLayout->addWidget(listsModeLabel);
+
+    m_imageListsMode = new QComboBox;
+    m_imageListsMode->addItem(i18n("Separate \"Assigned\" and \"Unassigned\" list"));
+    m_imageListsMode->addItem(i18n("One combined list for all images"));
+
+    m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
+
+    listsModeLayout->addWidget(m_imageListsMode);
+
+    listsBoxLayout->addStretch();
+
+    // Images
+
+    auto *imagesBox = new QGroupBox(i18n("Thubnails and previews"));
+    auto *imagesBoxLayout = new QVBoxLayout(imagesBox);
     layout->addWidget(imagesBox);
 
-    m_splitImagesList = new QCheckBox(i18n("Show two image lists: One for unassigned images and\n"
-                                           "one for assigned ones instead of one list for all"));
-    m_originalSplitImagesListValue = m_settings->splitImagesList();
-    m_splitImagesList->setChecked(m_originalSplitImagesListValue);
-    imagesBoxLayout->addWidget(m_splitImagesList, ++row, 0, 1, 3);
+    auto *sizesLayoutWrapper = new QHBoxLayout;
+    imagesBoxLayout->addLayout(sizesLayoutWrapper);
+    auto *sizesLayout = new QGridLayout;
+    sizesLayoutWrapper->addLayout(sizesLayout);
+    row = -1;
 
-    imagesBoxLayout->addWidget(new QLabel(i18n("Thumbnail size:")), ++row, 0);
+    sizesLayout->addWidget(new QLabel(i18n("Thumbnail size:")), ++row, 0);
     m_thumbnailSize = new QSpinBox;
     m_thumbnailSize->setMinimum(16);
     m_thumbnailSize->setMaximum(512);
     m_originalThumbnailSizeValue = m_settings->thumbnailSize().width();
     m_thumbnailSize->setValue(m_originalThumbnailSizeValue);
-    imagesBoxLayout->addWidget(m_thumbnailSize, row, 1);
-    imagesBoxLayout->addWidget(new QLabel(i18n("px")), row, 2);
+    sizesLayout->addWidget(m_thumbnailSize, row, 1);
+    sizesLayout->addWidget(new QLabel(i18n("px")), row, 2);
 
-    imagesBoxLayout->addWidget(new QLabel(i18n("Preview size:")), ++row, 0);
+    sizesLayout->addWidget(new QLabel(i18n("Preview size:")), ++row, 0);
     m_previewSize = new QSpinBox;
     m_previewSize->setMinimum(100);
     m_previewSize->setMaximum(1920);
     m_originalPreviewSizeValue = m_settings->previewSize().width();
     m_previewSize->setValue(m_originalPreviewSizeValue);
-    imagesBoxLayout->addWidget(m_previewSize, row, 1);
-    imagesBoxLayout->addWidget(new QLabel(i18n("px")), row, 2);
+    sizesLayout->addWidget(m_previewSize, row, 1);
+    sizesLayout->addWidget(new QLabel(i18n("px")), row, 2);
+
+    sizesLayoutWrapper->addStretch();
 
     auto *imagesChangesLabel = new QLabel(i18n("Please restart the program after changes to these "
                                                "values so that they are applied and become "
                                                "visible."));
     imagesChangesLabel->setWordWrap(true);
-    imagesBoxLayout->addWidget(imagesChangesLabel, ++row, 0, 1, 3);
+    imagesBoxLayout->addWidget(imagesChangesLabel);
 
     // GPX track rendering
 
     auto *trackBox = new QGroupBox(i18n("GPX track rendering"));
-    auto *trackBoxLayout = new QGridLayout(trackBox);
-    row = -1;
+    auto *trackBoxLayout = new QHBoxLayout(trackBox);
     layout->addWidget(trackBox);
 
-    trackBoxLayout->addWidget(new QLabel(i18n("Color:")), ++row, 0);
+    auto *renderingLayout = new QGridLayout;
+    trackBoxLayout->addLayout(renderingLayout);
+    row = -1;
+
+    renderingLayout->addWidget(new QLabel(i18n("Color:")), ++row, 0);
     m_trackColor = new QPushButton;
     m_trackColor->setFlat(true);
     m_currentTrackColor = m_settings->trackColor();
     connect(m_trackColor, &QPushButton::clicked, this, &SettingsDialog::setTrackColor);
-    trackBoxLayout->addWidget(m_trackColor, row, 1);
+    renderingLayout->addWidget(m_trackColor, row, 1);
 
     m_trackOpacity = new QLabel;
-    trackBoxLayout->addWidget(m_trackOpacity, row, 2);
+    renderingLayout->addWidget(m_trackOpacity, row, 2);
 
     updateTrackColor();
 
-    trackBoxLayout->addWidget(new QLabel(i18n("Line width:")), ++row, 0);
+    renderingLayout->addWidget(new QLabel(i18n("Line width:")), ++row, 0);
     m_trackWidth = new QSpinBox;
     m_trackWidth->setMinimum(1);
     m_trackWidth->setMaximum(50);
     m_trackWidth->setValue(m_settings->trackWidth());
-    trackBoxLayout->addWidget(m_trackWidth, row, 1);
+    renderingLayout->addWidget(m_trackWidth, row, 1);
 
-    trackBoxLayout->addWidget(new QLabel(i18n("Line style:")), ++row, 0);
+    renderingLayout->addWidget(new QLabel(i18n("Line style:")), ++row, 0);
     m_trackStyle = new QComboBox;
     m_trackStyle->addItem(i18n("Solid"), static_cast<int>(Qt::SolidLine));
     m_trackStyle->addItem(i18n("Dashes"), static_cast<int>(Qt::DashLine));
@@ -135,24 +169,28 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_trackStyle->addItem(i18n("Dash-Dot-Dot"), static_cast<int>(Qt::DashDotDotLine));
     m_trackStyle->setCurrentIndex(
         m_trackStyle->findData(static_cast<int>(m_settings->trackStyle())));
-    trackBoxLayout->addWidget(m_trackStyle, row, 1);
+    renderingLayout->addWidget(m_trackStyle, row, 1);
+
+    trackBoxLayout->addStretch();
 
     // Elevation lookup
 
     auto *elevationBox = new QGroupBox(i18n("Elevation lookup"));
-    auto *elevationBoxLayout = new QGridLayout(elevationBox);
-    row = -1;
+    auto *elevationBoxLayout = new QVBoxLayout(elevationBox);
     layout->addWidget(elevationBox);
 
     m_lookupElevation = new QCheckBox(i18n("Request and set altitudes automatically\n"
                                            "using opentopodata.org's web API"));
     m_lookupElevation->setChecked(m_settings->lookupElevation());
-    elevationBoxLayout->addWidget(m_lookupElevation, ++row, 0, 1, 2);
+    elevationBoxLayout->addWidget(m_lookupElevation);
 
-    elevationBoxLayout->addWidget(new QLabel(i18n("Elevation dataset:")), ++row, 0);
+    auto *datasetLayout = new QHBoxLayout;
+    elevationBoxLayout->addLayout(datasetLayout);
+
+    datasetLayout->addWidget(new QLabel(i18n("Elevation dataset:")));
 
     m_elevationDataset = new QComboBox;
-    connect(m_lookupElevation, &QCheckBox::toggled, m_elevationDataset, &QWidget::setEnabled);
+
     m_elevationDataset->setEnabled(m_settings->lookupElevation());
     m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "ASTER"),
                                 QStringLiteral("aster30m"));
@@ -176,10 +214,15 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset",
                                       "GEBCO 2020 Bathymetry"),
                                 QStringLiteral("gebco2020"));
-    elevationBoxLayout->addWidget(m_elevationDataset, row, 1);
 
     m_elevationDataset->setCurrentIndex(
         m_elevationDataset->findData(m_settings->elevationDataset()));
+
+    connect(m_lookupElevation, &QCheckBox::toggled, m_elevationDataset, &QWidget::setEnabled);
+
+    datasetLayout->addWidget(m_elevationDataset);
+
+    datasetLayout->addStretch();
 
     auto *datasetInfoLabel = new QLabel(i18n("Cf. <a href=\"https://www.opentopodata.org/\">"
                                              "https://www.opentopodata.org/</a> for further "
@@ -187,31 +230,37 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
                                              "respective coverage!"));
     datasetInfoLabel->setWordWrap(true);
     datasetInfoLabel->setOpenExternalLinks(true);
-    elevationBoxLayout->addWidget(datasetInfoLabel, ++row, 0, 1, 2);
+    elevationBoxLayout->addWidget(datasetInfoLabel);
 
     // Data saving
 
     auto *saveBox = new QGroupBox(i18n("Saving"));
-    auto *saveBoxLayout = new QGridLayout(saveBox);
-    row = -1;
+    auto *saveBoxLayout = new QVBoxLayout(saveBox);
     layout->addWidget(saveBox);
 
-    saveBoxLayout->addWidget(new QLabel(i18n("Write changes to:")), ++row, 0);
+    auto *saveTargetLayout = new QHBoxLayout;
+    saveBoxLayout->addLayout(saveTargetLayout);
+
+    saveTargetLayout->addWidget(new QLabel(i18n("Write changes to:")));
 
     m_writeMode = new QComboBox;
+
     m_writeMode->addItem(i18n("Exif header"),
                          QStringLiteral("WRITETOIMAGEONLY"));
     m_writeMode->addItem(i18n("XMP sidecar file"),
                          QStringLiteral("WRITETOSIDECARONLY"));
     m_writeMode->addItem(i18n("Exif header and XMP sidecar file"),
                          QStringLiteral("WRITETOSIDECARANDIMAGE"));
-    saveBoxLayout->addWidget(m_writeMode, row, 1);
 
     m_writeMode->setCurrentIndex(m_writeMode->findData(m_settings->writeMode()));
 
+    saveTargetLayout->addWidget(m_writeMode);
+
+    saveTargetLayout->addStretch();
+
     m_createBackups = new QCheckBox(i18n("Create a backups before altering a file"));
     m_createBackups->setChecked(m_settings->createBackups());
-    saveBoxLayout->addWidget(m_createBackups, ++row, 0, 1, 2);
+    saveBoxLayout->addWidget(m_createBackups);
 
     // Scroll area
 
@@ -257,8 +306,9 @@ void SettingsDialog::setTrackColor()
 
 void SettingsDialog::accept()
 {
-    const auto splitImagesList = m_splitImagesList->isChecked();
+    const auto splitImagesList = m_imageListsMode->currentIndex() == 0;
     m_settings->saveSplitImagesList(splitImagesList);
+
     const auto thumbnailSize = m_thumbnailSize->value();
     m_settings->saveThumbnailSize(thumbnailSize);
     const auto previewSize = m_previewSize->value();

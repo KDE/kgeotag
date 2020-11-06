@@ -53,7 +53,9 @@ private: // Functions
 private: // Variables
     Settings *m_settings;
 
+    QComboBox *m_imageListsMode;
     QCheckBox *m_splitImagesList;
+
     QSpinBox *m_thumbnailSize;
     QSpinBox *m_previewSize;
     bool m_originalSplitImagesListValue;
