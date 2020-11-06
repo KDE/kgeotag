@@ -57,6 +57,8 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QAbstractButton>
+#include <QMimeType>
+#include <QMimeDatabase>
 
 // C++ includes
 #include <functional>
@@ -432,6 +434,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 
 void MainWindow::addImages(const QVector<QString> &paths)
 {
+    const QMimeDatabase mimeDB;
     QVector<QString> files;
     if (paths.isEmpty()) {
         const auto selection = QFileDialog::getOpenFileNames(this,
@@ -456,7 +459,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
     const QFileInfo info(files.at(0));
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
-    const int allImages = files.count();
+    int allImages = files.count();
     const bool isSingleFile = allImages == 1;
     int processed = 0;
     int loaded = 0;
@@ -474,6 +477,15 @@ void MainWindow::addImages(const QVector<QString> &paths)
         }
 
         const QFileInfo info(path);
+        const QMimeType mimeType = mimeDB.mimeTypeForFile(path);
+        // ignore gpx files and sidecar files silently:
+        if (mimeType.inherits(QStringLiteral("application/x-gpx+xml"))
+                || mimeType.inherits(QStringLiteral("text/plain"))
+                ) {
+            qInfo() << "Ignoring file" << path << "because mimetype is" << mimeType;
+            allImages--;
+            continue;
+        }
 
         while (true) {
             QString errorString;
