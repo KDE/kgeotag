@@ -71,9 +71,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *listsBox = new QGroupBox(i18n("Image lists"));
     layout->addWidget(listsBox);
 
-    auto *listsBoxLayout = new QHBoxLayout(listsBox);
-    auto *listsModeLayout = new QVBoxLayout;
-    listsBoxLayout->addLayout(listsModeLayout);
+    auto *listsBoxLayout = new QVBoxLayout(listsBox);
 
     auto *listsModeLabel = new QLabel(i18n(
         "<p>Loaded images can either be listed in two different lists (one for all images without "
@@ -81,17 +79,22 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
         "</p>"
         "<p>Use the folling images list(s) mode:</p>"));
     listsModeLabel->setWordWrap(true);
-    listsModeLayout->addWidget(listsModeLabel);
+    listsBoxLayout->addWidget(listsModeLabel);
 
     m_imageListsMode = new QComboBox;
+    m_imageListsMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
+
     m_imageListsMode->addItem(i18n("Separate \"Assigned\" and \"Unassigned\" list"));
     m_imageListsMode->addItem(i18n("One combined list for all images"));
 
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
 
-    listsModeLayout->addWidget(m_imageListsMode);
+    listsBoxLayout->addWidget(m_imageListsMode);
 
-    listsBoxLayout->addStretch();
+    auto *listModeChangeLabel = new QLabel(i18n("Please restart the program after changing the "
+                                                "list mode to apply it!"));
+    listModeChangeLabel->setWordWrap(true);
+    listsBoxLayout->addWidget(listModeChangeLabel);
 
     // Images
 
