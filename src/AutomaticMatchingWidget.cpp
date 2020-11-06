@@ -37,6 +37,12 @@
 #include <QApplication>
 #include <QStyle>
 #include <QMessageBox>
+#include <QMenu>
+#include <QAction>
+#include <QDebug>
+
+// C++ includes
+#include <functional>
 
 AutomaticMatchingWidget::AutomaticMatchingWidget(Settings *settings, QWidget *parent)
     : QWidget(parent), m_settings(settings)
@@ -136,13 +142,44 @@ AutomaticMatchingWidget::AutomaticMatchingWidget(Settings *settings, QWidget *pa
 
     auto *buttonsLayout = new QHBoxLayout;
     layout->addLayout(buttonsLayout);
-    buttonsLayout->addStretch();
 
-    auto *saveButton = new QPushButton(i18n("Save as default"));
+    auto *saveButton = new QPushButton(i18n("Save settings"));
     saveButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogSaveButton));
-    connect(saveButton, &QPushButton::clicked, this, &AutomaticMatchingWidget::saveAsDefault);
+    connect(saveButton, &QPushButton::clicked, this, &AutomaticMatchingWidget::saveSettings);
     buttonsLayout->addWidget(saveButton);
 
+    buttonsLayout->addStretch();
+
+    auto *reassignButton = new QPushButton(i18n("(Re)Assign all images"));
+    reassignButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogRetryButton));
+
+    auto *reassignMenu = new QMenu(this);
+
+    auto *combinedSearch = reassignMenu->addAction(i18n("Combined match search"));
+    connect(combinedSearch, &QAction::triggered,
+            this, std::bind(&AutomaticMatchingWidget::emitRequestReassignment, this,
+                            KGeoTag::CombinedMatchSearch));
+
+    reassignMenu->addSeparator();
+
+    auto *exactSearch = reassignMenu->addAction(i18n("Search exact matches only"));
+    connect(exactSearch, &QAction::triggered,
+            this, std::bind(&AutomaticMatchingWidget::emitRequestReassignment, this,
+                            KGeoTag::ExactMatchSearch));
+
+    auto *interpolatedSearch = reassignMenu->addAction(i18n("Search interpolated matches only"));
+    connect(interpolatedSearch, &QAction::triggered,
+            this, std::bind(&AutomaticMatchingWidget::emitRequestReassignment, this,
+                            KGeoTag::InterpolatedMatchSearch));
+
+    reassignMenu->addSeparator();
+
+    m_excludeManuallyTagged = reassignMenu->addAction(i18n("Exclude manually tagged images"));
+    m_excludeManuallyTagged->setCheckable(true);
+    m_excludeManuallyTagged->setChecked(m_settings->excludeManuallyTaggedWhenReassigning());
+
+    reassignButton->setMenu(reassignMenu);
+    buttonsLayout->addWidget(reassignButton);
 }
 
 void AutomaticMatchingWidget::enableMaximumInterpolationInterval(bool state)
@@ -161,13 +198,19 @@ void AutomaticMatchingWidget::enableMaximumInterpolationDistance(bool state)
     }
 }
 
-void AutomaticMatchingWidget::saveAsDefault()
+void AutomaticMatchingWidget::saveSettings()
 {
     m_settings->saveExactMatchTolerance(m_exactMatchTolerance->value());
     m_settings->saveMaximumInterpolationInterval(m_enableMaximumInterpolationInterval->isChecked()
         ? m_maximumInterpolationInterval->value() : -1);
     m_settings->saveMaximumInterpolationDistance(m_enableMaximumInterpolationDistance->isChecked()
         ? m_maximumInterpolationDistance->value() : -1);
+    m_settings->saveExcludeManuallyTaggedWhenReassigning(m_excludeManuallyTagged->isChecked());
 
     QMessageBox::information(this, i18n("Save as default"), i18n("Settings saved!"));
+}
+
+void AutomaticMatchingWidget::emitRequestReassignment(KGeoTag::SearchType searchType) const
+{
+    emit requestReassignment(searchType, m_excludeManuallyTagged->isChecked());
 }

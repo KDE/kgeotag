@@ -197,7 +197,7 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     m_imageData.insert(path, data);
     endInsertRows();
 
-    const auto modelIndex = index(row, 0, QModelIndex());
+    const auto modelIndex = index(row, 0);
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 
     return LoadResult::LoadingSucceeded;
@@ -207,6 +207,11 @@ void ImagesModel::emitDataChanged(const QString &path)
 {
     const auto modelIndex = indexFor(path);
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+}
+
+const QVector<QString> &ImagesModel::allImages() const
+{
+    return m_paths;
 }
 
 QVector<QString> ImagesModel::changedImages() const
@@ -236,7 +241,8 @@ Coordinates ImagesModel::coordinates(const QString &path) const
     return m_imageData.value(path).coordinates;
 }
 
-void ImagesModel::setCoordinates(const QString &path, const Coordinates &coordinates, int matchType)
+void ImagesModel::setCoordinates(const QString &path, const Coordinates &coordinates,
+                                 KGeoTag::MatchType matchType)
 {
     m_imageData[path].matchType = matchType;
     m_imageData[path].coordinates = coordinates;
@@ -258,11 +264,16 @@ void ImagesModel::resetChanges(const QString &path)
 
 QModelIndex ImagesModel::indexFor(const QString &path) const
 {
-    return index(m_paths.indexOf(path), 0, QModelIndex());
+    return index(m_paths.indexOf(path), 0);
 }
 
 void ImagesModel::setSaved(const QString &path)
 {
     auto &data = m_imageData[path];
     data.originalCoordinates = data.coordinates;
+}
+
+KGeoTag::MatchType ImagesModel::matchType(const QString &path) const
+{
+    return m_imageData.value(path).matchType;
 }

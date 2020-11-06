@@ -20,6 +20,9 @@
 #ifndef AUTOMATICMATCHINGWIDGET_H
 #define AUTOMATICMATCHINGWIDGET_H
 
+// Local includes
+#include "KGeoTag.h"
+
 // Qt includes
 #include <QWidget>
 
@@ -29,6 +32,7 @@ class Settings;
 // Qt classes
 class QSpinBox;
 class QCheckBox;
+class QAction;
 
 class AutomaticMatchingWidget : public QWidget
 {
@@ -37,10 +41,14 @@ class AutomaticMatchingWidget : public QWidget
 public:
     explicit AutomaticMatchingWidget(Settings *settings, QWidget *parent = nullptr);
 
+signals:
+    void requestReassignment(KGeoTag::SearchType searchType, bool excludeManuallyTagged) const;
+
 private slots:
     void enableMaximumInterpolationInterval(bool state);
     void enableMaximumInterpolationDistance(bool state);
-    void saveAsDefault();
+    void saveSettings();
+    void emitRequestReassignment(KGeoTag::SearchType searchType) const;
 
 private: // Variables
     Settings *m_settings;
@@ -50,6 +58,8 @@ private: // Variables
     QSpinBox *m_maximumInterpolationInterval;
     QCheckBox *m_enableMaximumInterpolationDistance;
     QSpinBox *m_maximumInterpolationDistance;
+
+    QAction *m_excludeManuallyTagged;
 
 };
 

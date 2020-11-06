@@ -66,7 +66,10 @@ private slots:
                             const QVector<double> &elevations);
     void elevationLookupFailed(const QString &errorMessage);
     void notAllElevationsPresent(int locationsCount, int elevationsCount);
-    void automaticMatching(ImagesListView *list, KGeoTag::SearchType searchType);
+    void triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType);
+    void triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType,
+                                          bool excludeManuallyTagged);
+    void matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType);
     void assignToMapCenter(ImagesListView *list);
     void assignManually(ImagesListView *list);
     void editCoordinates(ImagesListView *list);

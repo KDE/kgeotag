@@ -81,6 +81,8 @@ static const QString s_assignment_maximumInterpolationInterval
     = s_assignment + QLatin1String("maximum_interpolation_interval");
 static const QString s_assignment_maximumInterpolationDistance
     = s_assignment + QLatin1String("maximum_interpolation_distance");
+static const QString s_assignment_excludeManuallyTaggedWhenReassigning
+    = s_assignment + QLatin1String("exclude_manually_tagged_when_reassigning");
 
 // Elevation lookup
 
@@ -261,6 +263,16 @@ void Settings::saveMaximumInterpolationInterval(int seconds)
 int Settings::maximumInterpolationInterval() const
 {
     return value(s_assignment_maximumInterpolationInterval, -1).toInt();
+}
+
+void Settings::saveExcludeManuallyTaggedWhenReassigning(bool state)
+{
+    setValue(s_assignment_excludeManuallyTaggedWhenReassigning, state);
+}
+
+bool Settings::excludeManuallyTaggedWhenReassigning() const
+{
+    return value(s_assignment_excludeManuallyTaggedWhenReassigning, true).toBool();
 }
 
 void Settings::saveLookupElevation(bool state)

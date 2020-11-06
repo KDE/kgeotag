@@ -145,6 +145,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *automaticMatchingWidget = new AutomaticMatchingWidget(m_settings);
     m_automaticMatchingDock = createDockWidget(i18n("Automatic matching"), automaticMatchingWidget,
                                                QStringLiteral("automaticMatchingDock"));
+    connect(automaticMatchingWidget, &AutomaticMatchingWidget::requestReassignment,
+            this, &MainWindow::triggerCompleteAutomaticMatching);
 
     // Fix drift
     m_fixDriftWidget = new FixDriftWidget;
@@ -209,7 +211,8 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::centerImage, m_mapWidget, &MapWidget::centerImage);
     connect(m_bookmarksWidget, &BookmarksWidget::bookmarksChanged,
             list, &ImagesListView::updateBookmarks);
-    connect(list, &ImagesListView::requestAutomaticMatching, this, &MainWindow::automaticMatching);
+    connect(list, &ImagesListView::requestAutomaticMatching,
+            this, &MainWindow::triggerAutomaticMatching);
     connect(list, &ImagesListView::assignToMapCenter, this, &MainWindow::assignToMapCenter);
     connect(list, &ImagesListView::assignManually, this, &MainWindow::assignManually);
     connect(list, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
@@ -662,11 +665,29 @@ void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coor
     }
 }
 
-void MainWindow::automaticMatching(ImagesListView *list, KGeoTag::SearchType searchType)
+void MainWindow::triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType)
+{
+    const auto paths = list->selectedPaths();
+    matchAutomatically(paths, searchType);
+}
+
+void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType,
+                                                  bool excludeManuallyTagged)
+{
+    QVector<QString> paths;
+    for (const auto &path : m_imagesModel->allImages()) {
+        if (excludeManuallyTagged && m_imagesModel->matchType(path) == KGeoTag::ManuallySet) {
+            continue;
+        }
+        paths.append(path);
+    }
+    matchAutomatically(paths, searchType);
+}
+
+void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    const auto paths = list->selectedPaths();
     int exactMatches = 0;
     int interpolatedMatches = 0;
     QString lastMatchedPath;

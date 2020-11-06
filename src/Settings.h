@@ -75,6 +75,9 @@ public:
     void saveMaximumInterpolationDistance(int meters);
     int maximumInterpolationDistance() const;
 
+    void saveExcludeManuallyTaggedWhenReassigning(bool state);
+    bool excludeManuallyTaggedWhenReassigning() const;
+
     void saveLookupElevation(bool state);
     bool lookupElevation() const;
 
