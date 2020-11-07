@@ -16,20 +16,21 @@
 namespace MimeHelper
 {
 
-static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
-    { KGeoTag::DroppedOnImageList, {
-        QStringLiteral("image/jpeg"),
-        QStringLiteral("image/png"),
-        QStringLiteral("image/webp"),
-        QStringLiteral("image/tiff"),
-        QStringLiteral("image/openraster"),
-        QStringLiteral("application/x-krita")
-    } },
-
-    { KGeoTag::DroppedOnMap, {
-        QStringLiteral("application/x-gpx+xml")
-    } }
+static const QVector<QString> s_usableImages {
+    QStringLiteral("image/jpeg"),
+    QStringLiteral("image/png"),
+    QStringLiteral("image/webp"),
+    QStringLiteral("image/tiff"),
+    QStringLiteral("image/openraster"),
+    QStringLiteral("application/x-krita")
 };
+
+static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
+    { KGeoTag::DroppedOnImageList, s_usableImages },
+    { KGeoTag::DroppedOnMap,       { QStringLiteral("application/x-gpx+xml") } }
+};
+
+static const QMimeDatabase s_mimeDB;
 
 QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data)
 {
@@ -37,9 +38,7 @@ QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData 
         return { };
     }
 
-    const QMimeDatabase mimeDB;
-
-    QVector<QString> usbalePaths;
+    QVector<QString> usablePaths;
     const auto urls = data->urls();
     for (const auto url : urls) {
         if (! url.isLocalFile()) {
@@ -47,16 +46,32 @@ QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData 
         }
 
         const auto path = url.toLocalFile();
-        const auto type = mimeDB.mimeTypeForFile(path);
+        const auto type = s_mimeDB.mimeTypeForFile(path);
         for (const auto &possibleType : s_usableTypes.value(dropTarget)) {
             if (type.inherits(possibleType)) {
-                usbalePaths.append(path);
+                usablePaths.append(path);
                 break;
             }
         }
     }
 
-    return usbalePaths;
+    return usablePaths;
+}
+
+bool mimeTypeOkay(const QString &path)
+{
+    const auto type = s_mimeDB.mimeTypeForFile(path);
+    for (const auto &possibleType : s_usableImages) {
+        if (type.inherits(possibleType)) {
+            return true;
+        }
+    }
+    return false;
+}
+
+QString mimeType(const QString &path)
+{
+    return s_mimeDB.mimeTypeForFile(path).name();
 }
 
 }

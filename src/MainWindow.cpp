@@ -23,6 +23,7 @@
 #include "ImagesListView.h"
 #include "Coordinates.h"
 #include "AutomaticMatchingWidget.h"
+#include "MimeHelper.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -449,6 +450,25 @@ void MainWindow::addImages(const QVector<QString> &paths)
 #endif
     } else {
         files = paths;
+    }
+
+    QStringList unsupported;
+    for (const auto &path : files) {
+        if (! MimeHelper::mimeTypeOkay(path)) {
+            const auto name = MimeHelper::mimeType(path);
+            if (! unsupported.contains(name)) {
+                unsupported.append(name);
+            }
+            files.removeOne(path);
+        }
+    }
+    if (! unsupported.isEmpty()) {
+        QMessageBox::warning(this, i18n("Add images"),
+            i18n("<p>Some files were removed from the load request because their file format is "
+                 "not supported.</p>")
+            + i18np("<p>The unsupported MIME type was: <kbd>%2</kbd></p>",
+                    "<p>The unsupported MIME types were: <kbd>%2</kbd></p>",
+                    unsupported.count(), unsupported.join(QStringLiteral("</kbd>, <kbd>"))));
     }
 
     if (files.isEmpty()) {

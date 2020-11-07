@@ -21,6 +21,8 @@ namespace MimeHelper
 {
 
 QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data);
+bool mimeTypeOkay(const QString &path);
+QString mimeType(const QString &path);
 
 }
 
