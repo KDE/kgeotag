@@ -778,7 +778,7 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
     case KGeoTag::CombinedMatchSearch:
         title = i18n("Combined match search");
         if (exactMatches > 0 || interpolatedMatches > 0) {
-            text = i18n("%1 %2%3!",
+            text = i18n("<p>%1 %2!</p>%3",
                         i18np("Found one exact match",
                               "Found %1 exact matches",
                               exactMatches),
@@ -786,8 +786,8 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
                               "and %1 interpolated matches",
                               interpolatedMatches),
                               noMatches == 0 ? QString()
-                                             : i18np(" (one image had no exact match)",
-                                                     " (%1 images had no exact match)",
+                                             : i18np("<p>One image could not be matched.</p>",
+                                                     "<p>%1 images could not be matched.</p>",
                                                      noMatches));
         } else {
             text = i18n("Could neither find any exact, nor any interpolated matches!");
