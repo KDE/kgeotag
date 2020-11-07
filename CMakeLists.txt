@@ -1,5 +1,6 @@
 # SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
 # SPDX-License-Identifier: BSD-2-Clause
+
 cmake_minimum_required(VERSION 3.8.0)
 project(kgeotag CXX)
 
