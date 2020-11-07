@@ -8,6 +8,7 @@
 #include "ImagesListFilter.h"
 #include "Coordinates.h"
 #include "ImagesModel.h"
+#include "DropHelper.h"
 
 // Qt includes
 #include <QDebug>
@@ -79,6 +80,12 @@ bool ImagesListFilter::canDropMimeData(const QMimeData *data, Qt::DropAction act
         if (source == KGeoTag::SourceImagesList.value(m_listType)) {
             return false;
         }
+
+    } else {
+        // The user wants to drop files from an external source
+        if (DropHelper::getUsablePaths(KGeoTag::DroppedOnImageList, data).isEmpty()) {
+            return false;
+        }
     }
 
     return true;
@@ -94,12 +101,8 @@ bool ImagesListFilter::dropMimeData(const QMimeData *data, Qt::DropAction action
     QVector<QString> paths;
     QVector<QString> removeCoordinates;
 
-    for (const auto &url : data->urls()) {
-        if (! url.isLocalFile()) {
-            continue;
-        }
-
-        const auto path = url.toLocalFile();
+    const auto usablePaths = DropHelper::getUsablePaths(KGeoTag::DroppedOnImageList, data);
+    for (const auto &path : usablePaths) {
         if (! m_imagesModel->contains(path)) {
             paths.append(path);
         } else {

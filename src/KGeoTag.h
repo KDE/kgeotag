@@ -70,6 +70,11 @@ enum CustomDataRoles {
     ChangedRole
 };
 
+enum DropTarget {
+    DroppedOnImageList,
+    DroppedOnMap
+};
+
 }
 
 Q_DECLARE_METATYPE(KGeoTag::MatchType)

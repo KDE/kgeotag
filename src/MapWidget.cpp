@@ -10,6 +10,7 @@
 #include "Settings.h"
 #include "KGeoTag.h"
 #include "ImagesModel.h"
+#include "DropHelper.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -256,20 +257,7 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 
     } else {
         // Possibly a request to load a GPX file
-
-        if (! mimeData->hasUrls()) {
-            return;
-        }
-
-        // Check if we have local paths in the URL list
-        QVector<QString> paths;
-        const auto urls = mimeData->urls();
-        for (const auto &url : urls) {
-            if (url.isLocalFile()) {
-                paths.append(url.toLocalFile());
-            }
-        }
-        if (paths.isEmpty()) {
+        if (DropHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData).isEmpty()) {
             return;
         }
     }
@@ -280,27 +268,42 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 void MapWidget::dropEvent(QDropEvent *event)
 {
     const auto mimeData = event->mimeData();
-    const auto source = mimeData->data(KGeoTag::SourceImagesListMimeType);
+    if (! mimeData->hasUrls()) {
+        return;
+    }
 
+    const auto source = mimeData->data(KGeoTag::SourceImagesListMimeType);
     if (! source.isEmpty()) {
         // Images dragged from an images list
+
+        const auto urls = mimeData->urls();
+        QVector<QString> paths;
+
+        // Be sure to really have all images
+        for (const auto &url : urls) {
+            const auto path = url.toLocalFile();
+            if (m_imagesModel->contains(path)) {
+                paths.append(path);
+            }
+        }
+
+        // This should not happen ...
+        if (paths.isEmpty()) {
+            return;
+        }
 
         const auto dropPosition = event->pos();
 
         qreal lon;
         qreal lat;
         if (! geoCoordinates(dropPosition.x(), dropPosition.y(), lon, lat,
-                            Marble::GeoDataCoordinates::Degree)) {
+                             Marble::GeoDataCoordinates::Degree)) {
             return;
         }
 
-        QVector<QString> paths;
-        const auto urls = mimeData->urls();
-        for (const auto &url : urls) {
-            const auto path = url.toLocalFile();
+        for (const auto &path : paths) {
             m_imagesModel->setCoordinates(path, Coordinates(lon, lat, 0.0, true),
                                           KGeoTag::ManuallySet);
-            paths.append(path);
         }
 
         reloadMap();
@@ -308,14 +311,10 @@ void MapWidget::dropEvent(QDropEvent *event)
 
     } else {
         // Request to load a GPX file
-        QVector<QString> paths;
-        const auto urls = event->mimeData()->urls();
-        for (const auto &url : urls) {
-            if (url.isLocalFile()) {
-                paths.append(url.toLocalFile());
-            }
+        const auto usablePaths = DropHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData);
+        if (! usablePaths.isEmpty()) {
+            emit requestLoadGpx(usablePaths);
         }
-        emit requestLoadGpx(paths);
     }
 
     event->acceptProposedAction();
