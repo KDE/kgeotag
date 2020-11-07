@@ -10,7 +10,7 @@
 #include "Settings.h"
 #include "KGeoTag.h"
 #include "ImagesModel.h"
-#include "DropHelper.h"
+#include "MimeHelper.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -257,7 +257,7 @@ void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 
     } else {
         // Possibly a request to load a GPX file
-        if (DropHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData).isEmpty()) {
+        if (MimeHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData).isEmpty()) {
             return;
         }
     }
@@ -311,7 +311,7 @@ void MapWidget::dropEvent(QDropEvent *event)
 
     } else {
         // Request to load a GPX file
-        const auto usablePaths = DropHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData);
+        const auto usablePaths = MimeHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData);
         if (! usablePaths.isEmpty()) {
             emit requestLoadGpx(usablePaths);
         }

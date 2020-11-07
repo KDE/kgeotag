@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
 
-#ifndef DROPHELPER_H
-#define DROPHELPER_H
+#ifndef MIMEHELPER_H
+#define MIMEHELPER_H
 
 // Local includes
 #include "KGeoTag.h"
@@ -17,11 +17,11 @@
 // Qt classes
 class QMimeData;
 
-namespace DropHelper
+namespace MimeHelper
 {
 
 QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data);
 
 }
 
-#endif // DROPHELPER_H
+#endif // MIMEHELPER_H

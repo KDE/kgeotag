@@ -5,7 +5,7 @@
 */
 
 // Local includes
-#include "DropHelper.h"
+#include "MimeHelper.h"
 
 // Qt includes
 #include <QHash>
@@ -13,7 +13,7 @@
 #include <QMimeData>
 #include <QUrl>
 
-namespace DropHelper
+namespace MimeHelper
 {
 
 static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
