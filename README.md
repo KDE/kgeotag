@@ -1,5 +1,5 @@
 <!--
-SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@web.de>
+SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
 
 SPDX-License-Identifier: CC-BY-SA-4.0
 -->
