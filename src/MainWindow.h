@@ -1,7 +1,7 @@
 /*
     SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
 
-    SPDX-License-Identifier: GPL-3.0-or-later
+    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
 
 #ifndef MAINWINDOW_H
