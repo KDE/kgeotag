@@ -1,6 +1,8 @@
 # KGeoTag
 
-**Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet. All beta testing and feedback is greatly appreciated!
+**Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet.
+
+All beta testing and feedback is greatly appreciated! Feel free to join KGeoTag's IRC channel <kbd>#kgeotag</kbd> on Freenode!
 
 ## What is it?
 
