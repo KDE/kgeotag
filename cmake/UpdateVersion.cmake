@@ -1,10 +1,6 @@
-# Copyright 2018-2020 Tobias Leupold <tobias.leupold@gmx.de>
-# Copyright 2012-2018 Johannes Zarl-Zierl <johannes@zarl-zierl.at>
-#
-# This software is distributed WITHOUT ANY WARRANTY; without even the
-# implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
-#
-# This file is under the public domain and can be reused without restrictions.
+# SPDX-FileCopyrightText: 2012-2018 Johannes Zarl-Zierl <johannes@zarl-zierl.at>
+# SPDX-FileCopyrightText: 2018-2020 Tobias Leupold <tobias.leupold@gmx.de>
+# SPDX-License-Identifier: BSD-2-Clause
 
 if (NOT DEFINED BASE_DIR)
     message(FATAL_ERROR "UpdateVersion.cmake: BASE_DIR not set. "
