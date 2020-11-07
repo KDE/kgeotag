@@ -17,10 +17,18 @@ namespace DropHelper
 {
 
 static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
-    { KGeoTag::DroppedOnImageList, { QStringLiteral("image/jpeg"),
-                                     QStringLiteral("image/png"),
-                                     QStringLiteral("image/webp") } },
-    { KGeoTag::DroppedOnMap,       { QStringLiteral("application/x-gpx+xml") } }
+    { KGeoTag::DroppedOnImageList, {
+        QStringLiteral("image/jpeg"),
+        QStringLiteral("image/png"),
+        QStringLiteral("image/webp"),
+        QStringLiteral("image/tiff"),
+        QStringLiteral("image/openraster"),
+        QStringLiteral("application/x-krita")
+    } },
+
+    { KGeoTag::DroppedOnMap, {
+        QStringLiteral("application/x-gpx+xml")
+    } }
 };
 
 QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data)

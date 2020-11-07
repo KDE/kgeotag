@@ -434,8 +434,14 @@ void MainWindow::addImages(const QVector<QString> &paths)
         const auto selection = QFileDialog::getOpenFileNames(this,
                                    i18n("Please select the images to add"),
                                    m_settings->lastOpenPath(),
-                                   i18n("All supported images (*.jpg *.jpeg *.png *.webp);;"
-                                        "All files (*)"));
+                                   i18n("All supported images ("
+                                        "*.jpg *.jpeg "
+                                        "*.png "
+                                        "*.webp "
+                                        "*.tif *.tiff "
+                                        "*.ora "
+                                        "*.kra "
+                                        ");; All files (*)"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
         files = QVector<QString>(selection.begin(), selection.end());
 #else
@@ -494,8 +500,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
                                                      processed, allImages),
                     path);
                 errorString.append(i18n("<p>Please check if this file is actually a supported "
-                                        "image (JPEG, PNG) and if you have read access to it."
-                                        "</p>"));
+                                        "image and if you have read access to it.</p>"));
                 break;
 
             case ImagesModel::LoadingMetadataFailed:
@@ -506,8 +511,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
                                                      processed, allImages),
                     path);
                 errorString.append(i18n("<p>Please check if this file is actually a supported "
-                                        "image (JPEG, PNG) and if you have read access to it."
-                                        "</p>"));
+                                        "image and if you have read access to it.</p>"));
                 break;
             }
 
@@ -917,7 +921,7 @@ void MainWindow::saveChanges()
             RetrySkipAbortDialog dialog(this,
                 i18n("Save changes"),
                 i18n("<p><b>Saving changes failed%1</b></p>"
-                        "<p>Could not read exif header from <kbd>%2</kbd>.</p>"
+                        "<p>Could not read metadata from <kbd>%2</kbd>.</p>"
                         "<p>Please check if this file still exists and if you have read access to "
                         "it (and possibly also to an existing XMP sidecar file).</p>"
                         "<p>%3</p>",
