@@ -62,9 +62,9 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *listsModeLabel = new QLabel(i18n(
         "<p>Loaded images can either be listed in two different lists (one for all images without "
-        "and one for images with coordinates, or using a combined consecutive list for all images."
+        "and one for images with coordinates), or using a combined consecutive list for all images."
         "</p>"
-        "<p>Use the folling images list(s) mode:</p>"));
+        "<p>Use the following images list(s) mode:</p>"));
     listsModeLabel->setWordWrap(true);
     listsBoxLayout->addWidget(listsModeLabel);
 
@@ -85,7 +85,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     // Images
 
-    auto *imagesBox = new QGroupBox(i18n("Thubnails and previews"));
+    auto *imagesBox = new QGroupBox(i18n("Thumbnails and previews"));
     auto *imagesBoxLayout = new QVBoxLayout(imagesBox);
     layout->addWidget(imagesBox);
 
