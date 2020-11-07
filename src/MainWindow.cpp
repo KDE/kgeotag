@@ -437,7 +437,8 @@ void MainWindow::addImages(const QVector<QString> &paths)
         const auto selection = QFileDialog::getOpenFileNames(this,
                                    i18n("Please select the images to add"),
                                    m_settings->lastOpenPath(),
-                                   i18n("JPEG Images (*.jpg *.jpeg);; All files (*)"));
+                                   i18n("All supported images (*.jpg *.jpeg *.png *.webp);;"
+                                        "All files (*)"));
 #if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
         files = QVector<QString>(selection.begin(), selection.end());
 #else

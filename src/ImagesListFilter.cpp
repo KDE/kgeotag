@@ -103,7 +103,9 @@ bool ImagesListFilter::dropMimeData(const QMimeData *data, Qt::DropAction action
         if (! m_imagesModel->contains(path)) {
             paths.append(path);
         } else {
-            if (m_listType == KGeoTag::UnAssignedImages && m_imagesModel->coordinates(path).isSet()) {
+            if (m_listType == KGeoTag::UnAssignedImages
+                && m_imagesModel->coordinates(path).isSet()) {
+
                 removeCoordinates.append(path);
             }
         }
