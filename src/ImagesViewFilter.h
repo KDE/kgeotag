@@ -29,6 +29,7 @@ public:
                                  const QModelIndex &) const override;
     virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                               const QModelIndex &) override;
+    void setListType(KGeoTag::ImagesListType type);
 
 signals:
     void requestAddingImages(const QVector<QString> &paths) const;
@@ -38,7 +39,7 @@ protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
 
 private: // Variables
-    KGeoTag::ImagesListType m_type;
+    KGeoTag::ImagesListType m_listType;
     ImagesModel *m_imagesModel;
 
 };

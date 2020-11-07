@@ -30,19 +30,19 @@
 ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
                                QWidget *parent)
     : QListView(parent),
-      m_type(type),
+      m_listType(type),
       m_bookmarks(sharedObjects->bookmarks())
 {
     viewport()->setAcceptDrops(true);
     setDropIndicatorShown(true);
     setDragDropMode(QAbstractItemView::DropOnly);
 
-    auto *filterModel = new ImagesViewFilter(this, type);
-    filterModel->setSourceModel(sharedObjects->imagesModel());
-    setModel(filterModel);
-    connect(filterModel, &ImagesViewFilter::requestAddingImages,
+    m_filterModel = new ImagesViewFilter(this, type);
+    m_filterModel->setSourceModel(sharedObjects->imagesModel());
+    setModel(m_filterModel);
+    connect(m_filterModel, &ImagesViewFilter::requestAddingImages,
             this, &ImagesListView::requestAddingImages);
-    connect(filterModel, &ImagesViewFilter::requestRemoveCoordinates,
+    connect(m_filterModel, &ImagesViewFilter::requestRemoveCoordinates,
             this, QOverload<const QVector<QString> &>::of(&ImagesListView::removeCoordinates));
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -57,7 +57,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     m_contextMenu = new QMenu(this);
 
-    if (m_type != KGeoTag::AllImages) {
+    if (m_listType != KGeoTag::AllImages) {
         m_selectAll = m_contextMenu->addAction(i18n("Select all images"));
         connect(m_selectAll, &QAction::triggered, this, &QListView::selectAll);
     } else {
@@ -131,6 +131,12 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
             this, std::bind(&ImagesListView::discardChanges, this, this));
 
     connect(this, &QListView::customContextMenuRequested, this, &ImagesListView::showContextMenu);
+}
+
+void ImagesListView::setListType(KGeoTag::ImagesListType type)
+{
+    m_listType = type;
+    m_filterModel->setListType(type);
 }
 
 void ImagesListView::currentChanged(const QModelIndex &current, const QModelIndex &)
@@ -208,7 +214,7 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
     mimeData->setUrls(urls);
 
     mimeData->setData(KGeoTag::SourceImagesListMimeType,
-                      KGeoTag::SourceImagesList.value(m_type));
+                      KGeoTag::SourceImagesList.value(m_listType));
 
     drag->setMimeData(mimeData);
     drag->exec(Qt::MoveAction);
@@ -244,7 +250,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
     const int allSelected = selected.count();
     const bool anySelected = allSelected > 0;
 
-    if (m_type == KGeoTag::AllImages) {
+    if (m_listType == KGeoTag::AllImages) {
         m_selectMenu->setEnabled(model()->rowCount() > 0);
     } else {
         m_selectAll->setEnabled(model()->rowCount() > 0);

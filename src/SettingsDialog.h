@@ -28,6 +28,9 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(Settings *settings, QWidget *parent);
 
+signals:
+    void imagesListsModeChanged() const;
+
 protected:
     virtual void accept() override;
 

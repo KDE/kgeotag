@@ -16,6 +16,7 @@
 
 // Local classes
 class SharedObjects;
+class ImagesViewFilter;
 
 // Qt classes
 class QMenu;
@@ -28,6 +29,7 @@ class ImagesListView : public QListView
 public:
     explicit ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
                             QWidget *parent = nullptr);
+    void setListType(KGeoTag::ImagesListType type);
     QVector<QString> selectedPaths() const;
 
 public slots:
@@ -58,7 +60,8 @@ private slots:
     void selectImages(bool coordinatesSet);
 
 private: // Variables
-    const KGeoTag::ImagesListType m_type;
+    KGeoTag::ImagesListType m_listType;
+    ImagesViewFilter *m_filterModel;
     const QHash<QString, Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;

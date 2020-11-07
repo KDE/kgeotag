@@ -42,6 +42,7 @@ protected:
     virtual void closeEvent(QCloseEvent *event) override;
 
 private slots:
+    void updateImagesListsMode();
     void setDefaultDockArrangement();
     void addGpx(const QVector<QString> &paths);
     void addImages(const QVector<QString> &paths);

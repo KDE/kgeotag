@@ -36,6 +36,7 @@ public:
     virtual int rowCount(const QModelIndex & = QModelIndex()) const override;
     virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    void setSplitImagesList(bool state);
     QModelIndex indexFor(const QString &path) const;
     bool contains(const QString &path) const;
     LoadResult addImage(const QString &path);

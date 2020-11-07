@@ -16,8 +16,14 @@
 
 ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type)
     : QSortFilterProxyModel(parent),
-      m_type(type)
+      m_listType(type)
 {
+}
+
+void ImagesViewFilter::setListType(KGeoTag::ImagesListType type)
+{
+    m_listType = type;
+    invalidateFilter();
 }
 
 void ImagesViewFilter::setSourceModel(QAbstractItemModel *sourceModel)
@@ -28,15 +34,15 @@ void ImagesViewFilter::setSourceModel(QAbstractItemModel *sourceModel)
 
 bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
 {
-    if (m_type == KGeoTag::AllImages) {
+    if (m_listType == KGeoTag::AllImages) {
         return true;
     }
 
     const bool coordinatesSet = sourceModel()->index(sourceRow, 0).data(
                                     KGeoTag::CoordinatesRole).value<Coordinates>().isSet();
 
-    return    (m_type == KGeoTag::AssignedImages   &&   coordinatesSet)
-           || (m_type == KGeoTag::UnAssignedImages && ! coordinatesSet);
+    return    (m_listType == KGeoTag::AssignedImages   &&   coordinatesSet)
+           || (m_listType == KGeoTag::UnAssignedImages && ! coordinatesSet);
 }
 
 Qt::DropActions ImagesViewFilter::supportedDropActions() const
@@ -66,11 +72,11 @@ bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction act
     const auto source = data->data(KGeoTag::SourceImagesListMimeType);
     if (! source.isEmpty()) {
         // Don't allow drops on the "assigned" images list
-        if (m_type == KGeoTag::AssignedImages) {
+        if (m_listType == KGeoTag::AssignedImages) {
             return false;
         }
         // Don't allow drops on the origin list
-        if (source == KGeoTag::SourceImagesList.value(m_type)) {
+        if (source == KGeoTag::SourceImagesList.value(m_listType)) {
             return false;
         }
     }
@@ -97,7 +103,7 @@ bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action
         if (! m_imagesModel->contains(path)) {
             paths.append(path);
         } else {
-            if (m_type == KGeoTag::UnAssignedImages && m_imagesModel->coordinates(path).isSet()) {
+            if (m_listType == KGeoTag::UnAssignedImages && m_imagesModel->coordinates(path).isSet()) {
                 removeCoordinates.append(path);
             }
         }

@@ -31,6 +31,7 @@
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent), m_settings(settings)
 {
+    setAttribute(Qt::WA_DeleteOnClose, true);
     setWindowTitle(i18n("KGeoTag: Settings"));
 
     auto *mainLayout = new QVBoxLayout(this);
@@ -77,11 +78,6 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
 
     listsBoxLayout->addWidget(m_imageListsMode);
-
-    auto *listModeChangeLabel = new QLabel(i18n("Please restart the program after changing the "
-                                                "list mode to apply it!"));
-    listModeChangeLabel->setWordWrap(true);
-    listsBoxLayout->addWidget(listModeChangeLabel);
 
     // Images
 
@@ -314,12 +310,15 @@ void SettingsDialog::accept()
     m_settings->saveWriteMode(m_writeMode->currentData().toString());
     m_settings->saveCreateBackups(m_createBackups->isChecked());
 
-    if (   splitImagesList != m_originalSplitImagesListValue
-        || thumbnailSize != m_originalThumbnailSizeValue
+    if (   thumbnailSize != m_originalThumbnailSizeValue
         || previewSize != m_originalPreviewSizeValue) {
 
         QMessageBox::information(this, i18n("Settings changed"),
             i18n("Please restart KGeoTag to apply the changed settings and make them visible!"));
+    }
+
+    if (splitImagesList != m_originalSplitImagesListValue) {
+        emit imagesListsModeChanged();
     }
 
     QDialog::accept();

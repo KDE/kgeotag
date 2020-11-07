@@ -28,6 +28,12 @@ ImagesModel::ImagesModel(QObject *parent, bool splitImagesList, int thumbnailSiz
 {
 }
 
+void ImagesModel::setSplitImagesList(bool state)
+{
+    m_splitImagesList = state;
+    emit dataChanged(index(0, 0), index(rowCount(), 0), { Qt::DisplayRole });
+}
+
 int ImagesModel::rowCount(const QModelIndex &) const
 {
     return m_paths.count();

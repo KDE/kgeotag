@@ -152,18 +152,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     // Images lists
 
-    m_unAssignedImagesDock = createImagesDock(KGeoTag::UnAssignedImages,
-                                              i18n("Unassigned images"),
+    m_unAssignedImagesDock = createImagesDock(KGeoTag::UnAssignedImages, i18n("Unassigned images"),
                                               QStringLiteral("unAssignedImagesDock"));
-    if (m_settings->splitImagesList()) {
-        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::AssignedImages,
-                                                     i18n("Assigned images"),
-                                                     QStringLiteral("assignedOrAllImagesDock"));
-    } else {
-        m_assignedOrAllImagesDock = createImagesDock(KGeoTag::AllImages,
-                                                     i18n("Images"),
-                                                     QStringLiteral("assignedOrAllImagesDock"));
-    }
+    m_assignedOrAllImagesDock = createImagesDock(KGeoTag::AssignedImages, QString(),
+                                                 QStringLiteral("assignedOrAllImagesDock"));
+    updateImagesListsMode();
 
     // Size initialization/restoration
     if (! restoreGeometry(m_settings->mainWindowGeometry())) {
@@ -217,6 +210,23 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::requestAddingImages, this, &MainWindow::addImages);
 
     return createDockWidget(title, list, dockId);
+}
+
+void MainWindow::updateImagesListsMode()
+{
+    if (m_settings->splitImagesList()) {
+        m_assignedOrAllImagesDock->setWindowTitle(i18n("Assigned images"));
+        qobject_cast<ImagesListView *>(
+            m_assignedOrAllImagesDock->widget())->setListType(KGeoTag::AssignedImages);
+        m_unAssignedImagesDock->show();
+        m_imagesModel->setSplitImagesList(true);
+    } else {
+        m_assignedOrAllImagesDock->setWindowTitle(i18n("Images"));
+        qobject_cast<ImagesListView *>(
+            m_assignedOrAllImagesDock->widget())->setListType(KGeoTag::AllImages);
+        m_unAssignedImagesDock->hide();
+        m_imagesModel->setSplitImagesList(false);
+    }
 }
 
 void MainWindow::setDefaultDockArrangement()
@@ -1049,8 +1059,11 @@ void MainWindow::saveChanges()
 
 void MainWindow::showSettings()
 {
-    SettingsDialog dialog(m_settings, this);
-    if (! dialog.exec()) {
+    auto *dialog = new SettingsDialog(m_settings, this);
+    connect(dialog, &SettingsDialog::imagesListsModeChanged,
+            this, &MainWindow::updateImagesListsMode);
+
+    if (! dialog->exec()) {
         return;
     }
 
