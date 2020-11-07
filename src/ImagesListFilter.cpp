@@ -5,7 +5,7 @@
 */
 
 // Local includes
-#include "ImagesViewFilter.h"
+#include "ImagesListFilter.h"
 #include "Coordinates.h"
 #include "ImagesModel.h"
 
@@ -14,25 +14,25 @@
 #include <QMimeData>
 #include <QUrl>
 
-ImagesViewFilter::ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type)
+ImagesListFilter::ImagesListFilter(QObject *parent, KGeoTag::ImagesListType type)
     : QSortFilterProxyModel(parent),
       m_listType(type)
 {
 }
 
-void ImagesViewFilter::setListType(KGeoTag::ImagesListType type)
+void ImagesListFilter::setListType(KGeoTag::ImagesListType type)
 {
     m_listType = type;
     invalidateFilter();
 }
 
-void ImagesViewFilter::setSourceModel(QAbstractItemModel *sourceModel)
+void ImagesListFilter::setSourceModel(QAbstractItemModel *sourceModel)
 {
     QSortFilterProxyModel::setSourceModel(sourceModel);
     m_imagesModel = qobject_cast<ImagesModel *>(sourceModel);
 }
 
-bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
+bool ImagesListFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) const
 {
     if (m_listType == KGeoTag::AllImages) {
         return true;
@@ -45,12 +45,12 @@ bool ImagesViewFilter::filterAcceptsRow(int sourceRow, const QModelIndex &) cons
            || (m_listType == KGeoTag::UnAssignedImages && ! coordinatesSet);
 }
 
-Qt::DropActions ImagesViewFilter::supportedDropActions() const
+Qt::DropActions ImagesListFilter::supportedDropActions() const
 {
     return Qt::CopyAction | Qt::MoveAction;
 }
 
-Qt::ItemFlags ImagesViewFilter::flags(const QModelIndex &index) const
+Qt::ItemFlags ImagesListFilter::flags(const QModelIndex &index) const
 {
     auto defaultFlags = QSortFilterProxyModel::flags(index);
 
@@ -61,7 +61,7 @@ Qt::ItemFlags ImagesViewFilter::flags(const QModelIndex &index) const
     }
 }
 
-bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+bool ImagesListFilter::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                                        const QModelIndex &) const
 {
     if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {
@@ -84,7 +84,7 @@ bool ImagesViewFilter::canDropMimeData(const QMimeData *data, Qt::DropAction act
     return true;
 }
 
-bool ImagesViewFilter::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+bool ImagesListFilter::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
                                     const QModelIndex &)
 {
     if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {

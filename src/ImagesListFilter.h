@@ -4,8 +4,8 @@
     SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
 
-#ifndef IMAGESVIEWFILTER_H
-#define IMAGESVIEWFILTER_H
+#ifndef IMAGESLISTFILTER_H
+#define IMAGESLISTFILTER_H
 
 // Local includes
 #include "KGeoTag.h"
@@ -16,12 +16,12 @@
 // Local classes
 class ImagesModel;
 
-class ImagesViewFilter : public QSortFilterProxyModel
+class ImagesListFilter : public QSortFilterProxyModel
 {
     Q_OBJECT
 
 public:
-    explicit ImagesViewFilter(QObject *parent, KGeoTag::ImagesListType type);
+    explicit ImagesListFilter(QObject *parent, KGeoTag::ImagesListType type);
     virtual void setSourceModel(QAbstractItemModel *sourceModel) override;
     virtual Qt::DropActions supportedDropActions() const override;
     virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
@@ -44,4 +44,4 @@ private: // Variables
 
 };
 
-#endif // IMAGESVIEWFILTER_H
+#endif // IMAGESLISTFILTER_H

@@ -16,7 +16,7 @@
 
 // Local classes
 class SharedObjects;
-class ImagesViewFilter;
+class ImagesListFilter;
 
 // Qt classes
 class QMenu;
@@ -61,7 +61,7 @@ private slots:
 
 private: // Variables
     KGeoTag::ImagesListType m_listType;
-    ImagesViewFilter *m_filterModel;
+    ImagesListFilter *m_listFilter;
     const QHash<QString, Coordinates> *m_bookmarks;
 
     bool m_dragStarted = false;

@@ -65,7 +65,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/RetrySkipAbortDialog.cpp
     ${main_ROOT}/ImagesModel.cpp
     ${main_ROOT}/ImagesListView.cpp
-    ${main_ROOT}/ImagesViewFilter.cpp
+    ${main_ROOT}/ImagesListFilter.cpp
     ${main_ROOT}/Coordinates.cpp
     ${main_ROOT}/AutomaticMatchingWidget.cpp
 )

@@ -9,7 +9,7 @@
 #include "SharedObjects.h"
 #include "ImagesModel.h"
 #include "Settings.h"
-#include "ImagesViewFilter.h"
+#include "ImagesListFilter.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -37,12 +37,12 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     setDropIndicatorShown(true);
     setDragDropMode(QAbstractItemView::DropOnly);
 
-    m_filterModel = new ImagesViewFilter(this, type);
-    m_filterModel->setSourceModel(sharedObjects->imagesModel());
-    setModel(m_filterModel);
-    connect(m_filterModel, &ImagesViewFilter::requestAddingImages,
+    m_listFilter = new ImagesListFilter(this, type);
+    m_listFilter->setSourceModel(sharedObjects->imagesModel());
+    setModel(m_listFilter);
+    connect(m_listFilter, &ImagesListFilter::requestAddingImages,
             this, &ImagesListView::requestAddingImages);
-    connect(m_filterModel, &ImagesViewFilter::requestRemoveCoordinates,
+    connect(m_listFilter, &ImagesListFilter::requestRemoveCoordinates,
             this, QOverload<const QVector<QString> &>::of(&ImagesListView::removeCoordinates));
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
@@ -136,7 +136,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 void ImagesListView::setListType(KGeoTag::ImagesListType type)
 {
     m_listType = type;
-    m_filterModel->setListType(type);
+    m_listFilter->setListType(type);
 }
 
 void ImagesListView::currentChanged(const QModelIndex &current, const QModelIndex &)
