@@ -10,13 +10,17 @@ KGeoTag is a Free/Libre Open Source photo geotagging program. It's written in C+
 
 ## What is "geotagging"?
 
-JPEG images contain metadata (e. g. the creation date, camera information etc.). Those are either stored in the so-called [Exif header](https://en.wikipedia.org/wiki/Exif), in an [XMP sidecar file](https://en.wikipedia.org/wiki/Extensible_Metadata_Platform) or in both. This data can also represent geographic coordinates so that it's replicable where the images were taken.
+Photos (e. g. JPEG images) contain metadata like the creation date, camera information etc. Those are either stored in the so-called [Exif header](https://en.wikipedia.org/wiki/Exif), in an [XMP sidecar file](https://en.wikipedia.org/wiki/Extensible_Metadata_Platform) or in both. This data can also represent geographic coordinates so that it's replicable where the images were taken.
 
 Most cameras don't have GPS receivers, so, most can't save coordinates when taking images. A common approach is to e. g. carry a small GPS logging device along, which records a track all the time. Later on, the images' dates can be compared to the GPS log's points' dates to figure out where an image was taken.
 
 If one knows for sure where the respective photo was taken, it's also possible to assign coordinates to the images manually.
 
 ## Geotagging with KGeoTag
+
+### Supported file formats
+
+KGeoTag currently supports The following image formats: [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), [WebP](https://en.wikipedia.org/wiki/WebP), [TIFF](https://en.wikipedia.org/wiki/TIFF), [OpenRaster](https://en.wikipedia.org/wiki/OpenRaster) and [Krita Document](https://en.wikipedia.org/wiki/Krita).
 
 ### Assigning images
 
