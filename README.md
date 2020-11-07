@@ -1,9 +1,3 @@
-<!--
-SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
-
-SPDX-License-Identifier: CC-BY-SA-4.0
--->
-
 # KGeoTag
 
 **Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet. All beta testing and feedback is greatly appreciated!
