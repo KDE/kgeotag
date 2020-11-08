@@ -4,7 +4,7 @@
 
 All beta testing and feedback is greatly appreciated! Feel free to join KGeoTag's IRC channel [#kphotoalbum](irc://chat.freenode.net/kde-kgeotag) :-)
 
-If you are reading this on GitHub, be aware that this is just a mirror. The real code repository con be found at https://invent.kde.org/graphics/kgeotag.
+If you are reading this on GitHub, be aware that this is just a mirror. The real code repository can be found at https://invent.kde.org/graphics/kgeotag.
 
 ## What is it?
 
