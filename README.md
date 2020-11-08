@@ -2,7 +2,7 @@
 
 **Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet.
 
-All beta testing and feedback is greatly appreciated!
+All beta testing and feedback is greatly appreciated! Feel free to join KGeoTag's IRC channel [#kphotoalbum](irc://chat.freenode.net/kde-kgeotag) :-)
 
 ## What is it?
 
