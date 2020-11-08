@@ -48,13 +48,13 @@ For places frequently assigned to images (like one's home, where one doesn't car
 
 It's also possible to enter coordinates for one or more images by hand. The altitudes can be either looked up automatically using opentopodata.org (see below), or also be entered manually.
 
-### Looking up (missing or unprecise) elevation information
+### Setting or looking up elevation information
 
-If a manual assignment is done, or the geodata used for automatic matching lacks altitudes, or the elevation information is not precise enough, the altitudes can be looked up querying different elevation datasets using [opentopodata.org](https://www.opentopodata.org/)'s API.
+Altitudes can always be set maually. Alternatively, the altitudes can also be looked up querying different elevation datasets using [opentopodata.org](https://www.opentopodata.org/)'s API.
 
-By default, this is turned off. If switched on, by default, the [ASTER](https://asterweb.jpl.nasa.gov/gdem.asp) dataset is used. This one covers the whole globe. Others can be used as well, cf. [opentopodata.org's homepage](https://www.opentopodata.org/#public-api). The respective altitude is then looked up in the background and set as soon as the server answers when dropping images onto the map or entering coordinates manually.
+The preset it to use the [ASTER](https://asterweb.jpl.nasa.gov/gdem.asp) dataset. This one covers the whole globe. Others can be used as well, cf. [opentopodata.org's homepage](https://www.opentopodata.org/#public-api).
 
-Optionally, the altitude levels can also be entered by hand. Existing altitude values can also be overwritten by a manual server lookup.
+By default, such a server lookup has to be triggered manually. It's also possible to enable automated altitude lookups for all images dropped on the map (which yields geographic coordinates but no elevation) and coordinates entered manually.
 
 ### Making the data persistent
 
