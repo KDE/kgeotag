@@ -26,11 +26,11 @@ KGeoTag currently supports The following image formats: [JPEG](https://en.wikipe
 
 ### Assigning images
 
-KGeoTag offers multiple ways to assign coordinates to images. The interface provides a map view that can be used to display geodata that can be used for tagging, either automatical or manual. Completely manual tagging (without any geodata) is also possible.
+KGeoTag offers multiple ways to assign coordinates to images:
 
 #### Automatic tagging
 
-The most convenient approach is automatic assignment. Geodata stored in the [GPX](https://en.wikipedia.org/wiki/GPS_Exchange_Format) format can be loaded and be displayed on the map. Using this data, images can be matched with their respective geographic coordinates, either by finding (more or less) exact chronological matches, or by interpolating a likely position if no exact match can be found. Of course, this needs some GPX file (e. g. from a logger) to be available.
+The most convenient approach is automatic matching with geodata stored in the [GPX](https://en.wikipedia.org/wiki/GPS_Exchange_Format) format. GPX files can be loaded and displayed on a map. Using this data, images can be assigned with matching geographic coordinates by finding (more or less) exact chronological matches, or by interpolating a likely position if no exact match can be found.
 
 If altitude values aren't set in the dataset or they are not accurate enough, they can be looked up using opentopodata.org (see below).
 
@@ -38,7 +38,7 @@ The clocks of cameras mostly aren't radio-controlled and often have a slight off
 
 #### Drag and drop interface
 
-Another option is tagging images via drag and drop. One or more images can be selected and dropped onto the map, to their respective location (possibly guided by some GPX track). Elevations can't be ascertained this way, so either, they are left to be "0 m" (sea level), entered manually or looked up via opentopodata.org (either automatically or manually, see below).
+Another option is tagging images via drag and drop. One or more images can be selected and dropped onto the map, to their respective location (possibly also guided by some GPX track). Elevations can't be ascertained this way, so either, they are left to be "0 m" (sea level), entered manually or looked up via opentopodata.org (either automatically or manually, see below).
 
 #### Assigning images to bookmarks
 
