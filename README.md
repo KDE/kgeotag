@@ -2,7 +2,7 @@
 
 **Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet.
 
-All beta testing and feedback is greatly appreciated! Feel free to join KGeoTag's IRC channel [#kphotoalbum](irc://chat.freenode.net/kde-kgeotag) :-)
+All beta testing and feedback is greatly appreciated! Feel free to join KGeoTag's IRC channel [#kde-kgeotag](irc://chat.freenode.net/kde-kgeotag) :-)
 
 If you are reading this on GitHub, be aware that this is just a mirror. The real code repository can be found at https://invent.kde.org/graphics/kgeotag.
 
