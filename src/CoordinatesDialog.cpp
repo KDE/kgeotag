@@ -28,43 +28,51 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, const Coordinates 
     auto *grid = new QGridLayout;
     layout->addLayout(grid);
 
-    int row = 0;
+    int row = -1;
 
     auto *titleLabel = new QLabel;
     titleLabel->setWordWrap(true);
-    grid->addWidget(titleLabel, row++, 0, 1, 2);
+    grid->addWidget(titleLabel, ++row, 0, 1, 2);
 
     auto *labelLabel = new QLabel(i18n("Label:"));
-    grid->addWidget(labelLabel, row, 0);
+    grid->addWidget(labelLabel, ++row, 0);
     m_label = new QLineEdit;
-    grid->addWidget(m_label, row++, 1);
+    grid->addWidget(m_label, row, 1);
 
     auto *lonLabel = new QLabel(i18n("Longitude:"));
-    grid->addWidget(lonLabel, row, 0);
+    grid->addWidget(lonLabel, ++row, 0);
     m_lon = new QDoubleSpinBox;
     m_lon->setDecimals(KGeoTag::degreesPrecision);
     m_lon->setRange(-180.0, 180.0);
     m_lon->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lon->setValue(coordinates.lon());
-    grid->addWidget(m_lon, row++, 1);
+    grid->addWidget(m_lon, row, 1);
 
     auto *latLabel = new QLabel(i18n("Latitude:"));
-    grid->addWidget(latLabel, row, 0);
+    grid->addWidget(latLabel, ++row, 0);
     m_lat = new QDoubleSpinBox;
     m_lat->setDecimals(KGeoTag::degreesPrecision);
     m_lat->setRange(-90.0, 90.0);
     m_lat->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lat->setValue(coordinates.lat());
-    grid->addWidget(m_lat, row++, 1);
+    grid->addWidget(m_lat, row, 1);
+
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
-    grid->addWidget(altLabel, row, 0);
+    grid->addWidget(altLabel, ++row, 0);
+    altLabel->setVisible(! hideAlt);
     m_alt = new QDoubleSpinBox;
     m_alt->setDecimals(KGeoTag::altitudePrecision);
     m_alt->setRange(KGeoTag::minimalAltitude, KGeoTag::maximalAltitude);
     m_alt->setSuffix(i18nc("Meters abbreviation", "\u2009m"));
     m_alt->setValue(coordinates.alt());
-    grid->addWidget(m_alt, row++, 1);
+    grid->addWidget(m_alt, row, 1);
+    m_alt->setVisible(! hideAlt);
+
+    auto *automaticAltLabel = new QLabel(i18n("<i>The altitude is looked up automatically</i>"));
+    automaticAltLabel->setWordWrap(true);
+    grid->addWidget(automaticAltLabel, ++row, 0, 1, 2);
+    automaticAltLabel->setVisible(hideAlt);
 
     switch (mode) {
 
@@ -80,11 +88,6 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, const Coordinates 
         titleLabel->setText(i18n("Coordinates for %1:", target));
         break;
 
-    }
-
-    if (hideAlt) {
-        altLabel->hide();
-        m_alt->hide();
     }
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
