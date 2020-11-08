@@ -93,7 +93,7 @@ void BookmarksList::showContextMenu(const QPoint &point)
 
     const bool itemSelected = m_contextMenuItem != nullptr;
     m_renameBookmark->setEnabled(itemSelected);
-    m_lookupElevation->setEnabled(itemSelected && m_settings->lookupElevation());
+    m_lookupElevation->setEnabled(itemSelected);
     m_setElevation->setEnabled(itemSelected);
     m_deleteBookmark->setEnabled(itemSelected);
     m_editCoordinates->setEnabled(itemSelected);
@@ -120,7 +120,7 @@ void BookmarksList::newBookmark()
 void BookmarksList::newManualBookmark()
 {
     CoordinatesDialog dialog(CoordinatesDialog::Mode::ManualBookmark,
-                             m_settings->lookupElevation());
+                             m_settings->lookupElevationAutomatically());
     if (! dialog.exec()) {
         return;
     }
@@ -147,7 +147,7 @@ void BookmarksList::saveBookmark(QString label, const Coordinates &coordinates)
     addItem(item);
     setCurrentItem(item);
 
-    if (m_settings->lookupElevation()) {
+    if (m_settings->lookupElevationAutomatically()) {
         requestElevation(label);
     }
 

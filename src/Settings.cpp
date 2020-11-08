@@ -74,7 +74,8 @@ static const QString s_assignment_excludeManuallyTaggedWhenReassigning
 
 static const QLatin1String s_elevationLookup("elevation_lookup/");
 
-static const QString s_elevationLookup_enabled = s_elevationLookup + QLatin1String("enabled");
+static const QString s_elevationLookup_automaticLookup
+    = s_elevationLookup + QLatin1String("automatic_lookup");
 
 static const QVector<QString> s_elevationDatasets = {
     QStringLiteral("aster30m"),
@@ -259,14 +260,14 @@ bool Settings::excludeManuallyTaggedWhenReassigning() const
     return value(s_assignment_excludeManuallyTaggedWhenReassigning, true).toBool();
 }
 
-void Settings::saveLookupElevation(bool state)
+void Settings::saveLookupElevationAutomatically(bool state)
 {
-    setValue(s_elevationLookup_enabled, state);
+    setValue(s_elevationLookup_automaticLookup, state);
 }
 
-bool Settings::lookupElevation() const
+bool Settings::lookupElevationAutomatically() const
 {
-    return value(s_elevationLookup_enabled, false).toBool();
+    return value(s_elevationLookup_automaticLookup, false).toBool();
 }
 
 void Settings::saveElevationDataset(const QString &id)

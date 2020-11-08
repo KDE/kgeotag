@@ -58,7 +58,7 @@ private: // Variables
     QSpinBox *m_trackWidth;
     QComboBox *m_trackStyle;
 
-    QCheckBox *m_lookupElevation;
+    QCheckBox *m_lookupElevationAutomatically;
     QComboBox *m_elevationDataset;
 
     QComboBox *m_writeMode;

@@ -65,8 +65,8 @@ public:
     void saveExcludeManuallyTaggedWhenReassigning(bool state);
     bool excludeManuallyTaggedWhenReassigning() const;
 
-    void saveLookupElevation(bool state);
-    bool lookupElevation() const;
+    void saveLookupElevationAutomatically(bool state);
+    bool lookupElevationAutomatically() const;
 
     void saveElevationDataset(const QString &id);
     QString elevationDataset() const;

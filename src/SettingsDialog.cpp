@@ -165,10 +165,10 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *elevationBoxLayout = new QVBoxLayout(elevationBox);
     layout->addWidget(elevationBox);
 
-    m_lookupElevation = new QCheckBox(i18n("Request and set altitudes automatically\n"
-                                           "using opentopodata.org's web API"));
-    m_lookupElevation->setChecked(m_settings->lookupElevation());
-    elevationBoxLayout->addWidget(m_lookupElevation);
+    auto *lookupLabel = new QLabel(i18n("Elevations can be looked up using opentopodata.org's web "
+                                        "API."));
+    lookupLabel->setWordWrap(true);
+    elevationBoxLayout->addWidget(lookupLabel);
 
     auto *datasetLayout = new QHBoxLayout;
     elevationBoxLayout->addLayout(datasetLayout);
@@ -177,7 +177,6 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     m_elevationDataset = new QComboBox;
 
-    m_elevationDataset->setEnabled(m_settings->lookupElevation());
     m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "ASTER"),
                                 QStringLiteral("aster30m"));
     m_elevationDataset->addItem(i18nc("opentopodata.org elevation dataset", "ETOPO1"),
@@ -204,8 +203,6 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_elevationDataset->setCurrentIndex(
         m_elevationDataset->findData(m_settings->elevationDataset()));
 
-    connect(m_lookupElevation, &QCheckBox::toggled, m_elevationDataset, &QWidget::setEnabled);
-
     datasetLayout->addWidget(m_elevationDataset);
 
     datasetLayout->addStretch();
@@ -217,6 +214,10 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     datasetInfoLabel->setWordWrap(true);
     datasetInfoLabel->setOpenExternalLinks(true);
     elevationBoxLayout->addWidget(datasetInfoLabel);
+
+    m_lookupElevationAutomatically = new QCheckBox(i18n("Request and set altitudes automatically"));
+    m_lookupElevationAutomatically->setChecked(m_settings->lookupElevationAutomatically());
+    elevationBoxLayout->addWidget(m_lookupElevationAutomatically);
 
     // Data saving
 
@@ -304,7 +305,7 @@ void SettingsDialog::accept()
     m_settings->saveTrackWidth(m_trackWidth->value());
     m_settings->saveTrackStyle(static_cast<Qt::PenStyle>(m_trackStyle->currentData().toInt()));
 
-    m_settings->saveLookupElevation(m_lookupElevation->isChecked());
+    m_settings->saveLookupElevationAutomatically(m_lookupElevationAutomatically->isChecked());
     m_settings->saveElevationDataset(m_elevationDataset->currentData().toString());
 
     m_settings->saveWriteMode(m_writeMode->currentData().toString());

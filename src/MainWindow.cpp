@@ -613,7 +613,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
 void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
     m_previewWidget->setImage(m_imagesModel->indexFor(paths.last()));
-    if (m_settings->lookupElevation()) {
+    if (m_settings->lookupElevationAutomatically()) {
         lookupElevation(paths);
     }
 }
@@ -637,7 +637,7 @@ void MainWindow::assignManually(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates,
-                             m_settings->lookupElevation(), Coordinates(), label);
+                             m_settings->lookupElevationAutomatically(), Coordinates(), label);
     if (! dialog.exec()) {
         return;
     }
@@ -687,7 +687,7 @@ void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coor
     m_mapWidget->centerCoordinates(coordinates);
     m_mapWidget->reloadMap();
 
-    if (m_settings->lookupElevation()) {
+    if (m_settings->lookupElevationAutomatically()) {
         lookupElevation(paths);
     }
 }
