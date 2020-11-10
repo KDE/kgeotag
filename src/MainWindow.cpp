@@ -337,8 +337,6 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    QString errorString;
-
     for (const auto path : files) {
         processed++;
 
@@ -348,83 +346,124 @@ void MainWindow::addGpx(const QVector<QString> &paths)
         const auto [ result, tracks, segments, points ]
             = m_gpxEngine->load(info.canonicalFilePath());
 
+        QString errorString;
+
         switch (result) {
         case GpxEngine::Okay:
             allFiles++;
             allTracks += tracks;
             allSegments += segments;
             allPoints += points;
-            errorString.clear();
             break;
 
         case GpxEngine::AlreadyLoaded:
             alreadyLoaded++;
-            errorString.clear();
             break;
 
         case GpxEngine::OpenFailed:
-            errorString = i18n("Opening <kbd>%1</kbd> failed. Please be sure to have read access "
-                               "to this file.</p>", path);
+            errorString = i18n("<p>Opening <kbd>%1</kbd> failed. Please be sure to have read "
+                               "access to this file.</p>", path);
             break;
 
         case GpxEngine::NoGpxElement:
-            errorString = i18n("Could not read geodata from <kbd>%1</kbd>: Could not find the "
-                               "<kbd>gpx</kbd> root element. Apparently, this is not a GPX file!",
-                               path);
+            errorString = i18n("<p>Could not read geodata from <kbd>%1</kbd>: Could not find the "
+                               "<kbd>gpx</kbd> root element. Apparently, this is not a GPX file!"
+                               "</p>", path);
             break;
 
         case GpxEngine::NoGeoData:
-            errorString = i18n("<kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!",
-                               path);
+            errorString = i18n("<p><kbd>%1</kbd> seems to be a GPX file, but it contains no "
+                               "geodata!</p>", path);
             break;
 
         case GpxEngine::XmlError:
-            errorString = i18n("XML parsing failed for <kbd>%1</kbd>. Either, no data could be "
-                               "loaded at all, or only a part of it.", path);
+            errorString = i18n("<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be "
+                               "loaded at all, or only a part of it.</p>", path);
             break;
         }
 
         if (! errorString.isEmpty()) {
             failed++;
-            QApplication::restoreOverrideCursor();
 
-            QString continueString;
-            if (processed < filesCount) {
-                continueString = i18n("<p>The next GPX file will be loaded now.</p>");
+            QString text;
+            if (filesCount == 1) {
+                text = i18n("<p><b>Loading GPX file failed</b></p>");
+            } else {
+                text = i18nc("Fraction of processed files are added inside the round braces",
+                             "<p><b>Loading GPX file failed (%1/%2)</b></p>",
+                             processed, filesCount);
             }
 
-            QMessageBox::warning(this, i18n("Load GPX data"),
-                i18n("<p><b>Loading GPX file failed%1</b></p><p>%2</p>%3",
-                     filesCount == 1 ? QString() : i18n(" (%1/%2)", processed, filesCount),
-                     errorString, continueString));
+            text.append(errorString);
 
+            if (processed < filesCount) {
+                text.append(i18n("<p>The next GPX file will be loaded now.</p>"));
+            }
+
+            QApplication::restoreOverrideCursor();
+            QMessageBox::warning(this, i18n("Load GPX data"), text);
             QApplication::setOverrideCursor(Qt::WaitCursor);
         }
     }
 
     m_mapWidget->zoomToGpxBox();
+
+    QString text;
+
+    if (failed == 0 && alreadyLoaded == 0) {
+        text = i18np("<p>Processed one file</p>", "<p>Processed %1 files</p>", processed);
+    } else if (failed > 0 && alreadyLoaded == 0) {
+        text = i18ncp("Processed x files message with some files that failed to load. The "
+                      "pluralized string for the failed files counter (%2) is provided by the "
+                      "following i18np call.",
+                      "<p>Processed one file; %2</p>", "<p>Processed %1 files; %2</p>",
+                      processed,
+                      i18np("one file failed to load", "%1 files failed to load", failed));
+    } else if (failed == 0 && alreadyLoaded > 0) {
+        text = i18ncp("Processed x files message with some files that have been skipped. The "
+                      "pluralized string for the skipped files counter (%2) is provided by the "
+                      "following i18np call.",
+                      "<p>Processed one file; %2</p>", "<p>Processed %1 files; %2</p>",
+                      processed,
+                      i18np("one already loaded file has been skipped",
+                            "%1 already loaded files have been skipped", alreadyLoaded));
+    } else if (failed > 0 && alreadyLoaded == 0) {
+        text = i18ncp("Processed x files message with some files that failed to load and some that "
+                      "have been skipped. The pluralized strings for the failed (%2) and skipped "
+                      "files counter (%3) are provided by the following i18np call.",
+                      "<p>Processed one file; %2, %3</p>", "<p>Processed %1 files; %2, %3</p>",
+                      processed,
+                      i18np("one file failed to load", "%1 files failed to load", failed),
+                      i18np("one already loaded file has been skipped",
+                            "%1 already loaded files have been skipped", alreadyLoaded));
+    }
+
+    if (allPoints == 0) {
+        text.append(i18n("<p>No waypoints could be loaded.</p>"));
+    } else {
+        if (allTracks > 0 && allSegments == allTracks) {
+            text.append(i18ncp(
+                "Loaded x waypoints message with the number of tracks that have been read. The "
+                "pluralized string for the tracks (%2) is provided by the following i18np call.",
+                "<p>Loaded one waypoint from %2</p>",
+                "<p>Loaded %1 waypoints from %2</p>",
+                allPoints,
+                i18np("one track", "%1 tracks", allTracks)));
+        } else if (allTracks > 0 && allSegments != allTracks) {
+            text.append(i18ncp(
+                "Loaded x waypoints message with the number of tracks and the number of segments "
+                "that have been read. The pluralized string for the tracks (%2) and the one for "
+                "the segments (%3) are provided by the following i18np calls.",
+                "<p>Loaded one waypoint from %2 and %3</p>",
+                "<p>Loaded %1 waypoints from %2 and %3</p>",
+                allPoints,
+                i18np("one track", "%1 tracks", allTracks),
+                i18np("one segment", "%1 segments", allSegments)));
+        }
+    }
+
     QApplication::restoreOverrideCursor();
-
-    QMessageBox::information(this, i18n("Load GPX data"),
-        i18n("<p>%1</p><p>%2</p>",
-
-             i18np("Processed one file%2%3", "Processed %1 files%2%3", processed,
-                   failed == 0
-                       ? QString()
-                       : i18np(", one file failed", ", %1 files failed", failed),
-                   alreadyLoaded == 0
-                       ? QString()
-                       : i18np(", one already loaded file skipped",
-                               ", %1 already loaded files skipped", alreadyLoaded)),
-
-             i18np("Loaded one waypoint%2", "Loaded %1 waypoints%2", allPoints,
-                   allTracks > 0
-                       ? i18np(" from one track%2", " from %1 tracks%2",
-                               allTracks,
-                               allSegments != allTracks
-                                   ? i18np(" and one segment", " and %1 segments", allSegments)
-                                   : QString())
-                       : QString())));
+    QMessageBox::information(this, i18n("Load GPX data"), text);
 }
 
 void MainWindow::addImages(const QVector<QString> &paths)
