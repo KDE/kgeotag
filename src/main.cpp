@@ -33,10 +33,8 @@ int main(int argc, char *argv[])
     aboutData.setShortDescription(i18n("Photo geotagging program"));
     aboutData.setLicense(KAboutLicense::GPL_V3);
     aboutData.setCopyrightStatement(i18n("Copyright (C) 2020 Tobias Leupold"));
-    aboutData.setBugAddress(
-        QStringLiteral("https://invent.kde.org/graphics/kgeotag/-/issues").toUtf8());
     aboutData.setHomepage(QStringLiteral("https://invent.kde.org/graphics/kgeotag"));
-    aboutData.setOrganizationDomain(QStringLiteral("invent.kde.org").toUtf8());
+    aboutData.setOrganizationDomain(QStringLiteral("kde.org").toUtf8());
 
     aboutData.addAuthor(i18n("Tobias Leupold"), i18n("Maintainer"),
                         QStringLiteral("tobias.leupold@gmx.de"));
