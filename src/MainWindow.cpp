@@ -518,15 +518,15 @@ void MainWindow::addImages(const QVector<QString> &paths)
     const QFileInfo info(files.at(0));
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
-    int allImages = files.count();
-    const bool isSingleFile = allImages == 1;
+    const int requested = files.count();
+    const bool isSingleFile = requested == 1;
     int processed = 0;
     int loaded = 0;
     int alreadyLoaded = 0;
     bool skipImage = false;
     bool abortLoad = false;
 
-    QProgressDialog progress(i18n("Loading images ..."), i18n("Cancel"), 0, allImages, this);
+    QProgressDialog progress(i18n("Loading images ..."), i18n("Cancel"), 0, requested, this);
     progress.setWindowModality(Qt::WindowModal);
 
     for (const auto &path : files) {
@@ -551,46 +551,55 @@ void MainWindow::addImages(const QVector<QString> &paths)
                 break;
 
             case ImagesModel::LoadingImageFailed:
-                errorString = i18n(
-                    "<p><b>Loading image failed%1</b></p>"
-                    "<p>Could not read <kbd>%2</kbd>.</p>",
-                    isSingleFile ? QString() : i18nc("Fraction of processed files", " (%1 of %2)",
-                                                     processed, allImages),
-                    path);
-                errorString.append(i18n("<p>Please check if this file is actually a supported "
-                                        "image and if you have read access to it.</p>"));
+                if (isSingleFile) {
+                    errorString = i18n("<p><b>Loading image failed</b></p>"
+                                       "<p>Could not read <kbd>%1</kbd>.</p>",
+                                       path);
+                } else {
+                    errorString = i18nc(
+                        "Message with a fraction of processed files added in round braces",
+                        "<p><b>Loading image failed (%1/%2)</b></p>"
+                        "<p>Could not read <kbd>%3</kbd>.</p>",
+                        processed, requested, path);
+                }
                 break;
 
             case ImagesModel::LoadingMetadataFailed:
-                errorString = i18n(
-                    "<p><b>Loading image's Exif header or XMP sidecar file failed%1</b></p>"
-                    "<p>Could not read <kbd>%2</kbd>.</p>",
-                    isSingleFile ? QString() : i18nc("Fraction of processed files", " (%1 of %2)",
-                                                     processed, allImages),
-                    path);
-                errorString.append(i18n("<p>Please check if this file is actually a supported "
-                                        "image and if you have read access to it.</p>"));
+                if (isSingleFile) {
+                    errorString = i18n(
+                        "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p>"
+                        "<p>Could not read <kbd>%1</kbd>.</p>",
+                        path);
+                } else {
+                    errorString = i18nc(
+                        "Message with a fraction of processed files added in round braces",
+                        "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p>"
+                        "<p>Could not read <kbd>%2</kbd>.</p>",
+                        processed, requested, path);
+                }
+                break;
+
+            }
+
+            if (exitLoop || errorString.isEmpty()) {
                 break;
             }
 
-            if (exitLoop) {
-                break;
+            errorString.append(i18n("<p>Please check if this file is actually a supported image "
+                                    "and if you have read access to it.</p>"));
+
+            if (isSingleFile) {
+                errorString.append(i18n("<p>You can retry to load this file or cancel the loading "
+                                        "process.</p>"));
+            } else {
+                errorString.append(i18n("<p>You can retry to load this file, skip it or cancel the "
+                                        "loading process.</p>"));
             }
 
             progress.reset();
             QApplication::restoreOverrideCursor();
 
-            RetrySkipAbortDialog dialog(this,
-                i18n("Add images"),
-                i18n("<p>%1</p>"
-                     "<p>%2</p>",
-                     errorString,
-                     isSingleFile ? i18n("You can retry to load this file or cancel the loading "
-                                         "process.")
-                                  : i18n("You can retry to load this file, skip it or cancel "
-                                         "the loading process.")),
-                isSingleFile);
-
+            RetrySkipAbortDialog dialog(this, i18n("Add images"), errorString, isSingleFile);
             const auto reply = dialog.exec();
             if (reply == RetrySkipAbortDialog::Skip) {
                 skipImage = true;
@@ -618,33 +627,57 @@ void MainWindow::addImages(const QVector<QString> &paths)
     m_mapWidget->reloadMap();
     QApplication::restoreOverrideCursor();
 
-    if (loaded - alreadyLoaded == 0 && alreadyLoaded > 0) {
-        QMessageBox::warning(this, i18n("Add images"),
-                             i18n("Could not load new images: All requested images are already "
-                                  "loaded!"));
+    const int failed = requested - loaded;
+    loaded -= alreadyLoaded;
 
-    } else if (loaded == 0) {
-        QMessageBox::warning(this, i18n("Add images"),
-                             i18n("Could not load any images!"));
+    if (loaded == requested) {
+        QMessageBox::information(this, i18n("Add images"),
+                                 i18np("Successfully added one image!",
+                                       "Successfully added %1 images!",
+                                       loaded));
 
-    } else if (loaded < allImages) {
-        QMessageBox::warning(this, i18n("Add images"),
-            i18np("<p>Could not load all images!</p><p>Successfully loaded one image of %2, %3</p>",
-                  "<p>Could not load all images!</p><p>Successfully loaded %1 images of %2, %3</p>",
-                  // Not necessary with wording in English, but for other languages
-                  loaded, allImages, i18np("one failed to load.",
-                                           "%1 failed to load.",
-                                           allImages - loaded)));
+    } else if (failed == requested) {
+        QMessageBox::warning(this, i18n("Add images"), i18n(
+            "Could not add any new images, all requested images failed to load!"));
+
+    } else if (alreadyLoaded == requested) {
+        QMessageBox::warning(this, i18n("Add images"), i18n(
+            "Could not add any new images, all requested images have already been loaded!"));
+
+    } else if (alreadyLoaded + failed == requested) {
+        QMessageBox::warning(this, i18n("Add images"), i18n(
+            "Could not add any new images, all requested images failed to load or have already "
+            "been loaded!"));
 
     } else {
-        QMessageBox::information(this, i18n("Add images"),
-            i18np("Successfully loaded one image%2!",
-                  "Successfully loaded %1 images%2!",
-                  allImages - alreadyLoaded,
-                  alreadyLoaded > 0 ? i18np(" (skipped one already loaded image)",
-                                            " (skipped %1 already loaded images)",
-                                            alreadyLoaded)
-                                    : QString()));
+        QString message = i18np("<p>Successfully added image!</p>",
+                                "<p>Successfully added %1 images!</p>",
+                                loaded);
+
+        if (failed > 0 && alreadyLoaded == 0) {
+            message.append(i18np("<p>One image failed to load.</p>",
+                                 "<p>%1 images failed to load.</p>",
+                                 failed));
+        } else if (failed == 0 && alreadyLoaded > 0) {
+            message.append(i18np("<p>One image has already been loaded.</p>",
+                                 "<p>%1 images have already been loaded.</p>",
+                                 alreadyLoaded));
+        } else {
+            message.append(i18nc(
+                "Message string for some images that failed to load and some that were skipped "
+                "because they already have been loaded. The pluralized strings for the failed "
+                "images (%1) and the skipped images (%2) are provided by the following i18np "
+                "calls.",
+                "<p>%1 and %2.</p>",
+                i18np("One image failed to load",
+                      "%1 images failed to load",
+                      failed),
+                i18np("one image has already been loaded",
+                      "%1 images have already been loaded",
+                      alreadyLoaded)));
+        }
+
+        QMessageBox::warning(this, i18n("Add images"), message);
     }
 }
 
