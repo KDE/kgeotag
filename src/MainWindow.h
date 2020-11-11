@@ -70,6 +70,8 @@ private: // Functions
                                   const QString &dockId);
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
     void lookupElevation(const QVector<QString> &paths);
+    QString saveFailedHeader(int processed, int allImages) const;
+    QString skipRetryCancelText(int processed, int allImages) const;
 
 private: // Variables
     SharedObjects *m_sharedObjects;

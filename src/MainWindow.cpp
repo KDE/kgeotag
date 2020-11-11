@@ -915,6 +915,28 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
     }
 }
 
+QString MainWindow::saveFailedHeader(int processed, int allImages) const
+{
+    if (allImages == 1) {
+        return i18n("<p><b>Saving changes failed</b></p>");
+    } else {
+        return i18nc("Saving failed message with the fraction of processed files given in the "
+                     "round braces",
+                     "<p><b>Saving changes failed (%1/%2)</b></p>",
+                     processed, allImages);
+    }
+}
+
+QString MainWindow::skipRetryCancelText(int processed, int allImages) const
+{
+    if (allImages == 1 || processed == allImages) {
+        return i18n("<p>You can retry to process the file or cancel the saving process.</p>");
+    } else {
+        return i18n("<p>You can retry to process the file, skip it or cancel the saving process."
+                    "</p>");
+    }
+}
+
 void MainWindow::saveChanges()
 {
     const auto files = m_imagesModel->changedImages();
@@ -958,30 +980,23 @@ void MainWindow::saveChanges()
                 backupOkay = QFile::copy(path, backupPath);
 
                 if (! backupOkay) {
+                    QFileInfo info(path);
+                    QString message = saveFailedHeader(processed, allImages);
+
+                    message.append(i18n(
+                        "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
+                        "could not be created.</p>"
+                        "<p>Please check if this file doesn't exist yet and be sure to have write "
+                        "access to <kbd>%3</kbd>.</p>",
+                        info.fileName(), backupPath, info.dir().path()));
+
+                    message.append(skipRetryCancelText(processed, allImages));
+
                     progress.reset();
                     QApplication::restoreOverrideCursor();
 
-                    QFileInfo info(path);
-
-                    RetrySkipAbortDialog dialog(this,
-                        i18n("Save changes"),
-                        i18n("<p><b>Saving changes failed%1</b></p>"
-                             "<p>Could not save changes to <kbd>%2</kbd>: The backup file <kbd>%3"
-                             "</kbd> could not be created.</p>"
-                             "<p>Please check if this file doesn't exist yet and be sure to have "
-                             "write access to <kbd>%4</kbd>.</p>"
-                             "<p>%5</p>",
-                             isSingleFile ? QString()
-                                          : i18nc("Fraction of processed files", " (%1 of %2)",
-                                                  processed, allImages),
-                             info.fileName(),
-                             backupPath,
-                             info.dir().path(),
-                             isSingleFile ? i18n("You can retry to create the backup or cancel the "
-                                                 "saving process.")
-                                          : i18n("You can retry to create the backup, skip the "
-                                                 "current file or cancel the saving process.")),
-                             isSingleFile);
+                    RetrySkipAbortDialog dialog(this, i18n("Save changes"), message,
+                                                isSingleFile || processed == allImages);
 
                     const auto reply = dialog.exec();
                     if (reply == RetrySkipAbortDialog::Skip) {
@@ -1013,25 +1028,21 @@ void MainWindow::saveChanges()
         exif.setUseXMPSidecar4Reading(true);
 
         while (! exif.load(path)) {
+            QString message = saveFailedHeader(processed, allImages);
+
+            message.append(i18n(
+                "<p>Could not read metadata from <kbd>%1</kbd>.</p>"
+                "<p>Please check if this file still exists and if you have read access to it (and "
+                "possibly also to an existing XMP sidecar file).</p>",
+                path));
+
+            message.append(skipRetryCancelText(processed, allImages));
+
             progress.reset();
             QApplication::restoreOverrideCursor();
 
-            RetrySkipAbortDialog dialog(this,
-                i18n("Save changes"),
-                i18n("<p><b>Saving changes failed%1</b></p>"
-                        "<p>Could not read metadata from <kbd>%2</kbd>.</p>"
-                        "<p>Please check if this file still exists and if you have read access to "
-                        "it (and possibly also to an existing XMP sidecar file).</p>"
-                        "<p>%3</p>",
-                        isSingleFile ? QString()
-                                     : i18nc("Fraction of processed files", " (%1 of %2)",
-                                             processed, allImages),
-                        path,
-                        isSingleFile ? i18n("You can retry to process the file or cancel the "
-                                            "saving process.")
-                                     : i18n("You can retry to process the file, skip it or cancel "
-                                            "the saving process.")),
-                        isSingleFile);
+            RetrySkipAbortDialog dialog(this, i18n("Save changes"), message,
+                                        isSingleFile || processed == allImages);
 
             const auto reply = dialog.exec();
             if (reply == RetrySkipAbortDialog::Skip) {
@@ -1075,35 +1086,25 @@ void MainWindow::saveChanges()
         exif.setMetadataWritingMode(writeMode);
 
         while (! exif.applyChanges()) {
+            QString message = saveFailedHeader(processed, allImages);
+
+            message.append(i18n("<p>Could not save metadata for <kbd>%1</kbd>.</p>", path));
+
+            if (writeMode == KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY) {
+                QFileInfo info(path);
+                message.append(i18n("<p>Please check if you have write access to <kbd>%2</kbd>!",
+                                    info.dir().path()));
+            } else {
+                message.append(i18n("<p>Please check if this file still exists and if you have "
+                                    "write access to it!</p>"));
+            }
+
+            message.append(skipRetryCancelText(processed, allImages));
+
             progress.reset();
             QApplication::restoreOverrideCursor();
 
-            QString neededWritePermissions;
-            if (writeMode == KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY) {
-                QFileInfo info(path);
-                neededWritePermissions = i18n("Please check if you have write access to <kbd>%1"
-                                              "</kbd>", info.dir().path());
-            } else {
-                neededWritePermissions =  i18n("Please check if this file still exists and if you "
-                                               "have write access to it.");
-            }
-
-            RetrySkipAbortDialog dialog(this,
-                i18n("Save changes"),
-                i18n("<p><b>Saving changes failed%1</b></p>"
-                     "<p>Could not save metadata for <kbd>%2</kbd>.</p>"
-                     "<p>%3""</p>"
-                     "<p>%4</p>",
-                     isSingleFile ? QString()
-                                  : i18nc("Fraction of processed files", " (%1 of %2)",
-                                          processed, allImages),
-                     path,
-                     neededWritePermissions,
-                     isSingleFile ? i18n("You can retry to process the file or cancel the saving "
-                                         "process.")
-                                  : i18n("You can retry to process the file, skip it or cancel the "
-                                         "saving process.")),
-                     isSingleFile);
+            RetrySkipAbortDialog dialog(this, i18n("Save changes"), message, isSingleFile);
 
             const auto reply = dialog.exec();
             if (reply == RetrySkipAbortDialog::Skip) {
@@ -1138,8 +1139,9 @@ void MainWindow::saveChanges()
                              i18n("No changes could be saved!"));
     } else if (savedImages < allImages) {
         QMessageBox::warning(this, i18n("Save changes"),
-                             i18n("Some changes could not be saved. Successfully saved %1 of %2 "
-                                  "images.", savedImages, allImages));
+                             i18n("<p>Some changes could not be saved!</p>"
+                                  "<p>Successfully saved %1 of %2 images.</p>",
+                                  savedImages, allImages));
     } else {
         QMessageBox::information(this, i18n("Save changes"),
                                  i18n("All changes have been successfully saved!"));
