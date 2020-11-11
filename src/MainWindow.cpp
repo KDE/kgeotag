@@ -849,17 +849,21 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
     case KGeoTag::CombinedMatchSearch:
         title = i18n("Combined match search");
         if (exactMatches > 0 || interpolatedMatches > 0) {
-            text = i18n("<p>%1 %2!</p>%3",
-                        i18np("Found one exact match",
-                              "Found %1 exact matches",
-                              exactMatches),
-                        i18np("and one interpolated match",
-                              "and %1 interpolated matches",
-                              interpolatedMatches),
-                              noMatches == 0 ? QString()
-                                             : i18np("<p>One image could not be matched.</p>",
-                                                     "<p>%1 images could not be matched.</p>",
-                                                     noMatches));
+            text = i18nc("Message for the number of matches found. The pluralized string for the "
+                         "exact matches (%1) and the interpolated matches (%2) are provided by the "
+                         "following i18np calls.",
+                         "<p>Found %1 and %2!</p>",
+                         i18np("one exact match",
+                               "%1 exact matches",
+                               exactMatches),
+                         i18np("one interpolated match",
+                               "%1 interpolated matches",
+                               interpolatedMatches));
+            if (noMatches > 0) {
+                text.append(i18np("<p>One image could not be matched.</p>",
+                                  "<p>%1 images could not be matched.</p>",
+                                  noMatches));
+            }
         } else {
             text = i18n("Could neither find any exact, nor any interpolated matches!");
         }
@@ -868,12 +872,14 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
     case KGeoTag::ExactMatchSearch:
         title = i18n("Exact matches search");
         if (exactMatches > 0) {
-            text = i18np("Found one exact match%2!", "Found %1 exact matches%2!",
-                         exactMatches,
-                         noMatches == 0 ? QString()
-                                        : i18np(" (one image had no exact match)",
-                                                " (%1 images had no exact match)",
-                                                noMatches));
+            text = i18np("<p>Found one exact match!</p>",
+                         "<p>Found %1 exact matches!</p>",
+                         exactMatches);
+            if (noMatches > 0) {
+                text.append(i18np("<p>One image had no exact match.</p>",
+                                  "<p>%1 images had no exact match.</p>",
+                                  noMatches));
+            }
         } else {
             text = i18n("Could not find any exact matches!");
         }
@@ -882,13 +888,14 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
     case KGeoTag::InterpolatedMatchSearch:
         title = i18n("Interpolated matches search");
         if (interpolatedMatches > 0) {
-            text = i18np("Found one interpolated match%2!",
-                         "Found %1 interpolated matches%2!",
-                         interpolatedMatches,
-                         noMatches == 0 ? QString()
-                                        : i18np(" (one image had no interpolated match)",
-                                                " (%1 images had no interpolated match)",
-                                                noMatches));
+            text = i18np("<p>Found one interpolated match!</p>",
+                         "<p>Found %1 interpolated matches!</p>",
+                         interpolatedMatches);
+            if (noMatches > 0) {
+                text.append(i18np("<p>One image had no interpolated match.</p>",
+                                  "<p>%1 images had no interpolated match.</p>",
+                                  noMatches));
+            }
         } else {
             text = i18n("Could not find any interpolated matches!");
         }
