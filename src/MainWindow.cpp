@@ -1092,7 +1092,7 @@ void MainWindow::saveChanges()
 
             if (writeMode == KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY) {
                 QFileInfo info(path);
-                message.append(i18n("<p>Please check if you have write access to <kbd>%2</kbd>!",
+                message.append(i18n("<p>Please check if you have write access to <kbd>%1</kbd>!",
                                     info.dir().path()));
             } else {
                 message.append(i18n("<p>Please check if this file still exists and if you have "
