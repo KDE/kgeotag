@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2012-2018 Johannes Zarl-Zierl <johannes@zarl-zierl.at>
 # SPDX-FileCopyrightText: 2018-2020 Tobias Leupold <tobias.leupold@gmx.de>
 #
-# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-License-Identifier: BSD-3-Clause
 
 if (NOT DEFINED BASE_DIR)
     message(FATAL_ERROR "UpdateVersion.cmake: BASE_DIR not set. "

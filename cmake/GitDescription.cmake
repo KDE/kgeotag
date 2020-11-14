@@ -1,7 +1,7 @@
 # SPDX-FileCopyrightText: 2012-2020 Johannes Zarl-Zierl <johannes@zarl-zierl.at>
 # SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
 #
-# SPDX-License-Identifier: BSD-2-Clause
+# SPDX-License-Identifier: BSD-3-Clause
 
 # - GIT_GET_DESCRIPTION ( description_variable [GIT_ARGS arg1 ...] [SEND_ERROR] )
 # This macro calls git describe to obtain a concise description of the current
