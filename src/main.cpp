@@ -21,6 +21,7 @@
 int main(int argc, char *argv[])
 {
     KLocalizedString::setApplicationDomain("kgeotag");
+    QApplication::setAttribute(Qt::AA_UseHighDpiPixmaps, true);
     QApplication application(argc, argv);
 
     // About data
