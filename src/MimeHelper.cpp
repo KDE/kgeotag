@@ -39,7 +39,7 @@ QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData 
 
     QVector<QString> usablePaths;
     const auto urls = data->urls();
-    for (const auto url : urls) {
+    for (const auto &url : urls) {
         if (! url.isLocalFile()) {
             continue;
         }

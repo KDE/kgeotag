@@ -337,7 +337,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    for (const auto path : files) {
+    for (const auto &path : files) {
         processed++;
 
         const QFileInfo info(path);
