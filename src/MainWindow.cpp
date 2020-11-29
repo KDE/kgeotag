@@ -26,6 +26,7 @@
 
 // KDE includes
 #include <KLocalizedString>
+#include <KStandardAction>
 #include <KHelpMenu>
 #include <KExiv2/KExiv2>
 
@@ -92,8 +93,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     fileMenu->addSeparator();
 
-    auto *quitAction = fileMenu->addAction(i18n("Quit"));
-    connect(quitAction, &QAction::triggered, this, &QWidget::close);
+    fileMenu->addAction(KStandardAction::quit(this, &QWidget::close, this));
 
     // Settings
     auto *settingsMenu = menuBar()->addMenu(i18n("Settings"));
@@ -105,8 +105,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     settingsMenu->addSeparator();
 
-    auto *showSettingsAction = settingsMenu->addAction(i18n("Configure KGeoTag"));
-    connect(showSettingsAction, &QAction::triggered, this, &MainWindow::showSettings);
+    settingsMenu->addAction(KStandardAction::preferences(this, &MainWindow::showSettings, this));
 
     // Help
     auto *helpMenu = new KHelpMenu;
