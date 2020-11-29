@@ -463,6 +463,10 @@ void MainWindow::addDirectory()
                                i18n("Please select the images' directory"),
                                m_settings->lastOpenPath());
 
+    if (directory.isEmpty()) {
+        return;
+    }
+
     QDir dir(directory);
     const auto files = dir.entryList({ QStringLiteral("*") }, QDir::Files);
 
