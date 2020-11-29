@@ -11,8 +11,8 @@
 #include "ElevationEngine.h"
 #include "Coordinates.h"
 
-// Qt includes
-#include <QMainWindow>
+// KDE includes
+#include <KXmlGuiWindow>
 
 // Local classes
 class SharedObjects;
@@ -30,7 +30,7 @@ class AutomaticMatchingWidget;
 class QDockWidget;
 class QCloseEvent;
 
-class MainWindow : public QMainWindow
+class MainWindow : public KXmlGuiWindow
 {
     Q_OBJECT
 

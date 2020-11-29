@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<gui name="kgeotag"
+     version="1"
+     xmlns="http://www.kde.org/standards/kxmlgui/1.0"
+     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+     xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
+                         http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
+  <MenuBar>
+    <Menu name="file" >
+      <Action name="addImages"/>
+      <Action name="addDirectory"/>
+      <Separator/>
+      <Action name="addGpx"/>
+      <Separator/>
+      <Action name="saveChanges"/>
+      <Separator/>
+    </Menu>
+    <Menu name="settings">
+      <Action name="setDefaultDockArrangement"/>
+      <Separator/>
+    </Menu>
+  </MenuBar>
+</gui>

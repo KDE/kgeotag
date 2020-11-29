@@ -25,6 +25,7 @@
 #include "MimeHelper.h"
 
 // KDE includes
+#include <KActionCollection>
 #include <KLocalizedString>
 #include <KStandardAction>
 #include <KHelpMenu>
@@ -59,7 +60,7 @@ static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeMod
 };
 
 MainWindow::MainWindow(SharedObjects *sharedObjects)
-    : QMainWindow(),
+    : KXmlGuiWindow(),
       m_sharedObjects(sharedObjects),
       m_settings(sharedObjects->settings()),
       m_gpxEngine(sharedObjects->gpxEngine()),
@@ -76,50 +77,42 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     // File
 
-    auto *fileMenu = menuBar()->addMenu(i18n("File"));
-
-    auto *addImagesAction = fileMenu->addAction(i18n("Add images"));
+    auto *addImagesAction = actionCollection()->addAction(QStringLiteral("addImages"));
+    addImagesAction->setText(i18n("Add images"));
     addImagesAction->setIcon(QIcon::fromTheme(QStringLiteral("viewimage")));
     connect(addImagesAction, &QAction::triggered,
             this, std::bind(&MainWindow::addImages, this, QVector<QString>()));
 
-    auto *addDirectoryAction = fileMenu->addAction(i18n("Add all images from directory"));
+    auto *addDirectoryAction = actionCollection()->addAction(QStringLiteral("addDirectory"));
+    addDirectoryAction->setText(i18n("Add all images from directory"));
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
     connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
 
-    fileMenu->addSeparator();
-
-    auto *addGpxAction = fileMenu->addAction(i18n("Add GPX tracks"));
+    auto *addGpxAction = actionCollection()->addAction(QStringLiteral("addGpx"));
+    addGpxAction->setText(i18n("Add GPX tracks"));
     addGpxAction->setIcon(QIcon::fromTheme(QStringLiteral("viewhtml")));
     connect(addGpxAction, &QAction::triggered,
             this, std::bind(&MainWindow::addGpx, this, QVector<QString>()));
 
-    fileMenu->addSeparator();
-
-    auto *saveChangesAction = fileMenu->addAction(i18n("Save changed images"));
+    auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
+    saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
     connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveChanges);
 
-    fileMenu->addSeparator();
-
-    fileMenu->addAction(KStandardAction::quit(this, &QWidget::close, this));
+    KStandardAction::quit(this, &QWidget::close, actionCollection());
 
     // Settings
-    auto *settingsMenu = menuBar()->addMenu(i18n("Settings"));
 
-    auto *setDefaultDockArrangementAction = settingsMenu->addAction(i18n("Set default dock "
-                                                                         "arrangement"));
+    auto *setDefaultDockArrangementAction
+        = actionCollection()->addAction(QStringLiteral("setDefaultDockArrangement"));
+    setDefaultDockArrangementAction->setText(i18n("Set default dock arrangement"));
     setDefaultDockArrangementAction->setIcon(QIcon::fromTheme(QStringLiteral("refactor")));
     connect(setDefaultDockArrangementAction, &QAction::triggered,
             this, &MainWindow::setDefaultDockArrangement);
 
-    settingsMenu->addSeparator();
+    KStandardAction::preferences(this, &MainWindow::showSettings, actionCollection());
 
-    settingsMenu->addAction(KStandardAction::preferences(this, &MainWindow::showSettings, this));
-
-    // Help
-    auto *helpMenu = new KHelpMenu;
-    menuBar()->addMenu(helpMenu->menu());
+    setupGUI(ToolBar | Keys | Save | Create);
 
     // Dock setup
     // ==========

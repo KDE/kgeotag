@@ -49,8 +49,8 @@ int main(int argc, char *argv[])
     SharedObjects sharedObjects;
 
     // Create the main window
-    MainWindow mainWindow(&sharedObjects);
-    mainWindow.show();
+    auto *mainWindow = new MainWindow(&sharedObjects);
+    mainWindow->show();
 
     // Run the program
     return application.exec();
