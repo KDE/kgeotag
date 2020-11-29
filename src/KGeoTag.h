@@ -52,6 +52,8 @@ enum ImagesListType {
     AllImages
 };
 
+const QString backupSuffix = QStringLiteral("orig");
+
 const auto SourceImagesListMimeType = QStringLiteral("application/x-kgeotag-source_images_list");
 const QHash<ImagesListType, QByteArray> SourceImagesList {
     { ImagesListType::UnAssignedImages, QByteArray("UnAssignedImages") },

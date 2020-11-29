@@ -82,6 +82,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(addImagesAction, &QAction::triggered,
             this, std::bind(&MainWindow::addImages, this, QVector<QString>()));
 
+    auto *addDirectoryAction = fileMenu->addAction(i18n("Add all images from directory"));
+    connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
+
+    fileMenu->addSeparator();
+
     auto *addGpxAction = fileMenu->addAction(i18n("Add GPX tracks"));
     connect(addGpxAction, &QAction::triggered,
             this, std::bind(&MainWindow::addGpx, this, QVector<QString>()));
@@ -463,6 +468,37 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 
     QApplication::restoreOverrideCursor();
     QMessageBox::information(this, i18n("Load GPX data"), text);
+}
+
+void MainWindow::addDirectory()
+{
+    const auto directory = QFileDialog::getExistingDirectory(this,
+                               i18n("Please select the images' directory"),
+                               m_settings->lastOpenPath());
+
+    QDir dir(directory);
+    const auto files = dir.entryList({ QStringLiteral("*") }, QDir::Files);
+
+    QVector<QString> images;
+    for (const auto &file : files) {
+        const auto path = directory + QStringLiteral("/") + file;
+
+        if (MimeHelper::mimeTypeOkay(path)) {
+            const QFileInfo info(path);
+            if (info.suffix() != KGeoTag::backupSuffix) {
+                images.append(path);
+            }
+        }
+    }
+
+    if (images.isEmpty()) {
+        QMessageBox::warning(this, i18n("Add all images from directory"),
+                             i18n("Could not find any supported image in <kbd>%1</kbd>",
+                                  directory));
+        return;
+    }
+
+    addImages(images);
 }
 
 void MainWindow::addImages(const QVector<QString> &paths)
@@ -973,7 +1009,7 @@ void MainWindow::saveChanges()
         // Create a backup of the file if requested
         if (createBackups) {
             bool backupOkay = false;
-            const QString backupPath = path + QStringLiteral(".orig");
+            const QString backupPath = path + QStringLiteral(".") + KGeoTag::backupSuffix;
 
             while (! backupOkay) {
                 backupOkay = QFile::copy(path, backupPath);

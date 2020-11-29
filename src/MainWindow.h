@@ -45,6 +45,7 @@ private slots:
     void setDefaultDockArrangement();
     void addGpx(const QVector<QString> &paths);
     void addImages(const QVector<QString> &paths);
+    void addDirectory();
     void imagesDropped(const QVector<QString> &paths);
     void saveChanges();
     void showSettings();
