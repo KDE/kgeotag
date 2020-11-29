@@ -22,7 +22,7 @@ public:
     void setImage(const QModelIndex &index);
 
 protected:
-    virtual void resizeEvent(QResizeEvent *event) override;
+    void resizeEvent(QResizeEvent *event) override;
 
 private slots:
     void setScaledPreview();

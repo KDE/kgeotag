@@ -38,7 +38,7 @@ public:
     explicit MainWindow(SharedObjects *sharedObjects);
 
 protected:
-    virtual void closeEvent(QCloseEvent *event) override;
+    void closeEvent(QCloseEvent *event) override;
 
 private slots:
     void updateImagesListsMode();

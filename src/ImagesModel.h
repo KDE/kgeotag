@@ -32,8 +32,8 @@ public:
 
     explicit ImagesModel(QObject *parent, bool splitImagesList, int thumbnailSize, int previewSize);
 
-    virtual int rowCount(const QModelIndex & = QModelIndex()) const override;
-    virtual QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    int rowCount(const QModelIndex & = QModelIndex()) const override;
+    QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
     void setSplitImagesList(bool state);
     QModelIndex indexFor(const QString &path) const;

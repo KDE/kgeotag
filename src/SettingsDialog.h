@@ -31,7 +31,7 @@ signals:
     void imagesListsModeChanged();
 
 protected:
-    virtual void accept() override;
+    void accept() override;
 
 private slots:
     void setTrackColor();

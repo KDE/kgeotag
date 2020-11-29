@@ -38,7 +38,7 @@ class MapWidget : public Marble::MarbleWidget
 public:
     explicit MapWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     void updateSettings();
-    virtual void customPaint(Marble::GeoPainter *painter) override;
+    void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
     void centerImage(const QModelIndex &index);
@@ -54,8 +54,8 @@ signals:
     void requestLoadGpx(const QVector<QString> &paths);
 
 protected:
-    virtual void dragEnterEvent(QDragEnterEvent *event) override;
-    virtual void dropEvent(QDropEvent *event) override;
+    void dragEnterEvent(QDragEnterEvent *event) override;
+    void dropEvent(QDropEvent *event) override;
 
 private slots:
     void showContextMenu(int x, int y);

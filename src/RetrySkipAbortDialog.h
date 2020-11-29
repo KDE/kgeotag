@@ -22,7 +22,7 @@ public:
 
     explicit RetrySkipAbortDialog(QWidget *parent, const QString &title, const QString &text,
                                   bool isSingleFile);
-    virtual int exec() override;
+    int exec() override;
 
 };
 

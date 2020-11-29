@@ -21,13 +21,13 @@ class ImagesListFilter : public QSortFilterProxyModel
 
 public:
     explicit ImagesListFilter(QObject *parent, KGeoTag::ImagesListType type);
-    virtual void setSourceModel(QAbstractItemModel *sourceModel) override;
-    virtual Qt::DropActions supportedDropActions() const override;
-    virtual Qt::ItemFlags flags(const QModelIndex &index) const override;
-    virtual bool canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
-                                 const QModelIndex &) const override;
-    virtual bool dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
-                              const QModelIndex &) override;
+    void setSourceModel(QAbstractItemModel *sourceModel) override;
+    Qt::DropActions supportedDropActions() const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+    bool canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                         const QModelIndex &) const override;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                      const QModelIndex &) override;
     void setListType(KGeoTag::ImagesListType type);
 
 signals:
@@ -35,7 +35,7 @@ signals:
     void requestRemoveCoordinates(const QVector<QString> &paths);
 
 protected:
-    virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
+    bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;
 
 private: // Variables
     KGeoTag::ImagesListType m_listType;

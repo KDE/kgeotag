@@ -49,10 +49,10 @@ signals:
     void requestAddingImages(const QVector<QString> &paths);
 
 protected:
-    virtual void mousePressEvent(QMouseEvent *event) override;
-    virtual void mouseMoveEvent(QMouseEvent *event) override;
-    virtual void keyPressEvent(QKeyEvent *event) override;
-    virtual void currentChanged(const QModelIndex &current, const QModelIndex &) override;
+    void mousePressEvent(QMouseEvent *event) override;
+    void mouseMoveEvent(QMouseEvent *event) override;
+    void keyPressEvent(QKeyEvent *event) override;
+    void currentChanged(const QModelIndex &current, const QModelIndex &) override;
 
 private slots:
     void showContextMenu(const QPoint &point);
