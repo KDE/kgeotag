@@ -112,7 +112,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     KStandardAction::preferences(this, &MainWindow::showSettings, actionCollection());
 
-    setupGUI(ToolBar | Keys | Save | Create);
+    setupGUI(Keys | Save | Create);
 
     // Dock setup
     // ==========
