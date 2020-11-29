@@ -15,7 +15,6 @@
 // Main
 
 static const QLatin1String s_main("main/");
-static const QString s_main_windowGeometry = s_main + QLatin1String("window_geometry");
 static const QString s_main_windowState = s_main + QLatin1String("window_state");
 static const QString s_main_lastOpenPath = s_main + QLatin1String("last_open_path");
 static const QString s_main_spitImagesList = s_main + QLatin1String("split_images_list");
@@ -120,16 +119,6 @@ static const QString s_bookmarksDataAlt = QStringLiteral("alt");
 Settings::Settings(QObject *parent)
     : QSettings(QStringLiteral("kgeotag"), QStringLiteral("kgeotag"), parent)
 {
-}
-
-void Settings::saveMainWindowGeometry(const QByteArray &data)
-{
-    setValue(s_main_windowGeometry, data);
-}
-
-QByteArray Settings::mainWindowGeometry() const
-{
-    return value(s_main_windowGeometry, QByteArray()).toByteArray();
 }
 
 void Settings::saveMainWindowState(const QByteArray &data)

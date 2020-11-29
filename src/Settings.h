@@ -22,9 +22,6 @@ class Settings : public QSettings
 public:
     explicit Settings(QObject *parent);
 
-    void saveMainWindowGeometry(const QByteArray &data);
-    QByteArray mainWindowGeometry() const;
-
     void saveMainWindowState(const QByteArray &data);
     QByteArray mainWindowState() const;
 

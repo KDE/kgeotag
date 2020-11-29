@@ -158,16 +158,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                                                  QStringLiteral("assignedOrAllImagesDock"));
     updateImagesListsMode();
 
-    // Size initialization/restoration
-    if (! restoreGeometry(m_settings->mainWindowGeometry())) {
-        const QRect availableGeometry = QGuiApplication::primaryScreen()->availableGeometry();
-        if (availableGeometry.width() > 1024 && availableGeometry.height() > 765) {
-            resize(QSize(1024, 765));
-        } else {
-            setWindowState(Qt::WindowMaximized);
-        }
-    }
-
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
         setDefaultDockArrangement();
@@ -297,7 +287,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
         }
     }
 
-    m_settings->saveMainWindowGeometry(saveGeometry());
     m_settings->saveMainWindowState(saveState());
 
     m_mapWidget->saveSettings();
