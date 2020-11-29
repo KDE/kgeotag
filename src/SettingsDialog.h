@@ -28,7 +28,7 @@ public:
     explicit SettingsDialog(Settings *settings, QWidget *parent);
 
 signals:
-    void imagesListsModeChanged() const;
+    void imagesListsModeChanged();
 
 protected:
     virtual void accept() override;

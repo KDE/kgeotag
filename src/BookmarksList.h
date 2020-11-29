@@ -32,8 +32,8 @@ public:
     const QHash<QString, Coordinates> *bookmarks() const;
 
 signals:
-    void showInfo(const Coordinates &coordinates) const;
-    void bookmarksChanged() const;
+    void showInfo(const Coordinates &coordinates);
+    void bookmarksChanged();
 
 private: // Structs
     struct EnteredString

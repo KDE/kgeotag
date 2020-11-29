@@ -31,8 +31,8 @@ public:
     void setListType(KGeoTag::ImagesListType type);
 
 signals:
-    void requestAddingImages(const QVector<QString> &paths) const;
-    void requestRemoveCoordinates(const QVector<QString> &paths) const;
+    void requestAddingImages(const QVector<QString> &paths);
+    void requestRemoveCoordinates(const QVector<QString> &paths);
 
 protected:
     virtual bool filterAcceptsRow(int sourceRow, const QModelIndex &) const override;

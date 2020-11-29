@@ -50,8 +50,8 @@ public slots:
     void addSegment(const QVector<Coordinates> &segment);
 
 signals:
-    void imagesDropped(const QVector<QString> &paths) const;
-    void requestLoadGpx(const QVector<QString> &paths) const;
+    void imagesDropped(const QVector<QString> &paths);
+    void requestLoadGpx(const QVector<QString> &paths);
 
 protected:
     virtual void dragEnterEvent(QDragEnterEvent *event) override;

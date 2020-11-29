@@ -35,18 +35,18 @@ public slots:
     void updateBookmarks();
 
 signals:
-    void imageSelected(const QModelIndex &index) const;
-    void centerImage(const QModelIndex &index) const;
-    void requestAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType) const;
-    void assignToMapCenter(ImagesListView *list) const;
-    void assignManually(ImagesListView *list) const;
-    void editCoordinates(ImagesListView *list) const;
-    void lookupElevation(ImagesListView *list) const;
-    void removeCoordinates(ImagesListView *list) const;
-    void removeCoordinates(const QVector<QString> &paths) const;
-    void discardChanges(ImagesListView *list) const;
-    void assignTo(const QVector<QString> &paths, const Coordinates &coordinates) const;
-    void requestAddingImages(const QVector<QString> &paths) const;
+    void imageSelected(const QModelIndex &index);
+    void centerImage(const QModelIndex &index);
+    void requestAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType);
+    void assignToMapCenter(ImagesListView *list);
+    void assignManually(ImagesListView *list);
+    void editCoordinates(ImagesListView *list);
+    void lookupElevation(ImagesListView *list);
+    void removeCoordinates(ImagesListView *list);
+    void removeCoordinates(const QVector<QString> &paths);
+    void discardChanges(ImagesListView *list);
+    void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
+    void requestAddingImages(const QVector<QString> &paths);
 
 protected:
     virtual void mousePressEvent(QMouseEvent *event) override;

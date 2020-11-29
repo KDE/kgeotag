@@ -30,7 +30,7 @@ public:
     const QHash<QString, Coordinates> *bookmarks() const;
 
 signals:
-    void bookmarksChanged() const;
+    void bookmarksChanged();
 
 private slots:
     void showInfo(const Coordinates &coordinates);

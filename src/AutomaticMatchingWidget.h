@@ -32,7 +32,7 @@ public:
     int maximumInterpolationDistance() const;
 
 signals:
-    void requestReassignment(KGeoTag::SearchType searchType) const;
+    void requestReassignment(KGeoTag::SearchType searchType);
 
 private slots:
     void enableMaximumInterpolationInterval(bool state);

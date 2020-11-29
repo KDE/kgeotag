@@ -35,10 +35,10 @@ public:
                  const QVector<Coordinates> &coordinates);
 
 signals:
-    void lookupFailed(const QString &errorMessage) const;
+    void lookupFailed(const QString &errorMessage);
     void notAllPresent(int locationsCount, int elevationsCount);
     void elevationProcessed(Target target, const QVector<QString> &ids,
-                            const QVector<double> &elevations) const;
+                            const QVector<double> &elevations);
 
 private slots:
     void processNextRequest();

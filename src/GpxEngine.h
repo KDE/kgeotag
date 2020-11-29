@@ -46,7 +46,7 @@ public:
                             int maximumInterpolationDistance);
 
 signals:
-    void segmentLoaded(const QVector<Coordinates> &segment) const;
+    void segmentLoaded(const QVector<Coordinates> &segment);
 
 private: // Functions
     Coordinates findExactCoordinates(const QDateTime &time) const;
