@@ -79,21 +79,25 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *fileMenu = menuBar()->addMenu(i18n("File"));
 
     auto *addImagesAction = fileMenu->addAction(i18n("Add images"));
+    addImagesAction->setIcon(QIcon::fromTheme(QStringLiteral("viewimage")));
     connect(addImagesAction, &QAction::triggered,
             this, std::bind(&MainWindow::addImages, this, QVector<QString>()));
 
     auto *addDirectoryAction = fileMenu->addAction(i18n("Add all images from directory"));
+    addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
     connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
 
     fileMenu->addSeparator();
 
     auto *addGpxAction = fileMenu->addAction(i18n("Add GPX tracks"));
+    addGpxAction->setIcon(QIcon::fromTheme(QStringLiteral("viewhtml")));
     connect(addGpxAction, &QAction::triggered,
             this, std::bind(&MainWindow::addGpx, this, QVector<QString>()));
 
     fileMenu->addSeparator();
 
     auto *saveChangesAction = fileMenu->addAction(i18n("Save changed images"));
+    saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
     connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveChanges);
 
     fileMenu->addSeparator();
@@ -105,6 +109,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     auto *setDefaultDockArrangementAction = settingsMenu->addAction(i18n("Set default dock "
                                                                          "arrangement"));
+    setDefaultDockArrangementAction->setIcon(QIcon::fromTheme(QStringLiteral("refactor")));
     connect(setDefaultDockArrangementAction, &QAction::triggered,
             this, &MainWindow::setDefaultDockArrangement);
 
