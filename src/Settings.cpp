@@ -32,19 +32,18 @@ static const QLatin1String s_zoom("zoom");
 static const QLatin1String s_floatersVisibility("floatersVisibility");
 
 // Tracks
-
-static const QLatin1String s_track("track/");
-static const QString s_track_color = s_track + QLatin1String("color");
-static const QString s_track_width = s_track + QLatin1String("width");
-static const QString s_track_style = s_track + QLatin1String("style");
-static const QVector<Qt::PenStyle> s_track_styleEnum {
+static const QLatin1String s_track("tracks");
+static const QLatin1String s_color("color");
+static const QLatin1String s_width("width");
+static const QLatin1String s_style("style");
+static const QVector<Qt::PenStyle> s_trackStyleEnum {
     Qt::SolidLine,
     Qt::DashLine,
     Qt::DotLine,
     Qt::DashDotLine,
     Qt::DashDotDotLine
 };
-static const QVector<QString> s_track_styleString {
+static const QVector<QString> s_trackStyleString {
     QStringLiteral("solid"),
     QStringLiteral("dashes"),
     QStringLiteral("dots"),
@@ -235,6 +234,52 @@ QHash<QString, bool> Settings::floatersVisibility()
     return data;
 }
 
+// Tracks
+
+void Settings::saveTrackColor(const QColor &color)
+{
+    auto group = m_config->group(s_track);
+    group.writeEntry(s_color, color);
+    group.sync();
+}
+
+QColor Settings::trackColor() const
+{
+    auto group = m_config->group(s_track);
+    return group.readEntry(s_color, QColor(255, 0, 255, 150));
+}
+
+void Settings::saveTrackStyle(Qt::PenStyle style)
+{
+    auto group = m_config->group(s_track);
+    group.writeEntry(s_style, s_trackStyleString.at(s_trackStyleEnum.indexOf(style)));
+    group.sync();
+}
+
+Qt::PenStyle Settings::trackStyle() const
+{
+    auto group = m_config->group(s_track);
+    QString styleString = group.readEntry(s_style, QStringLiteral("dots"));
+    if (s_trackStyleString.contains(styleString)) {
+        return s_trackStyleEnum.at(s_trackStyleString.indexOf(styleString));
+    } else {
+        return Qt::DotLine;
+    }
+}
+
+void Settings::saveTrackWidth(int width)
+{
+    auto group = m_config->group(s_track);
+    group.writeEntry(s_width, width);
+    group.sync();
+}
+
+int Settings::trackWidth() const
+{
+    auto group = m_config->group(s_track);
+    return group.readEntry(s_width, 3);
+}
+
 void Settings::saveThumbnailSize(int size)
 {
     setValue(s_images_thumnailSize, size);
@@ -314,46 +359,6 @@ void Settings::saveMaximumInterpolationDistance(int meters)
 int Settings::maximumInterpolationDistance() const
 {
     return value(s_assignment_maximumInterpolationDistance, -1).toInt();
-}
-
-void Settings::saveTrackColor(const QColor &color)
-{
-    setValue(s_track_color, color);
-}
-
-QColor Settings::trackColor() const
-{
-    QColor color = value(s_track_color).value<QColor>();
-    if (! color.isValid()) {
-        color = QColor(255, 0, 255, 150);
-    }
-
-    return color;
-}
-
-void Settings::saveTrackStyle(Qt::PenStyle style)
-{
-    setValue(s_track_style, s_track_styleString.at(s_track_styleEnum.indexOf(style)));
-}
-
-Qt::PenStyle Settings::trackStyle() const
-{
-    QString styleString = value(s_track_style).toString();
-    if (s_track_styleString.contains(styleString)) {
-        return s_track_styleEnum.at(s_track_styleString.indexOf(styleString));
-    } else {
-        return Qt::DotLine;
-    }
-}
-
-void Settings::saveTrackWidth(int width)
-{
-    setValue(s_track_width, width);
-}
-
-int Settings::trackWidth() const
-{
-    return value(s_track_width, 3).toInt();
 }
 
 void Settings::saveCreateBackups(bool state)
