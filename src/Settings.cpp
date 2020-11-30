@@ -105,8 +105,7 @@ static const QString s_bookmarksDataLon = QStringLiteral("lon");
 static const QString s_bookmarksDataLat = QStringLiteral("lat");
 static const QString s_bookmarksDataAlt = QStringLiteral("alt");
 
-Settings::Settings(QObject *parent)
-    : QSettings(QStringLiteral("kgeotag"), QStringLiteral("kgeotag"), parent)
+Settings::Settings(QObject *parent) : QObject(parent)
 {
     m_config = KSharedConfig::openConfig();
 }

@@ -14,11 +14,10 @@
 #include <KSharedConfig>
 
 // Qt includes
-#include <QSettings>
 #include <QColor>
 #include <QHash>
 
-class Settings : public QSettings
+class Settings : public QObject
 {
     Q_OBJECT
 
