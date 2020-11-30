@@ -6,6 +6,9 @@
 // Local includes
 #include "Settings.h"
 
+// KDE includes
+#include <KConfigGroup>
+
 // Qt includes
 #include <QDebug>
 #include <QJsonArray>
@@ -13,11 +16,10 @@
 #include <QJsonDocument>
 
 // Main
-
-static const QLatin1String s_main("main/");
-static const QString s_main_windowState = s_main + QLatin1String("window_state");
-static const QString s_main_lastOpenPath = s_main + QLatin1String("last_open_path");
-static const QString s_main_spitImagesList = s_main + QLatin1String("split_images_list");
+static const QLatin1String s_main("main");
+static const QLatin1String s_windowState("windowState");
+static const QLatin1String s_lastOpenPath("lastOpenPath");
+static const QLatin1String s_splitImagesList("splitImagesList");
 
 // Map
 
@@ -26,6 +28,8 @@ static const QString s_map_showCrosshairs = s_map + QLatin1String("show_crosshai
 static const QString s_map_centerLon = s_map + QLatin1String("center_lon");
 static const QString s_map_centerLat = s_map + QLatin1String("center_lat");
 static const QString s_map_zoom = s_map + QLatin1String("zoom");
+
+// Floaters visibility
 
 static const QLatin1String s_floatersVisibility("floaters_visibility/");
 
@@ -119,16 +123,46 @@ static const QString s_bookmarksDataAlt = QStringLiteral("alt");
 Settings::Settings(QObject *parent)
     : QSettings(QStringLiteral("kgeotag"), QStringLiteral("kgeotag"), parent)
 {
+    m_config = KSharedConfig::openConfig();
 }
 
 void Settings::saveMainWindowState(const QByteArray &data)
 {
-    setValue(s_main_windowState, data);
+    auto group = m_config->group(s_main);
+    group.writeEntry(s_windowState, data);
+    group.sync();
 }
 
 QByteArray Settings::mainWindowState() const
 {
-    return value(s_main_windowState, QByteArray()).toByteArray();
+    auto group = m_config->group(s_main);
+    return group.readEntry(s_windowState, QByteArray());
+}
+
+void Settings::saveLastOpenPath(const QString &path)
+{
+    auto group = m_config->group(s_main);
+    group.writeEntry(s_lastOpenPath, path);
+    group.sync();
+}
+
+QString Settings::lastOpenPath() const
+{
+    auto group = m_config->group(s_main);
+    return group.readEntry(s_lastOpenPath, QString());
+}
+
+void Settings::saveSplitImagesList(bool state)
+{
+    auto group = m_config->group(s_main);
+    group.writeEntry(s_splitImagesList, state);
+    group.sync();
+}
+
+bool Settings::splitImagesList() const
+{
+    auto group = m_config->group(s_main);
+    return group.readEntry(s_splitImagesList, true);
 }
 
 void Settings::saveShowCrosshairs(bool state)
@@ -186,16 +220,6 @@ void Settings::saveZoom(int zoom)
 int Settings::zoom() const
 {
     return value(s_map_zoom, 1520).toInt();
-}
-
-void Settings::saveLastOpenPath(const QString &path)
-{
-    setValue(s_main_lastOpenPath, path);
-}
-
-QString Settings::lastOpenPath() const
-{
-    return value(s_main_lastOpenPath, QString()).toString();
 }
 
 void Settings::saveThumbnailSize(int size)
@@ -390,14 +414,4 @@ QHash<QString, Coordinates> Settings::bookmarks() const
     }
 
     return bookmarks;
-}
-
-void Settings::saveSplitImagesList(bool state)
-{
-    setValue(s_main_spitImagesList, state);
-}
-
-bool Settings::splitImagesList() const
-{
-    return value(s_main_spitImagesList, true).toBool();
 }

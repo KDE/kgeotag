@@ -10,6 +10,9 @@
 #include "KGeoTag.h"
 #include "Coordinates.h"
 
+// KDE includes
+#include <KSharedConfig>
+
 // Qt includes
 #include <QSettings>
 #include <QColor>
@@ -84,6 +87,9 @@ public:
 
     void saveBookmarks(const QHash<QString, Coordinates> *bookmarks);
     QHash<QString, Coordinates> bookmarks() const;
+
+private: // Variables
+    KSharedConfig::Ptr m_config;
 
 };
 
