@@ -29,8 +29,7 @@ static const QLatin1String s_centerLat("centerLat");
 static const QLatin1String s_zoom("zoom");
 
 // Floaters visibility
-
-static const QLatin1String s_floatersVisibility("floaters_visibility/");
+static const QLatin1String s_floatersVisibility("floatersVisibility");
 
 // Tracks
 
@@ -211,24 +210,26 @@ int Settings::zoom() const
     return group.readEntry(s_zoom, 1520);
 }
 
+// Floaters visibility
+
 void Settings::saveFloatersVisibility(const QHash<QString, bool> &data)
 {
+    auto group = m_config->group(s_floatersVisibility);
     const auto keys = data.keys();
     for (const auto &key : keys) {
-        setValue(s_floatersVisibility + key, data.value(key));
+        group.writeEntry(key, data.value(key));
     }
+    group.sync();
 }
 
 QHash<QString, bool> Settings::floatersVisibility()
 {
     QHash<QString, bool> data;
+    auto group = m_config->group(s_floatersVisibility);
 
-    beginGroup(s_floatersVisibility);
-    const auto keys = allKeys();
-    endGroup();
-
+    const auto keys = group.keyList();
     for (const auto &key : keys) {
-        data.insert(key, value(s_floatersVisibility + key).toBool());
+        data.insert(key, group.readEntry(key, true));
     }
 
     return data;
