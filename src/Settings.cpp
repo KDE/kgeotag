@@ -83,18 +83,15 @@ static const QString &s_defaultElevationDataset = s_elevationDatasets.at(0);
 static const QLatin1String s_dataset("dataset");
 
 // Saving
-
-static const QLatin1String s_save("save/");
-
+static const QLatin1String s_saving("saving");
 static const QVector<QString> s_writeModes = {
     QStringLiteral("WRITETOIMAGEONLY"),
     QStringLiteral("WRITETOSIDECARONLY"),
     QStringLiteral("WRITETOSIDECARANDIMAGE")
 };
 static const QString &s_defaultWriteMode = s_writeModes.at(0);
-static const QString s_save_writeMode = s_save + QLatin1String("write_mode");
-
-static const QString s_save_createBackups = s_save + QLatin1String("create_backups");
+static const QLatin1String s_writeMode("writeMode");
+static const QLatin1String s_createBackups("createBackups");
 
 // Bookmarks
 
@@ -382,25 +379,33 @@ QString Settings::elevationDataset() const
     return s_elevationDatasets.contains(dataset) ? dataset : s_defaultElevationDataset;
 }
 
-void Settings::saveCreateBackups(bool state)
-{
-    setValue(s_save_createBackups, state);
-}
-
-bool Settings::createBackups() const
-{
-    return value(s_save_createBackups, true).toBool();
-}
+// Saving
 
 void Settings::saveWriteMode(const QString &writeMode)
 {
-    setValue(s_save_writeMode, writeMode);
+    auto group = m_config->group(s_saving);
+    group.writeEntry(s_writeMode, writeMode);
+    group.sync();
 }
 
 QString Settings::writeMode() const
 {
-    const auto mode = value(s_save_writeMode, s_defaultWriteMode).toString();
+    auto group = m_config->group(s_saving);
+    const auto mode = group.readEntry(s_writeMode, s_defaultWriteMode);
     return s_writeModes.contains(mode) ? mode : s_defaultWriteMode;
+}
+
+void Settings::saveCreateBackups(bool state)
+{
+    auto group = m_config->group(s_saving);
+    group.writeEntry(s_createBackups, state);
+    group.sync();
+}
+
+bool Settings::createBackups() const
+{
+    auto group = m_config->group(s_saving);
+    return group.readEntry(s_createBackups, true);
 }
 
 void Settings::saveBookmarks(const QHash<QString, Coordinates> *bookmarks)
