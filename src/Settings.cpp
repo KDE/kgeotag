@@ -52,10 +52,9 @@ static const QVector<QString> s_trackStyleString {
 };
 
 // Images
-
-static const QLatin1String s_images("images/");
-static const QString s_images_thumnailSize = s_images + QLatin1String("thumbnail_size");
-static const QString s_images_previewSize = s_images + QLatin1String("preview_size");
+static const QLatin1String s_images("images");
+static const QLatin1String s_thumnailSize("thumbnailSize");
+static const QLatin1String s_previewSize("previewSize");
 
 // Assignment
 
@@ -280,24 +279,32 @@ int Settings::trackWidth() const
     return group.readEntry(s_width, 3);
 }
 
+// Images
+
 void Settings::saveThumbnailSize(int size)
 {
-    setValue(s_images_thumnailSize, size);
+    auto group = m_config->group(s_images);
+    group.writeEntry(s_thumnailSize, size);
+    group.sync();
 }
 
 int Settings::thumbnailSize() const
 {
-    return value(s_images_thumnailSize, 32).toInt();
+    auto group = m_config->group(s_images);
+    return group.readEntry(s_thumnailSize, 32);
 }
 
 void Settings::savePreviewSize(int size)
 {
-    setValue(s_images_previewSize, size);
+    auto group = m_config->group(s_images);
+    group.writeEntry(s_previewSize, size);
+    group.sync();
 }
 
 int Settings::previewSize() const
 {
-    return value(s_images_previewSize, 400).toInt();
+    auto group = m_config->group(s_images);
+    return group.readEntry(s_previewSize, 400);
 }
 
 void Settings::saveExactMatchTolerance(int seconds)
