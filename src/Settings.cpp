@@ -65,12 +65,8 @@ static const QLatin1String s_excludeManuallyTaggedWhenReassigning(
                                "excludeManuallyTaggedWhenReassigning");
 
 // Elevation lookup
-
-static const QLatin1String s_elevationLookup("elevation_lookup/");
-
-static const QString s_elevationLookup_automaticLookup
-    = s_elevationLookup + QLatin1String("automatic_lookup");
-
+static const QLatin1String s_elevationLookup("elevationLookup");
+static const QLatin1String s_lookupElevationAutomatically("lookupElevationAutomatically");
 static const QVector<QString> s_elevationDatasets = {
     QStringLiteral("aster30m"),
     QStringLiteral("etopo1"),
@@ -84,7 +80,7 @@ static const QVector<QString> s_elevationDatasets = {
     QStringLiteral("gebco2020")
 };
 static const QString &s_defaultElevationDataset = s_elevationDatasets.at(0);
-static const QString s_elevationLookup_dataset = s_elevationLookup + QLatin1String("dataset");
+static const QLatin1String s_dataset("dataset");
 
 // Saving
 
@@ -357,24 +353,32 @@ bool Settings::excludeManuallyTaggedWhenReassigning() const
     return group.readEntry(s_excludeManuallyTaggedWhenReassigning, true);
 }
 
+// Elevation lookup
+
 void Settings::saveLookupElevationAutomatically(bool state)
 {
-    setValue(s_elevationLookup_automaticLookup, state);
+    auto group = m_config->group(s_elevationLookup);
+    group.writeEntry(s_lookupElevationAutomatically, state);
+    group.sync();
 }
 
 bool Settings::lookupElevationAutomatically() const
 {
-    return value(s_elevationLookup_automaticLookup, false).toBool();
+    auto group = m_config->group(s_elevationLookup);
+    return group.readEntry(s_lookupElevationAutomatically, false);
 }
 
 void Settings::saveElevationDataset(const QString &id)
 {
-    setValue(s_elevationLookup_dataset, id);
+    auto group = m_config->group(s_elevationLookup);
+    group.writeEntry(s_dataset, id);
+    group.sync();
 }
 
 QString Settings::elevationDataset() const
 {
-    const auto dataset = value(s_elevationLookup_dataset, s_defaultElevationDataset).toString();
+    auto group = m_config->group(s_elevationLookup);
+    const auto dataset = group.readEntry(s_dataset, s_defaultElevationDataset);
     return s_elevationDatasets.contains(dataset) ? dataset : s_defaultElevationDataset;
 }
 
