@@ -57,16 +57,12 @@ static const QLatin1String s_thumnailSize("thumbnailSize");
 static const QLatin1String s_previewSize("previewSize");
 
 // Assignment
-
-static const QLatin1String s_assignment("assignment/");
-static const QString s_assignment_exactMatchTolerance
-    = s_assignment + QLatin1String("exact_match_tolerance");
-static const QString s_assignment_maximumInterpolationInterval
-    = s_assignment + QLatin1String("maximum_interpolation_interval");
-static const QString s_assignment_maximumInterpolationDistance
-    = s_assignment + QLatin1String("maximum_interpolation_distance");
-static const QString s_assignment_excludeManuallyTaggedWhenReassigning
-    = s_assignment + QLatin1String("exclude_manually_tagged_when_reassigning");
+static const QLatin1String s_assignment("assignment");
+static const QLatin1String s_exactMatchTolerance("exactMatchTolerance");
+static const QLatin1String s_maximumInterpolationInterval("maximumInterpolationInterval");
+static const QLatin1String s_maximumInterpolationDistance("maximumInterpolationDistance");
+static const QLatin1String s_excludeManuallyTaggedWhenReassigning(
+                               "excludeManuallyTaggedWhenReassigning");
 
 // Elevation lookup
 
@@ -307,34 +303,58 @@ int Settings::previewSize() const
     return group.readEntry(s_previewSize, 400);
 }
 
+// Assignment
+
 void Settings::saveExactMatchTolerance(int seconds)
 {
-    setValue(s_assignment_exactMatchTolerance, seconds);
+    auto group = m_config->group(s_assignment);
+    group.writeEntry(s_exactMatchTolerance, seconds);
+    group.sync();
 }
 
 int Settings::exactMatchTolerance() const
 {
-    return value(s_assignment_exactMatchTolerance, 10).toInt();
+    auto group = m_config->group(s_assignment);
+    return group.readEntry(s_exactMatchTolerance, 10);
 }
 
 void Settings::saveMaximumInterpolationInterval(int seconds)
 {
-    setValue(s_assignment_maximumInterpolationInterval, seconds);
+    auto group = m_config->group(s_assignment);
+    group.writeEntry(s_maximumInterpolationInterval, seconds);
+    group.sync();
 }
 
 int Settings::maximumInterpolationInterval() const
 {
-    return value(s_assignment_maximumInterpolationInterval, -1).toInt();
+    auto group = m_config->group(s_assignment);
+    return group.readEntry(s_maximumInterpolationInterval, -1);
+}
+
+void Settings::saveMaximumInterpolationDistance(int meters)
+{
+    auto group = m_config->group(s_assignment);
+    group.writeEntry(s_maximumInterpolationDistance, meters);
+    group.sync();
+}
+
+int Settings::maximumInterpolationDistance() const
+{
+    auto group = m_config->group(s_assignment);
+    return group.readEntry(s_maximumInterpolationDistance, -1);
 }
 
 void Settings::saveExcludeManuallyTaggedWhenReassigning(bool state)
 {
-    setValue(s_assignment_excludeManuallyTaggedWhenReassigning, state);
+    auto group = m_config->group(s_assignment);
+    group.writeEntry(s_excludeManuallyTaggedWhenReassigning, state);
+    group.sync();
 }
 
 bool Settings::excludeManuallyTaggedWhenReassigning() const
 {
-    return value(s_assignment_excludeManuallyTaggedWhenReassigning, true).toBool();
+    auto group = m_config->group(s_assignment);
+    return group.readEntry(s_excludeManuallyTaggedWhenReassigning, true);
 }
 
 void Settings::saveLookupElevationAutomatically(bool state)
@@ -356,16 +376,6 @@ QString Settings::elevationDataset() const
 {
     const auto dataset = value(s_elevationLookup_dataset, s_defaultElevationDataset).toString();
     return s_elevationDatasets.contains(dataset) ? dataset : s_defaultElevationDataset;
-}
-
-void Settings::saveMaximumInterpolationDistance(int meters)
-{
-    setValue(s_assignment_maximumInterpolationDistance, meters);
-}
-
-int Settings::maximumInterpolationDistance() const
-{
-    return value(s_assignment_maximumInterpolationDistance, -1).toInt();
 }
 
 void Settings::saveCreateBackups(bool state)
