@@ -95,9 +95,9 @@ static const QLatin1String s_createBackups("createBackups");
 
 // Bookmarks
 
-static const QLatin1String s_bookmarks("bookmarks/");
-static const QString s_bookmarks_version = s_bookmarks + QLatin1String("version");
-static const QString s_bookmarks_data = s_bookmarks + QLatin1String("data");
+static const QLatin1String s_bookmarks("bookmarks");
+static const QLatin1String s_version("version");
+static const QLatin1String s_data("data");
 
 static constexpr int s_bookmarksDataVersion = 1;
 static const QString s_bookmarksDataLabel = QStringLiteral("label");
@@ -408,6 +408,8 @@ bool Settings::createBackups() const
     return group.readEntry(s_createBackups, true);
 }
 
+// Bookmarks
+
 void Settings::saveBookmarks(const QHash<QString, Coordinates> *bookmarks)
 {
     QJsonArray data;
@@ -421,20 +423,23 @@ void Settings::saveBookmarks(const QHash<QString, Coordinates> *bookmarks)
                                   { s_bookmarksDataAlt, coordinates.alt() } });
     }
 
-    setValue(s_bookmarks_version, s_bookmarksDataVersion);
-    setValue(s_bookmarks_data, QJsonDocument(data).toJson(QJsonDocument::Compact));
+    auto group = m_config->group(s_bookmarks);
+    group.writeEntry(s_version, s_bookmarksDataVersion);
+    group.writeEntry(s_data, QJsonDocument(data).toJson(QJsonDocument::Compact));
+    group.sync();
 }
 
 QHash<QString, Coordinates> Settings::bookmarks() const
 {
-    const auto version = value(s_bookmarks_version, 0).toInt();
+    auto group = m_config->group(s_bookmarks);
+
+    const auto version = group.readEntry(s_version, 0);
     if (version != s_bookmarksDataVersion) {
         return {};
     }
 
     QJsonParseError error;
-    const auto document = QJsonDocument::fromJson(
-        value(s_bookmarks_data, QByteArray()).toByteArray(), &error);
+    const auto document = QJsonDocument::fromJson(group.readEntry(s_data, QByteArray()), &error);
     if (error.error != QJsonParseError::NoError || ! document.isArray()) {
         return {};
     }
