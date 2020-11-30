@@ -22,12 +22,11 @@ static const QLatin1String s_lastOpenPath("lastOpenPath");
 static const QLatin1String s_splitImagesList("splitImagesList");
 
 // Map
-
-static const QLatin1String s_map("map/");
-static const QString s_map_showCrosshairs = s_map + QLatin1String("show_crosshairs");
-static const QString s_map_centerLon = s_map + QLatin1String("center_lon");
-static const QString s_map_centerLat = s_map + QLatin1String("center_lat");
-static const QString s_map_zoom = s_map + QLatin1String("zoom");
+static const QLatin1String s_map("map");
+static const QLatin1String s_showCrosshairs("showCrosshairs");
+static const QLatin1String s_centerLon("centerLon");
+static const QLatin1String s_centerLat("centerLat");
+static const QLatin1String s_zoom("zoom");
 
 // Floaters visibility
 
@@ -126,6 +125,8 @@ Settings::Settings(QObject *parent)
     m_config = KSharedConfig::openConfig();
 }
 
+// Main
+
 void Settings::saveMainWindowState(const QByteArray &data)
 {
     auto group = m_config->group(s_main);
@@ -165,14 +166,49 @@ bool Settings::splitImagesList() const
     return group.readEntry(s_splitImagesList, true);
 }
 
+// Map
+
 void Settings::saveShowCrosshairs(bool state)
 {
-    setValue(s_map_showCrosshairs, state);
+    auto group = m_config->group(s_map);
+    group.writeEntry(s_showCrosshairs, state);
+    group.sync();
 }
 
 bool Settings::showCrosshairs() const
 {
-    return value(s_map_showCrosshairs, true).toBool();
+    auto group = m_config->group(s_map);
+    return group.readEntry(s_showCrosshairs, true);
+}
+
+void Settings::saveMapCenter(const Coordinates &coordinates)
+{
+    auto group = m_config->group(s_map);
+    group.writeEntry(s_centerLon, coordinates.lon());
+    group.writeEntry(s_centerLat, coordinates.lat());
+    group.sync();
+}
+
+Coordinates Settings::mapCenter() const
+{
+    auto group = m_config->group(s_map);
+    return Coordinates(group.readEntry(s_centerLon, 0.0),
+                       group.readEntry(s_centerLat, 0.0),
+                       0.0,
+                       true);
+}
+
+void Settings::saveZoom(int zoom)
+{
+    auto group = m_config->group(s_map);
+    group.writeEntry(s_zoom, zoom);
+    group.sync();
+}
+
+int Settings::zoom() const
+{
+    auto group = m_config->group(s_map);
+    return group.readEntry(s_zoom, 1520);
 }
 
 void Settings::saveFloatersVisibility(const QHash<QString, bool> &data)
@@ -196,30 +232,6 @@ QHash<QString, bool> Settings::floatersVisibility()
     }
 
     return data;
-}
-
-void Settings::saveMapCenter(const Coordinates &coordinates)
-{
-    setValue(s_map_centerLon, coordinates.lon());
-    setValue(s_map_centerLat, coordinates.lat());
-}
-
-Coordinates Settings::mapCenter() const
-{
-    return Coordinates(value(s_map_centerLon, 0).toDouble(),
-                       value(s_map_centerLat, 0).toDouble(),
-                       0.0,
-                       true);
-}
-
-void Settings::saveZoom(int zoom)
-{
-    setValue(s_map_zoom, zoom);
-}
-
-int Settings::zoom() const
-{
-    return value(s_map_zoom, 1520).toInt();
 }
 
 void Settings::saveThumbnailSize(int size)
