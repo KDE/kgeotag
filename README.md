@@ -1,9 +1,5 @@
 # KGeoTag
 
-**Warning**: KGeoTag is currently in the beta phase. It's feature-complete and should work fine, but version 1.0.0 has not been tagged yet.
-
-All beta testing and feedback is greatly appreciated! Feel free to join KGeoTag's IRC channel [#kde-kgeotag](irc://chat.freenode.net/kde-kgeotag) :-)
-
 If you are reading this on GitHub, be aware that this is just a mirror. The real code repository can be found at https://invent.kde.org/graphics/kgeotag.
 
 ## What is it?
@@ -63,3 +59,9 @@ Finally, the assigned coordinates can be saved. KGeoTag can either write them to
 This way, the geodata assignment is made persistent and also accessible for other geodata-aware applications (like e. g. [KPhotoAlbum](https://www.kphotoalbum.org/)).
 
 If a time drift has been identified and a deviation has been given, the images' dates and times also can be fixed whilst saving.
+
+## Getting involved
+
+Everybody is invited to participate in KGeoTag's development! You don't have to be able to write code to do so. All testing and feedback is greatly appreciated!
+
+Also feel free to join KGeoTag's IRC channel [#kde-kgeotag](irc://chat.freenode.net/kde-kgeotag) :-)
