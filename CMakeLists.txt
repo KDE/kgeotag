@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+# SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.8.0)
-project(kgeotag CXX)
+project(kgeotag LANGUAGES CXX VERSION 1.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -40,6 +40,7 @@ find_package(Marble 0.28 REQUIRED)
 add_custom_target(
     UpdateVersion ALL
     COMMAND ${CMAKE_COMMAND} -DBASE_DIR=${CMAKE_SOURCE_DIR} -DCMAKE_BUILD_TYPE=${CMAKE_BUILD_TYPE}
+                             -DPROJECT_VERSION="${PROJECT_VERSION}"
                              -P ${CMAKE_SOURCE_DIR}/cmake/UpdateVersion.cmake
     COMMENT "Updating version header"
     BYPRODUCTS ${CMAKE_BINARY_DIR}/version.h
