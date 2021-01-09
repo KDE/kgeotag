@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -157,6 +157,8 @@ void BookmarksList::saveBookmark(QString label, const Coordinates &coordinates)
             i18n("The bookmark \"%1\" already exists, created \"%2\" instead.",
                  originalLabel, label));
     }
+
+    m_mapWidget->centerCoordinates(coordinates);
 }
 
 void BookmarksList::requestElevation(const QString &id)
@@ -279,10 +281,11 @@ const QHash<QString, Coordinates> *BookmarksList::bookmarks() const
 
 void BookmarksList::editCoordinates()
 {
-    const auto label = i18nc("A quoted filename", "\"%1\"", m_contextMenuItem->text());
-    auto &coordinates = m_bookmarks[label];
+    const auto id = m_contextMenuItem->text();
+    auto &coordinates = m_bookmarks[id];
 
-    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false, coordinates, label);
+    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false, coordinates,
+                             i18nc("A quoted bookmark label", "\"%1\"", id));
     if (! dialog.exec()) {
         return;
     }
