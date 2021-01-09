@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -21,6 +21,7 @@ class ImagePreview;
 
 // Qt classes
 class QLabel;
+class QLocale;
 
 class PreviewWidget : public QWidget
 {
@@ -35,6 +36,7 @@ public slots:
 
 private: // Variables
     CoordinatesFormatter *m_formatter;
+    const QLocale *m_locale;
 
     ImagePreview *m_preview;
 

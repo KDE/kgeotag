@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -61,4 +61,9 @@ void SharedObjects::setBookmarks(const QHash<QString, Coordinates> *bookmarks)
 const QHash<QString, Coordinates> *SharedObjects::bookmarks() const
 {
     return m_bookmarks;
+}
+
+const QLocale *SharedObjects::locale() const
+{
+    return &m_locale;
 }

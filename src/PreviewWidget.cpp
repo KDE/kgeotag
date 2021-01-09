@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -23,7 +23,8 @@
 
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
-      m_formatter(sharedObjects->coordinatesFormatter())
+      m_formatter(sharedObjects->coordinatesFormatter()),
+      m_locale(sharedObjects->locale())
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -79,9 +80,8 @@ void PreviewWidget::setImage(const QModelIndex &index)
     }
 
     m_path->setText(m_currentImage);
-    QLocale locale;
     m_date->setText(index.data(KGeoTag::DateRole).value<QDateTime>().toString(
-                        locale.dateTimeFormat()));
+                        m_locale->dateTimeFormat()));
 
     const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
     if (coordinates.isSet()) {
