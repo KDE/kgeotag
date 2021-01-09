@@ -22,14 +22,14 @@ class FixDriftWidget : public QWidget
 
 public:
     explicit FixDriftWidget(QWidget *parent = nullptr);
-    int deviation() const;
+    int cameraClockDeviation() const;
     bool save() const;
 
 private: // Variables
     const QTimeZone m_systemTimeZone;
     QTimeZone m_imagesTimeZone;
     QComboBox *m_timeZone;
-    QSpinBox *m_deviation;
+    QSpinBox *m_cameraClockDeviation;
     QCheckBox *m_save;
 
 };

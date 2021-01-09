@@ -69,10 +69,10 @@ FixDriftWidget::FixDriftWidget(QWidget *parent)
     deviationLayout->addWidget(new QLabel(i18n("Deviation between image dates\n"
                                                "and the (exact) GPS data time:")));
 
-    m_deviation = new QSpinBox;
-    m_deviation->setMinimum(-86400);
-    m_deviation->setMaximum(86400);
-    deviationLayout->addWidget(m_deviation);
+    m_cameraClockDeviation = new QSpinBox;
+    m_cameraClockDeviation->setMinimum(-86400);
+    m_cameraClockDeviation->setMaximum(86400);
+    deviationLayout->addWidget(m_cameraClockDeviation);
 
     deviationLayout->addWidget(new QLabel(i18n("seconds")));
 
@@ -85,9 +85,9 @@ FixDriftWidget::FixDriftWidget(QWidget *parent)
     layout->addStretch();
 }
 
-int FixDriftWidget::deviation() const
+int FixDriftWidget::cameraClockDeviation() const
 {
-    return m_deviation->value();
+    return m_cameraClockDeviation->value();
 }
 
 bool FixDriftWidget::save() const

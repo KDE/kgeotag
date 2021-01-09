@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -837,8 +837,8 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
         if (searchType == KGeoTag::CombinedMatchSearch
             || searchType == KGeoTag::ExactMatchSearch) {
 
-            coordinates = m_gpxEngine->findExactCoordinates(m_imagesModel->date(path),
-                                                            m_fixDriftWidget->deviation());
+            coordinates = m_gpxEngine->findExactCoordinates(
+                m_imagesModel->date(path), m_fixDriftWidget->cameraClockDeviation());
         }
 
         if (coordinates.isSet()) {
@@ -853,8 +853,8 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
         if (searchType == KGeoTag::CombinedMatchSearch
             || searchType == KGeoTag::InterpolatedMatchSearch) {
 
-            coordinates = m_gpxEngine->findInterpolatedCoordinates(m_imagesModel->date(path),
-                                                                   m_fixDriftWidget->deviation());
+            coordinates = m_gpxEngine->findInterpolatedCoordinates(
+                m_imagesModel->date(path), m_fixDriftWidget->cameraClockDeviation());
         }
 
         if (coordinates.isSet()) {
@@ -978,8 +978,8 @@ void MainWindow::saveChanges()
     const bool createBackups =
         writeMode != KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY
         && m_settings->createBackups();
-    const int deviation = m_fixDriftWidget->deviation();
-    const bool fixDrift = m_fixDriftWidget->save() && deviation != 0;
+    const int cameraClockDeviation = m_fixDriftWidget->cameraClockDeviation();
+    const bool fixDrift = m_fixDriftWidget->save() && cameraClockDeviation != 0;
 
     bool skipImage = false;
     bool abortWrite = false;
@@ -1101,7 +1101,7 @@ void MainWindow::saveChanges()
         // Fix the time drift if requested
         if (fixDrift) {
             const QDateTime originalTime = m_imagesModel->date(path);
-            const QDateTime fixedTime = originalTime.addSecs(deviation);
+            const QDateTime fixedTime = originalTime.addSecs(cameraClockDeviation);
             // If the Digitization time is equal to the original time, update it as well.
             // Otherwise, only update the image's timestamp.
             exif.setImageDateTime(fixedTime, exif.getDigitizationDateTime() == originalTime);
