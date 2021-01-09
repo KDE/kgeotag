@@ -10,6 +10,7 @@ mapping between the color and timezone.
 
 This script can be run with the following command:
 python timezone-png-creator [path-to-datafile] [output-dir]
+the --height flag can be used to change the height of the image.
 
 This script requires QGIS to be installed on the machine, and currently only
 works on Linux, but with a few small tweaks could work on Windows as well.
@@ -98,14 +99,14 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
     return mapping
 
 
-def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path, image_width: int) -> None:
+def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path, image_height: int) -> None:
     """Saves the image and mapping file.
 
     Args:
         layer (QgsVectorLayer): The layer to save.
         mapping (Dict[str, str]): The mapping dictionary.
         path (Path): The folder to save the data to.
-        image_width (int): The width of the image to save.
+        image_height (int): The height of the image to save.
     """
     json_file = (path / "timezones.json").resolve()
     print(f"Saving mappings JSON file to: {json_file.absolute()}")
@@ -117,7 +118,7 @@ def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path, imag
     settings = QgsMapSettings()
     settings.setLayers([layer])
     settings.setBackgroundColor(QColor(255, 255, 255))
-    settings.setOutputSize(QSize(image_width, int(image_width / 2)))
+    settings.setOutputSize(QSize(image_height * 2, image_height))
     settings.setExtent(layer.extent())
     # Turn antialiasing off
     settings.setFlag(1, False)
@@ -141,14 +142,14 @@ def main():
     parser.add_argument("input-timezone-data", type=Path, help="The timezone data file.")
     parser.add_argument("output-dir", type=Path, help="The folder to place the output data files in.")
     parser.add_argument(
-        "--width", type=int, help="The width of the output image. Should be an even number.", default=2000
+        "--height", type=int, help="The height of the output image. Should be an even number.", default=1000
     )
     args = vars(parser.parse_args())
 
     print(f"Opening data file: {args['input-timezone-data'].absolute().resolve()}")
     layer = QgsVectorLayer(str(args["input-timezone-data"]))
     mapping = stylize_map(layer)
-    export_data(layer, mapping, args["output-dir"], args["width"])
+    export_data(layer, mapping, args["output-dir"], args["height"])
 
 
 if __name__ == "__main__":
