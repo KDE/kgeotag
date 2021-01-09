@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -25,6 +25,7 @@ ImagesModel::ImagesModel(QObject *parent, bool splitImagesList, int thumbnailSiz
       m_thumbnailSize(QSize(thumbnailSize, thumbnailSize)),
       m_previewSize(QSize(previewSize, previewSize))
 {
+    m_timeZone = QTimeZone::systemTimeZone();
 }
 
 void ImagesModel::setSplitImagesList(bool state)
@@ -153,6 +154,9 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
         }
     }
 
+    // Apply the currently set timezone
+    data.date.setTimeZone(m_timeZone);
+
     // Try to read gps information
     double altitude;
     double latitude;
@@ -267,4 +271,13 @@ void ImagesModel::setSaved(const QString &path)
 KGeoTag::MatchType ImagesModel::matchType(const QString &path) const
 {
     return m_imageData.value(path).matchType;
+}
+
+void ImagesModel::setImagesTimeZone(const QByteArray &id)
+{
+    m_timeZone = QTimeZone(id);
+
+    for (const auto &path : m_paths) {
+        m_imageData[path].date.setTimeZone(m_timeZone);
+    }
 }

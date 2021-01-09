@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -17,6 +17,7 @@
 #include <QDateTime>
 #include <QImage>
 #include <QSize>
+#include <QTimeZone>
 
 class ImagesModel : public QAbstractListModel
 {
@@ -49,6 +50,7 @@ public:
     Coordinates coordinates(const QString &path) const;
     void resetChanges(const QString &path);
     void setSaved(const QString &path);
+    void setImagesTimeZone(const QByteArray &id);
 
 private: // Functions
     void emitDataChanged(const QString &path);
@@ -71,6 +73,7 @@ private: // Variables
     KColorScheme m_colorScheme;
     QVector<QString> m_paths;
     QHash<QString, ImageData> m_imageData;
+    QTimeZone m_timeZone;
 
 };
 

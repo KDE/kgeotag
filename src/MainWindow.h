@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -65,6 +65,7 @@ private slots:
     void removeCoordinates(const QVector<QString> &paths);
     void discardChanges(ImagesListView *list);
     void lookupElevation(ImagesListView *list);
+    void imagesTimeZoneChanged();
 
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,

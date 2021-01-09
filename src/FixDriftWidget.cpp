@@ -15,13 +15,12 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QComboBox>
+#include <QTimeZone>
 
 // KDE includes
 #include <KLocalizedString>
 
-FixDriftWidget::FixDriftWidget(QWidget *parent)
-    : QWidget(parent),
-      m_systemTimeZone(QTimeZone::systemTimeZone())
+FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
 {
     auto *layout = new QVBoxLayout(this);
 
@@ -36,11 +35,12 @@ FixDriftWidget::FixDriftWidget(QWidget *parent)
     m_timeZone->setEditable(true);
     m_timeZone->setInsertPolicy(QComboBox::NoInsert);
 
-    const auto systemTimeZoneId = m_systemTimeZone.id();
+    const auto systemTimeZoneId = QTimeZone::systemTimeZone().id();
     const auto allTimeZones = QTimeZone::availableTimeZoneIds();
     int index = 0;
     int systemIndex = -1;
     for (const auto &timeZone : allTimeZones) {
+        auto currentTimeZone = QTimeZone(timeZone);
         m_timeZone->addItem(QString::fromLatin1(timeZone), timeZone);
         if (systemIndex == -1 && timeZone == systemTimeZoneId) {
             systemIndex = index;
@@ -48,16 +48,13 @@ FixDriftWidget::FixDriftWidget(QWidget *parent)
         index++;
     }
 
-    connect(m_timeZone, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            [this]
-            {
-                m_imagesTimeZone = QTimeZone(m_timeZone->currentData().toByteArray());
-            });
-
     timeZoneBoxLayout->addWidget(m_timeZone);
     if (systemIndex != -1) {
         m_timeZone->setCurrentIndex(systemIndex);
     }
+
+    connect(m_timeZone, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            this, &FixDriftWidget::imagesTimeZoneChanged);
 
     auto *driftBox = new QGroupBox(i18n("Camera clock time drift"));
     auto *driftBoxLayout = new QVBoxLayout(driftBox);
@@ -93,4 +90,9 @@ int FixDriftWidget::cameraClockDeviation() const
 bool FixDriftWidget::save() const
 {
     return m_save->isChecked();
+}
+
+QByteArray FixDriftWidget::imagesTimeZoneId() const
+{
+    return m_timeZone->currentData().toByteArray();
 }

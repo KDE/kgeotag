@@ -142,6 +142,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     m_fixDriftWidget = new FixDriftWidget;
     m_fixDriftDock = createDockWidget(i18n("Fix time drift"), m_fixDriftWidget,
                                           QStringLiteral("fixDriftDock"));
+    connect(m_fixDriftWidget, &FixDriftWidget::imagesTimeZoneChanged,
+            this, &MainWindow::imagesTimeZoneChanged);
 
     // Map
     m_mapWidget = m_sharedObjects->mapWidget();
@@ -1282,5 +1284,13 @@ void MainWindow::elevationProcessed(ElevationEngine::Target target, const QVecto
     }
 
     emit checkUpdatePreview(paths);
+    QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::imagesTimeZoneChanged()
+{
+    QApplication::setOverrideCursor(Qt::WaitCursor);
+    m_imagesModel->setImagesTimeZone(m_fixDriftWidget->imagesTimeZoneId());
+    m_previewWidget->setImage(m_imagesModel->indexFor(m_previewWidget->currentImage()));
     QApplication::restoreOverrideCursor();
 }
