@@ -142,6 +142,7 @@ void ImagesListView::currentChanged(const QModelIndex &current, const QModelInde
 {
     if (current.isValid()) {
         emit imageSelected(current);
+        scrollTo(current);
     }
 }
 
