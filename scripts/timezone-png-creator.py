@@ -1,19 +1,18 @@
-"""
-SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
+""" SPDX-FileCopyrightText: 2021 Isaac Wismer <isaac@iwismer.ca>
 
-SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
+    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
-This script takes a timezone data file (designed for the ones providede
-here: https://github.com/evansiroky/timezone-boundary-builder/), and turns it
-into a PNG with each of the timezones a unique color, and a JSON file with a
-mapping between the color and timezone.
+    This script takes a timezone data file (designed for the ones providede
+    here: https://github.com/evansiroky/timezone-boundary-builder/), and turns it
+    into a PNG with each of the timezones a unique color, and a JSON file with a
+    mapping between the color and timezone.
 
-This script can be run with the following command:
-python timezone-png-creator [path-to-datafile] [output-dir]
-the --height flag can be used to change the height of the image.
+    This script can be run with the following command:
+    python timezone-png-creator [path-to-datafile] [output-dir]
+    the --height flag can be used to change the height of the image.
 
-This script requires QGIS to be installed on the machine, and currently only
-works on Linux, but with a few small tweaks could work on Windows as well.
+    This script requires QGIS to be installed on the machine, and currently only
+    works on Linux, but with a few small tweaks could work on Windows as well.
 """
 
 import argparse
