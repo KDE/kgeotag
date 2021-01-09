@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -8,8 +8,11 @@
 
 // Qt includes
 #include <QWidget>
+#include <QTimeZone>
+#include <QDateTime>
 
 // Qt classes
+class QComboBox;
 class QSpinBox;
 class QCheckBox;
 
@@ -23,6 +26,9 @@ public:
     bool save() const;
 
 private: // Variables
+    const QTimeZone m_systemTimeZone;
+    QTimeZone m_imagesTimeZone;
+    QComboBox *m_timeZone;
     QSpinBox *m_deviation;
     QCheckBox *m_save;
 
