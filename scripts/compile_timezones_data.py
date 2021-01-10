@@ -82,7 +82,7 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
             rh = hex(r)[2:]
             gh = hex(g)[2:]
             bh = hex(b)[2:]
-            hex_color = f"#{rh:0>2}{gh:0>2}{bh:0>2}".upper()
+            hex_color = f"#{rh:0>2}{gh:0>2}{bh:0>2}"
             if hex_color not in mapping:
                 mapping[hex_color] = qt_tz
                 break
