@@ -20,13 +20,17 @@ If one knows for sure where the respective photo was taken, it's also possible t
 
 KGeoTag currently supports The following image formats: [JPEG](https://en.wikipedia.org/wiki/JPEG), [PNG](https://en.wikipedia.org/wiki/Portable_Network_Graphics), [WebP](https://en.wikipedia.org/wiki/WebP), [TIFF](https://en.wikipedia.org/wiki/TIFF), [OpenRaster](https://en.wikipedia.org/wiki/OpenRaster) and [Krita Document](https://en.wikipedia.org/wiki/Krita).
 
+Geodata can be loaded from (uncompressed) [GPX](https://en.wikipedia.org/wiki/GPS_Exchange_Format) files.
+
 ### Assigning images
 
 KGeoTag offers multiple ways to assign coordinates to images:
 
 #### Automatic tagging
 
-The most convenient approach is automatic matching with geodata stored in the [GPX](https://en.wikipedia.org/wiki/GPS_Exchange_Format) format. GPX files can be loaded and displayed on a map. Using this data, images can be assigned with matching geographic coordinates by finding (more or less) exact chronological matches, or by interpolating a likely position if no exact match can be found.
+The most convenient approach is automatic matching using geodata provided by GPX files. Those can be loaded and displayed on a map. Using this data, images can be assigned with matching geographic coordinates by finding (more or less) exact chronological matches, or by interpolating a likely position if no exact match can be found.
+
+Normally, the images only provide a time and date, but no timezone. Thus we need to set one to make an assignment possible. The presumably correct timezone is detected from the geographic location of the GPX file, but it can also be set manually.
 
 If altitude values aren't set in the dataset or they are not accurate enough, they can be looked up using opentopodata.org (see below).
 
