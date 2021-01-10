@@ -60,23 +60,46 @@ FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
     auto *driftBoxLayout = new QVBoxLayout(driftBox);
     layout->addWidget(driftBox);
 
+    auto *driftLabel = new QLabel(i18n("Deviation between image dates and the (exact) GPS data "
+                                       "time:"));
+    driftLabel->setWordWrap(true);
+    driftBoxLayout->addWidget(driftLabel);
+
     auto *deviationLayout = new QHBoxLayout;
     driftBoxLayout->addLayout(deviationLayout);
 
-    deviationLayout->addWidget(new QLabel(i18n("Deviation between image dates\n"
-                                               "and the (exact) GPS data time:")));
+    m_driftHours = new QSpinBox;
+    m_driftHours->setMinimum(-24);
+    m_driftHours->setMaximum(24);
+    deviationLayout->addWidget(m_driftHours);
+    deviationLayout->addWidget(new QLabel(i18n("hours")));
+    connect(m_driftHours, QOverload<int>::of(&QSpinBox::valueChanged),
+            this, &FixDriftWidget::cameraDriftSettingsChanged);
 
-    m_cameraClockDeviation = new QSpinBox;
-    m_cameraClockDeviation->setMinimum(-86400);
-    m_cameraClockDeviation->setMaximum(86400);
-    deviationLayout->addWidget(m_cameraClockDeviation);
+    m_driftMinutes = new QSpinBox;
+    m_driftMinutes->setMinimum(-1440);
+    m_driftMinutes->setMaximum(1440);
+    deviationLayout->addWidget(m_driftMinutes);
+    deviationLayout->addWidget(new QLabel(i18n("minutes")));
+    connect(m_driftMinutes, QOverload<int>::of(&QSpinBox::valueChanged),
+            this, &FixDriftWidget::cameraDriftSettingsChanged);
 
+    m_driftSeconds = new QSpinBox;
+    m_driftSeconds->setMinimum(-86400);
+    m_driftSeconds->setMaximum(86400);
+    deviationLayout->addWidget(m_driftSeconds);
     deviationLayout->addWidget(new QLabel(i18n("seconds")));
+    connect(m_driftSeconds, QOverload<int>::of(&QSpinBox::valueChanged),
+            this, &FixDriftWidget::cameraDriftSettingsChanged);
 
     deviationLayout->addStretch();
 
-    m_save = new QCheckBox(i18n("Write the fixed dates to the images'\n"
-                                "Exif header when saving"));
+    m_displayFixed = new QCheckBox(i18n("Display the fixed dates and times"));
+    m_displayFixed->setChecked(true);
+    driftBoxLayout->addWidget(m_displayFixed);
+    connect(m_displayFixed, &QCheckBox::toggled, this, &FixDriftWidget::cameraDriftSettingsChanged);
+
+    m_save = new QCheckBox(i18n("Fix the files' dates and times when saving"));
     driftBoxLayout->addWidget(m_save);
 
     layout->addStretch();
@@ -84,7 +107,9 @@ FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
 
 int FixDriftWidget::cameraClockDeviation() const
 {
-    return m_cameraClockDeviation->value();
+    return   m_driftHours->value() * 3600
+           + m_driftMinutes->value() * 60
+           + m_driftSeconds->value();
 }
 
 bool FixDriftWidget::save() const
@@ -106,4 +131,9 @@ bool FixDriftWidget::setImagesTimeZone(const QByteArray &id)
     } else {
         return false;
     }
+}
+
+bool FixDriftWidget::displayFixed() const
+{
+    return m_displayFixed->isChecked();
 }

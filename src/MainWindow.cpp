@@ -146,6 +146,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                                           QStringLiteral("fixDriftDock"));
     connect(m_fixDriftWidget, &FixDriftWidget::imagesTimeZoneChanged,
             this, &MainWindow::imagesTimeZoneChanged);
+    connect(m_fixDriftWidget, &FixDriftWidget::cameraDriftSettingsChanged,
+            this, &MainWindow::cameraDriftSettingsChanged);
 
     // Map
 
@@ -1338,6 +1340,12 @@ void MainWindow::imagesTimeZoneChanged()
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
     m_imagesModel->setImagesTimeZone(m_fixDriftWidget->imagesTimeZoneId());
-    m_previewWidget->setImage(m_imagesModel->indexFor(m_previewWidget->currentImage()));
+    m_previewWidget->reload();
     QApplication::restoreOverrideCursor();
+}
+
+void MainWindow::cameraDriftSettingsChanged()
+{
+    m_previewWidget->setCameraClockDeviation(
+        m_fixDriftWidget->displayFixed() ? m_fixDriftWidget->cameraClockDeviation() : 0);
 }

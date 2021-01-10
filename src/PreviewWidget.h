@@ -30,6 +30,8 @@ class PreviewWidget : public QWidget
 public:
     explicit PreviewWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     QString currentImage() const;
+    void setCameraClockDeviation(int deviation);
+    void reload();
 
 public slots:
     void setImage(const QModelIndex &index = QModelIndex());
@@ -41,10 +43,13 @@ private: // Variables
     ImagePreview *m_preview;
 
     QLabel *m_path;
+    QLabel *m_dateTimeLabel;
     QLabel *m_date;
     QLabel *m_coordinates;
     QHash<KGeoTag::MatchType, QString> m_matchString;
     QString m_currentImage;
+    QModelIndex m_currentIndex;
+    int m_cameraClockDeviation = 0;
 
 };
 

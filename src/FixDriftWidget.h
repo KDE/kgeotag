@@ -22,15 +22,20 @@ public:
     explicit FixDriftWidget(QWidget *parent = nullptr);
     int cameraClockDeviation() const;
     bool save() const;
+    bool displayFixed() const;
     QByteArray imagesTimeZoneId() const;
     bool setImagesTimeZone(const QByteArray &id);
 
 signals:
     void imagesTimeZoneChanged();
+    void cameraDriftSettingsChanged();
 
 private: // Variables
     QComboBox *m_timeZone;
-    QSpinBox *m_cameraClockDeviation;
+    QSpinBox *m_driftHours;
+    QSpinBox *m_driftMinutes;
+    QSpinBox *m_driftSeconds;
+    QCheckBox *m_displayFixed;
     QCheckBox *m_save;
 
 };

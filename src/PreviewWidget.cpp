@@ -40,9 +40,9 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_path->setTextInteractionFlags(Qt::TextSelectableByMouse);
     infoLayout->addWidget(m_path, 0, 1);
 
-    auto *dateTimeLabel = new QLabel(i18n("Date/Time:"));
-    dateTimeLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
-    infoLayout->addWidget(dateTimeLabel, 1, 0);
+    m_dateTimeLabel = new QLabel(i18n("Date/Time:"));
+    m_dateTimeLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    infoLayout->addWidget(m_dateTimeLabel, 1, 0);
 
     m_date = new QLabel;
     m_date->setTextInteractionFlags(Qt::TextSelectableByMouse);
@@ -69,6 +69,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
 
 void PreviewWidget::setImage(const QModelIndex &index)
 {
+    m_currentIndex = index;
     m_currentImage = index.isValid() ? index.data(KGeoTag::PathRole).toString() : QString();
 
     if (m_currentImage.isEmpty()) {
@@ -80,8 +81,15 @@ void PreviewWidget::setImage(const QModelIndex &index)
     }
 
     m_path->setText(m_currentImage);
-    m_date->setText(index.data(KGeoTag::DateRole).value<QDateTime>().toString(
-                        m_locale->dateTimeFormat()));
+    if (m_cameraClockDeviation == 0) {
+        m_date->setText(index.data(KGeoTag::DateRole).value<QDateTime>()
+                            .toString(m_locale->dateTimeFormat()));
+    } else {
+        m_date->setText(
+            index.data(KGeoTag::DateRole).value<QDateTime>()
+                           .addSecs(m_cameraClockDeviation)
+                           .toString(m_locale->dateTimeFormat()));
+    }
 
     const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
     if (coordinates.isSet()) {
@@ -100,4 +108,21 @@ void PreviewWidget::setImage(const QModelIndex &index)
 QString PreviewWidget::currentImage() const
 {
     return m_currentImage;
+}
+
+void PreviewWidget::reload()
+{
+    setImage(m_currentIndex);
+}
+
+void PreviewWidget::setCameraClockDeviation(int deviation)
+{
+    if (deviation == 0) {
+        m_dateTimeLabel->setText(i18n("Date/Time:"));
+    } else {
+        m_dateTimeLabel->setText(i18n("Date/Time\n(corrected):"));
+    }
+
+    m_cameraClockDeviation = deviation;
+    reload();
 }
