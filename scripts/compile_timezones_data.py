@@ -54,6 +54,8 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
 
     print("Reading timezones from file")
     timezones = layer.uniqueValues(layer.fields().indexOf("tzid"))
+    timezones = list(timezones)
+    timezones.sort()
 
     categorized_renderer = QgsCategorizedSymbolRenderer()
 
