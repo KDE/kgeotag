@@ -8,9 +8,6 @@
 #include "Coordinates.h"
 #include "CoordinatesFormatter.h"
 
-// Marble includes
-#include <marble/GeoDataLatLonAltBox.h>
-
 // KDE includes
 #include <KLocalizedString>
 
@@ -32,12 +29,8 @@ MapCenterInfo::MapCenterInfo(CoordinatesFormatter *formatter, QWidget *parent)
     layout->addWidget(m_label);
 }
 
-void MapCenterInfo::mapMoved(const Marble::GeoDataLatLonAltBox &visibleBox)
+void MapCenterInfo::mapMoved(const Coordinates &center)
 {
-    const auto marbleCenter = visibleBox.center();
-    const auto center = Coordinates(marbleCenter.longitude(Marble::GeoDataCoordinates::Degree),
-                                    marbleCenter.latitude(Marble::GeoDataCoordinates::Degree),
-                                    0.0, true);
     m_label->setText(i18n("Map center position: %1, %2",
                           m_formatter->lon(center),
                           m_formatter->lat(center)));

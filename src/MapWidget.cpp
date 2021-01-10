@@ -50,6 +50,12 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
       m_settings(sharedObjects->settings()),
       m_imagesModel(sharedObjects->imagesModel())
 {
+    connect(this, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
+            [this]
+            {
+                emit mapMoved(currentCenter());
+            });
+
     setAcceptDrops(true);
 
     setProjection(Marble::Mercator);

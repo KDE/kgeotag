@@ -10,13 +10,8 @@
 #include <QWidget>
 
 // Local classes
+class Coordinates;
 class CoordinatesFormatter;
-
-// Marble classes
-namespace Marble
-{
-class GeoDataLatLonAltBox;
-}
 
 // Qt classes
 class QLabel;
@@ -29,7 +24,7 @@ public:
     explicit MapCenterInfo(CoordinatesFormatter *formatter, QWidget *parent = nullptr);
 
 public slots:
-    void mapMoved(const Marble::GeoDataLatLonAltBox &visibleBox);
+    void mapMoved(const Coordinates &center);
 
 private: // Variables
     CoordinatesFormatter *m_formatter;

@@ -49,6 +49,7 @@ public slots:
     void addSegment(const QVector<Coordinates> &segment);
 
 signals:
+    void mapMoved(const Coordinates &center);
     void imagesDropped(const QVector<QString> &paths);
     void requestLoadGpx(const QVector<QString> &paths);
 

@@ -151,15 +151,14 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     m_mapWidget = m_sharedObjects->mapWidget();
     auto *mapCenterInfo = new MapCenterInfo(m_sharedObjects->coordinatesFormatter());
+    connect(m_mapWidget, &MapWidget::mapMoved, mapCenterInfo, &MapCenterInfo::mapMoved);
+
     auto *mapWrapper = new QWidget;
     auto *mapWrapperLayout = new QVBoxLayout(mapWrapper);
     mapWrapperLayout->addWidget(m_mapWidget);
     mapWrapperLayout->addWidget(mapCenterInfo);
 
     m_mapDock = createDockWidget(i18n("Map"), mapWrapper, QStringLiteral("mapDock"));
-
-    connect(m_mapWidget, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
-            mapCenterInfo, &MapCenterInfo::mapMoved);
 
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
