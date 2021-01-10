@@ -56,20 +56,18 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     m_contextMenu = new QMenu(this);
 
-    if (m_listType != KGeoTag::AllImages) {
-        m_selectAll = m_contextMenu->addAction(i18n("Select all images"));
-        connect(m_selectAll, &QAction::triggered, this, &QListView::selectAll);
-    } else {
-        m_selectMenu = m_contextMenu->addMenu(i18n("Select"));
-        auto *all = m_selectMenu->addAction(i18n("All images"));
-        connect(all, &QAction::triggered, this, &QListView::selectAll);
-        auto *without = m_selectMenu->addAction(i18n("All images without coordinates"));
-        connect(without, &QAction::triggered,
-                this, std::bind(&ImagesListView::selectImages, this, false));
-        auto *with = m_selectMenu->addAction(i18n("All images with coordinates"));
-        connect(with, &QAction::triggered,
-                this, std::bind(&ImagesListView::selectImages, this, true));
-    }
+    m_selectAll = m_contextMenu->addAction(i18n("Select all images"));
+    connect(m_selectAll, &QAction::triggered, this, &QListView::selectAll);
+
+    m_selectMenu = m_contextMenu->addMenu(i18n("Select"));
+    auto *all = m_selectMenu->addAction(i18n("All images"));
+    connect(all, &QAction::triggered, this, &QListView::selectAll);
+    auto *without = m_selectMenu->addAction(i18n("All images without coordinates"));
+    connect(without, &QAction::triggered,
+            this, std::bind(&ImagesListView::selectImages, this, false));
+    auto *with = m_selectMenu->addAction(i18n("All images with coordinates"));
+    connect(with, &QAction::triggered,
+            this, std::bind(&ImagesListView::selectImages, this, true));
 
     m_contextMenu->addSeparator();
 
@@ -136,6 +134,8 @@ void ImagesListView::setListType(KGeoTag::ImagesListType type)
 {
     m_listType = type;
     m_listFilter->setListType(type);
+    m_selectAll->setVisible(type != KGeoTag::AllImages);
+    m_selectMenu->menuAction()->setVisible(type == KGeoTag::AllImages);
 }
 
 void ImagesListView::currentChanged(const QModelIndex &current, const QModelIndex &)
@@ -250,11 +250,8 @@ void ImagesListView::showContextMenu(const QPoint &point)
     const int allSelected = selected.count();
     const bool anySelected = allSelected > 0;
 
-    if (m_listType == KGeoTag::AllImages) {
-        m_selectMenu->setEnabled(model()->rowCount() > 0);
-    } else {
-        m_selectAll->setEnabled(model()->rowCount() > 0);
-    }
+    m_selectMenu->setEnabled(model()->rowCount() > 0);
+    m_selectAll->setEnabled(model()->rowCount() > 0);
 
     m_automaticMatchingMenu->setEnabled(anySelected);
     m_bookmarksMenu->setEnabled(anySelected);
