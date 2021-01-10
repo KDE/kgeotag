@@ -19,7 +19,6 @@
 import argparse
 import json
 import tempfile
-from random import randrange
 from pathlib import Path
 from typing import Dict
 import re
@@ -59,9 +58,12 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
     categorized_renderer = QgsCategorizedSymbolRenderer()
 
     print("Stylizing map")
+
     mapping = {}
     features = layer.getFeatures()
     categories = []
+    currentColor = 0
+
     for tz in timezones:
         # Modify the Etc timezones to match the Qt format.
         # There are a few exceptions where things don't quite match up.
@@ -73,19 +75,19 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
             qt_tz = "UTC"
         elif tz == "Etc/GMT":
             qt_tz = "UTC+00:00"
-        # Give random colors to the timezones, but ensure there are no duplicates.
-        while True:
-            r = randrange(0, 256)
-            g = randrange(0, 256)
-            b = randrange(0, 256)
-            # Need to remove the leading '0x' so use [2:]
-            rh = hex(r)[2:]
-            gh = hex(g)[2:]
-            bh = hex(b)[2:]
-            hex_color = f"#{rh:0>2}{gh:0>2}{bh:0>2}"
-            if hex_color not in mapping:
-                mapping[hex_color] = qt_tz
-                break
+
+        # Generate a consecutive color for each timezone
+        currentColor += 25000
+        r = (currentColor >> 16) & 255
+        g = (currentColor >> 8 ) & 255
+        b = (currentColor      ) & 255
+
+        # Add it to the mapping
+        rh = hex(r)[2:]
+        gh = hex(g)[2:]
+        bh = hex(b)[2:]
+        mapping[f"#{rh:0>2}{gh:0>2}{bh:0>2}"] = qt_tz
+
         symbol = QgsSymbol.defaultSymbol(layer.geometryType())
         symbol_layer = QgsSimpleFillSymbolLayer.create({"color": f"{r}, {g}, {b}"})
         symbol_layer.setStrokeWidth(0.0)
@@ -94,9 +96,11 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
 
         category = QgsRendererCategory(tz, symbol, tz)
         categories.append(category)
+
     renderer = QgsCategorizedSymbolRenderer("tzid", categories)
     layer.setRenderer(renderer)
     layer.triggerRepaint()
+
     return mapping
 
 
