@@ -17,10 +17,9 @@
 """
 
 import argparse
-import json
 import tempfile
 from pathlib import Path
-from typing import Dict
+from typing import List
 import re
 
 from PyQt5.QtCore import QSize, Qt
@@ -42,14 +41,14 @@ QgsApplication.setPrefixPath("/usr", True)
 QgsApplication.initQgis()
 
 
-def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
+def stylize_map(layer: QgsVectorLayer) -> [List[str], List[str]]:
     """Stylize the layer with random colors.
 
     Args:
         layer (QgsVectorLayer): The layer to stylize
 
     Returns:
-        Dict[str, str]: The mapping of color to timezone.
+        [List[str], List[str]]: A list with all timezone ids and one with the respective color
     """
 
     print("Reading timezones from file")
@@ -61,7 +60,8 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
 
     print("Stylizing map")
 
-    mapping = {}
+    timezone_ids = []
+    timezone_colors = []
     features = layer.getFeatures()
     categories = []
     currentColor = 0
@@ -88,7 +88,8 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
         rh = hex(r)[2:]
         gh = hex(g)[2:]
         bh = hex(b)[2:]
-        mapping[f"#{rh:0>2}{gh:0>2}{bh:0>2}"] = qt_tz
+        timezone_ids.append(qt_tz)
+        timezone_colors.append(f"#{rh:0>2}{gh:0>2}{bh:0>2}")
 
         symbol = QgsSymbol.defaultSymbol(layer.geometryType())
         symbol_layer = QgsSimpleFillSymbolLayer.create({"color": f"{r}, {g}, {b}"})
@@ -103,26 +104,38 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
     layer.setRenderer(renderer)
     layer.triggerRepaint()
 
-    return mapping
+    return timezone_ids, timezone_colors
 
 
-def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path,
-                image_height: int) -> None:
+def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors: List[str],
+                path: Path, image_height: int) -> None:
     """Saves the image and mapping file.
 
     Args:
         layer (QgsVectorLayer): The layer to save.
-        mapping (Dict[str, str]): The mapping dictionary.
+        timezone_ids (List[str]): A list of all timezone ids
+        timezone_colors (List[str]): A list of all timezone colors
         path (Path): The folder to save the data to.
         image_height (int): The height of the image to save.
     """
 
     path.mkdir(parents=True, exist_ok=True)
 
+    # We write the JSON dataset by hand, so that the order of all key -> value mappings inside the
+    # file is consistent. Using JSON functions, the dictionaray would be written to the file in a
+    # random order, making content versioning hard as the file would completely change each time
+    # is generated.
     json_file = (path / "timezones.json").resolve()
     print(f"Saving mappings JSON file to: {json_file.absolute()}")
     with open(json_file, "w") as f:
-        f.write(json.dumps(mapping))
+        f.write("{\n")
+        last = len(timezone_ids)
+        for i in range(0, last):
+            f.write("\"{}\": \"{}\"".format(timezone_colors[i],  timezone_ids[i]))
+            if i < last - 1:
+                f.write(",")
+            f.write("\n")
+        f.write("}\n")
 
     png_file = (path / "timezones.png").resolve()
     print(f"Saving PNG map to: {png_file.absolute()}")
@@ -165,8 +178,8 @@ def main():
 
     print(f"Opening data file: {args['input-timezone-data'].absolute().resolve()}")
     layer = QgsVectorLayer(str(args["input-timezone-data"]))
-    mapping = stylize_map(layer)
-    export_data(layer, mapping, args["outdir"], args["height"])
+    timezone_ids, timezone_colors = stylize_map(layer)
+    export_data(layer, timezone_ids, timezone_colors, args["outdir"], args["height"])
 
 
 if __name__ == "__main__":
