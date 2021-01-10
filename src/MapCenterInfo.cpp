@@ -26,6 +26,8 @@ MapCenterInfo::MapCenterInfo(CoordinatesFormatter *formatter, QWidget *parent)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 
     auto *layout = new QHBoxLayout(this);
+    layout->setContentsMargins(0, 0, 0, 0);
+
     m_label = new QLabel;
     layout->addWidget(m_label);
 }
