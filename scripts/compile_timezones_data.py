@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 """ SPDX-FileCopyrightText: 2021 Isaac Wismer <isaac@iwismer.ca>
 
     SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
