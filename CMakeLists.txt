@@ -71,6 +71,8 @@ set(kgeotag_SOURCES
     ${main_ROOT}/Coordinates.cpp
     ${main_ROOT}/AutomaticMatchingWidget.cpp
     ${main_ROOT}/MimeHelper.cpp
+    ${main_ROOT}/ImagesLayer.cpp
+    ${main_ROOT}/TracksLayer.cpp
 )
 
 # Build the executable

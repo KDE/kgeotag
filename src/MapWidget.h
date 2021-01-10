@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -38,7 +38,6 @@ class MapWidget : public Marble::MarbleWidget
 public:
     explicit MapWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     void updateSettings();
-    void customPaint(Marble::GeoPainter *painter) override;
     void saveSettings();
     void restoreSettings();
     void centerImage(const QModelIndex &index);

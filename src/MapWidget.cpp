@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -6,6 +6,8 @@
 // Local includes
 #include "MapWidget.h"
 #include "SharedObjects.h"
+#include "TracksLayer.h"
+#include "ImagesLayer.h"
 #include "Settings.h"
 #include "KGeoTag.h"
 #include "ImagesModel.h"
@@ -52,6 +54,11 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
 
     setProjection(Marble::Mercator);
     setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
+
+    auto *tracksLayer = new TracksLayer(this, &m_tracks, &m_trackPen);
+    auto *imagesLayer = new ImagesLayer(this, m_imagesModel);
+    addLayer(tracksLayer);
+    addLayer(imagesLayer);
 
     m_trackPen.setCapStyle(Qt::RoundCap);
     m_trackPen.setJoinStyle(Qt::RoundJoin);
@@ -133,34 +140,6 @@ void MapWidget::showContextMenu(int x, int y)
 void MapWidget::changeFloaterVisiblity(QAction *action)
 {
     floatItem(action->data().toString())->setVisible(action->isChecked());
-}
-
-void MapWidget::customPaint(Marble::GeoPainter *painter)
-{
-    const auto viewportCoordinates = viewport()->viewLatLonAltBox();
-
-    for (int row = 0; row < m_imagesModel->rowCount(); row++) {
-        const auto index = m_imagesModel->index(row, 0);
-        const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
-        if (! coordinates.isSet()) {
-            continue;
-        }
-
-        const auto marbleCoordinates = Marble::GeoDataCoordinates(
-            coordinates.lon(), coordinates.lat(), coordinates.alt(),
-            Marble::GeoDataCoordinates::Degree);
-
-        if (! viewportCoordinates.contains(marbleCoordinates)) {
-            continue;
-        }
-
-        painter->drawPixmap(marbleCoordinates, index.data(KGeoTag::ThumbnailRole).value<QPixmap>());
-    }
-
-    painter->setPen(m_trackPen);
-    for (const auto &lineString : m_tracks) {
-        painter->drawPolyline(lineString);
-    }
 }
 
 void MapWidget::updateSettings()
