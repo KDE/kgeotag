@@ -23,6 +23,7 @@ public:
     int cameraClockDeviation() const;
     bool save() const;
     QByteArray imagesTimeZoneId() const;
+    bool setImagesTimeZone(const QByteArray &id);
 
 signals:
     void imagesTimeZoneChanged();

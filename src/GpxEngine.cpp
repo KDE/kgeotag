@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -13,6 +13,12 @@
 #include <QDebug>
 #include <QFile>
 #include <QXmlStreamReader>
+#include <QJsonDocument>
+#include <QStandardPaths>
+#include <QFile>
+
+// C++ includes
+#include <cmath>
 
 static const auto s_gpx    = QStringLiteral("gpx");
 static const auto s_trk    = QStringLiteral("trk");
@@ -25,6 +31,17 @@ static const auto s_trkseg = QStringLiteral("trkseg");
 
 GpxEngine::GpxEngine(QObject *parent) : QObject(parent)
 {
+    // Load the timezone map image
+    m_timezoneMap = QImage(QStandardPaths::locate(QStandardPaths::AppDataLocation,
+                                                  QStringLiteral("timezones.png")));
+
+    // Load the color-timezone mapping
+    QFile jsonFile(QStandardPaths::locate(QStandardPaths::AppDataLocation,
+                                          QStringLiteral("timezones.json")));
+    jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
+    const auto jsonDocument = QJsonDocument::fromJson(jsonFile.readAll());
+    jsonFile.close();
+    m_timezoneMapping = jsonDocument.object();
 }
 
 GpxEngine::LoadInfo GpxEngine::load(const QString &path)
@@ -48,6 +65,8 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     QVector<QDateTime> segmentTimes;
     QVector<Coordinates> segmentCoordinates;
+
+    Coordinates lastCoordinates;
 
     bool gpxFound = false;
     bool trackStartFound = false;
@@ -114,6 +133,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
                     m_allTimes.append(time);
                     m_coordinates[time] = segmentCoordinates.at(i);
                 }
+                lastCoordinates = segmentCoordinates.last();
                 segmentTimes.clear();
                 segmentCoordinates.clear();
 
@@ -132,8 +152,34 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     }
 
     // All okay :-)
+
     m_loadedPaths.append(path);
     std::sort(m_allTimes.begin(), m_allTimes.end());
+
+    // Detect the presumable timezone the corresponding photos were taken in
+
+    const double width = m_timezoneMap.size().width();
+    const double height = m_timezoneMap.size().height();
+
+    // Scale the coordinates to the image size, relative to the image center
+    int mappedLon = std::round(lastCoordinates.lon() / 180.0 * (width / 2.0));
+    int mappedLat = std::round(lastCoordinates.lat() / 90.0 * (height / 2.0));
+
+    // Move the mapped coordinates to the left lower edge
+    mappedLon = width / 2 + mappedLon;
+    mappedLat = height - (height / 2 + mappedLat);
+
+    // Get the respective pixel's color
+    const auto timezoneColor = m_timezoneMap.pixelColor(mappedLon, mappedLat).name();
+
+    // Lookup the corresponding timezone
+    const auto timezoneId = m_timezoneMapping.value(timezoneColor);
+    if (timezoneId.isString()) {
+        m_lastDetectedTimeZoneId = timezoneId.toString().toUtf8();
+    } else {
+        m_lastDetectedTimeZoneId.clear();
+    }
+
     return { LoadResult::Okay, tracks, segments, points };
 }
 
@@ -277,4 +323,9 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
                        interpolated.latitude(Marble::GeoDataCoordinates::Degree),
                        interpolated.altitude(),
                        true);
+}
+
+QByteArray GpxEngine::lastDetectedTimeZoneId() const
+{
+    return m_lastDetectedTimeZoneId;
 }

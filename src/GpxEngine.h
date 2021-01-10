@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -15,6 +15,8 @@
 #include <QVector>
 #include <QHash>
 #include <QDateTime>
+#include <QImage>
+#include <QJsonObject>
 
 class GpxEngine : public QObject
 {
@@ -44,6 +46,7 @@ public:
     Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
     void setMatchParameters(int exactMatchTolerance, int maximumInterpolationInterval,
                             int maximumInterpolationDistance);
+    QByteArray lastDetectedTimeZoneId() const;
 
 signals:
     void segmentLoaded(const QVector<Coordinates> &segment);
@@ -60,6 +63,10 @@ private: // Variables
     int m_exactMatchTolerance;
     int m_maximumInterpolationInterval;
     int m_maximumInterpolationDistance;
+
+    QImage m_timezoneMap;
+    QJsonObject m_timezoneMapping;
+    QByteArray m_lastDetectedTimeZoneId;
 
 };
 

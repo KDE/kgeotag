@@ -456,7 +456,42 @@ void MainWindow::addGpx(const QVector<QString> &paths)
     }
 
     QApplication::restoreOverrideCursor();
+
+    // Display the load result
     QMessageBox::information(this, i18n("Load GPX data"), text);
+
+    // Adopt the detected timezone
+
+    const QByteArray &id = m_gpxEngine->lastDetectedTimeZoneId();
+
+    if (id != m_fixDriftWidget->imagesTimeZoneId()) {
+        if (id.isEmpty()) {
+            QMessageBox::warning(this, i18n("Timezone detection failed"),
+                i18n("<p>The presumably correct timezone for images associated with the loaded GPX "
+                     "file could not be detected.</p>"
+                     "<p>Please set the correct timezone manually on the \"Fix time drift\" page."
+                     "</p>"));
+        } else {
+            if (! m_fixDriftWidget->setImagesTimeZone(id)) {
+                QMessageBox::warning(this, i18n("Setting the detected timezone failed"),
+                    i18n("<p>The presumably correct timezone \"%1\" has been detected from the "
+                         "loaded GPX file, but could not be set. This should not happen!</p>"
+                         "<p>Please file a bug report about this, including the used version of "
+                         "KGeoTag and Qt!</p>"
+                         "<p>You can adjust the timezone setting manually on the \"Fix time "
+                         "drift\" page.</p>",
+                         QString::fromLatin1(id)));
+            } else {
+                QMessageBox::information(this, i18n("Timezone adjusted"),
+                    i18n("<p>The loaded GPX file was presumably recorded in the timezone \"%1\", "
+                         "as well as the photos to associate with it. This timezone has been "
+                         "selected now.</p>"
+                         "<p>You can adjust the timezone setting manually on the \"Fix time "
+                         "drift\" page.</p>",
+                         QString::fromLatin1(id)));
+            }
+        }
+    }
 }
 
 void MainWindow::addDirectory()

@@ -96,3 +96,14 @@ QByteArray FixDriftWidget::imagesTimeZoneId() const
 {
     return m_timeZone->currentData().toByteArray();
 }
+
+bool FixDriftWidget::setImagesTimeZone(const QByteArray &id)
+{
+    const int index = m_timeZone->findData(id);
+    if (index != -1) {
+        m_timeZone->setCurrentIndex(index);
+        return true;
+    } else {
+        return false;
+    }
+}
