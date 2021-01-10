@@ -52,6 +52,7 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
     Returns:
         Dict[str, str]: The mapping of color to timezone.
     """
+
     print("Reading timezones from file")
     timezones = layer.uniqueValues(layer.fields().indexOf("tzid"))
 
@@ -99,7 +100,8 @@ def stylize_map(layer: QgsVectorLayer) -> Dict[str, str]:
     return mapping
 
 
-def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path, image_height: int) -> None:
+def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path,
+                image_height: int) -> None:
     """Saves the image and mapping file.
 
     Args:
@@ -108,6 +110,9 @@ def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path, imag
         path (Path): The folder to save the data to.
         image_height (int): The height of the image to save.
     """
+
+    path.mkdir(parents=True, exist_ok=True)
+
     json_file = (path / "timezones.json").resolve()
     print(f"Saving mappings JSON file to: {json_file.absolute()}")
     with open(json_file, "w") as f:
@@ -139,17 +144,23 @@ def export_data(layer: QgsVectorLayer, mapping: Dict[str, str], path: Path, imag
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("input-timezone-data", type=Path, help="The timezone data file.")
-    parser.add_argument("output-dir", type=Path, help="The folder to place the output data files in.")
-    parser.add_argument(
-        "--height", type=int, help="The height of the output image. Should be an even number.", default=1000
-    )
+    parser.add_argument("input-timezone-data",
+                        type=Path,
+                        help="The timezone data file.")
+    parser.add_argument("--outdir",
+                        type=Path,
+                        help="The folder to place the output data files in.",
+                        default=".")
+    parser.add_argument("--height",
+                        type=int,
+                        help="The height of the output image. Should be an even number.",
+                        default=1000)
     args = vars(parser.parse_args())
 
     print(f"Opening data file: {args['input-timezone-data'].absolute().resolve()}")
     layer = QgsVectorLayer(str(args["input-timezone-data"]))
     mapping = stylize_map(layer)
-    export_data(layer, mapping, args["output-dir"], args["height"])
+    export_data(layer, mapping, args["outdir"], args["height"])
 
 
 if __name__ == "__main__":
