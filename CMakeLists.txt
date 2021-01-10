@@ -73,6 +73,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/MimeHelper.cpp
     ${main_ROOT}/ImagesLayer.cpp
     ${main_ROOT}/TracksLayer.cpp
+    ${main_ROOT}/MapCenterInfo.cpp
 )
 
 # Build the executable

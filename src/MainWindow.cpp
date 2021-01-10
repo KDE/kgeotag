@@ -23,6 +23,7 @@
 #include "Coordinates.h"
 #include "AutomaticMatchingWidget.h"
 #include "MimeHelper.h"
+#include "MapCenterInfo.h"
 
 // KDE includes
 #include <KActionCollection>
@@ -46,6 +47,7 @@
 #include <QMessageBox>
 #include <QCloseEvent>
 #include <QAbstractButton>
+#include <QVBoxLayout>
 
 // C++ includes
 #include <functional>
@@ -146,8 +148,19 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             this, &MainWindow::imagesTimeZoneChanged);
 
     // Map
+
     m_mapWidget = m_sharedObjects->mapWidget();
-    m_mapDock = createDockWidget(i18n("Map"), m_mapWidget, QStringLiteral("mapDock"));
+    auto *mapCenterInfo = new MapCenterInfo(m_sharedObjects->coordinatesFormatter());
+    auto *mapWrapper = new QWidget;
+    auto *mapWrapperLayout = new QVBoxLayout(mapWrapper);
+    mapWrapperLayout->addWidget(m_mapWidget);
+    mapWrapperLayout->addWidget(mapCenterInfo);
+
+    m_mapDock = createDockWidget(i18n("Map"), mapWrapper, QStringLiteral("mapDock"));
+
+    connect(m_mapWidget, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
+            mapCenterInfo, &MapCenterInfo::mapMoved);
+
     connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
     connect(m_mapWidget, &MapWidget::requestLoadGpx, this, &MainWindow::addGpx);
