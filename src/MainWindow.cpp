@@ -49,9 +49,6 @@
 #include <QAbstractButton>
 #include <QVBoxLayout>
 
-// C++ includes
-#include <functional>
-
 static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeModeMap {
     { QStringLiteral("WRITETOIMAGEONLY"),
       KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOIMAGEONLY },
@@ -79,22 +76,15 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     // File
 
-    auto *addImagesAction = actionCollection()->addAction(QStringLiteral("addImages"));
-    addImagesAction->setText(i18n("Add images"));
-    addImagesAction->setIcon(QIcon::fromTheme(QStringLiteral("viewimage")));
-    connect(addImagesAction, &QAction::triggered,
-            this, std::bind(&MainWindow::addImages, this, QVector<QString>()));
+    auto *addFilesAction = actionCollection()->addAction(QStringLiteral("addFiles"));
+    addFilesAction->setText(i18n("Add images and/or GPX tracks"));
+    addFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
+    connect(addFilesAction, &QAction::triggered, this, &MainWindow::addFiles);
 
     auto *addDirectoryAction = actionCollection()->addAction(QStringLiteral("addDirectory"));
-    addDirectoryAction->setText(i18n("Add all images from directory"));
-    addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("document-open")));
+    addDirectoryAction->setText(i18n("Add all images and tracks from directory"));
+    addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
     connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
-
-    auto *addGpxAction = actionCollection()->addAction(QStringLiteral("addGpx"));
-    addGpxAction->setText(i18n("Add GPX tracks"));
-    addGpxAction->setIcon(QIcon::fromTheme(QStringLiteral("viewhtml")));
-    connect(addGpxAction, &QAction::triggered,
-            this, std::bind(&MainWindow::addGpx, this, QVector<QString>()));
 
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
@@ -312,28 +302,125 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QApplication::quit();
 }
 
-void MainWindow::addGpx(const QVector<QString> &paths)
+void MainWindow::addFiles()
 {
-    QVector<QString> files;
-    if (paths.isEmpty()) {
-        const auto selection = QFileDialog::getOpenFileNames(this,
-                                   i18n("Please select the GPX track(s) to add"),
-                                   m_settings->lastOpenPath(),
-                                   i18n("GPX tracks (*.gpx);; All files (*)"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        files = QVector<QString>(selection.begin(), selection.end());
-#else
-        files = selection.toVector();
-#endif
-    } else {
-        files = paths;
-    }
+    const auto selection = QFileDialog::getOpenFileNames(this,
+                                i18n("Please select the images and/or GPX tracks to add"),
+                                m_settings->lastOpenPath(),
+                                i18n("All supported files ("
+                                    "*.jpg *.jpeg "
+                                    "*.png "
+                                    "*.webp "
+                                    "*.tif *.tiff "
+                                    "*.ora "
+                                    "*.kra "
+                                    "*.gpx "
+                                    ");; All files (*)"));
 
-    if (files.isEmpty()) {
+    if (selection.isEmpty()) {
         return;
     }
 
-    const int filesCount = files.count();
+    // Check the MIME type of all selected files
+    QHash<KGeoTag::FileType, QVector<QString>> classified;
+    for (const auto &path : selection) {
+        classified[MimeHelper::classifyFile(path)].append(path);
+    }
+
+    // Inform the user if some unsupported files have been selected
+
+    if (classified.value(KGeoTag::UnsupportedFile).count() > 0) {
+        QString text;
+
+        if (classified.value(KGeoTag::ImageFile).count() == 0
+            && classified.value(KGeoTag::GeoDataFile).count() == 0) {
+
+            text = i18n("<p>The selection did not contain any supported files!</p>");
+
+        } else {
+            QString skippedList;
+            for (const auto &path : classified.value(KGeoTag::UnsupportedFile)) {
+                QFileInfo info(path);
+                skippedList.append(i18nc(
+                    "A filename with a MIME type in braces and a HTML line break",
+                    "%1 (%2)<br/>",
+                    info.fileName(),
+                    MimeHelper::mimeType(path)));
+            }
+
+            text = i18np("<p>The following file will be skipped due to an unsupported MIME type:"
+                         "</p>"
+                         "<p>%2</p>",
+                         "<p>The following files will be skipped due to unsupported MIME types:</p>"
+                         "<p>%2</p>",
+                         classified.value(KGeoTag::UnsupportedFile).count(),
+                         skippedList);
+        }
+
+        QMessageBox::warning(this, i18n("Add images and/or GPX tracks"), text);
+    }
+
+    // Add the geodata files
+    if (classified.value(KGeoTag::GeoDataFile).count() > 0) {
+        addGpx(classified.value(KGeoTag::GeoDataFile));
+    }
+
+    // Add the images
+    if (classified.value(KGeoTag::ImageFile).count() > 0) {
+        addImages(classified.value(KGeoTag::ImageFile));
+    }
+}
+
+void MainWindow::addDirectory()
+{
+    const auto directory = QFileDialog::getExistingDirectory(this,
+                               i18n("Please select a directory"),
+                               m_settings->lastOpenPath());
+
+    if (directory.isEmpty()) {
+        return;
+    }
+
+    QDir dir(directory);
+    const auto files = dir.entryList({ QStringLiteral("*") }, QDir::Files);
+
+    QVector<QString> geoDataFiles;
+    QVector<QString> images;
+    for (const auto &file : files) {
+        const auto path = directory + QStringLiteral("/") + file;
+        switch (MimeHelper::classifyFile(path)) {
+        case KGeoTag::GeoDataFile:
+            geoDataFiles.append(path);
+            break;
+        case KGeoTag::ImageFile:
+            images.append(path);
+            break;
+        case KGeoTag::UnsupportedFile:
+            break;
+        }
+    }
+
+    if (geoDataFiles.isEmpty() && images.isEmpty()) {
+        QMessageBox::warning(this, i18n("Add all images and tracks from directory"),
+                             i18n("Could not find any supported files in <kbd>%1</kbd>",
+                                  directory));
+        return;
+    }
+
+    // Add the geodata files
+    if (geoDataFiles.count() > 0) {
+        addGpx(geoDataFiles);
+    }
+
+    // Add the images
+    if (images.count() > 0) {
+        addImages(images);
+    }
+}
+
+void MainWindow::addGpx(const QVector<QString> &paths)
+{
+    const int filesCount = paths.count();
     int processed = 0;
     int failed = 0;
     int allFiles = 0;
@@ -344,7 +431,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    for (const auto &path : files) {
+    for (const auto &path : paths) {
         processed++;
 
         const QFileInfo info(path);
@@ -508,94 +595,14 @@ void MainWindow::addGpx(const QVector<QString> &paths)
     }
 }
 
-void MainWindow::addDirectory()
-{
-    const auto directory = QFileDialog::getExistingDirectory(this,
-                               i18n("Please select the images' directory"),
-                               m_settings->lastOpenPath());
-
-    if (directory.isEmpty()) {
-        return;
-    }
-
-    QDir dir(directory);
-    const auto files = dir.entryList({ QStringLiteral("*") }, QDir::Files);
-
-    QVector<QString> images;
-    for (const auto &file : files) {
-        const auto path = directory + QStringLiteral("/") + file;
-
-        if (MimeHelper::mimeTypeOkay(path)) {
-            const QFileInfo info(path);
-            if (info.suffix() != KGeoTag::backupSuffix) {
-                images.append(path);
-            }
-        }
-    }
-
-    if (images.isEmpty()) {
-        QMessageBox::warning(this, i18n("Add all images from directory"),
-                             i18n("Could not find any supported image in <kbd>%1</kbd>",
-                                  directory));
-        return;
-    }
-
-    addImages(images);
-}
-
 void MainWindow::addImages(const QVector<QString> &paths)
 {
-    QVector<QString> files;
-    if (paths.isEmpty()) {
-        const auto selection = QFileDialog::getOpenFileNames(this,
-                                   i18n("Please select the images to add"),
-                                   m_settings->lastOpenPath(),
-                                   i18n("All supported images ("
-                                        "*.jpg *.jpeg "
-                                        "*.png "
-                                        "*.webp "
-                                        "*.tif *.tiff "
-                                        "*.ora "
-                                        "*.kra "
-                                        ");; All files (*)"));
-#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
-        files = QVector<QString>(selection.begin(), selection.end());
-#else
-        files = selection.toVector();
-#endif
-    } else {
-        files = paths;
-    }
-
-    QStringList unsupported;
-    for (const auto &path : files) {
-        if (! MimeHelper::mimeTypeOkay(path)) {
-            const auto name = MimeHelper::mimeType(path);
-            if (! unsupported.contains(name)) {
-                unsupported.append(name);
-            }
-            files.removeOne(path);
-        }
-    }
-    if (! unsupported.isEmpty()) {
-        QMessageBox::warning(this, i18n("Add images"),
-            i18n("<p>Some files were removed from the load request because their file format is "
-                 "not supported.</p>")
-            + i18np("<p>The unsupported MIME type was: <kbd>%2</kbd></p>",
-                    "<p>The unsupported MIME types were: <kbd>%2</kbd></p>",
-                    unsupported.count(), unsupported.join(QStringLiteral("</kbd>, <kbd>"))));
-    }
-
-    if (files.isEmpty()) {
-        return;
-    }
-
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    const QFileInfo info(files.at(0));
+    const QFileInfo info(paths.at(0));
     m_settings->saveLastOpenPath(info.dir().absolutePath());
 
-    const int requested = files.count();
+    const int requested = paths.count();
     const bool isSingleFile = requested == 1;
     int processed = 0;
     int loaded = 0;
@@ -606,7 +613,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
     QProgressDialog progress(i18n("Loading images ..."), i18n("Cancel"), 0, requested, this);
     progress.setWindowModality(Qt::WindowModal);
 
-    for (const auto &path : files) {
+    for (const auto &path : paths) {
         progress.setValue(processed++);
         if (progress.wasCanceled()) {
             break;

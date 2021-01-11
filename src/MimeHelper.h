@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -20,8 +20,8 @@ namespace MimeHelper
 {
 
 QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data);
-bool mimeTypeOkay(const QString &path);
 QString mimeType(const QString &path);
+KGeoTag::FileType classifyFile(const QString &path);
 
 }
 

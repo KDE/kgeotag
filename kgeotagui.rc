@@ -7,10 +7,8 @@
                          http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
   <MenuBar>
     <Menu name="file" >
-      <Action name="addImages"/>
+      <Action name="addFiles"/>
       <Action name="addDirectory"/>
-      <Separator/>
-      <Action name="addGpx"/>
       <Separator/>
       <Action name="saveChanges"/>
       <Separator/>
