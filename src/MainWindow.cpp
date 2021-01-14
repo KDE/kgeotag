@@ -31,6 +31,7 @@
 #include <KStandardAction>
 #include <KHelpMenu>
 #include <KExiv2/KExiv2>
+#include <KXMLGUIFactory>
 
 // Qt includes
 #include <QMenuBar>
@@ -115,6 +116,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     KStandardAction::preferences(this, &MainWindow::showSettings, actionCollection());
 
     setupGUI(Keys | Save | Create);
+
+    // Elicit a pointer from the "remove" menu from the XmlGui ;-)
+    auto *removeMenu = qobject_cast<QMenu *>(guiFactory()->container(QStringLiteral("remove"),
+                                                                     this));
+    removeMenu->menuAction()->setIcon(QIcon::fromTheme(QStringLiteral("document-close")));
 
     // Dock setup
     // ==========
