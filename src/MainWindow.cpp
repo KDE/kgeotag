@@ -874,8 +874,13 @@ void MainWindow::triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchT
 
 void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType)
 {
-    const bool excludeManuallyTagged = m_automaticMatchingWidget->excludeManuallyTagged();
     QVector<QString> paths;
+    if (paths.isEmpty()) {
+        QMessageBox::information(this, i18n("(Re)Assign all images"), i18n("Nothing to do"));
+        return;
+    }
+
+    const bool excludeManuallyTagged = m_automaticMatchingWidget->excludeManuallyTagged();
     for (const auto &path : m_imagesModel->allImages()) {
         if (excludeManuallyTagged && m_imagesModel->matchType(path) == KGeoTag::ManuallySet) {
             continue;
