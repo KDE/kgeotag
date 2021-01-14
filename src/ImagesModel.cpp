@@ -281,3 +281,22 @@ void ImagesModel::setImagesTimeZone(const QByteArray &id)
         m_imageData[path].date.setTimeZone(m_timeZone);
     }
 }
+
+bool ImagesModel::hasPendingChanges(const QString &path) const
+{
+    const auto &data = m_imageData[path];
+    return data.originalCoordinates != data.coordinates;
+}
+
+void ImagesModel::removeImages(const QVector<QString> &paths)
+{
+    for (const auto &path : paths) {
+        const auto row = m_paths.indexOf(path);
+        const auto modelIndex = index(row, 0);
+        beginRemoveRows(QModelIndex(), row, row);
+        m_paths.remove(row);
+        m_imageData.remove(path);
+        emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+        endRemoveRows();
+    }
+}

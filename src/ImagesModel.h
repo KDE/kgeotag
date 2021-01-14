@@ -51,6 +51,8 @@ public:
     void resetChanges(const QString &path);
     void setSaved(const QString &path);
     void setImagesTimeZone(const QByteArray &id);
+    bool hasPendingChanges(const QString &path) const;
+    void removeImages(const QVector<QString> &paths);
 
 private: // Functions
     void emitDataChanged(const QString &path);

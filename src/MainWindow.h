@@ -66,6 +66,7 @@ private slots:
     void lookupElevation(ImagesListView *list);
     void imagesTimeZoneChanged();
     void cameraDriftSettingsChanged();
+    void removeImages(ImagesListView *list);
 
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,

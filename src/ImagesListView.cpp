@@ -127,6 +127,10 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     connect(m_discardChanges, &QAction::triggered,
             this, std::bind(&ImagesListView::discardChanges, this, this));
 
+    m_removeImages = m_contextMenu->addAction(i18np("Remove image", "Remove images", 1));
+    connect(m_removeImages, &QAction::triggered,
+            this, std::bind(&ImagesListView::removeImages, this, this));
+
     connect(this, &QListView::customContextMenuRequested, this, &ImagesListView::showContextMenu);
 }
 
@@ -261,6 +265,10 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_lookupElevation->setEnabled(anySelected);
     m_removeCoordinates->setEnabled(anySelected);
     m_discardChanges->setEnabled(anySelected);
+    m_removeImages->setEnabled(anySelected);
+    if (anySelected) {
+        m_removeImages->setText(i18np("Remove image", "Remove images", allSelected));
+    }
 
     int hasCoordinates = 0;
     int changed = 0;

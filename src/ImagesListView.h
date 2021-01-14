@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -47,6 +47,7 @@ signals:
     void discardChanges(ImagesListView *list);
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
     void requestAddingImages(const QVector<QString> &paths);
+    void removeImages(ImagesListView *list);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -78,6 +79,7 @@ private: // Variables
     QAction *m_lookupElevation;
     QAction *m_removeCoordinates;
     QAction *m_discardChanges;
+    QAction *m_removeImages;
 
 };
 

@@ -204,6 +204,7 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
             this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
     connect(list, &ImagesListView::assignTo, this, &MainWindow::assignTo);
     connect(list, &ImagesListView::requestAddingImages, this, &MainWindow::addImages);
+    connect(list, &ImagesListView::removeImages, this, &MainWindow::removeImages);
 
     return createDockWidget(title, list, dockId);
 }
@@ -1355,4 +1356,35 @@ void MainWindow::cameraDriftSettingsChanged()
 {
     m_previewWidget->setCameraClockDeviation(
         m_fixDriftWidget->displayFixed() ? m_fixDriftWidget->cameraClockDeviation() : 0);
+}
+
+void MainWindow::removeImages(ImagesListView *list)
+{
+    const auto paths = list->selectedPaths();
+    const auto count = paths.count();
+
+    bool pendingChanges = false;
+    for (const auto &path : paths) {
+        if (m_imagesModel->hasPendingChanges(path)) {
+            pendingChanges = true;
+            break;
+        }
+    }
+
+    if (pendingChanges) {
+        if (QMessageBox::question(this, i18np("Remove image", "Remove images", count),
+                i18np("The image has pending changes! Do you really want to remove it and discard "
+                      "the changes?",
+                      "At least one of the images has pending changes. Do you really want to "
+                      "remove them and discard all changes?",
+                      count),
+                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+
+            return;
+        }
+    }
+
+    m_imagesModel->removeImages(paths);
+    m_mapWidget->reloadMap();
+    m_previewWidget->setImage();
 }
