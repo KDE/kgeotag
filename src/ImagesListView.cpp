@@ -57,9 +57,11 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_contextMenu = new QMenu(this);
 
     m_selectAll = m_contextMenu->addAction(i18n("Select all images"));
+    m_selectAll->setIcon(QIcon::fromTheme(QStringLiteral("select")));
     connect(m_selectAll, &QAction::triggered, this, &QListView::selectAll);
 
     m_selectMenu = m_contextMenu->addMenu(i18n("Select"));
+    m_selectMenu->menuAction()->setIcon(QIcon::fromTheme(QStringLiteral("select")));
     auto *all = m_selectMenu->addAction(i18n("All images"));
     connect(all, &QAction::triggered, this, &QListView::selectAll);
     auto *without = m_selectMenu->addAction(i18n("All images without coordinates"));
@@ -72,6 +74,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_contextMenu->addSeparator();
 
     m_automaticMatchingMenu = m_contextMenu->addMenu(i18n("Automatic matching"));
+    m_automaticMatchingMenu->menuAction()->setIcon(QIcon::fromTheme(QStringLiteral("run-build")));
 
     auto *combinedMatchSearchAction = m_automaticMatchingMenu->addAction(
         i18n("Combined match search"));
@@ -94,15 +97,18 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
                             this, KGeoTag::InterpolatedMatchSearch));
 
     m_bookmarksMenu = m_contextMenu->addMenu(i18n("Assign to bookmark"));
+    m_bookmarksMenu->menuAction()->setIcon(QIcon::fromTheme(QStringLiteral("bookmarks")));
     updateBookmarks();
 
     m_contextMenu->addSeparator();
 
     m_assignToMapCenter = m_contextMenu->addAction(i18n("Assign to map center"));
+    m_assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
     connect(m_assignToMapCenter, &QAction::triggered,
             this, std::bind(&ImagesListView::assignToMapCenter, this, this));
 
     m_assignManually = m_contextMenu->addAction(i18n("Set coordinates manually"));
+    m_assignManually->setIcon(QIcon::fromTheme(QStringLiteral("add-placemark")));
     connect(m_assignManually, &QAction::triggered,
             this, std::bind(&ImagesListView::assignManually, this, this));
 
@@ -111,6 +117,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
             this, std::bind(&ImagesListView::editCoordinates, this, this));
 
     m_lookupElevation = m_contextMenu->addAction(i18n("Lookup elevation"));
+    m_lookupElevation->setIcon(QIcon::fromTheme(QStringLiteral("adjustcurves")));
     connect(m_lookupElevation, &QAction::triggered,
             this, std::bind(&ImagesListView::lookupElevation, this, this));
 
@@ -124,10 +131,12 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_contextMenu->addSeparator();
 
     m_discardChanges = m_contextMenu->addAction(i18n("Discard changes"));
+    m_discardChanges->setIcon(QIcon::fromTheme(QStringLiteral("dialog-cancel")));
     connect(m_discardChanges, &QAction::triggered,
             this, std::bind(&ImagesListView::discardChanges, this, this));
 
     m_removeImages = m_contextMenu->addAction(i18np("Remove image", "Remove images", 1));
+    m_removeImages->setIcon(QIcon::fromTheme(QStringLiteral("document-close")));
     connect(m_removeImages, &QAction::triggered,
             this, std::bind(&ImagesListView::removeImages, this, this));
 
