@@ -52,12 +52,12 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         const QString associatedMarker = (! m_splitImagesList && data.coordinates.isSet())
             ? i18nc("Marker for an associated file", "\u2713\u2009")
             : QString();
-        const QString changedmarker = data.coordinates != data.originalCoordinates
-            ? i18nc("Marker for a changed file", "\u2009*")
+        const QString changedmarker = data.coordinates != data.lastSavedCoordinates
+            ? i18nc("Marker for a file with a pending change", "\u2009*")
             : QString();
-        return i18nc("Pattern for a display filename with a \"changed\" and a \"associated\" "
-                     "marker. The first option is the \"associated\" marker, the second one the "
-                     "filename and the third one the \"changed\" marker.",
+        return i18nc("Pattern for a display filename with a \"pending change\" and an "
+                     "\"associated\" marker. The first option is the \"associated\" marker, the "
+                     "second one is the filename and the third one the \"pending change\" marker.",
                      "%1%2%3",
                      associatedMarker, data.fileName, changedmarker);
 
@@ -163,7 +163,8 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     double longitude;
     if (exif.getGPSInfo(altitude, latitude, longitude)) {
         data.originalCoordinates = Coordinates(longitude, latitude, altitude, true);
-        data.coordinates = Coordinates(longitude, latitude, altitude, true);
+        data.lastSavedCoordinates = data.originalCoordinates;
+        data.coordinates = data.originalCoordinates;
     }
 
     // Fix the image's orientation
@@ -209,16 +210,28 @@ const QVector<QString> &ImagesModel::allImages() const
     return m_paths;
 }
 
-QVector<QString> ImagesModel::changedImages() const
+QVector<QString> ImagesModel::imagesWithPendingChanges() const
 {
-    QVector<QString> changed;
+    QVector<QString> images;
     for (const auto &path : std::as_const(m_paths)) {
         const auto &data = m_imageData[path];
-        if (data.coordinates != data.originalCoordinates) {
-            changed.append(path);
+        if (data.coordinates != data.lastSavedCoordinates) {
+            images.append(path);
         }
     }
-    return changed;
+    return images;
+}
+
+QVector<QString> ImagesModel::processedSavedImages() const
+{
+    QVector<QString> images;
+    for (const auto &path : std::as_const(m_paths)) {
+        const auto &data = m_imageData[path];
+        if (data.changed && data.coordinates == data.lastSavedCoordinates) {
+            images.append(path);
+        }
+    }
+    return images;
 }
 
 QDateTime ImagesModel::date(const QString &path) const
@@ -239,14 +252,18 @@ Coordinates ImagesModel::coordinates(const QString &path) const
 void ImagesModel::setCoordinates(const QString &path, const Coordinates &coordinates,
                                  KGeoTag::MatchType matchType)
 {
-    m_imageData[path].matchType = matchType;
-    m_imageData[path].coordinates = coordinates;
+    auto &data = m_imageData[path];
+    data.matchType = matchType;
+    data.coordinates = coordinates;
+    data.changed = true;
     emitDataChanged(path);
 }
 
 void ImagesModel::setElevation(const QString &path, double elevation)
 {
-    m_imageData[path].coordinates.setAlt(elevation);
+    auto &data = m_imageData[path];
+    data.coordinates.setAlt(elevation);
+    data.changed = true;
 }
 
 void ImagesModel::resetChanges(const QString &path)
@@ -265,7 +282,7 @@ QModelIndex ImagesModel::indexFor(const QString &path) const
 void ImagesModel::setSaved(const QString &path)
 {
     auto &data = m_imageData[path];
-    data.originalCoordinates = data.coordinates;
+    data.lastSavedCoordinates = data.coordinates;
 }
 
 KGeoTag::MatchType ImagesModel::matchType(const QString &path) const
@@ -285,7 +302,7 @@ void ImagesModel::setImagesTimeZone(const QByteArray &id)
 bool ImagesModel::hasPendingChanges(const QString &path) const
 {
     const auto &data = m_imageData[path];
-    return data.originalCoordinates != data.coordinates;
+    return data.coordinates != data.lastSavedCoordinates;
 }
 
 void ImagesModel::removeImages(const QVector<QString> &paths)

@@ -41,7 +41,8 @@ public:
     bool contains(const QString &path) const;
     LoadResult addImage(const QString &path);
     const QVector<QString> &allImages() const;
-    QVector<QString> changedImages() const;
+    QVector<QString> imagesWithPendingChanges() const;
+    QVector<QString> processedSavedImages() const;
     QDateTime date(const QString &path) const;
     KGeoTag::MatchType matchType(const QString &path) const;
     void setCoordinates(const QString &path, const Coordinates &coordinates,
@@ -62,10 +63,12 @@ private: // Variables
         QString fileName;
         QDateTime date;
         Coordinates originalCoordinates;
+        Coordinates lastSavedCoordinates;
         Coordinates coordinates;
         QPixmap thumbnail;
         QImage preview;
         KGeoTag::MatchType matchType = KGeoTag::NotMatched;
+        bool changed = false;
     };
 
     bool m_splitImagesList;

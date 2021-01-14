@@ -86,6 +86,12 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
     connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
 
+    auto *removeProcessedSavedImagesAction
+        = actionCollection()->addAction(QStringLiteral("removeProcessedSavedImages"));
+    removeProcessedSavedImagesAction->setText(i18n("All processed and saved images"));
+    connect(removeProcessedSavedImagesAction, &QAction::triggered,
+            this, &MainWindow::removeProcessedSavedImages);
+
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
@@ -282,7 +288,7 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
 
 void MainWindow::closeEvent(QCloseEvent *event)
 {
-    if (! m_imagesModel->changedImages().isEmpty()) {
+    if (! m_imagesModel->imagesWithPendingChanges().isEmpty()) {
         if (QMessageBox::question(this, i18n("Close KGeoTag"),
             i18n("<p>There are pending changes to images that haven't been saved yet. All changes "
                  "will be discarded if KGeoTag is closed now.</p>"
@@ -1024,7 +1030,7 @@ QString MainWindow::skipRetryCancelText(int processed, int allImages) const
 
 void MainWindow::saveChanges()
 {
-    const auto files = m_imagesModel->changedImages();
+    const auto files = m_imagesModel->imagesWithPendingChanges();
 
     if (files.isEmpty()) {
         QMessageBox::information(this, i18n("Save changes"), i18n("Nothing to do"));
@@ -1387,4 +1393,20 @@ void MainWindow::removeImages(ImagesListView *list)
     m_imagesModel->removeImages(paths);
     m_mapWidget->reloadMap();
     m_previewWidget->setImage();
+}
+
+void MainWindow::removeProcessedSavedImages()
+{
+    const auto paths = m_imagesModel->processedSavedImages();
+    if (paths.isEmpty()) {
+        QMessageBox::information(this, i18n("Remove all processed and saved images"),
+            i18n("Nothing to do"));
+        return;
+    }
+
+    m_imagesModel->removeImages(paths);
+    m_mapWidget->reloadMap();
+    m_previewWidget->setImage();
+    QMessageBox::information(this, i18n("Remove all processed and saved images"),
+        i18np("Removed one image", "Removed %1 images", paths.count()));
 }

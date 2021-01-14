@@ -6,9 +6,13 @@
      xsi:schemaLocation="http://www.kde.org/standards/kxmlgui/1.0
                          http://www.kde.org/standards/kxmlgui/1.0/kxmlgui.xsd">
   <MenuBar>
-    <Menu name="file" >
+    <Menu name="file">
       <Action name="addFiles"/>
       <Action name="addDirectory"/>
+      <Menu name="remove">
+        <text>Remove</text>
+        <Action name="removeProcessedSavedImages"/>
+      </Menu>
       <Separator/>
       <Action name="saveChanges"/>
       <Separator/>
