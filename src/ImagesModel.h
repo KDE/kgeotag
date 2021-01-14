@@ -54,6 +54,7 @@ public:
     void setImagesTimeZone(const QByteArray &id);
     bool hasPendingChanges(const QString &path) const;
     void removeImages(const QVector<QString> &paths);
+    void removeAllImages();
 
 private: // Functions
     void emitDataChanged(const QString &path);

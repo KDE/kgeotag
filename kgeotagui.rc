@@ -12,6 +12,7 @@
       <Menu name="remove">
         <text>Remove</text>
         <Action name="removeProcessedSavedImages"/>
+        <Action name="removeAllImages"/>
       </Menu>
       <Separator/>
       <Action name="saveChanges"/>

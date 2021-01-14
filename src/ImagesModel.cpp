@@ -317,3 +317,15 @@ void ImagesModel::removeImages(const QVector<QString> &paths)
         endRemoveRows();
     }
 }
+
+void ImagesModel::removeAllImages()
+{
+    const auto lastRow = m_paths.count() - 1;
+    const auto firstModelIndex = index(0, 0);
+    const auto lastModelIndex = index(lastRow, 0);
+    beginRemoveRows(QModelIndex(), 0, lastRow);
+    m_paths.clear();
+    m_imageData.clear();
+    emit dataChanged(firstModelIndex, lastModelIndex, { Qt::DisplayRole });
+    endRemoveRows();
+}

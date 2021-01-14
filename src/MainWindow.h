@@ -68,6 +68,7 @@ private slots:
     void cameraDriftSettingsChanged();
     void removeImages(ImagesListView *list);
     void removeProcessedSavedImages();
+    void removeAllImages();
 
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,

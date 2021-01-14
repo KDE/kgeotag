@@ -92,6 +92,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(removeProcessedSavedImagesAction, &QAction::triggered,
             this, &MainWindow::removeProcessedSavedImages);
 
+    auto *removeAllImagesAction = actionCollection()->addAction(QStringLiteral("removeAllImages"));
+    removeAllImagesAction->setText(i18n("All images"));
+    connect(removeAllImagesAction, &QAction::triggered, this, &MainWindow::removeAllImages);
+
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
@@ -1409,4 +1413,29 @@ void MainWindow::removeProcessedSavedImages()
     m_previewWidget->setImage();
     QMessageBox::information(this, i18n("Remove all processed and saved images"),
         i18np("Removed one image", "Removed %1 images", paths.count()));
+}
+
+void MainWindow::removeAllImages()
+{
+    if (! m_imagesModel->imagesWithPendingChanges().isEmpty()
+        && QMessageBox::question(this, i18n("Remove all images"),
+               i18n("<p>There are pending changes to images that haven't been saved yet. All "
+                    "changes will be discarded if all images are removed now.</p>"
+                    "<p>Do you really want to remove all images anyway?</p>"),
+               QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+
+        return;
+    }
+
+    if (m_imagesModel->allImages().isEmpty()) {
+        QMessageBox::information(this, i18n("Remove all images"), i18n("Nothing to do"));
+        return;
+    }
+
+    m_imagesModel->removeAllImages();
+    m_mapWidget->reloadMap();
+    m_previewWidget->setImage();
+
+    QMessageBox::information(this, i18n("Remove all images"),
+                             i18n("All images have been removed!"));
 }
