@@ -226,6 +226,8 @@ void MainWindow::updateImagesListsMode()
         qobject_cast<ImagesListView *>(
             m_assignedOrAllImagesDock->widget())->setListType(KGeoTag::AssignedImages);
         m_unAssignedImagesDock->show();
+        qobject_cast<ImagesListView *>(
+            m_unAssignedImagesDock->widget())->setListType(KGeoTag::UnAssignedImages);
         m_imagesModel->setSplitImagesList(true);
     } else {
         m_assignedOrAllImagesDock->setWindowTitle(i18n("Images"));
