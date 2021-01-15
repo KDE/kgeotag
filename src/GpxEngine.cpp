@@ -49,7 +49,7 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
 
 GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 {
-    if (m_loadedPaths.contains(path)) {
+    if (m_geoDataModel->contains(path)) {
         return { LoadResult::AlreadyLoaded };
     }
 
@@ -156,7 +156,8 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     // All okay :-)
 
-    m_loadedPaths.append(path);
+    m_geoDataModel->addTrack(path);
+
     std::sort(m_allTimes.begin(), m_allTimes.end());
 
     // Detect the presumable timezone the corresponding photos were taken in

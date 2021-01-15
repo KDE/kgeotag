@@ -63,7 +63,6 @@ private: // Variables
 
     QVector<QDateTime> m_allTimes;
     QHash<QDateTime, Coordinates> m_coordinates;
-    QVector<QString> m_loadedPaths;
 
     int m_exactMatchTolerance;
     int m_maximumInterpolationInterval;

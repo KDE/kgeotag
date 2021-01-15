@@ -19,6 +19,12 @@ public:
     int rowCount(const QModelIndex & = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    void addTrack(const QString &path);
+    bool contains(const QString &path);
+
+private: // Variables
+    QVector<QString> m_loadedFiles;
+
 };
 
 #endif // GEODATAMODEL_H
