@@ -68,6 +68,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     QVector<QDateTime> segmentTimes;
     QVector<Coordinates> segmentCoordinates;
+    QVector<QVector<Coordinates>> allSegments;
 
     Coordinates lastCoordinates;
 
@@ -130,7 +131,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
                 time = QDateTime();
 
             } else if (name == s_trkseg && ! segmentCoordinates.isEmpty()) {
-                emit segmentLoaded(segmentCoordinates);
+                allSegments.append(segmentCoordinates);
                 for (int i = 0; i < segmentTimes.count(); i++) {
                     const auto &time = segmentTimes.at(i);
                     m_allTimes.append(time);
@@ -157,6 +158,10 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     // All okay :-)
 
     m_geoDataModel->addTrack(path);
+
+    for (const auto &segment : allSegments) {
+        emit segmentLoaded(segment);
+    }
 
     std::sort(m_allTimes.begin(), m_allTimes.end());
 
