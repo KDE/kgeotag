@@ -32,11 +32,7 @@ QVariant GeoDataModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
-    if (role == KGeoTag::DisplayTracksRole) {
-        QVariant segments;
-        segments.setValue(m_marbleTracks.at(index.row()));
-        return segments;
-    }
+    Q_UNUSED(role);
 
     return QVariant();
 }
@@ -44,9 +40,6 @@ QVariant GeoDataModel::data(const QModelIndex &index, int role) const
 void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
                             const QVector<QVector<Coordinates>> &segments)
 {
-    const QFileInfo info(path);
-    m_loadedFiles.append(info.canonicalFilePath());
-
     Marble::GeoDataLatLonAltBox marbleTrackBox;
     QVector<Marble::GeoDataLineString> marbleTracks;
 
@@ -83,10 +76,22 @@ void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime
     std::sort(dateTimes.begin(), dateTimes.end());
     m_dateTimes.append(dateTimes);
     m_trackPoints.append(trackPoints);
+
+    m_loadedFiles.append(canonicalPath(path));
 }
 
 bool GeoDataModel::contains(const QString &path)
 {
+    return m_loadedFiles.contains(canonicalPath(path));
+}
+
+QString GeoDataModel::canonicalPath(const QString &path) const
+{
     const QFileInfo info(path);
-    return m_loadedFiles.contains(info.canonicalFilePath());
+    return info.canonicalFilePath();
+}
+
+const QVector<QVector<Marble::GeoDataLineString>> &GeoDataModel::marbleTracks() const
+{
+    return m_marbleTracks;
 }

@@ -68,8 +68,7 @@ enum CustomDataRoles {
     ThumbnailRole,
     PreviewRole,
     MatchTypeRole,
-    ChangedRole,
-    DisplayTracksRole
+    ChangedRole
 };
 
 enum DropTarget {

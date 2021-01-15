@@ -31,6 +31,10 @@ public:
     void addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
                   const QVector<QVector<Coordinates>> &segments);
     bool contains(const QString &path);
+    const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
+
+private: // Functions
+    QString canonicalPath(const QString &path) const;
 
 private: // Variables
     QVector<QString> m_loadedFiles;

@@ -33,11 +33,8 @@ bool TracksLayer::render(Marble::GeoPainter *painter, Marble::ViewportParams *, 
 {
     painter->setPen(*m_trackPen);
 
-    for (int i = 0; i < m_geoDataModel->rowCount(); i++) {
-        const auto data = m_geoDataModel->data(m_geoDataModel->index(i, 0),
-                                               KGeoTag::DisplayTracksRole);
-        const auto track = data.value<QVector<Marble::GeoDataLineString>>();
-        for (const auto &segment : track) {
+    for (const auto &segments : m_geoDataModel->marbleTracks()) {
+        for (const auto &segment : segments) {
             painter->drawPolyline(segment);
         }
     }
