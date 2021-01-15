@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """ SPDX-FileCopyrightText: 2021 Isaac Wismer <isaac@iwismer.ca>
 
     SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
@@ -9,7 +10,7 @@
     mapping between the color and timezone.
 
     This script can be run with the following command:
-    python timezone-png-creator [path-to-datafile] [output-dir]
+    python timezone-png-creator <path-to-datafile> [output-dir]
     the --height flag can be used to change the height of the image.
 
     This script requires QGIS to be installed on the machine, and currently only
@@ -40,9 +41,8 @@ qgs = QgsApplication([], False)
 QgsApplication.setPrefixPath("/usr", True)
 QgsApplication.initQgis()
 
-
 def stylize_map(layer: QgsVectorLayer) -> [List[str], List[str]]:
-    """Stylize the layer with random colors.
+    """Stylize the layer with unique colors per timezone
 
     Args:
         layer (QgsVectorLayer): The layer to stylize
@@ -67,9 +67,11 @@ def stylize_map(layer: QgsVectorLayer) -> [List[str], List[str]]:
     currentColor = 0
 
     for tz in timezones:
-        # Modify the Etc timezones to match the Qt format.
-        # There are a few exceptions where things don't quite match up.
+        # Modify the Etc timezones to match the Qt format
+
         qt_tz = tz
+
+        # There are a few exceptions where the Qt timezone ids differ from the dataset ids:
         match = re.match(r"Etc/GMT([+-])(\d+)", tz)
         if match:
             qt_tz = f"UTC{match.group(1)}{match.group(2):0>2}:00"
@@ -106,17 +108,16 @@ def stylize_map(layer: QgsVectorLayer) -> [List[str], List[str]]:
 
     return timezone_ids, timezone_colors
 
-
 def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors: List[str],
                 path: Path, image_height: int) -> None:
-    """Saves the image and mapping file.
+    """Saves the image and mapping file
 
     Args:
-        layer (QgsVectorLayer): The layer to save.
+        layer (QgsVectorLayer): The layer to save
         timezone_ids (List[str]): A list of all timezone ids
         timezone_colors (List[str]): A list of all timezone colors
-        path (Path): The folder to save the data to.
-        image_height (int): The height of the image to save.
+        path (Path): The folder to save the data to
+        image_height (int): The height of the image to save
     """
 
     path.mkdir(parents=True, exist_ok=True)
@@ -148,18 +149,18 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
     settings.setFlag(1, False)
 
     def finished() -> None:
-        """Function to save the rendered mao once it is done rendering."""
+        """Function to save the rendered map once it is done rendering"""
         img = render.renderedImage()
         img.save(str(png_file), "png")
 
     render = QgsMapRendererParallelJob(settings)
     render.finished.connect(finished)
     render.start()
-    # This ensures that the program doesn't exit before the image is saved.
+
+    # This ensures that the program doesn't exit before the image is saved
     loop = QEventLoop()
     render.finished.connect(loop.quit)
     loop.exec_()
-
 
 def main():
     parser = argparse.ArgumentParser()
@@ -180,7 +181,6 @@ def main():
     layer = QgsVectorLayer(str(args["input-timezone-data"]))
     timezone_ids, timezone_colors = stylize_map(layer)
     export_data(layer, timezone_ids, timezone_colors, args["outdir"], args["height"])
-
 
 if __name__ == "__main__":
     main()
