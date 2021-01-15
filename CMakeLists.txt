@@ -74,6 +74,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/ImagesLayer.cpp
     ${main_ROOT}/TracksLayer.cpp
     ${main_ROOT}/MapCenterInfo.cpp
+    ${main_ROOT}/GeoDataModel.cpp
 )
 
 # Build the executable

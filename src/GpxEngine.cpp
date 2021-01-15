@@ -5,6 +5,7 @@
 
 // Local includes
 #include "GpxEngine.h"
+#include "GeoDataModel.h"
 
 // Marble includes
 #include <marble/GeoDataCoordinates.h>
@@ -29,7 +30,9 @@ static const auto s_ele    = QStringLiteral("ele");
 static const auto s_time   = QStringLiteral("time");
 static const auto s_trkseg = QStringLiteral("trkseg");
 
-GpxEngine::GpxEngine(QObject *parent) : QObject(parent)
+GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
+    : QObject(parent),
+      m_geoDataModel(geoDataModel)
 {
     // Load the timezone map image
     m_timezoneMap = QImage(QStandardPaths::locate(QStandardPaths::AppDataLocation,

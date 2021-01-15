@@ -7,6 +7,7 @@
 #include "SharedObjects.h"
 #include "Settings.h"
 #include "ImagesModel.h"
+#include "GeoDataModel.h"
 #include "GpxEngine.h"
 #include "ElevationEngine.h"
 #include "MapWidget.h"
@@ -17,7 +18,8 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
     m_settings = new Settings(this);
     m_imagesModel = new ImagesModel(this, m_settings->splitImagesList(),
                                     m_settings->thumbnailSize(), m_settings->previewSize());
-    m_gpxEngine = new GpxEngine(this);
+    m_geoDataModel = new GeoDataModel(this);
+    m_gpxEngine = new GpxEngine(this, m_geoDataModel);
     m_elevationEngine = new ElevationEngine(this, m_settings);
     m_mapWidget = new MapWidget(this);
     m_coordinatesFormatter = new CoordinatesFormatter(this, &m_locale);
@@ -31,6 +33,11 @@ Settings *SharedObjects::settings() const
 ImagesModel *SharedObjects::imagesModel() const
 {
     return m_imagesModel;
+}
+
+GeoDataModel *SharedObjects::geoDataModel() const
+{
+    return m_geoDataModel;
 }
 
 GpxEngine *SharedObjects::gpxEngine() const

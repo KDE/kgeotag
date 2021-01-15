@@ -18,6 +18,9 @@
 #include <QImage>
 #include <QJsonObject>
 
+// Local classes
+class GeoDataModel;
+
 class GpxEngine : public QObject
 {
     Q_OBJECT
@@ -40,7 +43,7 @@ public:
         int points = 0;
     };
 
-    explicit GpxEngine(QObject *parent);
+    explicit GpxEngine(QObject *parent, GeoDataModel *geoDataModel);
     GpxEngine::LoadInfo load(const QString &path);
     Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
     Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
@@ -56,6 +59,8 @@ private: // Functions
     Coordinates findInterpolatedCoordinates(const QDateTime &time) const;
 
 private: // Variables
+    GeoDataModel *m_geoDataModel;
+
     QVector<QDateTime> m_allTimes;
     QHash<QDateTime, Coordinates> m_coordinates;
     QVector<QString> m_loadedPaths;

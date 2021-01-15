@@ -17,6 +17,7 @@
 // Local classes
 class Settings;
 class ImagesModel;
+class GeoDataModel;
 class GpxEngine;
 class ElevationEngine;
 class MapWidget;
@@ -30,6 +31,7 @@ public:
     explicit SharedObjects(QObject *parent = nullptr);
     Settings *settings() const;
     ImagesModel *imagesModel() const;
+    GeoDataModel *geoDataModel() const;
     GpxEngine *gpxEngine() const;
     ElevationEngine *elevationEngine() const;
     MapWidget *mapWidget() const;
@@ -43,6 +45,7 @@ public:
 private: // Variables
     Settings *m_settings;
     ImagesModel *m_imagesModel;
+    GeoDataModel *m_geoDataModel;
     GpxEngine *m_gpxEngine;
     ElevationEngine *m_elevationEngine;
     MapWidget *m_mapWidget;
