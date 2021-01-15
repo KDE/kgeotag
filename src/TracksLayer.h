@@ -13,6 +13,9 @@
 // Qt includes
 #include <QObject>
 
+// Local classes
+class GeoDataModel;
+
 // Marble classes
 namespace Marble
 {
@@ -29,13 +32,13 @@ class TracksLayer : public QObject, public Marble::LayerInterface
     Q_OBJECT
 
 public:
-    TracksLayer(QObject *parent, QVector<Marble::GeoDataLineString> *tracks, QPen *trackPen);
+    TracksLayer(QObject *parent, GeoDataModel *geoDataModel, QPen *trackPen);
     QStringList renderPosition() const override;
     bool render(Marble::GeoPainter *painter, Marble::ViewportParams *,
                 const QString &, Marble::GeoSceneLayer *) override;
 
 private: // Variables
-    const QVector<Marble::GeoDataLineString> *m_tracks;
+    GeoDataModel *m_geoDataModel;
     const QPen *m_trackPen;
 
 };

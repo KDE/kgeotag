@@ -61,7 +61,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     setProjection(Marble::Mercator);
     setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
 
-    auto *tracksLayer = new TracksLayer(this, &m_tracks, &m_trackPen);
+    auto *tracksLayer = new TracksLayer(this, sharedObjects->geoDataModel(), &m_trackPen);
     auto *imagesLayer = new ImagesLayer(this, m_imagesModel);
     addLayer(tracksLayer);
     addLayer(imagesLayer);

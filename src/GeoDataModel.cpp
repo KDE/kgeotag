@@ -5,6 +5,7 @@
 
 // Local includes
 #include "GeoDataModel.h"
+#include "KGeoTag.h"
 
 // Marble includes
 #include <marble/GeoDataCoordinates.h>
@@ -27,7 +28,17 @@ int GeoDataModel::rowCount(const QModelIndex &) const
 
 QVariant GeoDataModel::data(const QModelIndex &index, int role) const
 {
-    return {};
+    if (! index.isValid() || index.row() > m_loadedFiles.count()) {
+        return QVariant();
+    }
+
+    if (role == KGeoTag::DisplayTracksRole) {
+        QVariant segments;
+        segments.setValue(m_marbleTracks.at(index.row()));
+        return segments;
+    }
+
+    return QVariant();
 }
 
 void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
