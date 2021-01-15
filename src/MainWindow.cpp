@@ -584,7 +584,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
 
     const QByteArray &id = m_gpxEngine->lastDetectedTimeZoneId();
 
-    if (id != m_fixDriftWidget->imagesTimeZoneId()) {
+    if (allTracks > 0 && id != m_fixDriftWidget->imagesTimeZoneId()) {
         if (id.isEmpty()) {
             QMessageBox::warning(this, i18n("Timezone detection failed"),
                 i18n("<p>The presumably correct timezone for images associated with the loaded GPX "
