@@ -9,6 +9,10 @@
 // Local includes
 #include "Coordinates.h"
 
+// Marble includes
+#include <marble/GeoDataLineString.h>
+#include <marble/GeoDataLatLonAltBox.h>
+
 // Qt includes
 #include <QAbstractListModel>
 #include <QHash>
@@ -30,6 +34,10 @@ public:
 
 private: // Variables
     QVector<QString> m_loadedFiles;
+
+    QVector<QVector<Marble::GeoDataLineString>> m_marbleTracks;
+    QVector<Marble::GeoDataLatLonAltBox> m_marbleTrackBoxes;
+
     QVector<QVector<QDateTime>> m_dateTimes;
     QVector<QHash<QDateTime, Coordinates>> m_trackPoints;
 
