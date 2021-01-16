@@ -106,7 +106,7 @@ QVariant ImagesModel::data(const QModelIndex &index, int role) const
         return matchType;
 
     } else if (role == KGeoTag::ChangedRole) {
-        return data.originalCoordinates != data.coordinates;
+        return data.coordinates != data.lastSavedCoordinates;
 
     }
 
