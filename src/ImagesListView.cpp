@@ -123,6 +123,13 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
 
     m_contextMenu->addSeparator();
 
+    m_save = m_contextMenu->addAction(i18n("Save changes"));
+    m_save->setIcon(QIcon::fromTheme(QStringLiteral("document-save")));
+    connect(m_save, &QAction::triggered,
+            this, std::bind(&ImagesListView::requestSaving, this, this));
+
+    m_contextMenu->addSeparator();
+
     m_removeCoordinates = m_contextMenu->addAction(i18n("Remove coordinates"));
     connect(m_removeCoordinates, &QAction::triggered,
             this, std::bind(QOverload<ImagesListView *>::of(&ImagesListView::removeCoordinates),
@@ -297,6 +304,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_lookupElevation->setVisible(hasCoordinates == allSelected);
     m_removeCoordinates->setVisible(hasCoordinates > 0);
     m_discardChanges->setVisible(changed > 0);
+    m_save->setVisible(changed > 0);
 
     m_contextMenu->exec(mapToGlobal(point));
 }

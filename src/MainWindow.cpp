@@ -128,7 +128,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
     actionCollection()->setDefaultShortcut(saveChangesAction, QKeySequence(tr("Ctrl+S")));
-    connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveChanges);
+    connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveAllChanges);
 
     KStandardAction::quit(this, &QWidget::close, actionCollection());
 
@@ -269,6 +269,7 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::assignTo, this, &MainWindow::assignTo);
     connect(list, &ImagesListView::requestAddingImages, this, &MainWindow::addImages);
     connect(list, &ImagesListView::removeImages, this, &MainWindow::removeImages);
+    connect(list, &ImagesListView::requestSaving, this, &MainWindow::saveSelection);
 
     return createDockWidget(title, list, dockId);
 }
@@ -1122,10 +1123,25 @@ QString MainWindow::skipRetryCancelText(int processed, int allImages) const
     }
 }
 
-void MainWindow::saveChanges()
+void MainWindow::saveSelection(ImagesListView *list)
 {
-    const auto files = m_imagesModel->imagesWithPendingChanges();
+    QVector<QString> files;
+    auto selected = list->selectedPaths();
+    for (const auto &path : selected) {
+        if (m_imagesModel->hasPendingChanges(path)) {
+            files.append(path);
+        }
+    }
+    saveChanges(files);
+}
 
+void MainWindow::saveAllChanges()
+{
+    saveChanges(m_imagesModel->imagesWithPendingChanges());
+}
+
+void MainWindow::saveChanges(const QVector<QString> &files)
+{
     if (files.isEmpty()) {
         QMessageBox::information(this, i18n("Save changes"), i18n("Nothing to do"));
         return;

@@ -53,7 +53,8 @@ private slots:
     void addImages(const QVector<QString> &paths);
 
     void imagesDropped(const QVector<QString> &paths);
-    void saveChanges();
+    void saveSelection(ImagesListView *list);
+    void saveAllChanges();
     void showSettings();
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
     void checkUpdatePreview(const QVector<QString> &paths);
@@ -91,6 +92,7 @@ private: // Functions
     QString saveFailedHeader(int processed, int allImages) const;
     QString skipRetryCancelText(int processed, int allImages) const;
     bool checkForPendingChanges();
+    void saveChanges(const QVector<QString> &files);
 
 private: // Variables
     SharedObjects *m_sharedObjects;

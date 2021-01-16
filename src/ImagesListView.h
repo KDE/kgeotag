@@ -44,6 +44,7 @@ signals:
     void lookupElevation(ImagesListView *list);
     void removeCoordinates(ImagesListView *list);
     void removeCoordinates(const QVector<QString> &paths);
+    void requestSaving(ImagesListView *list);
     void discardChanges(ImagesListView *list);
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
     void requestAddingImages(const QVector<QString> &paths);
@@ -78,6 +79,7 @@ private: // Variables
     QAction *m_editCoordinates;
     QAction *m_lookupElevation;
     QAction *m_removeCoordinates;
+    QAction *m_save;
     QAction *m_discardChanges;
     QAction *m_removeImages;
 
