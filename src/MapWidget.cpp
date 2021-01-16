@@ -303,9 +303,9 @@ void MapWidget::centerCoordinates(const Coordinates &coordinates)
     centerOn(coordinates.lon(), coordinates.lat());
 }
 
-void MapWidget::zoomToTrack(const QString &path)
+void MapWidget::zoomToTrack(const QModelIndex &index)
 {
-    centerOn(m_geoDataModel->trackBox(path));
+    centerOn(m_geoDataModel->trackBox(index));
 }
 
 void MapWidget::zoomToTracks(const QVector<QString> &paths)

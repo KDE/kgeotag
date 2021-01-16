@@ -103,6 +103,11 @@ Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QString &path) const
     return m_marbleTrackBoxes.at(m_loadedFiles.indexOf(canonicalPath(path)));
 }
 
+Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QModelIndex &index) const
+{
+    return m_marbleTrackBoxes.at(index.row());
+}
+
 const QVector<QVector<Marble::GeoDataLineString>> &GeoDataModel::marbleTracks() const
 {
     return m_marbleTracks;

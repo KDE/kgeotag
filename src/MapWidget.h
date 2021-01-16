@@ -40,7 +40,7 @@ public:
     void updateSettings();
     void saveSettings();
     void restoreSettings();
-    void zoomToTrack(const QString &path);
+    void zoomToTrack(const QModelIndex &index);
     void zoomToTracks(const QVector<QString> &paths);
     void centerImage(const QModelIndex &index);
     void centerCoordinates(const Coordinates &coordinates);

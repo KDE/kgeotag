@@ -183,6 +183,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // Tracks
     auto *tracksListView = new TracksListView(m_sharedObjects->geoDataModel());
     m_tracksDock = createDockWidget(i18n("Tracks"), tracksListView, QStringLiteral("tracksDock"));
+    connect(tracksListView, &TracksListView::trackSelected, m_mapWidget, &MapWidget::zoomToTrack);
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {

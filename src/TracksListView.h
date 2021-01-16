@@ -19,6 +19,12 @@ class TracksListView : public QListView
 public:
     explicit TracksListView(GeoDataModel *model, QWidget *parent = nullptr);
 
+signals:
+    void trackSelected(const QModelIndex &index);
+
+protected:
+    void currentChanged(const QModelIndex &current, const QModelIndex &) override;
+
 };
 
 #endif // TRACKSLISTVIEW_H

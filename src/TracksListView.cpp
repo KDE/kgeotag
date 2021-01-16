@@ -11,3 +11,11 @@ TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView
 {
     setModel(model);
 }
+
+void TracksListView::currentChanged(const QModelIndex &current, const QModelIndex &)
+{
+    if (current.isValid()) {
+        emit trackSelected(current);
+        scrollTo(current);
+    }
+}

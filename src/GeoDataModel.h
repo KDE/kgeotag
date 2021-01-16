@@ -32,6 +32,7 @@ public:
                   const QVector<QVector<Coordinates>> &segments);
     bool contains(const QString &path);
     Marble::GeoDataLatLonAltBox trackBox(const QString &path) const;
+    Marble::GeoDataLatLonAltBox trackBox(const QModelIndex &index) const;
 
     const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
     const QVector<QVector<QDateTime>> &dateTimes() const;
