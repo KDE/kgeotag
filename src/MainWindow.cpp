@@ -1498,9 +1498,6 @@ void MainWindow::removeAllImages()
     m_imagesModel->removeAllImages();
     m_mapWidget->reloadMap();
     m_previewWidget->setImage();
-
-    QMessageBox::information(this, i18n("Remove all images"),
-                             i18n("All images have been removed!"));
 }
 
 void MainWindow::removeTracks()
@@ -1537,9 +1534,6 @@ void MainWindow::removeEverything()
     m_imagesModel->removeAllImages();
     m_previewWidget->setImage();
     removeAllTracks();
-
-    QMessageBox::information(this, i18n("Remove all images and tracks (reset)"),
-                             i18n("All images and tracks have been removed!"));
 }
 
 void MainWindow::centerTrackPoint(int trackIndex, int trackPointIndex)
