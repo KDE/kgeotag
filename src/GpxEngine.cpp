@@ -135,15 +135,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
             } else if (name == s_trkseg && ! segmentCoordinates.isEmpty()) {
                 allSegmentTimes.append(segmentTimes);
                 allSegments.append(segmentCoordinates);
-
-                for (int i = 0; i < segmentTimes.count(); i++) {
-                    const auto &time = segmentTimes.at(i);
-                    m_allTimes.append(time);
-                    m_coordinates[time] = segmentCoordinates.at(i);
-                }
-
                 lastCoordinates = segmentCoordinates.last();
-
                 segmentTimes.clear();
                 segmentCoordinates.clear();
 
@@ -163,9 +155,8 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     // All okay :-)
 
+    // Pass the loaded data to the GeoDataModel
     m_geoDataModel->addTrack(path, allSegmentTimes, allSegments);
-
-    std::sort(m_allTimes.begin(), m_allTimes.end());
 
     // Detect the presumable timezone the corresponding photos were taken in
 

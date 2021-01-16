@@ -58,9 +58,6 @@ private: // Functions
 private: // Variables
     GeoDataModel *m_geoDataModel;
 
-    QVector<QDateTime> m_allTimes;
-    QHash<QDateTime, Coordinates> m_coordinates;
-
     int m_exactMatchTolerance;
     int m_maximumInterpolationInterval;
     int m_maximumInterpolationDistance;
