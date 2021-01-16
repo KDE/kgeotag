@@ -26,6 +26,7 @@ class ImagesModel;
 class ImagesListView;
 class AutomaticMatchingWidget;
 class TracksListView;
+class GeoDataModel;
 
 // Qt classes
 class QDockWidget;
@@ -70,6 +71,7 @@ private slots:
     void removeImages(ImagesListView *list);
     void removeProcessedSavedImages();
     void removeAllImages();
+    void removeTracks();
 
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
@@ -91,7 +93,9 @@ private: // Variables
     FixDriftWidget *m_fixDriftWidget;
     BookmarksWidget *m_bookmarksWidget;
     ImagesModel *m_imagesModel;
+    GeoDataModel *m_geoDataModel;
     AutomaticMatchingWidget *m_automaticMatchingWidget;
+    TracksListView *m_tracksView;
 
     QDockWidget *m_previewDock;
     QDockWidget *m_fixDriftDock;

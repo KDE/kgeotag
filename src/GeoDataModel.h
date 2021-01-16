@@ -28,9 +28,10 @@ public:
     int rowCount(const QModelIndex & = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
 
+    bool contains(const QString &path);
     void addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
                   const QVector<QVector<Coordinates>> &segments);
-    bool contains(const QString &path);
+    void removeTrack(int row);
     Marble::GeoDataLatLonAltBox trackBox(const QString &path) const;
     Marble::GeoDataLatLonAltBox trackBox(const QModelIndex &index) const;
 

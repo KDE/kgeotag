@@ -39,6 +39,11 @@ QVariant GeoDataModel::data(const QModelIndex &index, int role) const
     return QVariant();
 }
 
+bool GeoDataModel::contains(const QString &path)
+{
+    return m_loadedFiles.contains(canonicalPath(path));
+}
+
 void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
                             const QVector<QVector<Coordinates>> &segments)
 {
@@ -87,9 +92,18 @@ void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime
     emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
-bool GeoDataModel::contains(const QString &path)
+void GeoDataModel::removeTrack(int row)
 {
-    return m_loadedFiles.contains(canonicalPath(path));
+    beginRemoveRows(QModelIndex(), row, row);
+    const auto modelIndex = index(row, 0);
+    m_loadedFiles.remove(row);
+    m_displayFileNames.remove(row);
+    m_marbleTracks.remove(row);
+    m_marbleTrackBoxes.remove(row);
+    m_dateTimes.remove(row);
+    m_trackPoints.remove(row);
+    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    endRemoveRows();
 }
 
 QString GeoDataModel::canonicalPath(const QString &path) const

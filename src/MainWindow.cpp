@@ -25,6 +25,7 @@
 #include "MimeHelper.h"
 #include "MapCenterInfo.h"
 #include "TracksListView.h"
+#include "GeoDataModel.h"
 
 // KDE includes
 #include <KActionCollection>
@@ -66,7 +67,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
       m_settings(sharedObjects->settings()),
       m_gpxEngine(sharedObjects->gpxEngine()),
       m_elevationEngine(sharedObjects->elevationEngine()),
-      m_imagesModel(sharedObjects->imagesModel())
+      m_imagesModel(sharedObjects->imagesModel()),
+      m_geoDataModel(sharedObjects->geoDataModel())
 {
     setWindowTitle(i18n("KGeoTag"));
 
@@ -181,9 +183,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     updateImagesListsMode();
 
     // Tracks
-    auto *tracksListView = new TracksListView(m_sharedObjects->geoDataModel());
-    m_tracksDock = createDockWidget(i18n("Tracks"), tracksListView, QStringLiteral("tracksDock"));
-    connect(tracksListView, &TracksListView::trackSelected, m_mapWidget, &MapWidget::zoomToTrack);
+    m_tracksView = new TracksListView(m_geoDataModel);
+    m_tracksDock = createDockWidget(i18n("Tracks"), m_tracksView, QStringLiteral("tracksDock"));
+    connect(m_tracksView, &TracksListView::trackSelected, m_mapWidget, &MapWidget::zoomToTrack);
+    connect(m_tracksView, &TracksListView::removeTracks, this, &MainWindow::removeTracks);
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
@@ -1461,4 +1464,15 @@ void MainWindow::removeAllImages()
 
     QMessageBox::information(this, i18n("Remove all images"),
                              i18n("All images have been removed!"));
+}
+
+void MainWindow::removeTracks()
+{
+    m_tracksView->blockSignals(true);
+    const auto allRows = m_tracksView->selectedTracks();
+    for (int row : allRows) {
+        m_geoDataModel->removeTrack(row);
+    }
+    m_tracksView->blockSignals(false);
+    m_mapWidget->reloadMap();
 }

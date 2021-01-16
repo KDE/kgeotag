@@ -7,9 +7,27 @@
 #include "TracksListView.h"
 #include "GeoDataModel.h"
 
+// KDE includes
+#include <KLocalizedString>
+
+// Qt includes
+#include <QMenu>
+#include <QAction>
+
 TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView(parent)
 {
     setModel(model);
+    setSelectionMode(QAbstractItemView::ExtendedSelection);
+    setContextMenuPolicy(Qt::CustomContextMenu);
+
+    connect(this, &QAbstractItemView::clicked, this, &TracksListView::trackSelected);
+
+    m_contextMenu = new QMenu(this);
+
+    m_remove = m_contextMenu->addAction(i18np("Remove track", "Remove tracks", 1));
+    connect(m_remove, &QAction::triggered, this, &TracksListView::removeTracks);
+
+    connect(this, &QListView::customContextMenuRequested, this, &TracksListView::showContextMenu);
 }
 
 void TracksListView::currentChanged(const QModelIndex &current, const QModelIndex &)
@@ -18,4 +36,25 @@ void TracksListView::currentChanged(const QModelIndex &current, const QModelInde
         emit trackSelected(current);
         scrollTo(current);
     }
+}
+
+void TracksListView::showContextMenu(const QPoint &point)
+{
+    const auto selected = selectedIndexes();
+    const int allSelected = selected.count();
+
+    m_remove->setEnabled(allSelected > 0);
+    m_remove->setText(i18np("Remove track", "Remove tracks", allSelected));
+
+    m_contextMenu->exec(mapToGlobal(point));
+}
+
+QVector<int> TracksListView::selectedTracks() const
+{
+    QVector<int> selection;
+    const auto selected = selectedIndexes();
+    for (const auto &index : selected) {
+        selection.append(index.row());
+    }
+    return selection;
 }
