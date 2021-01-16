@@ -214,6 +214,7 @@ Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation
 
 Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) const
 {
+    // Iterate over all loaded files we have
     for (const auto &trackPoints : m_geoDataModel->trackPoints()) {
         // Check for an exact match
         if (trackPoints.contains(time)) {
@@ -249,93 +250,102 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time, int de
 
 Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 {
-    // This only works if we at least have at least 2 points ;-)
-    if (m_allTimes.count() < 2) {
-        return Coordinates();
-    }
+    // Iterate over all loaded files we have
+    for (int i = 0; i < m_geoDataModel->dateTimes().count(); i++) {
+        const auto &dateTimes = m_geoDataModel->dateTimes().at(i);
+        const auto &trackPoints = m_geoDataModel->trackPoints().at(i);
 
-    // If the image's date is before the first or after the last point we have,
-    // it can't be assigned.
-    if (time < m_allTimes.first() || time > m_allTimes.last()) {
-        return Coordinates();
-    }
-
-    // Check for an exact match (without tolerance)
-    // This also eliminates the case that the time could be the first one.
-    // We thus can be sure the first entry in m_allTimes is earlier than the time requested.
-    if (m_allTimes.contains(time)) {
-        return m_coordinates.value(time);
-    }
-
-    // Search for the first time earlier than the image's
-
-    int start = 0;
-    int end = m_allTimes.count() - 1;
-    int index = 0;
-    int lastIndex = -1;
-
-    while (true) {
-        index = start + (end - start) / 2;
-        if (index == lastIndex) {
-            break;
+        // This only works if we at least have at least 2 points ;-)
+        if (dateTimes.count() < 2) {
+            continue;
         }
 
-        if (m_allTimes.at(index) > time) {
-            end = index;
-        } else {
-            start = index;
+        // If the image's date is before the first or after the last point we have,
+        // it can't be assigned.
+        if (time < dateTimes.first() || time > dateTimes.last()) {
+            continue;
         }
 
-        lastIndex = index;
+        // Check for an exact match (without tolerance)
+        // This also eliminates the case that the time could be the first one.
+        // We thus can be sure the first entry in dateTimes is earlier than the time requested.
+        if (dateTimes.contains(time)) {
+            return trackPoints.value(time);
+        }
+
+        // Search for the first time earlier than the image's
+
+        int start = 0;
+        int end = dateTimes.count() - 1;
+        int index = 0;
+        int lastIndex = -1;
+
+        while (true) {
+            index = start + (end - start) / 2;
+            if (index == lastIndex) {
+                break;
+            }
+
+            if (dateTimes.at(index) > time) {
+                end = index;
+            } else {
+                start = index;
+            }
+
+            lastIndex = index;
+        }
+
+        // If the found point is the last one, we can't interpolate and use it directly
+        const auto &closestBefore = dateTimes.at(index);
+        if (closestBefore == dateTimes.last()) {
+            return trackPoints.value(closestBefore);
+        }
+
+        // Interpolate between the two coordinates
+
+        const auto &closestAfter = dateTimes.at(index + 1);
+
+        // Check for a maximum time interval between the points if requested
+        if (m_maximumInterpolationInterval != -1
+            && closestBefore.secsTo(closestAfter) > m_maximumInterpolationInterval) {
+
+            continue;
+        }
+
+        // Create Marble coordinates from the cache for further calculations
+        const auto &pointBefore = trackPoints[closestBefore];
+        const auto &pointAfter = trackPoints[closestAfter];
+        const auto coordinatesBefore = Marble::GeoDataCoordinates(
+            pointBefore.lon(), pointBefore.lat(), pointBefore.alt(),
+            Marble::GeoDataCoordinates::Degree);
+        const auto coordinatesAfter = Marble::GeoDataCoordinates(
+            pointAfter.lon(), pointAfter.lat(), pointAfter.alt(),
+            Marble::GeoDataCoordinates::Degree);
+
+        // Check for a maximum distance between the points if requested
+
+        if (m_maximumInterpolationDistance != -1
+            && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * KGeoTag::earthRadius
+            > m_maximumInterpolationDistance) {
+
+            continue;
+        }
+
+        // Calculate an interpolated position between the coordinates
+
+        const int secondsBefore = closestBefore.secsTo(time);
+        const double fraction = double(secondsBefore)
+                                / double(secondsBefore + time.secsTo(closestAfter));
+        const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
+
+        return Coordinates(interpolated.longitude(Marble::GeoDataCoordinates::Degree),
+                        interpolated.latitude(Marble::GeoDataCoordinates::Degree),
+                        interpolated.altitude(),
+                        true);
     }
 
-    // If the found point is the last one, we can't interpolate and use it directly
-    const auto &closestBefore = m_allTimes.at(index);
-    if (closestBefore == m_allTimes.last()) {
-        return m_coordinates.value(closestBefore);
-    }
-
-    // Interpolate between the two coordinates
-
-    const auto &closestAfter = m_allTimes.at(index + 1);
-
-    // Check for a maximum time interval between the points if requested
-    if (m_maximumInterpolationInterval != -1
-        && closestBefore.secsTo(closestAfter) > m_maximumInterpolationInterval) {
-
-        return Coordinates();
-    }
-
-    // Create Marble coordinates from the cache for further calculations
-    const auto &pointBefore = m_coordinates[closestBefore];
-    const auto &pointAfter = m_coordinates[closestAfter];
-    const auto coordinatesBefore = Marble::GeoDataCoordinates(
-        pointBefore.lon(), pointBefore.lat(), pointBefore.alt(),
-        Marble::GeoDataCoordinates::Degree);
-    const auto coordinatesAfter = Marble::GeoDataCoordinates(
-        pointAfter.lon(), pointAfter.lat(), pointAfter.alt(),
-        Marble::GeoDataCoordinates::Degree);
-
-    // Check for a maximum distance between the points if requested
-
-    if (m_maximumInterpolationDistance != -1
-        && coordinatesBefore.sphericalDistanceTo(coordinatesAfter) * KGeoTag::earthRadius
-           > m_maximumInterpolationDistance) {
-
-        return Coordinates();
-    }
-
-    // Calculate an interpolated position between the coordinates
-
-    const int secondsBefore = closestBefore.secsTo(time);
-    const double fraction = double(secondsBefore)
-                            / double(secondsBefore + time.secsTo(closestAfter));
-    const auto interpolated = coordinatesBefore.interpolate(coordinatesAfter, fraction);
-
-    return Coordinates(interpolated.longitude(Marble::GeoDataCoordinates::Degree),
-                       interpolated.latitude(Marble::GeoDataCoordinates::Degree),
-                       interpolated.altitude(),
-                       true);
+    // No match found
+    return Coordinates();
 }
 
 QByteArray GpxEngine::lastDetectedTimeZoneId() const
