@@ -35,6 +35,7 @@ public:
     void removeAllTracks();
     Marble::GeoDataLatLonAltBox trackBox(const QString &path) const;
     Marble::GeoDataLatLonAltBox trackBox(const QModelIndex &index) const;
+    Coordinates trackBoxCenter(const QString &path) const;
 
     const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
     const QVector<QVector<QDateTime>> &dateTimes() const;

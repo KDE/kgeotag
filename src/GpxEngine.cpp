@@ -72,8 +72,6 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     QVector<QVector<Coordinates>> allSegments;
     QVector<QVector<QDateTime>> allSegmentTimes;
 
-    Coordinates lastCoordinates;
-
     bool gpxFound = false;
     bool trackStartFound = false;
 
@@ -135,7 +133,6 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
             } else if (name == s_trkseg && ! segmentCoordinates.isEmpty()) {
                 allSegmentTimes.append(segmentTimes);
                 allSegments.append(segmentCoordinates);
-                lastCoordinates = segmentCoordinates.last();
                 segmentTimes.clear();
                 segmentCoordinates.clear();
 
@@ -163,9 +160,12 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     const double width = m_timezoneMap.size().width();
     const double height = m_timezoneMap.size().height();
 
+    // Get the loaded path's bounding box's center point
+    const auto trackCenter = m_geoDataModel->trackBoxCenter(path);
+
     // Scale the coordinates to the image size, relative to the image center
-    int mappedLon = std::round(lastCoordinates.lon() / 180.0 * (width / 2.0));
-    int mappedLat = std::round(lastCoordinates.lat() / 90.0 * (height / 2.0));
+    int mappedLon = std::round(trackCenter.lon() / 180.0 * (width / 2.0));
+    int mappedLat = std::round(trackCenter.lat() / 90.0 * (height / 2.0));
 
     // Move the mapped coordinates to the left lower edge
     mappedLon = width / 2 + mappedLon;

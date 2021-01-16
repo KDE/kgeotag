@@ -133,6 +133,15 @@ Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QString &path) const
     return m_marbleTrackBoxes.at(m_loadedFiles.indexOf(canonicalPath(path)));
 }
 
+Coordinates GeoDataModel::trackBoxCenter(const QString &path) const
+{
+    const auto center = trackBox(path).center();
+    return Coordinates(center.longitude(Marble::GeoDataCoordinates::Degree),
+                       center.latitude(Marble::GeoDataCoordinates::Degree),
+                       0.0,
+                       true);
+}
+
 Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QModelIndex &index) const
 {
     return m_marbleTrackBoxes.at(index.row());
