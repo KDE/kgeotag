@@ -76,6 +76,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &MainWindow::elevationProcessed);
 
+    connect(m_geoDataModel, &GeoDataModel::requestAddFiles, this, &MainWindow::addGpx);
+
     // Menu setup
     // ==========
 

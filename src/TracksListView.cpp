@@ -16,6 +16,10 @@
 
 TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView(parent)
 {
+    viewport()->setAcceptDrops(true);
+    setDropIndicatorShown(true);
+    setDragDropMode(QAbstractItemView::DropOnly);
+
     setModel(model);
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);

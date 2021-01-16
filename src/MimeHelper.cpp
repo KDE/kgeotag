@@ -30,7 +30,8 @@ static const QVector<QString> s_usableGeoData {
 
 static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
     { KGeoTag::DroppedOnImageList, s_usableImages },
-    { KGeoTag::DroppedOnMap,       s_usableGeoData }
+    { KGeoTag::DroppedOnMap,       s_usableGeoData },
+    { KGeoTag::DroppedOnTrackList, s_usableGeoData }
 };
 
 static const QMimeDatabase s_mimeDB;

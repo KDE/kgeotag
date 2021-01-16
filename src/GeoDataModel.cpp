@@ -6,6 +6,7 @@
 // Local includes
 #include "GeoDataModel.h"
 #include "KGeoTag.h"
+#include "MimeHelper.h"
 
 // Marble includes
 #include <marble/GeoDataCoordinates.h>
@@ -13,6 +14,7 @@
 // Qt includes
 #include <QDebug>
 #include <QFileInfo>
+#include <QMimeData>
 
 // C++ includes
 #include <algorithm>
@@ -160,4 +162,46 @@ const QVector<QVector<QDateTime>> &GeoDataModel::dateTimes() const
 const QVector<QHash<QDateTime, Coordinates>> &GeoDataModel::trackPoints() const
 {
     return m_trackPoints;
+}
+
+Qt::DropActions GeoDataModel::supportedDropActions() const
+{
+    return Qt::CopyAction | Qt::MoveAction;
+}
+
+Qt::ItemFlags GeoDataModel::flags(const QModelIndex &index) const
+{
+    Qt::ItemFlags defaultFlags = QAbstractListModel::flags(index);
+
+    if (index.isValid()) {
+        return Qt::ItemIsDragEnabled | Qt::ItemIsDropEnabled | defaultFlags;
+    } else {
+        return Qt::ItemIsDropEnabled | defaultFlags;
+    }
+}
+
+bool GeoDataModel::canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                   const QModelIndex &) const
+{
+    if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {
+        return false;
+    }
+
+    if (MimeHelper::getUsablePaths(KGeoTag::DroppedOnTrackList, data).isEmpty()) {
+        return false;
+    }
+
+    return true;
+}
+
+bool GeoDataModel::dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                                    const QModelIndex &)
+{
+    if (! (action & (Qt::CopyAction | Qt::MoveAction)) || ! data->hasUrls()) {
+        return false;
+    }
+
+    emit requestAddFiles(MimeHelper::getUsablePaths(KGeoTag::DroppedOnTrackList, data));
+
+    return true;
 }

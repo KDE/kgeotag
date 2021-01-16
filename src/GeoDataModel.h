@@ -27,6 +27,12 @@ public:
 
     int rowCount(const QModelIndex & = QModelIndex()) const override;
     QVariant data(const QModelIndex &index, int role = Qt::DisplayRole) const override;
+    Qt::DropActions supportedDropActions() const override;
+    Qt::ItemFlags flags(const QModelIndex &index) const override;
+    bool canDropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                         const QModelIndex &) const override;
+    bool dropMimeData(const QMimeData *data, Qt::DropAction action, int, int,
+                      const QModelIndex &) override;
 
     bool contains(const QString &path);
     void addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
@@ -40,6 +46,9 @@ public:
     const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
     const QVector<QVector<QDateTime>> &dateTimes() const;
     const QVector<QHash<QDateTime, Coordinates>> &trackPoints() const;
+
+signals:
+    void requestAddFiles(const QVector<QString> &paths);
 
 private: // Functions
     QString canonicalPath(const QString &path) const;

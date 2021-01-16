@@ -49,6 +49,8 @@ private slots:
 
     void addFiles();
     void addDirectory();
+    void addGpx(const QVector<QString> &paths);
+    void addImages(const QVector<QString> &paths);
 
     void imagesDropped(const QVector<QString> &paths);
     void saveChanges();
@@ -85,8 +87,6 @@ private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
                                   const QString &dockId);
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void addGpx(const QVector<QString> &paths);
-    void addImages(const QVector<QString> &paths);
     void lookupElevation(const QVector<QString> &paths);
     QString saveFailedHeader(int processed, int allImages) const;
     QString skipRetryCancelText(int processed, int allImages) const;

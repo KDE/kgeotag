@@ -73,7 +73,8 @@ enum CustomDataRoles {
 
 enum DropTarget {
     DroppedOnImageList,
-    DroppedOnMap
+    DroppedOnMap,
+    DroppedOnTrackList
 };
 
 enum FileType {
