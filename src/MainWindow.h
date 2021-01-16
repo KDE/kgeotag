@@ -76,6 +76,7 @@ private slots:
     void removeAllImages();
     void removeTracks();
     void removeAllTracks();
+    void removeEverything();
 
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
@@ -86,6 +87,7 @@ private: // Functions
     void lookupElevation(const QVector<QString> &paths);
     QString saveFailedHeader(int processed, int allImages) const;
     QString skipRetryCancelText(int processed, int allImages) const;
+    bool checkForPendingChanges();
 
 private: // Variables
     SharedObjects *m_sharedObjects;

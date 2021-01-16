@@ -107,6 +107,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     removeAllTracksAction->setText(i18n("All tracks"));
     connect(removeAllTracksAction, &QAction::triggered, this, &MainWindow::removeAllTracks);
 
+    auto *removeEverything = actionCollection()->addAction(QStringLiteral("removeEverything"));
+    removeEverything->setText(i18n("All images and tracks (reset)"));
+    connect(removeEverything, &QAction::triggered, this, &MainWindow::removeEverything);
+
     // "File" menu again
 
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
@@ -1452,7 +1456,7 @@ void MainWindow::removeProcessedSavedImages()
         i18np("Removed one image", "Removed %1 images", paths.count()));
 }
 
-void MainWindow::removeAllImages()
+bool MainWindow::checkForPendingChanges()
 {
     if (! m_imagesModel->imagesWithPendingChanges().isEmpty()
         && QMessageBox::question(this, i18n("Remove all images"),
@@ -1461,11 +1465,20 @@ void MainWindow::removeAllImages()
                     "<p>Do you really want to remove all images anyway?</p>"),
                QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 
+        return false;
+    }
+
+    return true;
+}
+
+void MainWindow::removeAllImages()
+{
+    if (m_imagesModel->rowCount() == 0) {
+        QMessageBox::information(this, i18n("Remove all images"), i18n("Nothing to do"));
         return;
     }
 
-    if (m_imagesModel->allImages().isEmpty()) {
-        QMessageBox::information(this, i18n("Remove all images"), i18n("Nothing to do"));
+    if (! checkForPendingChanges()) {
         return;
     }
 
@@ -1494,4 +1507,24 @@ void MainWindow::removeAllTracks()
     m_geoDataModel->removeAllTracks();
     m_tracksView->blockSignals(false);
     m_mapWidget->reloadMap();
+}
+
+void MainWindow::removeEverything()
+{
+    if (m_imagesModel->rowCount() == 0 && m_geoDataModel->rowCount() == 0) {
+        QMessageBox::information(this, i18n("Remove all images and tracks (reset)"),
+                                 i18n("Nothing to do"));
+        return;
+    }
+
+    if (! checkForPendingChanges()) {
+        return;
+    }
+
+    m_imagesModel->removeAllImages();
+    m_previewWidget->setImage();
+    removeAllTracks();
+
+    QMessageBox::information(this, i18n("Remove all images and tracks (reset)"),
+                             i18n("All images and tracks have been removed!"));
 }
