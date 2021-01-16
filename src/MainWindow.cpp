@@ -1028,8 +1028,8 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
                                    "<p>One image could not be matched (%2).</p>",
                                    "<p>%1 images could not be matched (%2).</p>",
                                    notMatched,
-                                   i18np("one image thereof aready has coordinates assigned",
-                                         "%1 images thereof already have coordinates assigned",
+                                   i18np("of which one image already has coordinates assigned",
+                                         "of which %1 images already have coordinates assigned",
                                          notMatchedButHaveCoordinates)));
             }
         } else {
@@ -1050,8 +1050,8 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
                                    "<p>One image had no exact match (%2).</p>",
                                    "<p>%1 images had no exact match (%2).</p>",
                                    notMatched,
-                                   i18np("one image thereof aready has coordinates assigned",
-                                         "%1 images thereof already have coordinates assigned",
+                                   i18np("of which one image already has coordinates assigned",
+                                         "of which %1 images already have coordinates assigned",
                                          notMatchedButHaveCoordinates)));
             }
         } else {
@@ -1072,8 +1072,8 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
                                    "<p>One image had no interpolated match (%2).</p>",
                                    "<p>%1 images had no interpolated match (%2).</p>",
                                    notMatched,
-                                   i18np("one image thereof aready has coordinates assigned",
-                                         "%1 images thereof already have coordinates assigned",
+                                   i18np("of which one image already has coordinates assigned",
+                                         "of which %1 images already have coordinates assigned",
                                          notMatchedButHaveCoordinates)));
             }
         } else {
