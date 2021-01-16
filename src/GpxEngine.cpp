@@ -214,20 +214,22 @@ Coordinates GpxEngine::findExactCoordinates(const QDateTime &time, int deviation
 
 Coordinates GpxEngine::findExactCoordinates(const QDateTime &time) const
 {
-    // Check for an exact match
-    if (m_coordinates.contains(time)) {
-        return m_coordinates.value(time);
-    }
-
-    // Check for a match with +/- the maximum tolerable deviation
-    for (int i = 1; i <= m_exactMatchTolerance; i++) {
-        const auto timeBefore = time.addSecs(i * -1);
-        if (m_coordinates.contains(timeBefore)) {
-            return m_coordinates.value(timeBefore);
+    for (const auto &trackPoints : m_geoDataModel->trackPoints()) {
+        // Check for an exact match
+        if (trackPoints.contains(time)) {
+            return trackPoints.value(time);
         }
-        const auto timeAfter = time.addSecs(i);
-        if (m_coordinates.contains(timeAfter)) {
-            return m_coordinates.value(timeAfter);
+
+        // Check for a match with +/- the maximum tolerable deviation
+        for (int i = 1; i <= m_exactMatchTolerance; i++) {
+            const auto timeBefore = time.addSecs(i * -1);
+            if (trackPoints.contains(timeBefore)) {
+                return trackPoints.value(timeBefore);
+            }
+            const auto timeAfter = time.addSecs(i);
+            if (trackPoints.contains(timeAfter)) {
+                return trackPoints.value(timeAfter);
+            }
         }
     }
 

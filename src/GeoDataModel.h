@@ -31,8 +31,11 @@ public:
     void addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
                   const QVector<QVector<Coordinates>> &segments);
     bool contains(const QString &path);
-    const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
     Marble::GeoDataLatLonAltBox trackBox(const QString &path) const;
+
+    const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
+    const QVector<QVector<QDateTime>> &dateTimes() const;
+    const QVector<QHash<QDateTime, Coordinates>> &trackPoints() const;
 
 private: // Functions
     QString canonicalPath(const QString &path) const;

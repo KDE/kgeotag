@@ -446,6 +446,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
     int allSegments = 0;
     int allPoints = 0;
     int alreadyLoaded = 0;
+    QVector<QString> loadedPaths;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -466,6 +467,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
             allTracks += tracks;
             allSegments += segments;
             allPoints += points;
+            loadedPaths.append(path);
             break;
 
         case GpxEngine::AlreadyLoaded:
@@ -518,7 +520,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
         }
     }
 
-    m_mapWidget->zoomToTracks(paths);
+    m_mapWidget->zoomToTracks(loadedPaths);
 
     QString text;
 
@@ -873,12 +875,12 @@ void MainWindow::triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchT
 
 void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType)
 {
-    QVector<QString> paths;
-    if (paths.isEmpty()) {
+    if (m_imagesModel->allImages().isEmpty()) {
         QMessageBox::information(this, i18n("(Re)Assign all images"), i18n("Nothing to do"));
         return;
     }
 
+    QVector<QString> paths;
     const bool excludeManuallyTagged = m_automaticMatchingWidget->excludeManuallyTagged();
     for (const auto &path : m_imagesModel->allImages()) {
         if (excludeManuallyTagged && m_imagesModel->matchType(path) == KGeoTag::ManuallySet) {

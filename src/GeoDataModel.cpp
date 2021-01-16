@@ -91,12 +91,22 @@ QString GeoDataModel::canonicalPath(const QString &path) const
     return info.canonicalFilePath();
 }
 
+Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QString &path) const
+{
+    return m_marbleTrackBoxes.at(m_loadedFiles.indexOf(canonicalPath(path)));
+}
+
 const QVector<QVector<Marble::GeoDataLineString>> &GeoDataModel::marbleTracks() const
 {
     return m_marbleTracks;
 }
 
-Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QString &path) const
+const QVector<QVector<QDateTime>> &GeoDataModel::dateTimes() const
 {
-    return m_marbleTrackBoxes.at(m_loadedFiles.indexOf(canonicalPath(path)));
+    return m_dateTimes;
+}
+
+const QVector<QHash<QDateTime, Coordinates>> &GeoDataModel::trackPoints() const
+{
+    return m_trackPoints;
 }
