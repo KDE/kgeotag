@@ -22,7 +22,6 @@ TrackWalker::TrackWalker(GeoDataModel *model, QWidget *parent)
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 
     auto *layout = new QVBoxLayout(this);
-    layout->setContentsMargins(0, 0, 0, 0);
 
     m_slider = new QSlider(Qt::Horizontal);
     m_slider->setMinimum(1);

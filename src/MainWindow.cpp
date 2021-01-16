@@ -217,6 +217,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     auto *tracksWrapper = new QWidget;
     auto *tracksWrapperLayout = new QVBoxLayout(tracksWrapper);
+    tracksWrapperLayout->setContentsMargins(0, 0, 0, 0);
     tracksWrapperLayout->addWidget(m_tracksView);
     tracksWrapperLayout->addWidget(trackWalker);
 
