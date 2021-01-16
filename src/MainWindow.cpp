@@ -85,11 +85,13 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *addFilesAction = actionCollection()->addAction(QStringLiteral("addFiles"));
     addFilesAction->setText(i18n("Add images and/or GPX tracks"));
     addFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
+    actionCollection()->setDefaultShortcut(addFilesAction, Qt::CTRL + Qt::Key_F);
     connect(addFilesAction, &QAction::triggered, this, &MainWindow::addFiles);
 
     auto *addDirectoryAction = actionCollection()->addAction(QStringLiteral("addDirectory"));
     addDirectoryAction->setText(i18n("Add all images and tracks from directory"));
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
+    actionCollection()->setDefaultShortcut(addDirectoryAction, Qt::CTRL + Qt::Key_D);
     connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
 
     // "Remove" submenu
@@ -123,6 +125,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
+    actionCollection()->setDefaultShortcut(saveChangesAction, Qt::CTRL + Qt::Key_S);
     connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveChanges);
 
     KStandardAction::quit(this, &QWidget::close, actionCollection());
