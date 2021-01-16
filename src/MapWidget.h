@@ -14,7 +14,6 @@
 #include <marble/MarbleWidget.h>
 #include <marble/GeoDataCoordinates.h>
 #include <marble/GeoDataLineString.h>
-#include <marble/GeoDataLatLonAltBox.h>
 
 // Qt includes
 #include <QHash>
@@ -25,6 +24,7 @@
 // Local classes
 class SharedObjects;
 class Settings;
+class GeoDataModel;
 class ImagesModel;
 
 // Qt classes
@@ -40,13 +40,11 @@ public:
     void updateSettings();
     void saveSettings();
     void restoreSettings();
+    void zoomToTrack(const QString &path);
+    void zoomToTracks(const QVector<QString> &paths);
     void centerImage(const QModelIndex &index);
     void centerCoordinates(const Coordinates &coordinates);
-    void zoomToGpxBox();
     Coordinates currentCenter() const;
-
-public slots:
-    void addSegment(const QVector<Coordinates> &segment);
 
 signals:
     void mapMoved(const Coordinates &center);
@@ -63,10 +61,10 @@ private slots:
 
 private: // Variables
     Settings *m_settings;
+    GeoDataModel *m_geoDataModel;
     ImagesModel *m_imagesModel;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
-    Marble::GeoDataLatLonAltBox m_gpxBox;
     QMenu *m_contextMenu;
     QVector<QAction *> m_floatersActions;
 

@@ -165,10 +165,6 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     m_geoDataModel->addTrack(path, allSegmentTimes, allSegments);
 
-    for (const auto &segment : allSegments) {
-        emit segmentLoaded(segment);
-    }
-
     std::sort(m_allTimes.begin(), m_allTimes.end());
 
     // Detect the presumable timezone the corresponding photos were taken in

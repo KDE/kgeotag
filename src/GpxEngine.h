@@ -51,9 +51,6 @@ public:
                             int maximumInterpolationDistance);
     QByteArray lastDetectedTimeZoneId() const;
 
-signals:
-    void segmentLoaded(const QVector<Coordinates> &segment);
-
 private: // Functions
     Coordinates findExactCoordinates(const QDateTime &time) const;
     Coordinates findInterpolatedCoordinates(const QDateTime &time) const;

@@ -168,7 +168,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     m_mapDock = createDockWidget(i18n("Map"), mapWrapper, QStringLiteral("mapDock"));
 
-    connect(m_gpxEngine, &GpxEngine::segmentLoaded, m_mapWidget, &MapWidget::addSegment);
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
     connect(m_mapWidget, &MapWidget::requestLoadGpx, this, &MainWindow::addGpx);
 
@@ -519,7 +518,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
         }
     }
 
-    m_mapWidget->zoomToGpxBox();
+    m_mapWidget->zoomToTracks(paths);
 
     QString text;
 

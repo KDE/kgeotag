@@ -12,12 +12,14 @@
 #include "KGeoTag.h"
 #include "ImagesModel.h"
 #include "MimeHelper.h"
+#include "GeoDataModel.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
 #include <marble/AbstractFloatItem.h>
 #include <marble/MarbleWidgetInputHandler.h>
 #include <marble/ViewportParams.h>
+#include <marble/GeoDataLatLonAltBox.h>
 
 // KDE includes
 #include <KLocalizedString>
@@ -48,6 +50,7 @@ static QVector<QString> s_unsupportedFloaters = {
 MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     : Marble::MarbleWidget(parent),
       m_settings(sharedObjects->settings()),
+      m_geoDataModel(sharedObjects->geoDataModel()),
       m_imagesModel(sharedObjects->imagesModel())
 {
     connect(this, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
@@ -61,7 +64,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     setProjection(Marble::Mercator);
     setMapThemeId(QStringLiteral("earth/openstreetmap/openstreetmap.dgml"));
 
-    auto *tracksLayer = new TracksLayer(this, sharedObjects->geoDataModel(), &m_trackPen);
+    auto *tracksLayer = new TracksLayer(this, m_geoDataModel, &m_trackPen);
     auto *imagesLayer = new ImagesLayer(this, m_imagesModel);
     addLayer(tracksLayer);
     addLayer(imagesLayer);
@@ -203,27 +206,6 @@ void MapWidget::restoreSettings()
     setZoom(m_settings->zoom());
 }
 
-void MapWidget::addSegment(const QVector<Coordinates> &segment)
-{
-    Marble::GeoDataLineString lineString;
-
-    for (const auto &coordinates : segment) {
-        const Marble::GeoDataCoordinates marbleCoordinates
-            = Marble::GeoDataCoordinates(coordinates.lon(), coordinates.lat(), 0.0,
-                                         Marble::GeoDataCoordinates::Degree);
-        lineString.append(marbleCoordinates);
-    }
-
-    m_tracks.append(lineString);
-
-    const auto box = lineString.latLonAltBox();
-    if (m_gpxBox.isEmpty()) {
-        m_gpxBox = box;
-    } else {
-        m_gpxBox |= box;
-    }
-}
-
 void MapWidget::dragEnterEvent(QDragEnterEvent *event)
 {
     const auto mimeData = event->mimeData();
@@ -321,10 +303,22 @@ void MapWidget::centerCoordinates(const Coordinates &coordinates)
     centerOn(coordinates.lon(), coordinates.lat());
 }
 
-void MapWidget::zoomToGpxBox()
+void MapWidget::zoomToTrack(const QString &path)
 {
-    centerOn(m_gpxBox);
-    m_gpxBox.clear();
+    centerOn(m_geoDataModel->trackBox(path));
+}
+
+void MapWidget::zoomToTracks(const QVector<QString> &paths)
+{
+    Marble::GeoDataLatLonAltBox box;
+    for (const auto &path : paths) {
+        if (box.isEmpty()) {
+            box = m_geoDataModel->trackBox(path);
+        } else {
+            box |= m_geoDataModel->trackBox(path);
+        }
+    }
+    centerOn(box);
 }
 
 Coordinates MapWidget::currentCenter() const
