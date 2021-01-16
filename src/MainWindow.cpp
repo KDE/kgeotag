@@ -79,6 +79,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // ==========
 
     // File
+    // ----
 
     auto *addFilesAction = actionCollection()->addAction(QStringLiteral("addFiles"));
     addFilesAction->setText(i18n("Add images and/or GPX tracks"));
@@ -90,6 +91,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
     connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
 
+    // "Remove" submenu
+
     auto *removeProcessedSavedImagesAction
         = actionCollection()->addAction(QStringLiteral("removeProcessedSavedImages"));
     removeProcessedSavedImagesAction->setText(i18n("All processed and saved images"));
@@ -100,6 +103,12 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     removeAllImagesAction->setText(i18n("All images"));
     connect(removeAllImagesAction, &QAction::triggered, this, &MainWindow::removeAllImages);
 
+    auto *removeAllTracksAction = actionCollection()->addAction(QStringLiteral("removeAllTracks"));
+    removeAllTracksAction->setText(i18n("All tracks"));
+    connect(removeAllTracksAction, &QAction::triggered, this, &MainWindow::removeAllTracks);
+
+    // "File" menu again
+
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
@@ -108,6 +117,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     KStandardAction::quit(this, &QWidget::close, actionCollection());
 
     // Settings
+    // --------
 
     auto *setDefaultDockArrangementAction
         = actionCollection()->addAction(QStringLiteral("setDefaultDockArrangement"));
@@ -121,6 +131,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     setupGUI(Keys | Save | Create);
 
     // Elicit a pointer from the "remove" menu from the XmlGui ;-)
+    // setupGUI() has to be called before this works
     auto *removeMenu = qobject_cast<QMenu *>(guiFactory()->container(QStringLiteral("remove"),
                                                                      this));
     removeMenu->menuAction()->setIcon(QIcon::fromTheme(QStringLiteral("document-close")));
@@ -1473,6 +1484,14 @@ void MainWindow::removeTracks()
     for (int row : allRows) {
         m_geoDataModel->removeTrack(row);
     }
+    m_tracksView->blockSignals(false);
+    m_mapWidget->reloadMap();
+}
+
+void MainWindow::removeAllTracks()
+{
+    m_tracksView->blockSignals(true);
+    m_geoDataModel->removeAllTracks();
     m_tracksView->blockSignals(false);
     m_mapWidget->reloadMap();
 }

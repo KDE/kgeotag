@@ -32,6 +32,7 @@ public:
     void addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
                   const QVector<QVector<Coordinates>> &segments);
     void removeTrack(int row);
+    void removeAllTracks();
     Marble::GeoDataLatLonAltBox trackBox(const QString &path) const;
     Marble::GeoDataLatLonAltBox trackBox(const QModelIndex &index) const;
 

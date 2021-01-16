@@ -106,6 +106,22 @@ void GeoDataModel::removeTrack(int row)
     endRemoveRows();
 }
 
+void GeoDataModel::removeAllTracks()
+{
+    const auto lastRow = m_loadedFiles.count() - 1;
+    const auto firstModelIndex = index(0, 0);
+    const auto lastModelIndex = index(lastRow, 0);
+    beginRemoveRows(QModelIndex(), 0, lastRow);
+    m_loadedFiles.clear();
+    m_displayFileNames.clear();
+    m_marbleTracks.clear();
+    m_marbleTrackBoxes.clear();
+    m_dateTimes.clear();
+    m_trackPoints.clear();
+    emit dataChanged(firstModelIndex, lastModelIndex, { Qt::DisplayRole });
+    endRemoveRows();
+}
+
 QString GeoDataModel::canonicalPath(const QString &path) const
 {
     const QFileInfo info(path);

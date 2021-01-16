@@ -45,8 +45,10 @@ protected:
 private slots:
     void updateImagesListsMode();
     void setDefaultDockArrangement();
+
     void addFiles();
     void addDirectory();
+
     void imagesDropped(const QVector<QString> &paths);
     void saveChanges();
     void showSettings();
@@ -68,10 +70,12 @@ private slots:
     void lookupElevation(ImagesListView *list);
     void imagesTimeZoneChanged();
     void cameraDriftSettingsChanged();
+
     void removeImages(ImagesListView *list);
     void removeProcessedSavedImages();
     void removeAllImages();
     void removeTracks();
+    void removeAllTracks();
 
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,

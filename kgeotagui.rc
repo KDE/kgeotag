@@ -13,6 +13,8 @@
         <text>Remove</text>
         <Action name="removeProcessedSavedImages"/>
         <Action name="removeAllImages"/>
+        <Separator/>
+        <Action name="removeAllTracks"/>
       </Menu>
       <Separator/>
       <Action name="saveChanges"/>
