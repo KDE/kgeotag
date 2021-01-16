@@ -42,6 +42,7 @@ private: // Functions
 
 private: // Variables
     QVector<QString> m_loadedFiles;
+    QVector<QString> m_displayFileNames;
 
     QVector<QVector<Marble::GeoDataLineString>> m_marbleTracks;
     QVector<Marble::GeoDataLatLonAltBox> m_marbleTrackBoxes;

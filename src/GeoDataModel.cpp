@@ -32,7 +32,9 @@ QVariant GeoDataModel::data(const QModelIndex &index, int role) const
         return QVariant();
     }
 
-    Q_UNUSED(role);
+    if (role == Qt::DisplayRole) {
+        return m_displayFileNames.at(index.row());
+    }
 
     return QVariant();
 }
@@ -78,6 +80,11 @@ void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime
     m_trackPoints.append(trackPoints);
 
     m_loadedFiles.append(canonicalPath(path));
+    const QFileInfo info(path);
+    m_displayFileNames.append(info.completeBaseName());
+
+    const auto modelIndex = index(m_displayFileNames.count() - 1, 0);
+    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
 bool GeoDataModel::contains(const QString &path)

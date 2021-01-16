@@ -25,6 +25,7 @@ class BookmarksWidget;
 class ImagesModel;
 class ImagesListView;
 class AutomaticMatchingWidget;
+class TracksListView;
 
 // Qt classes
 class QDockWidget;
@@ -99,6 +100,7 @@ private: // Variables
     QDockWidget *m_mapDock;
     QDockWidget *m_unAssignedImagesDock;
     QDockWidget *m_assignedOrAllImagesDock;
+    QDockWidget *m_tracksDock;
 
 };
 

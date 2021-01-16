@@ -24,6 +24,7 @@
 #include "AutomaticMatchingWidget.h"
 #include "MimeHelper.h"
 #include "MapCenterInfo.h"
+#include "TracksListView.h"
 
 // KDE includes
 #include <KActionCollection>
@@ -179,6 +180,10 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                                                  QStringLiteral("assignedOrAllImagesDock"));
     updateImagesListsMode();
 
+    // Tracks
+    auto *tracksListView = new TracksListView(m_sharedObjects->geoDataModel());
+    m_tracksDock = createDockWidget(i18n("Tracks"), tracksListView, QStringLiteral("tracksDock"));
+
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
         setDefaultDockArrangement();
@@ -278,6 +283,9 @@ void MainWindow::setDefaultDockArrangement()
         tabifyDockWidget(toTabify.at(i), toTabify.at(i + 1));
     }
     toTabify.first()->raise();
+
+    tabifyDockWidget(m_assignedOrAllImagesDock, m_tracksDock);
+    m_assignedOrAllImagesDock->raise();
 
     const double windowWidth = double(width());
     resizeDocks({ m_previewDock, m_mapDock },
