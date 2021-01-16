@@ -22,6 +22,9 @@ TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView
 
     connect(this, &QAbstractItemView::clicked, this, &TracksListView::trackSelected);
 
+    connect(selectionModel(), &QItemSelectionModel::selectionChanged,
+            this, &TracksListView::checkSelection);
+
     m_contextMenu = new QMenu(this);
 
     m_remove = m_contextMenu->addAction(i18np("Remove track", "Remove tracks", 1));
@@ -57,4 +60,10 @@ QVector<int> TracksListView::selectedTracks() const
         selection.append(index.row());
     }
     return selection;
+}
+
+void TracksListView::checkSelection()
+{
+    const auto selected = selectedIndexes();
+    emit updateTrackWalker(selected.count() == 1 ? selected.first().row() : -1);
 }

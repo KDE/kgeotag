@@ -26,6 +26,7 @@
 #include "MapCenterInfo.h"
 #include "TracksListView.h"
 #include "GeoDataModel.h"
+#include "TrackWalker.h"
 
 // KDE includes
 #include <KActionCollection>
@@ -176,13 +177,13 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // Map
 
     m_mapWidget = m_sharedObjects->mapWidget();
-    auto *mapCenterInfo = new MapCenterInfo(m_sharedObjects->coordinatesFormatter());
-    connect(m_mapWidget, &MapWidget::mapMoved, mapCenterInfo, &MapCenterInfo::mapMoved);
+    m_mapCenterInfo = new MapCenterInfo(m_sharedObjects);
+    connect(m_mapWidget, &MapWidget::mapMoved, m_mapCenterInfo, &MapCenterInfo::mapMoved);
 
     auto *mapWrapper = new QWidget;
     auto *mapWrapperLayout = new QVBoxLayout(mapWrapper);
     mapWrapperLayout->addWidget(m_mapWidget);
-    mapWrapperLayout->addWidget(mapCenterInfo);
+    mapWrapperLayout->addWidget(m_mapCenterInfo);
 
     m_mapDock = createDockWidget(i18n("Map"), mapWrapper, QStringLiteral("mapDock"));
 
@@ -198,10 +199,22 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     updateImagesListsMode();
 
     // Tracks
+
     m_tracksView = new TracksListView(m_geoDataModel);
-    m_tracksDock = createDockWidget(i18n("Tracks"), m_tracksView, QStringLiteral("tracksDock"));
     connect(m_tracksView, &TracksListView::trackSelected, m_mapWidget, &MapWidget::zoomToTrack);
     connect(m_tracksView, &TracksListView::removeTracks, this, &MainWindow::removeTracks);
+
+    auto *trackWalker = new TrackWalker(m_geoDataModel);
+    connect(m_tracksView, &TracksListView::updateTrackWalker,
+            trackWalker, &TrackWalker::setToTrack);
+    connect(trackWalker, &TrackWalker::trackPointSelected, this, &MainWindow::centerTrackPoint);
+
+    auto *tracksWrapper = new QWidget;
+    auto *tracksWrapperLayout = new QVBoxLayout(tracksWrapper);
+    tracksWrapperLayout->addWidget(m_tracksView);
+    tracksWrapperLayout->addWidget(trackWalker);
+
+    m_tracksDock = createDockWidget(i18n("Tracks"), tracksWrapper, QStringLiteral("tracksDock"));
 
     // Initialize/Restore the dock widget arrangement
     if (! restoreState(m_settings->mainWindowState())) {
@@ -1527,4 +1540,15 @@ void MainWindow::removeEverything()
 
     QMessageBox::information(this, i18n("Remove all images and tracks (reset)"),
                              i18n("All images and tracks have been removed!"));
+}
+
+void MainWindow::centerTrackPoint(int trackIndex, int trackPointIndex)
+{
+    auto dateTime = m_geoDataModel->dateTimes().at(trackIndex).at(trackPointIndex);
+    const auto coordinates = m_geoDataModel->trackPoints().at(trackIndex).value(dateTime);
+    dateTime.setTimeZone(QTimeZone(m_fixDriftWidget->imagesTimeZoneId()));
+    m_mapWidget->blockSignals(true);
+    m_mapWidget->centerCoordinates(coordinates);
+    m_mapCenterInfo->trackPointCentered(coordinates, dateTime);
+    m_mapWidget->blockSignals(false);
 }

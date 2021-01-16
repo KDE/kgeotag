@@ -27,12 +27,14 @@ public:
 signals:
     void trackSelected(const QModelIndex &index);
     void removeTracks();
+    void updateTrackWalker(int row);
 
 protected:
     void currentChanged(const QModelIndex &current, const QModelIndex &) override;
 
 private slots:
     void showContextMenu(const QPoint &point);
+    void checkSelection();
 
 private: // Variables
     QMenu *m_contextMenu;

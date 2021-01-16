@@ -27,6 +27,7 @@ class ImagesListView;
 class AutomaticMatchingWidget;
 class TracksListView;
 class GeoDataModel;
+class MapCenterInfo;
 
 // Qt classes
 class QDockWidget;
@@ -70,6 +71,7 @@ private slots:
     void lookupElevation(ImagesListView *list);
     void imagesTimeZoneChanged();
     void cameraDriftSettingsChanged();
+    void centerTrackPoint(int trackIndex, int trackPointIndex);
 
     void removeImages(ImagesListView *list);
     void removeProcessedSavedImages();
@@ -102,6 +104,7 @@ private: // Variables
     GeoDataModel *m_geoDataModel;
     AutomaticMatchingWidget *m_automaticMatchingWidget;
     TracksListView *m_tracksView;
+    MapCenterInfo *m_mapCenterInfo;
 
     QDockWidget *m_previewDock;
     QDockWidget *m_fixDriftDock;
