@@ -954,6 +954,9 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
     progress.setWindowModality(Qt::WindowModal);
 
     int processed = 0;
+    int notMatched = 0;
+    int notMatchedButHaveCoordinates = 0;
+
     for (const auto &path : paths) {
         progress.setValue(processed++);
         if (progress.wasCanceled()) {
@@ -991,12 +994,15 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
             m_imagesModel->setCoordinates(path, coordinates, KGeoTag::InterpolatedMatch);
             interpolatedMatches++;
             lastMatchedPath = path;
+        } else {
+            notMatched++;
+            if (m_imagesModel->coordinates(path).isSet()) {
+                notMatchedButHaveCoordinates++;
+            }
         }
     }
 
     progress.reset();
-
-    const int noMatches = paths.count() - exactMatches - interpolatedMatches;
 
     QString title;
     QString text;
@@ -1015,10 +1021,16 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
                          i18np("one interpolated match",
                                "%1 interpolated matches",
                                interpolatedMatches));
-            if (noMatches > 0) {
-                text.append(i18np("<p>One image could not be matched.</p>",
-                                  "<p>%1 images could not be matched.</p>",
-                                  noMatches));
+            if (notMatched > 0) {
+                text.append(i18ncp("Message for the number of unmatched images. The number of "
+                                   "images that could not be matched but already have coordinates "
+                                   "assigned (%2) is provided by the following i18np call",
+                                   "<p>One image could not be matched (%2).</p>",
+                                   "<p>%1 images could not be matched (%2).</p>",
+                                   notMatched,
+                                   i18np("one image thereof aready has coordinates assigned",
+                                         "%1 images thereof already have coordinates assigned",
+                                         notMatchedButHaveCoordinates)));
             }
         } else {
             text = i18n("Could neither find any exact, nor any interpolated matches!");
@@ -1031,10 +1043,16 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
             text = i18np("<p>Found one exact match!</p>",
                          "<p>Found %1 exact matches!</p>",
                          exactMatches);
-            if (noMatches > 0) {
-                text.append(i18np("<p>One image had no exact match.</p>",
-                                  "<p>%1 images had no exact match.</p>",
-                                  noMatches));
+            if (notMatched > 0) {
+                text.append(i18ncp("Message for the number of unmatched images. The number of "
+                                   "images that could not be matched but already have coordinates "
+                                   "assigned (%2) is provided by the following i18np call",
+                                   "<p>One image had no exact match (%2).</p>",
+                                   "<p>%1 images had no exact match (%2).</p>",
+                                   notMatched,
+                                   i18np("one image thereof aready has coordinates assigned",
+                                         "%1 images thereof already have coordinates assigned",
+                                         notMatchedButHaveCoordinates)));
             }
         } else {
             text = i18n("Could not find any exact matches!");
@@ -1047,10 +1065,16 @@ void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::Sear
             text = i18np("<p>Found one interpolated match!</p>",
                          "<p>Found %1 interpolated matches!</p>",
                          interpolatedMatches);
-            if (noMatches > 0) {
-                text.append(i18np("<p>One image had no interpolated match.</p>",
-                                  "<p>%1 images had no interpolated match.</p>",
-                                  noMatches));
+            if (notMatched > 0) {
+                text.append(i18ncp("Message for the number of unmatched images. The number of "
+                                   "images that could not be matched but already have coordinates "
+                                   "assigned (%2) is provided by the following i18np call",
+                                   "<p>One image had no interpolated match (%2).</p>",
+                                   "<p>%1 images had no interpolated match (%2).</p>",
+                                   notMatched,
+                                   i18np("one image thereof aready has coordinates assigned",
+                                         "%1 images thereof already have coordinates assigned",
+                                         notMatchedButHaveCoordinates)));
             }
         } else {
             text = i18n("Could not find any interpolated matches!");
