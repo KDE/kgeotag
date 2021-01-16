@@ -12,6 +12,7 @@
       <Menu name="remove">
         <text>Remove</text>
         <Action name="removeProcessedSavedImages"/>
+        <Action name="removeImagesLoadedTagged"/>
         <Action name="removeAllImages"/>
         <Separator/>
         <Action name="removeAllTracks"/>

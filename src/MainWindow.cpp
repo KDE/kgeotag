@@ -100,6 +100,12 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(removeProcessedSavedImagesAction, &QAction::triggered,
             this, &MainWindow::removeProcessedSavedImages);
 
+    auto removeImagesLoadedTaggedAction
+        = actionCollection()->addAction(QStringLiteral("removeImagesLoadedTagged"));
+    removeImagesLoadedTaggedAction->setText(i18n("All images that already had coordinates"));
+    connect(removeImagesLoadedTaggedAction, &QAction::triggered,
+            this, &MainWindow::removeImagesLoadedTagged);
+
     auto *removeAllImagesAction = actionCollection()->addAction(QStringLiteral("removeAllImages"));
     removeAllImagesAction->setText(i18n("All images"));
     connect(removeAllImagesAction, &QAction::triggered, this, &MainWindow::removeAllImages);
@@ -1466,6 +1472,22 @@ void MainWindow::removeProcessedSavedImages()
     m_mapWidget->reloadMap();
     m_previewWidget->setImage();
     QMessageBox::information(this, i18n("Remove all processed and saved images"),
+        i18np("Removed one image", "Removed %1 images", paths.count()));
+}
+
+void MainWindow::removeImagesLoadedTagged()
+{
+    const auto paths = m_imagesModel->imagesLoadedTagged();
+    if (paths.isEmpty()) {
+        QMessageBox::information(this, i18n("Remove images that already had coordinates"),
+            i18n("Nothing to do"));
+        return;
+    }
+
+    m_imagesModel->removeImages(paths);
+    m_mapWidget->reloadMap();
+    m_previewWidget->setImage();
+    QMessageBox::information(this, i18n("Remove images that already had coordinates"),
         i18np("Removed one image", "Removed %1 images", paths.count()));
 }
 

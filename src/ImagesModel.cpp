@@ -234,6 +234,18 @@ QVector<QString> ImagesModel::processedSavedImages() const
     return images;
 }
 
+QVector<QString> ImagesModel::imagesLoadedTagged() const
+{
+    QVector<QString> images;
+    for (const auto &path : std::as_const(m_paths)) {
+        const auto &data = m_imageData[path];
+        if (data.originalCoordinates.isSet()) {
+            images.append(path);
+        }
+    }
+    return images;
+}
+
 QDateTime ImagesModel::date(const QString &path) const
 {
     return m_imageData.value(path).date;

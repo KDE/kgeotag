@@ -43,6 +43,7 @@ public:
     const QVector<QString> &allImages() const;
     QVector<QString> imagesWithPendingChanges() const;
     QVector<QString> processedSavedImages() const;
+    QVector<QString> imagesLoadedTagged() const;
     QDateTime date(const QString &path) const;
     KGeoTag::MatchType matchType(const QString &path) const;
     void setCoordinates(const QString &path, const Coordinates &coordinates,

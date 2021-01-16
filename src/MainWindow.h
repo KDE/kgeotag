@@ -75,6 +75,7 @@ private slots:
 
     void removeImages(ImagesListView *list);
     void removeProcessedSavedImages();
+    void removeImagesLoadedTagged();
     void removeAllImages();
     void removeTracks();
     void removeAllTracks();
