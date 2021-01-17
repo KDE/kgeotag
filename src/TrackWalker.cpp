@@ -49,7 +49,7 @@ void TrackWalker::setToTrack(int row)
     m_slider->setValue(1);
     m_slider->setMaximum(count);
     m_slider->blockSignals(false);
-    m_info->setText(i18n("%1 trackpoints", count));
+    m_info->setText(i18np("%1 trackpoint", "%1 trackpoints", count));
     setEnabled(true);
 }
 
