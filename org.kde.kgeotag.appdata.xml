@@ -64,6 +64,14 @@
     <screenshot type="default">
       <image>https://cdn.kde.org/screenshots/kgeotag/kgeotag.png</image>
       <caption>Geotagging with KGeoTag</caption>
+      <caption xml:lang="ca">Etiquetatge geogràfic amb el KGeoTag</caption>
+      <caption xml:lang="ca-valencia">Etiquetatge geogràfic amb el KGeoTag</caption>
+      <caption xml:lang="es">Geoetiquetado con KGeoTag</caption>
+      <caption xml:lang="nl">Met KGeoTag geo-tags toevoegen</caption>
+      <caption xml:lang="pt">Marcação geográfica com o KGeoTag</caption>
+      <caption xml:lang="sv">Geografisk lokalisering med Kgeotag</caption>
+      <caption xml:lang="uk">Геопозиціювання за допомогою KGeoTag</caption>
+      <caption xml:lang="x-test">xxGeotagging with KGeoTagxx</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://invent.kde.org/graphics/kgeotag</url>
