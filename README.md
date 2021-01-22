@@ -6,7 +6,7 @@ If you are reading this on GitHub, be aware that this is just a mirror. The real
 
 KGeoTag is a Free/Libre Open Source photo geotagging program. It's written in C++/[Qt](https://www.qt.io/) and uses the [KDE Frameworks](https://api.kde.org/frameworks/). It's published under the terms of the [GNU General Public License (GPL)](https://www.gnu.org/licenses/#GPL).
 
-## What is "geotagging"?
+## What is "Geotagging"?
 
 Photos (e. g. JPEG images) contain metadata like the creation date, camera information etc. Those are either stored in the so-called [Exif header](https://en.wikipedia.org/wiki/Exif), in an [XMP sidecar file](https://en.wikipedia.org/wiki/Extensible_Metadata_Platform) or in both. This data can also represent geographic coordinates so that it's replicable where the images were taken.
 
@@ -64,8 +64,8 @@ This way, the geodata assignment is made persistent and also accessible for othe
 
 If a time drift has been identified and a deviation has been given, the images' dates and times also can be fixed whilst saving.
 
-## Getting involved
+## Getting in touch
+
+The IRC channel of the project is [#kde-kgeotag](irc://chat.freenode.net/kde-kgeotag), and there's also a [mailing list](https://mail.kde.org/cgi-bin/mailman/listinfo/kgeotag/).
 
 Everybody is invited to participate in KGeoTag's development! You don't have to be able to write code to do so. All testing and feedback is greatly appreciated!
-
-Also feel free to join KGeoTag's IRC channel [#kde-kgeotag](irc://chat.freenode.net/kde-kgeotag) :-)
