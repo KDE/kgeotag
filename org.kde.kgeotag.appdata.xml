@@ -74,7 +74,7 @@
       <caption xml:lang="x-test">xxGeotagging with KGeoTagxx</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://invent.kde.org/graphics/kgeotag</url>
+  <url type="homepage">https://invent.kde.org/graphics/kgeotag/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kgeotag</url>
   <provides>
     <binary>kgeotag</binary>
@@ -83,6 +83,7 @@
   <custom>
     <value key="KDE::irc">#kgeotag</value>
     <value key="KDE::matrix">#kgeotag</value>
+    <value key="KDE::mailinglist">kgeotag@kde.org</value>
   </custom>
   <content_rating type="oars-1.1"/>
 </component>
