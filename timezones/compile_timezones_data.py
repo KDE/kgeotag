@@ -174,7 +174,7 @@ def main():
     parser.add_argument("--height",
                         type=int,
                         help="The height of the output image. Should be an even number.",
-                        default=1000)
+                        default=2000)
     args = vars(parser.parse_args())
 
     print(f"Opening data file: {args['input-timezone-data'].absolute().resolve()}")
