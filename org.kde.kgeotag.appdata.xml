@@ -19,6 +19,7 @@
   <name xml:lang="nl">KGeoTag</name>
   <name xml:lang="nn">KGeoTag</name>
   <name xml:lang="pa">ਕੇ-ਜੀਓ-ਟੈਗ</name>
+  <name xml:lang="pl">KGeoTag</name>
   <name xml:lang="pt">KGeoTag</name>
   <name xml:lang="sk">KGeoTag</name>
   <name xml:lang="sl">KGeoTag</name>
@@ -37,6 +38,7 @@
   <summary xml:lang="nl">Fotoprogramma voor geven van geotags</summary>
   <summary xml:lang="nn">Geografisk stadfesting av foto</summary>
   <summary xml:lang="pa">ਫ਼ੋਟੋ ਜੀਓਟੈਗ ਲਗਾਉਣ ਵਾਲਾ ਪਰੋਗਰਾਮ</summary>
+  <summary xml:lang="pl">Program do geooznaczania zdjęć</summary>
   <summary xml:lang="pt">Programa de marcação geográfica de fotografias</summary>
   <summary xml:lang="sk">Program na geotagovanie fotiek</summary>
   <summary xml:lang="sl">Program za geokodiranje fotografij</summary>
@@ -54,6 +56,7 @@
     <p xml:lang="id">KGeoTag adalah program geotagging mandiri. Citra bisa dikaitkan dengan koordinat geografis dengan cara yang berbeda: Di satu sisi, pencocokan dengan geodata yang dikodekan GPX bisa dilakukan, di sisi lain, koordinat bisa diatur secara manual, baik melalui seret dan lepas ke peta, melalui bookmark atau dengan memasoknya secara manual. Koordinat bisa disimpan di header Exif citra dan/atau di file-file sespan XMP.</p>
     <p xml:lang="it">KGeoTag è un programma indipendente di geotagging delle foto. Le immagini possono essere associate alle coordinate geografiche in vari modi: è possibile associarle con i dati geografici in formato GPX, oppure possono essere impostate manualmente. Questo può essere fatto sia trascinando l'immagine sulla mappa, sia tramite i segnalibri, o anche fornendone i valori manualmente. Le coordinate possono essere memorizzate nell'intestazione Exif dell'immagine oppure nel file sidecar XMP.</p>
     <p xml:lang="nl">KGeoTag is een alleenstaand programma voor toekennen van geo-tags. Afbeeldingen kunnen geassocieerd worden met geografische coördinaten op verschillende manieren: Aan de ene kant kan een overeenkomst gemaakt worden met GPX gecodeerde geo-gegevens, aan de andere kant kunnen de coördinaten handmatig ingesteld worden, ofwel via slepen en loslaten op een kaart, via bladwijzers of deze handmatig te leveren. De coördinaten kunnen opgeslagen worden in de Exif-header van de afbeelding en/of in XMP-sidecar bestanden.</p>
+    <p xml:lang="pl">KGeoTag jest samodzielnym programem do geooznaczania. Obrazom można przypisać współrzędne geograficzne na różny sposób: z jednej strony, można wykonać dopasowanie z zaszytymi geodanymi zakodowanymi jako GPX, z innej strony współrzędne można ustawić ręcznie, albo poprzez przeciągnięcie na mapę, albo zakładki, albo ręczne wpisanie. Współrzędne te można przechować w nagłówkach obrazów Exif oraz/lub plikach przybocznych XMP.</p>
     <p xml:lang="pt">O KGeoTag é um programa de marcação de coordenadas geográficas em fotografias. As imagens poderão ser associadas às coordenadas geográficas de diferentes formas: Por um lado, poderá ser feita a correspondência com os dados codificados em GPX; por outro, poderão ser definidas as coordenadas manualmente, seja por arrastamento para um mapa, através de favoritos ou através da indicação manual das mesmas. As coordenadas poderão ficar gravadas no cabeçalho EXIF das imagens e/ou nos ficheiros acessórios do XMP.</p>
     <p xml:lang="sk">KGeoTag je samostatný program geografického označovania. K obrázkom je možné priradiť geografické súradnice rôznymi spôsobmi: Na jednej strane je možné vykonať porovnávanie s geodátami kódovanými pomocou GPX, na druhej strane je možné súradnice nastaviť manuálne, a to buď presunutím myšou na mapu, pomocou záložiek alebo ich manuálnym zadaním. Súradnice môžu byť uložené v hlavičke obrázkov Exif a/alebo v súboroch sidecar XMP.</p>
     <p xml:lang="sl">KGeoTag je samostojni program za geokodiranje. Slike lahko povežemo z geografskimi koordinatami na različne načine: na eni strani se lahko izvede ujemanje z geokodiranimi podatki GPX, po drugi strani pa koordinate lahko nastavite ročno, bodisi s vlečenjem in spuščanjem na zemljevid, ali prek zaznamkov ali z ročnim vnosom. Koordinate lahko shranite v glavi slike Exif in/ali v priklopnih datotekah XMP.</p>
@@ -69,6 +72,7 @@
       <caption xml:lang="ca-valencia">Etiquetatge geogràfic amb el KGeoTag</caption>
       <caption xml:lang="es">Geoetiquetado con KGeoTag</caption>
       <caption xml:lang="nl">Met KGeoTag geo-tags toevoegen</caption>
+      <caption xml:lang="pl">Geoznaczenie z KGeoTag</caption>
       <caption xml:lang="pt">Marcação geográfica com o KGeoTag</caption>
       <caption xml:lang="sl">Geokodiranje z KGeoTag</caption>
       <caption xml:lang="sv">Geografisk lokalisering med Kgeotag</caption>
