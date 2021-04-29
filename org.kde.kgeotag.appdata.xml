@@ -11,6 +11,7 @@
   <name xml:lang="ca">KGeoTag</name>
   <name xml:lang="ca-valencia">KGeoTag</name>
   <name xml:lang="cs">KGeoTag</name>
+  <name xml:lang="de">KGeoTag</name>
   <name xml:lang="en-GB">KGeoTag</name>
   <name xml:lang="es">KGeoTag</name>
   <name xml:lang="fi">KGeoTag</name>
@@ -31,6 +32,7 @@
   <summary>Photo geotagging program</summary>
   <summary xml:lang="ca">Programa de geoetiquetatge de fotografies</summary>
   <summary xml:lang="ca-valencia">Programa de geoetiquetatge de fotografies</summary>
+  <summary xml:lang="de">Anwendung zum Geotaggen von Fotos</summary>
   <summary xml:lang="en-GB">Photo geotagging program</summary>
   <summary xml:lang="es">Programa para geoetiquetado de fotos</summary>
   <summary xml:lang="fi">Valokuvien sijaintitunnisteiden muokkaus</summary>
@@ -73,6 +75,7 @@
       <caption>Geotagging with KGeoTag</caption>
       <caption xml:lang="ca">Etiquetatge geogràfic amb el KGeoTag</caption>
       <caption xml:lang="ca-valencia">Etiquetatge geogràfic amb el KGeoTag</caption>
+      <caption xml:lang="de">Geotagging mit KGeoTag</caption>
       <caption xml:lang="en-GB">Geotagging with KGeoTag</caption>
       <caption xml:lang="es">Geoetiquetado con KGeoTag</caption>
       <caption xml:lang="fi">Sijaintitiedon muokkaus KGeoTagillä</caption>
