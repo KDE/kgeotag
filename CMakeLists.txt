@@ -5,7 +5,7 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.0.0)
 
-set(QT_MIN_VERSION "5.15.2")
+set(QT_MIN_VERSION "5.14.0")
 set(KF5_DEP_VERSION "5.79.0")
 set(KExiv2_MIN_VERSION "5.0.0")
 set(Marble_MIN_VERSION "0.28.0")
