@@ -66,6 +66,6 @@ If a time drift has been identified and a deviation has been given, the images' 
 
 ## Getting in touch
 
-The IRC channel of the project is [#kde-kgeotag](irc://chat.freenode.net/kde-kgeotag), and there's also a [mailing list](https://mail.kde.org/cgi-bin/mailman/listinfo/kgeotag/).
+The IRC channel of the project is [#kde-kgeotag](irc://irc.libera.chat/kde-kgeotag), and there's also a [mailing list](https://mail.kde.org/cgi-bin/mailman/listinfo/kgeotag/).
 
 Everybody is invited to participate in KGeoTag's development! You don't have to be able to write code to do so. All testing and feedback is greatly appreciated!
