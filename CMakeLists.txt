@@ -2,13 +2,13 @@
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
-cmake_minimum_required(VERSION 3.16.0)
+cmake_minimum_required(VERSION 3.8.0)
 project(kgeotag LANGUAGES CXX VERSION 1.0.0)
 
-set(QT_MIN_VERSION "5.14.0")
-set(KF5_DEP_VERSION "5.79.0")
+set(QT_MIN_VERSION "5.11.0")
+set(KF5_DEP_VERSION "5.44.0")
 set(KExiv2_MIN_VERSION "5.0.0")
-set(Marble_MIN_VERSION "") # versionless until Marble relases with new version syntax
+set(Marble_MIN_VERSION "0.28.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
