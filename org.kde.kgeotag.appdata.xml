@@ -24,6 +24,7 @@
   <name xml:lang="pa">ਕੇ-ਜੀਓ-ਟੈਗ</name>
   <name xml:lang="pl">KGeoTag</name>
   <name xml:lang="pt">KGeoTag</name>
+  <name xml:lang="pt-BR">KGeoTag</name>
   <name xml:lang="ru">KGeoTag</name>
   <name xml:lang="sk">KGeoTag</name>
   <name xml:lang="sl">KGeoTag</name>
@@ -47,6 +48,7 @@
   <summary xml:lang="pa">ਫ਼ੋਟੋ ਜੀਓਟੈਗ ਲਗਾਉਣ ਵਾਲਾ ਪਰੋਗਰਾਮ</summary>
   <summary xml:lang="pl">Program do geooznaczania zdjęć</summary>
   <summary xml:lang="pt">Programa de marcação geográfica de fotografias</summary>
+  <summary xml:lang="pt-BR">Programa para marcar geograficamente fotos</summary>
   <summary xml:lang="ru">Приложение для управления геометками в фотографиях</summary>
   <summary xml:lang="sk">Program na geotagovanie fotiek</summary>
   <summary xml:lang="sl">Program za geokodiranje fotografij</summary>
@@ -92,6 +94,7 @@
       <caption xml:lang="nl">Met KGeoTag geo-tags toevoegen</caption>
       <caption xml:lang="pl">Geoznaczenie z KGeoTag</caption>
       <caption xml:lang="pt">Marcação geográfica com o KGeoTag</caption>
+      <caption xml:lang="pt-BR">Marcando geograficamente com o KGeoTag</caption>
       <caption xml:lang="ru">Работа с изображениями в KGeoTag</caption>
       <caption xml:lang="sl">Geokodiranje z KGeoTag</caption>
       <caption xml:lang="sv">Geografisk lokalisering med Kgeotag</caption>
