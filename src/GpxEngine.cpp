@@ -121,6 +121,12 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
             } else if (name == s_time) {
                 xml.readNext();
                 time = QDateTime::fromString(xml.text().toString(), Qt::ISODate);
+
+                // Strip out milliseconds if the GPX provides them to allow seconds-exact matching
+                const auto msec = time.time().msec();
+                if (msec != 0) {
+                    time = time.addMSecs(msec * -1);
+                }
             }
 
         } else if (token == QXmlStreamReader::EndElement) {

@@ -157,6 +157,12 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     // Apply the currently set timezone
     data.date.setTimeZone(m_timeZone);
 
+    // Strip out milliseconds if the image provides them to allow seconds-exact matching
+    const auto msec = data.date.time().msec();
+    if (msec != 0) {
+        data.date = data.date.addMSecs(msec * -1);
+    }
+
     // Try to read gps information
     double altitude;
     double latitude;
