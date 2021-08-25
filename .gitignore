@@ -2,7 +2,6 @@
 #
 # SPDX-License-Identifier: CC0-1.0
 
-# Ignore the following files
 *~
 *.[oa]
 *.diff
@@ -34,6 +33,3 @@ __pycache__
 /.cache/
 compile_commands.json
 .clang-format
-
-
-
