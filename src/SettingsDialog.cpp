@@ -85,9 +85,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *searchMatchesBoxLayout = new QVBoxLayout(searchMatchesBox);
 
-    auto *matchModeLabel = new QLabel(i18n(
-        "Search type for the main menu \"Search matches\" entry (all variants can always be "
-        "started from the \"Automatic matching\" dock):"));
+    auto *matchModeLabel = new QLabel(i18n("Search type for the main menu \"Assign images to GPS "
+                                           "data\" entry"));
     matchModeLabel->setWordWrap(true);
     searchMatchesBoxLayout->addWidget(matchModeLabel);
 
@@ -103,6 +102,12 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
         m_automaticMatchingMode->findData(m_settings->defaultMatchingMode()));
 
     searchMatchesBoxLayout->addWidget(m_automaticMatchingMode);
+
+    auto *matchModeNoteLabel = new QLabel(i18n(
+        "This triggers an automatic (re-)assignment of all images, respecting the \"Exclude "
+        "manually tagged images\" setting from the \"Automatic assignment\" dock."));
+    matchModeNoteLabel->setWordWrap(true);
+    searchMatchesBoxLayout->addWidget(matchModeNoteLabel);
 
     // Images
 

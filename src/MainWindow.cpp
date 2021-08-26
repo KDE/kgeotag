@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -123,6 +123,16 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     connect(removeEverything, &QAction::triggered, this, &MainWindow::removeEverything);
 
     // "File" menu again
+
+    auto *searchMatchesAction = actionCollection()->addAction(QStringLiteral("searchMatches"));
+    searchMatchesAction->setText(i18n("Assign images to GPS data"));
+    searchMatchesAction->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
+    actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(tr("Ctrl+A")));
+    connect(searchMatchesAction, &QAction::triggered,
+            [this]
+            {
+                triggerCompleteAutomaticMatching(m_settings->defaultMatchingMode());
+            });
 
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
