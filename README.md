@@ -52,7 +52,7 @@ It's also possible to enter coordinates for one or more images by hand. The alti
 
 Altitudes can always be set maually. Alternatively, the altitudes can also be looked up querying different elevation datasets using [opentopodata.org](https://www.opentopodata.org/)'s API.
 
-The preset it to use the [ASTER](https://asterweb.jpl.nasa.gov/gdem.asp) dataset. This one covers the whole globe. Others can be used as well, cf. [opentopodata.org's homepage](https://www.opentopodata.org/#public-api).
+The preset is to use the [ASTER](https://asterweb.jpl.nasa.gov/gdem.asp) dataset. This one covers the whole globe. Others can be used as well, cf. [opentopodata.org's homepage](https://www.opentopodata.org/#public-api).
 
 By default, such a server lookup has to be triggered manually. It's also possible to enable automated altitude lookups for all images dropped on the map (which yields geographic coordinates but no elevation) and coordinates entered manually.
 
