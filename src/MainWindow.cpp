@@ -939,7 +939,9 @@ void MainWindow::triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchT
 void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType)
 {
     if (m_imagesModel->allImages().isEmpty()) {
-        QMessageBox::information(this, i18n("(Re)Assign all images"), i18n("Nothing to do"));
+        QMessageBox::information(this, i18n("(Re)Assign all images"),
+                                 i18n("Can't search for matches:\n"
+                                      "No images have been loaded yet."));
         return;
     }
 
@@ -956,6 +958,13 @@ void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType
 
 void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType)
 {
+    if (m_geoDataModel->rowCount() == 0) {
+        QMessageBox::information(this, i18n("Automatic matching"),
+                                 i18n("Can't search for matches:\n"
+                                      "No GPS tracks have been loaded yet."));
+        return;
+    }
+
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
     m_gpxEngine->setMatchParameters(m_automaticMatchingWidget->exactMatchTolerance(),
