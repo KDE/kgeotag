@@ -112,7 +112,7 @@
   <custom>
     <value key="KDE::irc">#kgeotag</value>
     <value key="KDE::matrix">#kgeotag</value>
-    <value key="KDE::mailinglist">kgeotag@kde.org</value>
+    <value key="KDE::mailinglist">kgeotag</value>
   </custom>
   <content_rating type="oars-1.1"/>
 </component>
