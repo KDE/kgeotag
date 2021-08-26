@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -251,6 +251,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     // Scroll area
 
     auto *scrollArea = new QScrollArea;
+    scrollArea->setWidgetResizable(true);
     const int styleAddition = scrollArea->width() - scrollArea->viewport()->width();
     scrollArea->setWidget(settingsWidget);
     mainLayout->addWidget(scrollArea);
@@ -259,8 +260,6 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     const int widgetWidth = settingsWidget->width() + scrollArea->verticalScrollBar()->width()
                             + styleAddition;
     scrollArea->setMinimumWidth(widgetWidth);
-    scrollArea->setMaximumWidth(widgetWidth);
-    setMaximumWidth(width());
 
     // Button box
 
