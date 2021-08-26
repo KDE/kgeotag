@@ -53,7 +53,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *layout = new QVBoxLayout(settingsWidget);
 
-    // General
+    // Image lists
 
     auto *listsBox = new QGroupBox(i18n("Image lists"));
     layout->addWidget(listsBox);
@@ -77,6 +77,29 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
 
     listsBoxLayout->addWidget(m_imageListsMode);
+
+    // Automatic matching
+
+    auto *searchMatchesBox = new QGroupBox(i18n("Image Assignment"));
+    layout->addWidget(searchMatchesBox);
+
+    auto *searchMatchesBoxLayout = new QVBoxLayout(searchMatchesBox);
+
+    auto *matchModeLabel = new QLabel(i18n(
+        "Search type for the main menu \"Search matches\" entry (all variants can always be "
+        "started from the \"Automatic matching\" dock):"));
+    matchModeLabel->setWordWrap(true);
+    searchMatchesBoxLayout->addWidget(matchModeLabel);
+
+    m_automaticMatchingMode = new QComboBox;
+    m_automaticMatchingMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
+
+    m_automaticMatchingMode->addItem(i18n("Combined match search"), KGeoTag::CombinedMatchSearch);
+    m_automaticMatchingMode->addItem(i18n("Search exact matches only"), KGeoTag::ExactMatchSearch);
+    m_automaticMatchingMode->addItem(i18n("Search interpolated matches only"),
+                                     KGeoTag::InterpolatedMatchSearch);
+
+    searchMatchesBoxLayout->addWidget(m_automaticMatchingMode);
 
     // Images
 

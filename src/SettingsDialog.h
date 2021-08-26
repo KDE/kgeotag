@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -44,6 +44,8 @@ private: // Variables
 
     QComboBox *m_imageListsMode;
     QCheckBox *m_splitImagesList;
+
+    QComboBox *m_automaticMatchingMode;
 
     QSpinBox *m_thumbnailSize;
     QSpinBox *m_previewSize;
