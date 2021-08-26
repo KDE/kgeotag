@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -86,6 +86,9 @@ public:
 
     void saveBookmarks(const QHash<QString, Coordinates> *bookmarks);
     QHash<QString, Coordinates> bookmarks() const;
+
+    void saveDefaultMatchingMode(KGeoTag::SearchType mode);
+    KGeoTag::SearchType defaultMatchingMode() const;
 
 private: // Variables
     KSharedConfig::Ptr m_config;

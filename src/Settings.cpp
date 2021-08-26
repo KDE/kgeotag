@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -57,12 +57,27 @@ static const QLatin1String s_thumnailSize("thumbnailSize");
 static const QLatin1String s_previewSize("previewSize");
 
 // Assignment
+
 static const QLatin1String s_assignment("assignment");
+
 static const QLatin1String s_exactMatchTolerance("exactMatchTolerance");
 static const QLatin1String s_maximumInterpolationInterval("maximumInterpolationInterval");
 static const QLatin1String s_maximumInterpolationDistance("maximumInterpolationDistance");
 static const QLatin1String s_excludeManuallyTaggedWhenReassigning(
                                "excludeManuallyTaggedWhenReassigning");
+
+static const QLatin1String s_defaultMatchingMode("defaultMatchingMode");
+static const QVector<KGeoTag::SearchType> s_defaultMatchingModeEnum {
+    KGeoTag::CombinedMatchSearch,
+    KGeoTag::ExactMatchSearch,
+    KGeoTag::InterpolatedMatchSearch
+};
+static const QVector<QString> s_defaultMatchingModeString {
+    QStringLiteral("combinedSearch"),
+    QStringLiteral("exactSearch"),
+    QStringLiteral("interpolatedSearch")
+};
+static const QString &s_defaultMatchingModePreset = s_defaultMatchingModeString.at(0);
 
 // Elevation lookup
 static const QLatin1String s_elevationLookup("elevationLookup");
@@ -462,4 +477,23 @@ QHash<QString, Coordinates> Settings::bookmarks() const
     }
 
     return bookmarks;
+}
+
+void Settings::saveDefaultMatchingMode(KGeoTag::SearchType mode)
+{
+    auto group = m_config->group(s_assignment);
+    group.writeEntry(s_defaultMatchingMode,
+        s_defaultMatchingModeString.at(s_defaultMatchingModeEnum.indexOf(mode)));
+    group.sync();
+}
+
+KGeoTag::SearchType Settings::defaultMatchingMode() const
+{
+    auto group = m_config->group(s_assignment);
+    const auto modeString = group.readEntry(s_defaultMatchingMode, s_defaultMatchingModePreset);
+    if (s_defaultMatchingModeString.contains(modeString)) {
+        return s_defaultMatchingModeEnum.at(s_defaultMatchingModeString.indexOf(modeString));
+    } else {
+        return KGeoTag::CombinedMatchSearch;
+    }
 }

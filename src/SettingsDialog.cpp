@@ -99,6 +99,9 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_automaticMatchingMode->addItem(i18n("Search interpolated matches only"),
                                      KGeoTag::InterpolatedMatchSearch);
 
+    m_automaticMatchingMode->setCurrentIndex(
+        m_automaticMatchingMode->findData(m_settings->defaultMatchingMode()));
+
     searchMatchesBoxLayout->addWidget(m_automaticMatchingMode);
 
     // Images
@@ -316,6 +319,9 @@ void SettingsDialog::accept()
 {
     const auto splitImagesList = m_imageListsMode->currentIndex() == 0;
     m_settings->saveSplitImagesList(splitImagesList);
+
+    m_settings->saveDefaultMatchingMode(static_cast<KGeoTag::SearchType>(
+        m_automaticMatchingMode->currentData().toInt()));
 
     const auto thumbnailSize = m_thumbnailSize->value();
     m_settings->saveThumbnailSize(thumbnailSize);
