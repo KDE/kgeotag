@@ -103,7 +103,7 @@
       <caption xml:lang="zh-CN">使用 KGeoTag 管理地理位置标签</caption>
     </screenshot>
   </screenshots>
-  <url type="homepage">https://invent.kde.org/graphics/kgeotag/</url>
+  <url type="homepage">https://kgeotag.kde.org/</url>
   <url type="bugtracker">https://bugs.kde.org/enter_bug.cgi?product=kgeotag</url>
   <provides>
     <binary>kgeotag</binary>
