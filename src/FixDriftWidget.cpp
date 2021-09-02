@@ -34,7 +34,7 @@ FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
     m_timeZone->setEditable(true);
     m_timeZone->setInsertPolicy(QComboBox::NoInsert);
 
-    const auto systemTimeZoneId = QTimeZone::systemTimeZone().id();
+    const auto systemTimeZoneId = QTimeZone::systemTimeZoneId();
     const auto allTimeZones = QTimeZone::availableTimeZoneIds();
     int index = 0;
     int systemIndex = -1;
