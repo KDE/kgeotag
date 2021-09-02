@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -15,7 +15,6 @@
 #include <QCheckBox>
 #include <QGroupBox>
 #include <QComboBox>
-#include <QTimeZone>
 
 // KDE includes
 #include <KLocalizedString>
@@ -49,12 +48,18 @@ FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
     }
 
     timeZoneBoxLayout->addWidget(m_timeZone);
-    if (systemIndex != -1) {
-        m_timeZone->setCurrentIndex(systemIndex);
-    }
 
     connect(m_timeZone, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &FixDriftWidget::imagesTimeZoneChanged);
+    connect(m_timeZone, QOverload<int>::of(&QComboBox::currentIndexChanged),
+            [this]
+            {
+                m_imagesTimeZone = QTimeZone(m_timeZone->currentData().toByteArray());
+            });
+
+    if (systemIndex != -1) {
+        m_timeZone->setCurrentIndex(systemIndex);
+    }
 
     auto *driftBox = new QGroupBox(i18n("Camera clock time drift"));
     auto *driftBoxLayout = new QVBoxLayout(driftBox);
@@ -120,6 +125,11 @@ bool FixDriftWidget::save() const
 QByteArray FixDriftWidget::imagesTimeZoneId() const
 {
     return m_timeZone->currentData().toByteArray();
+}
+
+const QTimeZone &FixDriftWidget::imagesTimeZone() const
+{
+    return m_imagesTimeZone;
 }
 
 bool FixDriftWidget::setImagesTimeZone(const QByteArray &id)

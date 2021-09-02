@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -8,6 +8,7 @@
 
 // Qt includes
 #include <QWidget>
+#include <QTimeZone>
 
 // Qt classes
 class QComboBox;
@@ -24,6 +25,7 @@ public:
     bool save() const;
     bool displayFixed() const;
     QByteArray imagesTimeZoneId() const;
+    const QTimeZone &imagesTimeZone() const;
     bool setImagesTimeZone(const QByteArray &id);
 
 signals:
@@ -37,6 +39,7 @@ private: // Variables
     QSpinBox *m_driftSeconds;
     QCheckBox *m_displayFixed;
     QCheckBox *m_save;
+    QTimeZone m_imagesTimeZone;
 
 };
 

@@ -1626,7 +1626,7 @@ void MainWindow::removeEverything()
 void MainWindow::centerTrackPoint(int trackIndex, int trackPointIndex)
 {
     const auto dateTime = m_geoDataModel->dateTimes().at(trackIndex).at(trackPointIndex)
-                              .toTimeZone(QTimeZone(m_fixDriftWidget->imagesTimeZoneId()));
+                              .toTimeZone(m_fixDriftWidget->imagesTimeZone());
     const auto coordinates = m_geoDataModel->trackPoints().at(trackIndex).value(dateTime);
     m_mapWidget->blockSignals(true);
     m_mapWidget->centerCoordinates(coordinates);
