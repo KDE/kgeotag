@@ -57,6 +57,9 @@ FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
                 m_imagesTimeZone = QTimeZone(m_timeZone->currentData().toByteArray());
             });
 
+    // We should always find a valid index, as QTimeZone::systemTimeZoneId() will return the
+    // UTC timezone if the system timezone is not known by Qt. However, to be sure to avoid a
+    // segfault:
     if (systemIndex != -1) {
         m_timeZone->setCurrentIndex(systemIndex);
     }
