@@ -1,5 +1,5 @@
-* **Bugfix:** When walking aling a track, the date and time was displayed to be in the set timezone,
-  but not actually converted to it. Now, the displayed date and time is displayed correctly.
+* **Bugfix:** When walking along a track, the date and time were displayed to be in the set
+  timezone, but not actually converted to it. Now, the timestamps are translated correctly.
 
 * **Enhancement:** Added an "Assign images to GPS data" main menu entry. This one triggers an
   automatic image assignment af all loaded images, like "(Re)Assign all images" from the "Automatic
