@@ -1,0 +1,6 @@
+Dependencies:
+- 'on': '@all'
+  'require':
+    'frameworks/*': '@stable'
+    'graphics/libkexiv2': '@stable'
+    'education/marble': '@stable'
