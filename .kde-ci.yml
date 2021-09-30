@@ -5,6 +5,10 @@
 Dependencies:
 - 'on': ['@all']
   'require':
-    'frameworks/*': '@stable'
+    'frameworks/kcoreaddons': '@stable'
+    'frameworks/ki18n': '@stable'
+    'frameworks/kxmlgui': '@stable'
+    'frameworks/kconfigwidgets': '@stable'
+    'frameworks/kcrash': '@stable'
     'graphics/libkexiv2': '@stable'
     'education/marble': '@stable'
