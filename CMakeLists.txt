@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
+# SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.8.0)
-project(kgeotag LANGUAGES CXX VERSION 1.0.0)
+project(kgeotag LANGUAGES CXX VERSION 1.1.0)
 
 set(QT_MIN_VERSION "5.11.0")
 set(KF5_DEP_VERSION "5.44.0")

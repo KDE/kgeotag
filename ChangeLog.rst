@@ -1,3 +1,7 @@
+====================================================================================================
+KGeoTag 1.1.0 released (16.10.2021)
+====================================================================================================
+
 * **Bugfix:** When walking along a track, the date and time were displayed to be in the set
   timezone, but not actually converted to it. Now, the timestamps are translated correctly.
 
