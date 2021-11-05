@@ -1,4 +1,4 @@
-/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tobias.leupold@gmx.de>
+/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
 
    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 */
@@ -25,7 +25,8 @@ static const QVector<QString> s_usableImages {
 };
 
 static const QVector<QString> s_usableGeoData {
-    QStringLiteral("application/x-gpx+xml")
+    QStringLiteral("application/x-gpx+xml"),
+    QStringLiteral("application/xml+gpx")
 };
 
 static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
