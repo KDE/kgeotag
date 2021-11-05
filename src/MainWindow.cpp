@@ -127,7 +127,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *searchMatchesAction = actionCollection()->addAction(QStringLiteral("searchMatches"));
     searchMatchesAction->setText(i18n("Assign images to GPS data"));
     searchMatchesAction->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
-    actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(tr("Ctrl+A")));
+    actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(tr("Ctrl+M")));
     connect(searchMatchesAction, &QAction::triggered,
             [this]
             {
