@@ -35,16 +35,23 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
       m_geoDataModel(geoDataModel)
 {
     // Load the timezone map image
-    m_timezoneMap = QImage(QStandardPaths::locate(QStandardPaths::AppDataLocation,
-                                                  QStringLiteral("timezones.png")));
+    const auto timezoneMapFile = QStandardPaths::locate(QStandardPaths::AppDataLocation,
+                                                        QStringLiteral("timezones.png"));
+    if (! timezoneMapFile.isEmpty()) {
+        m_timezoneMap = QImage(timezoneMapFile);
+    }
 
     // Load the color-timezone mapping
-    QFile jsonFile(QStandardPaths::locate(QStandardPaths::AppDataLocation,
-                                          QStringLiteral("timezones.json")));
-    jsonFile.open(QIODevice::ReadOnly | QIODevice::Text);
-    const auto jsonDocument = QJsonDocument::fromJson(jsonFile.readAll());
-    jsonFile.close();
-    m_timezoneMapping = jsonDocument.object();
+    const auto timezoneMappingFile = QStandardPaths::locate(QStandardPaths::AppDataLocation,
+                                                            QStringLiteral("timezones.json"));
+    if (! timezoneMappingFile.isEmpty()) {
+        QFile jsonData(timezoneMappingFile);
+        if (jsonData.open(QIODevice::ReadOnly | QIODevice::Text)) {
+            const auto jsonDocument = QJsonDocument::fromJson(jsonData.readAll());
+            jsonData.close();
+            m_timezoneMapping = jsonDocument.object();
+        }
+    }
 }
 
 GpxEngine::LoadInfo GpxEngine::load(const QString &path)
@@ -348,4 +355,9 @@ Coordinates GpxEngine::findInterpolatedCoordinates(const QDateTime &time) const
 QByteArray GpxEngine::lastDetectedTimeZoneId() const
 {
     return m_lastDetectedTimeZoneId;
+}
+
+bool GpxEngine::timeZoneDataLoaded() const
+{
+    return ! m_timezoneMap.isNull() && ! m_timezoneMapping.isEmpty();
 }

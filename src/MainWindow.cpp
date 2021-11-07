@@ -253,6 +253,24 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             this, &MainWindow::elevationLookupFailed);
     connect(m_sharedObjects->elevationEngine(), &ElevationEngine::notAllPresent,
             this, &MainWindow::notAllElevationsPresent);
+
+    // Check if we could setup the timezone detection properly
+    QTimer::singleShot(0, [this]
+    {
+        // We do this in a QTimer singleShot so that the main window
+        // will be already visible if this warning should be displayed
+        if (! m_gpxEngine->timeZoneDataLoaded()) {
+            QMessageBox::warning(this, i18n("Loading timezone data"),
+                i18n("<p>Could not load or parse the timezone data files "
+                     "<kbd>timezones.json</kbd> and/or <kbd>timezones.png</kbd>. Automatic "
+                     "timezone detection won't work.</p>"
+                     "<p>Please check your installation!</p>"
+                     "<p>If you run manually compiled sources without having installed them, "
+                     "please refer to <a href=\"https://community.kde.org/KGeoTag"
+                     "#Running_the_compiled_sources\">KDE's community wiki</a> on how to make "
+                     "the respective files accessible.</p>"));
+        }
+    });
 }
 
 QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QString &title,

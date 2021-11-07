@@ -50,6 +50,7 @@ public:
     void setMatchParameters(int exactMatchTolerance, int maximumInterpolationInterval,
                             int maximumInterpolationDistance);
     QByteArray lastDetectedTimeZoneId() const;
+    bool timeZoneDataLoaded() const;
 
 private: // Functions
     Coordinates findExactCoordinates(const QDateTime &time) const;
