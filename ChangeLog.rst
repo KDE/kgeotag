@@ -1,3 +1,14 @@
+* **Enhancement:** KGeoTag now checks if the timezone data files could actually be loaded and
+  displays a warning about timezone detection not working if not.
+
+* **Bugfix (#445023):** Made selecting all entries of an image list work again via the standard
+  shortcut ``CTRL+A``. This one was assigned to "Assign images to GPS data", which can now be
+  accessed via ``CTRL+M``.
+
+* **Bugfix:** :code:`QMimeDatabase::mimeTypeForFile` now returns ``application/xml+gpx`` as a GPX
+  file's MIME type instead of ``application/x-gpx+xml`` – at least here on my stable Gentoo machine.
+  This made KGeoTag refuse to load any GPX file. Now, both MIME types are accepted.
+
 * **Change:** Suppressed a warning by bumping :code:`cmake_minimum_required` to :code:`3.16.0`.
 
 ====================================================================================================
