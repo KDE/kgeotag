@@ -1,3 +1,7 @@
+====================================================================================================
+KGeoTag 1.2.0 released (12.11.2021)
+====================================================================================================
+
 * **Enhancement:** KGeoTag now checks if the timezone data files could actually be loaded and
   displays a warning about timezone detection not working if not.
 
