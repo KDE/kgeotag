@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: CC0-1.0
 
 Dependencies:
-- 'on': ['@all']
+- 'on': [ '@all' ]
   'require':
     'frameworks/kcoreaddons': '@stable'
     'frameworks/ki18n': '@stable'
@@ -11,4 +11,4 @@ Dependencies:
     'frameworks/kconfigwidgets': '@stable'
     'frameworks/kcrash': '@stable'
     'graphics/libkexiv2': '@same'
-    'kde/education/marble': '@stable'
+    'education/marble': '@same'
