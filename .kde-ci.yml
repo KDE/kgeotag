@@ -10,5 +10,5 @@ Dependencies:
     'frameworks/kxmlgui': '@stable'
     'frameworks/kconfigwidgets': '@stable'
     'frameworks/kcrash': '@stable'
-    'graphics/libkexiv2': '@same'
-    'education/marble': '@same'
+    'graphics/libkexiv2': 'v20.12.0'
+    'education/marble': 'v20.12.3'
