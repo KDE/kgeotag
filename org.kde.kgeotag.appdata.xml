@@ -115,5 +115,8 @@
     <value key="KDE::matrix">#kgeotag</value>
     <value key="KDE::mailinglist">kgeotag</value>
   </custom>
+  <releases>
+    <release version="1.2.0" date="2021-11-12"/>
+  </releases>
   <content_rating type="oars-1.1"/>
 </component>
