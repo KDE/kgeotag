@@ -15,7 +15,6 @@
 // Qt includes
 #include <QApplication>
 #include <QDebug>
-#include <QDate>
 
 int main(int argc, char *argv[])
 {
