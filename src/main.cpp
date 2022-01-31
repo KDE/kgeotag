@@ -51,6 +51,8 @@ int main(int argc, char *argv[])
     auto *mainWindow = new MainWindow(&sharedObjects);
     mainWindow->show();
 
+    application.setWindowIcon(QIcon::fromTheme(QStringLiteral("kgeotag")));
+
     // Run the program
     return application.exec();
 }
