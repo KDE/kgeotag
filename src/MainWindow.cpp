@@ -1,7 +1,6 @@
-/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
-
-   SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
-*/
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl@l3u.de>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
 // Local includes
 #include "MainWindow.h"
@@ -72,6 +71,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
       m_geoDataModel(sharedObjects->geoDataModel())
 {
     setWindowTitle(i18n("KGeoTag"));
+    setWindowIcon(QIcon::fromTheme(QStringLiteral("kgeotag")));
 
     connect(m_elevationEngine, &ElevationEngine::elevationProcessed,
             this, &MainWindow::elevationProcessed);

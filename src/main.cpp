@@ -1,7 +1,6 @@
-/* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
-
-   SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
-*/
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl@l3u.de>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
 // Local includes
 #include "MainWindow.h"
@@ -50,8 +49,6 @@ int main(int argc, char *argv[])
     // Create the main window
     auto *mainWindow = new MainWindow(&sharedObjects);
     mainWindow->show();
-
-    application.setWindowIcon(QIcon::fromTheme(QStringLiteral("kgeotag")));
 
     // Run the program
     return application.exec();
