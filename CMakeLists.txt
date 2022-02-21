@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl@l3u.de>
+# SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl@l3u.de>
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
@@ -6,7 +6,7 @@ cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.2.0)
 
 set(QT_MIN_VERSION "5.11.0")
-set(KF5_DEP_VERSION "5.44.0")
+set(KF5_MIN_VERSION "5.44.0")
 set(KExiv2_MIN_VERSION "5.0.0")
 set(Marble_MIN_VERSION "") # We can add a version as soon as Marble has fixed their versioning
 
@@ -14,7 +14,7 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 
-find_package(ECM ${KF5_DEP_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
 
 include(KDEInstallDirs)
@@ -36,7 +36,7 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF5 ${KF5_DEP_VERSION} COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash REQUIRED)
+find_package(KF5 ${KF5_MIN_VERSION} COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash REQUIRED)
 find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
 
 # Find Marble
