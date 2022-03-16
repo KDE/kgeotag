@@ -1,9 +1,10 @@
 #!/usr/bin/env python
 
-""" SPDX-FileCopyrightText: 2021 Isaac Wismer <isaac@iwismer.ca>
+# SPDX-FileCopyrightText: 2021-2022 Isaac Wismer <isaac@iwismer.ca>
+#
+# SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
-    SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
-
+"""
     This script takes a timezone data file (designed for the ones providede
     here: https://github.com/evansiroky/timezone-boundary-builder/), and turns it
     into a PNG with each of the timezones a unique color, and a JSON file with a
@@ -123,9 +124,9 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
     path.mkdir(parents=True, exist_ok=True)
 
     # We write the JSON dataset by hand, so that the order of all key -> value mappings inside the
-    # file is consistent. Using JSON functions, the dictionaray would be written to the file in a
+    # file is consistent. Using JSON functions, the dictionary would be written to the file in a
     # random order, making content versioning hard as the file would completely change each time
-    # is generated.
+    # it is generated.
     json_file = (path / "timezones.json").resolve()
     print(f"Saving mappings JSON file to: {json_file.absolute()}")
     with open(json_file, "w") as f:
