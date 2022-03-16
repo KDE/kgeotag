@@ -89,6 +89,7 @@ set(kgeotag_SOURCES
 add_executable(kgeotag ${kgeotag_SOURCES})
 add_dependencies(kgeotag UpdateVersion)
 target_link_libraries(kgeotag
+    PRIVATE
     Qt5::Widgets
     Qt5::Network
     KF5::CoreAddons
