@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl@l3u.de>
+# SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at l3u dot de>
 #
 # SPDX-License-Identifier: BSD-3-Clause
 
