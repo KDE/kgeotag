@@ -36,7 +36,10 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF5 ${KF5_MIN_VERSION} COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash REQUIRED)
+find_package(KF5 ${KF5_MIN_VERSION}
+    COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
+    REQUIRED
+)
 find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
 
 # Find Marble
@@ -99,6 +102,13 @@ target_link_libraries(kgeotag
     KF5::Crash
     KF5::KExiv2
     Marble
+)
+
+# Documentation
+kdoctools_create_handbook(
+    doc/index.docbook
+    INSTALL_DESTINATION "${KDE_INSTALL_DOCBUNDLEDIR}/en"
+    SUBDIR kgeotag
 )
 
 # Installation
