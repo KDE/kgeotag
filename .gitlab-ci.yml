@@ -1,20 +1,6 @@
-# SPDX-FileCopyrightText: none
-#
+# SPDX-FileCopyrightText: None
 # SPDX-License-Identifier: CC0-1.0
 
 include:
-  - https://invent.kde.org/sysadmin/ci-tooling/raw/master/invent/ci-before.yml
-  - https://invent.kde.org/sysadmin/ci-tooling/raw/master/invent/ci-extragear-linux.yml
-
-build:debian-stable:
-  stage: build
-  image: "debian:stable"
-  variables:
-    DEBIAN_FRONTEND: noninteractive
-    LANG: C.UTF-8
-  before_script:
-    - >-
-      apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf5coreaddons-dev libkf5doctools-dev libkf5i18n-dev libkf5xmlgui-dev libkf5configwidgets-dev libkf5crash-dev libkf5kexiv2-dev libmarble-dev
-  script:
-    - mkdir build && cd $_ && cmake .. && make -j$(nproc)
-    - make install
+  - https://invent.kde.org/sysadmin/ci-utilities/raw/master/gitlab-templates/linux.yml
+  - https://invent.kde.org/sysadmin/ci-utilities/raw/master/gitlab-templates/freebsd.yml
