@@ -8,7 +8,7 @@ project(kgeotag LANGUAGES CXX VERSION 1.2.0)
 set(QT_MIN_VERSION "5.11.0")
 set(KF5_MIN_VERSION "5.44.0")
 set(KExiv2_MIN_VERSION "5.0.0")
-set(Marble_MIN_VERSION "") # We can add a version as soon as Marble has fixed their versioning
+set(Marble_MIN_VERSION "21.12.0")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
