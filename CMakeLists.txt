@@ -14,9 +14,12 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
-set(CMAKE_MODULE_PATH ${ECM_MODULE_PATH} ${CMAKE_SOURCE_DIR}/cmake)
+# Local CMake modules
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+# Find ECM
+find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
@@ -40,6 +43,8 @@ find_package(KF5 ${KF5_MIN_VERSION}
     COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
     REQUIRED
 )
+
+# Find KExiv2
 find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
 
 # Find Marble
