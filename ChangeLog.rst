@@ -1,3 +1,9 @@
+* **Change**: As `Marble <https://marble.kde.org/>`_ now has a decent versioning scheme (at least
+  since the KDE Apps release 21.12.3), KGeoTag now has a defined dependecy for Marble: It now
+  depends on at least Marble 21.12.3. It actually can be built against older versions as well, but
+  due to the lack of proper version bumps, there was no way to define a definitive version to depend
+  on until now.
+
 * **New/Bugfix (#452534):** Added a handbook stub.
 
 ====================================================================================================
