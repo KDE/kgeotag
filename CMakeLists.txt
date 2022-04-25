@@ -46,9 +46,15 @@ find_package(KF5 ${KF5_MIN_VERSION}
 
 # Find KExiv2
 find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
+if (${KF5KExiv2_FOUND})
+    message(STATUS "Found KExiv2 version ${KF5KExiv2_VERSION}")
+endif()
 
 # Find Marble
 find_package(Marble ${Marble_MIN_VERSION} REQUIRED)
+if (${Marble_FOUND})
+    message(STATUS "Found Marble version ${Marble_VERSION}")
+endif()
 
 # Generate version.h
 add_custom_target(
