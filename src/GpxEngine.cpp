@@ -46,6 +46,10 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
                                                         QStringLiteral("timezones.png"));
     if (! timezoneMapFile.isEmpty()) {
         m_timezoneMap = QImage(timezoneMapFile);
+        if (! m_timezoneMap.isNull()) {
+            m_timezoneMapWidth = m_timezoneMap.size().width();
+            m_timezoneMapHeight = m_timezoneMap.size().height();
+        }
     }
 
     // Load the color-timezone mapping
@@ -204,19 +208,16 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
 
     // Detect the presumable timezone the corresponding photos were taken in
 
-    const double width = m_timezoneMap.size().width();
-    const double height = m_timezoneMap.size().height();
-
     // Get the loaded path's bounding box's center point
     const auto trackCenter = m_geoDataModel->trackBoxCenter(path);
 
     // Scale the coordinates to the image size, relative to the image center
-    int mappedLon = std::round(trackCenter.lon() / 180.0 * (width / 2.0));
-    int mappedLat = std::round(trackCenter.lat() / 90.0 * (height / 2.0));
+    int mappedLon = std::round(trackCenter.lon() / 180.0 * (m_timezoneMapWidth / 2.0));
+    int mappedLat = std::round(trackCenter.lat() / 90.0 * (m_timezoneMapHeight / 2.0));
 
     // Move the mapped coordinates to the left lower edge
-    mappedLon = width / 2 + mappedLon;
-    mappedLat = height - (height / 2 + mappedLat);
+    mappedLon = m_timezoneMapWidth / 2 + mappedLon;
+    mappedLat = m_timezoneMapHeight - (m_timezoneMapHeight / 2 + mappedLat);
 
     // Get the respective pixel's color
     const auto timezoneColor = m_timezoneMap.pixelColor(mappedLon, mappedLat).name();

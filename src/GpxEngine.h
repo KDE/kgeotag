@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at l3u dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at l3u dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
@@ -63,6 +63,8 @@ private: // Variables
     int m_maximumInterpolationDistance;
 
     QImage m_timezoneMap;
+    double m_timezoneMapWidth = 0.0;
+    double m_timezoneMapHeight = 0.0;
     QJsonObject m_timezoneMapping;
     QByteArray m_lastDetectedTimeZoneId;
 
