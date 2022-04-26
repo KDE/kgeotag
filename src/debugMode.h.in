@@ -1,0 +1,10 @@
+// SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at l3u dot de>
+//
+// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
+
+#ifndef DEBUGMODE_H
+#define DEBUGMODE_H
+
+#cmakedefine DEBUG_MODE
+
+#endif // DEBUGMODE_H

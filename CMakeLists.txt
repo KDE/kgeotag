@@ -14,6 +14,13 @@ set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 
+# Create a debugMode.h file according to the requested CMAKE_BUILD_TYPE
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    message(STATUS "Enabling extra checks for CMAKE_BUILD_TYPE=Debug mode")
+    set(DEBUG_MODE ON)
+endif()
+configure_file(${CMAKE_SOURCE_DIR}/src/debugMode.h.in ${CMAKE_BINARY_DIR}/debugMode.h)
+
 # Local CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 

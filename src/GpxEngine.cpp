@@ -1,21 +1,29 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at l3u dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at l3u dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
 // Local includes
+
 #include "GpxEngine.h"
 #include "GeoDataModel.h"
+
+#include "debugMode.h"
 
 // Marble includes
 #include <marble/GeoDataCoordinates.h>
 
 // Qt includes
+
 #include <QDebug>
 #include <QFile>
 #include <QXmlStreamReader>
 #include <QJsonDocument>
 #include <QStandardPaths>
 #include <QFile>
+
+#ifdef DEBUG_MODE
+#include <QTimeZone>
+#endif // DEBUG_MODE
 
 // C++ includes
 #include <cmath>
@@ -51,6 +59,33 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
             m_timezoneMapping = jsonDocument.object();
         }
     }
+
+#ifdef DEBUG_MODE
+    // Check if all listed timezones are valid
+
+    if (! m_timezoneMapping.isEmpty()) {
+        const auto allTimeZones = QTimeZone::availableTimeZoneIds();
+        const auto keys = m_timezoneMapping.keys();
+        QVector<QByteArray> invalidIds;
+        for (const auto &key : keys) {
+            const auto timeZoneId = m_timezoneMapping.value(key).toString().toUtf8();
+            if (! allTimeZones.contains(timeZoneId)) {
+                invalidIds.append(timeZoneId);
+            }
+        }
+
+        if (invalidIds.count() > 0) {
+            qDebug() << "Found" << invalidIds.count() << "invalid timezone ID(s)!";
+            qDebug() << "    The following IDs are not represented in "
+                     << "QTimeZone::availableTimeZoneIds():";
+            for (const auto &id : invalidIds) {
+                qDebug() << "   " << id;
+            }
+        } else {
+            qDebug() << "Successfully loaded" << m_timezoneMapping.count() << "timezone IDs";
+        }
+    }
+#endif // DEBUG_MODE
 }
 
 GpxEngine::LoadInfo GpxEngine::load(const QString &path)
