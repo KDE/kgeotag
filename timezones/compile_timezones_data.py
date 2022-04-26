@@ -146,8 +146,7 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
     settings.setBackgroundColor(QColor(255, 255, 255))
     settings.setOutputSize(QSize(image_height * 2, image_height))
     settings.setExtent(layer.extent())
-    # Turn antialiasing off
-    settings.setFlag(1, False)
+    settings.setFlag(QgsMapSettings.Antialiasing, False)
 
     def finished() -> None:
         """Function to save the rendered map once it is done rendering"""
@@ -167,14 +166,15 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("input-timezone-data",
                         type=Path,
-                        help="The timezone data file.")
+                        help="The timezone data shapefile (.shp).")
     parser.add_argument("--outdir",
                         type=Path,
-                        help="The folder to place the output data files in.",
+                        help="The folder to place the output data files in (defaults to .).",
                         default=".")
     parser.add_argument("--height",
                         type=int,
-                        help="The height of the output image. Should be an even number.",
+                        help="The height of the output image. Should be an even number. "
+                             "Defaults to 2000.",
                         default=2000)
     args = vars(parser.parse_args())
 
