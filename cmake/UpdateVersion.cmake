@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2018-2021 Tobias Leupold <tl at l3u dot de>
+# SPDX-FileCopyrightText: 2018-2021 Tobias Leupold <tl at stonemx dot de>
 # SPDX-FileCopyrightText: 2012-2018 Johannes Zarl-Zierl <johannes@zarl-zierl.at>
 #
 # SPDX-License-Identifier: BSD-3-Clause
