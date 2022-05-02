@@ -22,11 +22,11 @@ KGeoTag is a Free/Libre Open Source photo geotagging program. It's written in C+
 <title>What is "Geotagging"?</title>
 
 <para>
-Photos (e.g. JPEG images) contain metadata like the creation date, camera information etc. Those are either stored in the so-called <ulink url="https://en.wikipedia.org/wiki/Exif">Exif header</ulink>, in an <ulink url="https://en.wikipedia.org/wiki/Extensible_Metadata_Platform">XMP sidecar file</ulink> or in both. This data can also represent geographic coordinates so that it's replicable where the images were taken.
+Photos (&eg; JPEG images) contain metadata like the creation date, camera information &etc; Those are either stored in the so-called <ulink url="https://en.wikipedia.org/wiki/Exif">Exif header</ulink>, in an <ulink url="https://en.wikipedia.org/wiki/Extensible_Metadata_Platform">XMP sidecar file</ulink> or in both. This data can also represent geographic coordinates so that it's replicable where the images were taken.
 </para>
 
 <para>
-Most cameras don't have GPS receivers, so, most can't save coordinates when taking images. A common approach is to e.g. carry a small GPS logging device along (or nowadays also using a smartphone ;-), which records a track all the time. Later on, the images' dates can be compared to the GPS log's points' dates to figure out where an image was taken.
+Most cameras don't have GPS receivers, so, most can't save coordinates when taking images. A common approach is to &eg; carry a small GPS logging device along (or nowadays also using a smartphone ;-)), which records a track all the time. Later on, the images' dates can be compared to the GPS log's points' dates to figure out where an image was taken.
 </para>
 
 <para>
@@ -120,7 +120,7 @@ It's also possible to enter coordinates for one or more images by hand. The alti
 <title>Setting or looking up elevation information</title>
 
 <para>
-Altitudes can always be set maually. Alternatively, the altitudes can also be looked up querying different elevation datasets using <ulink url="https://www.opentopodata.org/">opentopodata.org</ulink>'s API.
+Altitudes can always be set manually. Alternatively, the altitudes can also be looked up querying different elevation datasets using <ulink url="https://www.opentopodata.org/">opentopodata.org</ulink>'s API.
 </para>
 
 <para>
@@ -142,7 +142,7 @@ Finally, the assigned coordinates can be saved. KGeoTag can either write them to
 </para>
 
 <para>
-This way, the geodata assignment is made persistent and also accessible for other geodata-aware applications (like e.g. <ulink url="https://www.kphotoalbum.org/">KPhotoAlbum</ulink>).
+This way, the geodata assignment is made persistent and also accessible for other geodata-aware applications (like &eg; <ulink url="https://www.kphotoalbum.org/">KPhotoAlbum</ulink>).
 </para>
 
 <para>
