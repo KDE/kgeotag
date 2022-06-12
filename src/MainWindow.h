@@ -38,6 +38,7 @@ class MainWindow : public KXmlGuiWindow
 
 public:
     explicit MainWindow(SharedObjects *sharedObjects);
+    void addPathsFromCommandLine(QStringList &paths);
 
 protected:
     void closeEvent(QCloseEvent *event) override;

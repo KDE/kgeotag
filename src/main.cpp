@@ -15,6 +15,7 @@
 // Qt includes
 #include <QApplication>
 #include <QDebug>
+#include <QCommandLineParser>
 
 int main(int argc, char *argv[])
 {
@@ -38,9 +39,19 @@ int main(int argc, char *argv[])
     aboutData.setOrganizationDomain(QStringLiteral("kde.org").toUtf8());
 
     aboutData.addAuthor(i18n("Tobias Leupold"), i18n("Maintainer"),
-                        QStringLiteral("tl@l3u.de"));
+                        QStringLiteral("tl@stonemx.de"));
 
     KAboutData::setApplicationData(aboutData);
+
+    // Create the command line parser
+    QCommandLineParser commandLineParser;
+    commandLineParser.addPositionalArgument(i18n("Files/Directories"),
+                                            i18n("Files and/or directories to load at startup"),
+                                            i18n("[files/directories...]"));
+    aboutData.setupCommandLine(&commandLineParser);
+    commandLineParser.process(application);
+    aboutData.processCommandLine(&commandLineParser);
+    auto pathsToLoad = commandLineParser.positionalArguments();
 
     // Setup all shared objects
     SharedObjects sharedObjects;
@@ -49,6 +60,11 @@ int main(int argc, char *argv[])
     auto *mainWindow = new MainWindow(&sharedObjects);
     mainWindow->show();
 
-    // Run the program
+    // Trigger loading of files and/or directories given on the command line
+    if (! pathsToLoad.isEmpty()) {
+        mainWindow->addPathsFromCommandLine(pathsToLoad);
+    }
+
+    // Run the QApplication
     return application.exec();
 }

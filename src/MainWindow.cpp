@@ -406,6 +406,11 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QApplication::quit();
 }
 
+void MainWindow::addPathsFromCommandLine(QStringList &paths)
+{
+    Q_UNUSED(paths);
+}
+
 void MainWindow::addFiles(const QStringList &files)
 {
     QStringList selection;
