@@ -52,6 +52,9 @@
 #include <QAbstractButton>
 #include <QVBoxLayout>
 
+// C++ includes
+#include <functional>
+
 static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeModeMap {
     { QStringLiteral("WRITETOIMAGEONLY"),
       KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOIMAGEONLY },
@@ -88,13 +91,15 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     addFilesAction->setText(i18n("Add images and/or GPX tracks"));
     addFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
     actionCollection()->setDefaultShortcut(addFilesAction, QKeySequence(tr("Ctrl+F")));
-    connect(addFilesAction, &QAction::triggered, this, &MainWindow::addFiles);
+    connect(addFilesAction, &QAction::triggered,
+            this, std::bind(&MainWindow::addFiles, this, QStringList()));
 
     auto *addDirectoryAction = actionCollection()->addAction(QStringLiteral("addDirectory"));
     addDirectoryAction->setText(i18n("Add all images and tracks from directory"));
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
     actionCollection()->setDefaultShortcut(addDirectoryAction, QKeySequence(tr("Ctrl+D")));
-    connect(addDirectoryAction, &QAction::triggered, this, &MainWindow::addDirectory);
+    connect(addDirectoryAction, &QAction::triggered,
+            this, std::bind(&MainWindow::addDirectory, this, QString()));
 
     // "Remove" submenu
 
@@ -401,20 +406,26 @@ void MainWindow::closeEvent(QCloseEvent *event)
     QApplication::quit();
 }
 
-void MainWindow::addFiles()
+void MainWindow::addFiles(const QStringList &files)
 {
-    const auto selection = QFileDialog::getOpenFileNames(this,
-                                i18n("Please select the images and/or GPX tracks to add"),
-                                m_settings->lastOpenPath(),
-                                i18n("All supported files ("
-                                    "*.jpg *.jpeg "
-                                    "*.png "
-                                    "*.webp "
-                                    "*.tif *.tiff "
-                                    "*.ora "
-                                    "*.kra "
-                                    "*.gpx "
-                                    ");; All files (*)"));
+    QStringList selection;
+
+    if (files.isEmpty()) {
+        selection = QFileDialog::getOpenFileNames(this,
+                        i18n("Please select the images and/or GPX tracks to add"),
+                        m_settings->lastOpenPath(),
+                        i18n("All supported files ("
+                                 "*.jpg *.jpeg "
+                                 "*.png "
+                                 "*.webp "
+                                 "*.tif *.tiff "
+                                 "*.ora "
+                                 "*.kra "
+                                 "*.gpx "
+                             ");; All files (*)"));
+    } else {
+        selection = files;
+    }
 
     if (selection.isEmpty()) {
         return;
@@ -470,11 +481,16 @@ void MainWindow::addFiles()
     }
 }
 
-void MainWindow::addDirectory()
+void MainWindow::addDirectory(const QString &path)
 {
-    const auto directory = QFileDialog::getExistingDirectory(this,
-                               i18n("Please select a directory"),
-                               m_settings->lastOpenPath());
+    QString directory;
+
+    if (path.isEmpty()) {
+        directory = QFileDialog::getExistingDirectory(this, i18n("Please select a directory"),
+                                                      m_settings->lastOpenPath());
+    } else {
+        directory = path;
+    }
 
     if (directory.isEmpty()) {
         return;

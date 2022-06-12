@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
 
@@ -46,8 +46,8 @@ private slots:
     void updateImagesListsMode();
     void setDefaultDockArrangement();
 
-    void addFiles();
-    void addDirectory();
+    void addFiles(const QStringList &files);
+    void addDirectory(const QString &path);
     void addGpx(const QVector<QString> &paths);
     void addImages(const QVector<QString> &paths);
 
