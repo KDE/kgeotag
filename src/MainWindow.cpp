@@ -54,6 +54,7 @@
 
 // C++ includes
 #include <functional>
+#include <algorithm>
 
 static const QHash<QString, KExiv2Iface::KExiv2::MetadataWritingMode> s_writeModeMap {
     { QStringLiteral("WRITETOIMAGEONLY"),
@@ -408,7 +409,30 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
 void MainWindow::addPathsFromCommandLine(QStringList &paths)
 {
-    Q_UNUSED(paths);
+    QVector<QString> directories;
+    QStringList files;
+
+    paths.removeDuplicates();
+    for (const auto &path : std::as_const(paths)) {
+        const QFileInfo info(path);
+        if (info.isDir()) {
+            directories.append(path);
+        } else {
+            files.append(path);
+        }
+    }
+
+    QApplication::processEvents();
+
+    if (! directories.isEmpty()) {
+        for (const auto &directory : std::as_const(directories)) {
+            addDirectory(directory);
+        }
+    }
+
+    if (! files.isEmpty()) {
+        addFiles(files);
+    }
 }
 
 void MainWindow::addFiles(const QStringList &files)
