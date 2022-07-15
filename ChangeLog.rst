@@ -1,4 +1,5 @@
-* **New:** Files and/or directories given on the command line are now loaded after startup.
+* **New:** Files and/or directories given on the command line are now loaded after startup (which
+  can e.g. also be triggered via "Open with" from a file manager like Dolphin).
 
 * **Update:** Updated the timezones data files to 2021c (cf. Timezone Boundary Builder's
   `Release Announcement
