@@ -2,7 +2,7 @@
 
 # SPDX-FileCopyrightText: 2021-2022 Isaac Wismer <isaac@iwismer.ca>
 #
-# SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
+# SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 """
     This script takes a timezone data file (designed for the ones providede

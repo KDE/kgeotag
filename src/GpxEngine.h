@@ -1,6 +1,6 @@
 // SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
-// SPDX-License-Identifier: GPL-3.0-or-later OR LicenseRef-KDE-Accepted-GPL
+// SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 #ifndef GPXENGINE_H
 #define GPXENGINE_H
