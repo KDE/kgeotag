@@ -96,7 +96,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             this, std::bind(&MainWindow::addFiles, this, QStringList()));
 
     auto *addDirectoryAction = actionCollection()->addAction(QStringLiteral("addDirectory"));
-    addDirectoryAction->setText(i18n("Add all images and tracks from directory"));
+    addDirectoryAction->setText(i18n("Add all images and tracks from a folder"));
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
     actionCollection()->setDefaultShortcut(addDirectoryAction, QKeySequence(tr("Ctrl+D")));
     connect(addDirectoryAction, &QAction::triggered,
@@ -515,7 +515,7 @@ void MainWindow::addDirectory(const QString &path)
     QString directory;
 
     if (path.isEmpty()) {
-        directory = QFileDialog::getExistingDirectory(this, i18n("Please select a directory"),
+        directory = QFileDialog::getExistingDirectory(this, i18n("Please select a folder"),
                                                       m_settings->lastOpenPath());
     } else {
         directory = path;
@@ -545,7 +545,7 @@ void MainWindow::addDirectory(const QString &path)
     }
 
     if (geoDataFiles.isEmpty() && images.isEmpty()) {
-        QMessageBox::warning(this, i18n("Add all images and tracks from directory"),
+        QMessageBox::warning(this, i18n("Add all images and tracks from a folder"),
                              i18n("Could not find any supported files in <kbd>%1</kbd>",
                                   directory));
         return;

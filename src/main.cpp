@@ -45,9 +45,9 @@ int main(int argc, char *argv[])
 
     // Create the command line parser
     QCommandLineParser commandLineParser;
-    commandLineParser.addPositionalArgument(i18n("Files/Directories"),
-                                            i18n("Files and/or directories to load at startup"),
-                                            i18n("[files/directories...]"));
+    commandLineParser.addPositionalArgument(i18n("Files/Folders"),
+                                            i18n("Files and/or folders to load at startup"),
+                                            i18n("[files/folders...]"));
     aboutData.setupCommandLine(&commandLineParser);
     commandLineParser.process(application);
     aboutData.processCommandLine(&commandLineParser);
