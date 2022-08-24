@@ -913,9 +913,18 @@ void MainWindow::addImages(const QVector<QString> &paths)
 
 void MainWindow::imagesDropped(const QVector<QString> &paths)
 {
-    m_previewWidget->setImage(m_imagesModel->indexFor(paths.last()));
+    const auto index = m_imagesModel->indexFor(paths.last());
+
+    m_previewWidget->setImage(index);
     if (m_settings->lookupElevationAutomatically()) {
         lookupElevation(paths);
+    }
+
+    if (m_settings->splitImagesList()) {
+        qDebug() << "I want to scroll to" << paths.last() << "now";
+        qDebug() << "The corresponding model index is" << index;
+        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->scrollTo(index);
+        qDebug() << "... but nothing happens ...";
     }
 }
 
