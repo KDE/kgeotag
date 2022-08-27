@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -58,6 +58,7 @@ protected:
 private slots:
     void showContextMenu(const QPoint &point);
     void selectImages(bool coordinatesSet);
+    void openExternally();
 
 private: // Variables
     KGeoTag::ImagesListType m_listType;
@@ -81,6 +82,7 @@ private: // Variables
     QAction *m_save;
     QAction *m_discardChanges;
     QAction *m_removeImages;
+    QAction *m_openExternally;
 
 };
 

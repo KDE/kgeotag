@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -20,6 +20,7 @@
 #include <QDebug>
 #include <QKeyEvent>
 #include <QMenu>
+#include <QDesktopServices>
 
 // C++ includes
 #include <algorithm>
@@ -145,6 +146,12 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_removeImages->setIcon(QIcon::fromTheme(QStringLiteral("document-close")));
     connect(m_removeImages, &QAction::triggered,
             this, std::bind(&ImagesListView::removeImages, this, this));
+
+    m_contextMenu->addSeparator();
+
+    m_openExternally = m_contextMenu->addAction(i18n("Open with default viewer"));
+    m_openExternally->setIcon(QIcon::fromTheme(QStringLiteral("file-zoom-in")));
+    connect(m_openExternally, &QAction::triggered, this, &ImagesListView::openExternally);
 
     connect(this, &QListView::customContextMenuRequested, this, &ImagesListView::showContextMenu);
 }
@@ -284,6 +291,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
     if (anySelected) {
         m_removeImages->setText(i18np("Remove image", "Remove images", allSelected));
     }
+    m_openExternally->setEnabled(allSelected == 1);
 
     int hasCoordinates = 0;
     int changed = 0;
@@ -317,4 +325,11 @@ void ImagesListView::selectImages(bool coordinatesSet)
             selectionModel()->select(index, QItemSelectionModel::Select);
         }
     }
+}
+
+void ImagesListView::openExternally()
+{
+    // selectedPaths() always contains exactly one entry when this is called,
+    // because the connected action is only enabled in this very case
+    QDesktopServices::openUrl(QUrl::fromLocalFile(selectedPaths().first()));
 }
