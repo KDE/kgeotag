@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -21,6 +21,7 @@ class ImagePreview;
 // Qt classes
 class QLabel;
 class QLocale;
+class QToolButton;
 
 class PreviewWidget : public QWidget
 {
@@ -35,6 +36,9 @@ public:
 public slots:
     void setImage(const QModelIndex &index = QModelIndex());
 
+private slots:
+    void openExternally();
+
 private: // Variables
     CoordinatesFormatter *m_formatter;
     const QLocale *m_locale;
@@ -42,6 +46,7 @@ private: // Variables
     ImagePreview *m_preview;
 
     QLabel *m_path;
+    QToolButton *m_openExternally;
     QLabel *m_dateTimeLabel;
     QLabel *m_date;
     QLabel *m_coordinates;

@@ -1,3 +1,6 @@
+* **New:** It is now possible to open an image with the system's default image viewer (for closer
+  inspection), either from the image list(s), or from the preview widget.
+
 * **Bugfix (#457020):** Use "Folder", not "Directory" according to KDE's style/vocabulary
   guidelines.
 

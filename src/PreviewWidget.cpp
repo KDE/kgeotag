@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -19,6 +19,9 @@
 #include <QLocale>
 #include <QGridLayout>
 #include <QDateTime>
+#include <QToolButton>
+#include <QDesktopServices>
+#include <QUrl>
 
 PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     : QWidget(parent),
@@ -39,6 +42,15 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_path->setTextInteractionFlags(Qt::TextSelectableByMouse);
     infoLayout->addWidget(m_path, 0, 1);
 
+    m_openExternally = new QToolButton;
+    m_openExternally->setStyleSheet(QStringLiteral("border: none;"));
+    m_openExternally->setIcon(QIcon::fromTheme(QStringLiteral("file-zoom-in")));
+    m_openExternally->setToolTip(i18n("Open with default viewer"));
+    m_openExternally->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
+    infoLayout->addWidget(m_openExternally, 0, 2);
+    m_openExternally->hide();
+    connect(m_openExternally, &QToolButton::clicked, this, &PreviewWidget::openExternally);
+
     m_dateTimeLabel = new QLabel(i18n("Date/Time:"));
     m_dateTimeLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
     infoLayout->addWidget(m_dateTimeLabel, 1, 0);
@@ -46,7 +58,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_date = new QLabel;
     m_date->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_date->setWordWrap(true);
-    infoLayout->addWidget(m_date, 1, 1);
+    infoLayout->addWidget(m_date, 1, 1, 1, 2);
 
     auto *coordinatesLabel = new QLabel(i18n("Coordinates:"));
     coordinatesLabel->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::Maximum);
@@ -55,7 +67,7 @@ PreviewWidget::PreviewWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_coordinates = new QLabel;
     m_coordinates->setTextInteractionFlags(Qt::TextSelectableByMouse);
     m_coordinates->setWordWrap(true);
-    infoLayout->addWidget(m_coordinates, 2, 1);
+    infoLayout->addWidget(m_coordinates, 2, 1, 1, 2);
 
     m_preview = new ImagePreview;
     layout->addWidget(m_preview);
@@ -72,6 +84,7 @@ void PreviewWidget::setImage(const QModelIndex &index)
     m_currentImage = index.isValid() ? index.data(KGeoTag::PathRole).toString() : QString();
 
     if (m_currentImage.isEmpty()) {
+        m_openExternally->hide();
         m_path->clear();
         m_date->clear();
         m_coordinates->clear();
@@ -79,6 +92,7 @@ void PreviewWidget::setImage(const QModelIndex &index)
         return;
     }
 
+    m_openExternally->show();
     m_path->setText(m_currentImage);
     if (m_cameraClockDeviation == 0) {
         m_date->setText(index.data(KGeoTag::DateRole).value<QDateTime>()
@@ -124,4 +138,9 @@ void PreviewWidget::setCameraClockDeviation(int deviation)
 
     m_cameraClockDeviation = deviation;
     reload();
+}
+
+void PreviewWidget::openExternally()
+{
+    QDesktopServices::openUrl(QUrl::fromLocalFile(m_currentImage));
 }
