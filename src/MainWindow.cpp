@@ -923,10 +923,19 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     if (m_settings->splitImagesList()) {
         qDebug() << "I want to scroll to" << paths.last() << "now";
         qDebug() << "The corresponding model index is" << index;
-        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->scrollTo(index);
+        auto imagesList =
+           qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget());
+        Q_ASSERT(imagesList);
+        imagesList->scrollTo(index);
         qDebug() << "... but nothing happens ...";
+        qDebug() << "Just selecting stuff works, though:";
+        imagesList->selectionModel()->clearSelection();
+        for (const auto &path : paths) {
+           imagesList->selectionModel()->select(
+                 m_imagesModel->indexFor(path),
+                 QItemSelectionModel::SelectionFlag::Select);
+        }
     }
-}
 
 void MainWindow::assignToMapCenter(ImagesListView *list)
 {
