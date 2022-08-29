@@ -936,6 +936,7 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
                  QItemSelectionModel::SelectionFlag::Select);
         }
     }
+}
 
 void MainWindow::assignToMapCenter(ImagesListView *list)
 {
