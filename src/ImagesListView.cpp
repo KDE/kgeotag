@@ -21,6 +21,8 @@
 #include <QKeyEvent>
 #include <QMenu>
 #include <QDesktopServices>
+#include <QClipboard>
+#include <QRegularExpression>
 
 // C++ includes
 #include <algorithm>
@@ -106,6 +108,9 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
     connect(m_assignToMapCenter, &QAction::triggered,
             this, std::bind(&ImagesListView::assignToMapCenter, this, this));
+
+    m_assignToClipboard = m_contextMenu->addAction(i18n("Set coordinates from clipboard"));
+    connect(m_assignToClipboard, &QAction::triggered, this, &ImagesListView::assignToClipboard);
 
     m_assignManually = m_contextMenu->addAction(i18n("Set coordinates manually"));
     m_assignManually->setIcon(QIcon::fromTheme(QStringLiteral("add-placemark")));
@@ -282,6 +287,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_automaticMatchingMenu->setEnabled(anySelected);
     m_bookmarksMenu->setEnabled(anySelected);
     m_assignToMapCenter->setEnabled(anySelected);
+    m_assignToClipboard->setEnabled(anySelected);
     m_assignManually->setEnabled(anySelected);
     m_editCoordinates->setEnabled(anySelected);
     m_lookupElevation->setEnabled(anySelected);
@@ -332,4 +338,49 @@ void ImagesListView::openExternally()
     // selectedPaths() always contains exactly one entry when this is called,
     // because the connected action is only enabled in this very case
     QDesktopServices::openUrl(QUrl::fromLocalFile(selectedPaths().first()));
+}
+
+void ImagesListView::assignToClipboard()
+{
+    const auto data = QGuiApplication::clipboard()->text().simplified();
+    bool dataParsed = false;
+    double lon = 0.0;
+    double lat = 0.0;
+
+    QRegularExpression re;
+    QRegularExpressionMatch match;
+
+    // Google Maps
+    // Schema: xx.xxxxxxxxxxxxxx, xx.xxxxxxxxxxxxx
+    if (! dataParsed) {
+        re = QRegularExpression(QStringLiteral("^(\\d+\\.\\d+), (\\d+\\.\\d+)$"));
+        match = re.match(data);
+        if (match.hasMatch()) {
+            bool lonOkay = false;
+            bool latOkay = false;
+            lat = match.captured(1).toDouble(&latOkay);
+            lon = match.captured(2).toDouble(&lonOkay);
+            dataParsed = latOkay && lonOkay;
+        }
+    }
+
+    // OpenStreetMap Geo-URI
+    // Schema: geo:xx.xxxxx,xx.xxxxx?z=xx
+    if (! dataParsed) {
+        re = QRegularExpression(QStringLiteral("^geo:(\\d+\\.\\d+),(\\d+\\.\\d+)\\?z=\\d+$"));
+        match = re.match(data);
+        if (match.hasMatch()) {
+            bool latOkay = false;
+            bool lonOkay = false;
+            lat = match.captured(1).toDouble(&latOkay);
+            lon = match.captured(2).toDouble(&lonOkay);
+            dataParsed = latOkay && lonOkay;
+        }
+    }
+
+    if (dataParsed) {
+        emit assignTo(selectedPaths(), Coordinates(lon, lat, 0.0, true));
+    } else {
+        emit failedToParseClipboard();
+    }
 }

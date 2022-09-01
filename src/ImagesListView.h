@@ -48,6 +48,7 @@ signals:
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
     void requestAddingImages(const QVector<QString> &paths);
     void removeImages(ImagesListView *list);
+    void failedToParseClipboard();
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -59,6 +60,7 @@ private slots:
     void showContextMenu(const QPoint &point);
     void selectImages(bool coordinatesSet);
     void openExternally();
+    void assignToClipboard();
 
 private: // Variables
     KGeoTag::ImagesListType m_listType;
@@ -75,6 +77,7 @@ private: // Variables
 
     QAction *m_selectAll;
     QAction *m_assignToMapCenter;
+    QAction *m_assignToClipboard;
     QAction *m_assignManually;
     QAction *m_editCoordinates;
     QAction *m_lookupElevation;

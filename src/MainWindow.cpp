@@ -304,6 +304,8 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::requestAddingImages, this, &MainWindow::addImages);
     connect(list, &ImagesListView::removeImages, this, &MainWindow::removeImages);
     connect(list, &ImagesListView::requestSaving, this, &MainWindow::saveSelection);
+    connect(list, &ImagesListView::failedToParseClipboard,
+            this, &MainWindow::failedToParseClipboard);
 
     return createDockWidget(title, list, dockId);
 }
@@ -1695,4 +1697,11 @@ void MainWindow::centerTrackPoint(int trackIndex, int trackPointIndex)
     m_mapWidget->centerCoordinates(coordinates);
     m_mapCenterInfo->trackPointCentered(coordinates, dateTime);
     m_mapWidget->blockSignals(false);
+}
+
+void MainWindow::failedToParseClipboard()
+{
+    QMessageBox::warning(this,
+                         i18n("Failed to parse clipboard data"),
+                         i18n("Could not parse the clipboard's text to valid coordinates"));
 }

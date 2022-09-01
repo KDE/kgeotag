@@ -1,3 +1,6 @@
+* **New (Bug #458537):** Allow setting coordinates directly from the clipboard. As of now, Google
+  Maps' format as well as OpenStreetMap's Geo URI scheme is supported.
+
 * **New:** It is now possible to open an image with the system's default image viewer (for closer
   inspection), either from the image list(s), or from the preview widget.
 

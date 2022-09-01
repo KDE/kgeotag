@@ -57,6 +57,7 @@ private slots:
     void saveAllChanges();
     void showSettings();
     void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
+    void failedToParseClipboard();
     void checkUpdatePreview(const QVector<QString> &paths);
     void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
                             const QVector<double> &elevations);
