@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -317,4 +317,10 @@ void ImagesListView::selectImages(bool coordinatesSet)
             selectionModel()->select(index, QItemSelectionModel::Select);
         }
     }
+}
+
+
+void ImagesListView::scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint)
+{
+    QListView::scrollTo(m_listFilter->index(index.row(), index.column()), hint);
 }
