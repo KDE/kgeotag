@@ -1,3 +1,7 @@
+====================================================================================================
+KGeoTag 1.3.0 released (04.09.2022)
+====================================================================================================
+
 * **New (Bug #458537):** Allow setting coordinates directly from the clipboard. As of now, Google
   Maps' format as well as OpenStreetMap's Geo URI scheme is supported.
 

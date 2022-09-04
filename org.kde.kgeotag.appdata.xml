@@ -121,6 +121,7 @@
   </custom>
   <releases>
     <release version="1.2.0" date="2021-11-12"/>
+    <release version="1.3.0" date="2022-09-04"/>
   </releases>
   <content_rating type="oars-1.1"/>
 </component>
