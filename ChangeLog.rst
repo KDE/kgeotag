@@ -1,3 +1,7 @@
+* **New:** When using the split images list view and tagging images manually, the "assigned" image
+  list now scrolls to the last (or only) tagged image and highlights it, so that it's immediately
+  accessible for e.g. further corrections.
+
 ====================================================================================================
 KGeoTag 1.3.0 released (04.09.2022)
 ====================================================================================================
