@@ -319,8 +319,10 @@ void ImagesListView::selectImages(bool coordinatesSet)
     }
 }
 
-
-void ImagesListView::scrollTo(const QModelIndex &index, QAbstractItemView::ScrollHint hint)
+void ImagesListView::highlightImage(const QModelIndex &index)
 {
-    QListView::scrollTo(m_listFilter->index(index.row(), index.column()), hint);
+    const auto mappedIndex = m_listFilter->mapFromSource(index);
+    scrollTo(mappedIndex);
+    clearSelection();
+    selectionModel()->select(mappedIndex, QItemSelectionModel::Select);
 }

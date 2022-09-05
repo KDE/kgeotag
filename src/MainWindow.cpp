@@ -921,7 +921,7 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     }
 
     if (m_settings->splitImagesList()) {
-        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->scrollTo(index);
+        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->highlightImage(index);
     }
 }
 

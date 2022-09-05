@@ -29,8 +29,7 @@ public:
                             QWidget *parent = nullptr);
     void setListType(KGeoTag::ImagesListType type);
     QVector<QString> selectedPaths() const;
-    void scrollTo(const QModelIndex &index,
-                  QAbstractItemView::ScrollHint hint = QAbstractItemView::EnsureVisible) override;
+    void highlightImage(const QModelIndex &index);
 
 public slots:
     void updateBookmarks();
