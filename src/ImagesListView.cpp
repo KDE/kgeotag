@@ -384,3 +384,11 @@ void ImagesListView::assignToClipboard()
         emit failedToParseClipboard();
     }
 }
+
+void ImagesListView::highlightImage(const QModelIndex &index)
+{
+    const auto mappedIndex = m_listFilter->mapFromSource(index);
+    scrollTo(mappedIndex);
+    clearSelection();
+    selectionModel()->select(mappedIndex, QItemSelectionModel::Select);
+}
