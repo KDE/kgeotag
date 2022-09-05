@@ -1,3 +1,10 @@
+====================================================================================================
+KGeoTag 1.3.1 released (05.09.2022)
+====================================================================================================
+
+* **Hotfix:** Due to a problem with the tarme.rb releasme script, the 1.3.0 tarball lacked all l10n
+  data. We thus had to withdraw the release and tag a new one.
+
 * **New:** When using the split images list view and tagging images manually, the "assigned" image
   list now scrolls to the last (or only) tagged image and highlights it, so that it's immediately
   accessible for e.g. further corrections.
