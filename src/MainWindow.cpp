@@ -999,6 +999,11 @@ void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coor
     if (m_settings->lookupElevationAutomatically()) {
         lookupElevation(paths);
     }
+
+    if (m_settings->splitImagesList()) {
+        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->highlightImage(
+            m_imagesModel->indexFor(paths.last()));
+    }
 }
 
 void MainWindow::triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType)
