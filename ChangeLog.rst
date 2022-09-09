@@ -1,5 +1,5 @@
 ====================================================================================================
-KGeoTag 1.3.1 released (05.09.2022)
+KGeoTag 1.3.1 released (2022-09-05)
 ====================================================================================================
 
 * **Hotfix:** Due to a problem with the tarme.rb releasme script, the 1.3.0 tarball lacked all l10n
@@ -10,7 +10,7 @@ KGeoTag 1.3.1 released (05.09.2022)
   accessible for e.g. further corrections.
 
 ====================================================================================================
-KGeoTag 1.3.0 released (04.09.2022)
+KGeoTag 1.3.0 released (2022-09-04)
 ====================================================================================================
 
 * **New (Bug #458537):** Allow setting coordinates directly from the clipboard. As of now, Google
@@ -38,7 +38,7 @@ KGeoTag 1.3.0 released (04.09.2022)
 * **New/Bugfix (#452534):** Added a handbook stub.
 
 ====================================================================================================
-KGeoTag 1.2.0 released (12.11.2021)
+KGeoTag 1.2.0 released (2021-11-12)
 ====================================================================================================
 
 * **Enhancement:** KGeoTag now checks if the timezone data files could actually be loaded and
@@ -55,7 +55,7 @@ KGeoTag 1.2.0 released (12.11.2021)
 * **Change:** Suppressed a warning by bumping :code:`cmake_minimum_required` to :code:`3.16.0`.
 
 ====================================================================================================
-KGeoTag 1.1.0 released (16.10.2021)
+KGeoTag 1.1.0 released (2021-10-16)
 ====================================================================================================
 
 * **Bugfix:** When walking along a track, the date and time were displayed to be in the set
@@ -71,7 +71,7 @@ KGeoTag 1.1.0 released (16.10.2021)
   matched, and this is quite unlikely).
 
 ====================================================================================================
-KGeoTag 1.0.0 released (25.02.2021)
+KGeoTag 1.0.0 released (2021-02-25)
 ====================================================================================================
 
 * First official release
