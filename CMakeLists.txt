@@ -104,6 +104,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/GeoDataModel.cpp
     ${main_ROOT}/TracksListView.cpp
     ${main_ROOT}/TrackWalker.cpp
+    ${main_ROOT}/Logging.cpp
 )
 
 # Build the executable

@@ -6,6 +6,7 @@
 
 #include "GpxEngine.h"
 #include "GeoDataModel.h"
+#include "Logging.h"
 
 #include "debugMode.h"
 
@@ -20,10 +21,8 @@
 #include <QJsonDocument>
 #include <QStandardPaths>
 #include <QFile>
-
-#ifdef DEBUG_MODE
+#include <QLoggingCategory>
 #include <QTimeZone>
-#endif // DEBUG_MODE
 
 // C++ includes
 #include <cmath>
@@ -64,7 +63,6 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
         }
     }
 
-#ifdef DEBUG_MODE
     // Check if all listed timezones are valid
 
     if (! m_timezoneMapping.isEmpty()) {
@@ -77,19 +75,17 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
                 invalidIds.append(timeZoneId);
             }
         }
+        qCDebug(KGeoTagLog) << "Loaded" << m_timezoneMapping.count() << "timezone IDs";
 
         if (invalidIds.count() > 0) {
-            qDebug() << "Found" << invalidIds.count() << "invalid timezone ID(s)!";
-            qDebug() << "    The following IDs are not represented in "
-                     << "QTimeZone::availableTimeZoneIds():";
+            qCWarning(KGeoTagLog) << "Found" << invalidIds.count() << "unusable timezone ID(s)!";
+            qCWarning(KGeoTagLog) << "    The following IDs are not represented in "
+                                << "QTimeZone::availableTimeZoneIds():";
             for (const auto &id : invalidIds) {
-                qDebug() << "   " << id;
+                qCWarning(KGeoTagLog) << "   " << id;
             }
-        } else {
-            qDebug() << "Successfully loaded" << m_timezoneMapping.count() << "timezone IDs";
         }
     }
-#endif // DEBUG_MODE
 }
 
 GpxEngine::LoadInfo GpxEngine::load(const QString &path)
