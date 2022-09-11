@@ -129,11 +129,7 @@ target_link_libraries(kgeotag
 )
 
 # Documentation
-kdoctools_create_handbook(
-    doc/index.docbook
-    INSTALL_DESTINATION "${KDE_INSTALL_DOCBUNDLEDIR}/en"
-    SUBDIR kgeotag
-)
+add_subdirectory(doc)
 
 # Installation
 
