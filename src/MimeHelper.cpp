@@ -1,9 +1,10 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 // Local includes
 #include "MimeHelper.h"
+#include "Logging.h"
 
 // Qt includes
 #include <QHash>
@@ -70,19 +71,23 @@ QString mimeType(const QString &path)
 KGeoTag::FileType classifyFile(const QString &path)
 {
     const auto type = s_mimeDB.mimeTypeForFile(path);
+    logDebug << "MIME type for" << path << "is" << type.name();
 
     for (const auto &possibleType : s_usableImages) {
         if (type.inherits(possibleType)) {
+            logDebug << type.name() << "inherits or is" << possibleType << "--> image file";
             return KGeoTag::ImageFile;
         }
     }
 
     for (const auto &possibleType : s_usableGeoData) {
         if (type.inherits(possibleType)) {
+            logDebug << type.name() << "inherits or is" << possibleType << "--> geodata file";
             return KGeoTag::GeoDataFile;
         }
     }
 
+    logDebug << type.name() << "can't be used";
     return KGeoTag::UnsupportedFile;
 }
 

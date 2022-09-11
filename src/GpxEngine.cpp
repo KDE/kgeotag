@@ -75,14 +75,14 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
                 invalidIds.append(timeZoneId);
             }
         }
-        qCDebug(KGeoTagLog) << "Loaded" << m_timezoneMapping.count() << "timezone IDs";
+        logDebug << "Loaded" << m_timezoneMapping.count() << "timezone IDs";
 
         if (invalidIds.count() > 0) {
-            qCWarning(KGeoTagLog) << "Found" << invalidIds.count() << "unusable timezone ID(s)!";
-            qCWarning(KGeoTagLog) << "    The following IDs are not represented in "
+            logWarning << "Found" << invalidIds.count() << "unusable timezone ID(s)!";
+            logWarning << "    The following IDs are not represented in "
                                 << "QTimeZone::availableTimeZoneIds():";
             for (const auto &id : invalidIds) {
-                qCWarning(KGeoTagLog) << "   " << id;
+                logWarning << "   " << id;
             }
         }
     }
