@@ -62,8 +62,9 @@ Removed
 Fixed
 =====
 
-* On some systems (e.g. Artix Linux), the ``Europe/Kiev`` timezone is called ``Europe/Kyiv``. If
-  this is the case, this timezone is now mapped accordingly when loading the timezone data.
+* IANA's timezone data 2022c renamed ``Europe/Kiev`` to ``Europe/Kyiv``. Currently, our timezone
+  boundary data file is based on 2021c, and not many distributions already adopted 2022c. Thus, if
+  the distribution already has ``Europe/Kyiv``, ``Europe/Kiev`` is now mapped accordingly.
 
 Security
 ========

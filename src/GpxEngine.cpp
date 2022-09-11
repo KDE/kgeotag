@@ -78,7 +78,10 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
         for (const auto &key : keys) {
             const auto timeZoneId = m_timezoneMapping.value(key).toString().toUtf8();
             if (! allTimeZones.contains(timeZoneId)) {
-                // Check for workarounds for special cases
+                // FIXME: This should be a temporary workaround!
+                // Starting with IANA's timezone data 2022c, "Europe/Kiev" is now called
+                // "Europe/Kyiv". Our data file currently uses 2021c, and also not many
+                // distributions use 2022c yet. Thus, we map this timezone here if necessary:
                 if (timeZoneId == QStringLiteral("Europe/Kiev").toUtf8()
                     && allTimeZones.contains(QStringLiteral("Europe/Kyiv").toUtf8())) {
 
