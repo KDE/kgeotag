@@ -26,6 +26,7 @@
 #include "TracksListView.h"
 #include "GeoDataModel.h"
 #include "TrackWalker.h"
+#include "Logging.h"
 
 // KDE includes
 #include <KActionCollection>
@@ -51,6 +52,7 @@
 #include <QCloseEvent>
 #include <QAbstractButton>
 #include <QVBoxLayout>
+#include <QLoggingCategory>
 
 // C++ includes
 #include <functional>
@@ -452,6 +454,9 @@ void MainWindow::addFiles(const QStringList &files)
                                  "*.tif *.tiff "
                                  "*.ora "
                                  "*.kra "
+                                 "*.cr2 "
+                                 "*.nef "
+                                 "*.dng "
                                  "*.gpx "
                              ");; All files (*)"));
     } else {
@@ -1244,7 +1249,7 @@ void MainWindow::saveChanges(const QVector<QString> &files)
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
-    const auto writeMode = s_writeModeMap.value(m_settings->writeMode());
+    auto writeMode = s_writeModeMap.value(m_settings->writeMode());
     const bool createBackups =
         writeMode != KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY
         && m_settings->createBackups();
@@ -1378,6 +1383,13 @@ void MainWindow::saveChanges(const QVector<QString> &files)
         }
 
         // Save the changes
+
+        if (MimeHelper::isRawImage(path)
+            && writeMode != KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY) {
+
+            qCDebug(KGeoTagLog) << "Falling back to write XMP sidecar file for" << path;
+            writeMode = KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY;
+        }
 
         exif.setMetadataWritingMode(writeMode);
 

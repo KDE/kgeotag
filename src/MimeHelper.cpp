@@ -24,6 +24,12 @@ static const QVector<QString> s_usableImages {
     QStringLiteral("application/x-krita")
 };
 
+static const QVector<QString> s_rawImageMimeTypes {
+    QStringLiteral("image/x-canon-cr2"),
+    QStringLiteral("image/x-nikon-nef"),
+    QStringLiteral("image/x-adobe-dng")
+};
+
 static const QVector<QString> s_usableGeoData {
     QStringLiteral("application/x-gpx+xml"),
     QStringLiteral("application/xml+gpx")
@@ -71,24 +77,31 @@ QString mimeType(const QString &path)
 KGeoTag::FileType classifyFile(const QString &path)
 {
     const auto type = s_mimeDB.mimeTypeForFile(path);
-    logDebug << "MIME type for" << path << "is" << type.name();
+    qCDebug(KGeoTagLog) << "MIME type for" << path << "is" << type.name();
 
     for (const auto &possibleType : s_usableImages) {
         if (type.inherits(possibleType)) {
-            logDebug << type.name() << "inherits or is" << possibleType << "--> image file";
+            qCDebug(KGeoTagLog) << type.name() << "inherits or is" << possibleType
+                                << "--> image file";
             return KGeoTag::ImageFile;
         }
     }
 
     for (const auto &possibleType : s_usableGeoData) {
         if (type.inherits(possibleType)) {
-            logDebug << type.name() << "inherits or is" << possibleType << "--> geodata file";
+            qCDebug(KGeoTagLog) << type.name() << "inherits or is" << possibleType
+                                << "--> geodata file";
             return KGeoTag::GeoDataFile;
         }
     }
 
-    logDebug << type.name() << "can't be used";
+    qCDebug(KGeoTagLog) << type.name() << "can't be used";
     return KGeoTag::UnsupportedFile;
+}
+
+bool isRawImage(const QString &path)
+{
+    return s_rawImageMimeTypes.contains(mimeType(path));
 }
 
 }

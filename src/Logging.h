@@ -9,7 +9,4 @@
 
 Q_DECLARE_LOGGING_CATEGORY(KGeoTagLog)
 
-#define logDebug   qCDebug(KGeoTagLog)
-#define logWarning qCWarning(KGeoTagLog)
-
 #endif // LOGGING_H
