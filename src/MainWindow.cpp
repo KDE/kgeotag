@@ -1387,8 +1387,12 @@ void MainWindow::saveChanges(const QVector<QString> &files)
         if (MimeHelper::isRawImage(path)
             && writeMode != KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY) {
 
-            qCDebug(KGeoTagLog) << "Falling back to write XMP sidecar file for" << path;
-            writeMode = KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY;
+            if (m_settings->allowWriteRawFiles()) {
+                exif.setWriteRawFiles(true);
+            } else {
+                qCDebug(KGeoTagLog) << "Falling back to write XMP sidecar file for" << path;
+                writeMode = KExiv2Iface::KExiv2::MetadataWritingMode::WRITETOSIDECARONLY;
+            }
         }
 
         exif.setMetadataWritingMode(writeMode);
