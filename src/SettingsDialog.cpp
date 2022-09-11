@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -274,6 +274,19 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     saveTargetLayout->addStretch();
 
+    m_allowWriteRawFiles = new QCheckBox(i18n("Allow altering Exif headers of RAW images"));
+    m_allowWriteRawFiles->setChecked(m_settings->allowWriteRawFiles());
+    saveBoxLayout->addWidget(m_allowWriteRawFiles);
+
+    auto *label = new QLabel(i18n(
+        "<b>Caution!</b> This is experimental. By default, regardless of the setting for \"Write "
+        "changes to\", all changes to RAW images are written to XMP sidecar files. Have backups "
+        "and check your Exif data to be still complete and correct when using this!"
+    ));
+    label->setWordWrap(true);
+    label->setIndent(30);
+    saveBoxLayout->addWidget(label);
+
     m_createBackups = new QCheckBox(i18n("Create a backups before altering a file"));
     m_createBackups->setChecked(m_settings->createBackups());
     saveBoxLayout->addWidget(m_createBackups);
@@ -340,6 +353,7 @@ void SettingsDialog::accept()
     m_settings->saveElevationDataset(m_elevationDataset->currentData().toString());
 
     m_settings->saveWriteMode(m_writeMode->currentData().toString());
+    m_settings->saveAllowWriteRawFiles(m_allowWriteRawFiles->isChecked());
     m_settings->saveCreateBackups(m_createBackups->isChecked());
 
     if (   thumbnailSize != m_originalThumbnailSizeValue

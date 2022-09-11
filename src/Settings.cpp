@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -105,6 +105,7 @@ static const QVector<QString> s_writeModes = {
 };
 static const QString &s_defaultWriteMode = s_writeModes.at(0);
 static const QLatin1String s_writeMode("writeMode");
+static const QLatin1String s_allowWriteRawFiles("allowWriteRawFiles");
 static const QLatin1String s_createBackups("createBackups");
 
 // Bookmarks
@@ -419,6 +420,19 @@ bool Settings::createBackups() const
 {
     auto group = m_config->group(s_saving);
     return group.readEntry(s_createBackups, true);
+}
+
+void Settings::saveAllowWriteRawFiles(bool state)
+{
+    auto group = m_config->group(s_saving);
+    group.writeEntry(s_allowWriteRawFiles, state);
+    group.sync();
+}
+
+bool Settings::allowWriteRawFiles() const
+{
+    auto group = m_config->group(s_saving);
+    return group.readEntry(s_allowWriteRawFiles, false);
 }
 
 // Bookmarks

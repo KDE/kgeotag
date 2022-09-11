@@ -99,7 +99,7 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
         if (invalidIds.count() > 0) {
             qCWarning(KGeoTagLog) << "Found" << invalidIds.count() << "unusable timezone ID(s)!";
             qCWarning(KGeoTagLog) << "    The following IDs are not represented in "
-                                << "QTimeZone::availableTimeZoneIds():";
+                                  << "QTimeZone::availableTimeZoneIds():";
             for (const auto &id : invalidIds) {
                 qCWarning(KGeoTagLog) << "   " << id;
             }

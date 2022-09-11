@@ -8,8 +8,8 @@
 
 #ifdef DEBUG_MODE
 // Enable all messages in debug mode
-Q_LOGGING_CATEGORY(KGeoTagLog, "kgeotag.log")
+Q_LOGGING_CATEGORY(KGeoTagLog, "KGeoTag")
 #else
 // Only enable warnings otherwise
-Q_LOGGING_CATEGORY(KGeoTagLog, "kgeotag.log", QtWarningMsg)
+Q_LOGGING_CATEGORY(KGeoTagLog, "KGeoTag", QtWarningMsg)
 #endif
