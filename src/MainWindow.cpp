@@ -725,8 +725,9 @@ void MainWindow::addGpx(const QVector<QString> &paths)
                 QMessageBox::warning(this, i18n("Setting the detected timezone failed"),
                     i18n("<p>The presumably correct timezone \"%1\" has been detected from the "
                          "loaded GPX file, but could not be set. This should not happen!</p>"
-                         "<p>Please file a bug report about this, including the used version of "
-                         "KGeoTag and Qt!</p>"
+                         "<p>Please file a bug report about this, including the installed versions "
+                         "of KGeoTag and your system's timezone data (the package owning "
+                         "<kbd>/usr/share/zoneinfo</kbd>).</p>"
                          "<p>You can adjust the timezone setting manually on the \"Fix time "
                          "drift\" page.</p>",
                          QString::fromLatin1(id)));
