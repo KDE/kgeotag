@@ -44,7 +44,7 @@ If one knows for sure where the respective photo was taken, it's also possible t
 <title>Supported file formats</title>
 
 <para>
-KGeoTag currently supports The following image formats: <ulink url="https://en.wikipedia.org/wiki/JPEG">JPEG</ulink>, <ulink url="https://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</ulink>, <ulink url="https://en.wikipedia.org/wiki/WebP">WebP</ulink>, <ulink url="https://en.wikipedia.org/wiki/TIFF">TIFF</ulink>, <ulink url="https://en.wikipedia.org/wiki/OpenRaster">OpenRaster</ulink> and <ulink url="https://en.wikipedia.org/wiki/Krita">Krita Document</ulink>.
+KGeoTag currently supports The following image formats: <ulink url="https://en.wikipedia.org/wiki/JPEG">JPEG</ulink>, <ulink url="https://en.wikipedia.org/wiki/Portable_Network_Graphics">PNG</ulink>, <ulink url="https://en.wikipedia.org/wiki/WebP">WebP</ulink>, <ulink url="https://en.wikipedia.org/wiki/TIFF">TIFF</ulink>, <ulink url="https://en.wikipedia.org/wiki/OpenRaster">OpenRaster</ulink> and <ulink url="https://en.wikipedia.org/wiki/Krita">Krita Document</ulink>, as well as some TIFF-based RAW image formats: <ulink url="https://en.wikipedia.org/wiki/Raw_image_format">Canon Raw v2</ulink> (.cr2), <ulink url="https://www.nikonusa.com/en/learn-and-explore/a/products-and-innovation/nikon-electronic-format-nef.html">Nikon Electronic Format</ulink> (.nef) and <ulink url="https://helpx.adobe.com/camera-raw/digital-negative.html">Adobe Digital Negative</ulink> (.dng).
 </para>
 
 <para>
