@@ -62,6 +62,9 @@ Removed
 Fixed
 =====
 
+* On some systems (e.g. Artix Linux), the ``Europe/Kiev`` timezone is called ``Europe/Kyiv``. If
+  this is the case, this timezone is now mapped accordingly when loading the timezone data.
+
 Security
 ========
 

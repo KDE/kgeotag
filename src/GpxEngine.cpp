@@ -49,6 +49,10 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
             m_timezoneMapWidth = m_timezoneMap.size().width();
             m_timezoneMapHeight = m_timezoneMap.size().height();
         }
+        qCDebug(KGeoTagLog) << "Loaded the timezone data map";
+    } else {
+        // This should not happen
+        qCDebug(KGeoTagLog) << "Failed to load the timezone data map!";
     }
 
     // Load the color-timezone mapping
@@ -68,13 +72,25 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
     if (! m_timezoneMapping.isEmpty()) {
         const auto allTimeZones = QTimeZone::availableTimeZoneIds();
         const auto keys = m_timezoneMapping.keys();
+
         QVector<QByteArray> invalidIds;
+
         for (const auto &key : keys) {
             const auto timeZoneId = m_timezoneMapping.value(key).toString().toUtf8();
             if (! allTimeZones.contains(timeZoneId)) {
+                // Check for workarounds for special cases
+                if (timeZoneId == QStringLiteral("Europe/Kiev").toUtf8()
+                    && allTimeZones.contains(QStringLiteral("Europe/Kyiv").toUtf8())) {
+
+                    m_timezoneMapping[key] = QJsonValue(QStringLiteral("Europe/Kyiv"));
+                    qCDebug(KGeoTagLog) << "Mapped timezone \"Europe/Kiev\" to \"Europe/Kyiv\"";
+                    continue;
+                }
+
                 invalidIds.append(timeZoneId);
             }
         }
+
         qCDebug(KGeoTagLog) << "Loaded" << m_timezoneMapping.count() << "timezone IDs";
 
         if (invalidIds.count() > 0) {
@@ -85,6 +101,10 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
                 qCWarning(KGeoTagLog) << "   " << id;
             }
         }
+
+    } else {
+        // This should not happen
+        qCWarning(KGeoTagLog) << "Could not load any timezone IDs!";
     }
 }
 
