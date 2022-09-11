@@ -1,4 +1,4 @@
-//* SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+//* SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -79,6 +79,9 @@ public:
 
     void saveWriteMode(const QString &writeMode);
     QString writeMode() const;
+
+    void saveAllowWriteRawFiles(bool state);
+    bool allowWriteRawFiles() const;
 
     void saveCreateBackups(bool state);
     bool createBackups() const;
