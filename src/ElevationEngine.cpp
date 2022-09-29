@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -105,7 +105,7 @@ void ElevationEngine::processNextRequest()
     m_requests.insert(reply, { m_queuedTargets.takeFirst(), m_queuedIds.takeFirst() });
     QTimer::singleShot(3000, this, std::bind(&ElevationEngine::cleanUpRequest, this, reply));
 
-    // Block the next requst (checking)
+    // Block the next request (checking)
     m_requestTimer->start();
 }
 
@@ -174,7 +174,7 @@ void ElevationEngine::processReply(QNetworkReply *request)
     const auto resultsArray = resultsValue.toArray();
     bool allPresent = true;
     QVector<double> elevations;
-    for (const auto result : resultsArray)  {
+    for (const auto &result : resultsArray)  {
         const auto elevation = result.toObject().value(QStringLiteral("elevation"));
         if (elevation.isUndefined()) {
             emit lookupFailed(i18n("Could not parse the server's response: Could not read the "
