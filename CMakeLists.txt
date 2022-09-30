@@ -5,8 +5,8 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.3.1)
 
-set(QT_MIN_VERSION "5.11.0")
-set(KF5_MIN_VERSION "5.44.0")
+set(QT_MIN_VERSION "5.12")
+set(KF5_MIN_VERSION "5.68")
 set(KExiv2_MIN_VERSION "5.0.0")
 set(Marble_MIN_VERSION "21.12.0")
 
@@ -27,6 +27,7 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 # Find ECM
 find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+set(KDE_COMPILERSETTINGS_LEVEL "5.68")
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
