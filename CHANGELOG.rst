@@ -50,6 +50,10 @@
 Added
 =====
 
+* KGeoTag now supports handling of some TIFF-based RAW image formats (cr2, nef and dng). By default,
+  XMP sidecar files are created for those (regardless of the global setting). Additionally, there's
+  a new option for enabling direct Exif header changes for RAW files.
+
 Changed
 =======
 
