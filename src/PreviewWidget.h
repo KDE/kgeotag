@@ -33,10 +33,10 @@ public:
     void setCameraClockDeviation(int deviation);
     void reload();
 
-public slots:
+public Q_SLOTS:
     void setImage(const QModelIndex &index = QModelIndex());
 
-private slots:
+private Q_SLOTS:
     void openExternally();
 
 private: // Variables

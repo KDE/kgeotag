@@ -31,10 +31,10 @@ public:
     QVector<QString> selectedPaths() const;
     void highlightImage(const QModelIndex &index);
 
-public slots:
+public Q_SLOTS:
     void updateBookmarks();
 
-signals:
+Q_SIGNALS:
     void imageSelected(const QModelIndex &index);
     void centerImage(const QModelIndex &index);
     void requestAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType);
@@ -57,7 +57,7 @@ protected:
     void keyPressEvent(QKeyEvent *event) override;
     void currentChanged(const QModelIndex &current, const QModelIndex &) override;
 
-private slots:
+private Q_SLOTS:
     void showContextMenu(const QPoint &point);
     void selectImages(bool coordinatesSet);
     void openExternally();

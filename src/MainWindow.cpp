@@ -1568,7 +1568,7 @@ void MainWindow::elevationProcessed(ElevationEngine::Target target, const QVecto
         m_imagesModel->setElevation(path, elevation);
     }
 
-    emit checkUpdatePreview(paths);
+    Q_EMIT checkUpdatePreview(paths);
     QApplication::restoreOverrideCursor();
 }
 

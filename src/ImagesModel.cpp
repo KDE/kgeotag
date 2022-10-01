@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -30,7 +30,7 @@ ImagesModel::ImagesModel(QObject *parent, bool splitImagesList, int thumbnailSiz
 void ImagesModel::setSplitImagesList(bool state)
 {
     m_splitImagesList = state;
-    emit dataChanged(index(0, 0), index(rowCount(), 0), { Qt::DisplayRole });
+    Q_EMIT dataChanged(index(0, 0), index(rowCount(), 0), { Qt::DisplayRole });
 }
 
 int ImagesModel::rowCount(const QModelIndex &) const
@@ -199,7 +199,7 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
     endInsertRows();
 
     const auto modelIndex = index(row, 0);
-    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    Q_EMIT dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 
     return LoadResult::LoadingSucceeded;
 }
@@ -207,7 +207,7 @@ ImagesModel::LoadResult ImagesModel::addImage(const QString &path)
 void ImagesModel::emitDataChanged(const QString &path)
 {
     const auto modelIndex = indexFor(path);
-    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    Q_EMIT dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
 const QVector<QString> &ImagesModel::allImages() const
@@ -330,7 +330,7 @@ void ImagesModel::removeImages(const QVector<QString> &paths)
         beginRemoveRows(QModelIndex(), row, row);
         m_paths.remove(row);
         m_imageData.remove(path);
-        emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+        Q_EMIT dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
         endRemoveRows();
     }
 }
@@ -343,6 +343,6 @@ void ImagesModel::removeAllImages()
     beginRemoveRows(QModelIndex(), 0, lastRow);
     m_paths.clear();
     m_imageData.clear();
-    emit dataChanged(firstModelIndex, lastModelIndex, { Qt::DisplayRole });
+    Q_EMIT dataChanged(firstModelIndex, lastModelIndex, { Qt::DisplayRole });
     endRemoveRows();
 }

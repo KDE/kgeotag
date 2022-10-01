@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -23,7 +23,7 @@ public:
     explicit TracksListView(GeoDataModel *model, QWidget *parent = nullptr);
     QVector<int> selectedTracks() const;
 
-signals:
+Q_SIGNALS:
     void trackSelected(const QModelIndex &index);
     void removeTracks();
     void updateTrackWalker(int row);
@@ -31,7 +31,7 @@ signals:
 protected:
     void currentChanged(const QModelIndex &current, const QModelIndex &) override;
 
-private slots:
+private Q_SLOTS:
     void showContextMenu(const QPoint &point);
     void checkSelection();
 

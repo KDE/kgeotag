@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -39,7 +39,7 @@ TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView
 void TracksListView::currentChanged(const QModelIndex &current, const QModelIndex &)
 {
     if (current.isValid()) {
-        emit trackSelected(current);
+        Q_EMIT trackSelected(current);
         scrollTo(current);
     }
 }
@@ -68,5 +68,5 @@ QVector<int> TracksListView::selectedTracks() const
 void TracksListView::checkSelection()
 {
     const auto selected = selectedIndexes();
-    emit updateTrackWalker(selected.count() == 1 ? selected.first().row() : -1);
+    Q_EMIT updateTrackWalker(selected.count() == 1 ? selected.first().row() : -1);
 }

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -149,7 +149,7 @@ void BookmarksList::saveBookmark(QString label, const Coordinates &coordinates)
         requestElevation(label);
     }
 
-    emit bookmarksChanged();
+    Q_EMIT bookmarksChanged();
 
     if (label != originalLabel) {
         QMessageBox::warning(this, i18n("Add new bookmark"),
@@ -171,11 +171,11 @@ void BookmarksList::requestElevation(const QString &id)
 void BookmarksList::itemHighlighted(QListWidgetItem *item, QListWidgetItem *)
 {
     if (item == nullptr) {
-        emit showInfo(Coordinates());
+        Q_EMIT showInfo(Coordinates());
         return;
     }
 
-    emit showInfo(m_bookmarks.value(item->text()));
+    Q_EMIT showInfo(m_bookmarks.value(item->text()));
 }
 
 void BookmarksList::centerBookmark(QListWidgetItem *item)
@@ -212,7 +212,7 @@ void BookmarksList::renameBookmark()
     m_bookmarks.remove(currentLabel);
     m_contextMenuItem->setText(newLabel);
 
-    emit bookmarksChanged();
+    Q_EMIT bookmarksChanged();
 }
 
 void BookmarksList::deleteBookmark()
@@ -228,7 +228,7 @@ void BookmarksList::deleteBookmark()
     const auto *item = takeItem(row(m_contextMenuItem));
     delete item;
 
-    emit bookmarksChanged();
+    Q_EMIT bookmarksChanged();
 }
 
 void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
@@ -241,7 +241,7 @@ void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QVe
     restoreAfterElevationLookup();
     const auto id = ids.at(0);
     m_bookmarks[id].setAlt(elevations.at(0));
-    emit showInfo(m_bookmarks.value(id));
+    Q_EMIT showInfo(m_bookmarks.value(id));
 }
 
 void BookmarksList::restoreAfterElevationLookup()
@@ -291,5 +291,5 @@ void BookmarksList::editCoordinates()
 
     coordinates = dialog.coordinates();
     m_mapWidget->centerCoordinates(coordinates);
-    emit showInfo(coordinates);
+    Q_EMIT showInfo(coordinates);
 }

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -55,7 +55,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     connect(this, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
             [this]
             {
-                emit mapMoved(currentCenter());
+                Q_EMIT mapMoved(currentCenter());
             });
 
     setAcceptDrops(true);
@@ -272,13 +272,13 @@ void MapWidget::dropEvent(QDropEvent *event)
         }
 
         reloadMap();
-        emit imagesDropped(paths);
+        Q_EMIT imagesDropped(paths);
 
     } else {
         // Request to load a GPX file
         const auto usablePaths = MimeHelper::getUsablePaths(KGeoTag::DroppedOnMap, mimeData);
         if (! usablePaths.isEmpty()) {
-            emit requestLoadGpx(usablePaths);
+            Q_EMIT requestLoadGpx(usablePaths);
         }
     }
 

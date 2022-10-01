@@ -119,7 +119,7 @@ void ElevationEngine::cleanUpRequest(QNetworkReply *request)
 {
     if (m_requests.contains(request)) {
         request->abort();
-        emit lookupFailed(i18n("The request timed out"));
+        Q_EMIT lookupFailed(i18n("The request timed out"));
         m_requests.remove(request);
     }
 }
@@ -138,20 +138,20 @@ void ElevationEngine::processReply(QNetworkReply *request)
     QJsonParseError error;
     const auto json = QJsonDocument::fromJson(requestData, &error);
     if (error.error != QJsonParseError::NoError || ! json.isObject()) {
-        emit lookupFailed(i18n("Could not parse the server's response: Failed to create a JSON "
-                               "document.</p>"
-                               "<p>The error's description was: %1</p>"
-                               "<p>The literal response was:</p>"
-                               "<p><kbd>%2</kbd>", error.errorString(),
-                               QString::fromLocal8Bit(requestData)));
+        Q_EMIT lookupFailed(i18n("Could not parse the server's response: Failed to create a JSON "
+                                 "document.</p>"
+                                 "<p>The error's description was: %1</p>"
+                                 "<p>The literal response was:</p>"
+                                 "<p><kbd>%2</kbd>", error.errorString(),
+                                 QString::fromLocal8Bit(requestData)));
         return;
     }
 
     const auto object = json.object();
     const auto statusValue = object.value(QStringLiteral("status"));
     if (statusValue.isUndefined()) {
-        emit lookupFailed(i18n("Could not parse the server's response: Could not read the status "
-                               "value"));
+        Q_EMIT lookupFailed(i18n("Could not parse the server's response: Could not read the status "
+                                 "value"));
     }
 
     const auto statusString = statusValue.toString();
@@ -159,15 +159,15 @@ void ElevationEngine::processReply(QNetworkReply *request)
         const auto errorValue = object.value(QStringLiteral("error"));
         const auto errorString = errorValue.isUndefined()
             ? i18n("Could not read error description") : errorValue.toString();
-        emit lookupFailed(i18nc("A server error status followed by the error description",
-                                "%1: %2", statusString, errorString));
+        Q_EMIT lookupFailed(i18nc("A server error status followed by the error description",
+                                  "%1: %2", statusString, errorString));
         return;
     }
 
     const auto resultsValue = object.value(QStringLiteral("results"));
     if (! resultsValue.isArray()) {
-        emit lookupFailed(i18n("Could not parse the server's response: Could not read the results "
-                               "array"));
+        Q_EMIT lookupFailed(i18n("Could not parse the server's response: Could not read the "
+                                 "results array"));
         return;
     }
 
@@ -177,8 +177,8 @@ void ElevationEngine::processReply(QNetworkReply *request)
     for (const auto &result : resultsArray)  {
         const auto elevation = result.toObject().value(QStringLiteral("elevation"));
         if (elevation.isUndefined()) {
-            emit lookupFailed(i18n("Could not parse the server's response: Could not read the "
-                                   "elevation value"));
+            Q_EMIT lookupFailed(i18n("Could not parse the server's response: Could not read the "
+                                     "elevation value"));
             return;
         } else if (elevation.isNull()) {
             allPresent = false;
@@ -195,9 +195,9 @@ void ElevationEngine::processReply(QNetworkReply *request)
         }
     }
 
-    emit elevationProcessed(target, ids, elevations);
+    Q_EMIT elevationProcessed(target, ids, elevations);
 
     if (! allPresent) {
-        emit notAllPresent(ids.count(), originalElevationsCount);
+        Q_EMIT notAllPresent(ids.count(), originalElevationsCount);
     }
 }

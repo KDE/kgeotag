@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -30,10 +30,10 @@ public:
     int maximumInterpolationInterval() const;
     int maximumInterpolationDistance() const;
 
-signals:
+Q_SIGNALS:
     void requestReassignment(KGeoTag::SearchType searchType);
 
-private slots:
+private Q_SLOTS:
     void enableMaximumInterpolationInterval(bool state);
     void enableMaximumInterpolationDistance(bool state);
     void saveSettings();

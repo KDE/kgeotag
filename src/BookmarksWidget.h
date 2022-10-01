@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -28,10 +28,10 @@ public:
     explicit BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent = nullptr);
     const QHash<QString, Coordinates> *bookmarks() const;
 
-signals:
+Q_SIGNALS:
     void bookmarksChanged();
 
-private slots:
+private Q_SLOTS:
     void showInfo(const Coordinates &coordinates);
 
 private: // Variables

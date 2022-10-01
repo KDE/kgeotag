@@ -26,13 +26,13 @@ class SettingsDialog : public QDialog
 public:
     explicit SettingsDialog(Settings *settings, QWidget *parent);
 
-signals:
+Q_SIGNALS:
     void imagesListsModeChanged();
 
 protected:
     void accept() override;
 
-private slots:
+private Q_SLOTS:
     void setTrackColor();
 
 private: // Functions

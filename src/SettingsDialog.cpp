@@ -364,7 +364,7 @@ void SettingsDialog::accept()
     }
 
     if (splitImagesList != m_originalSplitImagesListValue) {
-        emit imagesListsModeChanged();
+        Q_EMIT imagesListsModeChanged();
     }
 
     QDialog::accept();

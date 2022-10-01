@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -90,7 +90,7 @@ void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime
     m_displayFileNames.append(info.completeBaseName());
 
     const auto modelIndex = index(m_displayFileNames.count() - 1, 0);
-    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    Q_EMIT dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
 void GeoDataModel::removeTrack(int row)
@@ -103,7 +103,7 @@ void GeoDataModel::removeTrack(int row)
     m_marbleTrackBoxes.remove(row);
     m_dateTimes.remove(row);
     m_trackPoints.remove(row);
-    emit dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
+    Q_EMIT dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
     endRemoveRows();
 }
 
@@ -119,7 +119,7 @@ void GeoDataModel::removeAllTracks()
     m_marbleTrackBoxes.clear();
     m_dateTimes.clear();
     m_trackPoints.clear();
-    emit dataChanged(firstModelIndex, lastModelIndex, { Qt::DisplayRole });
+    Q_EMIT dataChanged(firstModelIndex, lastModelIndex, { Qt::DisplayRole });
     endRemoveRows();
 }
 
@@ -200,7 +200,7 @@ bool GeoDataModel::dropMimeData(const QMimeData *data, Qt::DropAction action, in
         return false;
     }
 
-    emit requestAddFiles(MimeHelper::getUsablePaths(KGeoTag::DroppedOnTrackList, data));
+    Q_EMIT requestAddFiles(MimeHelper::getUsablePaths(KGeoTag::DroppedOnTrackList, data));
 
     return true;
 }

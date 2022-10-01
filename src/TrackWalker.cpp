@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -55,5 +55,5 @@ void TrackWalker::setToTrack(int row)
 void TrackWalker::sliderMoved(int index)
 {
     m_info->setText(i18n("Selected trackpoint %1 of %2", index, m_slider->maximum()));
-    emit trackPointSelected(m_trackIndex, index - 1);
+    Q_EMIT trackPointSelected(m_trackIndex, index - 1);
 }

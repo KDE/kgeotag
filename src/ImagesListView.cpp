@@ -172,7 +172,7 @@ void ImagesListView::setListType(KGeoTag::ImagesListType type)
 void ImagesListView::currentChanged(const QModelIndex &current, const QModelIndex &)
 {
     if (current.isValid()) {
-        emit imageSelected(current);
+        Q_EMIT imageSelected(current);
         scrollTo(current);
     }
 }
@@ -194,7 +194,7 @@ void ImagesListView::updateBookmarks()
         connect(entry, &QAction::triggered,
                 this, std::bind([this](QAction *action)
                 {
-                    emit assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
+                    Q_EMIT assignTo(selectedPaths(), m_bookmarks->value(action->data().toString()));
                 },
                 entry));
     }
@@ -272,7 +272,7 @@ void ImagesListView::keyPressEvent(QKeyEvent *event)
         return;
     }
 
-    emit centerImage(currentIndex());
+    Q_EMIT centerImage(currentIndex());
 }
 
 void ImagesListView::showContextMenu(const QPoint &point)
@@ -379,9 +379,9 @@ void ImagesListView::assignToClipboard()
     }
 
     if (dataParsed) {
-        emit assignTo(selectedPaths(), Coordinates(lon, lat, 0.0, true));
+        Q_EMIT assignTo(selectedPaths(), Coordinates(lon, lat, 0.0, true));
     } else {
-        emit failedToParseClipboard();
+        Q_EMIT failedToParseClipboard();
     }
 }
 

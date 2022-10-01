@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -22,13 +22,13 @@ class TrackWalker : public QWidget
 public:
     explicit TrackWalker(GeoDataModel *model, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void setToTrack(int row);
 
-signals:
+Q_SIGNALS:
     void trackPointSelected(int trackIndex, int trackPointIndex);
 
-private slots:
+private Q_SLOTS:
     void sliderMoved(int index);
 
 private: // Variables

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -33,13 +33,13 @@ public:
     void request(Target target, const QVector<QString> &ids,
                  const QVector<Coordinates> &coordinates);
 
-signals:
+Q_SIGNALS:
     void lookupFailed(const QString &errorMessage);
     void notAllPresent(int locationsCount, int elevationsCount);
     void elevationProcessed(Target target, const QVector<QString> &ids,
                             const QVector<double> &elevations);
 
-private slots:
+private Q_SLOTS:
     void processNextRequest();
     void cleanUpRequest(QNetworkReply *request);
     void processReply(QNetworkReply *reply);

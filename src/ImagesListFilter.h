@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -29,7 +29,7 @@ public:
                       const QModelIndex &) override;
     void setListType(KGeoTag::ImagesListType type);
 
-signals:
+Q_SIGNALS:
     void requestAddingImages(const QVector<QString> &paths);
     void requestRemoveCoordinates(const QVector<QString> &paths);
 

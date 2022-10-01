@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -46,7 +46,7 @@ public:
     const QVector<QVector<QDateTime>> &dateTimes() const;
     const QVector<QHash<QDateTime, Coordinates>> &trackPoints() const;
 
-signals:
+Q_SIGNALS:
     void requestAddFiles(const QVector<QString> &paths);
 
 private: // Functions

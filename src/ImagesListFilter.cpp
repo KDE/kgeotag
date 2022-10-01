@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -113,11 +113,11 @@ bool ImagesListFilter::dropMimeData(const QMimeData *data, Qt::DropAction action
     }
 
     if (! removeCoordinates.isEmpty()) {
-        emit requestRemoveCoordinates(removeCoordinates);
+        Q_EMIT requestRemoveCoordinates(removeCoordinates);
     }
 
     if (! paths.isEmpty()) {
-        emit requestAddingImages(paths);
+        Q_EMIT requestAddingImages(paths);
     }
 
     return true;

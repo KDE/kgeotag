@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -25,7 +25,7 @@ class MapCenterInfo : public QWidget
 public:
     explicit MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent = nullptr);
 
-public slots:
+public Q_SLOTS:
     void mapMoved(const Coordinates &center);
     void trackPointCentered(const Coordinates &coordinates, const QDateTime &dateTime);
 
