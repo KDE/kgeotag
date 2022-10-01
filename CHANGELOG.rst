@@ -61,6 +61,11 @@ Changed
   We already had a dependecy bump of CMake to 3.16.0 earlier. Debian Bullseye even has more recent
   versions, so we should be quite safe with this.
 
+* The dependency bump to `Marble <https://marble.kde.org/>`_ 21.12.0 broke the compatibility with
+  (at least) Ubuntu LTS 20.04 and Debian Bullseye. As KGeoTag could always be compiled against
+  Marble from the beginning, the required Marble version is now omitted again, until >= 21.12.0 hits
+  LTS distros.
+
 Deprecated
 ==========
 

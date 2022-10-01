@@ -8,7 +8,8 @@ project(kgeotag LANGUAGES CXX VERSION 1.3.1)
 set(QT_MIN_VERSION "5.12")
 set(KF5_MIN_VERSION "5.68")
 set(KExiv2_MIN_VERSION "5.0.0")
-set(Marble_MIN_VERSION "19.12.0")
+#FIXME: This can be set to 21.12.0 when Ubuntu LTS et al include this version.
+set(Marble_MIN_VERSION "")
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
