@@ -57,6 +57,10 @@ Added
 Changed
 =======
 
+* Bumped the dependencies to what is still provided by Ubuntu 20.04 LTS: KF 5.68.0 and Qt 5.12.0.
+  We already had a dependecy bump of CMake to 3.16.0 earlier. Debian Bullseye even has more recent
+  versions, so we should be quite safe with this.
+
 Deprecated
 ==========
 
