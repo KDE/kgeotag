@@ -152,3 +152,5 @@ install(FILES "timezones/timezones.png"
 install(FILES kgeotagui.rc DESTINATION "${KDE_INSTALL_KXMLGUI5DIR}/kgeotag")
 install(PROGRAMS org.kde.kgeotag.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES org.kde.kgeotag.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
+
+ki18n_install(po)
