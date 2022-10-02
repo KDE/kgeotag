@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kgeotag "<application
+>KGeoTag</application
+>">
+  <!ENTITY kappname "&kgeotag;">
+  <!ENTITY package "extragear-graphics">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Italian "INCLUDE">
+  <!ENTITY overview SYSTEM "overview.docbook">
+]>
+
+<book id="kgeotag" lang="&language;">
+
+<bookinfo>
+
+<title
+>Manuale di &kgeotag;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Tobias</firstname
+> <surname
+>Leupold</surname
+> </author>
+
+</authorgroup>
+
+<copyright>
+<year
+>2022</year>
+<holder
+>Tobias Leupold</holder>
+</copyright>
+
+<date
+>14/04/2022</date>
+
+<releaseinfo
+>1</releaseinfo>
+
+<abstract>
+
+<para
+>Questo è una bozza del manuale utente di &kgeotag;, il programma autonomo di creazione di geotag delle foto. Al momento, non c'è molto da vedere qui a parte le informazioni generali che puoi trovare sulla <ulink url="https://kgeotag.kde.org/"
+>pagina principale di KGeoTag</ulink
+>, ma si spera che questo cambierà in futuro ;-) </para>
+
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>extragear-graphics</keyword>
+<keyword
+>KGeoTag</keyword>
+<keyword
+>Programma di creazione di geotag delle foto</keyword>
+</keywordset>
+
+</bookinfo>
+
+&overview;
+
+</book>

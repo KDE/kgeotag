@@ -1,0 +1,186 @@
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<chapter id="overview">
+
+<title
+>Overzicht</title>
+
+<section>
+
+<title
+>Wat is het?</title>
+
+<para
+>KGeoTag is een Free/Libre open-source fotoprogramma voor aanbrengen van geotags. Het is geschreven in C++/<ulink url="https://www.qt.io/"
+>Qt</ulink
+> en gebruikt <ulink url="https://api.kde.org/frameworks/"
+>KDE Frameworks</ulink
+>. Het is gepubliceerd onder de bepalingen van de <ulink url="https://www.gnu.org/licenses/#GPL"
+>GNU General Public License (GPL)</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>Wat is "Geotagging"?</title>
+
+<para
+>Foto's (&eg; JPEG afbeeldingen) bevatten metagegevens zoals de aanmaakdatum, camer-informatie &eg; Deze zijn ofwel opgeslagen in de zogenaamde <ulink url="https://en.wikipedia.org/wiki/Exif"
+>Exif-header</ulink
+>, in een <ulink url="https://en.wikipedia.org/wiki/Extensible_Metadata_Platform"
+>XMP sidecar bestand</ulink
+> of in beiden. Deze gegevens kunnen ook geografische coördinaten bevatten zodat het reproduceerbaar is waar de afbeeldingen zijn genomen. </para>
+
+<para
+>De meeste camera's hebben geen GPS-ontvangers, dus, kunnen de meesten geen coördinaten opslaan bij het nemen van de opname. Een algemene benadering is om bijvoorbeeld een klein GPS-log-apparaat naast (of heden ook een smartphone ;-) mee te nemen, die al die tijd een gevolgd pad opneemt. Later kunnen de gegevens van de afbeeldingen vergeleken worden met de GPS log-punten om uit te vinden waar een afbeelding is genomen. </para>
+
+<para
+>Als men zeker weet waar de respectievelijke foto is genomen, dan is het ook mogelijk coördinaten handmatig aan de afbeeldingen toe te kennen. </para>
+
+</section>
+
+<section>
+
+<title
+>Met KGeoTag geo-tags toevoegen</title>
+
+<section>
+
+<title
+>Ondersteunde bestandsformaten</title>
+
+<para
+>KGeoTag ondersteunt momenteel de volgende afbeeldingsformaten: <ulink url="https://en.wikipedia.org/wiki/JPEG"
+>JPEG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/Portable_Network_Graphics"
+>PNG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/WebP"
+>WebP</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/TIFF"
+>TIFF</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/OpenRaster"
+>OpenRaster</ulink
+> en <ulink url="https://en.wikipedia.org/wiki/Krita"
+>Krita document</ulink
+>, evenals enige op TIFF gebaseerde RAW afbeeldingsformaten: <ulink url="https://en.wikipedia.org/wiki/Raw_image_format"
+>Canon Raw v2</ulink
+> (.cr2), <ulink url="https://www.nikonusa.com/en/learn-and-explore/a/products-and-innovation/nikon-electronic-format-nef.html"
+>Nikon Electronic Format</ulink
+> (.nef) en <ulink url="https://helpx.adobe.com/camera-raw/digital-negative.html"
+>Adobe Digital Negative</ulink
+> (.dng). </para>
+
+<para
+>Geodata kan geladen worden uit (niet gecomprimeerd) <ulink url="https://en.wikipedia.org/wiki/GPS_Exchange_Format"
+>GPX</ulink
+> bestanden. </para>
+
+</section>
+
+<section>
+
+<title
+>Afbeeldingen toekennen</title>
+
+<para
+>KGeoTag biedt meerdere manieren om coördinaten aan afbeeldingen toe te kennen: </para>
+
+<section>
+
+<title
+>Automatische tagging</title>
+
+<para
+>De gemakkelijkste benadering is automatische overeenkomst met geodata geleverd door GPX bestanden. Deze kunnen geladen en getoond worden op een kaart. Met deze gegevens kunnen afbeeldingen toegekend worden met overeenkomende geografische coördinaten door het vinden van (meer of minder) exacte chronologische overeenkomsten of door interpoleren van een waarschijnlijke positie als geen exacte overeenkomst gevonden kan worden. </para>
+
+<para
+>Normaal leveren de afbeeldingen alleen een tijd en datum, maar geen tijdzone. Dus is het noodzakelijk dat we er een instellen om een toekenning mogelijk te maken. De waarschijnlijk juiste tijdzone wordt gedetecteerd uit de geografische locatie van het GPX bestand, maar het kan ook handmatig ingesteld worden. </para>
+
+<para
+>Als waarden van hoogtes niet ingesteld kunnen worden in de gegevensset of ze zijn niet accuraat genoeg, dan kunnen ze opgezocht worden met gebruik van opentopodata.org (zie onderstaand). </para>
+
+<para
+>De klokken van camera's zijn meestal niet radio-gestuurd en hebben vaak een kleine offset. Als de gegevens van de afbeeldingen een tijdafwijking hebben vanwege dat de klok van de camera niet exact gesynchroniseerd is met de GPS-gegevens (waarvan aangenomen is correct te zijn), kan een afwijking gedefinieerd worden. Dit zal dan beschouwd worden bij het zoeken naar overeenkomsten en kan ook gebruikt worden om de gegevens van de afbeeldingen te repareren. </para>
+
+</section>
+
+<section>
+
+<title
+>Interface Slepen en loslaten</title>
+
+<para
+>Een andere optie is afbeeldingen taggen via slepen en loslaten. Een of meer afbeeldingen kunnen geselecteerd worden en losgelaten worden op de kaart, op hun respectievelijke locatie (mogelijk ook geleid door een GPX-track). Hoogten kunnen niet op deze manier toegekend worden, dus ofwel, ze worden op "0 m" (zeeniveau) gelaten, handmatig ingevoerd of opgezocht via opentopodata.org (ofwel automatisch of handmatig, zie onderstaand). </para>
+
+</section>
+
+<section>
+
+<title
+>Afbeeldingen toekennen aan bladwijzers</title>
+
+<para
+>Voor vaak aan afbeeldingen toegekende plaatsen (zoals iemands huis, waar men geen GPS-logger draagt), kunnen bladwijzers worden gedefinieerd. Afbeeldingen kunnen dan gemakkelijk aan de respectievelijke coördinaten worden toegekend. </para>
+
+</section>
+
+<section>
+
+<title
+>Handmatige toekenning</title>
+
+<para
+>Het is ook mogelijk om coördinaten voor een of meer afbeeldingen met de hand in te voeren. De hoogten kunnen ofwel opgezocht worden of automatisch met opentopodata.org (zie onderstaand) of ook handmatig ingevoerd worden. </para>
+
+</section>
+
+</section>
+
+<section>
+
+<title
+>Hoogte-informatie instellen of opzoeken</title>
+
+<para
+>Hoogtes kunnen altijd handmatig ingesteld worden. Als alternatief kunnen de hoogtes ook opgezocht worden door verschillende hoogtedatasets af te vragen met de API van <ulink url="https://www.opentopodata.org/"
+>opentopodata.org</ulink
+>. </para>
+
+<para
+>De voorinstelling is om de <ulink url="https://asterweb.jpl.nasa.gov/gdem.asp"
+>ASTER</ulink
+> dataset te gebruiken. Deze dekt de gehele globe. Anderen kunnen ook worden gebruikt, cf. <ulink url="https://www.opentopodata.org/#public-api"
+>Homepagina van opentopodata.org</ulink
+>. </para>
+
+<para
+>Standaard moet zo'n opzoeken op een server handmatig gestart worden. Het is ook mogelijk om geautomatiseerde hoogtes opzoeken voor alle afbeeldingen losgelaten op de kaart (die geografische coördinaten levert maar geen hoogtes) en handmatig ingevoerde coördinaten. </para>
+
+</section>
+
+<section>
+
+<title
+>De gegevens blijvend maken</title>
+
+<para
+>Tenslotte kunnen de toegekende coördinaten worden opgeslagen. KGeoTag kan ze ofwel schrijven in de Exif-header (die natuurlijk de respectievelijke bestanden wijzigt), naar de XMP-sidecar bestanden (die de originele bestanden ongemoeid laat) of naar beiden. Standaard wordt een reservekopie van elk origineel bestand aangemaakt als het gewijzigd wordt in het schrijfproces. </para>
+
+<para
+>Op deze manier wordt de toekenning van geodata blijvend gemaakt en ook toegankelijk voor andere geodata-aware toepassingen (zoals &eg; <ulink url="https://www.kphotoalbum.org/"
+>KPhotoAlbum</ulink
+>). </para>
+
+<para
+>Als er een tijdafwijking is geïdentificeerd en een afwijking has gegeven is, kunnen de datums en tijden ook gerepareerd  worden tijdens het opslaan. </para>
+
+</section>
+
+</section>
+
+</chapter>

@@ -1,0 +1,2063 @@
+# Translation of kgeotag.po to Ukrainian
+# Copyright (C) 2020-2021 This_file_is_part_of_KDE
+# This file is distributed under the license LGPL version 2.1 or
+# version 3 or later versions approved by the membership of KDE e.V.
+#
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kgeotag\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-12 00:43+0000\n"
+"PO-Revision-Date: 2022-09-12 07:19+0300\n"
+"Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
+"Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
+"Language: uk\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Generator: Lokalize 20.12.0\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Юрій Чорноіван"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "yurchor@ukr.net"
+
+#: src/AutomaticMatchingWidget.cpp:39
+#, kde-format
+msgid "Search for exact matches"
+msgstr "Шукати точні відповідники"
+
+#: src/AutomaticMatchingWidget.cpp:45
+#, kde-format
+msgid ""
+"Maximum deviation of the image's time from a GPS point's time to be "
+"considered an exact match:"
+msgstr ""
+"Максимальне відхилення часу зображення від часу позиції GPS для встановлення "
+"точного відповідника:"
+
+#: src/AutomaticMatchingWidget.cpp:59 src/AutomaticMatchingWidget.cpp:90
+#: src/FixDriftWidget.cpp:98
+#, kde-format
+msgid "seconds"
+msgstr "секунд"
+
+#: src/AutomaticMatchingWidget.cpp:65
+#, kde-format
+msgid "Search for interpolated matches"
+msgstr "Пошук приблизних відповідників"
+
+#: src/AutomaticMatchingWidget.cpp:71
+#, kde-format
+msgid ""
+"Spatial and temporal boundaries for two coordinates used to calculate an "
+"interpolated match:"
+msgstr ""
+"Просторові або часові межі для двох координат, які використано для "
+"обчислення приблизних відповідників:"
+
+#: src/AutomaticMatchingWidget.cpp:82
+#, kde-format
+msgid "Maximum interval:"
+msgstr "Максимальний інтервал:"
+
+#: src/AutomaticMatchingWidget.cpp:103
+#, kde-format
+msgid "Maximum distance:"
+msgstr "Максимальна відстань:"
+
+#: src/AutomaticMatchingWidget.cpp:110
+#, kde-format
+msgid "meters"
+msgstr "метри"
+
+#: src/AutomaticMatchingWidget.cpp:132
+#, kde-format
+msgid "Save settings"
+msgstr "Зберегти параметри"
+
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1024
+#, kde-format
+msgid "(Re)Assign all images"
+msgstr "Повторно прив'язати усі зображення"
+
+#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:82
+#: src/MainWindow.cpp:1119 src/SettingsDialog.cpp:95
+#, kde-format
+msgid "Combined match search"
+msgstr "Пошук комбінованого відповідника"
+
+#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:90
+#: src/SettingsDialog.cpp:96
+#, kde-format
+msgid "Search exact matches only"
+msgstr "Шукати лише точні відповідники"
+
+#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:96
+#: src/SettingsDialog.cpp:97
+#, kde-format
+msgid "Search interpolated matches only"
+msgstr "Шукати лише приблизні відповідники"
+
+#: src/AutomaticMatchingWidget.cpp:163
+#, kde-format
+msgid "Exclude manually tagged images"
+msgstr "Виключити зображення із мітками, встановленими вручну"
+
+#: src/AutomaticMatchingWidget.cpp:196
+#, kde-format
+msgid "Save as default"
+msgstr "Зберегти як типове"
+
+#: src/AutomaticMatchingWidget.cpp:196
+#, kde-format
+msgid "Settings saved!"
+msgstr "Параметри збережено!"
+
+#: src/BookmarksList.cpp:56
+#, kde-format
+msgid "Add new bookmark for current map center"
+msgstr "Додати нову закладку для поточного центра карти"
+
+#: src/BookmarksList.cpp:60
+#, kde-format
+msgid "Add new manual bookmark"
+msgstr "Додати нову закладку вручну"
+
+#: src/BookmarksList.cpp:65
+#, kde-format
+msgid "Rename bookmark"
+msgstr "Перейменувати закладку"
+
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:120
+#, kde-format
+msgid "Edit coordinates"
+msgstr "Редагувати координати"
+
+#: src/BookmarksList.cpp:73 src/ImagesListView.cpp:124
+#, kde-format
+msgid "Lookup elevation"
+msgstr "Шукати висоту"
+
+#: src/BookmarksList.cpp:76
+#, kde-format
+msgid "Set elevation manually"
+msgstr "Встановити висоту вручну"
+
+#: src/BookmarksList.cpp:81 src/BookmarksList.cpp:220
+#, kde-format
+msgid "Delete bookmark"
+msgstr "Вилучити закладку"
+
+#: src/BookmarksList.cpp:104
+#, kde-format
+msgid "New Bookmark"
+msgstr "Нова закладка"
+
+#: src/BookmarksList.cpp:104
+#, kde-format
+msgid "Label for the new bookmark:"
+msgstr "Мітка для нової закладки:"
+
+#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:100
+#, kde-format
+msgid "Untitled"
+msgstr "Без назви"
+
+#: src/BookmarksList.cpp:138
+#, kde-format
+msgctxt "Adding a consecutive number to a bookmark label to make it unique"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: src/BookmarksList.cpp:155
+#, kde-format
+msgid "Add new bookmark"
+msgstr "Додати нову закладку"
+
+#: src/BookmarksList.cpp:156
+#, kde-format
+msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
+msgstr "Закладка із назвою «%1» вже існує. Замість неї створено «%2»."
+
+#: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
+#, kde-format
+msgid "Rename Bookmark"
+msgstr "Перейменувати закладку"
+
+#: src/BookmarksList.cpp:198
+#, kde-format
+msgid "New label for the new bookmark:"
+msgstr "Нова мітка для нової закладки:"
+
+#: src/BookmarksList.cpp:206
+#, kde-format
+msgid "The label \"%1\" is already in use. Please choose another name."
+msgstr "Назву мітки «%1» вже використано. Будь ласка, виберіть іншу назву."
+
+#: src/BookmarksList.cpp:221
+#, kde-format
+msgid "Really delete bookmark \"%1\"?"
+msgstr "Справді хочете вилучити закладку «%1»?"
+
+#: src/BookmarksList.cpp:265
+#, kde-format
+msgid "Set elevation"
+msgstr "Встановити висоту"
+
+#: src/BookmarksList.cpp:266
+#, kde-format
+msgid "Elevation for \"%1\" (m)"
+msgstr "Висота «%1» (м)"
+
+#: src/BookmarksList.cpp:287
+#, kde-format
+msgctxt "A quoted bookmark label"
+msgid "\"%1\""
+msgstr "«%1»"
+
+#: src/BookmarksWidget.cpp:45
+#, kde-format
+msgid "Position: %1, %2; Altitude: %3 m"
+msgstr "Позиція: %1, %2; висота: %3 м"
+
+#: src/CoordinatesDialog.cpp:35
+#, kde-format
+msgid "Label:"
+msgstr "Мітка:"
+
+#: src/CoordinatesDialog.cpp:40
+#, kde-format
+msgid "Longitude:"
+msgstr "Довгота:"
+
+#: src/CoordinatesDialog.cpp:45 src/CoordinatesDialog.cpp:54
+#, kde-format
+msgctxt "Degrees symbol"
+msgid " °"
+msgstr " °"
+
+#: src/CoordinatesDialog.cpp:49
+#, kde-format
+msgid "Latitude:"
+msgstr "Широта:"
+
+#: src/CoordinatesDialog.cpp:59
+#, kde-format
+msgid "Altitude:"
+msgstr "Висота:"
+
+#: src/CoordinatesDialog.cpp:65
+#, kde-format
+msgctxt "Meters abbreviation"
+msgid " m"
+msgstr " м"
+
+#: src/CoordinatesDialog.cpp:70
+#, kde-format
+msgid "<i>The altitude is looked up automatically</i>"
+msgstr "<i>Висота визначається автоматично</i>"
+
+#: src/CoordinatesDialog.cpp:78
+#, kde-format
+msgid "New bookmark"
+msgstr "Створити закладку"
+
+#: src/CoordinatesDialog.cpp:79
+#, kde-format
+msgid "Data for the new bookmark:"
+msgstr "Дані для нової закладки:"
+
+#: src/CoordinatesDialog.cpp:85
+#, kde-format
+msgid "Manual coordinates"
+msgstr "Координати вручну"
+
+#: src/CoordinatesDialog.cpp:86
+#, kde-format
+msgid "Coordinates for %1:"
+msgstr "Координати %1:"
+
+#: src/CoordinatesFormatter.cpp:32
+#, kde-format
+msgctxt "Formatted longitude with a cardinal direction"
+msgid "%1° %2"
+msgstr "%1° %2"
+
+#: src/CoordinatesFormatter.cpp:34
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"East\""
+msgid "E"
+msgstr "С"
+
+#: src/CoordinatesFormatter.cpp:35
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"West\""
+msgid "W"
+msgstr "Ш"
+
+#: src/CoordinatesFormatter.cpp:40
+#, kde-format
+msgctxt "Formatted latitude with a cardinal direction"
+msgid "%1° %2"
+msgstr "%1° %2"
+
+#: src/CoordinatesFormatter.cpp:42
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"North\""
+msgid "N"
+msgstr "Пн"
+
+#: src/CoordinatesFormatter.cpp:43
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"South\""
+msgid "S"
+msgstr "Пд"
+
+#: src/ElevationEngine.cpp:122
+#, kde-format
+msgid "The request timed out"
+msgstr "Перевищено строк очікування на обробку запиту"
+
+#: src/ElevationEngine.cpp:141
+#, kde-format
+msgid ""
+"Could not parse the server's response: Failed to create a JSON document.</"
+"p><p>The error's description was: %1</p><p>The literal response was:</"
+"p><p><kbd>%2</kbd>"
+msgstr ""
+"Не вдалося обробити відповідь сервера: помилка під час створення документа "
+"JSON.</p><p>Опис помилки: %1</p><p>Відповідь дослівно:</p><p><kbd>%2</kbd>"
+
+#: src/ElevationEngine.cpp:153
+#, kde-format
+msgid "Could not parse the server's response: Could not read the status value"
+msgstr ""
+"Не вдалося обробити відповідь сервера: не вдалося прочитати значення стану"
+
+#: src/ElevationEngine.cpp:161
+#, kde-format
+msgid "Could not read error description"
+msgstr "Не вдалося прочитати опис помилки"
+
+#: src/ElevationEngine.cpp:163
+#, kde-format
+msgctxt "A server error status followed by the error description"
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: src/ElevationEngine.cpp:169
+#, kde-format
+msgid "Could not parse the server's response: Could not read the results array"
+msgstr ""
+"Не вдалося обробити відповідь сервера: не вдалося прочитати масив результатів"
+
+#: src/ElevationEngine.cpp:180
+#, kde-format
+msgid ""
+"Could not parse the server's response: Could not read the elevation value"
+msgstr ""
+"Не вдалося обробити відповідь сервера: не вдалося прочитати значення висоти"
+
+#: src/FixDriftWidget.cpp:25
+#, kde-format
+msgid "Images' time zone"
+msgstr "Часовий пояс зображення"
+
+#: src/FixDriftWidget.cpp:29
+#, kde-format
+msgid "The images were taken in the following timezone:"
+msgstr "Зображення було створено у такому часовому поясі:"
+
+#: src/FixDriftWidget.cpp:66
+#, kde-format
+msgid "Camera clock time drift"
+msgstr "Зсув годинника фотоапарата за часом"
+
+#: src/FixDriftWidget.cpp:70
+#, kde-format
+msgid "Deviation between image dates and the (exact) GPS data time:"
+msgstr "Відхилення між датами зображень і (точним) часом даних GPS:"
+
+#: src/FixDriftWidget.cpp:82
+#, kde-format
+msgid "hours"
+msgstr "години"
+
+#: src/FixDriftWidget.cpp:90
+#, kde-format
+msgid "minutes"
+msgstr "хвилини"
+
+#: src/FixDriftWidget.cpp:104
+#, kde-format
+msgid "Display the fixed dates and times"
+msgstr "Показувати фіксовані дати і час"
+
+#: src/FixDriftWidget.cpp:109
+#, kde-format
+msgid "Fix the files' dates and times when saving"
+msgstr "Виправляти записи дат і часу файла під час збереження"
+
+#: src/ImagesListView.cpp:61
+#, kde-format
+msgid "Select all images"
+msgstr "Позначити усі зображення"
+
+#: src/ImagesListView.cpp:65
+#, kde-format
+msgid "Select"
+msgstr "Вибрати"
+
+#: src/ImagesListView.cpp:67 src/MainWindow.cpp:122
+#, kde-format
+msgid "All images"
+msgstr "Усі зображення"
+
+#: src/ImagesListView.cpp:69
+#, kde-format
+msgid "All images without coordinates"
+msgstr "Усі зображення без координат"
+
+#: src/ImagesListView.cpp:72
+#, kde-format
+msgid "All images with coordinates"
+msgstr "Усі зображення з координатами"
+
+#: src/ImagesListView.cpp:78 src/MainWindow.cpp:191 src/MainWindow.cpp:1044
+#, kde-format
+msgid "Automatic matching"
+msgstr "Автоматична відповідність"
+
+#: src/ImagesListView.cpp:101
+#, kde-format
+msgid "Assign to bookmark"
+msgstr "Призначити до закладки"
+
+#: src/ImagesListView.cpp:107
+#, kde-format
+msgid "Assign to map center"
+msgstr "Призначити до центра карти"
+
+#: src/ImagesListView.cpp:112
+#, kde-format
+msgid "Set coordinates from clipboard"
+msgstr "Встановити координати з буфера обміну"
+
+#: src/ImagesListView.cpp:115
+#, kde-format
+msgid "Set coordinates manually"
+msgstr "Вказати координати вручну"
+
+#: src/ImagesListView.cpp:131 src/MainWindow.cpp:1247 src/MainWindow.cpp:1300
+#: src/MainWindow.cpp:1346 src/MainWindow.cpp:1420 src/MainWindow.cpp:1451
+#: src/MainWindow.cpp:1454 src/MainWindow.cpp:1459
+#, kde-format
+msgid "Save changes"
+msgstr "Зберегти зміни"
+
+#: src/ImagesListView.cpp:138
+#, kde-format
+msgid "Remove coordinates"
+msgstr "Вилучити координати"
+
+#: src/ImagesListView.cpp:145
+#, kde-format
+msgid "Discard changes"
+msgstr "Відкинути зміни"
+
+#: src/ImagesListView.cpp:150 src/ImagesListView.cpp:298
+#: src/MainWindow.cpp:1603
+#, kde-format
+msgid "Remove image"
+msgid_plural "Remove images"
+msgstr[0] "Вилучити зображення"
+msgstr[1] "Вилучити зображення"
+msgstr[2] "Вилучити зображення"
+msgstr[3] "Вилучити зображення"
+
+#: src/ImagesListView.cpp:157 src/PreviewWidget.cpp:48
+#, kde-format
+msgid "Open with default viewer"
+msgstr "Відкрити у типовому переглядачі"
+
+#: src/ImagesListView.cpp:186
+#, kde-format
+msgid "(No bookmarks defined)"
+msgstr "(Не визначено закладок)"
+
+#: src/ImagesModel.cpp:52
+#, kde-format
+msgctxt "Marker for an associated file"
+msgid "✓ "
+msgstr "✓ "
+
+#: src/ImagesModel.cpp:55
+#, kde-format
+msgctxt "Marker for a file with a pending change"
+msgid " *"
+msgstr " *"
+
+#: src/ImagesModel.cpp:60
+#, kde-format
+msgctxt ""
+"Pattern for a display filename with a \"pending change\" and an \"associated"
+"\" marker. The first option is the \"associated\" marker, the second one is "
+"the filename and the third one the \"pending change\" marker."
+msgid "%1%2%3"
+msgstr "%1%2%3"
+
+#: src/main.cpp:33 src/MainWindow.cpp:79
+#, kde-format
+msgid "KGeoTag"
+msgstr "KGeoTag"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Photo geotagging program"
+msgstr "Програма для роботи з геомітками фотографій"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Copyright (C) 2020-2022 Tobias Leupold"
+msgstr "© Tobias Leupold, 2020-2022"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Tobias Leupold"
+msgstr "Tobias Leupold"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Maintainer"
+msgstr "Супровідник"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Files/Folders"
+msgstr "Файли/Теки"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Files and/or folders to load at startup"
+msgstr "Файл і/або теки, які слід завантажити під час запуску"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "[files/folders...]"
+msgstr "[файли/теки...]"
+
+#: src/MainWindow.cpp:94 src/MainWindow.cpp:506
+#, kde-format
+msgid "Add images and/or GPX tracks"
+msgstr "Додати зображення і/або маршрути GPX"
+
+#: src/MainWindow.cpp:101 src/MainWindow.cpp:555
+#, kde-format
+msgid "Add all images and tracks from a folder"
+msgstr "Додати усі зображення і маршрути з теки"
+
+#: src/MainWindow.cpp:111
+#, kde-format
+msgid "All processed and saved images"
+msgstr "Усі оброблені і збережені зображення"
+
+#: src/MainWindow.cpp:117
+#, kde-format
+msgid "All images that already had coordinates"
+msgstr "Для усіх зображень вже визначено координати"
+
+#: src/MainWindow.cpp:126
+#, kde-format
+msgid "All tracks"
+msgstr "Усі маршрути"
+
+#: src/MainWindow.cpp:130
+#, kde-format
+msgid "All images and tracks (reset)"
+msgstr "Усі зображення і маршрути (скинути)"
+
+#: src/MainWindow.cpp:136
+#, kde-format
+msgid "Assign images to GPS data"
+msgstr "Пов'язати зображення із даними GPS"
+
+#: src/MainWindow.cpp:146
+#, kde-format
+msgid "Save changed images"
+msgstr "Зберегти змінені зображення"
+
+#: src/MainWindow.cpp:158
+#, kde-format
+msgid "Set default dock arrangement"
+msgstr "Встановити типове компонування панелей"
+
+#: src/MainWindow.cpp:181
+#, kde-format
+msgid "Bookmarks"
+msgstr "Закладки"
+
+#: src/MainWindow.cpp:186
+#, kde-format
+msgid "Preview"
+msgstr "Перегляд"
+
+#: src/MainWindow.cpp:199
+#, kde-format
+msgid "Fix time drift"
+msgstr "Виправити зсув за часом"
+
+#: src/MainWindow.cpp:217
+#, kde-format
+msgid "Map"
+msgstr "Карта"
+
+#: src/MainWindow.cpp:224
+#, kde-format
+msgid "Unassigned images"
+msgstr "Неприв'язані зображення"
+
+#: src/MainWindow.cpp:247
+#, kde-format
+msgid "Tracks"
+msgstr "Маршрути"
+
+#: src/MainWindow.cpp:271
+#, kde-format
+msgid "Loading timezone data"
+msgstr "Завантаження даних часових поясів"
+
+#: src/MainWindow.cpp:272
+#, kde-format
+msgid ""
+"<p>Could not load or parse the timezone data files <kbd>timezones.json</kbd> "
+"and/or <kbd>timezones.png</kbd>. Automatic timezone detection won't work.</"
+"p><p>Please check your installation!</p><p>If you run manually compiled "
+"sources without having installed them, please refer to <a href=\"https://"
+"community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
+"wiki</a> on how to make the respective files accessible.</p>"
+msgstr ""
+"<p>Не вдалося завантажити або обробити файли даних часових поясів "
+"<kbd>timezones.json</kbd> і/або <kbd>timezones.png</kbd>. Автоматичне "
+"визначення часового поясу не працюватиме.</p><p>Будь ласка, перевірте, чи "
+"все встановлено належним чином!</p><p>Якщо ви запустили зібрану вручну "
+"програму без її встановлення, будь ласка, зверніться до <a href=\"https://"
+"community.kde.org/KGeoTag#Running_the_compiled_sources\">вікі спільноти KDE</"
+"a>, щоб дізнатися про те, як зробити відповідні файли доступними.</p>"
+
+#: src/MainWindow.cpp:318
+#, kde-format
+msgid "Assigned images"
+msgstr "Прив'язані зображення"
+
+#: src/MainWindow.cpp:326
+#, kde-format
+msgid "Images"
+msgstr "Зображення"
+
+#: src/MainWindow.cpp:394
+#, kde-format
+msgid "Close KGeoTag"
+msgstr "Закрити KGeoTag"
+
+#: src/MainWindow.cpp:395
+#, kde-format
+msgid ""
+"<p>There are pending changes to images that haven't been saved yet. All "
+"changes will be discarded if KGeoTag is closed now.</p><p>Do you want to "
+"close the program anyway?</p>"
+msgstr ""
+"<p>У черзі обробки лишилися зміни, які ще не було збережено. Усі зміни буде "
+"відкинуто, якщо ви закриєте KGeoTag зараз.</p><p>Хочете завершити роботу "
+"програми зараз попри це?</p>"
+
+#: src/MainWindow.cpp:448
+#, kde-format
+msgid "Please select the images and/or GPX tracks to add"
+msgstr "Будь ласка, виберіть зображення і/або маршрути GPX для додавання"
+
+#: src/MainWindow.cpp:450
+#, kde-format
+msgid ""
+"All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
+"cr2 *.nef *.dng *.gpx );; All files (*)"
+msgstr ""
+"усі підтримувані файли (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
+"cr2 *.nef *.dng *.gpx );; усі файли (*)"
+
+#: src/MainWindow.cpp:484
+#, kde-format
+msgid "<p>The selection did not contain any supported files!</p>"
+msgstr "<p>Серед позначених файлів немає жодного підтримуваного!</p>"
+
+#: src/MainWindow.cpp:492
+#, kde-format
+msgctxt "A filename with a MIME type in braces and a HTML line break"
+msgid "%1 (%2)<br/>"
+msgstr "%1 (%2)<br/>"
+
+#: src/MainWindow.cpp:497
+#, kde-format
+msgid ""
+"<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
+"%2</p>"
+msgid_plural ""
+"<p>The following files will be skipped due to unsupported MIME types:</p><p>"
+"%2</p>"
+msgstr[0] ""
+"<p>Ось ці файли буде пропущено, оскільки вони належать до непідтримуваного "
+"типу MIME:</p><p>%2</p>"
+msgstr[1] ""
+"<p>Ось ці файли буде пропущено, оскільки вони належать до непідтримуваного "
+"типу MIME:</p><p>%2</p>"
+msgstr[2] ""
+"<p>Ось ці файли буде пропущено, оскільки вони належать до непідтримуваного "
+"типу MIME:</p><p>%2</p>"
+msgstr[3] ""
+"<p>Ось цей файл буде пропущено, оскільки він належать до непідтримуваного "
+"типу MIME:</p><p>%2</p>"
+
+#: src/MainWindow.cpp:525
+#, kde-format
+msgid "Please select a folder"
+msgstr "Будь ласка, виберіть теку"
+
+#: src/MainWindow.cpp:556
+#, kde-format
+msgid "Could not find any supported files in <kbd>%1</kbd>"
+msgstr "У <kbd>%1</kbd> не вдалося знайти жодного файла підтримуваного типу"
+
+#: src/MainWindow.cpp:611
+#, kde-format
+msgid ""
+"<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
+"file.</p>"
+msgstr ""
+"<p>Не вдалося відкрити <kbd>%1</kbd>. Будь ласка, переконайтеся, що маєте "
+"доступ до запису цього файла.</p>"
+
+#: src/MainWindow.cpp:616
+#, kde-format
+msgid ""
+"<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
+"kbd> root element. Apparently, this is not a GPX file!</p>"
+msgstr ""
+"<p>Не вдалося прочитати геодані з <kbd>%1</kbd>: не вдалося знайти кореневий "
+"елемент <kbd>gpx</kbd>. Здається, цей файл не є файлом GPX!</p>"
+
+#: src/MainWindow.cpp:622
+#, kde-format
+msgid ""
+"<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
+msgstr ""
+"<p>Здається, <kbd>%1</kbd> є файлом GPX, але у цьому файлі немає геоданих!</"
+"p>"
+
+#: src/MainWindow.cpp:627
+#, kde-format
+msgid ""
+"<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
+"all, or only a part of it.</p>"
+msgstr ""
+"<p>Не вдалося обробити XML для <kbd>%1</kbd>. Або не вдалося завантажити "
+"дані взагалі, або вдалося завантажити лише їхню частину.</p>"
+
+#: src/MainWindow.cpp:637
+#, kde-format
+msgid "<p><b>Loading GPX file failed</b></p>"
+msgstr "<p><b>Не вдалося завантажити файл GPX</b></p>"
+
+#: src/MainWindow.cpp:640
+#, kde-format
+msgctxt "Fraction of processed files are added inside the round braces"
+msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
+msgstr "<p><b>Не вдалося завантажити файл GPX (%1 з %2)</b></p>"
+
+#: src/MainWindow.cpp:647
+#, kde-format
+msgid "<p>The next GPX file will be loaded now.</p>"
+msgstr "<p>Зараз буде завантажено наступний файл GPX.</p>"
+
+#: src/MainWindow.cpp:651 src/MainWindow.cpp:715
+#, kde-format
+msgid "Load GPX data"
+msgstr "Завантажити дані GPX"
+
+#: src/MainWindow.cpp:661
+#, kde-format
+msgid "<p>Processed one file</p>"
+msgid_plural "<p>Processed %1 files</p>"
+msgstr[0] "<p>Оброблено %1 файл</p>"
+msgstr[1] "<p>Оброблено %1 файли</p>"
+msgstr[2] "<p>Оброблено %1 файлів</p>"
+msgstr[3] "<p>Оброблено один файл</p>"
+
+#: src/MainWindow.cpp:666
+#, kde-format
+msgctxt ""
+"Processed x files message with some files that failed to load. The "
+"pluralized string for the failed files counter (%2) is provided by the "
+"following i18np call."
+msgid "<p>Processed one file; %2</p>"
+msgid_plural "<p>Processed %1 files; %2</p>"
+msgstr[0] "<p>Оброблено %1 файл; %2</p>"
+msgstr[1] "<p>Оброблено %1 файли; %2</p>"
+msgstr[2] "<p>Оброблено %1 файлів; %2</p>"
+msgstr[3] "<p>Оброблено один файл; %2</p>"
+
+#: src/MainWindow.cpp:668 src/MainWindow.cpp:683
+#, kde-format
+msgid "one file failed to load"
+msgid_plural "%1 files failed to load"
+msgstr[0] "не вдалося завантажити %1 файл"
+msgstr[1] "не вдалося завантажити %1 файли"
+msgstr[2] "не вдалося завантажити %1 файлів"
+msgstr[3] "не вдалося завантажити один файл"
+
+#: src/MainWindow.cpp:673
+#, kde-format
+msgctxt ""
+"Processed x files message with some files that have been skipped. The "
+"pluralized string for the skipped files counter (%2) is provided by the "
+"following i18np call."
+msgid "<p>Processed one file; %2</p>"
+msgid_plural "<p>Processed %1 files; %2</p>"
+msgstr[0] "<p>Оброблено %1 файл; %2</p>"
+msgstr[1] "<p>Оброблено %1 файли; %2</p>"
+msgstr[2] "<p>Оброблено %1 файлів; %2</p>"
+msgstr[3] "<p>Оброблено один файл; %2</p>"
+
+#: src/MainWindow.cpp:675 src/MainWindow.cpp:684
+#, kde-format
+msgid "one already loaded file has been skipped"
+msgid_plural "%1 already loaded files have been skipped"
+msgstr[0] "%1 вже завантажений файл було пропущено"
+msgstr[1] "%1 вже завантажені файли було пропущено"
+msgstr[2] "%1 вже завантажених файлів було пропущено"
+msgstr[3] "один вже завантажений файл було пропущено"
+
+#: src/MainWindow.cpp:681
+#, kde-format
+msgctxt ""
+"Processed x files message with some files that failed to load and some that "
+"have been skipped. The pluralized strings for the failed (%2) and skipped "
+"files counter (%3) are provided by the following i18np call."
+msgid "<p>Processed one file; %2, %3</p>"
+msgid_plural "<p>Processed %1 files; %2, %3</p>"
+msgstr[0] "<p>Оброблено %1 файл; %2, %3</p>"
+msgstr[1] "<p>Оброблено %1 файли; %2, %3</p>"
+msgstr[2] "<p>Оброблено %1 файлів; %2, %3</p>"
+msgstr[3] "<p>Оброблено один файл; %2, %3</p>"
+
+#: src/MainWindow.cpp:689
+#, kde-format
+msgid "<p>No waypoints could be loaded.</p>"
+msgstr "<p>Не вдалося завантажити жодної точки маршруту.</p>"
+
+#: src/MainWindow.cpp:695
+#, kde-format
+msgctxt ""
+"Loaded x waypoints message with the number of tracks that have been read. "
+"The pluralized string for the tracks (%2) is provided by the following i18np "
+"call."
+msgid "<p>Loaded one waypoint from %2</p>"
+msgid_plural "<p>Loaded %1 waypoints from %2</p>"
+msgstr[0] "<p>Завантажено %1 точку маршруту з %2</p>"
+msgstr[1] "<p>Завантажено %1 точки маршруту з %2</p>"
+msgstr[2] "<p>Завантажено %1 точок маршруту з %2</p>"
+msgstr[3] "<p>Завантажено одну точку маршруту з %2</p>"
+
+#: src/MainWindow.cpp:698 src/MainWindow.cpp:707
+#, kde-format
+msgid "one track"
+msgid_plural "%1 tracks"
+msgstr[0] "%1 маршруту"
+msgstr[1] "%1 маршрутів"
+msgstr[2] "%1 маршрутів"
+msgstr[3] "одного маршруту"
+
+#: src/MainWindow.cpp:704
+#, kde-format
+msgctxt ""
+"Loaded x waypoints message with the number of tracks and the number of "
+"segments that have been read. The pluralized string for the tracks (%2) and "
+"the one for the segments (%3) are provided by the following i18np calls."
+msgid "<p>Loaded one waypoint from %2 and %3</p>"
+msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
+msgstr[0] "<p>Завантажено %1 точку маршруту з %2 і %3</p>"
+msgstr[1] "<p>Завантажено %1 точки маршруту з %2 і %3</p>"
+msgstr[2] "<p>Завантажено %1 точок маршруту з %2 і %3</p>"
+msgstr[3] "<p>Завантажено одну точку маршруту з %2 і %3</p>"
+
+#: src/MainWindow.cpp:708
+#, kde-format
+msgid "one segment"
+msgid_plural "%1 segments"
+msgstr[0] "%1 відрізка"
+msgstr[1] "%1 відрізків"
+msgstr[2] "%1 відрізків"
+msgstr[3] "одного відрізку"
+
+#: src/MainWindow.cpp:723
+#, kde-format
+msgid "Timezone detection failed"
+msgstr "Не вдалося визначити часовий пояс"
+
+#: src/MainWindow.cpp:724
+#, kde-format
+msgid ""
+"<p>The presumably correct timezone for images associated with the loaded GPX "
+"file could not be detected.</p><p>Please set the correct timezone manually "
+"on the \"Fix time drift\" page.</p>"
+msgstr ""
+"<p>Не вдалося визначити ймовірно правильний часовий пояс для зображень, які "
+"пов'язано із завантаженим файлом GPX.</p><p>Будь ласка, вкажіть належний "
+"часовий пояс вручну за допомогою сторінки «Виправити зсув за часом».</p>"
+
+#: src/MainWindow.cpp:730
+#, kde-format
+msgid "Setting the detected timezone failed"
+msgstr "Не вдалося встановити виявлений часовий пояс"
+
+#: src/MainWindow.cpp:731
+#, kde-format
+msgid ""
+"<p>The presumably correct timezone \"%1\" has been detected from the loaded "
+"GPX file, but could not be set. This should not happen!</p><p>Please file a "
+"bug report about this, including the installed versions of KGeoTag and your "
+"system's timezone data (the package owning <kbd>/usr/share/zoneinfo</kbd>).</"
+"p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
+"page.</p>"
+msgstr ""
+"<p>Із завантаженого файла GPX визначено ймовірно правильний запис часового "
+"поясу «%1», але його не вдалося встановити. Такого не мало трапитися!</"
+"p><p>Будь ласка, повідомте авторам програми про цю помилку, вказавши "
+"встановлену версію KGeoTag та дані щодо часового поясу вашої системи "
+"(пакунка, частиною якого є <kbd>/usr/share/zoneinfo</kbd>).</p><p>Ви можете "
+"скоригувати параметр часового поясу вручну за допомогою сторінки «Виправити "
+"зсув за часом».</p>"
+
+#: src/MainWindow.cpp:740
+#, kde-format
+msgid "Timezone adjusted"
+msgstr "Часовий пояс скориговано"
+
+#: src/MainWindow.cpp:741
+#, kde-format
+msgid ""
+"<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
+"well as the photos to associate with it. This timezone has been selected now."
+"</p><p>You can adjust the timezone setting manually on the \"Fix time drift"
+"\" page.</p>"
+msgstr ""
+"<p>Завантажений файл GPX, ймовірно, було записано у часовому поясі «%1», як "
+"і фотографії, які з ним пов'язано. Програмою вибрано саме цей часовий пояс.</"
+"p><p>Ви можете скоригувати параметр часового поясу вручну за допомогою "
+"сторінки «Виправити зсув за часом».</p>"
+
+#: src/MainWindow.cpp:767
+#, kde-format
+msgid "Loading images ..."
+msgstr "Завантаження зображень…"
+
+#: src/MainWindow.cpp:767 src/MainWindow.cpp:1060 src/MainWindow.cpp:1267
+#, kde-format
+msgid "Cancel"
+msgstr "Скасувати"
+
+#: src/MainWindow.cpp:793
+#, kde-format
+msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
+msgstr ""
+"<p><b>Не вдалося завантажити зображення</b></p><p>Не вдалося прочитати <kbd>"
+"%1</kbd>.</p>"
+
+#: src/MainWindow.cpp:799
+#, kde-format
+msgctxt "Message with a fraction of processed files added in round braces"
+msgid ""
+"<p><b>Loading image failed (%1/%2)</b></p><p>Could not read <kbd>%3</kbd>.</"
+"p>"
+msgstr ""
+"<p><b>Не вдалося завантажити зображення (%1 з %2)</b></p><p>Не вдалося "
+"прочитати <kbd>%3</kbd>.</p>"
+
+#: src/MainWindow.cpp:808
+#, kde-format
+msgid ""
+"<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
+"not read <kbd>%1</kbd>.</p>"
+msgstr ""
+"<p><b>Не вдалося завантажити заголовок Exif або додатковий файл XMP</b></"
+"p><p>Не вдалося прочитати <kbd>%1</kbd>.</p>"
+
+#: src/MainWindow.cpp:814
+#, kde-format
+msgctxt "Message with a fraction of processed files added in round braces"
+msgid ""
+"<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
+"not read <kbd>%2</kbd>.</p>"
+msgstr ""
+"<p><b>Не вдалося завантажити заголовок Exif зображення або додатковий файл "
+"XMP</b></p><p>Не вдалося прочитати <kbd>%2</kbd>.</p>"
+
+#: src/MainWindow.cpp:826
+#, kde-format
+msgid ""
+"<p>Please check if this file is actually a supported image and if you have "
+"read access to it.</p>"
+msgstr ""
+"<p>Будь ласка, перевірте, чи дані цього файла записано у підтримуваному "
+"форматі зображень, і чи маєте ви доступ до запису до цього файла.</p>"
+
+#: src/MainWindow.cpp:830
+#, kde-format
+msgid "<p>You can retry to load this file or cancel the loading process.</p>"
+msgstr ""
+"<p>Ви можете спробувати знову завантажити цей файл або скасувати процедуру "
+"завантаження.</p>"
+
+#: src/MainWindow.cpp:833
+#, kde-format
+msgid ""
+"<p>You can retry to load this file, skip it or cancel the loading process.</"
+"p>"
+msgstr ""
+"<p>Ви можете спробувати знову завантажити цей файл, пропустити його або "
+"скасувати процедуру завантаження.</p>"
+
+#: src/MainWindow.cpp:840 src/MainWindow.cpp:872 src/MainWindow.cpp:878
+#: src/MainWindow.cpp:882 src/MainWindow.cpp:886 src/MainWindow.cpp:918
+#, kde-format
+msgid "Add images"
+msgstr "Додати зображення"
+
+#: src/MainWindow.cpp:873
+#, kde-format
+msgid "Successfully added one image!"
+msgid_plural "Successfully added %1 images!"
+msgstr[0] "Успішно додано %1 зображення!"
+msgstr[1] "Успішно додано %1 зображення!"
+msgstr[2] "Успішно додано %1 зображень!"
+msgstr[3] "Успішно додано одне зображення!"
+
+#: src/MainWindow.cpp:879
+#, kde-format
+msgid "Could not add any new images, all requested images failed to load!"
+msgstr ""
+"Не вдалося додати жодного нового зображення — помилки під час спроби "
+"завантажити усі потрібні зображення!"
+
+#: src/MainWindow.cpp:883
+#, kde-format
+msgid ""
+"Could not add any new images, all requested images have already been loaded!"
+msgstr ""
+"Не вдалося завантажити жодного нового зображення — усі потрібні зображення "
+"вже завантажено!"
+
+#: src/MainWindow.cpp:887
+#, kde-format
+msgid ""
+"Could not add any new images, all requested images failed to load or have "
+"already been loaded!"
+msgstr ""
+"Не вдалося завантажити жодного нового зображення — усі потрібні зображення "
+"не вдалося завантажити або їх вже завантажено!"
+
+#: src/MainWindow.cpp:891
+#, kde-format
+msgid "<p>Successfully added image!</p>"
+msgid_plural "<p>Successfully added %1 images!</p>"
+msgstr[0] "<p>Успішно додано %1 зображення!</p>"
+msgstr[1] "<p>Успішно додано %1 зображення!</p>"
+msgstr[2] "<p>Успішно додано %1 зображень!</p>"
+msgstr[3] "<p>Успішно додано одне зображення!</p>"
+
+#: src/MainWindow.cpp:896
+#, kde-format
+msgid "<p>One image failed to load.</p>"
+msgid_plural "<p>%1 images failed to load.</p>"
+msgstr[0] "<p>Не вдалося завантажити %1 зображення.</p>"
+msgstr[1] "<p>Не вдалося завантажити %1 зображення.</p>"
+msgstr[2] "<p>Не вдалося завантажити %1 зображень.</p>"
+msgstr[3] "<p>Не вдалося завантажити одне зображення.</p>"
+
+#: src/MainWindow.cpp:900
+#, kde-format
+msgid "<p>One image has already been loaded.</p>"
+msgid_plural "<p>%1 images have already been loaded.</p>"
+msgstr[0] "<p>Вже завантажено %1 зображення.</p>"
+msgstr[1] "<p>Вже завантажено %1 зображення.</p>"
+msgstr[2] "<p>Вже завантажено %1 зображень.</p>"
+msgstr[3] "<p>Вже завантажено одне зображення.</p>"
+
+#: src/MainWindow.cpp:909
+#, kde-format
+msgctxt ""
+"Message string for some images that failed to load and some that were "
+"skipped because they already have been loaded. The pluralized strings for "
+"the failed images (%1) and the skipped images (%2) are provided by the "
+"following i18np calls."
+msgid "<p>%1 and %2.</p>"
+msgstr "<p>%1 і %2.</p>"
+
+#: src/MainWindow.cpp:910
+#, kde-format
+msgid "One image failed to load"
+msgid_plural "%1 images failed to load"
+msgstr[0] "%1 зображення не вдалося завантажити."
+msgstr[1] "%1 зображення не вдалося завантажити."
+msgstr[2] "%1 зображень не вдалося завантажити."
+msgstr[3] "одне зображення не вдалося завантажити."
+
+#: src/MainWindow.cpp:913
+#, kde-format
+msgid "one image has already been loaded"
+msgid_plural "%1 images have already been loaded"
+msgstr[0] "вже завантажено %1 зображення"
+msgstr[1] "вже завантажено %1 зображення"
+msgstr[2] "вже завантажено %1 зображень"
+msgstr[3] "вже завантажено одне зображення"
+
+#: src/MainWindow.cpp:948 src/MainWindow.cpp:978
+#, kde-format
+msgctxt "A quoted filename"
+msgid "\"%1\""
+msgstr "«%1»"
+
+#: src/MainWindow.cpp:951
+#, kde-format
+msgid "1 image"
+msgid_plural "%1 images"
+msgstr[0] "%1 зображення"
+msgstr[1] "%1 зображення"
+msgstr[2] "%1 зображень"
+msgstr[3] "%1 зображення"
+
+#: src/MainWindow.cpp:981
+#, kde-format
+msgid "1 image (%2)"
+msgid_plural "%1 images (%2)"
+msgstr[0] "%1 зображення (%2)"
+msgstr[1] "%1 зображення (%2)"
+msgstr[2] "%1 зображення (%2)"
+msgstr[3] "%1 зображення (%2)"
+
+#: src/MainWindow.cpp:982
+#, kde-format
+msgid "all images have the same coordinates"
+msgstr "усі знімки мають одні координати"
+
+#: src/MainWindow.cpp:983
+#, kde-format
+msgid "coordinates differ across the images"
+msgstr "на різних знімках різні координати"
+
+#: src/MainWindow.cpp:1025
+#, kde-format
+msgid ""
+"Can't search for matches:\n"
+"No images have been loaded yet."
+msgstr ""
+"Пошук відповідників неможливий:\n"
+"ще не завантажено жодного зображення."
+
+#: src/MainWindow.cpp:1045
+#, kde-format
+msgid ""
+"Can't search for matches:\n"
+"No GPS tracks have been loaded yet."
+msgstr ""
+"Пошук відповідників неможливий:\n"
+"ще не завантажено жодного маршруту GPS."
+
+#: src/MainWindow.cpp:1060
+#, kde-format
+msgid "Assigning images ..."
+msgstr "Прив'язування зображень…"
+
+#: src/MainWindow.cpp:1124
+#, kde-format
+msgctxt ""
+"Message for the number of matches found. The pluralized string for the exact "
+"matches (%1) and the interpolated matches (%2) are provided by the following "
+"i18np calls."
+msgid "<p>Found %1 and %2!</p>"
+msgstr "<p>Знайдено %1 і %2!</p>"
+
+#: src/MainWindow.cpp:1125
+#, kde-format
+msgid "one exact match"
+msgid_plural "%1 exact matches"
+msgstr[0] "%1 точний відповідник"
+msgstr[1] "%1 точних відповідники"
+msgstr[2] "%1 точних відповідників"
+msgstr[3] "один точний відповідник"
+
+#: src/MainWindow.cpp:1128
+#, kde-format
+msgid "one interpolated match"
+msgid_plural "%1 interpolated matches"
+msgstr[0] "%1 приблизний відповідник"
+msgstr[1] "%1 приблизних відповідники"
+msgstr[2] "%1 приблизних відповідників"
+msgstr[3] "один приблизний відповідник"
+
+#: src/MainWindow.cpp:1135
+#, kde-format
+msgctxt ""
+"Message for the number of unmatched images. The number of images that could "
+"not be matched but already have coordinates assigned (%2) is provided by the "
+"following i18np call"
+msgid "<p>One image could not be matched (%2).</p>"
+msgid_plural "<p>%1 images could not be matched (%2).</p>"
+msgstr[0] "<p>Не вдалося знайти відповідники для %1 зображення (%2).</p>"
+msgstr[1] "<p>Не вдалося знайти відповідники для %1 зображень (%2).</p>"
+msgstr[2] "<p>Не вдалося знайти відповідники для %1 зображень (%2).</p>"
+msgstr[3] "<p>Не вдалося знайти відповідники для одного зображення (%2).</p>"
+
+#: src/MainWindow.cpp:1138 src/MainWindow.cpp:1160 src/MainWindow.cpp:1182
+#, kde-format
+msgid "of which one image already has coordinates assigned"
+msgid_plural "of which %1 images already have coordinates assigned"
+msgstr[0] "з яких %1 зображення вже пов'язано із координатами"
+msgstr[1] "з яких %1 зображення вже пов'язано із координатами"
+msgstr[2] "з яких %1 зображень вже пов'язано із координатами"
+msgstr[3] "з яких одне зображення вже пов'язано із координатами"
+
+#: src/MainWindow.cpp:1143
+#, kde-format
+msgid "Could neither find any exact, nor any interpolated matches!"
+msgstr "Не вдалося знайти ні точних, ні приблизних відповідників!"
+
+#: src/MainWindow.cpp:1148
+#, kde-format
+msgid "Exact matches search"
+msgstr "Пошук точних відповідників"
+
+#: src/MainWindow.cpp:1150
+#, kde-format
+msgid "<p>Found one exact match!</p>"
+msgid_plural "<p>Found %1 exact matches!</p>"
+msgstr[0] "<p>Знайдено %1 точний відповідник!</p>"
+msgstr[1] "<p>Знайдено %1 точних відповідники!</p>"
+msgstr[2] "<p>Знайдено %1 точних відповідників!</p>"
+msgstr[3] "<p>Знайдено один точний відповідник!</p>"
+
+#: src/MainWindow.cpp:1157
+#, kde-format
+msgctxt ""
+"Message for the number of unmatched images. The number of images that could "
+"not be matched but already have coordinates assigned (%2) is provided by the "
+"following i18np call"
+msgid "<p>One image had no exact match (%2).</p>"
+msgid_plural "<p>%1 images had no exact match (%2).</p>"
+msgstr[0] "<p>Для %1 зображення не знайдено точних відповідників (%2).</p>"
+msgstr[1] "<p>Для %1 зображень не знайдено точних відповідників (%2).</p>"
+msgstr[2] "<p>Для %1 зображень не знайдено точних відповідників (%2).</p>"
+msgstr[3] "<p>Для одного зображення не знайдено точних відповідників (%2).</p>"
+
+#: src/MainWindow.cpp:1165
+#, kde-format
+msgid "Could not find any exact matches!"
+msgstr "Не вдалося знайти жодного точного відповідника!"
+
+#: src/MainWindow.cpp:1170
+#, kde-format
+msgid "Interpolated matches search"
+msgstr "Пошук приблизних відповідників"
+
+#: src/MainWindow.cpp:1172
+#, kde-format
+msgid "<p>Found one interpolated match!</p>"
+msgid_plural "<p>Found %1 interpolated matches!</p>"
+msgstr[0] "<p>Знайдено %1 приблизний відповідник!</p>"
+msgstr[1] "<p>Знайдено %1 приблизних відповідники!</p>"
+msgstr[2] "<p>Знайдено %1 приблизних відповідників!</p>"
+msgstr[3] "<p>Знайдено один приблизний відповідник!</p>"
+
+#: src/MainWindow.cpp:1179
+#, kde-format
+msgctxt ""
+"Message for the number of unmatched images. The number of images that could "
+"not be matched but already have coordinates assigned (%2) is provided by the "
+"following i18np call"
+msgid "<p>One image had no interpolated match (%2).</p>"
+msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
+msgstr[0] "<p>Для %1 зображення не знайдено приблизних відповідників (%2).</p>"
+msgstr[1] "<p>Для %1 зображень не знайдено приблизних відповідників (%2).</p>"
+msgstr[2] "<p>Для %1 зображень не знайдено приблизних відповідників (%2).</p>"
+msgstr[3] ""
+"<p>Для одного зображення не знайдено приблизних відповідників (%2).</p>"
+
+#: src/MainWindow.cpp:1187
+#, kde-format
+msgid "Could not find any interpolated matches!"
+msgstr "Не вдалося знайти жодного приблизного відповідника!"
+
+#: src/MainWindow.cpp:1208
+#, kde-format
+msgid "<p><b>Saving changes failed</b></p>"
+msgstr "<p><b>Не вдалося зберегти зміни</b></p>"
+
+#: src/MainWindow.cpp:1212
+#, kde-format
+msgctxt ""
+"Saving failed message with the fraction of processed files given in the "
+"round braces"
+msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
+msgstr "<p><b>Не вдалося зберегти зміни (%1 з %2)</b></p>"
+
+#: src/MainWindow.cpp:1220
+#, kde-format
+msgid "<p>You can retry to process the file or cancel the saving process.</p>"
+msgstr ""
+"<p>Ви можете повторити спробу обробити файл або скасувати процедуру "
+"збереження.</p>"
+
+#: src/MainWindow.cpp:1222
+#, kde-format
+msgid ""
+"<p>You can retry to process the file, skip it or cancel the saving process.</"
+"p>"
+msgstr ""
+"<p>Ви можете повторити спробу обробити файл, пропустити його або скасувати "
+"процедуру збереження.</p>"
+
+#: src/MainWindow.cpp:1247 src/MainWindow.cpp:1625 src/MainWindow.cpp:1641
+#: src/MainWindow.cpp:1670 src/MainWindow.cpp:1706
+#, kde-format
+msgid "Nothing to do"
+msgstr "Нічого робити"
+
+#: src/MainWindow.cpp:1267
+#, kde-format
+msgid "Saving changes ..."
+msgstr "Збереження змін…"
+
+#: src/MainWindow.cpp:1289
+#, kde-format
+msgid ""
+"<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
+"could not be created.</p><p>Please check if this file doesn't exist yet and "
+"be sure to have write access to <kbd>%3</kbd>.</p>"
+msgstr ""
+"<p>Не вдалося зберегти зміни до <kbd>%1</kbd>: не вдалося створити файл "
+"резервної копії <kbd>%2</kbd>.</p><p>Будь ласка, перевірте, чи існує вже "
+"такий файл, і переконайтеся, що у вас є доступ до запису до <kbd>%3</kbd>.</"
+"p>"
+
+#: src/MainWindow.cpp:1336
+#, kde-format
+msgid ""
+"<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
+"file still exists and if you have read access to it (and possibly also to an "
+"existing XMP sidecar file).</p>"
+msgstr ""
+"<p>Не вдалося прочитати метадані з <kbd>%1</kbd>.</p><p>Будь ласка, "
+"перевірте, чи ще існує цей файл, і чи маєте ви доступ до читання з нього (і, "
+"ймовірно, також до наявного додаткового файла XMP).</p>"
+
+#: src/MainWindow.cpp:1404
+#, kde-format
+msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
+msgstr "<p>Не вдалося зберегти метадані <kbd>%1</kbd>.</p>"
+
+#: src/MainWindow.cpp:1408
+#, kde-format
+msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
+msgstr ""
+"<p>Будь ласка, перевірте, чи є у вас доступ до запису до <kbd>%1</kbd>!"
+
+#: src/MainWindow.cpp:1411
+#, kde-format
+msgid ""
+"<p>Please check if this file still exists and if you have write access to it!"
+"</p>"
+msgstr ""
+"<p>Будь ласка, перевірте, чи ще існує цей файл, і чи маєте ви доступ до "
+"запису до нього.</p>"
+
+#: src/MainWindow.cpp:1452
+#, kde-format
+msgid "No changes could be saved!"
+msgstr "Не вдалося зберегти зміни!"
+
+#: src/MainWindow.cpp:1455
+#, kde-format
+msgid ""
+"<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
+"</p>"
+msgstr ""
+"<p>Деякі зміни не вдалося зберегти.</p><p>Успішно збережено %1 з %2 "
+"зображень.</p>"
+
+#: src/MainWindow.cpp:1460
+#, kde-format
+msgid "All changes have been successfully saved!"
+msgstr "Усі зміни було успішно збережено!"
+
+#: src/MainWindow.cpp:1517 src/MainWindow.cpp:1538 src/SettingsDialog.cpp:193
+#, kde-format
+msgid "Elevation lookup"
+msgstr "Пошук висоти"
+
+#: src/MainWindow.cpp:1518
+#, kde-format
+msgid ""
+"<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
+"message was: %1</p>"
+msgstr ""
+"<p>Не вдалося отримати дані щодо висот з opentopodata.org.</"
+"p><p>Повідомлення щодо помилки: %1</p>"
+
+#: src/MainWindow.cpp:1526
+#, kde-format
+msgid ""
+"Fetching elevation data failed: The requested location is not present in the "
+"currently chosen elevation dataset."
+msgstr ""
+"Не вдалося отримати дані щодо висоти: вказаних даних щодо висоти немає у "
+"поточному вибраному наборі даних щодо висот."
+
+#: src/MainWindow.cpp:1530
+#, kde-format
+msgid ""
+"Fetching elevation data failed: None of the requested locations are present "
+"in the currently chosen elevation dataset."
+msgstr ""
+"Не вдалося отримати дані щодо висоти: немає жодного вказаних місць у "
+"поточному вибраному наборі даних щодо висот."
+
+#: src/MainWindow.cpp:1533
+#, kde-format
+msgid ""
+"Fetching elevation data is incomplete: Some of the requested locations are "
+"not present in the currently chosen elevation dataset."
+msgstr ""
+"Отримання даних щодо висот є неповним: деяких із потрібних місць не "
+"знайшлося у поточному вибраному наборі даних щодо висот."
+
+#: src/MainWindow.cpp:1604
+#, kde-format
+msgid ""
+"The image has pending changes! Do you really want to remove it and discard "
+"the changes?"
+msgid_plural ""
+"At least one of the images has pending changes. Do you really want to remove "
+"them and discard all changes?"
+msgstr[0] ""
+"У черзі внесення змін є принаймні одне із зображень. Ви справді хочете "
+"вилучити зображення і відкинути усі зміни?"
+msgstr[1] ""
+"У черзі внесення змін є принаймні одне із зображень. Ви справді хочете "
+"вилучити зображення і відкинути усі зміни?"
+msgstr[2] ""
+"У черзі внесення змін є принаймні одне із зображень. Ви справді хочете "
+"вилучити зображення і відкинути усі зміни?"
+msgstr[3] ""
+"Це зображення перебуває у черзі внесення змін. Ви справді хочете вилучити "
+"його і відкинути усі зміни?"
+
+#: src/MainWindow.cpp:1624 src/MainWindow.cpp:1632
+#, kde-format
+msgid "Remove all processed and saved images"
+msgstr "Вилучити усі оброблені і збережені зображення"
+
+#: src/MainWindow.cpp:1633 src/MainWindow.cpp:1649
+#, kde-format
+msgid "Removed one image"
+msgid_plural "Removed %1 images"
+msgstr[0] "Вилучити %1 зображення"
+msgstr[1] "Вилучити %1 зображення"
+msgstr[2] "Вилучити %1 зображень"
+msgstr[3] "Вилучити зображення"
+
+#: src/MainWindow.cpp:1640 src/MainWindow.cpp:1648
+#, kde-format
+msgid "Remove images that already had coordinates"
+msgstr "Вилучити зображення, для яких вже визначено координати"
+
+#: src/MainWindow.cpp:1655 src/MainWindow.cpp:1670
+#, kde-format
+msgid "Remove all images"
+msgstr "Вилучити усі зображення"
+
+#: src/MainWindow.cpp:1656
+#, kde-format
+msgid ""
+"<p>There are pending changes to images that haven't been saved yet. All "
+"changes will be discarded if all images are removed now.</p><p>Do you really "
+"want to remove all images anyway?</p>"
+msgstr ""
+"<p>У черзі обробки лишилися зміни, які ще не було збережено. Усі зміни буде "
+"відкинуто, якщо ви вилучите усі зображення зараз.</p><p>Справді хочете "
+"вилучити усі зображення попри це?</p>"
+
+#: src/MainWindow.cpp:1705
+#, kde-format
+msgid "Remove all images and tracks (reset)"
+msgstr "Вилучити усі зображення і маршрути (скинути)"
+
+#: src/MainWindow.cpp:1733
+#, kde-format
+msgid "Failed to parse clipboard data"
+msgstr "Не вдалося обробити дані з буфера обміну"
+
+#: src/MainWindow.cpp:1734
+#, kde-format
+msgid "Could not parse the clipboard's text to valid coordinates"
+msgstr ""
+"Не вдалося отримати коректні координати на основі тексту з буфера обміну "
+"даними"
+
+#: src/MapCenterInfo.cpp:41
+#, kde-format
+msgid "Map center position: %1, %2"
+msgstr "Центральна позиція карти: %1, %2"
+
+#: src/MapWidget.cpp:78
+#, kde-format
+msgid "Floating items"
+msgstr "Рухомі пункти"
+
+#: src/MapWidget.cpp:84
+#, kde-format
+msgid "Crosshairs"
+msgstr "Перехрестя"
+
+#: src/PreviewWidget.cpp:36
+#, kde-format
+msgid "Image:"
+msgstr "Зображення:"
+
+#: src/PreviewWidget.cpp:54 src/PreviewWidget.cpp:134
+#, kde-format
+msgid "Date/Time:"
+msgstr "Дата/час:"
+
+#: src/PreviewWidget.cpp:63
+#, kde-format
+msgid "Coordinates:"
+msgstr "Координати:"
+
+#: src/PreviewWidget.cpp:75
+#, kde-format
+msgid "read from file"
+msgstr "читати з файла"
+
+#: src/PreviewWidget.cpp:76
+#, kde-format
+msgid "exact match"
+msgstr "точний збіг"
+
+#: src/PreviewWidget.cpp:77
+#, kde-format
+msgid "interpolated match"
+msgstr "приблизний відповідник"
+
+#: src/PreviewWidget.cpp:78
+#, kde-format
+msgid "manually set"
+msgstr "встановлено вручну"
+
+#: src/PreviewWidget.cpp:109
+#, kde-format
+msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+msgstr "<p>Позиція: %1, %2; висота: %3 м<br/>(%4)</p>"
+
+#: src/PreviewWidget.cpp:115
+#, kde-format
+msgid "<i>No coordinates set</i>"
+msgstr "<i>Координати не встановлено</i>"
+
+#: src/PreviewWidget.cpp:136
+#, kde-format
+msgid ""
+"Date/Time\n"
+"(corrected):"
+msgstr ""
+"Дата/Час\n"
+"(виправлені):"
+
+#: src/RetrySkipAbortDialog.cpp:25
+#, kde-format
+msgid "Skip current image"
+msgstr "Пропустити поточне зображення"
+
+#: src/SettingsDialog.cpp:33
+#, kde-format
+msgid "KGeoTag: Settings"
+msgstr "KGeoTag: Параметри"
+
+#: src/SettingsDialog.cpp:39
+#, kde-format
+msgid "KGeoTag settings"
+msgstr "Параметри KGeoTag"
+
+#: src/SettingsDialog.cpp:57
+#, kde-format
+msgid "Image lists"
+msgstr "Списки зображень"
+
+#: src/SettingsDialog.cpp:63
+#, kde-format
+msgid ""
+"<p>Loaded images can either be listed in two different lists (one for all "
+"images without and one for images with coordinates), or using a combined "
+"consecutive list for all images.</p><p>Use the following images list(s) mode:"
+"</p>"
+msgstr ""
+"<p>Завантажені зображення може бути показано у двох різних списках (одному "
+"для зображень без координат і одному для зображень із координатами) або у "
+"спільному списку для усіх зображень.</p><p>Скористатися таким режимом списку "
+"зображень:</p>"
+
+#: src/SettingsDialog.cpp:73
+#, kde-format
+msgid "Separate \"Assigned\" and \"Unassigned\" list"
+msgstr "Окремі списки «Прив'язано» і «Не прив'язано»"
+
+#: src/SettingsDialog.cpp:74
+#, kde-format
+msgid "One combined list for all images"
+msgstr "Один спільний список для усіх зображень"
+
+#: src/SettingsDialog.cpp:82
+#, kde-format
+msgid "Image Assignment"
+msgstr "Прив'язка зображень"
+
+#: src/SettingsDialog.cpp:87
+#, kde-format
+msgid "Search type for the main menu \"Assign images to GPS data\" entry"
+msgstr ""
+"Тип пошуку для пункту головного меню «Пов'язати зображення із даними GPS»"
+
+#: src/SettingsDialog.cpp:106
+#, kde-format
+msgid ""
+"This triggers an automatic (re-)assignment of all images, respecting the "
+"\"Exclude manually tagged images\" setting from the \"Automatic assignment\" "
+"dock."
+msgstr ""
+"Це увімкне автоматичне (пере)прив'язування усіх зображень з урахуванням "
+"параметра «Виключити зображення із мітками, встановленими вручну» з панелі "
+"«Автоматична відповідність»."
+
+#: src/SettingsDialog.cpp:113
+#, kde-format
+msgid "Thumbnails and previews"
+msgstr "Мініатюри і перегляд"
+
+#: src/SettingsDialog.cpp:123
+#, kde-format
+msgid "Thumbnail size:"
+msgstr "Розмір мініатюри:"
+
+#: src/SettingsDialog.cpp:130 src/SettingsDialog.cpp:139
+#, kde-format
+msgid "px"
+msgstr "пк"
+
+#: src/SettingsDialog.cpp:132
+#, kde-format
+msgid "Preview size:"
+msgstr "Розмір перегляду:"
+
+#: src/SettingsDialog.cpp:143
+#, kde-format
+msgid ""
+"Please restart the program after changes to these values so that they are "
+"applied and become visible."
+msgstr ""
+"Будь ласка, перезапустіть програму після внесення змін до цих значень, щоб "
+"їх було застосовано, і вони стали видимими."
+
+#: src/SettingsDialog.cpp:151
+#, kde-format
+msgid "GPX track rendering"
+msgstr "Обробка маршрутів GPX"
+
+#: src/SettingsDialog.cpp:159
+#, kde-format
+msgid "Color:"
+msgstr "Колір:"
+
+#: src/SettingsDialog.cpp:171
+#, kde-format
+msgid "Line width:"
+msgstr "Товщина лінії:"
+
+#: src/SettingsDialog.cpp:178
+#, kde-format
+msgid "Line style:"
+msgstr "Стиль ліній:"
+
+#: src/SettingsDialog.cpp:180
+#, kde-format
+msgid "Solid"
+msgstr "Суцільна"
+
+#: src/SettingsDialog.cpp:181
+#, kde-format
+msgid "Dashes"
+msgstr "Штрихова"
+
+#: src/SettingsDialog.cpp:182
+#, kde-format
+msgid "Dots"
+msgstr "Пунктир"
+
+#: src/SettingsDialog.cpp:183
+#, kde-format
+msgid "Dash-Dot"
+msgstr "Штрих-пунктир"
+
+#: src/SettingsDialog.cpp:184
+#, kde-format
+msgid "Dash-Dot-Dot"
+msgstr "Штрих-подвійний пунктир"
+
+#: src/SettingsDialog.cpp:197
+#, kde-format
+msgid "Elevations can be looked up using opentopodata.org's web API."
+msgstr ""
+"Дані щодо висоти може бути знайдено за допомогою мережевого програмного "
+"інтерфейсу opentopodata.org"
+
+#: src/SettingsDialog.cpp:205
+#, kde-format
+msgid "Elevation dataset:"
+msgstr "Набір даних щодо висот:"
+
+#: src/SettingsDialog.cpp:209
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "ASTER"
+msgstr "ASTER"
+
+#: src/SettingsDialog.cpp:211
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "ETOPO1"
+msgstr "ETOPO1"
+
+#: src/SettingsDialog.cpp:213
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "EU-DEM"
+msgstr "EU-DEM"
+
+#: src/SettingsDialog.cpp:215
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "Mapzen"
+msgstr "Mapzen"
+
+#: src/SettingsDialog.cpp:217
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "NED"
+msgstr "NED"
+
+#: src/SettingsDialog.cpp:219
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "NZ DEM"
+msgstr "NZ DEM"
+
+#: src/SettingsDialog.cpp:221
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "SRTM (30 m)"
+msgstr "SRTM (30 м)"
+
+#: src/SettingsDialog.cpp:223
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "SRTM (90 m)"
+msgstr "SRTM (90 м)"
+
+#: src/SettingsDialog.cpp:226
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "EMODnet 2018 Bathymetry"
+msgstr "Батиметрія EMODnet 2018"
+
+#: src/SettingsDialog.cpp:229
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "GEBCO 2020 Bathymetry"
+msgstr "Батиметрія GEBCO 2020"
+
+#: src/SettingsDialog.cpp:239
+#, kde-format
+msgid ""
+"Cf. <a href=\"https://www.opentopodata.org/\">https://www.opentopodata.org/</"
+"a> for further information about the available datasets, like the respective "
+"coverage!"
+msgstr ""
+"Порівняйте з <a href=\"https://www.opentopodata.org/\">https://www."
+"opentopodata.org/</a>, щоб дізнатися більше про доступні набори даних, "
+"зокрема про покриття даних!"
+
+#: src/SettingsDialog.cpp:247
+#, kde-format
+msgid "Request and set altitudes automatically"
+msgstr "Надсилати запити і встановлювати висоти автоматично"
+
+#: src/SettingsDialog.cpp:253
+#, kde-format
+msgid "Saving"
+msgstr "Збереження"
+
+#: src/SettingsDialog.cpp:260
+#, kde-format
+msgid "Write changes to:"
+msgstr "Об'єкт запису змін:"
+
+#: src/SettingsDialog.cpp:264
+#, kde-format
+msgid "Exif header"
+msgstr "Заголовок Exif"
+
+#: src/SettingsDialog.cpp:266
+#, kde-format
+msgid "XMP sidecar file"
+msgstr "Додатковий файл XMP"
+
+#: src/SettingsDialog.cpp:268
+#, kde-format
+msgid "Exif header and XMP sidecar file"
+msgstr "Заголовок Exif і додатковий файл XMP"
+
+#: src/SettingsDialog.cpp:277
+#, kde-format
+msgid "Allow altering Exif headers of RAW images"
+msgstr "Дозволити внесення змін до заголовків Exif зображень RAW"
+
+#: src/SettingsDialog.cpp:282
+#, kde-format
+msgid ""
+"<b>Caution!</b> This is experimental. By default, regardless of the setting "
+"for \"Write changes to\", all changes to RAW images are written to XMP "
+"sidecar files. Have backups and check your Exif data to be still complete "
+"and correct when using this!"
+msgstr ""
+"<b>Увага!</b> Ця можливість є експериментальною. Типово, незалежно від "
+"параметра «Записати зміни», усі зміни до файлів RAW буде записано до "
+"допоміжних файлів XMP. Якщо користуєтеся цим, робіть резервні копії і "
+"перевіряйте повноту і правильність ваших даних Exif!"
+
+#: src/SettingsDialog.cpp:290
+#, kde-format
+msgid "Create a backups before altering a file"
+msgstr "Створювати резервні копії до внесення змін до файла"
+
+#: src/SettingsDialog.cpp:319
+#, kde-format
+msgid "Opacity: %1%"
+msgstr "Непрозорість: %1%"
+
+#: src/SettingsDialog.cpp:362
+#, kde-format
+msgid "Settings changed"
+msgstr "Параметри змінено"
+
+#: src/SettingsDialog.cpp:363
+#, kde-format
+msgid ""
+"Please restart KGeoTag to apply the changed settings and make them visible!"
+msgstr ""
+"Будь ласка, перезапустіть KGeoTag, щоб зміни у параметрах набули чинності, і "
+"ви змогли їх побачити!"
+
+#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#, kde-format
+msgid "Remove track"
+msgid_plural "Remove tracks"
+msgstr[0] "Вилучити маршрути"
+msgstr[1] "Вилучити маршрути"
+msgstr[2] "Вилучити маршрути"
+msgstr[3] "Вилучити маршрут"
+
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#, kde-format
+msgid "<i>No track selected</i>"
+msgstr "<i>Не вибрано жодного маршруту</i>"
+
+#: src/TrackWalker.cpp:51
+#, kde-format
+msgid "%1 trackpoint"
+msgid_plural "%1 trackpoints"
+msgstr[0] "%1 точка маршруту"
+msgstr[1] "%1 точки маршруту"
+msgstr[2] "%1 точок маршруту"
+msgstr[3] "одна точка маршруту"
+
+#: src/TrackWalker.cpp:57
+#, kde-format
+msgid "Selected trackpoint %1 of %2"
+msgstr "Вибрано точку маршруту %1 з %2"
+
+#~ msgid "All images have been removed!"
+#~ msgstr "Усі зображення вилучено!"
+
+#~ msgid "GPX tracks (*.gpx);; All files (*)"
+#~ msgstr "маршрути GPX (*.gpx);; усі файли (*)"
+
+#~ msgid "Please select the images to add"
+#~ msgstr "Будь ласка, виберіть зображення для додавання"
+
+#~ msgid ""
+#~ "<p>Some files were removed from the load request because their file "
+#~ "format is not supported.</p>"
+#~ msgstr ""
+#~ "<p>Деякі з файлів було вилучено зі списку завантажуваних, оскільки у "
+#~ "програмі не передбачено підтримки роботи з відповідними форматами файлів."
+#~ "</p>"
+
+#~ msgid "<p>The unsupported MIME type was: <kbd>%2</kbd></p>"
+#~ msgid_plural "<p>The unsupported MIME types were: <kbd>%2</kbd></p>"
+#~ msgstr[0] "<p>Непідтримувані типи MIME: <kbd>%2</kbd></p>"
+#~ msgstr[1] "<p>Непідтримувані типи MIME: <kbd>%2</kbd></p>"
+#~ msgstr[2] "<p>Непідтримувані типи MIME: <kbd>%2</kbd></p>"
+#~ msgstr[3] "<p>Непідтримуваний тип MIME: <kbd>%2</kbd></p>"
+
+#~ msgid "File"
+#~ msgstr "Файл"
+
+#~ msgid "Quit"
+#~ msgstr "Вийти"
+
+#~ msgid "Settings"
+#~ msgstr "Параметри"
+
+#~ msgid "Configure KGeoTag"
+#~ msgstr "Налаштувати KGeoTag"
+
+#~ msgid "<p>%1 %2!</p>%3"
+#~ msgstr "<p>%1 %2!</p>%3"
+
+#~ msgid "Found one exact match%2!"
+#~ msgid_plural "Found %1 exact matches%2!"
+#~ msgstr[0] "Знайдено %1 точний відповідник%2!"
+#~ msgstr[1] "Знайдено %1 точних відповідники%2!"
+#~ msgstr[2] "Знайдено %1 точних відповідників%2!"
+#~ msgstr[3] "Знайдено один точний відповідник%2!"
+
+#~ msgid " (one image had no exact match)"
+#~ msgid_plural " (%1 images had no exact match)"
+#~ msgstr[0] " (для %1 зображення не знайдено точного відповідника)"
+#~ msgstr[1] " (для %1 зображень не знайдено точних відповідників)"
+#~ msgstr[2] " (для %1 зображень не знайдено точних відповідників)"
+#~ msgstr[3] " (для одного зображення не знайдено точного відповідника)"
+
+#~ msgctxt "Fraction of processed files"
+#~ msgid " (%1 of %2)"
+#~ msgstr " (%1 з %2)"
+
+#~ msgid "You can retry to create the backup or cancel the saving process."
+#~ msgstr ""
+#~ "Ви можете повторити спробу створення резервної копії або скасувати "
+#~ "процедуру збереження."
+
+#~ msgid ""
+#~ "You can retry to create the backup, skip the current file or cancel the "
+#~ "saving process."
+#~ msgstr ""
+#~ "Ви можете повторити спробу створення резервної копії, пропустити поточний "
+#~ "файл або скасувати процедуру збереження."
+
+#~ msgid " (%1/%2)"
+#~ msgstr " (%1 з %2)"
+
+#~ msgid "<p>%1</p><p>%2</p>"
+#~ msgstr "<p>%1</p><p>%2</p>"
+
+#~ msgid ", one file failed"
+#~ msgid_plural ", %1 files failed"
+#~ msgstr[0] ", помилка із %1 файлом"
+#~ msgstr[1] ", помилка із %1 файлами"
+#~ msgstr[2] ", помилка із %1 файлами"
+#~ msgstr[3] ", помилка із одним файлом"
+
+#~ msgid "Could not load any images!"
+#~ msgstr "Не вдалося завантажити жодне зображення!"
+
+#~ msgid ""
+#~ "<p>Could not load all images!</p><p>Successfully loaded one image of %2, "
+#~ "%3</p>"
+#~ msgid_plural ""
+#~ "<p>Could not load all images!</p><p>Successfully loaded %1 images of %2, "
+#~ "%3</p>"
+#~ msgstr[0] ""
+#~ "<p>Не вдалося завантажити усі зображення!</p><p>Успішно завантажено %1 "
+#~ "зображення з %2, %3</p>"
+#~ msgstr[1] ""
+#~ "<p>Не вдалося завантажити усі зображення!</p><p>Успішно завантажено %1 "
+#~ "зображення з %2, %3</p>"
+#~ msgstr[2] ""
+#~ "<p>Не вдалося завантажити усі зображення!</p><p>Успішно завантажено %1 "
+#~ "зображень з %2, %3</p>"
+#~ msgstr[3] ""
+#~ "<p>Не вдалося завантажити усі зображення!</p><p>Успішно завантажено одне "
+#~ "зображення з %2, %3</p>"
+
+#~ msgid " (skipped one already loaded image)"
+#~ msgid_plural " (skipped %1 already loaded images)"
+#~ msgstr[0] " (пропущено %1 вже завантажене зображення)"
+#~ msgstr[1] " (пропущено %1 вже завантажених зображення)"
+#~ msgstr[2] " (пропущено %1 вже завантажених зображень)"
+#~ msgstr[3] " (пропущено одне вже завантажене зображення)"
+
+#~ msgid "JPEG Images (*.jpg *.jpeg);; All files (*)"
+#~ msgstr "зображення JPEG (*.jpg *.jpeg);; усі файли (*)"
+
+#~ msgid "%1 %2%3!"
+#~ msgstr "%1 %2%3!"
+
+#~| msgid ""
+#~| "Please restart the program after changes to these values so that they "
+#~| "are applied and become visible."
+#~ msgid "Please restart the program after changing the list mode to apply it!"
+#~ msgstr ""
+#~ "Будь ласка, перезапустіть програму після зміни режиму списку, щоб його "
+#~ "було застосовано!"
+
+#~ msgid ""
+#~ "Show two image lists: One for unassigned images and\n"
+#~ "one for assigned ones instead of one list for all"
+#~ msgstr ""
+#~ "Показати два списки зображень: один для неприв'язаних зображень і\n"
+#~ "один для прив'язаних, замість одного списку з усіх зображень"
+
+#~ msgid "1 exact match found!"
+#~ msgid_plural "%1 exact matches found!"
+#~ msgstr[0] "Знайдено %1 точний відповідник!"
+#~ msgstr[1] "Знайдено %1 точних відповідники!"
+#~ msgstr[2] "Знайдено %1 точних відповідників"
+#~ msgstr[3] "Знайдено точний відповідник!"
+
+#~ msgid "1 interpolated match found!"
+#~ msgid_plural "%1 interpolated matches found!"
+#~ msgstr[0] "Знайдено %1 приблизний відповідник!"
+#~ msgstr[1] "Знайдено %1 приблизних відповідники!"
+#~ msgstr[2] "Знайдено %1 приблизних відповідників!"
+#~ msgstr[3] "Знайдено приблизний відповідник!"
+
+#~ msgid "GPX tracks (*.gpx)"
+#~ msgstr "маршрути GPX (*.gpx)"
+
+#~ msgid "Add GPX file"
+#~ msgstr "Додати файл GPX"

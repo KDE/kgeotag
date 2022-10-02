@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kgeotag "<application
+>KGeoTag</application
+>">
+  <!ENTITY kappname "&kgeotag;">
+  <!ENTITY package "extragear-graphics">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Ukrainian "INCLUDE">
+  <!ENTITY overview SYSTEM "overview.docbook">
+]>
+
+<book id="kgeotag" lang="&language;">
+
+<bookinfo>
+
+<title
+>Підручник з &kgeotag;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Tobias</firstname
+> <surname
+>Leupold</surname
+> </author>
+
+</authorgroup>
+
+<copyright>
+<year
+>2022</year>
+<holder
+>Tobias Leupold</holder>
+</copyright>
+
+<date
+>14 квітня 2022 року</date>
+
+<releaseinfo
+>1</releaseinfo>
+
+<abstract>
+
+<para
+>Це початковий підручник користувача для &kgeotag;, самодостатньої програми для роботи із мітками геопозиціювання. У поточній версії тут наведено лише загальні відомості, які ви можете знайти на <ulink url="https://kgeotag.kde.org/"
+>домашній сторінці KGeoTag</ulink
+>, але, сподіваємося, у майбутньому це зміниться. ;-) </para>
+
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>extragear-graphics</keyword>
+<keyword
+>KGeoTag</keyword>
+<keyword
+>Програма для роботи з геомітками фотографій</keyword>
+</keywordset>
+
+</bookinfo>
+
+&overview;
+
+</book>

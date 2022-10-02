@@ -1,0 +1,186 @@
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<chapter id="overview">
+
+<title
+>Vista general</title>
+
+<section>
+
+<title
+>Què és?</title>
+
+<para
+>El KGeoTag és un programa de geoetiquetatge de fotos de codi obert lliure/llibre. Està escrit en C++/<ulink url="https://www.qt.io/"
+>Qt</ulink
+> i utilitza els <ulink url="https://api.kde.org/frameworks/"
+>Frameworks de KDE</ulink
+>. Es publica segons els termes de la Llicència Pública General de GNU <ulink url="https://www.gnu.org/licenses/#GPL"
+>(GPL)</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>Què és el «geoetiquetatge»?</title>
+
+<para
+>Les fotos (&pex;, les imatges JPEG) contenen metadades com la data de creació, la informació de la càmera, &etc; Aquestes s'emmagatzemen en l'anomenada capçalera <ulink url="https://enwikipediaorg/wiki/Exif"
+>Exif</ulink
+>, en un <ulink url="https://en.wikipedia.org/wiki/Extensible_Metadata_Platform"
+>fitxer lateral XMP</ulink
+> o en ambdós. Aquestes dades també poden representar coordenades geogràfiques de manera que es pugui replicar on es van prendre les imatges. </para>
+
+<para
+>La majoria de les càmeres no tenen receptors GPS, així que la majoria no poden desar coordenades quan prenen imatges. Un enfocament comú és, &pex;, portar un petit dispositiu d'enregistrament GPS (o avui en dia també utilitzant un telèfon intel·ligent ;-)), que enregistra un trajecte tot el temps Més endavant, les dates de les imatges es poden comparar amb les dates dels punts del registre del GPS per esbrinar on es va prendre una imatge. </para>
+
+<para
+>Si se sap amb certesa on es va fer la foto respectiva, també és possible assignar manualment les coordenades a les imatges. </para>
+
+</section>
+
+<section>
+
+<title
+>Etiquetatge geogràfic amb el KGeoTag</title>
+
+<section>
+
+<title
+>Formats de fitxer admesos</title>
+
+<para
+>El KGeoTag actualment admet els formats d'imatge següents: <ulink url="https://en.wikipedia.org/wiki/JPEG"
+>JPEG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/Portable_Network_Graphics"
+>PNG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/WebP"
+>WebP</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/TIFF"
+>TIFF</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/OpenRaster"
+>OpenRaster</ulink
+> i <ulink url="https://en.wikipedia.org/wiki/Krita"
+>Krita Document</ulink
+>, així com alguns formats d'imatge RAW basats en TIFF: <ulink url="https://en.wikipedia.org/wiki/Raw_image_format"
+>Canon Raw v2</ulink
+> (.cr2), <ulink url="https://www.nikonusa.com/en/learn-and-explore/a/products-and-innovation/nikon-electronic-format-nef.html"
+>Nikon Electronic Format</ulink
+> (.nef) i <ulink url="https://helpx.adobe.com/camera-raw/digital-negative.html"
+>Adobe Digital Negative</ulink
+> (.dng). </para>
+
+<para
+>Les geodades es poden carregar des dels fitxers <ulink url="https://en.wikipedia.org/wiki/GPS_Exchange_Format"
+>GPX</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>Assignació d'imatges</title>
+
+<para
+>El KGeoTag ofereix diverses maneres d'assignar coordenades a les imatges: </para>
+
+<section>
+
+<title
+>Etiquetatge automàtic</title>
+
+<para
+>L'enfocament més pràctic és la coincidència automàtica utilitzant geodades proporcionades per fitxers GPX. Es poden carregar i mostrar en un mapa. Utilitzant aquestes dades, les imatges es poden assignar amb coordenades geogràfiques coincidents mitjançant la cerca (més o menys) de coincidències cronològiques exactes, o interpolant una posició probable si no es pot trobar cap coincidència exacta. </para>
+
+<para
+>Normalment, les imatges només proporcionen una hora i una data, però sense zona horària. Per tant, hem d'establir-ne una per fer possible una tasca. La zona horària, presumiblement correcta, es detecta des de la ubicació geogràfica del fitxer GPX, però també es pot establir manualment. </para>
+
+<para
+>Si els valors d'altitud no estan establerts en el conjunt de dades o no són prou precisos, es poden consultar utilitzant opentopodata.org (vegeu més avall). </para>
+
+<para
+>Els rellotges de les càmeres en la seva majoria no estan controlats per ràdio i sovint tenen un lleuger desplaçament. Si les dates de les imatges tenen una desviació de temps a causa que el rellotge de la càmera no està exactament en sincronització amb les dades GPS (que s'assumeix que són correctes), es pot definir una desviació. Llavors es considerarà en la cerca de coincidències, i també es pot utilitzar per fixar les dates de les imatges. </para>
+
+</section>
+
+<section>
+
+<title
+>Interfície d'arrossegar i deixar anar</title>
+
+<para
+>Una altra opció és etiquetar les imatges mitjançant arrossega i deixa anar. Una o més imatges es poden seleccionar i deixar anar en el mapa, a la seva ubicació respectiva (possiblement també guiada per algun trajecte GPX). Les elevacions no es poden determinar d'aquesta manera, de manera que, o bé, es deixen per ser «0 m» (nivell del mar), introduïts manualment o consultats a través d'«opentopodata.org» (ja sigui de forma automàtica o manualment, vegeu més endavant). </para>
+
+</section>
+
+<section>
+
+<title
+>Assignació d'imatges a adreces d'interès</title>
+
+<para
+>Per als llocs assignats sovint a les imatges (com ara la llar, on no es porta un enregistrador GPS), es poden definir adreces d'interès. Les imatges es poden assignar fàcilment a les coordenades respectives. </para>
+
+</section>
+
+<section>
+
+<title
+>Assignació manual</title>
+
+<para
+>També és possible introduir coordenades per a una o més imatges a mà. Les altituds es poden consultar automàticament utilitzant «opentopodata.org» (vegeu més avall), o també s'introdueixen manualment. </para>
+
+</section>
+
+</section>
+
+<section>
+
+<title
+>Configuració o cerca de la informació de l'elevació</title>
+
+<para
+>Les altituds sempre es poden establir manualment. Alternativament, les altituds també es poden cercar consultar diferents conjunts de dades d'elevació utilitzant l'API d'<ulink url="https://www.opentopodata.org/"
+>opentopodata.org</ulink
+>. </para>
+
+<para
+>El predefinit és utilitzar el conjunt de dades <ulink url="https://asterweb.jpl.nasa.gov/gdem.asp"
+>ASTER</ulink
+>. Aquest abasta el globus sencer. També es poden utilitzar altres, com la <ulink url="https://www.opentopodata.org/#public-api"
+>pàgina web d'«opentopodata.org»</ulink
+>. </para>
+
+<para
+>Per defecte, aquesta cerca de servidor s'ha d'activar manualment. També és possible habilitar les cerques automatitzades d'altitud per a totes les imatges que es deixin anar al mapa (el qual dona coordenades geogràfiques però no elevació) i les coordenades introduïdes manualment. </para>
+
+</section>
+
+<section>
+
+<title
+>Fent que les dades siguin persistents</title>
+
+<para
+>Finalment, es poden desar les coordenades assignades. El KGeoTag pot escriure-les a la capçalera Exif de les imatges (que òbviament alterarà els fitxers respectius), a fitxers laterals XMP (deixant els fitxers originals intactes) o a ambdues. De manera predeterminada es crea una còpia de seguretat de cada fitxer original si es canvia durant el procés d'escriptura. </para>
+
+<para
+>D'aquesta manera, l'assignació de les geodades es fa persistent i també accessible per a altres aplicacions que tinguin en compte les geodades (com &pex;, el <ulink url="https://www.kphotoalbum.org/"
+>KPhotoAlbum</ulink
+>). </para>
+
+<para
+>Si s'ha identificat una desviació de temps i aquesta s'ha indicat, les dates i hores de les imatges també es poden corregir mentre es desa. </para>
+
+</section>
+
+</section>
+
+</chapter>

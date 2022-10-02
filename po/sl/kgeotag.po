@@ -1,0 +1,2058 @@
+# Copyright (C) YEAR This file is copyright:
+# This file is distributed under the same license as the kgeotag package.
+#
+# Matjaž Jeran <matjaz.jeran@amis.net>, 2020, 2021, 2022.
+msgid ""
+msgstr ""
+"Project-Id-Version: kgeotag\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2022-09-12 00:43+0000\n"
+"PO-Revision-Date: 2022-09-13 07:15+0200\n"
+"Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
+"Language-Team: Slovenian <lugos-slo@lugos.si>\n"
+"Language: sl\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
+"%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 3.1.1\n"
+
+#, kde-format
+msgctxt "NAME OF TRANSLATORS"
+msgid "Your names"
+msgstr "Matjaž Jeran"
+
+#, kde-format
+msgctxt "EMAIL OF TRANSLATORS"
+msgid "Your emails"
+msgstr "matjaz.jeran@amis.net"
+
+#: src/AutomaticMatchingWidget.cpp:39
+#, kde-format
+msgid "Search for exact matches"
+msgstr "Iskanje natančnih ujemanj"
+
+#: src/AutomaticMatchingWidget.cpp:45
+#, kde-format
+msgid ""
+"Maximum deviation of the image's time from a GPS point's time to be "
+"considered an exact match:"
+msgstr ""
+"Maksimalno odstopanje časa slike od časa točke GPS, da se šteje za natančno "
+"ujemanje:"
+
+#: src/AutomaticMatchingWidget.cpp:59 src/AutomaticMatchingWidget.cpp:90
+#: src/FixDriftWidget.cpp:98
+#, kde-format
+msgid "seconds"
+msgstr "sekund"
+
+#: src/AutomaticMatchingWidget.cpp:65
+#, kde-format
+msgid "Search for interpolated matches"
+msgstr "Poišči interpolirana ujemanja"
+
+#: src/AutomaticMatchingWidget.cpp:71
+#, kde-format
+msgid ""
+"Spatial and temporal boundaries for two coordinates used to calculate an "
+"interpolated match:"
+msgstr ""
+"Prostorski in časovni meji za dve koordinati uporabljeni za izračun "
+"interpoliranih ujemanj:"
+
+#: src/AutomaticMatchingWidget.cpp:82
+#, kde-format
+msgid "Maximum interval:"
+msgstr "Maksimalni interval:"
+
+#: src/AutomaticMatchingWidget.cpp:103
+#, kde-format
+msgid "Maximum distance:"
+msgstr "Maksimalna razdalja:"
+
+#: src/AutomaticMatchingWidget.cpp:110
+#, kde-format
+msgid "meters"
+msgstr "metrov"
+
+#: src/AutomaticMatchingWidget.cpp:132
+#, kde-format
+msgid "Save settings"
+msgstr "Shrani nastavitve"
+
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1024
+#, kde-format
+msgid "(Re)Assign all images"
+msgstr "(Ponovno) dodeli vse slike"
+
+#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:82
+#: src/MainWindow.cpp:1119 src/SettingsDialog.cpp:95
+#, kde-format
+msgid "Combined match search"
+msgstr "Kombinirano iskanje ujemanja"
+
+#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:90
+#: src/SettingsDialog.cpp:96
+#, kde-format
+msgid "Search exact matches only"
+msgstr "Iskanje samo natančnih ujemanj"
+
+#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:96
+#: src/SettingsDialog.cpp:97
+#, kde-format
+msgid "Search interpolated matches only"
+msgstr "Poišči samo interpolirana ujemanja"
+
+#: src/AutomaticMatchingWidget.cpp:163
+#, kde-format
+msgid "Exclude manually tagged images"
+msgstr "Izključi ročno označene slike"
+
+#: src/AutomaticMatchingWidget.cpp:196
+#, kde-format
+msgid "Save as default"
+msgstr "Shrani kot privzeto"
+
+#: src/AutomaticMatchingWidget.cpp:196
+#, kde-format
+msgid "Settings saved!"
+msgstr "Nastavitve shranjene!"
+
+#: src/BookmarksList.cpp:56
+#, kde-format
+msgid "Add new bookmark for current map center"
+msgstr "Dodaj nov zaznamek v trenutni center zemljevida"
+
+#: src/BookmarksList.cpp:60
+#, kde-format
+msgid "Add new manual bookmark"
+msgstr "Dodaj nov ročni zaznamek"
+
+#: src/BookmarksList.cpp:65
+#, kde-format
+msgid "Rename bookmark"
+msgstr "Preimenuj zaznamek"
+
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:120
+#, kde-format
+msgid "Edit coordinates"
+msgstr "Uredi koordinate"
+
+#: src/BookmarksList.cpp:73 src/ImagesListView.cpp:124
+#, kde-format
+msgid "Lookup elevation"
+msgstr "Pridobi višino"
+
+#: src/BookmarksList.cpp:76
+#, kde-format
+msgid "Set elevation manually"
+msgstr "Ročno nastavi višino"
+
+#: src/BookmarksList.cpp:81 src/BookmarksList.cpp:220
+#, kde-format
+msgid "Delete bookmark"
+msgstr "Zbriši zaznamek"
+
+#: src/BookmarksList.cpp:104
+#, kde-format
+msgid "New Bookmark"
+msgstr "Novi zaznamek"
+
+#: src/BookmarksList.cpp:104
+#, kde-format
+msgid "Label for the new bookmark:"
+msgstr "Oznaka za novi zaznamek:"
+
+#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:100
+#, kde-format
+msgid "Untitled"
+msgstr "Brez naslova"
+
+#: src/BookmarksList.cpp:138
+#, kde-format
+msgctxt "Adding a consecutive number to a bookmark label to make it unique"
+msgid "%1 (%2)"
+msgstr "%1 (%2)"
+
+#: src/BookmarksList.cpp:155
+#, kde-format
+msgid "Add new bookmark"
+msgstr "Dodaj nov zaznamek"
+
+#: src/BookmarksList.cpp:156
+#, kde-format
+msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
+msgstr "Zaznamek \"%1\" že obstaja, namesto tega je bil ustvarjen \"%2\"."
+
+#: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
+#, kde-format
+msgid "Rename Bookmark"
+msgstr "Preimenuj zaznamek"
+
+#: src/BookmarksList.cpp:198
+#, kde-format
+msgid "New label for the new bookmark:"
+msgstr "Nova oznaka za novi zaznamek:"
+
+#: src/BookmarksList.cpp:206
+#, kde-format
+msgid "The label \"%1\" is already in use. Please choose another name."
+msgstr "Oznaka \"%1\" je že v rabi. Izberite drugo ime."
+
+#: src/BookmarksList.cpp:221
+#, kde-format
+msgid "Really delete bookmark \"%1\"?"
+msgstr "Naj res zbrišem zaznamek \"%1\"?"
+
+#: src/BookmarksList.cpp:265
+#, kde-format
+msgid "Set elevation"
+msgstr "Nastavi višino"
+
+#: src/BookmarksList.cpp:266
+#, kde-format
+msgid "Elevation for \"%1\" (m)"
+msgstr "Višina za \"%1\" (m)"
+
+#: src/BookmarksList.cpp:287
+#, kde-format
+msgctxt "A quoted bookmark label"
+msgid "\"%1\""
+msgstr "\"%1\""
+
+#: src/BookmarksWidget.cpp:45
+#, kde-format
+msgid "Position: %1, %2; Altitude: %3 m"
+msgstr "Položaj: %1, %2; Višina: %3 m"
+
+#: src/CoordinatesDialog.cpp:35
+#, kde-format
+msgid "Label:"
+msgstr "Oznaka:"
+
+#: src/CoordinatesDialog.cpp:40
+#, kde-format
+msgid "Longitude:"
+msgstr "Dolžina:"
+
+#: src/CoordinatesDialog.cpp:45 src/CoordinatesDialog.cpp:54
+#, kde-format
+msgctxt "Degrees symbol"
+msgid " °"
+msgstr " °"
+
+#: src/CoordinatesDialog.cpp:49
+#, kde-format
+msgid "Latitude:"
+msgstr "Širina:"
+
+#: src/CoordinatesDialog.cpp:59
+#, kde-format
+msgid "Altitude:"
+msgstr "Višina:"
+
+#: src/CoordinatesDialog.cpp:65
+#, kde-format
+msgctxt "Meters abbreviation"
+msgid " m"
+msgstr " m"
+
+#: src/CoordinatesDialog.cpp:70
+#, kde-format
+msgid "<i>The altitude is looked up automatically</i>"
+msgstr "<i>Nadmorska višina se poišče samodejno</i>"
+
+#: src/CoordinatesDialog.cpp:78
+#, kde-format
+msgid "New bookmark"
+msgstr "Novi zaznamek"
+
+#: src/CoordinatesDialog.cpp:79
+#, kde-format
+msgid "Data for the new bookmark:"
+msgstr "Podatki za novo zaznamek:"
+
+#: src/CoordinatesDialog.cpp:85
+#, kde-format
+msgid "Manual coordinates"
+msgstr "Ročne koordinate"
+
+#: src/CoordinatesDialog.cpp:86
+#, kde-format
+msgid "Coordinates for %1:"
+msgstr "Koordinate za %1:"
+
+#: src/CoordinatesFormatter.cpp:32
+#, kde-format
+msgctxt "Formatted longitude with a cardinal direction"
+msgid "%1° %2"
+msgstr "%1° %2"
+
+#: src/CoordinatesFormatter.cpp:34
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"East\""
+msgid "E"
+msgstr "V"
+
+#: src/CoordinatesFormatter.cpp:35
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"West\""
+msgid "W"
+msgstr "Z"
+
+#: src/CoordinatesFormatter.cpp:40
+#, kde-format
+msgctxt "Formatted latitude with a cardinal direction"
+msgid "%1° %2"
+msgstr "%1° %2"
+
+#: src/CoordinatesFormatter.cpp:42
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"North\""
+msgid "N"
+msgstr "S"
+
+#: src/CoordinatesFormatter.cpp:43
+#, kde-format
+msgctxt "Abbreviated cardinal direction \"South\""
+msgid "S"
+msgstr "J"
+
+#: src/ElevationEngine.cpp:122
+#, kde-format
+msgid "The request timed out"
+msgstr "Zahtevek je potekel"
+
+#: src/ElevationEngine.cpp:141
+#, kde-format
+msgid ""
+"Could not parse the server's response: Failed to create a JSON document.</"
+"p><p>The error's description was: %1</p><p>The literal response was:</"
+"p><p><kbd>%2</kbd>"
+msgstr ""
+"Odgovora strežnika ni bilo mogoče razčleniti: Ustvarjanje dokumenta JSON ni "
+"uspelo.</p><p>Opis napake je bil: %1</p><p>Dobesedni odgovor je bil:</"
+"p><p><kbd>%2</kbd>"
+
+#: src/ElevationEngine.cpp:153
+#, kde-format
+msgid "Could not parse the server's response: Could not read the status value"
+msgstr ""
+"Odgovora strežnika ni bilo mogoče razčleniti: Vrednosti stanja ni bilo "
+"mogoče prebrati"
+
+#: src/ElevationEngine.cpp:161
+#, kde-format
+msgid "Could not read error description"
+msgstr "Ni bilo mogoče razbrati opisa napake"
+
+#: src/ElevationEngine.cpp:163
+#, kde-format
+msgctxt "A server error status followed by the error description"
+msgid "%1: %2"
+msgstr "%1: %2"
+
+#: src/ElevationEngine.cpp:169
+#, kde-format
+msgid "Could not parse the server's response: Could not read the results array"
+msgstr ""
+"Odgovora strežnika ni bilo mogoče razčleniti: matrike rezultatov ni bilo "
+"mogoče prebrati"
+
+#: src/ElevationEngine.cpp:180
+#, kde-format
+msgid ""
+"Could not parse the server's response: Could not read the elevation value"
+msgstr ""
+"Odgovora strežnika ni bilo mogoče razčleniti: Ni bilo mogoče prebrati "
+"vrednosti višine"
+
+#: src/FixDriftWidget.cpp:25
+#, kde-format
+msgid "Images' time zone"
+msgstr "Časovni pas slik"
+
+#: src/FixDriftWidget.cpp:29
+#, kde-format
+msgid "The images were taken in the following timezone:"
+msgstr "Slike so bile posnete v naslednjem časovnem pasu:"
+
+#: src/FixDriftWidget.cpp:66
+#, kde-format
+msgid "Camera clock time drift"
+msgstr "Premik ure ure kamere"
+
+#: src/FixDriftWidget.cpp:70
+#, kde-format
+msgid "Deviation between image dates and the (exact) GPS data time:"
+msgstr "Odstopanje med podatki s slike in (natančnim) časom GPS naprave:"
+
+#: src/FixDriftWidget.cpp:82
+#, kde-format
+msgid "hours"
+msgstr "ure"
+
+#: src/FixDriftWidget.cpp:90
+#, kde-format
+msgid "minutes"
+msgstr "minute"
+
+#: src/FixDriftWidget.cpp:104
+#, kde-format
+msgid "Display the fixed dates and times"
+msgstr "Prikaži fiksne datume in čase"
+
+#: src/FixDriftWidget.cpp:109
+#, kde-format
+msgid "Fix the files' dates and times when saving"
+msgstr "Zapiši fiksne datume in čase ob shranjevanju"
+
+#: src/ImagesListView.cpp:61
+#, kde-format
+msgid "Select all images"
+msgstr "Izberi vse slike"
+
+#: src/ImagesListView.cpp:65
+#, kde-format
+msgid "Select"
+msgstr "Izberi"
+
+#: src/ImagesListView.cpp:67 src/MainWindow.cpp:122
+#, kde-format
+msgid "All images"
+msgstr "Vse slike"
+
+#: src/ImagesListView.cpp:69
+#, kde-format
+msgid "All images without coordinates"
+msgstr "Vse slike brez koordinat"
+
+#: src/ImagesListView.cpp:72
+#, kde-format
+msgid "All images with coordinates"
+msgstr "Vse slike s koordinatami"
+
+#: src/ImagesListView.cpp:78 src/MainWindow.cpp:191 src/MainWindow.cpp:1044
+#, kde-format
+msgid "Automatic matching"
+msgstr "Samodejno ujemanje"
+
+#: src/ImagesListView.cpp:101
+#, kde-format
+msgid "Assign to bookmark"
+msgstr "Dodeli zaznamku"
+
+#: src/ImagesListView.cpp:107
+#, kde-format
+msgid "Assign to map center"
+msgstr "Dodeli centru zemljevida"
+
+#: src/ImagesListView.cpp:112
+#, kde-format
+msgid "Set coordinates from clipboard"
+msgstr "Nastavi koordinate iz odlagališča"
+
+#: src/ImagesListView.cpp:115
+#, kde-format
+msgid "Set coordinates manually"
+msgstr "Ročno nastavi koordinate"
+
+#: src/ImagesListView.cpp:131 src/MainWindow.cpp:1247 src/MainWindow.cpp:1300
+#: src/MainWindow.cpp:1346 src/MainWindow.cpp:1420 src/MainWindow.cpp:1451
+#: src/MainWindow.cpp:1454 src/MainWindow.cpp:1459
+#, kde-format
+msgid "Save changes"
+msgstr "Shrani spremembe"
+
+#: src/ImagesListView.cpp:138
+#, kde-format
+msgid "Remove coordinates"
+msgstr "Odstrani koordinate"
+
+#: src/ImagesListView.cpp:145
+#, kde-format
+msgid "Discard changes"
+msgstr "Zavrzi spremembe"
+
+#: src/ImagesListView.cpp:150 src/ImagesListView.cpp:298
+#: src/MainWindow.cpp:1603
+#, kde-format
+msgid "Remove image"
+msgid_plural "Remove images"
+msgstr[0] "Odstrani sliko"
+msgstr[1] "Odstrani sliki"
+msgstr[2] "Odstrani slike"
+msgstr[3] "Odstrani slike"
+
+#: src/ImagesListView.cpp:157 src/PreviewWidget.cpp:48
+#, kde-format
+msgid "Open with default viewer"
+msgstr "Odpri s privzetim ogledovalnikom"
+
+#: src/ImagesListView.cpp:186
+#, kde-format
+msgid "(No bookmarks defined)"
+msgstr "(Ni določenih zaznamkov)"
+
+#: src/ImagesModel.cpp:52
+#, kde-format
+msgctxt "Marker for an associated file"
+msgid "✓ "
+msgstr "✓ "
+
+#: src/ImagesModel.cpp:55
+#, kde-format
+msgctxt "Marker for a file with a pending change"
+msgid " *"
+msgstr " *"
+
+#: src/ImagesModel.cpp:60
+#, kde-format
+msgctxt ""
+"Pattern for a display filename with a \"pending change\" and an \"associated"
+"\" marker. The first option is the \"associated\" marker, the second one is "
+"the filename and the third one the \"pending change\" marker."
+msgid "%1%2%3"
+msgstr "%1%2%3"
+
+#: src/main.cpp:33 src/MainWindow.cpp:79
+#, kde-format
+msgid "KGeoTag"
+msgstr "KGeoTag"
+
+#: src/main.cpp:35
+#, kde-format
+msgid "Photo geotagging program"
+msgstr "Program za geokodiranje fotografij"
+
+#: src/main.cpp:37
+#, kde-format
+msgid "Copyright (C) 2020-2022 Tobias Leupold"
+msgstr "Copyright (C) 2020-2022 Tobias Leupold"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Tobias Leupold"
+msgstr "Tobias Leupold"
+
+#: src/main.cpp:41
+#, kde-format
+msgid "Maintainer"
+msgstr "Vzdrževalec"
+
+#: src/main.cpp:48
+#, kde-format
+msgid "Files/Folders"
+msgstr "Datoteke/Mape"
+
+#: src/main.cpp:49
+#, kde-format
+msgid "Files and/or folders to load at startup"
+msgstr "Datoteke in/ali mape za nalaganje ob zagonu"
+
+#: src/main.cpp:50
+#, kde-format
+msgid "[files/folders...]"
+msgstr "{datoteke/mape...]"
+
+#: src/MainWindow.cpp:94 src/MainWindow.cpp:506
+#, kde-format
+msgid "Add images and/or GPX tracks"
+msgstr "Dodaj slike in/ali sledi GPX"
+
+#: src/MainWindow.cpp:101 src/MainWindow.cpp:555
+#, kde-format
+msgid "Add all images and tracks from a folder"
+msgstr "Dodaj vse slike in sledi iz mape"
+
+#: src/MainWindow.cpp:111
+#, kde-format
+msgid "All processed and saved images"
+msgstr "Vse obdelane in shranjene slike"
+
+#: src/MainWindow.cpp:117
+#, kde-format
+msgid "All images that already had coordinates"
+msgstr "Vse slike, ki so že imele koordinate"
+
+#: src/MainWindow.cpp:126
+#, kde-format
+msgid "All tracks"
+msgstr "Vse sledi"
+
+#: src/MainWindow.cpp:130
+#, kde-format
+msgid "All images and tracks (reset)"
+msgstr "Vse slike in sledi (ponovna nastavitev)"
+
+#: src/MainWindow.cpp:136
+#, kde-format
+msgid "Assign images to GPS data"
+msgstr "Dodeli slike podatkom GPS"
+
+#: src/MainWindow.cpp:146
+#, kde-format
+msgid "Save changed images"
+msgstr "Shrani spremenjene slike"
+
+#: src/MainWindow.cpp:158
+#, kde-format
+msgid "Set default dock arrangement"
+msgstr "Nastavi privzeto razporeditev priključkov"
+
+#: src/MainWindow.cpp:181
+#, kde-format
+msgid "Bookmarks"
+msgstr "Zaznamki"
+
+#: src/MainWindow.cpp:186
+#, kde-format
+msgid "Preview"
+msgstr "Predogled"
+
+#: src/MainWindow.cpp:199
+#, kde-format
+msgid "Fix time drift"
+msgstr "Popravi časovni zamik"
+
+#: src/MainWindow.cpp:217
+#, kde-format
+msgid "Map"
+msgstr "Zemljevid"
+
+#: src/MainWindow.cpp:224
+#, kde-format
+msgid "Unassigned images"
+msgstr "Nedodeljene slike"
+
+#: src/MainWindow.cpp:247
+#, kde-format
+msgid "Tracks"
+msgstr "Sledi"
+
+#: src/MainWindow.cpp:271
+#, kde-format
+msgid "Loading timezone data"
+msgstr "Nalaganje podatkov o časovnih conah"
+
+#: src/MainWindow.cpp:272
+#, kde-format
+msgid ""
+"<p>Could not load or parse the timezone data files <kbd>timezones.json</kbd> "
+"and/or <kbd>timezones.png</kbd>. Automatic timezone detection won't work.</"
+"p><p>Please check your installation!</p><p>If you run manually compiled "
+"sources without having installed them, please refer to <a href=\"https://"
+"community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
+"wiki</a> on how to make the respective files accessible.</p>"
+msgstr ""
+"<p>Ni bilo mogoče naložiti ali razčleniti datotek s podatki o časovnih conah "
+"<kbd>timezones.json</kbd> in/ali <kbd>timezones.png</kbd>.Samodejno "
+"zaznavanje časovnih con ne bo delovalo.</p><p>Prosimo, preverite svojo "
+"namestitev!</p><p>Če poganjata ročno prevedene programe, ne da bi jih "
+"namestili si oglejte <a href=\"https://community.kde.org/"
+"KGeoTag#Running_the_compiled_sources\">wiki skupnosti KDE</a> o tem, kako "
+"narediti ustrezne datoteke dostopne.</p>"
+
+#: src/MainWindow.cpp:318
+#, kde-format
+msgid "Assigned images"
+msgstr "Dodeljene slike"
+
+#: src/MainWindow.cpp:326
+#, kde-format
+msgid "Images"
+msgstr "Slike"
+
+#: src/MainWindow.cpp:394
+#, kde-format
+msgid "Close KGeoTag"
+msgstr "Zapri KGeoTag"
+
+#: src/MainWindow.cpp:395
+#, kde-format
+msgid ""
+"<p>There are pending changes to images that haven't been saved yet. All "
+"changes will be discarded if KGeoTag is closed now.</p><p>Do you want to "
+"close the program anyway?</p>"
+msgstr ""
+"<p>Na slikah, ki še niso shranjene, obstajajo spremembe. Vse spremembe bodo "
+"zavržene, če se bo KGeoTag zdaj zaprl.</p><p>Ali želite vseeno zapreti "
+"program?</p>"
+
+#: src/MainWindow.cpp:448
+#, kde-format
+msgid "Please select the images and/or GPX tracks to add"
+msgstr "Izberi GPX slike in/ali sledi za dodajanje"
+
+#: src/MainWindow.cpp:450
+#, kde-format
+msgid ""
+"All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
+"cr2 *.nef *.dng *.gpx );; All files (*)"
+msgstr ""
+"Vse podprte slike (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *.cr2 "
+"*.nef *.dng *.gpx );;; Vse datoteke (*)"
+
+#: src/MainWindow.cpp:484
+#, kde-format
+msgid "<p>The selection did not contain any supported files!</p>"
+msgstr "<p>Izbira ni vsebovala nobene od podprtih vrst datotek!</p>"
+
+#: src/MainWindow.cpp:492
+#, kde-format
+msgctxt "A filename with a MIME type in braces and a HTML line break"
+msgid "%1 (%2)<br/>"
+msgstr "%1 (%2)<br/>"
+
+#: src/MainWindow.cpp:497
+#, kde-format
+msgid ""
+"<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
+"%2</p>"
+msgid_plural ""
+"<p>The following files will be skipped due to unsupported MIME types:</p><p>"
+"%2</p>"
+msgstr[0] ""
+"<p>Naslednja datoteka bo preskočena, ker je nepodprte vrste MIME:</p><p>%2</"
+"p>"
+msgstr[1] ""
+"<p>Naslednji datoteki bosta preskočeni, ker sta nepodprti vrsti MIME:</p><p>"
+"%2</p>"
+msgstr[2] ""
+"<p>Naslednje datoteke bodo preskočene, ker so nepodprte vrste MIME:</p><p>"
+"%2</p>"
+msgstr[3] ""
+"<p>Naslednje datoteke bodo preskočene, ker so nepodprte vrste MIME:</p><p>"
+"%2</p>"
+
+#: src/MainWindow.cpp:525
+#, kde-format
+msgid "Please select a folder"
+msgstr "Izberite mapo"
+
+#: src/MainWindow.cpp:556
+#, kde-format
+msgid "Could not find any supported files in <kbd>%1</kbd>"
+msgstr "Ni bilo mogoče najti nobene podprte datoteke v <kbd>%1</kbd>"
+
+#: src/MainWindow.cpp:611
+#, kde-format
+msgid ""
+"<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
+"file.</p>"
+msgstr ""
+"<p>Odpiranje <kbd>%1</kbd> ni uspelo. Preverite, da imate bralni dostop do "
+"te datoteke.</p>"
+
+#: src/MainWindow.cpp:616
+#, kde-format
+msgid ""
+"<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
+"kbd> root element. Apparently, this is not a GPX file!</p>"
+msgstr ""
+"<p>Geodetski podatkov iz <kbd>%1</kbd> ni bilo mogoče prebrati: ni bilo "
+"mogoče najti korenskega elementa <kbd>gpx</kbd>. Kot kaže, to ni datoteka "
+"GPX!</p>"
+
+#: src/MainWindow.cpp:622
+#, kde-format
+msgid ""
+"<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
+msgstr ""
+"<p><kbd>%1</kbd> se kaže kot datoteka GPX, a ne vsebuje geodetskih podatkov!"
+"</p>"
+
+#: src/MainWindow.cpp:627
+#, kde-format
+msgid ""
+"<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
+"all, or only a part of it.</p>"
+msgstr ""
+"<p>Razčlenjevanje XML ni uspelo za <kbd>%1</kbd>. Ali ni bilo mogoče "
+"naložiti sploh nobenih podatkov ali pa samo njihov del.</p>"
+
+#: src/MainWindow.cpp:637
+#, kde-format
+msgid "<p><b>Loading GPX file failed</b></p>"
+msgstr "<p><b>Nalaganje datoteke GPX ni uspelo</b></p>"
+
+#: src/MainWindow.cpp:640
+#, kde-format
+msgctxt "Fraction of processed files are added inside the round braces"
+msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
+msgstr "<p><b>Nalaganje datoteke GPX ni uspelo (%1/%2)</b></p>"
+
+#: src/MainWindow.cpp:647
+#, kde-format
+msgid "<p>The next GPX file will be loaded now.</p>"
+msgstr "<p>Naslednja datoteka GPX bo zdaj naložena.</p>"
+
+#: src/MainWindow.cpp:651 src/MainWindow.cpp:715
+#, kde-format
+msgid "Load GPX data"
+msgstr "Naloži sled GPX"
+
+#: src/MainWindow.cpp:661
+#, kde-format
+msgid "<p>Processed one file</p>"
+msgid_plural "<p>Processed %1 files</p>"
+msgstr[0] "<p>Obdelana %1 datoteka</p>"
+msgstr[1] "<p>Obdelani %1 datoteki</p>"
+msgstr[2] "<p>Obdelane %1 datoteke</p>"
+msgstr[3] "<p>Obdelanih %1 datotek</p>"
+
+#: src/MainWindow.cpp:666
+#, kde-format
+msgctxt ""
+"Processed x files message with some files that failed to load. The "
+"pluralized string for the failed files counter (%2) is provided by the "
+"following i18np call."
+msgid "<p>Processed one file; %2</p>"
+msgid_plural "<p>Processed %1 files; %2</p>"
+msgstr[0] "<p>Obdelana %1 datoteka; %2</p>"
+msgstr[1] "<p>Obdelani %1 datoteki; %2</p>"
+msgstr[2] "<p>Obdelane %1 datoteke; %2</p>"
+msgstr[3] "<p>Obdelanih %1 datotek; %2</p>"
+
+#: src/MainWindow.cpp:668 src/MainWindow.cpp:683
+#, kde-format
+msgid "one file failed to load"
+msgid_plural "%1 files failed to load"
+msgstr[0] "%1 datoteki se ni uspelo naložiti"
+msgstr[1] "%1 datotekam se ni uspelo naložiti"
+msgstr[2] "%1 datotekam se ni uspelo naložiti"
+msgstr[3] "%1 datotekam se ni uspelo naložiti"
+
+#: src/MainWindow.cpp:673
+#, kde-format
+msgctxt ""
+"Processed x files message with some files that have been skipped. The "
+"pluralized string for the skipped files counter (%2) is provided by the "
+"following i18np call."
+msgid "<p>Processed one file; %2</p>"
+msgid_plural "<p>Processed %1 files; %2</p>"
+msgstr[0] "<p>Obdelana %1 datoteka; %2</p>"
+msgstr[1] "<p>Obdelani %1 datoteki; %2</p>"
+msgstr[2] "<p>Obdelane %1 datoteke; %2</p>"
+msgstr[3] "<p>Obdelanih %1 datotek; %2</p>"
+
+#: src/MainWindow.cpp:675 src/MainWindow.cpp:684
+#, kde-format
+msgid "one already loaded file has been skipped"
+msgid_plural "%1 already loaded files have been skipped"
+msgstr[0] "%1 že naložena datoteka je bila preskočena"
+msgstr[1] "%1 že naloženi datoteki sta bili preskočeni"
+msgstr[2] "%1 že naložene datoteke so bile preskočene"
+msgstr[3] "%1 že naloženih datotek je bilo preskočeno"
+
+#: src/MainWindow.cpp:681
+#, kde-format
+msgctxt ""
+"Processed x files message with some files that failed to load and some that "
+"have been skipped. The pluralized strings for the failed (%2) and skipped "
+"files counter (%3) are provided by the following i18np call."
+msgid "<p>Processed one file; %2, %3</p>"
+msgid_plural "<p>Processed %1 files; %2, %3</p>"
+msgstr[0] "<p>Obdelana %1 datoteka; %2, %3</p>"
+msgstr[1] "<p>Obdelani %1 datoteki; %2, %3</p>"
+msgstr[2] "<p>Obdelane %1 datoteke; %2, %3</p>"
+msgstr[3] "<p>Obdelanih %1 datotek; %2, %3</p>"
+
+#: src/MainWindow.cpp:689
+#, kde-format
+msgid "<p>No waypoints could be loaded.</p>"
+msgstr "<p>Ni bilo mogoče naložiti točk poti.</p>"
+
+#: src/MainWindow.cpp:695
+#, kde-format
+msgctxt ""
+"Loaded x waypoints message with the number of tracks that have been read. "
+"The pluralized string for the tracks (%2) is provided by the following i18np "
+"call."
+msgid "<p>Loaded one waypoint from %2</p>"
+msgid_plural "<p>Loaded %1 waypoints from %2</p>"
+msgstr[0] "<p>Naložena %1 točka poti iz %2</p>"
+msgstr[1] "<p>Naloženi %1 točki poti iz %2</p>"
+msgstr[2] "<p>Naložene %1 točke poti iz %2</p>"
+msgstr[3] "<p>Naloženih %1 točk poti iz %2</p>"
+
+#: src/MainWindow.cpp:698 src/MainWindow.cpp:707
+#, kde-format
+msgid "one track"
+msgid_plural "%1 tracks"
+msgstr[0] "od %1 sledi"
+msgstr[1] "od %1 sledi"
+msgstr[2] "od %1 sledi"
+msgstr[3] "od %1 sledi"
+
+#: src/MainWindow.cpp:704
+#, kde-format
+msgctxt ""
+"Loaded x waypoints message with the number of tracks and the number of "
+"segments that have been read. The pluralized string for the tracks (%2) and "
+"the one for the segments (%3) are provided by the following i18np calls."
+msgid "<p>Loaded one waypoint from %2 and %3</p>"
+msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
+msgstr[0] "<p>Naložena %1 točka poti iz %2 in %3</p>"
+msgstr[1] "<p>Naloženi %1 točki poti iz %2 in %3</p>"
+msgstr[2] "<p>Naložene %1 točke poti iz %2 in %3</p>"
+msgstr[3] "<p>Naloženih %1 točk poti %2 in %3</p>"
+
+#: src/MainWindow.cpp:708
+#, kde-format
+msgid "one segment"
+msgid_plural "%1 segments"
+msgstr[0] "%1 segment"
+msgstr[1] "%1 segmenta"
+msgstr[2] "%1 segmenti"
+msgstr[3] "%1 segmentov"
+
+#: src/MainWindow.cpp:723
+#, kde-format
+msgid "Timezone detection failed"
+msgstr "Zaznavanje časovnega pasu ni uspelo"
+
+#: src/MainWindow.cpp:724
+#, kde-format
+msgid ""
+"<p>The presumably correct timezone for images associated with the loaded GPX "
+"file could not be detected.</p><p>Please set the correct timezone manually "
+"on the \"Fix time drift\" page.</p>"
+msgstr ""
+"<p>Domnevno pravilnega časovnega pasu za slike, povezane z naloženo datoteko "
+"GPX, ni bilo mogoče zaznati.</p><p>Na strani \"Popravi časovni zamik\" ročno "
+"nastavite pravi časovni pas.</p>"
+
+#: src/MainWindow.cpp:730
+#, kde-format
+msgid "Setting the detected timezone failed"
+msgstr "Nastavitev zaznanega časovnega pasu ni uspela"
+
+#: src/MainWindow.cpp:731
+#, kde-format
+msgid ""
+"<p>The presumably correct timezone \"%1\" has been detected from the loaded "
+"GPX file, but could not be set. This should not happen!</p><p>Please file a "
+"bug report about this, including the installed versions of KGeoTag and your "
+"system's timezone data (the package owning <kbd>/usr/share/zoneinfo</kbd>).</"
+"p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
+"page.</p>"
+msgstr ""
+"<p>V naloženi datoteki GPX je bil zaznan domnevno pravilen časovni pas "
+"\"%1\", vendar ga ni bilo mogoče nastaviti. To se ne bi smelo zgoditi!</"
+"p><p>Prosimo pošljite poročilo o napaki, vključno z uporabljeno različico "
+"KGeoTag in časovno cono vašega sistema (paket, ki je lastnik <kbd>/usr/share/"
+"zoneinfo</kbd>).</p><p>Nastavitev časovnega pasu lahko ročno prilagodite na "
+"strani \"Popravi časovni zamik\".</p>"
+
+#: src/MainWindow.cpp:740
+#, kde-format
+msgid "Timezone adjusted"
+msgstr "Časovni pas prilagojen"
+
+#: src/MainWindow.cpp:741
+#, kde-format
+msgid ""
+"<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
+"well as the photos to associate with it. This timezone has been selected now."
+"</p><p>You can adjust the timezone setting manually on the \"Fix time drift"
+"\" page.</p>"
+msgstr ""
+"<p>Naložena datoteka GPX je bila domnevno posneta v časovnem pasu \"%1\", "
+"kot tudi fotografije, ki jih je treba povezati z njo. Ta časovni pas je bil "
+"zdaj izbran.</p><p>Nastavitev časovnega pasu lahko ročno prilagodite na "
+"strani \"Popravi časovni zamik\".</p>"
+
+#: src/MainWindow.cpp:767
+#, kde-format
+msgid "Loading images ..."
+msgstr "Nalaganje slik..."
+
+#: src/MainWindow.cpp:767 src/MainWindow.cpp:1060 src/MainWindow.cpp:1267
+#, kde-format
+msgid "Cancel"
+msgstr "Prekliči"
+
+#: src/MainWindow.cpp:793
+#, kde-format
+msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
+msgstr ""
+"<p><b>Nalaganje slik ni uspelo</b></p><p>Ni mogoče brati <kbd>%1</kbd>.</p>"
+
+#: src/MainWindow.cpp:799
+#, kde-format
+msgctxt "Message with a fraction of processed files added in round braces"
+msgid ""
+"<p><b>Loading image failed (%1/%2)</b></p><p>Could not read <kbd>%3</kbd>.</"
+"p>"
+msgstr ""
+"<p><b>Nalaganje slik ni uspelo (%1/%2)</b></p><p>Ni bilo mogoče prebrati "
+"<kbd>%3</kbd>.</p>"
+
+#: src/MainWindow.cpp:808
+#, kde-format
+msgid ""
+"<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
+"not read <kbd>%1</kbd>.</p>"
+msgstr ""
+"<p><b>Nalaganje glave Exif ali priklopne datoteke XMP ni uspelo</b></p><p>Ni "
+"bilo mogoče prebrati <kbd>%1</kbd>.</p>"
+
+#: src/MainWindow.cpp:814
+#, kde-format
+msgctxt "Message with a fraction of processed files added in round braces"
+msgid ""
+"<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
+"not read <kbd>%2</kbd>.</p>"
+msgstr ""
+"<p><b>Nalaganje glave Exif ali priklopne datoteke XMP ni uspelo</b></p><p>Ni "
+"bilo mogoče prebrati <kbd>%2</kbd>.</p>"
+
+#: src/MainWindow.cpp:826
+#, kde-format
+msgid ""
+"<p>Please check if this file is actually a supported image and if you have "
+"read access to it.</p>"
+msgstr ""
+"<p>Preverite, ali je ta datoteka dejansko podprta slika in da imate bralni "
+"dostop do nje.</p>"
+
+#: src/MainWindow.cpp:830
+#, kde-format
+msgid "<p>You can retry to load this file or cancel the loading process.</p>"
+msgstr ""
+"<p>Lahko poskusite znova naložiti to datoteko ali prekličete postopek "
+"nalaganja.</p>"
+
+#: src/MainWindow.cpp:833
+#, kde-format
+msgid ""
+"<p>You can retry to load this file, skip it or cancel the loading process.</"
+"p>"
+msgstr ""
+"<p>Lahko poskusite znova naložiti to datoteko, jo preskočite ali prekličete "
+"postopek nalaganja.</p>"
+
+#: src/MainWindow.cpp:840 src/MainWindow.cpp:872 src/MainWindow.cpp:878
+#: src/MainWindow.cpp:882 src/MainWindow.cpp:886 src/MainWindow.cpp:918
+#, kde-format
+msgid "Add images"
+msgstr "Dodaj slike"
+
+#: src/MainWindow.cpp:873
+#, kde-format
+msgid "Successfully added one image!"
+msgid_plural "Successfully added %1 images!"
+msgstr[0] "Uspešno naložena %1 slika!"
+msgstr[1] "Uspešno naloženi %1 sliki!"
+msgstr[2] "Uspešno naložene %1 slike!"
+msgstr[3] "Uspešno naloženih %1 slik!"
+
+#: src/MainWindow.cpp:879
+#, kde-format
+msgid "Could not add any new images, all requested images failed to load!"
+msgstr ""
+"Ni bilo mogoče naložiti novih slik, nobena od zahtevanih slik se ni uspela "
+"naložiti!"
+
+#: src/MainWindow.cpp:883
+#, kde-format
+msgid ""
+"Could not add any new images, all requested images have already been loaded!"
+msgstr ""
+"Ni bilo mogoče naložiti novih slik, vse zahtevane slike so že bile naložene!"
+
+#: src/MainWindow.cpp:887
+#, kde-format
+msgid ""
+"Could not add any new images, all requested images failed to load or have "
+"already been loaded!"
+msgstr ""
+"Ni bilo mogoče naložiti novih slik, vse zahtevane slike se ali niso uspele "
+"naložiti ali so že bile naložene!"
+
+#: src/MainWindow.cpp:891
+#, kde-format
+msgid "<p>Successfully added image!</p>"
+msgid_plural "<p>Successfully added %1 images!</p>"
+msgstr[0] "<p>Uspešno naložena %1 slika!</p>"
+msgstr[1] "<p>Uspešno naloženi %1 sliki!</p>"
+msgstr[2] "<p>Uspešno naložene %1 slike!</p>"
+msgstr[3] "<p>Uspešno naloženo %1 slik!</p>"
+
+#: src/MainWindow.cpp:896
+#, kde-format
+msgid "<p>One image failed to load.</p>"
+msgid_plural "<p>%1 images failed to load.</p>"
+msgstr[0] "<p>%1 slika se ni uspela naložiti.</p>"
+msgstr[1] "<p>%1 sliki se nista uspeli naložiti.</p>"
+msgstr[2] "<p>%1 slike se niso uspele naložiti.</p>"
+msgstr[3] "<p>%1 slik se ni uspelo naložiti.</p>"
+
+#: src/MainWindow.cpp:900
+#, kde-format
+msgid "<p>One image has already been loaded.</p>"
+msgid_plural "<p>%1 images have already been loaded.</p>"
+msgstr[0] "<p>%1 slika je že bila naložena.</p>"
+msgstr[1] "<p>%1 sliki sta bili že naloženi.</p>"
+msgstr[2] "<p>%1 slike so bile že naložene.</p>"
+msgstr[3] "<p>%1 slik je bilo že naloženih.</p>"
+
+#: src/MainWindow.cpp:909
+#, kde-format
+msgctxt ""
+"Message string for some images that failed to load and some that were "
+"skipped because they already have been loaded. The pluralized strings for "
+"the failed images (%1) and the skipped images (%2) are provided by the "
+"following i18np calls."
+msgid "<p>%1 and %2.</p>"
+msgstr "<p>%1 in %2!</p>"
+
+#: src/MainWindow.cpp:910
+#, kde-format
+msgid "One image failed to load"
+msgid_plural "%1 images failed to load"
+msgstr[0] "%1 sliki se ni uspelo naložiti"
+msgstr[1] "%1 slikam se ni uspelo naložiti"
+msgstr[2] "%1 slik se ni uspelo naložiti"
+msgstr[3] "%1 slik se ni uspelo naložiti"
+
+#: src/MainWindow.cpp:913
+#, kde-format
+msgid "one image has already been loaded"
+msgid_plural "%1 images have already been loaded"
+msgstr[0] "%1 slika je že bila naložena"
+msgstr[1] "%1 sliki sta že bili naloženi"
+msgstr[2] "%1 slike so že bile naložene"
+msgstr[3] "%1 slik je že bilo naloženih"
+
+#: src/MainWindow.cpp:948 src/MainWindow.cpp:978
+#, kde-format
+msgctxt "A quoted filename"
+msgid "\"%1\""
+msgstr "\"%1\""
+
+#: src/MainWindow.cpp:951
+#, kde-format
+msgid "1 image"
+msgid_plural "%1 images"
+msgstr[0] "%1 slika"
+msgstr[1] "%1 sliki"
+msgstr[2] "%1 slike"
+msgstr[3] "%1 slik"
+
+#: src/MainWindow.cpp:981
+#, kde-format
+msgid "1 image (%2)"
+msgid_plural "%1 images (%2)"
+msgstr[0] "%1 slika (%2)"
+msgstr[1] "%1 sliki (%2)"
+msgstr[2] "%1 slike (%2)"
+msgstr[3] "%1 slik (%2)"
+
+#: src/MainWindow.cpp:982
+#, kde-format
+msgid "all images have the same coordinates"
+msgstr "vse slike imajo enake koordinate"
+
+#: src/MainWindow.cpp:983
+#, kde-format
+msgid "coordinates differ across the images"
+msgstr "koordinate se med slikami razlikujejo"
+
+#: src/MainWindow.cpp:1025
+#, kde-format
+msgid ""
+"Can't search for matches:\n"
+"No images have been loaded yet."
+msgstr ""
+"Ni mogoče najti ujemanj:\n"
+"Nobene slike še ni naložene."
+
+#: src/MainWindow.cpp:1045
+#, kde-format
+msgid ""
+"Can't search for matches:\n"
+"No GPS tracks have been loaded yet."
+msgstr ""
+"Ni mogoče najti ujemanj:\n"
+"Nobene sledi GPS še ni naložene."
+
+#: src/MainWindow.cpp:1060
+#, kde-format
+msgid "Assigning images ..."
+msgstr "Dodeljevanje slik ..."
+
+#: src/MainWindow.cpp:1124
+#, kde-format
+msgctxt ""
+"Message for the number of matches found. The pluralized string for the exact "
+"matches (%1) and the interpolated matches (%2) are provided by the following "
+"i18np calls."
+msgid "<p>Found %1 and %2!</p>"
+msgstr "<p>Najdeno %1 in %2!</p>"
+
+#: src/MainWindow.cpp:1125
+#, kde-format
+msgid "one exact match"
+msgid_plural "%1 exact matches"
+msgstr[0] "%1 natančno ujemanje"
+msgstr[1] "%1 natančni ujemanji"
+msgstr[2] "%1 natančna ujemanja"
+msgstr[3] "%1 natančnih ujemanj"
+
+#: src/MainWindow.cpp:1128
+#, kde-format
+msgid "one interpolated match"
+msgid_plural "%1 interpolated matches"
+msgstr[0] "%1 interpolativno ujemanje"
+msgstr[1] "%1 interpolativni ujemanji"
+msgstr[2] "%1 interpolativna ujemanja"
+msgstr[3] "%1 interpolativnih ujemanj"
+
+#: src/MainWindow.cpp:1135
+#, kde-format
+msgctxt ""
+"Message for the number of unmatched images. The number of images that could "
+"not be matched but already have coordinates assigned (%2) is provided by the "
+"following i18np call"
+msgid "<p>One image could not be matched (%2).</p>"
+msgid_plural "<p>%1 images could not be matched (%2).</p>"
+msgstr[0] "<p>%1 slika ni imela natančnih ujemanj (%2).</p>"
+msgstr[1] "<p>%1 sliki nista imeli natančnih ujemanj (%2).</p>"
+msgstr[2] "<p>%1 slike niso imele natančnih ujemanj (%2).</p>"
+msgstr[3] "<p>%1 slik ni imelo natančnih ujemanj (%2).</p>"
+
+#: src/MainWindow.cpp:1138 src/MainWindow.cpp:1160 src/MainWindow.cpp:1182
+#, kde-format
+msgid "of which one image already has coordinates assigned"
+msgid_plural "of which %1 images already have coordinates assigned"
+msgstr[0] "od katerih je %1 slika že imela dodeljene koordinate"
+msgstr[1] "od katerih sta %1 sliki že imeli dodeljene koordinate"
+msgstr[2] "od katerih so %1 slike že imele dodeljene koordinate"
+msgstr[3] "od katerih je %1 slik že imelo dodeljene koordinate"
+
+#: src/MainWindow.cpp:1143
+#, kde-format
+msgid "Could neither find any exact, nor any interpolated matches!"
+msgstr ""
+"Ni bilo mogoče najti nobenega natančnega niti interpoliranega ujemanja!"
+
+#: src/MainWindow.cpp:1148
+#, kde-format
+msgid "Exact matches search"
+msgstr "Iskanje natančnega ujemanja"
+
+#: src/MainWindow.cpp:1150
+#, kde-format
+msgid "<p>Found one exact match!</p>"
+msgid_plural "<p>Found %1 exact matches!</p>"
+msgstr[0] "<p>Najdeno %1 natančno ujemanje!</p>"
+msgstr[1] "<p>Najdeni %1 natančni ujemanji!</p>"
+msgstr[2] "<p>Najdena %1 natančna ujemanja!</p>"
+msgstr[3] "<p>Najdenih %1 natančnih ujemanj!</p>"
+
+#: src/MainWindow.cpp:1157
+#, kde-format
+msgctxt ""
+"Message for the number of unmatched images. The number of images that could "
+"not be matched but already have coordinates assigned (%2) is provided by the "
+"following i18np call"
+msgid "<p>One image had no exact match (%2).</p>"
+msgid_plural "<p>%1 images had no exact match (%2).</p>"
+msgstr[0] "<p>%1 slika ni imela natančnih ujemanj (%2).</p>"
+msgstr[1] "<p>%1 sliki nista imeli natančnih ujemanj (%2).</p>"
+msgstr[2] "<p>%1 slike niso imele natančnih ujemanj (%2).</p>"
+msgstr[3] "<p>%1 slik ni imelo natančnih ujemanj (%2).</p>"
+
+#: src/MainWindow.cpp:1165
+#, kde-format
+msgid "Could not find any exact matches!"
+msgstr "Ni bilo mogoče najti nobenega natančnega ujemanja!"
+
+#: src/MainWindow.cpp:1170
+#, kde-format
+msgid "Interpolated matches search"
+msgstr "Iskanje ujemanja z interpolacijo"
+
+#: src/MainWindow.cpp:1172
+#, kde-format
+msgid "<p>Found one interpolated match!</p>"
+msgid_plural "<p>Found %1 interpolated matches!</p>"
+msgstr[0] "<p>Najdeno %1 interpolativno ujemanje!</p>"
+msgstr[1] "<p>Najdeni %1 interpolativni ujemanji!</p>"
+msgstr[2] "<p>Najdena %1 interpolativna ujemanja!</p>"
+msgstr[3] "<p>Najdenih %1 interpolativnih ujemanj!</p>"
+
+#: src/MainWindow.cpp:1179
+#, kde-format
+msgctxt ""
+"Message for the number of unmatched images. The number of images that could "
+"not be matched but already have coordinates assigned (%2) is provided by the "
+"following i18np call"
+msgid "<p>One image had no interpolated match (%2).</p>"
+msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
+msgstr[0] "<p>%1 slika ni imela interpoliranega ujemanja (%2).</p>"
+msgstr[1] "<p>%1 sliki nista imeli interpoliranih ujemanj (%2).</p>"
+msgstr[2] "<p>%1 slike niso imele interpoliranih ujemanj (%2).</p>"
+msgstr[3] "<p>%1 slik ni imelo interpoliranih ujemanj (%2).</p>"
+
+#: src/MainWindow.cpp:1187
+#, kde-format
+msgid "Could not find any interpolated matches!"
+msgstr "Ni bilo mogoče najti nobenega interpoliranega ujemanja!"
+
+#: src/MainWindow.cpp:1208
+#, kde-format
+msgid "<p><b>Saving changes failed</b></p>"
+msgstr "<p><b>Shranjevanje sprememb ni uspelo</b></p>"
+
+#: src/MainWindow.cpp:1212
+#, kde-format
+msgctxt ""
+"Saving failed message with the fraction of processed files given in the "
+"round braces"
+msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
+msgstr "<p><b>Shranjevanje sprememb ni uspelo (%1/%2)</b></p>"
+
+#: src/MainWindow.cpp:1220
+#, kde-format
+msgid "<p>You can retry to process the file or cancel the saving process.</p>"
+msgstr ""
+"<p>Lahko poskusite ponovno obdelati datoteko ali prekličete postopek "
+"shranjevanja.</p>"
+
+#: src/MainWindow.cpp:1222
+#, kde-format
+msgid ""
+"<p>You can retry to process the file, skip it or cancel the saving process.</"
+"p>"
+msgstr ""
+"<p>Lahko poskusite ponovno obdelati datoteko, jo preskočite ali prekličete "
+"postopek shranjevanja.</p>"
+
+#: src/MainWindow.cpp:1247 src/MainWindow.cpp:1625 src/MainWindow.cpp:1641
+#: src/MainWindow.cpp:1670 src/MainWindow.cpp:1706
+#, kde-format
+msgid "Nothing to do"
+msgstr "Ni kaj narediti"
+
+#: src/MainWindow.cpp:1267
+#, kde-format
+msgid "Saving changes ..."
+msgstr "Shranjujem spremembe..."
+
+#: src/MainWindow.cpp:1289
+#, kde-format
+msgid ""
+"<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
+"could not be created.</p><p>Please check if this file doesn't exist yet and "
+"be sure to have write access to <kbd>%3</kbd>.</p>"
+msgstr ""
+"<p>Shranjevanje sprememb na <kbd>%1</kbd> ni uspelo. Varnostne kopije <kbd>"
+"%2</kbd> ni bilo mogoče ustvariti.</p><p>Preverite, da ta datoteka še ne "
+"obstaja, in se prepričajte, da imate dostop za pisanje na <kbd>%3</kbd>.</p>"
+
+#: src/MainWindow.cpp:1336
+#, kde-format
+msgid ""
+"<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
+"file still exists and if you have read access to it (and possibly also to an "
+"existing XMP sidecar file).</p>"
+msgstr ""
+"<p>Metapodatkov iz <kbd>%1</kbd> ni bilo mogoče prebrati.</p><p>Preverite, "
+"ali ta datoteka še vedno obstaja in da imate dostop do nje (in morda tudi "
+"njene priklopne datoteka XMP).</p>"
+
+#: src/MainWindow.cpp:1404
+#, kde-format
+msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
+msgstr "<p>Metapodatkov za <kbd>%1</kbd> ni bilo mogoče shraniti.</p>"
+
+#: src/MainWindow.cpp:1408
+#, kde-format
+msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
+msgstr "<p>Preverite ali imate dostop za pisanje na <kbd>%1</kbd>!"
+
+#: src/MainWindow.cpp:1411
+#, kde-format
+msgid ""
+"<p>Please check if this file still exists and if you have write access to it!"
+"</p>"
+msgstr ""
+"<p>Preverite, ali ta datoteka še vedno obstaja in ali imate dostop za "
+"pisanje nanjo.</p>"
+
+#: src/MainWindow.cpp:1452
+#, kde-format
+msgid "No changes could be saved!"
+msgstr "Nobenih sprememb ni bilo mogoče shraniti!"
+
+#: src/MainWindow.cpp:1455
+#, kde-format
+msgid ""
+"<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
+"</p>"
+msgstr ""
+"<p>Nekaterih sprememb ni bilo mogoče shraniti!</p><p>Uspešno shranjeno %1 od "
+"%2 slik.</p>"
+
+#: src/MainWindow.cpp:1460
+#, kde-format
+msgid "All changes have been successfully saved!"
+msgstr "Vse spremembe so bile uspešno shranjene!"
+
+#: src/MainWindow.cpp:1517 src/MainWindow.cpp:1538 src/SettingsDialog.cpp:193
+#, kde-format
+msgid "Elevation lookup"
+msgstr "Pridobivanje nadmorske višine"
+
+#: src/MainWindow.cpp:1518
+#, kde-format
+msgid ""
+"<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
+"message was: %1</p>"
+msgstr ""
+"<p>Pridobivanje podatkov o nadmorski višini z opentopodata.org ni uspelo.</"
+"p><p>Sporočilo o napaki je bilo:%1</p>"
+
+#: src/MainWindow.cpp:1526
+#, kde-format
+msgid ""
+"Fetching elevation data failed: The requested location is not present in the "
+"currently chosen elevation dataset."
+msgstr ""
+"Pridobivanje podatkov o višini ni uspelo: zahtevane lokacije ni v trenutno "
+"izbranem naboru podatkov o višini."
+
+#: src/MainWindow.cpp:1530
+#, kde-format
+msgid ""
+"Fetching elevation data failed: None of the requested locations are present "
+"in the currently chosen elevation dataset."
+msgstr ""
+"Pridobivanje podatkov o nadmorski višini ni uspelo: nobene od zahtevanih "
+"lokacij ni v trenutno izbranem naboru podatkov o nadmorski višini."
+
+#: src/MainWindow.cpp:1533
+#, kde-format
+msgid ""
+"Fetching elevation data is incomplete: Some of the requested locations are "
+"not present in the currently chosen elevation dataset."
+msgstr ""
+"Pridobivanje podatkov o nadmorski višini je nepopolno: nekatere zahtevane "
+"lokacije niso prisotne v trenutno izbranem naboru podatkov o nadmorski "
+"višini."
+
+#: src/MainWindow.cpp:1604
+#, kde-format
+msgid ""
+"The image has pending changes! Do you really want to remove it and discard "
+"the changes?"
+msgid_plural ""
+"At least one of the images has pending changes. Do you really want to remove "
+"them and discard all changes?"
+msgstr[0] ""
+"Ena slika ima čakajoče spremembe. Ali jo res želite odstraniti in zavreči "
+"vse spremembe?"
+msgstr[1] ""
+"Vsaj ena slika ima čakajoče spremembe. Ali jih res želite odstraniti in "
+"zavreči vse spremembe?"
+msgstr[2] ""
+"Vsaj ena slika ima čakajoče spremembe. Ali jih res želite odstraniti in "
+"zavreči vse spremembe?"
+msgstr[3] ""
+"Vsaj ena slika ima čakajoče spremembe. Ali jih res želite odstraniti in "
+"zavreči vse spremembe?"
+
+#: src/MainWindow.cpp:1624 src/MainWindow.cpp:1632
+#, kde-format
+msgid "Remove all processed and saved images"
+msgstr "Odstrani vse obdelane in shranjene slike"
+
+#: src/MainWindow.cpp:1633 src/MainWindow.cpp:1649
+#, kde-format
+msgid "Removed one image"
+msgid_plural "Removed %1 images"
+msgstr[0] "Odstranjena %1 slika"
+msgstr[1] "Odstranjeni %1 sliki"
+msgstr[2] "Odstranjene %1 slike"
+msgstr[3] "Odstranjenih %1 slik"
+
+#: src/MainWindow.cpp:1640 src/MainWindow.cpp:1648
+#, kde-format
+msgid "Remove images that already had coordinates"
+msgstr "Odstrani slike, ki so že imele koordinate"
+
+#: src/MainWindow.cpp:1655 src/MainWindow.cpp:1670
+#, kde-format
+msgid "Remove all images"
+msgstr "Odstrani vse slike"
+
+#: src/MainWindow.cpp:1656
+#, kde-format
+msgid ""
+"<p>There are pending changes to images that haven't been saved yet. All "
+"changes will be discarded if all images are removed now.</p><p>Do you really "
+"want to remove all images anyway?</p>"
+msgstr ""
+"<p>Na slikah obstajajo spremembe, ki še niso shranjene. Vse spremembe bodo "
+"zavržene, če bodo zdaj vse slike odstranjene.</p><p>Ali kljub temu res "
+"želite odstraniti vse slike?</p>"
+
+#: src/MainWindow.cpp:1705
+#, kde-format
+msgid "Remove all images and tracks (reset)"
+msgstr "Odstrani vse slike in sledi (ponovna nastavitev)"
+
+#: src/MainWindow.cpp:1733
+#, kde-format
+msgid "Failed to parse clipboard data"
+msgstr "Ni bilo mogoče razčleniti podatkov na odlagališču"
+
+#: src/MainWindow.cpp:1734
+#, kde-format
+msgid "Could not parse the clipboard's text to valid coordinates"
+msgstr ""
+"Ni bilo mogoče razčleniti besedila na odlagališču v veljavne koordinate"
+
+#: src/MapCenterInfo.cpp:41
+#, kde-format
+msgid "Map center position: %1, %2"
+msgstr "Preslikaj pozicijo centra: %1, %2"
+
+#: src/MapWidget.cpp:78
+#, kde-format
+msgid "Floating items"
+msgstr "Plavajoči predmeti"
+
+#: src/MapWidget.cpp:84
+#, kde-format
+msgid "Crosshairs"
+msgstr "Ciljni križ"
+
+#: src/PreviewWidget.cpp:36
+#, kde-format
+msgid "Image:"
+msgstr "Slika:"
+
+#: src/PreviewWidget.cpp:54 src/PreviewWidget.cpp:134
+#, kde-format
+msgid "Date/Time:"
+msgstr "Datum/Čas:"
+
+#: src/PreviewWidget.cpp:63
+#, kde-format
+msgid "Coordinates:"
+msgstr "Koordinate:"
+
+#: src/PreviewWidget.cpp:75
+#, kde-format
+msgid "read from file"
+msgstr "prebrano iz datoteke"
+
+#: src/PreviewWidget.cpp:76
+#, kde-format
+msgid "exact match"
+msgstr "natančno ujemanje"
+
+#: src/PreviewWidget.cpp:77
+#, kde-format
+msgid "interpolated match"
+msgstr "interpolativno ujemanje"
+
+#: src/PreviewWidget.cpp:78
+#, kde-format
+msgid "manually set"
+msgstr "ročno nastavljeno"
+
+#: src/PreviewWidget.cpp:109
+#, kde-format
+msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+msgstr "<p>Položaj: %1, %2; Višina: %3 m<br/>(%4)</p>"
+
+#: src/PreviewWidget.cpp:115
+#, kde-format
+msgid "<i>No coordinates set</i>"
+msgstr "<i>Ni nastavljenih koordinat</i>"
+
+#: src/PreviewWidget.cpp:136
+#, kde-format
+msgid ""
+"Date/Time\n"
+"(corrected):"
+msgstr ""
+"Datum/Čas\n"
+"(popravljen):"
+
+#: src/RetrySkipAbortDialog.cpp:25
+#, kde-format
+msgid "Skip current image"
+msgstr "Preskoči trenutno sliko"
+
+#: src/SettingsDialog.cpp:33
+#, kde-format
+msgid "KGeoTag: Settings"
+msgstr "KGeoTag: Nastavitve"
+
+#: src/SettingsDialog.cpp:39
+#, kde-format
+msgid "KGeoTag settings"
+msgstr "KGeoTag nastavitve"
+
+#: src/SettingsDialog.cpp:57
+#, kde-format
+msgid "Image lists"
+msgstr "Seznami slik"
+
+#: src/SettingsDialog.cpp:63
+#, kde-format
+msgid ""
+"<p>Loaded images can either be listed in two different lists (one for all "
+"images without and one for images with coordinates), or using a combined "
+"consecutive list for all images.</p><p>Use the following images list(s) mode:"
+"</p>"
+msgstr ""
+"<p>Naložene slike so lahko navedene na dveh različnih seznamih (enem za vse "
+"slike brez in enem za slike s koordinatami ali kombinirani zaporedni seznam "
+"za vse slike.</p><p>Uporabite naslednji način seznama(ov) slik:</p>"
+
+#: src/SettingsDialog.cpp:73
+#, kde-format
+msgid "Separate \"Assigned\" and \"Unassigned\" list"
+msgstr "Posebej seznama \"Dodeljenih\"  in \"Nedodeljenih\""
+
+#: src/SettingsDialog.cpp:74
+#, kde-format
+msgid "One combined list for all images"
+msgstr "En kombiniran seznam vseh slik"
+
+#: src/SettingsDialog.cpp:82
+#, kde-format
+msgid "Image Assignment"
+msgstr "Dodeljevanje slike"
+
+#: src/SettingsDialog.cpp:87
+#, kde-format
+msgid "Search type for the main menu \"Assign images to GPS data\" entry"
+msgstr "Vrsta iskanja za vnos glavnega menija \"Določi slike za vnos GPS\""
+
+#: src/SettingsDialog.cpp:106
+#, kde-format
+msgid ""
+"This triggers an automatic (re-)assignment of all images, respecting the "
+"\"Exclude manually tagged images\" setting from the \"Automatic assignment\" "
+"dock."
+msgstr ""
+"To sproži samodejno (ponovno) dodeljevanje vseh slik, ki spoštuje nastavitev "
+"\"Izvzemi ročno označene slike\" iz kupa \"Samodejno dodeljevanje\"."
+
+#: src/SettingsDialog.cpp:113
+#, kde-format
+msgid "Thumbnails and previews"
+msgstr "Predogledne sličice in predogledi"
+
+#: src/SettingsDialog.cpp:123
+#, kde-format
+msgid "Thumbnail size:"
+msgstr "Velikost predogledne sličice:"
+
+#: src/SettingsDialog.cpp:130 src/SettingsDialog.cpp:139
+#, kde-format
+msgid "px"
+msgstr "px"
+
+#: src/SettingsDialog.cpp:132
+#, kde-format
+msgid "Preview size:"
+msgstr "Velikost predogleda:"
+
+#: src/SettingsDialog.cpp:143
+#, kde-format
+msgid ""
+"Please restart the program after changes to these values so that they are "
+"applied and become visible."
+msgstr ""
+"Znova zaženite program po spremembah teh vrednosti, da bodo uveljavljene in "
+"postane vidne."
+
+#: src/SettingsDialog.cpp:151
+#, kde-format
+msgid "GPX track rendering"
+msgstr "Upodabljanje sledi GPX"
+
+#: src/SettingsDialog.cpp:159
+#, kde-format
+msgid "Color:"
+msgstr "Barva:"
+
+#: src/SettingsDialog.cpp:171
+#, kde-format
+msgid "Line width:"
+msgstr "Širina črte:"
+
+#: src/SettingsDialog.cpp:178
+#, kde-format
+msgid "Line style:"
+msgstr "Oblika črte:"
+
+#: src/SettingsDialog.cpp:180
+#, kde-format
+msgid "Solid"
+msgstr "Polna"
+
+#: src/SettingsDialog.cpp:181
+#, kde-format
+msgid "Dashes"
+msgstr "Črtkana"
+
+#: src/SettingsDialog.cpp:182
+#, kde-format
+msgid "Dots"
+msgstr "Pikčasta"
+
+#: src/SettingsDialog.cpp:183
+#, kde-format
+msgid "Dash-Dot"
+msgstr "Črta-pika"
+
+#: src/SettingsDialog.cpp:184
+#, kde-format
+msgid "Dash-Dot-Dot"
+msgstr "Črta-pika-pika"
+
+#: src/SettingsDialog.cpp:197
+#, kde-format
+msgid "Elevations can be looked up using opentopodata.org's web API."
+msgstr ""
+"Višine lahko najdete s pomočjo spletnega aplikacijskega vmesnika "
+"opentopodata.org."
+
+#: src/SettingsDialog.cpp:205
+#, kde-format
+msgid "Elevation dataset:"
+msgstr "Podatkovna zbirka višin:"
+
+#: src/SettingsDialog.cpp:209
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "ASTER"
+msgstr "ASTER"
+
+#: src/SettingsDialog.cpp:211
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "ETOPO1"
+msgstr "ETOPO1"
+
+#: src/SettingsDialog.cpp:213
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "EU-DEM"
+msgstr "EU-DEM"
+
+#: src/SettingsDialog.cpp:215
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "Mapzen"
+msgstr "Mapzen"
+
+#: src/SettingsDialog.cpp:217
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "NED"
+msgstr "NED"
+
+#: src/SettingsDialog.cpp:219
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "NZ DEM"
+msgstr "NZ DEM"
+
+#: src/SettingsDialog.cpp:221
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "SRTM (30 m)"
+msgstr "SRTM (30 m)"
+
+#: src/SettingsDialog.cpp:223
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "SRTM (90 m)"
+msgstr "SRTM (90 m)"
+
+#: src/SettingsDialog.cpp:226
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "EMODnet 2018 Bathymetry"
+msgstr "EMODnet 2018 Bathymetry"
+
+#: src/SettingsDialog.cpp:229
+#, kde-format
+msgctxt "opentopodata.org elevation dataset"
+msgid "GEBCO 2020 Bathymetry"
+msgstr "GEBCO 2020 Bathymetry"
+
+#: src/SettingsDialog.cpp:239
+#, kde-format
+msgid ""
+"Cf. <a href=\"https://www.opentopodata.org/\">https://www.opentopodata.org/</"
+"a> for further information about the available datasets, like the respective "
+"coverage!"
+msgstr ""
+"Prim. <a href=\"https://www.opentopodata.org/\">https://www.opentopodata.org/"
+"</a> za nadaljnje informacije o razpoložljivih naborih podatkov, kot npr. "
+"ustrezna pokritost!"
+
+#: src/SettingsDialog.cpp:247
+#, kde-format
+msgid "Request and set altitudes automatically"
+msgstr "Samodejno zahtevajte in nastavljajte višine"
+
+#: src/SettingsDialog.cpp:253
+#, kde-format
+msgid "Saving"
+msgstr "Shranjevanje"
+
+#: src/SettingsDialog.cpp:260
+#, kde-format
+msgid "Write changes to:"
+msgstr "Zapiši spremembe na:"
+
+#: src/SettingsDialog.cpp:264
+#, kde-format
+msgid "Exif header"
+msgstr "Glava Exif"
+
+#: src/SettingsDialog.cpp:266
+#, kde-format
+msgid "XMP sidecar file"
+msgstr "Priklopna datoteka XMP"
+
+#: src/SettingsDialog.cpp:268
+#, kde-format
+msgid "Exif header and XMP sidecar file"
+msgstr "Glava Exif in priklopna datoteka XMP"
+
+#: src/SettingsDialog.cpp:277
+#, kde-format
+msgid "Allow altering Exif headers of RAW images"
+msgstr "Dovoli spremembo glav Exif surovih slik"
+
+#: src/SettingsDialog.cpp:282
+#, kde-format
+msgid ""
+"<b>Caution!</b> This is experimental. By default, regardless of the setting "
+"for \"Write changes to\", all changes to RAW images are written to XMP "
+"sidecar files. Have backups and check your Exif data to be still complete "
+"and correct when using this!"
+msgstr ""
+"<b>Pozor!</b> To je eksperimentalno. Ne glede na nastavitve \"Zapiši "
+"spremembe v\" se privzeto vse spremembe surovih slik zapišejo v priklopne "
+"datoteke. Imejte varnostne kopije in preverite vaše podatke Exif za "
+"celovitost in pravilnost, kadar uporabljate to nastavitev!"
+
+#: src/SettingsDialog.cpp:290
+#, kde-format
+msgid "Create a backups before altering a file"
+msgstr "Ustvari varovalne kopije pred spremembo datoteke"
+
+#: src/SettingsDialog.cpp:319
+#, kde-format
+msgid "Opacity: %1%"
+msgstr "Neprosojnost: %1%"
+
+#: src/SettingsDialog.cpp:362
+#, kde-format
+msgid "Settings changed"
+msgstr "Nastavitve spremenjene"
+
+#: src/SettingsDialog.cpp:363
+#, kde-format
+msgid ""
+"Please restart KGeoTag to apply the changed settings and make them visible!"
+msgstr ""
+"Znova zaženite KGeoTag, da uporabite spremenjene nastavitve in jih naredite "
+"vidne!"
+
+#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#, kde-format
+msgid "Remove track"
+msgid_plural "Remove tracks"
+msgstr[0] "Odstrani sled"
+msgstr[1] "Odstrani sledi"
+msgstr[2] "Odstrani sledi"
+msgstr[3] "Odstrani sledi"
+
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#, kde-format
+msgid "<i>No track selected</i>"
+msgstr "<i>Ni izbrane nobene sledi</i>"
+
+#: src/TrackWalker.cpp:51
+#, kde-format
+msgid "%1 trackpoint"
+msgid_plural "%1 trackpoints"
+msgstr[0] "%1 točka na poti"
+msgstr[1] "%1 točki na poti"
+msgstr[2] "%1 točke na poti"
+msgstr[3] "%1 točk na poti"
+
+#: src/TrackWalker.cpp:57
+#, kde-format
+msgid "Selected trackpoint %1 of %2"
+msgstr "Izbranih točk na poti %1 od %2"
+
+#, fuzzy
+#~| msgid "All changes have been successfully saved!"
+#~ msgid "All images have been removed!"
+#~ msgstr "Vse spremembe so bile uspešno shranjene!"
+
+#~ msgid "GPX tracks (*.gpx);; All files (*)"
+#~ msgstr "Sledi GPX (*.gpx);; Vse datoteke (*)"
+
+#~ msgid "Please select the images to add"
+#~ msgstr "Izberite slike za dodajanje"
+
+#~ msgid ""
+#~ "<p>Some files were removed from the load request because their file "
+#~ "format is not supported.</p>"
+#~ msgstr ""
+#~ "<p>Nekatere datoteke so bile odstranjene iz zahteve za nalaganje, ker "
+#~ "njihova oblika zapisa ni podprta.</p>"
+
+#~ msgid "<p>The unsupported MIME type was: <kbd>%2</kbd></p>"
+#~ msgid_plural "<p>The unsupported MIME types were: <kbd>%2</kbd></p>"
+#~ msgstr[0] "<p>Nepodprta vrsta MIME je bila: <kbd>%2</kbd></p>"
+#~ msgstr[1] "<p>Nepodprti vrsti MIME sta bili: <kbd>%2</kbd></p>"
+#~ msgstr[2] "<p>Nepodprte vrste MIME so bile: <kbd>%2</kbd></p>"
+#~ msgstr[3] "<p>Nepodprte vrste MIME so bile: <kbd>%2</kbd></p>"
+
+#~ msgid "File"
+#~ msgstr "Datoteka"
+
+#~ msgid "Quit"
+#~ msgstr "Zapusti"
+
+#~ msgid "Settings"
+#~ msgstr "Nastavitve"
+
+#~ msgid "Configure KGeoTag"
+#~ msgstr "Nastavi KGeoTag"
+
+#~ msgid "<p>%1 %2!</p>%3"
+#~ msgstr "<p>%1 %2!</p>%3"
+
+#~ msgid "Found one exact match%2!"
+#~ msgid_plural "Found %1 exact matches%2!"
+#~ msgstr[0] "Najdeno %1 natančno ujemanje%2!"
+#~ msgstr[1] "Najdeno %1 natančni ujemanji%2!"
+#~ msgstr[2] "Najdena %1 natančna ujemanja%2!"
+#~ msgstr[3] "Najdeno %1 natančnih ujemanj%2!"
+
+#~ msgid " (one image had no exact match)"
+#~ msgid_plural " (%1 images had no exact match)"
+#~ msgstr[0] " (%1 slika ni imela natančnih ujemanj)"
+#~ msgstr[1] " (%1 sliki nista imeli natančnih ujemanj)"
+#~ msgstr[2] " (%1 slike niso imele natančnih ujemanj)"
+#~ msgstr[3] " (%1 slik ni imelo natančnih ujemanj)"
+
+#~ msgctxt "Fraction of processed files"
+#~ msgid " (%1 of %2)"
+#~ msgstr " (%1 of %2)"
+
+#~ msgid "You can retry to create the backup or cancel the saving process."
+#~ msgstr ""
+#~ "Lahko znova poskusite ustvariti varnostno kopijo ali preklicati postopek "
+#~ "shranjevanja."
+
+#~ msgid ""
+#~ "You can retry to create the backup, skip the current file or cancel the "
+#~ "saving process."
+#~ msgstr ""
+#~ "Lahko znova poskusite ustvariti varnostno kopijo, preskočite trenutno "
+#~ "datoteko ali prekličete shranjevanje datoteke."
+
+#~ msgid " (%1/%2)"
+#~ msgstr " (%1/%2)"
+
+#~ msgid "<p>%1</p><p>%2</p>"
+#~ msgstr "<p>%1</p><p>%2</p>"
+
+#~ msgid ", one file failed"
+#~ msgid_plural ", %1 files failed"
+#~ msgstr[0] ", %1 datoteka ni uspela"
+#~ msgstr[1] ", %1 datoteki nista uspeli"
+#~ msgstr[2] ", %1 datotek ni uspelo"
+#~ msgstr[3] ", %1 datotek ni uspelo"
+
+#~ msgid "Could not load any images!"
+#~ msgstr "Ni bilo mogoče naložiti nobenih slik!"
+
+#~ msgid ""
+#~ "<p>Could not load all images!</p><p>Successfully loaded one image of %2, "
+#~ "%3</p>"
+#~ msgid_plural ""
+#~ "<p>Could not load all images!</p><p>Successfully loaded %1 images of %2, "
+#~ "%3</p>"
+#~ msgstr[0] ""
+#~ "<p>Ni bilo mogoče naložiti vseh slik!</p><p>Uspešno je bila naložena %1 "
+#~ "slika od %2, %3</p>"
+#~ msgstr[1] ""
+#~ "<p>Ni bilo mogoče naložiti vseh slik!</p><p>Uspešno sta bili naloženi %1 "
+#~ "sliki od %2, %3</p>"
+#~ msgstr[2] ""
+#~ "<p>Ni bilo mogoče naložiti vseh slik!</p><p>Uspešno so bile naložene %1 "
+#~ "slike od %2, %3</p>"
+#~ msgstr[3] ""
+#~ "<p>Ni bilo mogoče naložiti vseh slik!</p><p>Uspešno je bilo naloženih %1 "
+#~ "slik od %2, %3</p>"
+
+#~ msgid " (skipped one already loaded image)"
+#~ msgid_plural " (skipped %1 already loaded images)"
+#~ msgstr[0] " (preskočena %1 že naložena slika)"
+#~ msgstr[1] " (preskočeni %1 že naloženi sliki)"
+#~ msgstr[2] " (preskočene %1 že naložene slike)"
+#~ msgstr[3] " (preskočeno %1 že naloženih slik)"
+
+#~ msgid "JPEG Images (*.jpg *.jpeg);; All files (*)"
+#~ msgstr "Slike JPEG (*.jpg *.jpeg);; Vse datoteke (*)"
+
+#~ msgid "%1 %2%3!"
+#~ msgstr "%1 %2%3!"
+
+#~| msgid ""
+#~| "Please restart the program after changes to these values so that they "
+#~| "are applied and become visible."
+#~ msgid "Please restart the program after changing the list mode to apply it!"
+#~ msgstr ""
+#~ "Po spremembi načina seznama znova zaženite program, da jo uveljavite!"
+
+#~ msgid ""
+#~ "Show two image lists: One for unassigned images and\n"
+#~ "one for assigned ones instead of one list for all"
+#~ msgstr ""
+#~ "Pokaži dva seznama slik: enega za nedodeljene slike in\n"
+#~ "enega za dodeljene namesto enega seznama za vse"
+
+#~ msgid "1 exact match found!"
+#~ msgid_plural "%1 exact matches found!"
+#~ msgstr[0] "Najdeno je %1 natančno ujemanje!"
+#~ msgstr[1] "Najdeni sta %1 natančni ujemanji!"
+#~ msgstr[2] "Najdena so %1 natančna ujemanja!"
+#~ msgstr[3] "Najdenih je %1 natančnih ujemanj!"
+
+#~ msgid "1 interpolated match found!"
+#~ msgid_plural "%1 interpolated matches found!"
+#~ msgstr[0] "Najdeno je bilo %1 interpolirano ujemanje!"
+#~ msgstr[1] "Najdeni sta bili %1 interpolirani ujemanji!"
+#~ msgstr[2] "Najdeni so bili %1 interpolirana ujemanja!"
+#~ msgstr[3] "Najdenih je bilo %1 interpoliranih ujemanj!"
+
+#~ msgid "GPX tracks (*.gpx)"
+#~ msgstr "GPX sledi  (*.gpx)"
+
+#~ msgid "Add GPX file"
+#~ msgstr "Dodaj datoteko GPX"

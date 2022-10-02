@@ -1,0 +1,186 @@
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<chapter id="overview">
+
+<title
+>Resumen</title>
+
+<section>
+
+<title
+>¿Qué es?</title>
+
+<para
+>KGeoTag es un programa de geoetiquetado libre y de código abierto. Está escrito en C++/<ulink url="https://www.qt.io/"
+>Qt</ulink
+> y usa las <ulink url="https://api.kde.org/frameworks/"
+>KDE Frameworks</ulink
+>. Se publica bajo las condiciones de la <ulink url="https://www.gnu.org/licenses/#GPL"
+>Licencia Pública General de GNU (GPL)</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>¿Qué es el «geoetiquetado»?</title>
+
+<para
+>Las fotos (por ejemplo, las imágenes JPEG) contienen metadatos, como la fecha de creación, información sobre la cámara, etc. Esta información se puede guardar en lo que se denomina <ulink url="https://es.wikipedia.org/wiki/Exchangeable_image_file_format"
+>cabecera Exif</ulink
+>, en un <ulink url="https://es.wikipedia.org/wiki/XMP"
+>archivo anexo XMP</ulink
+> o en ambos. Estos datos también pueden contener coordenadas geográficas para que quede constancia de dónde se obtuvieron las imágenes. </para>
+
+<para
+>La mayoría de las cámaras carecen de receptores GPS, por lo que no pueden guardar las coordenadas al capturar imágenes. Una posible solución consiste en llevar consigo un pequeño dispositivo de registro GPS (en la actualidad basta con disponer de un teléfono inteligente ;-)), que registrará su recorrido todo el tiempo. Posteriormente podrá comparar las fechas de las imágenes con las de los puntos del registro GPS para averiguar dónde se tomó cada una de las imágenes. </para>
+
+<para
+>Si conoce con seguridad dónde realizó una foto, también puede asignar las coordenadas de forma manual a la imagen. </para>
+
+</section>
+
+<section>
+
+<title
+>Geoetiquetar con KGeoTag</title>
+
+<section>
+
+<title
+>Formatos de archivo admitidos</title>
+
+<para
+>KGeoTag admite en la actualidad los siguientes formatos de archivo: <ulink url="https://es.wikipedia.org/wiki/JPEG"
+>JPEG</ulink
+>, <ulink url="https://es.wikipedia.org/wiki/Portable_Network_Graphics"
+>PNG</ulink
+>, <ulink url="https://es.wikipedia.org/wiki/WebP"
+>WebP</ulink
+>, <ulink url="https://es.wikipedia.org/wiki/TIFF"
+>TIFF</ulink
+>, <ulink url="https://es.wikipedia.org/wiki/OpenRaster"
+>OpenRaster</ulink
+> y <ulink url="https://es.wikipedia.org/wiki/Krita"
+>documentos de Krita</ulink
+>. También admite algunos formatos de imágenes RAW basados en TIFF: <ulink url="https://en.wikipedia.org/wiki/Raw_image_format"
+>Canon Raw v2</ulink
+> (.cr2), <ulink url="https://www.nikonusa.com/en/learn-and-explore/a/products-and-innovation/nikon-electronic-format-nef.html"
+>Nikon Electronic Format</ulink
+> (.nef) y <ulink url="https://helpx.adobe.com/camera-raw/digital-negative.html"
+>Adobe Digital Negative</ulink
+> (.dng). </para>
+
+<para
+>Los geodatos se pueden cargar de los archivos <ulink url="https://es.wikipedia.org/wiki/GPX"
+>GPX</ulink
+> (sin comprimir). </para>
+
+</section>
+
+<section>
+
+<title
+>Asignación de imágenes</title>
+
+<para
+>KGeoTag ofrece múltiples formas de asignar coordenadas a las imágenes: </para>
+
+<section>
+
+<title
+>Etiquetado automático</title>
+
+<para
+>El enfoque más conveniente consiste en la detección automática de coincidencias de los geodatos proporcionados por los archivos GPX, que se pueden cargar y mostrar en un mapa. Mediante el uso de dichos datos, puede asignar imágenes a las correspondientes coordenadas geográficas encontrando coincidencias cronológicas (más o menos) exactas, o interpolando una posición probable, si no se puede encontrar una coincidencia exacta. </para>
+
+<para
+>Normalmente, las imágenes solo proporcionan una fecha y una hora, pero no una zona horaria. Por ello, necesitamos definir una para poder realizar asignaciones. La zona horaria supuestamente correcta se detecta a partir de la posición geográfica del archivo GPX, aunque también puede definirla de forma manual. </para>
+
+<para
+>Si los valores de la altura no están definidos en el conjunto de datos o si no son lo suficientemente precisos, se pueden buscar usando opentopodata.org (consulte más adelante). </para>
+
+<para
+>La mayoría de los relojes de las cámaras no están controlados por radio y a menudo suelen tener cierto desfase. Si las fechas de las imágenes tienen un desfase debido a que el reloj de la cámara no está sincronizado con los datos del GPS (que se supone que es correcto), puede definir una desviación. Esta desviación se tendrá en cuenta al buscar coincidencias y también se puede usar para corregir las fechas de las imágenes. </para>
+
+</section>
+
+<section>
+
+<title
+>Interfaz para arrastrar y soltar</title>
+
+<para
+>Otra opción es el etiquetado de las imágenes mediante arrastrar y soltar. Puede seleccionar y soltar una o varias imágenes en el mapa, en su respectiva ubicación (posiblemente usando como guía alguna pista GPX). Las elevaciones no se pueden determinar de esta manera, por lo que se dejan como «0 m» (al nivel del mar), se introducen a mano o se buscan usando opentopodata.org (de forma automática o manual, consulte más adelante). </para>
+
+</section>
+
+<section>
+
+<title
+>Asignación de imágenes a marcadores</title>
+
+<para
+>Puede definir marcadores para los lugares asignados con más frecuencia a las imágenes (como su propia casa, donde no se suele llevar un registrador GPS). De este modo puede asignar imágenes a sus respectivas coordenadas con facilidad. </para>
+
+</section>
+
+<section>
+
+<title
+>Asignación manual</title>
+
+<para
+>También es posible introducir coordenadas a mano para una o más imágenes. Las altitudes se pueden buscar automáticamente usando opentopodata.org (consultar más adelante) o se pueden introducir a mano. </para>
+
+</section>
+
+</section>
+
+<section>
+
+<title
+>Definir o buscar información de elevación</title>
+
+<para
+>Las altitudes siempre se pueden definir a mano. De forma alternativa, puede buscarlas consultando diversos conjuntos de datos de elevación usando la API de <ulink url="https://www.opentopodata.org/"
+>opentopodata.org</ulink
+>. </para>
+
+<para
+>Como preajuste se usa el conjunto de datos <ulink url="https://asterweb.jpl.nasa.gov/gdem.asp"
+>ASTER</ulink
+>, que cubre todo el planeta. También puede usar otros (consulte la <ulink url="https://www.opentopodata.org/#public-api"
+>página web de opentopodata.org</ulink
+>). </para>
+
+<para
+>De forma predeterminada, las consultas al servidor se realizan de forma manual, aunque también se puede activar la búsqueda automática de altitudes para todas las imágenes que suelte en el mapa (que produce coordenadas geográficas, pero no elevaciones) y para las coordenadas introducidas de forma manual. </para>
+
+</section>
+
+<section>
+
+<title
+>Hacer que los datos sean persistentes</title>
+
+<para
+>Por último, las coordenadas asignadas se pueden guardar. KGeoTag las puede escribir en las cabeceras Exif de las imágenes (lo que obviamente alterará los respectivos archivos), en archivos anexos XMP (dejando los originales sin modificar) o en ambos sitios. De forma predeterminada se crea una copia de respaldo de cada archivo original si se modifica durante el proceso de escritura. </para>
+
+<para
+>De este modo, la asignación de geodatos se hace persistente y también podrá acceder a ella usando otras aplicaciones compatibles con geodatos (como, por ejemplo, <ulink url="https://www.kphotoalbum.org/"
+>KPhotoAlbum</ulink
+>). </para>
+
+<para
+>Si se ha identificado un desfase horario y se ha proporcionado una desviación, las fecha y las horas de las imágenes también se pueden corregir cuando se guardan. </para>
+
+</section>
+
+</section>
+
+</chapter>

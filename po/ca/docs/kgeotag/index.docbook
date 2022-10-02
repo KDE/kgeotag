@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kgeotag "<application
+>KGeoTag</application
+>">
+  <!ENTITY kappname "&kgeotag;">
+  <!ENTITY package "extragear-graphics">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Catalan  "INCLUDE">
+  <!ENTITY overview SYSTEM "overview.docbook">
+]>
+
+<book id="kgeotag" lang="&language;">
+
+<bookinfo>
+
+<title
+>El manual del &kgeotag;</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Tobias</firstname
+> <surname
+>Leupold</surname
+> </author>
+
+</authorgroup>
+
+<copyright>
+<year
+>2022</year>
+<holder
+>Tobias Leupold</holder>
+</copyright>
+
+<date
+>14 d'abril de 2022</date>
+
+<releaseinfo
+>1</releaseinfo>
+
+<abstract>
+
+<para
+>Es tracta d'un esquelet de manual d'usuari per al &kgeotag;, el programa autònom de geoetiquetatge fotogràfic. En aquest moment, no hi ha molt a veure aquí a part de la informació general que es pot trobar a la <ulink url="https://kgeotag.kde.org/"
+>pàgina web del KGeoTag</ulink
+>, però esperem que això canviï en el futur ;-) </para>
+
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>extragear-graphics</keyword>
+<keyword
+>KGeoTag</keyword>
+<keyword
+>Programa de geoetiquetatge de fotografies</keyword>
+</keywordset>
+
+</bookinfo>
+
+&overview;
+
+</book>

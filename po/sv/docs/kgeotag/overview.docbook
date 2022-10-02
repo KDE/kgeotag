@@ -1,0 +1,186 @@
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<chapter id="overview">
+
+<title
+>Översikt</title>
+
+<section>
+
+<title
+>Vad är det?</title>
+
+<para
+>KGeoTag är ett fritt program för geografisk lokalisering av foton med öppen källkod. Det är skrivet i C++/<ulink url="https://www.qt.io/"
+>Qt</ulink
+> och använder <ulink url="https://api.kde.org/frameworks/"
+>KDE Ramverk</ulink
+>. Det är publicerat enligt villkoren i <ulink url="https://www.gnu.org/licenses/#GPL"
+>GNU General Public License (GPL)</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>Vad är det "geografisk lokalisering"?</title>
+
+<para
+>Foton (t.ex. JPEG-bilder) innehåller metadata såsom datum de skapades, kamerainformation, etc. Den lagras i det så kallade <ulink url="https://en.wikipedia.org/wiki/Exif"
+>Exif-huvudet</ulink
+>, i en <ulink url="https://en.wikipedia.org/wiki/Extensible_Metadata_Platform"
+>XMP associerad fil</ulink
+> eller i båda. Data kan också representera geografiska koordinater så att det går att replikera var bilderna togs. </para>
+
+<para
+>De flesta kameror har inte GPS-mottagare, så de flesta kan inte spara koordinater när de tar bilder. Ett vanligt sätt är att t.ex. ha med sig en liten GPS-loggningsapparat (eller nu för tiden också med en smart telefon), som lagrar ett spår hela tiden. Senare, kan bildernas datum jämföras med datumen för GPS-koggens punkter för att räkna ut när en bild togs. </para>
+
+<para
+>Om man vet säkert var respektive foto togs, är det också möjligt att tilldela koordinater manuellt till bilderna. </para>
+
+</section>
+
+<section>
+
+<title
+>Geografisk lokalisering med Kgeotag</title>
+
+<section>
+
+<title
+>Filformat som stöds</title>
+
+<para
+>Kgeotag stöder för närvarande följande bildformat: <ulink url="https://en.wikipedia.org/wiki/JPEG"
+>JPEG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/Portable_Network_Graphics"
+>PNG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/WebP"
+>WebP</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/TIFF"
+>TIFF</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/OpenRaster"
+>OpenRaster</ulink
+> och <ulink url="https://en.wikipedia.org/wiki/Krita"
+>Krita-dokument</ulink
+>, samt vissa TIFF-baserade obehandlade bildformat: <ulink url="https://en.wikipedia.org/wiki/Raw_image_format"
+>Canon Raw v2</ulink
+> (.cr2), <ulink url="https://www.nikonusa.com/en/learn-and-explore/a/products-and-innovation/nikon-electronic-format-nef.html"
+>Nikon Electronic Format</ulink
+> (.nef) och <ulink url="https://helpx.adobe.com/camera-raw/digital-negative.html"
+>Adobe Digital Negative</ulink
+> (.dng). </para>
+
+<para
+>Geografisk data kan läsas in från (okomprimerade) <ulink url="https://en.wikipedia.org/wiki/GPS_Exchange_Format"
+>GPX</ulink
+>-filer. </para>
+
+</section>
+
+<section>
+
+<title
+>Tilldelning av bilder</title>
+
+<para
+>Kgeotag erbjuder flera sätt att tilldela koordinater till bilder: </para>
+
+<section>
+
+<title
+>Automatisk etikettering</title>
+
+<para
+>Det mest praktiska sättet är automatisk matchning genom att använda geografisk data som tillhandahålls av GPX-filer. De kan läsas in och visas på en karta. Genom att använda sådan data, kan bilder tilldelas med motsvarande geografiska koordinater genom att hitta (mer eller mindre) exakta kronologiska träffar, eller genom att interpolera en trolig position om ingen exakt träff kan hittas. </para>
+
+<para
+>Normalt tillhandahåller bilderna bara en tid och ett datum, men ingen tidszon. Sålunda måste vi ange en för att göra en tilldelning möjlig. Den förmodade riktiga tidszonen detekteras från den geografiska platsen för GPX-filen, men den kan också ställas in manuellt. </para>
+
+<para
+>Om höjdvärden inte är  angivna i datamängden eller om de inte är tillräckligt noggranna, kan de slås upp med opentopodata.org (se nedan). </para>
+
+<para
+>Klockorna i kameror är oftast inte radiostyrda och har ofta en viss avvikelse. Om bildernas datum har en tidsdrift på grund av att kamerans klocka inte är exakt synkroniserad med GPS-data (som anses vara korrekt), kan en avvikelse definieras. Hänsyn tas sedan till den vid sökning efter träffar, och den kan också användas för att rätta bildernas datum. </para>
+
+</section>
+
+<section>
+
+<title
+>Drag och släpp-gränssnitt</title>
+
+<para
+>Ett annat alternativ är att etikettera bilder via drag och släpp. En eller flera bilder kan väljas och släppas på kartan till deras respektive plats (möjligen också styrt av ett visst GPX-spår). Höjder kan inte bestämmas på så sätt, så antingen lämnas de som "0 m" (havsnivå), matas in manuellt eller slås upp via opentopodata.org (antingen automatiskt eller manuellt, se nedan). </para>
+
+</section>
+
+<section>
+
+<title
+>Tilldelning av bilder till  bokmärken</title>
+
+<para
+>För platser som ofta tilldelas till bilder (som hemma, där man inte bär med sig en GPS-loggningsapparat), kan bokmärken definieras. Bilder kan sedan enkelt tilldelas till respektive koordinater. </para>
+
+</section>
+
+<section>
+
+<title
+>Manuell tilldelning</title>
+
+<para
+>Det är också möjligt att mata in koordinater för en eller flera bilder för hand. Höjderna kan antingen slås upp automatiskt genom att använda opentopodata.org (se nedan), eller också matas in manuellt. </para>
+
+</section>
+
+</section>
+
+<section>
+
+<title
+>Ställa in eller slå upp höjdinformation</title>
+
+<para
+>Höjder kan alltid anges manuellt. Som ett alternativ kan höjder också slås upp genom att utnyttja olika uppsättningar av höjddata genom att använda programmeringsgränssnittet för <ulink url="https://www.opentopodata.org/"
+>opentopodata.org</ulink
+>. </para>
+
+<para
+>Förinställningen är att använda data från <ulink url="https://asterweb.jpl.nasa.gov/gdem.asp"
+>ASTER</ulink
+>. Den täcker hela jordklotet. Andra kan också användas, se vidare <ulink url="https://www.opentopodata.org/#public-api"
+>hemsidan för opentopodata.org</ulink
+>. </para>
+
+<para
+>Normalt måste sådan uppslagning på en server utlösas manuellt. Det är också möjligt att aktivera automatiserade höjduppslagningar för alla bilder som släpps på kartan (vilket ger geografiska koordinater men ingen höjd) och för koordinater som matas in manuellt. </para>
+
+</section>
+
+<section>
+
+<title
+>Göra data bestående</title>
+
+<para
+>Slutligen kan de tilldelade koordinaterna sparas. Kgeotag kan antingen skriva dem till bildernas Exif-huvud (vilket uppenbarligen ändrar respektive fil), till XMP associerade filer (som lämnar originalfilerna orörda) eller till båda. Normalt skapas en säkerhetskopia av varje originalfil, om den kommer att ändras vid skrivning. </para>
+
+<para
+>På detta sätt görs tilldelningen av geografisk data bestående och också åtkomlig av andra program medvetna om geografisk data (som t.ex. <ulink url="https://www.kphotoalbum.org/"
+>Kfotoalbum</ulink
+>). </para>
+
+<para
+>Om en tidsdrift har identifierats och en avvikelse har angivits, kan bildernas datum och tider också rättas när de sparas. </para>
+
+</section>
+
+</section>
+
+</chapter>
