@@ -894,7 +894,7 @@ msgid ""
 msgstr ""
 "<p>No s'ha pogut detectar la zona horària presumptament correcta per a les "
 "imatges associades amb el fitxer GPX carregat.</p><p>Establiu manualment la "
-"zona horària correcta a la pàgina «Corregix la desviació del temps».</p>"
+"zona horària correcta en la pàgina «Corregix la desviació del temps».</p>"
 
 #: src/MainWindow.cpp:730
 #, kde-format
@@ -916,7 +916,7 @@ msgstr ""
 "p><p>Envieu un informe d'error sobre açò, inclosa la versió emprada de "
 "KGeoTag i les dades de la vostra zona horària (el paquet propietari de <kbd>/"
 "usr/share/zoneinfo</kbd>).</p><p>Podeu ajustar manualment la configuració de "
-"la zona horària a la pàgina «Corregix la desviació del temps».</p>"
+"la zona horària en la pàgina «Corregix la desviació del temps».</p>"
 
 #: src/MainWindow.cpp:740
 #, kde-format
@@ -934,7 +934,7 @@ msgstr ""
 "<p>El fitxer GPX carregat probablement es va enregistrar en la zona horària "
 "«%1», així com les fotografies que hi estan associades. Ara hi ha "
 "seleccionada esta zona horària.</p><p>Podeu ajustar manualment la "
-"configuració de la zona horària a la pàgina «Corregix la desviació del "
+"configuració de la zona horària en la pàgina «Corregix la desviació del "
 "temps».</p>"
 
 #: src/MainWindow.cpp:767
