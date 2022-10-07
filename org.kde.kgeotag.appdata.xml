@@ -19,6 +19,7 @@
   <name xml:lang="fr">KGeoTag</name>
   <name xml:lang="id">KGeoTag</name>
   <name xml:lang="it">KGeoTag</name>
+  <name xml:lang="ka">KGeoTag</name>
   <name xml:lang="ko">KGeoTag</name>
   <name xml:lang="nl">KGeoTag</name>
   <name xml:lang="nn">KGeoTag</name>
@@ -44,6 +45,7 @@
   <summary xml:lang="fr">Programme pour photos géolocalisées</summary>
   <summary xml:lang="id">Program geotagging foto</summary>
   <summary xml:lang="it">Programma di geotagging delle foto</summary>
+  <summary xml:lang="ka">სურათებზე გეოტაგების დადების პროგრამა</summary>
   <summary xml:lang="ko">사진 지오태그 프로그램</summary>
   <summary xml:lang="nl">Fotoprogramma voor geven van geotags</summary>
   <summary xml:lang="nn">Geografisk stadfesting av foto</summary>
@@ -94,6 +96,7 @@
       <caption xml:lang="fr">Géolocalisation avec KGeoTag</caption>
       <caption xml:lang="id">Geotagging dengan KGeoTag</caption>
       <caption xml:lang="it">Geotagging con KGeoTag</caption>
+      <caption xml:lang="ka">დაადეთ გეოტაგები KGeoTag-თან ერთად</caption>
       <caption xml:lang="ko">KGeoTag로 지오태그</caption>
       <caption xml:lang="nl">Met KGeoTag geo-tags toevoegen</caption>
       <caption xml:lang="pl">Geoznaczenie z KGeoTag</caption>
