@@ -460,7 +460,7 @@ msgstr "Establix les coordenades a partir del porta-retalls"
 #: src/ImagesListView.cpp:115
 #, kde-format
 msgid "Set coordinates manually"
-msgstr "Establiu manualment les coordenades"
+msgstr "Establix manualment les coordenades"
 
 #: src/ImagesListView.cpp:131 src/MainWindow.cpp:1247 src/MainWindow.cpp:1300
 #: src/MainWindow.cpp:1346 src/MainWindow.cpp:1420 src/MainWindow.cpp:1451
