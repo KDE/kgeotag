@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-09-12 00:43+0000\n"
-"PO-Revision-Date: 2022-06-11 18:48+0300\n"
+"PO-Revision-Date: 2022-08-19 14:14+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -537,17 +537,17 @@ msgstr "Ylläpitäjä"
 #: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
-msgstr ""
+msgstr "Tiedostot/kansiot"
 
 #: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
-msgstr ""
+msgstr "Käynnistettäessä ladattavat tiedostot tai kansiot"
 
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr ""
+msgstr "[tiedostot/kansiot…]"
 
 #: src/MainWindow.cpp:94 src/MainWindow.cpp:506
 #, kde-format
@@ -555,8 +555,7 @@ msgid "Add images and/or GPX tracks"
 msgstr "Lisää kuvia tai GPX-reittejä"
 
 #: src/MainWindow.cpp:101 src/MainWindow.cpp:555
-#, fuzzy, kde-format
-#| msgid "Add all images and tracks from directory"
+#, kde-format
 msgid "Add all images and tracks from a folder"
 msgstr "Lisää kansion kaikki kuvat ja reitit"
 
@@ -716,8 +715,7 @@ msgstr[1] ""
 "%2</p>"
 
 #: src/MainWindow.cpp:525
-#, fuzzy, kde-format
-#| msgid "Please select a directory"
+#, kde-format
 msgid "Please select a folder"
 msgstr "Valitse kansio"
 
