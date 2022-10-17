@@ -685,7 +685,7 @@ msgstr ""
 #: src/MainWindow.cpp:448
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
-msgstr "Seleccioneu les imatges i/o trajectes GPX a afegir"
+msgstr "Seleccioneu les imatges i/o trajectes GPX que s'han d'afegir"
 
 #: src/MainWindow.cpp:450
 #, kde-format
