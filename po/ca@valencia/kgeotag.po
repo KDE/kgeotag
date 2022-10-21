@@ -551,7 +551,7 @@ msgstr "Fitxers/Carpetes"
 #: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
-msgstr "Fitxers o carpetes a carregar en iniciar"
+msgstr "Fitxers o carpetes que s'han de carregar en iniciar"
 
 #: src/main.cpp:50
 #, kde-format
