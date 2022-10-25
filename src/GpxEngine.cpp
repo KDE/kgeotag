@@ -78,18 +78,6 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
         for (const auto &key : keys) {
             const auto timeZoneId = m_timezoneMapping.value(key).toString().toUtf8();
             if (! allTimeZones.contains(timeZoneId)) {
-                // FIXME: This should be a temporary workaround!
-                // Starting with IANA's timezone data 2022c, "Europe/Kiev" is now called
-                // "Europe/Kyiv". As soon as this version is included in e.g. Ubuntu LTS and such,
-                // this can be removed.
-                if (timeZoneId == QStringLiteral("Europe/Kyiv").toUtf8()
-                    && allTimeZones.contains(QStringLiteral("Europe/Kiev").toUtf8())) {
-
-                    m_timezoneMapping[key] = QJsonValue(QStringLiteral("Europe/Kiev"));
-                    qCDebug(KGeoTagLog) << "Mapped timezone \"Europe/Kyiv\" to \"Europe/Kiev\"";
-                    continue;
-                }
-
                 invalidIds.append(timeZoneId);
             }
         }

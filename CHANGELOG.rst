@@ -68,8 +68,6 @@ Changed
 
 * Updated the timezones data files to 2022b (cf. Timezone Boundary Builder's `Release Announcement
   <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2022b>`_).
-  This release has "Europe/Kyiv" instead of "Europe/Kiev". If the old spelling is still present on
-  the used system, it's mapped.
 
 Deprecated
 ==========
