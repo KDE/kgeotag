@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -137,7 +137,13 @@ AutomaticMatchingWidget::AutomaticMatchingWidget(Settings *settings, QWidget *pa
     buttonsLayout->addStretch();
 
     auto *reassignButton = new QPushButton(i18n("(Re)Assign all images"));
+#if QT_VERSION >= QT_VERSION_CHECK(5, 14, 0)
+    // FIXME:
+    // QStyle::SP_DialogRetryButton wasn't there until Qt 5.14. KGeoTag actually can be built
+    // against Qt 5.12, which is included in Ubuntu LTS 20.04. Let's keep this until the last-ish
+    // Ubuntu LTS version has Qt 5.15.
     reassignButton->setIcon(QApplication::style()->standardIcon(QStyle::SP_DialogRetryButton));
+#endif
 
     auto *reassignMenu = new QMenu(this);
 

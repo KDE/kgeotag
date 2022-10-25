@@ -78,6 +78,8 @@ Removed
 Fixed
 =====
 
+* KGeoTag can now be built against Qt 5.12 (again), and thus also (again) on Ubuntu LTS 20.04.
+
 Security
 ========
 
