@@ -80,13 +80,13 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
             if (! allTimeZones.contains(timeZoneId)) {
                 // FIXME: This should be a temporary workaround!
                 // Starting with IANA's timezone data 2022c, "Europe/Kiev" is now called
-                // "Europe/Kyiv". Our data file currently uses 2021c, and also not many
-                // distributions use 2022c yet. Thus, we map this timezone here if necessary:
-                if (timeZoneId == QStringLiteral("Europe/Kiev").toUtf8()
-                    && allTimeZones.contains(QStringLiteral("Europe/Kyiv").toUtf8())) {
+                // "Europe/Kyiv". As soon as this version is included in e.g. Ubuntu LTS and such,
+                // this can be removed.
+                if (timeZoneId == QStringLiteral("Europe/Kyiv").toUtf8()
+                    && allTimeZones.contains(QStringLiteral("Europe/Kiev").toUtf8())) {
 
-                    m_timezoneMapping[key] = QJsonValue(QStringLiteral("Europe/Kyiv"));
-                    qCDebug(KGeoTagLog) << "Mapped timezone \"Europe/Kiev\" to \"Europe/Kyiv\"";
+                    m_timezoneMapping[key] = QJsonValue(QStringLiteral("Europe/Kiev"));
+                    qCDebug(KGeoTagLog) << "Mapped timezone \"Europe/Kyiv\" to \"Europe/Kiev\"";
                     continue;
                 }
 

@@ -66,6 +66,11 @@ Changed
   Marble from the beginning, the required Marble version is now omitted again, until >= 21.12.0 hits
   LTS distros.
 
+* Updated the timezones data files to 2022b (cf. Timezone Boundary Builder's `Release Announcement
+  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2022b>`_).
+  This release has "Europe/Kyiv" instead of "Europe/Kiev". If the old spelling is still present on
+  the used system, it's mapped.
+
 Deprecated
 ==========
 
@@ -74,10 +79,6 @@ Removed
 
 Fixed
 =====
-
-* IANA's timezone data 2022c renamed ``Europe/Kiev`` to ``Europe/Kyiv``. Currently, our timezone
-  boundary data file is based on 2021c, and not many distributions already adopted 2022c. Thus, if
-  the distribution already has ``Europe/Kyiv``, ``Europe/Kiev`` is now mapped accordingly.
 
 Security
 ========
