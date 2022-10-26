@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-12 00:43+0000\n"
+"POT-Creation-Date: 2022-10-26 00:44+0000\n"
 "PO-Revision-Date: 2022-09-12 13:22+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -89,35 +89,35 @@ msgstr "Guarda la configuració"
 msgid "(Re)Assign all images"
 msgstr "Re/assigna totes les imatges"
 
-#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:82
+#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
 #: src/MainWindow.cpp:1119 src/SettingsDialog.cpp:95
 #, kde-format
 msgid "Combined match search"
 msgstr "Busca una coincidència combinada"
 
-#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:90
+#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:96
 #, kde-format
 msgid "Search exact matches only"
 msgstr "Busca només de coincidències exactes"
 
-#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:96
+#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
 #: src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr "Busca només de coincidències interpolades"
 
-#: src/AutomaticMatchingWidget.cpp:163
+#: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
 msgid "Exclude manually tagged images"
 msgstr "Exclou les imatges etiquetades manualment"
 
-#: src/AutomaticMatchingWidget.cpp:196
+#: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Save as default"
 msgstr "Anomena i guarda predeterminat"
 
-#: src/AutomaticMatchingWidget.cpp:196
+#: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Settings saved!"
 msgstr "S'ha guardat la configuració!"
@@ -135,7 +135,7 @@ msgstr "Afig una adreça d'interés manual nova"
 #: src/BookmarksList.cpp:65
 #, kde-format
 msgid "Rename bookmark"
-msgstr "Canvia el nom l'adreça d'interés"
+msgstr "Canvia el nom de l'adreça d'interés"
 
 #: src/BookmarksList.cpp:68 src/ImagesListView.cpp:120
 #, kde-format
@@ -191,7 +191,7 @@ msgstr "L'adreça d'interés «%1» ja existix, en el seu lloc s'ha creat «%2»
 #: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
 #, kde-format
 msgid "Rename Bookmark"
-msgstr "Canvia el nom l'adreça d'interés"
+msgstr "Canvia el nom de l'adreça d'interés"
 
 #: src/BookmarksList.cpp:198
 #, kde-format

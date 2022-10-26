@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-12 00:43+0000\n"
+"POT-Creation-Date: 2022-10-26 00:44+0000\n"
 "PO-Revision-Date: 2022-09-12 07:19+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
@@ -89,35 +89,35 @@ msgstr "Зберегти параметри"
 msgid "(Re)Assign all images"
 msgstr "Повторно прив'язати усі зображення"
 
-#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:82
+#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
 #: src/MainWindow.cpp:1119 src/SettingsDialog.cpp:95
 #, kde-format
 msgid "Combined match search"
 msgstr "Пошук комбінованого відповідника"
 
-#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:90
+#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:96
 #, kde-format
 msgid "Search exact matches only"
 msgstr "Шукати лише точні відповідники"
 
-#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:96
+#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
 #: src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr "Шукати лише приблизні відповідники"
 
-#: src/AutomaticMatchingWidget.cpp:163
+#: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
 msgid "Exclude manually tagged images"
 msgstr "Виключити зображення із мітками, встановленими вручну"
 
-#: src/AutomaticMatchingWidget.cpp:196
+#: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Save as default"
 msgstr "Зберегти як типове"
 
-#: src/AutomaticMatchingWidget.cpp:196
+#: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Settings saved!"
 msgstr "Параметри збережено!"

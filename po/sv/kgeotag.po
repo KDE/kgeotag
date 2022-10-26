@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-09-12 00:43+0000\n"
+"POT-Creation-Date: 2022-10-26 00:44+0000\n"
 "PO-Revision-Date: 2022-09-24 16:24+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -86,35 +86,35 @@ msgstr "Spara inställningar"
 msgid "(Re)Assign all images"
 msgstr "Tilldelade bilder (igen)"
 
-#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:82
+#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
 #: src/MainWindow.cpp:1119 src/SettingsDialog.cpp:95
 #, kde-format
 msgid "Combined match search"
 msgstr "Kombinerad sökning efter träffar"
 
-#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:90
+#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:96
 #, kde-format
 msgid "Search exact matches only"
 msgstr "Sök bara efter exakta träffar"
 
-#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:96
+#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
 #: src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr "Sök bara efter interpolerade träffar"
 
-#: src/AutomaticMatchingWidget.cpp:163
+#: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
 msgid "Exclude manually tagged images"
 msgstr "Undanta manuellt markerade bilder"
 
-#: src/AutomaticMatchingWidget.cpp:196
+#: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Save as default"
 msgstr "Spara normalt"
 
-#: src/AutomaticMatchingWidget.cpp:196
+#: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Settings saved!"
 msgstr "Inställningar sparade."
