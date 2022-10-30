@@ -49,10 +49,10 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
             m_timezoneMapWidth = m_timezoneMap.size().width();
             m_timezoneMapHeight = m_timezoneMap.size().height();
         }
-        qCDebug(KGeoTagLog) << "Loaded the timezone data map";
+        qCDebug(KGeoTagLog) << "Loaded the timezones map from" << timezoneMapFile;
     } else {
         // This should not happen
-        qCDebug(KGeoTagLog) << "Failed to load the timezone data map!";
+        qCDebug(KGeoTagLog) << "Failed to load the timezones map file!";
     }
 
     // Load the color-timezone mapping
@@ -65,6 +65,10 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
             jsonData.close();
             m_timezoneMapping = jsonDocument.object();
         }
+        qCDebug(KGeoTagLog) << "Loaded the timezone mapping data from" << timezoneMappingFile;
+    } else {
+        // This should not happen
+        qCDebug(KGeoTagLog) << "Failed to load the timezone mapping data file!";
     }
 
     // Check if all listed timezones are valid
@@ -82,7 +86,7 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
             }
         }
 
-        qCDebug(KGeoTagLog) << "Loaded" << m_timezoneMapping.count() << "timezone IDs";
+        qCDebug(KGeoTagLog) << "Processed" << m_timezoneMapping.count() << "timezone IDs";
 
         if (invalidIds.count() > 0) {
             qCWarning(KGeoTagLog) << "Found" << invalidIds.count() << "unusable timezone ID(s)!";
