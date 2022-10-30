@@ -38,6 +38,7 @@ from qgis.core import (
 )
 from qgis.PyQt.QtCore import QEventLoop
 
+# Initialize QGis
 qgs = QgsApplication([], False)
 QgsApplication.setPrefixPath("/usr", True)
 QgsApplication.initQgis()
@@ -164,22 +165,24 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
 
 def main():
     parser = argparse.ArgumentParser()
-    parser.add_argument("input-timezone-data",
-                        type=Path,
-                        help="The timezone data shapefile (.shp).")
+    parser.add_argument("--shapefile",
+                        type = Path,
+                        help = "The timezone data shapefile (.shp, defaults to "
+                               "combined-shapefile-with-oceans.shp)",
+                        default = "combined-shapefile-with-oceans.shp")
     parser.add_argument("--outdir",
-                        type=Path,
-                        help="The folder to place the output data files in (defaults to .).",
-                        default=".")
+                        type = Path,
+                        help = "The folder to place the output data files in (defaults to .)",
+                        default = ".")
     parser.add_argument("--height",
-                        type=int,
-                        help="The height of the output image. Should be an even number. "
-                             "Defaults to 2000.",
-                        default=2000)
+                        type = int,
+                        help = "The height of the output image. Should be an even number "
+                               "(defaults to 2000)",
+                        default = 2000)
     args = vars(parser.parse_args())
 
-    print(f"Opening data file: {args['input-timezone-data'].absolute().resolve()}")
-    layer = QgsVectorLayer(str(args["input-timezone-data"]))
+    print(f"Opening data file: {args['shapefile'].absolute().resolve()}")
+    layer = QgsVectorLayer(str(args["shapefile"]))
     timezone_ids, timezone_colors = stylize_map(layer)
     export_data(layer, timezone_ids, timezone_colors, args["outdir"], args["height"])
 
