@@ -23,6 +23,8 @@ import tempfile
 from pathlib import Path
 from typing import List
 import re
+from hashlib import sha1
+import sys
 
 from PyQt5.QtCore import QSize, Qt
 from PyQt5.QtGui import QColor
@@ -66,7 +68,7 @@ def stylize_map(layer: QgsVectorLayer) -> [List[str], List[str]]:
     timezone_colors = []
     features = layer.getFeatures()
     categories = []
-    currentColor = 0
+    usedColors = []
 
     for tz in timezones:
         # Modify the Etc timezones to match the Qt format
@@ -82,16 +84,24 @@ def stylize_map(layer: QgsVectorLayer) -> [List[str], List[str]]:
         elif tz == "Etc/GMT":
             qt_tz = "UTC+00:00"
 
-        # Generate a consecutive color for each timezone
-        currentColor += 25000
-        r = (currentColor >> 16) & 255
-        g = (currentColor >> 8 ) & 255
-        b = (currentColor      ) & 255
+        # Derive a color from the timezone's name
+
+        hex = sha1(qt_tz.encode("utf-8")).hexdigest()[0:6]
+        if hex in usedColors:
+            # This is very unlikely if not impossible to happen, but who knows?!
+            print("Timezone {} caused a color collision! Please review this script!".format(qt_tz))
+            sys.exit(1)
+        usedColors.append(hex)
+
+        rh = hex[0:2]
+        gh = hex[2:4]
+        bh = hex[4:6]
+
+        r = int(rh, 16)
+        g = int(gh, 16)
+        b = int(bh, 16)
 
         # Add it to the mapping
-        rh = hex(r)[2:]
-        gh = hex(g)[2:]
-        bh = hex(b)[2:]
         timezone_ids.append(qt_tz)
         timezone_colors.append(f"#{rh:0>2}{gh:0>2}{bh:0>2}")
 

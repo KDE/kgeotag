@@ -69,6 +69,10 @@ Changed
 * Updated the timezones data files to 2022f (cf. Timezone Boundary Builder's `Release Announcement
   <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2022f>`_).
 
+* The compile_timezones_data.py script now derives timezone colors from the timezone name rather
+  than counting a color up on a sorted list. This should minimalize changes to the timezones.json
+  file (smaller diffs on updates). As a side-effect, we now have nicer colors in timezones.png ;-)
+
 Deprecated
 ==========
 
