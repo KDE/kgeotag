@@ -66,8 +66,8 @@ Changed
   Marble from the beginning, the required Marble version is now omitted again, until >= 21.12.0 hits
   LTS distros.
 
-* Updated the timezones data files to 2022f (cf. Timezone Boundary Builder's `Release Announcement
-  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2022f>`_).
+* Updated the timezones data files to 2022g (cf. Timezone Boundary Builder's `Release Announcement
+  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2022g>`_).
 
 * The compile_timezones_data.py script now derives timezone colors from the timezone name rather
   than counting a color up on a sorted list. This should minimalize changes to the timezones.json
