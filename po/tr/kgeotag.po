@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2022-10-26 00:44+0000\n"
-"PO-Revision-Date: 2022-10-12 14:56+0300\n"
+"PO-Revision-Date: 2022-12-10 18:01+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 22.08.1\n"
+"X-Generator: Lokalize 22.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1600,7 +1600,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:151
 #, kde-format
 msgid "GPX track rendering"
-msgstr "GPX iz dokuması"
+msgstr "GPX iz sunmu"
 
 #: src/SettingsDialog.cpp:159
 #, kde-format
