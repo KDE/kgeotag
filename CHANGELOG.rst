@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+.. SPDX-FileCopyrightText: 2021-2023 Tobias Leupold <tl at stonemx dot de>
 
    SPDX-License-Identifier: CC-BY-SA-4.0
 
@@ -50,6 +50,28 @@
 Added
 =====
 
+Changed
+=======
+
+Deprecated
+==========
+
+Removed
+=======
+
+Fixed
+=====
+
+Security
+========
+
+====================================================================================================
+KGeoTag 1.4.0 released (2023-01-28)
+====================================================================================================
+
+Added
+=====
+
 * KGeoTag now supports handling of some TIFF-based RAW image formats (cr2, nef and dng). By default,
   XMP sidecar files are created for those (regardless of the global setting). Additionally, there's
   a new option for enabling direct Exif header changes for RAW files.
@@ -73,19 +95,10 @@ Changed
   than counting a color up on a sorted list. This should minimalize changes to the timezones.json
   file (smaller diffs on updates). As a side-effect, we now have nicer colors in timezones.png ;-)
 
-Deprecated
-==========
-
-Removed
-=======
-
 Fixed
 =====
 
 * KGeoTag can now be built against Qt 5.12 (again), and thus also (again) on Ubuntu LTS 20.04.
-
-Security
-========
 
 ====================================================================================================
 KGeoTag 1.3.1 released (2022-09-05)
