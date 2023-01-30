@@ -3,13 +3,13 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022.
+# Yuri Chornoivan <yurchor@ukr.net>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-29 00:55+0000\n"
-"PO-Revision-Date: 2022-09-12 07:19+0300\n"
+"PO-Revision-Date: 2023-01-29 08:59+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -526,10 +526,9 @@ msgid "Photo geotagging program"
 msgstr "Програма для роботи з геомітками фотографій"
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2022 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2023 Tobias Leupold"
-msgstr "© Tobias Leupold, 2020-2022"
+msgstr "© Tobias Leupold, 2020-2023"
 
 #: src/main.cpp:41
 #, kde-format
