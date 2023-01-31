@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2022-10-26 00:44+0000\n"
+"POT-Creation-Date: 2023-01-29 00:55+0000\n"
 "PO-Revision-Date: 2020-11-14 14:45+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -497,9 +497,9 @@ msgstr ""
 #: src/ImagesModel.cpp:60
 #, kde-format
 msgctxt ""
-"Pattern for a display filename with a \"pending change\" and an \"associated"
-"\" marker. The first option is the \"associated\" marker, the second one is "
-"the filename and the third one the \"pending change\" marker."
+"Pattern for a display filename with a \"pending change\" and an "
+"\"associated\" marker. The first option is the \"associated\" marker, the "
+"second one is the filename and the third one the \"pending change\" marker."
 msgid "%1%2%3"
 msgstr ""
 
@@ -515,7 +515,7 @@ msgstr "Program for geografisk stadfesting av foto"
 
 #: src/main.cpp:37
 #, kde-format
-msgid "Copyright (C) 2020-2022 Tobias Leupold"
+msgid "Copyright (C) 2020-2023 Tobias Leupold"
 msgstr ""
 
 #: src/main.cpp:41
@@ -683,11 +683,11 @@ msgstr ""
 #: src/MainWindow.cpp:497
 #, kde-format
 msgid ""
-"<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
-"%2</p>"
+"<p>The following file will be skipped due to an unsupported MIME type:</"
+"p><p>%2</p>"
 msgid_plural ""
-"<p>The following files will be skipped due to unsupported MIME types:</p><p>"
-"%2</p>"
+"<p>The following files will be skipped due to unsupported MIME types:</"
+"p><p>%2</p>"
 msgstr[0] ""
 msgstr[1] ""
 
@@ -883,8 +883,8 @@ msgstr ""
 msgid ""
 "<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
 "well as the photos to associate with it. This timezone has been selected now."
-"</p><p>You can adjust the timezone setting manually on the \"Fix time drift"
-"\" page.</p>"
+"</p><p>You can adjust the timezone setting manually on the \"Fix time "
+"drift\" page.</p>"
 msgstr ""
 
 #: src/MainWindow.cpp:767

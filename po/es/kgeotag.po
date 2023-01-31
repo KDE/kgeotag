@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the kgeotag package.
 #
 # Automatically generated, 2020.
-# Eloy Cuadra <ecuadra@eloihr.net>, 2020, 2021, 2022.
+# Eloy Cuadra <ecuadra@eloihr.net>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-29 00:55+0000\n"
-"PO-Revision-Date: 2022-09-12 14:16+0200\n"
+"PO-Revision-Date: 2023-01-30 20:37+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.08.0\n"
+"X-Generator: Lokalize 22.12.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -529,10 +529,9 @@ msgid "Photo geotagging program"
 msgstr "Programa de geoetiquetado de fotos"
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2022 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2023 Tobias Leupold"
-msgstr "Copyright © 2020-2022 Tobias Leupold"
+msgstr "Copyright © 2020-2023 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
