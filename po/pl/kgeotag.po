@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
 #
-# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2021, 2022.
+# Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-29 00:55+0000\n"
-"PO-Revision-Date: 2022-08-07 06:55+0200\n"
+"PO-Revision-Date: 2023-02-12 09:48+0100\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 22.04.1\n"
+"X-Generator: Lokalize 22.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -448,10 +448,9 @@ msgid "Assign to map center"
 msgstr "Przypisz środkowi mapy"
 
 #: src/ImagesListView.cpp:112
-#, fuzzy, kde-format
-#| msgid "Set coordinates manually"
+#, kde-format
 msgid "Set coordinates from clipboard"
-msgstr "Ustaw współrzędne ręcznie"
+msgstr "Ustaw współrzędne ze schowka"
 
 #: src/ImagesListView.cpp:115
 #, kde-format
@@ -487,7 +486,7 @@ msgstr[2] "Usuń obrazy"
 #: src/ImagesListView.cpp:157 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
-msgstr ""
+msgstr "Otwórz w domyślnej przeglądarce"
 
 #: src/ImagesListView.cpp:186
 #, kde-format
@@ -526,10 +525,9 @@ msgid "Photo geotagging program"
 msgstr "Program do geooznaczania zdjęć"
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2022 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2023 Tobias Leupold"
-msgstr "Copyright (C) 2020-2022 Tobias Leupold"
+msgstr "Copyright (C) 2020-2023 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -685,16 +683,13 @@ msgid "Please select the images and/or GPX tracks to add"
 msgstr "Wybierz obrazy i/lub ścieżki GPX do dodania"
 
 #: src/MainWindow.cpp:450
-#, fuzzy, kde-format
-#| msgid ""
-#| "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
-#| "gpx );; All files (*)"
+#, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
 "cr2 *.nef *.dng *.gpx );; All files (*)"
 msgstr ""
 "Wszystkie obsługiwane pliki (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *."
-"kra *.gpx );; Wszystkie pliki (*)"
+"kra *.cr2 *.nef *.dng *.gpx );; Wszystkie pliki (*)"
 
 #: src/MainWindow.cpp:484
 #, kde-format
@@ -916,13 +911,7 @@ msgid "Setting the detected timezone failed"
 msgstr "Nie udało się ustawić wykrytej strefy czasowej"
 
 #: src/MainWindow.cpp:731
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The presumably correct timezone \"%1\" has been detected from the "
-#| "loaded GPX file, but could not be set. This should not happen!</"
-#| "p><p>Please file a bug report about this, including the used version of "
-#| "KGeoTag and Qt!</p><p>You can adjust the timezone setting manually on the "
-#| "\"Fix time drift\" page.</p>"
+#, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
 "GPX file, but could not be set. This should not happen!</p><p>Please file a "
@@ -933,9 +922,10 @@ msgid ""
 msgstr ""
 "<p>Wykryto przypuszczalnie poprawną strefę czasową \"%1\" z wczytanego pliku "
 "GPX, lecz nie można było jej ustawić. Nie powinno mieć to miejsca!</"
-"p><p>Zgłoś błąd i pamiętaj, aby załączyć używaną wersję KGeoTag oraz Qt!</"
-"p><p>Strefę czasową możesz dostosować ręcznie na stronie \"Popraw dryf "
-"czasowy\".</p>"
+"p><p>Zgłoś błąd i pamiętaj, aby załączyć używaną wersję KGeoTag oraz dane "
+"twojej systemowej strefy czasowej (pakiet zawierający <kbd>/usr/share/"
+"zoneinfo</kbd>).</p><p>Strefę czasową możesz dostosować ręcznie na stronie "
+"\"Popraw dryf czasowy\".</p>"
 
 #: src/MainWindow.cpp:740
 #, kde-format
@@ -1478,12 +1468,12 @@ msgstr "Usuń wszystkie obrazy i ścieżki (zerowanie)"
 #: src/MainWindow.cpp:1733
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr ""
+msgstr "Nie udało się przetworzyć danych schowka"
 
 #: src/MainWindow.cpp:1734
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
-msgstr ""
+msgstr "Nie udało się przetworzyć tekstu schowka na prawidłowe współrzędne"
 
 #: src/MapCenterInfo.cpp:41
 #, kde-format
@@ -1807,7 +1797,7 @@ msgstr "Nagłówek Exif oraz plik przyboczny XMP"
 #: src/SettingsDialog.cpp:277
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
-msgstr ""
+msgstr "Zezwól na zmienianie nagłówków Exif obrazów RAW"
 
 #: src/SettingsDialog.cpp:282
 #, kde-format
@@ -1817,6 +1807,10 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
+"<b>Uwaga!</b> Jest to eksperyment. Domyślnie, niezależnie od ustawienia dla "
+"\"Zapisz zmiany do\", wszystkie zmiany do obrazów RAW są zapisywane do "
+"plików przybocznych XMP. Posiadaj kopie i upewnij się, że dane Exif nadal są "
+"pełne i poprawne po użyciu tego!"
 
 #: src/SettingsDialog.cpp:290
 #, kde-format
