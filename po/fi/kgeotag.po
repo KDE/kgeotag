@@ -1,21 +1,21 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# Tommi Nieminen <translator@legisign.org>, 2020, 2021, 2022.
+# Tommi Nieminen <translator@legisign.org>, 2020, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-29 00:55+0000\n"
-"PO-Revision-Date: 2022-08-19 14:14+0300\n"
-"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"PO-Revision-Date: 2023-02-20 22:14+0200\n"
+"Last-Translator: Tommi Nieminen <tommi.nieminen@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 21.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -443,10 +443,9 @@ msgid "Assign to map center"
 msgstr "Kytke kartan keskustaan"
 
 #: src/ImagesListView.cpp:112
-#, fuzzy, kde-format
-#| msgid "Set coordinates manually"
+#, kde-format
 msgid "Set coordinates from clipboard"
-msgstr "Aseta koordinaatit itse"
+msgstr "Aseta koordinaatit leikepöydältä"
 
 #: src/ImagesListView.cpp:115
 #, kde-format
@@ -481,7 +480,7 @@ msgstr[1] "Poista kuvat"
 #: src/ImagesListView.cpp:157 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
-msgstr ""
+msgstr "Avaa oletuskatselimeen"
 
 #: src/ImagesListView.cpp:186
 #, kde-format
@@ -679,16 +678,13 @@ msgid "Please select the images and/or GPX tracks to add"
 msgstr "Valitse lisättävät kuvat tai GPX-reitit"
 
 #: src/MainWindow.cpp:450
-#, fuzzy, kde-format
-#| msgid ""
-#| "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
-#| "gpx );; All files (*)"
+#, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
 "cr2 *.nef *.dng *.gpx );; All files (*)"
 msgstr ""
 "Kaikki tuetut tiedostot (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra "
-"*.gpx);; Kaikki tiedostot (*)"
+"*.cr2 *.nef *.dng *.gpx);; Kaikki tiedostot (*)"
 
 #: src/MainWindow.cpp:484
 #, kde-format
@@ -897,13 +893,7 @@ msgid "Setting the detected timezone failed"
 msgstr "Tunnistetun aikavyöhykkeen asettaminen epäonnistui"
 
 #: src/MainWindow.cpp:731
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The presumably correct timezone \"%1\" has been detected from the "
-#| "loaded GPX file, but could not be set. This should not happen!</"
-#| "p><p>Please file a bug report about this, including the used version of "
-#| "KGeoTag and Qt!</p><p>You can adjust the timezone setting manually on the "
-#| "\"Fix time drift\" page.</p>"
+#, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
 "GPX file, but could not be set. This should not happen!</p><p>Please file a "
@@ -914,8 +904,10 @@ msgid ""
 msgstr ""
 "<p>Ladatusta GPX-tiedostosta tunnistettiin oletettavasti oikea aikavyöhyke "
 "”%1” mutta sitä ei voitu asettaa. Näin ei pitäisi tapahtua!</p><p>Ilmoita "
-"tästä ohjelmavirheenä ja sisällytä mukaan KGeoTagin ja Qt:n käytetyt versiot!"
-"</p><p>Voit säätää aikavyöhykettä itse ”Korjaa aikapoikkeama” -sivulta.</p>"
+"tästä ohjelmavirheenä ja sisällytä mukaan KGeoTagin ja järjestelmäsi "
+"aikavyöhyketiedot (paketti, joka omistaa tiedoston <kbd>/usr/share/zoneinfo</"
+"kbd>).</p><p>Aikavyöhykettä voi säätää itse ”Korjaa aikapoikkeama” -sivulta."
+"</p>"
 
 #: src/MainWindow.cpp:740
 #, kde-format
@@ -1431,12 +1423,12 @@ msgstr "Poista kaikki kuvat ja reitit (alusta)"
 #: src/MainWindow.cpp:1733
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr ""
+msgstr "Leikepöytätietoa ei voitu jäsentää"
 
 #: src/MainWindow.cpp:1734
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
-msgstr ""
+msgstr "Leikepöydän tekstiä ei voitu jäsentää kelvollisiksi koordinaateiksi"
 
 #: src/MapCenterInfo.cpp:41
 #, kde-format
@@ -1758,7 +1750,7 @@ msgstr "Exif-otsake ja XMP-oheistiedosto"
 #: src/SettingsDialog.cpp:277
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
-msgstr ""
+msgstr "Salli RAW-kuvien Exif-otsakkeiden muuttaminen"
 
 #: src/SettingsDialog.cpp:282
 #, kde-format
@@ -1768,6 +1760,10 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
+"<b>Varoitus!</b> Tämä on kokeellista. Oletuksena ”Kirjoita muutokset” -"
+"asetuksen arvosta riippumatta kaikki RAW-kuvien muutokset kirjoitetaan XMP-"
+"oheistiedostoihin. Tee varmuuskopio ja jos käytät ttä, tarkista, että Exif-"
+"tiedot ovat yhä oikeat ja täydelliset!"
 
 #: src/SettingsDialog.cpp:290
 #, kde-format
