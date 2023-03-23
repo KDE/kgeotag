@@ -237,7 +237,7 @@ msgstr "Etiqueta:"
 #: src/CoordinatesDialog.cpp:40
 #, kde-format
 msgid "Longitude:"
-msgstr "Llargària:"
+msgstr "Longitud:"
 
 #: src/CoordinatesDialog.cpp:45 src/CoordinatesDialog.cpp:54
 #, kde-format
@@ -1664,7 +1664,7 @@ msgstr "Guió-punt-punt"
 #, kde-format
 msgid "Elevations can be looked up using opentopodata.org's web API."
 msgstr ""
-"Les elevacions es poden buscar utilitzant la API web d'«opentopodata.org»."
+"Les elevacions es poden buscar utilitzant l'API web d'«opentopodata.org»."
 
 #: src/SettingsDialog.cpp:205
 #, kde-format
