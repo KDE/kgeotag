@@ -920,8 +920,8 @@ msgstr ""
 "<p>Le fuseau horaire supposé correct « %1 » a été détecté dans le fichier "
 "« GPX » chargé. Cependant, il ne peut être défini.</p><p>Veuillez remplir un "
 "rapport de bogue concernant cette situation, en mentionnant la version de "
-"KGeoTag  et votre données du système sur le fuseau horaire (Le paquet le "
-"contenant est  <kbd>/usr/share/zoneinfo</kbd>).</p><p>Vous pouvez ajuster "
+"KGeoTag et votre données du système sur le fuseau horaire (Le paquet le "
+"contenant est <kbd>/usr/share/zoneinfo</kbd>).</p><p>Vous pouvez ajuster "
 "manuellement le fuseau horaire correct sur la page « Corriger le décalage "
 "d'heure ».</p>"
 
@@ -1455,7 +1455,7 @@ msgstr "Supprimer toutes les images et les pistes (ré-initialiser)"
 #: src/MainWindow.cpp:1733
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr "Impossible d'analyser les données du presse-papier  "
+msgstr "Impossible d'analyser les données du presse-papier"
 
 #: src/MainWindow.cpp:1734
 #, kde-format
