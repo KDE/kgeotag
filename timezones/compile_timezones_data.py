@@ -1,11 +1,11 @@
 #!/usr/bin/env python
 
-# SPDX-FileCopyrightText: 2021-2022 Isaac Wismer <isaac@iwismer.ca>
+# SPDX-FileCopyrightText: 2021-2023 Isaac Wismer <isaac@iwismer.ca>
 #
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 """
-    This script takes a timezone data file (designed for the ones providede
+    This script takes a timezone data file (designed for the ones provided
     here: https://github.com/evansiroky/timezone-boundary-builder/), and turns it
     into a PNG with each of the timezones a unique color, and a JSON file with a
     mapping between the color and timezone.
