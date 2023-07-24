@@ -1,6 +1,6 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# Shinjo Park <kde@peremen.name>, 2021, 2022.
+# Shinjo Park <kde@peremen.name>, 2021, 2022, 2023.
 #
 msgid ""
 msgstr ""
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 21.12.3\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1518,12 +1518,12 @@ msgstr ""
 #: src/SettingsDialog.cpp:113
 #, kde-format
 msgid "Thumbnails and previews"
-msgstr "축소판과 미리 보기"
+msgstr "섬네일과 미리 보기"
 
 #: src/SettingsDialog.cpp:123
 #, kde-format
 msgid "Thumbnail size:"
-msgstr "축소판 크기:"
+msgstr "섬네일 크기:"
 
 #: src/SettingsDialog.cpp:130 src/SettingsDialog.cpp:139
 #, kde-format
