@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
 #
-# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2020, 2021, 2022.
+# Stefan Asserhäll <stefan.asserhall@bredband.net>, 2020, 2021, 2022, 2023.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-29 00:55+0000\n"
-"PO-Revision-Date: 2022-09-24 16:24+0200\n"
+"PO-Revision-Date: 2023-07-31 08:51+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -519,10 +519,9 @@ msgid "Photo geotagging program"
 msgstr "Program för geografisk lokalisering av foton"
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2022 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2023 Tobias Leupold"
-msgstr "Copyright © 2020-2022 Tobias Leupold"
+msgstr "Copyright © 2020-2023 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
