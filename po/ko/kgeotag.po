@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-01-29 00:55+0000\n"
-"PO-Revision-Date: 2022-05-07 02:10+0200\n"
+"PO-Revision-Date: 2023-08-07 23:47+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -703,10 +703,9 @@ msgstr[0] ""
 "<p>다음 파일은 지원하지 않는 MIME 형식이므로 건너뜁니다:</p><p>%2</p>"
 
 #: src/MainWindow.cpp:525
-#, fuzzy, kde-format
-#| msgid "Please select a directory"
+#, kde-format
 msgid "Please select a folder"
-msgstr "디렉터리를 선택하십시오"
+msgstr "폴더를 선택하십시오"
 
 #: src/MainWindow.cpp:556
 #, kde-format
