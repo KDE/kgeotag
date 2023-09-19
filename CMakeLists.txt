@@ -107,6 +107,8 @@ set(kgeotag_SOURCES
     ${main_ROOT}/TracksListView.cpp
     ${main_ROOT}/TrackWalker.cpp
     ${main_ROOT}/Logging.cpp
+
+    kgeotag.qrc
 )
 
 # Build the executable
@@ -149,7 +151,6 @@ install(FILES "timezones/timezones.png"
               "timezones/timezones.json"
         DESTINATION "${KDE_INSTALL_DATADIR}/kgeotag")
 
-install(FILES kgeotagui.rc DESTINATION "${KDE_INSTALL_KXMLGUI5DIR}/kgeotag")
 install(PROGRAMS org.kde.kgeotag.desktop DESTINATION ${KDE_INSTALL_APPDIR})
 install(FILES org.kde.kgeotag.appdata.xml DESTINATION ${KDE_INSTALL_METAINFODIR})
 
