@@ -107,9 +107,9 @@ set(kgeotag_SOURCES
     ${main_ROOT}/TracksListView.cpp
     ${main_ROOT}/TrackWalker.cpp
     ${main_ROOT}/Logging.cpp
-
-    kgeotag.qrc
 )
+
+qt_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
 
 # Build the executable
 add_executable(kgeotag ${kgeotag_SOURCES})
