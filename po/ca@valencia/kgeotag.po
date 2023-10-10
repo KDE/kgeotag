@@ -761,8 +761,8 @@ msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
 "all, or only a part of it.</p>"
 msgstr ""
-"<p>S'ha produït un error en analitzar l'XML per a <kbd>%1</kbd>. O bé, no "
-"s'ha pogut carregar cap data, o només una part.</p>"
+"<p>S'ha produït un error en l'anàlisi sintàctica de l'XML per a <kbd>%1</"
+"kbd>. O bé, no s'ha pogut carregar cap data, o només una part.</p>"
 
 #: src/MainWindow.cpp:637
 #, kde-format
