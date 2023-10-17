@@ -50,6 +50,11 @@
 Added
 =====
 
+* It's now possible to find the chronologically closest track point for an unassigned image and
+  center the map there. If an image has been taken in the time between two tracks, one can find the
+  last or first coordinates of the track recorded before or afterwards (whichever is closer) and use
+  them as a basis for manual tagging.
+
 Changed
 =======
 
