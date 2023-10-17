@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -116,6 +116,16 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_assignManually->setIcon(QIcon::fromTheme(QStringLiteral("add-placemark")));
     connect(m_assignManually, &QAction::triggered,
             this, std::bind(&ImagesListView::assignManually, this, this));
+
+    m_contextMenu->addSeparator();
+
+    m_findClosestTrackPoint = m_contextMenu->addAction(i18n("Find closest trackpoint"));
+    m_findClosestTrackPoint->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
+    connect(m_findClosestTrackPoint, &QAction::triggered,
+            [this]
+            {
+                Q_EMIT findClosestTrackPoint(currentIndex().data(KGeoTag::PathRole).toString());
+            });
 
     m_editCoordinates = m_contextMenu->addAction(i18n("Edit coordinates"));
     connect(m_editCoordinates, &QAction::triggered,
@@ -290,6 +300,7 @@ void ImagesListView::showContextMenu(const QPoint &point)
     m_assignToClipboard->setEnabled(anySelected);
     m_assignManually->setEnabled(anySelected);
     m_editCoordinates->setEnabled(anySelected);
+    m_findClosestTrackPoint->setEnabled(allSelected == 1);
     m_lookupElevation->setEnabled(anySelected);
     m_removeCoordinates->setEnabled(anySelected);
     m_discardChanges->setEnabled(anySelected);
@@ -312,9 +323,12 @@ void ImagesListView::showContextMenu(const QPoint &point)
         }
     }
 
+    m_findClosestTrackPoint->setVisible(m_listType == KGeoTag::UnAssignedImages
+                                        || m_listType == KGeoTag::AllImages);
     m_assignManually->setVisible(hasCoordinates == 0);
     m_editCoordinates->setVisible(hasCoordinates > 0);
-    m_lookupElevation->setVisible(hasCoordinates == allSelected);
+    m_lookupElevation->setVisible(m_listType == KGeoTag::AssignedImages
+                                  || m_listType == KGeoTag::AllImages);
     m_removeCoordinates->setVisible(hasCoordinates > 0);
     m_discardChanges->setVisible(changed > 0);
     m_save->setVisible(changed > 0);

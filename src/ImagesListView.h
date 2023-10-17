@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -50,6 +50,7 @@ Q_SIGNALS:
     void requestAddingImages(const QVector<QString> &paths);
     void removeImages(ImagesListView *list);
     void failedToParseClipboard();
+    void findClosestTrackPoint(const QString &path);
 
 protected:
     void mousePressEvent(QMouseEvent *event) override;
@@ -80,6 +81,7 @@ private: // Variables
     QAction *m_assignToMapCenter;
     QAction *m_assignToClipboard;
     QAction *m_assignManually;
+    QAction *m_findClosestTrackPoint;
     QAction *m_editCoordinates;
     QAction *m_lookupElevation;
     QAction *m_removeCoordinates;

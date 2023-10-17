@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -406,4 +406,45 @@ QByteArray GpxEngine::lastDetectedTimeZoneId() const
 bool GpxEngine::timeZoneDataLoaded() const
 {
     return ! m_timezoneMap.isNull() && ! m_timezoneMapping.isEmpty();
+}
+
+QPair<Coordinates, QDateTime> GpxEngine::findClosestTrackPoint(QDateTime time,
+                                                               int cameraClockDeviation) const
+{
+    if (cameraClockDeviation != 0) {
+        time = time.addSecs(cameraClockDeviation);
+    }
+
+    auto coordinates = Coordinates();
+    auto pointTime = QDateTime();
+    auto deviation = -1;
+
+    // Iterate over all loaded files we have
+    for (const auto &trackPoints : m_geoDataModel->trackPoints()) {
+        if (deviation == -1) {
+            // Initialize the deviation with the first point
+            const auto it = trackPoints.constBegin();
+            deviation = std::abs(it.key().secsTo(time));
+            pointTime = it.key();
+            coordinates = it.value();
+        }
+
+        // Check for an exact match
+        if (trackPoints.contains(time)) {
+            return QPair<Coordinates, QDateTime>(trackPoints.value(time), time);
+        }
+
+        // Check for the time deviation of each point
+        QHash<QDateTime, Coordinates>::const_iterator it;
+        for (it = trackPoints.constBegin(); it != trackPoints.constEnd(); it++) {
+            const auto currentDeviaton = std::abs(it.key().secsTo(time));
+            if (currentDeviaton < deviation) {
+                deviation = currentDeviaton;
+                pointTime = it.key();
+                coordinates = it.value();
+            }
+        }
+    }
+
+    return QPair<Coordinates, QDateTime>(coordinates, pointTime);
 }

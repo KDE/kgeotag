@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -68,6 +68,7 @@ private Q_SLOTS:
     void matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType);
     void assignToMapCenter(ImagesListView *list);
     void assignManually(ImagesListView *list);
+    void findClosestTrackPoint(const QString &path);
     void editCoordinates(ImagesListView *list);
     void removeCoordinates(ImagesListView *list);
     void removeCoordinates(const QVector<QString> &paths);

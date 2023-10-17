@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -46,6 +46,8 @@ public:
     GpxEngine::LoadInfo load(const QString &path);
     Coordinates findExactCoordinates(const QDateTime &time, int deviation) const;
     Coordinates findInterpolatedCoordinates(const QDateTime &time, int deviation) const;
+    QPair<Coordinates, QDateTime> findClosestTrackPoint(QDateTime time,
+                                                        int cameraClockDeviation) const;
     void setMatchParameters(int exactMatchTolerance, int maximumInterpolationInterval,
                             int maximumInterpolationDistance);
     QByteArray lastDetectedTimeZoneId() const;

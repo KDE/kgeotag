@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -294,6 +294,7 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
             this, &MainWindow::triggerAutomaticMatching);
     connect(list, &ImagesListView::assignToMapCenter, this, &MainWindow::assignToMapCenter);
     connect(list, &ImagesListView::assignManually, this, &MainWindow::assignManually);
+    connect(list, &ImagesListView::findClosestTrackPoint, this, &MainWindow::findClosestTrackPoint);
     connect(list, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
     connect(list, QOverload<ImagesListView *>::of(&ImagesListView::removeCoordinates),
             this, QOverload<ImagesListView *>::of(&MainWindow::removeCoordinates));
@@ -1732,4 +1733,22 @@ void MainWindow::failedToParseClipboard()
     QMessageBox::warning(this,
                          i18n("Failed to parse clipboard data"),
                          i18n("Could not parse the clipboard's text to valid coordinates"));
+}
+
+void MainWindow::findClosestTrackPoint(const QString &path)
+{
+    const auto point = m_gpxEngine->findClosestTrackPoint(
+        m_imagesModel->date(path), m_fixDriftWidget->cameraClockDeviation());
+
+    if (! point.first.isSet()) {
+        QMessageBox::warning(this, i18n("Find closest trackpoint"),
+                             i18n("No geodata has been loaded yet!"));
+        return;
+    }
+
+    m_mapWidget->blockSignals(true);
+    m_mapWidget->centerCoordinates(point.first);
+    m_mapCenterInfo->trackPointCentered(point.first,
+        point.second.toTimeZone(m_fixDriftWidget->imagesTimeZone()));
+    m_mapWidget->blockSignals(false);
 }
