@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2023 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -38,7 +38,8 @@ MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent)
 
 void MapCenterInfo::displayCoordinates(const Coordinates &coordinates)
 {
-    m_coordinatesLabel->setText(i18n("Map center position: %1, %2",
+    m_coordinatesLabel->setText(i18nc("This displays the coordinates of the current map center",
+                                      "Map center position: %1, %2",
                                 m_formatter->lon(coordinates),
                                 m_formatter->lat(coordinates)));
 }
