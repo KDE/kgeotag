@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-18 00:40+0000\n"
-"PO-Revision-Date: 2023-01-29 08:59+0200\n"
+"PO-Revision-Date: 2023-10-18 15:13+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <kde-i18n-uk@kde.org>\n"
 "Language: uk\n"
@@ -458,11 +458,9 @@ msgid "Set coordinates manually"
 msgstr "Вказати координати вручну"
 
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
-#, fuzzy, kde-format
-#| msgid "%1 trackpoint"
-#| msgid_plural "%1 trackpoints"
+#, kde-format
 msgid "Find closest trackpoint"
-msgstr "%1 точка маршруту"
+msgstr "Знайти найближчу точку маршруту"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
@@ -1528,15 +1526,12 @@ msgstr ""
 "даними"
 
 #: src/MainWindow.cpp:1745
-#, fuzzy, kde-format
-#| msgid "one image has already been loaded"
-#| msgid_plural "%1 images have already been loaded"
+#, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "вже завантажено %1 зображення"
+msgstr "Ще не завантажено одних геоданих!"
 
 #: src/MapCenterInfo.cpp:42
-#, fuzzy, kde-format
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
 msgstr "Центральна позиція карти: %1, %2"

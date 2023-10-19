@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
 #
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2020, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-18 00:40+0000\n"
-"PO-Revision-Date: 2023-01-29 22:43+0100\n"
+"PO-Revision-Date: 2023-10-18 14:09+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 23.08.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -457,11 +457,9 @@ msgid "Set coordinates manually"
 msgstr "Coördinaten handmatig instellen"
 
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
-#, fuzzy, kde-format
-#| msgid "%1 trackpoint"
-#| msgid_plural "%1 trackpoints"
+#, kde-format
 msgid "Find closest trackpoint"
-msgstr "%1 trackpunt"
+msgstr "Zoek het dichts bijzijnde trackpunt"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
@@ -1453,15 +1451,12 @@ msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "Kon de tekst in het klembord niet ontleden tot geldige coördinaten"
 
 #: src/MainWindow.cpp:1745
-#, fuzzy, kde-format
-#| msgid "one image has already been loaded"
-#| msgid_plural "%1 images have already been loaded"
+#, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "één afbeelding is al geladen"
+msgstr "Nog geen geo-gegevens geladen!"
 
 #: src/MapCenterInfo.cpp:42
-#, fuzzy, kde-format
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
 msgstr "Overeen laten komen van middelpunt positie %1, %2"
