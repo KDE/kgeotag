@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-18 00:40+0000\n"
-"PO-Revision-Date: 2023-01-31 10:52+0100\n"
+"PO-Revision-Date: 2023-10-19 05:44+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.4\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -231,7 +231,7 @@ msgstr "ჭდე:"
 #: src/CoordinatesDialog.cpp:40
 #, kde-format
 msgid "Longitude:"
-msgstr "გეოლოკაციის გრძედი:"
+msgstr "გრძედი:"
 
 #: src/CoordinatesDialog.cpp:45 src/CoordinatesDialog.cpp:54
 #, kde-format
@@ -242,7 +242,7 @@ msgstr " °"
 #: src/CoordinatesDialog.cpp:49
 #, kde-format
 msgid "Latitude:"
-msgstr "გეოლოკაციის განედი:"
+msgstr "განედი:"
 
 #: src/CoordinatesDialog.cpp:59
 #, kde-format
@@ -1363,11 +1363,9 @@ msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr ""
 
 #: src/MainWindow.cpp:1745
-#, fuzzy, kde-format
-#| msgid "one image has already been loaded"
-#| msgid_plural "%1 images have already been loaded"
+#, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "1 გამოსახულება უკვე ჩატვირთულია"
+msgstr "გეომონაცემები ჯერ ჩატვირთული არაა!"
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
