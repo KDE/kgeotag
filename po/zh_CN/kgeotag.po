@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2023-10-18 00:40+0000\n"
-"PO-Revision-Date: 2023-10-10 14:30\n"
+"PO-Revision-Date: 2023-10-21 13:55\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -448,11 +448,9 @@ msgid "Set coordinates manually"
 msgstr "手动设置坐标"
 
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
-#, fuzzy, kde-format
-#| msgid "%1 trackpoint"
-#| msgid_plural "%1 trackpoints"
+#, kde-format
 msgid "Find closest trackpoint"
-msgstr "%1 个轨迹点"
+msgstr ""
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
@@ -1354,18 +1352,15 @@ msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr ""
 
 #: src/MainWindow.cpp:1745
-#, fuzzy, kde-format
-#| msgid "one image has already been loaded"
-#| msgid_plural "%1 images have already been loaded"
+#, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "%1 张图像已经加载过了"
+msgstr ""
 
 #: src/MapCenterInfo.cpp:42
-#, fuzzy, kde-format
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
-msgstr "地图中心的位置：%1, %2"
+msgstr ""
 
 #: src/MapWidget.cpp:78
 #, kde-format
