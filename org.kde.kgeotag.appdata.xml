@@ -34,7 +34,6 @@
   <name xml:lang="sv">Kgeotag</name>
   <name xml:lang="tr">KGeoTag</name>
   <name xml:lang="uk">KGeoTag</name>
-  <name xml:lang="x-test">xxKGeoTagxx</name>
   <name xml:lang="zh-CN">KGeoTag</name>
   <summary>Photo geotagging program</summary>
   <summary xml:lang="ca">Programa de geoetiquetatge de fotografies</summary>
@@ -61,7 +60,6 @@
   <summary xml:lang="sv">Program för geografisk lokalisering av foton</summary>
   <summary xml:lang="tr">Coğrafi Fotoğraf Etiketleyicisi</summary>
   <summary xml:lang="uk">Програма для роботи з геомітками фотографій</summary>
-  <summary xml:lang="x-test">xxPhoto geotagging programxx</summary>
   <summary xml:lang="zh-CN">照片地理标签管理程序</summary>
   <description>
     <p>KGeoTag is a standalone geotagging program. Images can be associated with geographic coordinates by different means: On the one hand, a matching with GPX encoded geodata can be done, on the other hand, the coordinates can be set manually, either via drag and drop onto a map, via bookmarks or by manually supplying them. The coordinates can be stored in the images' Exif header and/or in XMP sidecar files.</p>
@@ -83,7 +81,6 @@
     <p xml:lang="sv">Kgeotag är ett fristående program för geografisk lokalisering. Bilder kan kopplas till geografiska koordinater på olika sätt: Å ena sidan kan en matchning med GPX-kodad geografisk data göras, å andra sidan kan koordinaterna ställas in för hand, antingen med dra och släpp på en karta, via bokmärken eller genom att ange dem manuellt. Koordinaterna kan lagras i bildernas Exif-huvud och/eller i associerade XMP-filer.</p>
     <p xml:lang="tr">KGeoTag, bir coğrafya etiketleme programıdır. Görseller coğrafi koordinatlarla değişik yöntemlerle etiketlenebilir: Bir yanda, GPX kodlu coğrafi veri yapılabilir, diğer yanda koordinatlar el ile girilebilir (haritaya sürükle bırak ile, yer imleri ile veya el ile yazarak). Koordinatlar, görselin Exif üstbilgisinde ve/veya XMP yardımcı dosyalarında depolanabilir.</p>
     <p xml:lang="uk">KGeoTag — окрема програма для роботи із геомітками. Ця програма може пов'язувати зображення із географічними координатами у декілька способів: з одного боку, може бути виконано прив'язку до кодованих даних GPX, з іншого боку, координати можна вказати вручну — за допомогою перетягуванні зі скиданням на карту, закладок або вписування координат вручну. програма може зберігати координати у заголовку Exif зображення і/або у додаткових файлах XMP.</p>
-    <p xml:lang="x-test">xxKGeoTag is a standalone geotagging program. Images can be associated with geographic coordinates by different means: On the one hand, a matching with GPX encoded geodata can be done, on the other hand, the coordinates can be set manually, either via drag and drop onto a map, via bookmarks or by manually supplying them. The coordinates can be stored in the images' Exif header and/or in XMP sidecar files.xx</p>
     <p xml:lang="zh-CN">KGeoTag 是一款独立的地理标签管理程序。图像可根据不同的方式与地理坐标相关联：其一是与 GPX 编码的地理位置数据匹配；其二是手动设置坐标，如通过在地图上拖放、通过书签或通过手动输入进行设置。您还可将坐标存储到图像的 EXIF 文件头和/或 XMP 附带文件中。</p>
   </description>
   <screenshots>
@@ -111,7 +108,6 @@
       <caption xml:lang="sv">Geografisk lokalisering med Kgeotag</caption>
       <caption xml:lang="tr">KGeoTag ile coğrafya etiketleme</caption>
       <caption xml:lang="uk">Геопозиціювання за допомогою KGeoTag</caption>
-      <caption xml:lang="x-test">xxGeotagging with KGeoTagxx</caption>
       <caption xml:lang="zh-CN">使用 KGeoTag 管理地理位置标签</caption>
     </screenshot>
   </screenshots>
