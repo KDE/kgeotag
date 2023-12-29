@@ -2,14 +2,17 @@
 # SPDX-License-Identifier: CC0-1.0
 
 include:
-  - https://invent.kde.org/sysadmin/ci-utilities/raw/master/gitlab-templates/linux.yml
-  - https://invent.kde.org/sysadmin/ci-utilities/raw/master/gitlab-templates/freebsd.yml
+  - project: sysadmin/ci-utilities
+    file:
+      - /gitlab-templates/linux.yml
+      - /gitlab-templates/freebsd.yml
+      - /gitlab-templates/reuse-lint.yml
+      - /gitlab-templates/flatpak.yml
 
-build:debian-stable:
-  stage: build
-  image: "debian:stable"
+.template: &debian
   variables:
     DEBIAN_FRONTEND: noninteractive
+    QT_QPA_PLATFORM: offscreen
     LANG: C.UTF-8
   interruptible: true
   before_script:
@@ -18,3 +21,13 @@ build:debian-stable:
   script:
     - mkdir build && cd $_ && cmake .. && make -j$(nproc)
     - make install
+
+build:debian-stable:
+  stage: build
+  image: "debian:stable"
+  <<: *debian
+
+build:debian-testing:
+  stage: build
+  image: "debian:testing"
+  <<: *debian
