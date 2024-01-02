@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2021-2023 Tobias Leupold <tl at stonemx dot de>
+.. SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
 
    SPDX-License-Identifier: CC-BY-SA-4.0
 
@@ -44,7 +44,7 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
-[unreleased]
+KGeoTag 1.5.0 released (2024-01-02)
 ====================================================================================================
 
 Added
@@ -60,18 +60,6 @@ Changed
 
 * Updated the timezones data files to 2023d (cf. Timezone Boundary Builder's `Release Announcement
   <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2023d>`_).
-
-Deprecated
-==========
-
-Removed
-=======
-
-Fixed
-=====
-
-Security
-========
 
 ====================================================================================================
 KGeoTag 1.4.0 released (2023-01-28)

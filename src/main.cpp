@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -34,7 +34,7 @@ int main(int argc, char *argv[])
     aboutData.setVersion(VERSION_STRING);
     aboutData.setShortDescription(i18n("Photo geotagging program"));
     aboutData.setLicense(KAboutLicense::GPL_V3);
-    aboutData.setCopyrightStatement(i18n("Copyright (C) 2020-2023 Tobias Leupold"));
+    aboutData.setCopyrightStatement(i18n("Copyright (C) 2020-2024 Tobias Leupold"));
     aboutData.setHomepage(QStringLiteral("https://kgeotag.kde.org/"));
     aboutData.setOrganizationDomain(QStringLiteral("kde.org").toUtf8());
 
