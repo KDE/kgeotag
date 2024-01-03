@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2023-11-05 12:26+0000\n"
+"POT-Creation-Date: 2024-01-03 00:40+0000\n"
 "PO-Revision-Date: 2023-10-18 13:00+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -524,8 +524,9 @@ msgid "Photo geotagging program"
 msgstr "Fotoğraf coğrafi etiketleme programı"
 
 #: src/main.cpp:37
-#, kde-format
-msgid "Copyright (C) 2020-2023 Tobias Leupold"
+#, fuzzy, kde-format
+#| msgid "Copyright (C) 2020-2023 Tobias Leupold"
+msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Telif hakkı (C) 2020-2023 Tobias Leupold"
 
 #: src/main.cpp:41
