@@ -6,7 +6,7 @@
 <component type="desktop-application">
   <id>org.kde.kgeotag</id>
   <metadata_license>CC0-1.0</metadata_license>
-  <project_license>GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL</project_license>
+  <project_license>GPL-3.0-only</project_license>
   <project_group>KDE</project_group>
   <name>KGeoTag</name>
   <name xml:lang="ca">KGeoTag</name>
