@@ -127,10 +127,24 @@
     <value key="KDE::mailinglist">kgeotag</value>
   </custom>
   <releases>
-    <release version="1.5.0" date="2024-01-02"/>
-    <release version="1.4.0" date="2023-01-28"/>
-    <release version="1.3.1" date="2022-09-05"/>
-    <release version="1.2.0" date="2021-11-12"/>
+    <release version="1.5.0" date="2024-01-02">
+      <url>https://kgeotag.kde.org/news/2024/kgeotag-1.5.0-released/</url>
+    </release>
+    <release version="1.4.0" date="2023-01-28">
+      <url>https://kgeotag.kde.org/news/2023/kgeotag-1.4.0-released/</url>
+    </release>
+    <release version="1.3.1" date="2022-09-05">
+      <url>https://kgeotag.kde.org/news/2022/kgeotag-1.3.0-released/</url>
+    </release>
+    <release version="1.2.0" date="2021-11-12">
+      <url>https://kgeotag.kde.org/news/2021/kgeotag-1-2-released/</url>
+    </release>
+    <release version="1.1.0" date="2021-10-19">
+      <url>https://kgeotag.kde.org/news/2021/kgeotag-1-1-released/</url>
+    </release>
+    <release version="1.0.0" date="2021-03-06">
+      <url>https://kgeotag.kde.org/news/2021/kgeotag-1.0.0-out-now/</url>
+    </release>
   </releases>
   <content_rating type="oars-1.1"/>
 </component>
