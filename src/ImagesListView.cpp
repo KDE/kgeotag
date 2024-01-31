@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -122,7 +122,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     m_findClosestTrackPoint = m_contextMenu->addAction(i18n("Find closest trackpoint"));
     m_findClosestTrackPoint->setIcon(QIcon::fromTheme(QStringLiteral("edit-find")));
     connect(m_findClosestTrackPoint, &QAction::triggered,
-            [this]
+            this, [this]
             {
                 Q_EMIT findClosestTrackPoint(currentIndex().data(KGeoTag::PathRole).toString());
             });

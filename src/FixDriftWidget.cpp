@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -51,7 +51,7 @@ FixDriftWidget::FixDriftWidget(QWidget *parent) : QWidget(parent)
     connect(m_timeZone, QOverload<int>::of(&QComboBox::currentIndexChanged),
             this, &FixDriftWidget::imagesTimeZoneChanged);
     connect(m_timeZone, QOverload<int>::of(&QComboBox::currentIndexChanged),
-            [this]
+            this, [this]
             {
                 m_imagesTimeZone = QTimeZone(m_timeZone->currentData().toByteArray());
             });

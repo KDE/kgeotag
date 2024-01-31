@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -53,7 +53,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
       m_imagesModel(sharedObjects->imagesModel())
 {
     connect(this, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
-            [this]
+            this, [this]
             {
                 Q_EMIT mapMoved(currentCenter());
             });

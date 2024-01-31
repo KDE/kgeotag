@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -137,7 +137,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     searchMatchesAction->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
     actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(tr("Ctrl+M")));
     connect(searchMatchesAction, &QAction::triggered,
-            [this]
+            this, [this]
             {
                 triggerCompleteAutomaticMatching(m_settings->defaultMatchingMode());
             });
@@ -263,7 +263,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             this, &MainWindow::notAllElevationsPresent);
 
     // Check if we could setup the timezone detection properly
-    QTimer::singleShot(0, [this]
+    QTimer::singleShot(0, this, [this]
     {
         // We do this in a QTimer singleShot so that the main window
         // will be already visible if this warning should be displayed
