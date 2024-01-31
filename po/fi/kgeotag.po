@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# Tommi Nieminen <translator@legisign.org>, 2020, 2021, 2022, 2023.
+# Tommi Nieminen <translator@legisign.org>, 2020, 2021, 2022, 2023, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-01-03 00:40+0000\n"
-"PO-Revision-Date: 2023-03-14 21:51+0200\n"
+"PO-Revision-Date: 2024-01-22 16:14+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -453,11 +453,9 @@ msgid "Set coordinates manually"
 msgstr "Aseta koordinaatit itse"
 
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
-#, fuzzy, kde-format
-#| msgid "%1 trackpoint"
-#| msgid_plural "%1 trackpoints"
+#, kde-format
 msgid "Find closest trackpoint"
-msgstr "%1 reittipiste"
+msgstr "Etsi lähin reittipiste"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
@@ -526,10 +524,9 @@ msgid "Photo geotagging program"
 msgstr "Valokuvien sijaintitunnisteiden muokkaus"
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2023 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
-msgstr "Tekijänoikeudet © 2020–2023 Tobias Leupold"
+msgstr "Tekijänoikeudet © 2020–2024 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -1438,18 +1435,15 @@ msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "Leikepöydän tekstiä ei voitu jäsentää kelvollisiksi koordinaateiksi"
 
 #: src/MainWindow.cpp:1745
-#, fuzzy, kde-format
-#| msgid "one image has already been loaded"
-#| msgid_plural "%1 images have already been loaded"
+#, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "yksi kuva on jo ladattu"
+msgstr "Sijaintitietoa ei ole vielä ladattu!"
 
 #: src/MapCenterInfo.cpp:42
-#, fuzzy, kde-format
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
-msgstr "Kartan keskipiste: %1, %2"
+msgstr "Kartan keskipisteen sijainti: %1, %2"
 
 #: src/MapWidget.cpp:78
 #, kde-format
