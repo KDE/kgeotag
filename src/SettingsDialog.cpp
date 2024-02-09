@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -27,7 +27,8 @@
 #include <QHBoxLayout>
 
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
-    : QDialog(parent), m_settings(settings)
+    : QDialog(parent),
+      m_settings(settings)
 {
     setAttribute(Qt::WA_DeleteOnClose, true);
     setWindowTitle(i18n("KGeoTag: Settings"));
@@ -287,7 +288,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     label->setIndent(30);
     saveBoxLayout->addWidget(label);
 
-    m_createBackups = new QCheckBox(i18n("Create a backups before altering a file"));
+    m_createBackups = new QCheckBox(i18n("Create a backup before altering a file"));
     m_createBackups->setChecked(m_settings->createBackups());
     saveBoxLayout->addWidget(m_createBackups);
 
