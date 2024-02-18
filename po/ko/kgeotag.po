@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# Shinjo Park <kde@peremen.name>, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-10 01:50+0000\n"
-"PO-Revision-Date: 2023-08-07 23:47+0200\n"
+"PO-Revision-Date: 2024-02-17 14:39+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -48,14 +48,14 @@ msgstr "초"
 #: src/AutomaticMatchingWidget.cpp:65
 #, kde-format
 msgid "Search for interpolated matches"
-msgstr ""
+msgstr "보간된 일치 검색"
 
 #: src/AutomaticMatchingWidget.cpp:71
 #, kde-format
 msgid ""
 "Spatial and temporal boundaries for two coordinates used to calculate an "
 "interpolated match:"
-msgstr ""
+msgstr "보간된 일치를 계산할 때 사용할 두 좌표의 시공간적 경계:"
 
 #: src/AutomaticMatchingWidget.cpp:82
 #, kde-format
@@ -86,7 +86,7 @@ msgstr "모든 사진 (재)할당"
 #: src/MainWindow.cpp:1120 src/SettingsDialog.cpp:96
 #, kde-format
 msgid "Combined match search"
-msgstr ""
+msgstr "결합된 일치 검색"
 
 #: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:97
@@ -98,7 +98,7 @@ msgstr "정확한 일치만 검색"
 #: src/SettingsDialog.cpp:98
 #, kde-format
 msgid "Search interpolated matches only"
-msgstr ""
+msgstr "보간된 일치만 검색"
 
 #: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
@@ -438,10 +438,9 @@ msgid "Assign to map center"
 msgstr "지도 중심점에 할당"
 
 #: src/ImagesListView.cpp:112
-#, fuzzy, kde-format
-#| msgid "Set coordinates manually"
+#, kde-format
 msgid "Set coordinates from clipboard"
-msgstr "수동으로 좌표 입력"
+msgstr "클립보드에서 좌표 설정"
 
 #: src/ImagesListView.cpp:115
 #, kde-format
@@ -451,7 +450,7 @@ msgstr "수동으로 좌표 입력"
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
 #, kde-format
 msgid "Find closest trackpoint"
-msgstr ""
+msgstr "가장 가까운 트랙포인트 찾기"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
@@ -480,7 +479,7 @@ msgstr[0] "사진 삭제"
 #: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
-msgstr ""
+msgstr "기본 뷰어로 열기"
 
 #: src/ImagesListView.cpp:196
 #, kde-format
@@ -519,10 +518,9 @@ msgid "Photo geotagging program"
 msgstr "사진 지오태그 프로그램"
 
 #: src/main.cpp:37
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2021 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
-msgstr "Copyright (C) 2020-2021 Tobias Leupold"
+msgstr "Copyright (C) 2020-2024 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -537,17 +535,17 @@ msgstr "관리자"
 #: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
-msgstr ""
+msgstr "파일/폴더"
 
 #: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
-msgstr ""
+msgstr "시작할 때 불러올 파일이나 폴더"
 
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr ""
+msgstr "[파일/폴더...]"
 
 #: src/MainWindow.cpp:94 src/MainWindow.cpp:507
 #, kde-format
@@ -555,10 +553,9 @@ msgid "Add images and/or GPX tracks"
 msgstr "사진 및 GPX 궤적 추가"
 
 #: src/MainWindow.cpp:101 src/MainWindow.cpp:556
-#, fuzzy, kde-format
-#| msgid "Add all images and tracks from directory"
+#, kde-format
 msgid "Add all images and tracks from a folder"
-msgstr "디렉터리의 모든 사진과 궤적 추가"
+msgstr "폴더의 모든 사진과 궤적 추가"
 
 #: src/MainWindow.cpp:111
 #, kde-format
@@ -581,10 +578,9 @@ msgid "All images and tracks (reset)"
 msgstr "모든 사진과 궤적(초기화)"
 
 #: src/MainWindow.cpp:136
-#, fuzzy, kde-format
-#| msgid "Assigned images"
+#, kde-format
 msgid "Assign images to GPS data"
-msgstr "할당된 사진"
+msgstr "사진을 GPS 데이터에 할당"
 
 #: src/MainWindow.cpp:146
 #, kde-format
@@ -627,10 +623,9 @@ msgid "Tracks"
 msgstr "궤적"
 
 #: src/MainWindow.cpp:271
-#, fuzzy, kde-format
-#| msgid "Loading images ..."
+#, kde-format
 msgid "Loading timezone data"
-msgstr "사진 불러오는 중..."
+msgstr "시간대 데이터 불러오는 중"
 
 #: src/MainWindow.cpp:272
 #, kde-format
@@ -642,6 +637,12 @@ msgid ""
 "community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
 "wiki</a> on how to make the respective files accessible.</p>"
 msgstr ""
+"<p>시간대 데이터 파일 <kbd>timezones.json</kbd> 또는 <kbd>timezones.png</kbd>"
+"를 불러오거나 해석할 수 없습니다. 자동 시간대 감지가 비활성화되었습니다.</"
+"p><p>설치 상태를 확인하십시오!</p><p>소스 코드에서 수동으로 컴파일했으나 설치"
+"하지 않았다면 <a href=\"https://community.kde.org/"
+"KGeoTag#Running_the_compiled_sources\">KDE 커뮤니티 위키</a>를 참조하여 해당 "
+"파일을 읽어오는 파일을 확인하십시오.</p>"
 
 #: src/MainWindow.cpp:319
 #, kde-format
@@ -674,16 +675,13 @@ msgid "Please select the images and/or GPX tracks to add"
 msgstr "추가할 사진 또는 GPX 궤적을 선택하십시오"
 
 #: src/MainWindow.cpp:451
-#, fuzzy, kde-format
-#| msgid ""
-#| "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
-#| "gpx );; All files (*)"
+#, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
 "cr2 *.nef *.dng *.gpx );; All files (*)"
 msgstr ""
-"모든 지원하는 파일 (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
-"gpx );; 모든 파일 (*)"
+"모든 지원하는 파일 (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *.cr2 "
+"*.nef *.dng *.gpx );; 모든 파일 (*)"
 
 #: src/MainWindow.cpp:485
 #, kde-format
@@ -823,7 +821,7 @@ msgstr[0] "<p>파일 %1개 처리함, %2, %3</p>"
 #: src/MainWindow.cpp:690
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
-msgstr ""
+msgstr "<p>웨이포인트를 불러올 수 없습니다.</p>"
 
 #: src/MainWindow.cpp:696
 #, kde-format
@@ -833,7 +831,7 @@ msgctxt ""
 "call."
 msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
-msgstr[0] ""
+msgstr[0] "<p>%2에서 웨이포인트 %1개 불러옴</p>"
 
 #: src/MainWindow.cpp:699 src/MainWindow.cpp:708
 #, kde-format
@@ -849,7 +847,7 @@ msgctxt ""
 "the one for the segments (%3) are provided by the following i18np calls."
 msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
-msgstr[0] ""
+msgstr[0] "<p>%2, %3에서 웨이포인트 %1개 불러옴</p>"
 
 #: src/MainWindow.cpp:709
 #, kde-format
@@ -878,13 +876,7 @@ msgid "Setting the detected timezone failed"
 msgstr "감지한 시간대를 설정할 수 없음"
 
 #: src/MainWindow.cpp:732
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>The presumably correct timezone \"%1\" has been detected from the "
-#| "loaded GPX file, but could not be set. This should not happen!</"
-#| "p><p>Please file a bug report about this, including the used version of "
-#| "KGeoTag and Qt!</p><p>You can adjust the timezone setting manually on the "
-#| "\"Fix time drift\" page.</p>"
+#, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
 "GPX file, but could not be set. This should not happen!</p><p>Please file a "
@@ -894,9 +886,10 @@ msgid ""
 "page.</p>"
 msgstr ""
 "<p>불러온 GPX 파일에서 정확한 시간대 \"%1\"을(를) 추측했으나 설정할 수 없습니"
-"다. 일어나면 안 됩니다!</p><p>이것을 버그로 보고하면서 동시에 사용한 KGeoTag "
-"버전과 Qt 버전을 알려 주십시오!</p><p>\"시차 수정\" 페이지에서 직접 시간대를 "
-"조정할 수 있습니다.</p>"
+"다. 일어나면 안 됩니다!</p><p>이 문제를 버그로 보고해 주십시오. 버그에는 사"
+"용 중인 KGeoTag 버전과 시스템의 시간대 데이터(<kbd>/usr/share/zoneinfo</kbd> "
+"파일을 포함하는 패키지) 버전을 알려 주십시오.</p><p>\"시차 수정\" 페이지에서 "
+"직접 시간대를 조정할 수 있습니다.</p>"
 
 #: src/MainWindow.cpp:741
 #, kde-format
@@ -1089,6 +1082,8 @@ msgid ""
 "Can't search for matches:\n"
 "No images have been loaded yet."
 msgstr ""
+"일치를 찾을 수 없음:\n"
+"사진을 불러오지 않았습니다."
 
 #: src/MainWindow.cpp:1046
 #, kde-format
@@ -1096,6 +1091,8 @@ msgid ""
 "Can't search for matches:\n"
 "No GPS tracks have been loaded yet."
 msgstr ""
+"일치를 찾을 수 없음:\n"
+"GPS 궤적을 불러오지 않았습니다."
 
 #: src/MainWindow.cpp:1061
 #, kde-format
@@ -1109,7 +1106,7 @@ msgctxt ""
 "matches (%1) and the interpolated matches (%2) are provided by the following "
 "i18np calls."
 msgid "<p>Found %1 and %2!</p>"
-msgstr ""
+msgstr "<p>%1, %2을(를) 찾았습니다!</p>"
 
 #: src/MainWindow.cpp:1126
 #, kde-format
@@ -1121,7 +1118,7 @@ msgstr[0] "정확한 일치 %1개"
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
-msgstr[0] ""
+msgstr[0] "보간된 일치 %1개"
 
 #: src/MainWindow.cpp:1136
 #, kde-format
@@ -1142,7 +1139,7 @@ msgstr[0] "사진 %1개에는 이미 좌표가 지정됨"
 #: src/MainWindow.cpp:1144
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
-msgstr ""
+msgstr "정확한 일치나 보간된 일치를 찾을 수 없습니다!"
 
 #: src/MainWindow.cpp:1149
 #, kde-format
@@ -1173,13 +1170,13 @@ msgstr "정확한 일치를 찾을 수 없습니다!"
 #: src/MainWindow.cpp:1171
 #, kde-format
 msgid "Interpolated matches search"
-msgstr ""
+msgstr "보간된 일치 검색"
 
 #: src/MainWindow.cpp:1173
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
-msgstr[0] ""
+msgstr[0] "<p>보간된 일치 %1개를 찾았습니다!</p>"
 
 #: src/MainWindow.cpp:1180
 #, kde-format
@@ -1189,12 +1186,12 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
-msgstr[0] ""
+msgstr[0] "<p>사진 %1개에는 보간된 일치가 없습니다(%2).</p>"
 
 #: src/MainWindow.cpp:1188
 #, kde-format
 msgid "Could not find any interpolated matches!"
-msgstr ""
+msgstr "보간된 일치를 찾을 수 없습니다!"
 
 #: src/MainWindow.cpp:1209
 #, kde-format
@@ -1382,23 +1379,20 @@ msgstr "모든 사진과 궤적 삭제(초기화)"
 #: src/MainWindow.cpp:1734
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr ""
+msgstr "클립보드 데이터를 해석할 수 없음"
 
 #: src/MainWindow.cpp:1735
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
-msgstr ""
+msgstr "클립보드 텍스트를 올바른 좌표로 해석할 수 없음"
 
 #: src/MainWindow.cpp:1745
-#, fuzzy, kde-format
-#| msgid "one image has already been loaded"
-#| msgid_plural "%1 images have already been loaded"
+#, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "사진 %1개를 이미 불러왔습니다"
+msgstr "지오데이터를 불러오지 않았습니다!"
 
 #: src/MapCenterInfo.cpp:42
-#, fuzzy, kde-format
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
 msgstr "지도 중심점 위치: %1, %2"
@@ -1441,7 +1435,7 @@ msgstr "정확한 일치"
 #: src/PreviewWidget.cpp:77
 #, kde-format
 msgid "interpolated match"
-msgstr ""
+msgstr "보간된 일치"
 
 #: src/PreviewWidget.cpp:78
 #, kde-format
@@ -1510,15 +1504,14 @@ msgid "One combined list for all images"
 msgstr "모든 사진에 하나로 합친 목록 사용"
 
 #: src/SettingsDialog.cpp:83
-#, fuzzy, kde-format
-#| msgid "Images' time zone"
+#, kde-format
 msgid "Image Assignment"
-msgstr "사진의 시간대"
+msgstr "사진 할당"
 
 #: src/SettingsDialog.cpp:88
 #, kde-format
 msgid "Search type for the main menu \"Assign images to GPS data\" entry"
-msgstr ""
+msgstr "주 메뉴의 \"사진을 GPS 데이터에 할당\" 항목의 검색 형식"
 
 #: src/SettingsDialog.cpp:107
 #, kde-format
@@ -1527,6 +1520,8 @@ msgid ""
 "\"Exclude manually tagged images\" setting from the \"Automatic assignment\" "
 "dock."
 msgstr ""
+"이 항목은 \"자동 할당\" 독의 \"수동으로 태그한 사진 제외\" 설정을 고려하여 모"
+"든 사진을 자동으로 (다시) 할당합니다."
 
 #: src/SettingsDialog.cpp:114
 #, kde-format
@@ -1715,7 +1710,7 @@ msgstr "Exif 헤더와 XMP 사이드카 파일"
 #: src/SettingsDialog.cpp:278
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
-msgstr ""
+msgstr "RAW 이미지의 Exif 헤더 수정 허용"
 
 #: src/SettingsDialog.cpp:283
 #, kde-format
@@ -1725,10 +1720,13 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
+"<b>주의!</b> 이 기능은 실험적입니다. 기본값으로는 \"다음에 변경 사항 기록\" "
+"설정과 관계 없이 RAW 이미지의 변경 사항은 XMP 사이드카 파일에 기록됩니다. 이 "
+"옵션을 사용할 때에는 원본 파일을 백업해 두고 Exif 데이터가 완전하며 올바른지 "
+"확인하십시오!"
 
 #: src/SettingsDialog.cpp:291
-#, fuzzy, kde-format
-#| msgid "Create a backups before altering a file"
+#, kde-format
 msgid "Create a backup before altering a file"
 msgstr "파일을 변경하기 전에 백업 생성"
 
@@ -1763,9 +1761,9 @@ msgstr "<i>선택한 궤적 없음</i>"
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
-msgstr[0] ""
+msgstr[0] "트랙포인트 %1개"
 
 #: src/TrackWalker.cpp:57
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
-msgstr ""
+msgstr "트랙포인트 %2개 중 %1 선택함"
