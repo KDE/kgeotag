@@ -3,7 +3,7 @@ msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-10 01:50+0000\n"
-"PO-Revision-Date: 2024-02-05 11:41\n"
+"PO-Revision-Date: 2024-02-29 12:57\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
 "Language: zh_CN\n"
@@ -1684,10 +1684,9 @@ msgid ""
 msgstr ""
 
 #: src/SettingsDialog.cpp:291
-#, fuzzy, kde-format
-#| msgid "Create a backups before altering a file"
+#, kde-format
 msgid "Create a backup before altering a file"
-msgstr "在更改文件前先创建备份"
+msgstr ""
 
 #: src/SettingsDialog.cpp:320
 #, kde-format
