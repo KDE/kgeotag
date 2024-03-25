@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-10 01:50+0000\n"
-"PO-Revision-Date: 2024-02-26 21:30+0100\n"
+"PO-Revision-Date: 2024-03-24 10:34+0100\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo.org>\n"
 "Language: eo\n"
@@ -31,7 +31,7 @@ msgstr ""
 #: src/AutomaticMatchingWidget.cpp:39
 #, kde-format
 msgid "Search for exact matches"
-msgstr ""
+msgstr "Serĉi ĝustajn kongruojn"
 
 #: src/AutomaticMatchingWidget.cpp:45
 #, kde-format
@@ -49,7 +49,7 @@ msgstr "sekundoj"
 #: src/AutomaticMatchingWidget.cpp:65
 #, kde-format
 msgid "Search for interpolated matches"
-msgstr ""
+msgstr "Serĉi interpolitajn kongruojn"
 
 #: src/AutomaticMatchingWidget.cpp:71
 #, kde-format
@@ -61,12 +61,12 @@ msgstr ""
 #: src/AutomaticMatchingWidget.cpp:82
 #, kde-format
 msgid "Maximum interval:"
-msgstr ""
+msgstr "Maksimuma intervalo:"
 
 #: src/AutomaticMatchingWidget.cpp:103
 #, kde-format
 msgid "Maximum distance:"
-msgstr ""
+msgstr "Maksimuma distanco:"
 
 #: src/AutomaticMatchingWidget.cpp:110
 #, kde-format
@@ -76,35 +76,35 @@ msgstr "metroj"
 #: src/AutomaticMatchingWidget.cpp:132
 #, kde-format
 msgid "Save settings"
-msgstr ""
+msgstr "Konservi agordojn"
 
 #: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1025
 #, kde-format
 msgid "(Re)Assign all images"
-msgstr ""
+msgstr "(Re)Asigni ĉiujn bildojn"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
 #: src/MainWindow.cpp:1120 src/SettingsDialog.cpp:96
 #, kde-format
 msgid "Combined match search"
-msgstr ""
+msgstr "Kombinita kongruoserĉo"
 
 #: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Search exact matches only"
-msgstr ""
+msgstr "Serĉi nur ĝustajn kongruojn"
 
 #: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
 #: src/SettingsDialog.cpp:98
 #, kde-format
 msgid "Search interpolated matches only"
-msgstr ""
+msgstr "Serĉi nur interpolitaj kongruoj"
 
 #: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
 msgid "Exclude manually tagged images"
-msgstr ""
+msgstr "Ekskludi mane etikeditajn bildojn"
 
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
@@ -119,37 +119,37 @@ msgstr "Agordoj konservitaj!"
 #: src/BookmarksList.cpp:56
 #, kde-format
 msgid "Add new bookmark for current map center"
-msgstr ""
+msgstr "Aldoni novan legosignon por nuna mapo-centro"
 
 #: src/BookmarksList.cpp:60
 #, kde-format
 msgid "Add new manual bookmark"
-msgstr ""
+msgstr "Aldoni novan manlibron"
 
 #: src/BookmarksList.cpp:65
 #, kde-format
 msgid "Rename bookmark"
-msgstr ""
+msgstr "Alinomi legosignon"
 
 #: src/BookmarksList.cpp:68 src/ImagesListView.cpp:130
 #, kde-format
 msgid "Edit coordinates"
-msgstr ""
+msgstr "Redakti koordinatojn"
 
 #: src/BookmarksList.cpp:73 src/ImagesListView.cpp:134
 #, kde-format
 msgid "Lookup elevation"
-msgstr ""
+msgstr "Rigarda alteco"
 
 #: src/BookmarksList.cpp:76
 #, kde-format
 msgid "Set elevation manually"
-msgstr ""
+msgstr "Agordi altecon permane"
 
 #: src/BookmarksList.cpp:81 src/BookmarksList.cpp:220
 #, kde-format
 msgid "Delete bookmark"
-msgstr ""
+msgstr "Forigi legosignon"
 
 #: src/BookmarksList.cpp:104
 #, kde-format
@@ -159,7 +159,7 @@ msgstr "Nova Legosigno"
 #: src/BookmarksList.cpp:104
 #, kde-format
 msgid "Label for the new bookmark:"
-msgstr ""
+msgstr "Etikedo por la nova legosigno:"
 
 #: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:100
 #, kde-format
@@ -175,12 +175,12 @@ msgstr "%1 (%2)"
 #: src/BookmarksList.cpp:155
 #, kde-format
 msgid "Add new bookmark"
-msgstr ""
+msgstr "Aldoni novan legosignon"
 
 #: src/BookmarksList.cpp:156
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
-msgstr ""
+msgstr "La legosigno \"%1\" jam ekzistas, kreita \"%2\" anstataŭe."
 
 #: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
 #, kde-format
@@ -190,27 +190,27 @@ msgstr "Alinomi Legosignon"
 #: src/BookmarksList.cpp:198
 #, kde-format
 msgid "New label for the new bookmark:"
-msgstr ""
+msgstr "Nova etikedo por la nova legosigno:"
 
 #: src/BookmarksList.cpp:206
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr ""
+msgstr "La etikedo \"%1\" jam estas uzata. Bonvolu elekti alian nomon."
 
 #: src/BookmarksList.cpp:221
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
-msgstr ""
+msgstr "Ĉu vere forigi legosignon \"%1\"?"
 
 #: src/BookmarksList.cpp:265
 #, kde-format
 msgid "Set elevation"
-msgstr ""
+msgstr "Agordi altecon"
 
 #: src/BookmarksList.cpp:266
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
-msgstr ""
+msgstr "Alteco por \"%1\" (m)"
 
 #: src/BookmarksList.cpp:287
 #, kde-format
@@ -221,7 +221,7 @@ msgstr "\"%1\""
 #: src/BookmarksWidget.cpp:45
 #, kde-format
 msgid "Position: %1, %2; Altitude: %3 m"
-msgstr ""
+msgstr "Pozicio: %1, %2; Alteco: %3 m"
 
 #: src/CoordinatesDialog.cpp:35
 #, kde-format
@@ -237,7 +237,7 @@ msgstr "Longitudo:"
 #, kde-format
 msgctxt "Degrees symbol"
 msgid " °"
-msgstr ""
+msgstr " °"
 
 #: src/CoordinatesDialog.cpp:49
 #, kde-format
@@ -253,38 +253,38 @@ msgstr "Altitudo:"
 #, kde-format
 msgctxt "Meters abbreviation"
 msgid " m"
-msgstr ""
+msgstr " m"
 
 #: src/CoordinatesDialog.cpp:70
 #, kde-format
 msgid "<i>The altitude is looked up automatically</i>"
-msgstr ""
+msgstr "<i>La alteco estas suprenrigardita aŭtomate</i>"
 
 #: src/CoordinatesDialog.cpp:78
 #, kde-format
 msgid "New bookmark"
-msgstr ""
+msgstr "Nova legosigno"
 
 #: src/CoordinatesDialog.cpp:79
 #, kde-format
 msgid "Data for the new bookmark:"
-msgstr ""
+msgstr "Datumoj por la nova legomarko:"
 
 #: src/CoordinatesDialog.cpp:85
 #, kde-format
 msgid "Manual coordinates"
-msgstr ""
+msgstr "Manaj koordinatoj"
 
 #: src/CoordinatesDialog.cpp:86
 #, kde-format
 msgid "Coordinates for %1:"
-msgstr ""
+msgstr "Koordinatoj por %1:"
 
 #: src/CoordinatesFormatter.cpp:32
 #, kde-format
 msgctxt "Formatted longitude with a cardinal direction"
 msgid "%1° %2"
-msgstr ""
+msgstr "%1° %2"
 
 #: src/CoordinatesFormatter.cpp:34
 #, kde-format
@@ -302,7 +302,7 @@ msgstr "W"
 #, kde-format
 msgctxt "Formatted latitude with a cardinal direction"
 msgid "%1° %2"
-msgstr ""
+msgstr "%1° %2"
 
 #: src/CoordinatesFormatter.cpp:42
 #, kde-format
@@ -319,7 +319,7 @@ msgstr "S"
 #: src/ElevationEngine.cpp:122
 #, kde-format
 msgid "The request timed out"
-msgstr ""
+msgstr "La peto finiĝis"
 
 #: src/ElevationEngine.cpp:141
 #, kde-format
@@ -333,11 +333,12 @@ msgstr ""
 #, kde-format
 msgid "Could not parse the server's response: Could not read the status value"
 msgstr ""
+"Ne eblis analizi la respondon de la servilo: Ne eblis legi la statusvaloron"
 
 #: src/ElevationEngine.cpp:161
 #, kde-format
 msgid "Could not read error description"
-msgstr ""
+msgstr "Ne eblis legi erarpriskribon"
 
 #: src/ElevationEngine.cpp:163
 #, kde-format
@@ -349,6 +350,7 @@ msgstr "%1: %2"
 #, kde-format
 msgid "Could not parse the server's response: Could not read the results array"
 msgstr ""
+"Ne eblis analizi la respondon de la servilo: Ne eblis legi la rezulttabelon"
 
 #: src/ElevationEngine.cpp:180
 #, kde-format
@@ -359,22 +361,22 @@ msgstr ""
 #: src/FixDriftWidget.cpp:25
 #, kde-format
 msgid "Images' time zone"
-msgstr ""
+msgstr "Horzono de bildoj"
 
 #: src/FixDriftWidget.cpp:29
 #, kde-format
 msgid "The images were taken in the following timezone:"
-msgstr ""
+msgstr "La bildoj estis prenitaj en la sekva horzono:"
 
 #: src/FixDriftWidget.cpp:66
 #, kde-format
 msgid "Camera clock time drift"
-msgstr ""
+msgstr "Fotila horloĝo tempo drivas"
 
 #: src/FixDriftWidget.cpp:70
 #, kde-format
 msgid "Deviation between image dates and the (exact) GPS data time:"
-msgstr ""
+msgstr "Devio inter bildaj datoj kaj la (preciza) GPS-datumtempo:"
 
 #: src/FixDriftWidget.cpp:82
 #, kde-format
@@ -389,17 +391,17 @@ msgstr "minutoj"
 #: src/FixDriftWidget.cpp:104
 #, kde-format
 msgid "Display the fixed dates and times"
-msgstr ""
+msgstr "Montri la fiksajn datojn kaj horojn"
 
 #: src/FixDriftWidget.cpp:109
 #, kde-format
 msgid "Fix the files' dates and times when saving"
-msgstr ""
+msgstr "Ripari la datojn kaj horojn de la dosieroj dum konservado"
 
 #: src/ImagesListView.cpp:61
 #, kde-format
 msgid "Select all images"
-msgstr ""
+msgstr "Elekti ĉiujn bildojn"
 
 #: src/ImagesListView.cpp:65
 #, kde-format
@@ -409,47 +411,47 @@ msgstr "Elekti"
 #: src/ImagesListView.cpp:67 src/MainWindow.cpp:122
 #, kde-format
 msgid "All images"
-msgstr ""
+msgstr "Ĉiuj bildoj"
 
 #: src/ImagesListView.cpp:69
 #, kde-format
 msgid "All images without coordinates"
-msgstr ""
+msgstr "Ĉiuj bildoj sen koordinatoj"
 
 #: src/ImagesListView.cpp:72
 #, kde-format
 msgid "All images with coordinates"
-msgstr ""
+msgstr "Ĉiuj bildoj kun koordinatoj"
 
 #: src/ImagesListView.cpp:78 src/MainWindow.cpp:191 src/MainWindow.cpp:1045
 #, kde-format
 msgid "Automatic matching"
-msgstr ""
+msgstr "Aŭtomata kongruo"
 
 #: src/ImagesListView.cpp:101
 #, kde-format
 msgid "Assign to bookmark"
-msgstr ""
+msgstr "Asigni al legosigno"
 
 #: src/ImagesListView.cpp:107
 #, kde-format
 msgid "Assign to map center"
-msgstr ""
+msgstr "Asigni al mapo-centro"
 
 #: src/ImagesListView.cpp:112
 #, kde-format
 msgid "Set coordinates from clipboard"
-msgstr ""
+msgstr "Agordi koordinatojn el tondujo"
 
 #: src/ImagesListView.cpp:115
 #, kde-format
 msgid "Set coordinates manually"
-msgstr ""
+msgstr "Agordi koordinatojn permane"
 
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
 #, kde-format
 msgid "Find closest trackpoint"
-msgstr ""
+msgstr "Trovi plej proksiman spurpunkton"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
@@ -479,24 +481,24 @@ msgstr[1] ""
 #: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
-msgstr ""
+msgstr "Malfermi per defaŭlta spektilo"
 
 #: src/ImagesListView.cpp:196
 #, kde-format
 msgid "(No bookmarks defined)"
-msgstr ""
+msgstr "(Ne estas difinitaj legosignoj)"
 
 #: src/ImagesModel.cpp:52
 #, kde-format
 msgctxt "Marker for an associated file"
 msgid "✓ "
-msgstr ""
+msgstr "✓"
 
 #: src/ImagesModel.cpp:55
 #, kde-format
 msgctxt "Marker for a file with a pending change"
 msgid " *"
-msgstr ""
+msgstr "*"
 
 #: src/ImagesModel.cpp:60
 #, kde-format
@@ -520,7 +522,7 @@ msgstr "Programo por geo-markado de fotoj"
 #: src/main.cpp:37
 #, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
-msgstr ""
+msgstr "Kopirajto (C) 2020-2024 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -535,62 +537,62 @@ msgstr "Prizorganto"
 #: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
-msgstr ""
+msgstr "Dosieroj/Dosierujoj"
 
 #: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
-msgstr ""
+msgstr "Dosieroj kaj/aŭ dosierujoj por ŝargi ĉe ekfunkciigo"
 
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr ""
+msgstr "[dosieroj/dosierujoj...]"
 
 #: src/MainWindow.cpp:94 src/MainWindow.cpp:507
 #, kde-format
 msgid "Add images and/or GPX tracks"
-msgstr ""
+msgstr "Aldoni bildojn kaj/aŭ GPX-spurojn"
 
 #: src/MainWindow.cpp:101 src/MainWindow.cpp:556
 #, kde-format
 msgid "Add all images and tracks from a folder"
-msgstr ""
+msgstr "Aldoni ĉiujn bildojn kaj spurojn el dosierujo"
 
 #: src/MainWindow.cpp:111
 #, kde-format
 msgid "All processed and saved images"
-msgstr ""
+msgstr "Ĉiuj procesitaj kaj konservitaj bildoj"
 
 #: src/MainWindow.cpp:117
 #, kde-format
 msgid "All images that already had coordinates"
-msgstr ""
+msgstr "Ĉiuj bildoj kiuj jam havis koordinatojn"
 
 #: src/MainWindow.cpp:126
 #, kde-format
 msgid "All tracks"
-msgstr ""
+msgstr "Ĉiuj spuroj"
 
 #: src/MainWindow.cpp:130
 #, kde-format
 msgid "All images and tracks (reset)"
-msgstr ""
+msgstr "Ĉiuj bildoj kaj spuroj (restarigi)"
 
 #: src/MainWindow.cpp:136
 #, kde-format
 msgid "Assign images to GPS data"
-msgstr ""
+msgstr "Asigni bildojn al GPS-datumoj"
 
 #: src/MainWindow.cpp:146
 #, kde-format
 msgid "Save changed images"
-msgstr ""
+msgstr "Konservi ŝanĝitajn bildojn"
 
 #: src/MainWindow.cpp:158
 #, kde-format
 msgid "Set default dock arrangement"
-msgstr ""
+msgstr "Agordi defaŭltan dok-aranĝon"
 
 #: src/MainWindow.cpp:181
 #, kde-format
@@ -605,7 +607,7 @@ msgstr "Antaŭrigardo"
 #: src/MainWindow.cpp:199
 #, kde-format
 msgid "Fix time drift"
-msgstr ""
+msgstr "Ripari la tempodrivon"
 
 #: src/MainWindow.cpp:217
 #, kde-format
@@ -615,7 +617,7 @@ msgstr "Mapo"
 #: src/MainWindow.cpp:224
 #, kde-format
 msgid "Unassigned images"
-msgstr ""
+msgstr "Neasignitaj bildoj"
 
 #: src/MainWindow.cpp:247
 #, kde-format
@@ -625,7 +627,7 @@ msgstr "Trakoj"
 #: src/MainWindow.cpp:271
 #, kde-format
 msgid "Loading timezone data"
-msgstr ""
+msgstr "Ŝargante horzonajn datumojn"
 
 #: src/MainWindow.cpp:272
 #, kde-format
@@ -641,7 +643,7 @@ msgstr ""
 #: src/MainWindow.cpp:319
 #, kde-format
 msgid "Assigned images"
-msgstr ""
+msgstr "Asignitaj bildoj"
 
 #: src/MainWindow.cpp:327
 #, kde-format
@@ -651,7 +653,7 @@ msgstr "Bildoj"
 #: src/MainWindow.cpp:395
 #, kde-format
 msgid "Close KGeoTag"
-msgstr ""
+msgstr "Fermi KGeoTag"
 
 #: src/MainWindow.cpp:396
 #, kde-format
@@ -664,7 +666,7 @@ msgstr ""
 #: src/MainWindow.cpp:449
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
-msgstr ""
+msgstr "Bonvolu elekti la bildojn kaj/aŭ GPX-spurojn por aldoni"
 
 #: src/MainWindow.cpp:451
 #, kde-format
@@ -676,13 +678,13 @@ msgstr ""
 #: src/MainWindow.cpp:485
 #, kde-format
 msgid "<p>The selection did not contain any supported files!</p>"
-msgstr ""
+msgstr "<p>La elekto enhavis neniujn subtenatajn dosierojn!</p>"
 
 #: src/MainWindow.cpp:493
 #, kde-format
 msgctxt "A filename with a MIME type in braces and a HTML line break"
 msgid "%1 (%2)<br/>"
-msgstr ""
+msgstr "%1 (%2)<br/>"
 
 #: src/MainWindow.cpp:498
 #, kde-format
@@ -703,7 +705,7 @@ msgstr "Bonvolu elekti dosierujon"
 #: src/MainWindow.cpp:557
 #, kde-format
 msgid "Could not find any supported files in <kbd>%1</kbd>"
-msgstr ""
+msgstr "Ne eblis trovi iujn ajn subtenatajn dosierojn en <kbd>%1</kbd>"
 
 #: src/MainWindow.cpp:612
 #, kde-format
@@ -735,23 +737,23 @@ msgstr ""
 #: src/MainWindow.cpp:638
 #, kde-format
 msgid "<p><b>Loading GPX file failed</b></p>"
-msgstr ""
+msgstr "<p><b>Ŝargi GPX-dosieron malsukcesis</b></p>"
 
 #: src/MainWindow.cpp:641
 #, kde-format
 msgctxt "Fraction of processed files are added inside the round braces"
 msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
-msgstr ""
+msgstr "<p><b>Ŝargado de GPX-dosiero malsukcesis (%1/%2)</b></p>"
 
 #: src/MainWindow.cpp:648
 #, kde-format
 msgid "<p>The next GPX file will be loaded now.</p>"
-msgstr ""
+msgstr "<p>La sekva GPX-dosiero estos ŝargita nun.</p>"
 
 #: src/MainWindow.cpp:652 src/MainWindow.cpp:716
 #, kde-format
 msgid "Load GPX data"
-msgstr ""
+msgstr "Ŝargi GPX-datumojn"
 
 #: src/MainWindow.cpp:662
 #, kde-format
@@ -810,7 +812,7 @@ msgstr[1] ""
 #: src/MainWindow.cpp:690
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
-msgstr ""
+msgstr "<p>Neniaj vojpunktoj povus esti ŝargitaj.</p>"
 
 #: src/MainWindow.cpp:696
 #, kde-format
@@ -851,7 +853,7 @@ msgstr[1] ""
 #: src/MainWindow.cpp:724
 #, kde-format
 msgid "Timezone detection failed"
-msgstr ""
+msgstr "Horzona detekto malsukcesis"
 
 #: src/MainWindow.cpp:725
 #, kde-format
@@ -864,7 +866,7 @@ msgstr ""
 #: src/MainWindow.cpp:731
 #, kde-format
 msgid "Setting the detected timezone failed"
-msgstr ""
+msgstr "Agordo de la detektita horzono malsukcesis"
 
 #: src/MainWindow.cpp:732
 #, kde-format
@@ -880,7 +882,7 @@ msgstr ""
 #: src/MainWindow.cpp:741
 #, kde-format
 msgid "Timezone adjusted"
-msgstr ""
+msgstr "Horzono ĝustigita"
 
 #: src/MainWindow.cpp:742
 #, kde-format
@@ -894,7 +896,7 @@ msgstr ""
 #: src/MainWindow.cpp:768
 #, kde-format
 msgid "Loading images ..."
-msgstr ""
+msgstr "Ŝargante bildojn..."
 
 #: src/MainWindow.cpp:768 src/MainWindow.cpp:1061 src/MainWindow.cpp:1268
 #, kde-format
@@ -905,6 +907,7 @@ msgstr "Nuligi"
 #, kde-format
 msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 msgstr ""
+"<p><b>Ŝargado de bildo malsukcesis</b></p><p>Ne eblis legi <kbd>%1</kbd>.</p>"
 
 #: src/MainWindow.cpp:800
 #, kde-format
@@ -940,6 +943,7 @@ msgstr ""
 #, kde-format
 msgid "<p>You can retry to load this file or cancel the loading process.</p>"
 msgstr ""
+"<p>Vi povas reprovi ŝargi ĉi tiun dosieron aŭ nuligi la ŝargan procezon.</p>"
 
 #: src/MainWindow.cpp:834
 #, kde-format
@@ -952,7 +956,7 @@ msgstr ""
 #: src/MainWindow.cpp:883 src/MainWindow.cpp:887 src/MainWindow.cpp:919
 #, kde-format
 msgid "Add images"
-msgstr ""
+msgstr "Aldoni bildojn"
 
 #: src/MainWindow.cpp:874
 #, kde-format
@@ -964,7 +968,7 @@ msgstr[1] ""
 #: src/MainWindow.cpp:880
 #, kde-format
 msgid "Could not add any new images, all requested images failed to load!"
-msgstr ""
+msgstr "Ne eblis aldoni novajn bildojn, ĉiuj petitaj bildoj malsukcesis ŝargi!"
 
 #: src/MainWindow.cpp:884
 #, kde-format
@@ -1047,12 +1051,12 @@ msgstr[1] ""
 #: src/MainWindow.cpp:983
 #, kde-format
 msgid "all images have the same coordinates"
-msgstr ""
+msgstr "ĉiuj bildoj havas la samajn koordinatojn"
 
 #: src/MainWindow.cpp:984
 #, kde-format
 msgid "coordinates differ across the images"
-msgstr ""
+msgstr "koordinatoj malsamas tra la bildoj"
 
 #: src/MainWindow.cpp:1026
 #, kde-format
@@ -1071,7 +1075,7 @@ msgstr ""
 #: src/MainWindow.cpp:1061
 #, kde-format
 msgid "Assigning images ..."
-msgstr ""
+msgstr "Asignante bildojn..."
 
 #: src/MainWindow.cpp:1125
 #, kde-format
@@ -1117,12 +1121,12 @@ msgstr[1] ""
 #: src/MainWindow.cpp:1144
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
-msgstr ""
+msgstr "Ne povis trovi ekzaktajn, nek interpolitajn kongruojn!"
 
 #: src/MainWindow.cpp:1149
 #, kde-format
 msgid "Exact matches search"
-msgstr ""
+msgstr "Serĉo de ĝustaj kongruoj"
 
 #: src/MainWindow.cpp:1151
 #, kde-format
@@ -1145,12 +1149,12 @@ msgstr[1] ""
 #: src/MainWindow.cpp:1166
 #, kde-format
 msgid "Could not find any exact matches!"
-msgstr ""
+msgstr "Ne eblis trovi precizajn kongruojn!"
 
 #: src/MainWindow.cpp:1171
 #, kde-format
 msgid "Interpolated matches search"
-msgstr ""
+msgstr "Interpolitaj kongruoj serĉo"
 
 #: src/MainWindow.cpp:1173
 #, kde-format
@@ -1173,12 +1177,12 @@ msgstr[1] ""
 #: src/MainWindow.cpp:1188
 #, kde-format
 msgid "Could not find any interpolated matches!"
-msgstr ""
+msgstr "Ne eblis trovi iujn ajn interpolitajn kongruojn!"
 
 #: src/MainWindow.cpp:1209
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
-msgstr ""
+msgstr "<p><b>Konservado de ŝanĝoj malsukcesis</b></p>"
 
 #: src/MainWindow.cpp:1213
 #, kde-format
@@ -1192,6 +1196,7 @@ msgstr ""
 #, kde-format
 msgid "<p>You can retry to process the file or cancel the saving process.</p>"
 msgstr ""
+"<p>Vi povas reprovi prilabori la dosieron aŭ nuligi la konservadon.</p>"
 
 #: src/MainWindow.cpp:1223
 #, kde-format
@@ -1204,12 +1209,12 @@ msgstr ""
 #: src/MainWindow.cpp:1671 src/MainWindow.cpp:1707
 #, kde-format
 msgid "Nothing to do"
-msgstr ""
+msgstr "Nenio por fari"
 
 #: src/MainWindow.cpp:1268
 #, kde-format
 msgid "Saving changes ..."
-msgstr ""
+msgstr "Konservante ŝanĝojn..."
 
 #: src/MainWindow.cpp:1290
 #, kde-format
@@ -1230,12 +1235,12 @@ msgstr ""
 #: src/MainWindow.cpp:1405
 #, kde-format
 msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
-msgstr ""
+msgstr "<p>Ne eblis konservi metadatenojn por <kbd>%1</kbd>.</p>"
 
 #: src/MainWindow.cpp:1409
 #, kde-format
 msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
-msgstr ""
+msgstr "<p>Bonvolu kontroli ĉu vi havas skriban aliron al <kbd>%1</kbd>!"
 
 #: src/MainWindow.cpp:1412
 #, kde-format
@@ -1247,7 +1252,7 @@ msgstr ""
 #: src/MainWindow.cpp:1453
 #, kde-format
 msgid "No changes could be saved!"
-msgstr ""
+msgstr "Neniuj ŝanĝoj povus esti konservitaj!"
 
 #: src/MainWindow.cpp:1456
 #, kde-format
@@ -1259,12 +1264,12 @@ msgstr ""
 #: src/MainWindow.cpp:1461
 #, kde-format
 msgid "All changes have been successfully saved!"
-msgstr ""
+msgstr "Ĉiuj ŝanĝoj estis sukcese konservitaj!"
 
 #: src/MainWindow.cpp:1518 src/MainWindow.cpp:1539 src/SettingsDialog.cpp:194
 #, kde-format
 msgid "Elevation lookup"
-msgstr ""
+msgstr "Alteco serĉo"
 
 #: src/MainWindow.cpp:1519
 #, kde-format
@@ -1308,7 +1313,7 @@ msgstr[1] ""
 #: src/MainWindow.cpp:1625 src/MainWindow.cpp:1633
 #, kde-format
 msgid "Remove all processed and saved images"
-msgstr ""
+msgstr "Forigi ĉiujn procesitajn kaj konservitajn bildojn"
 
 #: src/MainWindow.cpp:1634 src/MainWindow.cpp:1650
 #, kde-format
@@ -1320,12 +1325,12 @@ msgstr[1] ""
 #: src/MainWindow.cpp:1641 src/MainWindow.cpp:1649
 #, kde-format
 msgid "Remove images that already had coordinates"
-msgstr ""
+msgstr "Forigi bildojn, kiuj jam havis koordinatojn"
 
 #: src/MainWindow.cpp:1656 src/MainWindow.cpp:1671
 #, kde-format
 msgid "Remove all images"
-msgstr ""
+msgstr "Forigi ĉiujn bildojn"
 
 #: src/MainWindow.cpp:1657
 #, kde-format
@@ -1338,33 +1343,33 @@ msgstr ""
 #: src/MainWindow.cpp:1706
 #, kde-format
 msgid "Remove all images and tracks (reset)"
-msgstr ""
+msgstr "Forigi ĉiujn bildojn kaj spurojn (restarigi)"
 
 #: src/MainWindow.cpp:1734
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr ""
+msgstr "Malsukcesis analizi datumojn de la tondujo"
 
 #: src/MainWindow.cpp:1735
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
-msgstr ""
+msgstr "Ne eblis analizi la tekston de la tondujo al validaj koordinatoj"
 
 #: src/MainWindow.cpp:1745
 #, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr ""
+msgstr "Neniuj geodatenoj ankoraŭ estis ŝargitaj!"
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
-msgstr ""
+msgstr "Mapa centra pozicio: %1, %2"
 
 #: src/MapWidget.cpp:78
 #, kde-format
 msgid "Floating items"
-msgstr ""
+msgstr "Flosantaj eroj"
 
 #: src/MapWidget.cpp:84
 #, kde-format
@@ -1384,37 +1389,37 @@ msgstr "Dato/Horo:"
 #: src/PreviewWidget.cpp:63
 #, kde-format
 msgid "Coordinates:"
-msgstr ""
+msgstr "Koordinatoj:"
 
 #: src/PreviewWidget.cpp:75
 #, kde-format
 msgid "read from file"
-msgstr ""
+msgstr "legi el dosiero"
 
 #: src/PreviewWidget.cpp:76
 #, kde-format
 msgid "exact match"
-msgstr ""
+msgstr "ĝusta kongruo"
 
 #: src/PreviewWidget.cpp:77
 #, kde-format
 msgid "interpolated match"
-msgstr ""
+msgstr "interpola kongruo"
 
 #: src/PreviewWidget.cpp:78
 #, kde-format
 msgid "manually set"
-msgstr ""
+msgstr "permane agordita"
 
 #: src/PreviewWidget.cpp:109
 #, kde-format
 msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
-msgstr ""
+msgstr "<p>Pozicio: %1, %2; Alteco: %3 m<br/>(%4)</p>"
 
 #: src/PreviewWidget.cpp:115
 #, kde-format
 msgid "<i>No coordinates set</i>"
-msgstr ""
+msgstr "<i>Neniu koordinatoj fiksitaj</i>"
 
 #: src/PreviewWidget.cpp:136
 #, kde-format
@@ -1426,22 +1431,22 @@ msgstr ""
 #: src/RetrySkipAbortDialog.cpp:25
 #, kde-format
 msgid "Skip current image"
-msgstr ""
+msgstr "Salti nunan bildon"
 
 #: src/SettingsDialog.cpp:34
 #, kde-format
 msgid "KGeoTag: Settings"
-msgstr ""
+msgstr "KGeoTag: Agordoj"
 
 #: src/SettingsDialog.cpp:40
 #, kde-format
 msgid "KGeoTag settings"
-msgstr ""
+msgstr "Agordoj de KGeoTag"
 
 #: src/SettingsDialog.cpp:58
 #, kde-format
 msgid "Image lists"
-msgstr ""
+msgstr "Bildlistoj"
 
 #: src/SettingsDialog.cpp:64
 #, kde-format
@@ -1455,22 +1460,22 @@ msgstr ""
 #: src/SettingsDialog.cpp:74
 #, kde-format
 msgid "Separate \"Assigned\" and \"Unassigned\" list"
-msgstr ""
+msgstr "Apartigi liston \"Asignitaj\" kaj \"Neasignitaj\"."
 
 #: src/SettingsDialog.cpp:75
 #, kde-format
 msgid "One combined list for all images"
-msgstr ""
+msgstr "Unu kombinita listo por ĉiuj bildoj"
 
 #: src/SettingsDialog.cpp:83
 #, kde-format
 msgid "Image Assignment"
-msgstr ""
+msgstr "Bilda Tasko"
 
 #: src/SettingsDialog.cpp:88
 #, kde-format
 msgid "Search type for the main menu \"Assign images to GPS data\" entry"
-msgstr ""
+msgstr "Serĉi tipon por la ĉefa menuo \"Asigni bildojn al GPS-datumoj\" eniro"
 
 #: src/SettingsDialog.cpp:107
 #, kde-format
@@ -1483,7 +1488,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:114
 #, kde-format
 msgid "Thumbnails and previews"
-msgstr ""
+msgstr "Bildetojn kaj antaŭrigardojn"
 
 #: src/SettingsDialog.cpp:124
 #, kde-format
@@ -1510,7 +1515,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:152
 #, kde-format
 msgid "GPX track rendering"
-msgstr ""
+msgstr "GPX-traka bildigo"
 
 #: src/SettingsDialog.cpp:160
 #, kde-format
@@ -1545,82 +1550,82 @@ msgstr "Punktoj"
 #: src/SettingsDialog.cpp:184
 #, kde-format
 msgid "Dash-Dot"
-msgstr ""
+msgstr "Dash-Dot"
 
 #: src/SettingsDialog.cpp:185
 #, kde-format
 msgid "Dash-Dot-Dot"
-msgstr ""
+msgstr "Dash-Dot-Dot"
 
 #: src/SettingsDialog.cpp:198
 #, kde-format
 msgid "Elevations can be looked up using opentopodata.org's web API."
-msgstr ""
+msgstr "Altoj povas esti serĉitaj per la retejo API de opentopodata.org."
 
 #: src/SettingsDialog.cpp:206
 #, kde-format
 msgid "Elevation dataset:"
-msgstr ""
+msgstr "Alteco-datumaro:"
 
 #: src/SettingsDialog.cpp:210
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ASTER"
-msgstr ""
+msgstr "ASTER"
 
 #: src/SettingsDialog.cpp:212
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ETOPO1"
-msgstr ""
+msgstr "ETOPO1"
 
 #: src/SettingsDialog.cpp:214
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EU-DEM"
-msgstr ""
+msgstr "EU-DEM"
 
 #: src/SettingsDialog.cpp:216
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "Mapzen"
-msgstr ""
+msgstr "Mapzen"
 
 #: src/SettingsDialog.cpp:218
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NED"
-msgstr ""
+msgstr "NED"
 
 #: src/SettingsDialog.cpp:220
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NZ DEM"
-msgstr ""
+msgstr "NZ DEM"
 
 #: src/SettingsDialog.cpp:222
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (30 m)"
-msgstr ""
+msgstr "SRTM (30 m)"
 
 #: src/SettingsDialog.cpp:224
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (90 m)"
-msgstr ""
+msgstr "SRTM (90 m)"
 
 #: src/SettingsDialog.cpp:227
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EMODnet 2018 Bathymetry"
-msgstr ""
+msgstr "EMODnet 2018 Batimetrio"
 
 #: src/SettingsDialog.cpp:230
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "GEBCO 2020 Bathymetry"
-msgstr ""
+msgstr "GEBCO 2020 Batimetrio"
 
 #: src/SettingsDialog.cpp:240
 #, kde-format
@@ -1633,7 +1638,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:248
 #, kde-format
 msgid "Request and set altitudes automatically"
-msgstr ""
+msgstr "Peti kaj agordi altecojn aŭtomate"
 
 #: src/SettingsDialog.cpp:254
 #, kde-format
@@ -1643,27 +1648,27 @@ msgstr "Konservante"
 #: src/SettingsDialog.cpp:261
 #, kde-format
 msgid "Write changes to:"
-msgstr ""
+msgstr "Skribi ŝanĝojn al:"
 
 #: src/SettingsDialog.cpp:265
 #, kde-format
 msgid "Exif header"
-msgstr ""
+msgstr "Exif-kapo"
 
 #: src/SettingsDialog.cpp:267
 #, kde-format
 msgid "XMP sidecar file"
-msgstr ""
+msgstr "XMP kromĉaro dosiero"
 
 #: src/SettingsDialog.cpp:269
 #, kde-format
 msgid "Exif header and XMP sidecar file"
-msgstr ""
+msgstr "Exif-kapo kaj XMP kromdosiero"
 
 #: src/SettingsDialog.cpp:278
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
-msgstr ""
+msgstr "Permesi ŝanĝi Exif-kapojn de RAW-bildoj"
 
 #: src/SettingsDialog.cpp:283
 #, kde-format
@@ -1677,12 +1682,12 @@ msgstr ""
 #: src/SettingsDialog.cpp:291
 #, kde-format
 msgid "Create a backup before altering a file"
-msgstr ""
+msgstr "Krei sekurkopion antaŭ ol ŝanĝi dosieron"
 
 #: src/SettingsDialog.cpp:320
 #, kde-format
 msgid "Opacity: %1%"
-msgstr ""
+msgstr "Opakeco: %1%"
 
 #: src/SettingsDialog.cpp:363
 #, kde-format
@@ -1705,7 +1710,7 @@ msgstr[1] ""
 #: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
 #, kde-format
 msgid "<i>No track selected</i>"
-msgstr ""
+msgstr "<i>Neniu trako elektita</i>"
 
 #: src/TrackWalker.cpp:51
 #, kde-format
@@ -1717,4 +1722,4 @@ msgstr[1] ""
 #: src/TrackWalker.cpp:57
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
-msgstr ""
+msgstr "Elektita spurpunkto %1 de %2"
