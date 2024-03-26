@@ -1,0 +1,186 @@
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<chapter id="overview">
+
+<title
+>Pregled</title>
+
+<section>
+
+<title
+>Kaj je to?</title>
+
+<para
+>KGeoTag je prosti/brezplačen odprtokodni program za geografsko označevanje fotografij. Napisan je v C++/<ulink url="https://www.qt.io/"
+>Qt</ulink
+> in uporablja <ulink url="https://api.kde.org/frameworks/"
+>KDE Frameworks</ulink
+>. Objavljeno je pod pogoji <ulink url="https://www.gnu.org/licenses/#GPL"
+>Splošne javne licence GNU (GPL)</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>Kaj je "Geo-označevanje (Geotagging)"?</title>
+
+<para
+>Fotografije (&eg; slike JPEG) vsebujejo metapodatke, kot so datum ustvarjanja, podatki o fotoaparatu &etc;. Ti so bodisi shranjeni v tako imenovani <ulink url="https://en.wikipedia.org/wiki/Exif"
+>glavi Exif</ulink
+> v <ulink url="https://en.wikipedia .org/wiki/Extensible_Metadata_Platform"
+>priklopni datoteki XMP</ulink
+> ali v obeh. Ti podatki lahko predstavljajo tudi geografske koordinate, tako da jih je mogoče ponoviti, kje so bile slike posnete. </para>
+
+<para
+>Večina fotoaparatov nima sprejemnikov GPS, zato večina ne more shraniti koordinat pri fotografiranju. Običajni pristop je &eg; s seboj nosite majhno napravo za beleženje GPS (ali dandanes tudi s pametnim telefonom ;-)), ki ves čas beleži pot. Kasneje lahko datume slik primerjate z datumi točk v dnevniku GPS, da ugotovite, kje je bila slika posneta. </para>
+
+<para
+>Če zagotovo vemo, kje je bila posamezna fotografija posneta, je možno slikam tudi ročno dodeliti koordinate. </para>
+
+</section>
+
+<section>
+
+<title
+>Geooznačevanje s KGeoTag</title>
+
+<section>
+
+<title
+>Podprti formati datotek</title>
+
+<para
+>KGeoTag trenutno podpira naslednje formate slik: <ulink url="https://en.wikipedia.org/wiki/JPEG"
+>JPEG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki /Portable_Network_Graphics"
+>PNG</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/WebP"
+>WebP</ulink
+>, <ulink url="https://en.wikipedia.org /wiki/TIFF"
+>TIFF</ulink
+>, <ulink url="https://en.wikipedia.org/wiki/OpenRaster"
+>OpenRaster</ulink
+> in <ulink url="https://en.wikipedia .org/wiki/Krita"
+>Krita Document</ulink
+>, pa tudi nekatere oblike zapisa slik RAW, ki temeljijo na TIFF: <ulink url="https://en.wikipedia.org/wiki/Raw_image_format"
+>Canon Raw v2</ulink
+> (.cr2), <ulink url="https://www.nikonusa.com/en/learn-and-explore/a/products-and-innovation/nikon-electronic-format-nef.html"
+> Nikon Electronic Format</ulink
+> (.nef) in <ulink url="https://helpx.adobe.com/camera-raw/digital-negative.html"
+>Adobe Digital Negative</ulink
+> (.dng). </para>
+
+<para
+>Geopodatke je mogoče naložiti iz (nestisnjenih) datotek <ulink url="https://en.wikipedia.org/wiki/GPS_Exchange_Format"
+>GPX</ulink
+>. </para>
+
+</section>
+
+<section>
+
+<title
+>Dodeljevanje slik</title>
+
+<para
+>KGeoTag ponuja več načinov dodeljevanja koordinat slikam: </para>
+
+<section>
+
+<title
+>Samodejno označevanje</title>
+
+<para
+>Najudobnejši pristop je samodejno ujemanje z uporabo geopodatkov, ki jih zagotavljajo datoteke GPX. Te je mogoče naložiti in prikazati na zemljevidu. Z uporabo teh podatkov je mogoče slikam dodeliti ujemajoče se geografske koordinate z iskanjem (bolj ali manj) natančnih kronoloških ujemanj ali z interpolacijo verjetnega položaja, če natančnega ujemanja ni mogoče najti. </para>
+
+<para
+>Običajno slike vsebujejo samo čas in datum, ne pa tudi časovnega pasu. Zato ga moramo nastaviti, da omogočimo dodelitev. Domnevno pravilen časovni pas je zaznan iz geografske lokacije datoteke GPX, vendar ga je mogoče nastaviti tudi ročno. </para>
+
+<para
+>Če vrednosti nadmorske višine niso nastavljene v naboru podatkov ali niso dovolj natančne, jih je mogoče poiskati s pomočjo opentopodata.org (glejte spodaj). </para>
+
+<para
+>Ure kamer večinoma niso radijsko vodene in imajo pogosto majhen zamik. Če imajo datumi slik časovni zamik zaradi tega, ker ura fotoaparata ni natančno sinhronizirana s podatki GPS (kar se domneva, da so pravilni), je mogoče določiti odstopanje. Nato se bo upoštevalo pri iskanju ujemanj, lahko pa se uporabi tudi za popravljanje datumov slik. </para>
+
+</section>
+
+<section>
+
+<title
+>Vmesnik povleci in spusti</title>
+
+<para
+>Druga možnost je označevanje slik z povleci in spusti. Izberete lahko eno ali več slik in jih spustite na zemljevid, na njihovo ustrezno lokacijo (možno tudi vodeno s kakšno sledjo GPX). Nadmorske višine ni mogoče ugotoviti na ta način, zato ostanejo "0 m" (morska gladina), vnesene ročno ali poiskane prek opentopodata.org (bodisi samodejno ali ročno, glejte spodaj). </para>
+
+</section>
+
+<section>
+
+<title
+>Dodeljevanje slik zaznamkom</title>
+
+<para
+>Za mesta, ki so pogosto dodeljena slikam (na primer doma, kjer nimate zapisovalnika GPS), je mogoče določiti zaznamke. Slike lahko nato preprosto dodelite ustreznim koordinatam. </para>
+
+</section>
+
+<section>
+
+<title
+>Ročna dodelitev</title>
+
+<para
+>Možno je tudi ročno vnesti koordinate za eno ali več slik. Nadmorske višine je mogoče samodejno poiskati z uporabo opentopodata.org (glejte spodaj) ali pa jih vnesite ročno. </para>
+
+</section>
+
+</section>
+
+<section>
+
+<title
+>Nastavitev ali iskanje informacij o višini</title>
+
+<para
+>Nadmorske višine lahko vedno nastavite ročno. Druga možnost je, da nadmorske višine poiščete tudi s poizvedovanjem po različnih naborih podatkov o nadmorski višini z uporabo API-ja <ulink url="https://www.opentopodata.org/"
+>opentopodata.org</ulink
+>. </para>
+
+<para
+>Prednastavljena je uporaba nabora podatkov <ulink url="https://asterweb.jpl.nasa.gov/gdem.asp"
+>ASTER</ulink
+>. Ta pokriva ves svet. Uporabimo lahko tudi druge, prim. <ulink url="https://www.opentopodata.org/#public-api"
+>domača stran opentopodata.org</ulink
+>. </para>
+
+<para
+>Privzeto je treba takšno iskanje strežnika sprožiti ročno. Prav tako je mogoče omogočiti samodejno iskanje nadmorske višine za vse slike, ki so spuščene na zemljevid (kar daje geografske koordinate, ne pa tudi nadmorske višine) in ročno vnesene koordinate. </para>
+
+</section>
+
+<section>
+
+<title
+>Izdelava obstojnih podatkov</title>
+
+<para
+>Končno lahko dodeljene koordinate shranite. KGeoTag jih lahko zapiše v Exif glavo slik (kar bo očitno spremenilo zadevne datoteke), v priklopne datoteke XMP (pri čemer pusti izvirne datoteke nedotaknjene) ali v oboje. Privzeto se ustvari varnostna kopija vsake izvirne datoteke, če bo spremenjena med postopkom pisanja. </para>
+
+<para
+>Na ta način je dodelitev geopodatkov obstojna in dostopna tudi drugim aplikacijam, ki poznajo geopodatke (kot je &eg; <ulink url="https://www.kphotoalbum.org/"
+>KPhotoAlbum</ulink
+>). </para>
+
+<para
+>Če je bil ugotovljen časovni zamik in je bilo podano odstopanje, je mogoče med shranjevanjem popraviti tudi datume in ure slik. </para>
+
+</section>
+
+</section>
+
+</chapter>

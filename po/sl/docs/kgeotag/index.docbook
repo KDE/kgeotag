@@ -1,0 +1,74 @@
+<?xml version="1.0" ?>
+
+<!-- SPDX-FileCopyrightText: 2022 Tobias Leupold <tl at stonemx dot de>
+
+     SPDX-License-Identifier: CC-BY-SA-4.0
+-->
+
+<!DOCTYPE book PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN" "dtd/kdedbx45.dtd" [
+  <!ENTITY kgeotag "<application
+>KGeoTag</application
+>">
+  <!ENTITY kappname "&kgeotag;">
+  <!ENTITY package "extragear-graphics">
+  <!ENTITY % addindex "IGNORE">
+  <!ENTITY % Slovenian "INCLUDE">
+  <!ENTITY overview SYSTEM "overview.docbook">
+]>
+
+<book id="kgeotag" lang="&language;">
+
+<bookinfo>
+
+<title
+>&kgeotag; Priročnik</title>
+
+<authorgroup>
+
+<author
+><firstname
+>Tobias</firstname
+> <surname
+>Leupold</surname
+> </author>
+
+</authorgroup>
+
+<copyright>
+<year
+>2022</year>
+<holder
+>Tobias Leupold</holder>
+</copyright>
+
+<date
+>14.04.2022</date>
+
+<releaseinfo
+>1</releaseinfo>
+
+<abstract>
+
+<para
+>To je uporabniški priročnik za &kgeotag;, samostojni program za geografsko označevanje fotografij. Trenutno tukaj ni veliko videti, razen splošnih informacij, ki jih lahko najdete na <ulink url="https://kgeotag.kde.org/"
+>domači strani KGeoTag</ulink
+>, vendar upajmo, da se bo to spremenilo prihodnosti ;-) </para>
+
+</abstract>
+
+<keywordset>
+<keyword
+>KDE</keyword>
+<keyword
+>extragear-graphics</keyword>
+<keyword
+>KGeoTag</keyword>
+<keyword
+>Program za geografsko označevanje fotografij</keyword>
+</keywordset>
+
+</bookinfo>
+
+&overview;
+
+</book>
