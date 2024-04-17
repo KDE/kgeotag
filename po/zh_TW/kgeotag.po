@@ -4,34 +4,36 @@
 # This file is distributed under the same license as the kgeotag package.
 # Automatically generated, 2022.
 #
+# SPDX-FileCopyrightText: 2024 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-10 01:50+0000\n"
-"PO-Revision-Date: 2022-06-13 00:53+0000\n"
-"Last-Translator: Automatically generated\n"
-"Language-Team: none\n"
+"PO-Revision-Date: 2024-04-16 18:34+0900\n"
+"Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
+"Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Lokalize 24.04.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Kisaragi Hiu"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "mail@kisaragi-hiu.com"
 
 #: src/AutomaticMatchingWidget.cpp:39
 #, kde-format
 msgid "Search for exact matches"
-msgstr ""
+msgstr "搜尋完全符合處"
 
 #: src/AutomaticMatchingWidget.cpp:45
 #, kde-format
@@ -44,7 +46,7 @@ msgstr ""
 #: src/FixDriftWidget.cpp:98
 #, kde-format
 msgid "seconds"
-msgstr ""
+msgstr "秒"
 
 #: src/AutomaticMatchingWidget.cpp:65
 #, kde-format
@@ -61,22 +63,22 @@ msgstr ""
 #: src/AutomaticMatchingWidget.cpp:82
 #, kde-format
 msgid "Maximum interval:"
-msgstr ""
+msgstr "最大間隔："
 
 #: src/AutomaticMatchingWidget.cpp:103
 #, kde-format
 msgid "Maximum distance:"
-msgstr ""
+msgstr "最大距離："
 
 #: src/AutomaticMatchingWidget.cpp:110
 #, kde-format
 msgid "meters"
-msgstr ""
+msgstr "公尺"
 
 #: src/AutomaticMatchingWidget.cpp:132
 #, kde-format
 msgid "Save settings"
-msgstr ""
+msgstr "儲存設定"
 
 #: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1025
 #, kde-format
@@ -93,7 +95,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Search exact matches only"
-msgstr ""
+msgstr "只搜尋完全符合處"
 
 #: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
 #: src/SettingsDialog.cpp:98
@@ -104,156 +106,156 @@ msgstr ""
 #: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
 msgid "Exclude manually tagged images"
-msgstr ""
+msgstr "排除手動標記的影像"
 
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Save as default"
-msgstr ""
+msgstr "儲存為預設值"
 
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Settings saved!"
-msgstr ""
+msgstr "設定已儲存！"
 
 #: src/BookmarksList.cpp:56
 #, kde-format
 msgid "Add new bookmark for current map center"
-msgstr ""
+msgstr "新增書籤在目前地圖中央位置"
 
 #: src/BookmarksList.cpp:60
 #, kde-format
 msgid "Add new manual bookmark"
-msgstr ""
+msgstr "新增手動書籤"
 
 #: src/BookmarksList.cpp:65
 #, kde-format
 msgid "Rename bookmark"
-msgstr ""
+msgstr "重新命名書籤"
 
 #: src/BookmarksList.cpp:68 src/ImagesListView.cpp:130
 #, kde-format
 msgid "Edit coordinates"
-msgstr ""
+msgstr "編輯座標"
 
 #: src/BookmarksList.cpp:73 src/ImagesListView.cpp:134
 #, kde-format
 msgid "Lookup elevation"
-msgstr ""
+msgstr "查詢高度"
 
 #: src/BookmarksList.cpp:76
 #, kde-format
 msgid "Set elevation manually"
-msgstr ""
+msgstr "手動設定高度"
 
 #: src/BookmarksList.cpp:81 src/BookmarksList.cpp:220
 #, kde-format
 msgid "Delete bookmark"
-msgstr ""
+msgstr "刪除書籤"
 
 #: src/BookmarksList.cpp:104
 #, kde-format
 msgid "New Bookmark"
-msgstr ""
+msgstr "新增書籤"
 
 #: src/BookmarksList.cpp:104
 #, kde-format
 msgid "Label for the new bookmark:"
-msgstr ""
+msgstr "新標籤的名稱："
 
 #: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:100
 #, kde-format
 msgid "Untitled"
-msgstr ""
+msgstr "未命名"
 
 #: src/BookmarksList.cpp:138
 #, kde-format
 msgctxt "Adding a consecutive number to a bookmark label to make it unique"
 msgid "%1 (%2)"
-msgstr ""
+msgstr "%1 (%2)"
 
 #: src/BookmarksList.cpp:155
 #, kde-format
 msgid "Add new bookmark"
-msgstr ""
+msgstr "新增書籤"
 
 #: src/BookmarksList.cpp:156
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
-msgstr ""
+msgstr "書籤「%1」已經存在，已改為建立「%2」。"
 
 #: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
 #, kde-format
 msgid "Rename Bookmark"
-msgstr ""
+msgstr "重新命名書籤"
 
 #: src/BookmarksList.cpp:198
 #, kde-format
 msgid "New label for the new bookmark:"
-msgstr ""
+msgstr "新書籤的新名稱："
 
 #: src/BookmarksList.cpp:206
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr ""
+msgstr "名稱「%1」已被使用。請選擇另一個名稱。"
 
 #: src/BookmarksList.cpp:221
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
-msgstr ""
+msgstr "確定要刪除書籤「%1」嗎？"
 
 #: src/BookmarksList.cpp:265
 #, kde-format
 msgid "Set elevation"
-msgstr ""
+msgstr "設定高度"
 
 #: src/BookmarksList.cpp:266
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
-msgstr ""
+msgstr "「%1」的高度（公尺）"
 
 #: src/BookmarksList.cpp:287
 #, kde-format
 msgctxt "A quoted bookmark label"
 msgid "\"%1\""
-msgstr ""
+msgstr "「%1」"
 
 #: src/BookmarksWidget.cpp:45
 #, kde-format
 msgid "Position: %1, %2; Altitude: %3 m"
-msgstr ""
+msgstr "位置：%1, %2；高度：%3 公尺"
 
 #: src/CoordinatesDialog.cpp:35
 #, kde-format
 msgid "Label:"
-msgstr ""
+msgstr "名稱："
 
 #: src/CoordinatesDialog.cpp:40
 #, kde-format
 msgid "Longitude:"
-msgstr ""
+msgstr "經度："
 
 #: src/CoordinatesDialog.cpp:45 src/CoordinatesDialog.cpp:54
 #, kde-format
 msgctxt "Degrees symbol"
 msgid " °"
-msgstr ""
+msgstr " °"
 
 #: src/CoordinatesDialog.cpp:49
 #, kde-format
 msgid "Latitude:"
-msgstr ""
+msgstr "緯度："
 
 #: src/CoordinatesDialog.cpp:59
 #, kde-format
 msgid "Altitude:"
-msgstr ""
+msgstr "高度："
 
 #: src/CoordinatesDialog.cpp:65
 #, kde-format
 msgctxt "Meters abbreviation"
 msgid " m"
-msgstr ""
+msgstr " 公尺"
 
 #: src/CoordinatesDialog.cpp:70
 #, kde-format
@@ -263,22 +265,22 @@ msgstr ""
 #: src/CoordinatesDialog.cpp:78
 #, kde-format
 msgid "New bookmark"
-msgstr ""
+msgstr "新增書籤"
 
 #: src/CoordinatesDialog.cpp:79
 #, kde-format
 msgid "Data for the new bookmark:"
-msgstr ""
+msgstr "新書籤的資料："
 
 #: src/CoordinatesDialog.cpp:85
 #, kde-format
 msgid "Manual coordinates"
-msgstr ""
+msgstr "手動座標"
 
 #: src/CoordinatesDialog.cpp:86
 #, kde-format
 msgid "Coordinates for %1:"
-msgstr ""
+msgstr "%1 的座標："
 
 #: src/CoordinatesFormatter.cpp:32
 #, kde-format
@@ -404,22 +406,22 @@ msgstr ""
 #: src/ImagesListView.cpp:65
 #, kde-format
 msgid "Select"
-msgstr ""
+msgstr "選擇"
 
 #: src/ImagesListView.cpp:67 src/MainWindow.cpp:122
 #, kde-format
 msgid "All images"
-msgstr ""
+msgstr "所有影像"
 
 #: src/ImagesListView.cpp:69
 #, kde-format
 msgid "All images without coordinates"
-msgstr ""
+msgstr "所有沒有座標的影像"
 
 #: src/ImagesListView.cpp:72
 #, kde-format
 msgid "All images with coordinates"
-msgstr ""
+msgstr "所有包含座標的影像"
 
 #: src/ImagesListView.cpp:78 src/MainWindow.cpp:191 src/MainWindow.cpp:1045
 #, kde-format
@@ -449,24 +451,24 @@ msgstr ""
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1744
 #, kde-format
 msgid "Find closest trackpoint"
-msgstr ""
+msgstr "尋找最近的軌跡點"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1248 src/MainWindow.cpp:1301
 #: src/MainWindow.cpp:1347 src/MainWindow.cpp:1421 src/MainWindow.cpp:1452
 #: src/MainWindow.cpp:1455 src/MainWindow.cpp:1460
 #, kde-format
 msgid "Save changes"
-msgstr ""
+msgstr "儲存變更"
 
 #: src/ImagesListView.cpp:148
 #, kde-format
 msgid "Remove coordinates"
-msgstr ""
+msgstr "移除座標"
 
 #: src/ImagesListView.cpp:155
 #, kde-format
 msgid "Discard changes"
-msgstr ""
+msgstr "捨棄變更"
 
 #: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
 #: src/MainWindow.cpp:1604
@@ -474,7 +476,6 @@ msgstr ""
 msgid "Remove image"
 msgid_plural "Remove images"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
 #, kde-format
@@ -505,37 +506,37 @@ msgctxt ""
 "\" marker. The first option is the \"associated\" marker, the second one is "
 "the filename and the third one the \"pending change\" marker."
 msgid "%1%2%3"
-msgstr ""
+msgstr "%1%2%3"
 
 #: src/main.cpp:33 src/MainWindow.cpp:79
 #, kde-format
 msgid "KGeoTag"
-msgstr ""
+msgstr "KGeoTag"
 
 #: src/main.cpp:35
 #, kde-format
 msgid "Photo geotagging program"
-msgstr ""
+msgstr "相片地理位置標記工具"
 
 #: src/main.cpp:37
 #, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
-msgstr ""
+msgstr "版權所有 (C) 2020-2024 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
 msgid "Tobias Leupold"
-msgstr ""
+msgstr "Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
 msgid "Maintainer"
-msgstr ""
+msgstr "維護者"
 
 #: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
-msgstr ""
+msgstr "檔案/資料夾"
 
 #: src/main.cpp:49
 #, kde-format
@@ -545,7 +546,7 @@ msgstr ""
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr ""
+msgstr "[檔案/資料夾...]"
 
 #: src/MainWindow.cpp:94 src/MainWindow.cpp:507
 #, kde-format
@@ -570,12 +571,12 @@ msgstr ""
 #: src/MainWindow.cpp:126
 #, kde-format
 msgid "All tracks"
-msgstr ""
+msgstr "所有軌跡"
 
 #: src/MainWindow.cpp:130
 #, kde-format
 msgid "All images and tracks (reset)"
-msgstr ""
+msgstr "所有影像和軌跡（重設）"
 
 #: src/MainWindow.cpp:136
 #, kde-format
@@ -585,7 +586,7 @@ msgstr ""
 #: src/MainWindow.cpp:146
 #, kde-format
 msgid "Save changed images"
-msgstr ""
+msgstr "儲存已變更的影像"
 
 #: src/MainWindow.cpp:158
 #, kde-format
@@ -595,12 +596,12 @@ msgstr ""
 #: src/MainWindow.cpp:181
 #, kde-format
 msgid "Bookmarks"
-msgstr ""
+msgstr "書籤"
 
 #: src/MainWindow.cpp:186
 #, kde-format
 msgid "Preview"
-msgstr ""
+msgstr "預覽"
 
 #: src/MainWindow.cpp:199
 #, kde-format
@@ -610,7 +611,7 @@ msgstr ""
 #: src/MainWindow.cpp:217
 #, kde-format
 msgid "Map"
-msgstr ""
+msgstr "地圖"
 
 #: src/MainWindow.cpp:224
 #, kde-format
@@ -620,7 +621,7 @@ msgstr ""
 #: src/MainWindow.cpp:247
 #, kde-format
 msgid "Tracks"
-msgstr ""
+msgstr "軌跡"
 
 #: src/MainWindow.cpp:271
 #, kde-format
@@ -651,7 +652,7 @@ msgstr ""
 #: src/MainWindow.cpp:395
 #, kde-format
 msgid "Close KGeoTag"
-msgstr ""
+msgstr "關閉 KGeoTag"
 
 #: src/MainWindow.cpp:396
 #, kde-format
@@ -664,7 +665,7 @@ msgstr ""
 #: src/MainWindow.cpp:449
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
-msgstr ""
+msgstr "請選擇要新增的影像或 GPX 軌跡"
 
 #: src/MainWindow.cpp:451
 #, kde-format
@@ -682,7 +683,7 @@ msgstr ""
 #, kde-format
 msgctxt "A filename with a MIME type in braces and a HTML line break"
 msgid "%1 (%2)<br/>"
-msgstr ""
+msgstr "%1 (%2)<br/>"
 
 #: src/MainWindow.cpp:498
 #, kde-format
@@ -693,12 +694,11 @@ msgid_plural ""
 "<p>The following files will be skipped due to unsupported MIME types:</p><p>"
 "%2</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:526
 #, kde-format
 msgid "Please select a folder"
-msgstr ""
+msgstr "請選擇一個資料夾"
 
 #: src/MainWindow.cpp:557
 #, kde-format
@@ -758,7 +758,6 @@ msgstr ""
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:667
 #, kde-format
@@ -769,14 +768,12 @@ msgctxt ""
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:669 src/MainWindow.cpp:684
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:674
 #, kde-format
@@ -787,14 +784,12 @@ msgctxt ""
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:676 src/MainWindow.cpp:685
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:682
 #, kde-format
@@ -805,13 +800,13 @@ msgctxt ""
 msgid "<p>Processed one file; %2, %3</p>"
 msgid_plural "<p>Processed %1 files; %2, %3</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:690
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
 msgstr ""
 
+# %2 是「N 個軌跡」，前面是數字需要空格但後面是漢字所以不要。
 #: src/MainWindow.cpp:696
 #, kde-format
 msgctxt ""
@@ -820,16 +815,15 @@ msgctxt ""
 "call."
 msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>已從 %2載入 %1 個路點</p>"
 
 #: src/MainWindow.cpp:699 src/MainWindow.cpp:708
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 個軌跡"
 
+# %2 和 %3 是「N 個軌跡」「N 個片段」，前面是數字需要空格但後面是漢字所以不要。
 #: src/MainWindow.cpp:705
 #, kde-format
 msgctxt ""
@@ -838,20 +832,18 @@ msgctxt ""
 "the one for the segments (%3) are provided by the following i18np calls."
 msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>已從 %2和 %3載入 %1 個路點</p>"
 
 #: src/MainWindow.cpp:709
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 個片段"
 
 #: src/MainWindow.cpp:724
 #, kde-format
 msgid "Timezone detection failed"
-msgstr ""
+msgstr "時區偵測失敗"
 
 #: src/MainWindow.cpp:725
 #, kde-format
@@ -899,7 +891,7 @@ msgstr ""
 #: src/MainWindow.cpp:768 src/MainWindow.cpp:1061 src/MainWindow.cpp:1268
 #, kde-format
 msgid "Cancel"
-msgstr ""
+msgstr "取消"
 
 #: src/MainWindow.cpp:794
 #, kde-format
@@ -952,14 +944,13 @@ msgstr ""
 #: src/MainWindow.cpp:883 src/MainWindow.cpp:887 src/MainWindow.cpp:919
 #, kde-format
 msgid "Add images"
-msgstr ""
+msgstr "新增影像"
 
 #: src/MainWindow.cpp:874
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:880
 #, kde-format
@@ -984,21 +975,18 @@ msgstr ""
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:897
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:901
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:910
 #, kde-format
@@ -1015,34 +1003,30 @@ msgstr ""
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:914
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:949 src/MainWindow.cpp:979
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
-msgstr ""
+msgstr "「%1」"
 
 #: src/MainWindow.cpp:952
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:982
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:983
 #, kde-format
@@ -1067,6 +1051,8 @@ msgid ""
 "Can't search for matches:\n"
 "No GPS tracks have been loaded yet."
 msgstr ""
+"無法搜尋符合處：\n"
+"尚未載入任何 GPS 軌跡。"
 
 #: src/MainWindow.cpp:1061
 #, kde-format
@@ -1087,14 +1073,12 @@ msgstr ""
 msgid "one exact match"
 msgid_plural "%1 exact matches"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1129
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1136
 #, kde-format
@@ -1105,14 +1089,12 @@ msgctxt ""
 msgid "<p>One image could not be matched (%2).</p>"
 msgid_plural "<p>%1 images could not be matched (%2).</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1139 src/MainWindow.cpp:1161 src/MainWindow.cpp:1183
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1144
 #, kde-format
@@ -1129,7 +1111,6 @@ msgstr ""
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1158
 #, kde-format
@@ -1140,7 +1121,6 @@ msgctxt ""
 msgid "<p>One image had no exact match (%2).</p>"
 msgid_plural "<p>%1 images had no exact match (%2).</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1166
 #, kde-format
@@ -1157,7 +1137,6 @@ msgstr ""
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1180
 #, kde-format
@@ -1168,7 +1147,6 @@ msgctxt ""
 msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1188
 #, kde-format
@@ -1204,12 +1182,12 @@ msgstr ""
 #: src/MainWindow.cpp:1671 src/MainWindow.cpp:1707
 #, kde-format
 msgid "Nothing to do"
-msgstr ""
+msgstr "無事可做"
 
 #: src/MainWindow.cpp:1268
 #, kde-format
 msgid "Saving changes ..."
-msgstr ""
+msgstr "儲存變更中 ..."
 
 #: src/MainWindow.cpp:1290
 #, kde-format
@@ -1264,7 +1242,7 @@ msgstr ""
 #: src/MainWindow.cpp:1518 src/MainWindow.cpp:1539 src/SettingsDialog.cpp:194
 #, kde-format
 msgid "Elevation lookup"
-msgstr ""
+msgstr "高度查詢"
 
 #: src/MainWindow.cpp:1519
 #, kde-format
@@ -1303,7 +1281,6 @@ msgid_plural ""
 "At least one of the images has pending changes. Do you really want to remove "
 "them and discard all changes?"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1625 src/MainWindow.cpp:1633
 #, kde-format
@@ -1315,7 +1292,6 @@ msgstr ""
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
 msgstr[0] ""
-msgstr[1] ""
 
 #: src/MainWindow.cpp:1641 src/MainWindow.cpp:1649
 #, kde-format
@@ -1338,7 +1314,7 @@ msgstr ""
 #: src/MainWindow.cpp:1706
 #, kde-format
 msgid "Remove all images and tracks (reset)"
-msgstr ""
+msgstr "移除所有影像和軌跡（重設）"
 
 #: src/MainWindow.cpp:1734
 #, kde-format
@@ -1348,7 +1324,7 @@ msgstr ""
 #: src/MainWindow.cpp:1735
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
-msgstr ""
+msgstr "無法將剪貼簿內容文字解析為有效的座標"
 
 #: src/MainWindow.cpp:1745
 #, kde-format
@@ -1359,7 +1335,7 @@ msgstr ""
 #, kde-format
 msgctxt "This displays the coordinates of the current map center"
 msgid "Map center position: %1, %2"
-msgstr ""
+msgstr "地圖中央位置：%1, %2"
 
 #: src/MapWidget.cpp:78
 #, kde-format
@@ -1374,17 +1350,17 @@ msgstr ""
 #: src/PreviewWidget.cpp:36
 #, kde-format
 msgid "Image:"
-msgstr ""
+msgstr "影像："
 
 #: src/PreviewWidget.cpp:54 src/PreviewWidget.cpp:134
 #, kde-format
 msgid "Date/Time:"
-msgstr ""
+msgstr "日期/時間："
 
 #: src/PreviewWidget.cpp:63
 #, kde-format
 msgid "Coordinates:"
-msgstr ""
+msgstr "座標："
 
 #: src/PreviewWidget.cpp:75
 #, kde-format
@@ -1414,7 +1390,7 @@ msgstr ""
 #: src/PreviewWidget.cpp:115
 #, kde-format
 msgid "<i>No coordinates set</i>"
-msgstr ""
+msgstr "<i>未設定座標</i>"
 
 #: src/PreviewWidget.cpp:136
 #, kde-format
@@ -1498,7 +1474,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:133
 #, kde-format
 msgid "Preview size:"
-msgstr ""
+msgstr "預覽大小："
 
 #: src/SettingsDialog.cpp:144
 #, kde-format
@@ -1510,105 +1486,105 @@ msgstr ""
 #: src/SettingsDialog.cpp:152
 #, kde-format
 msgid "GPX track rendering"
-msgstr ""
+msgstr "GPX 軌跡繪製"
 
 #: src/SettingsDialog.cpp:160
 #, kde-format
 msgid "Color:"
-msgstr ""
+msgstr "顏色："
 
 #: src/SettingsDialog.cpp:172
 #, kde-format
 msgid "Line width:"
-msgstr ""
+msgstr "線條寬度："
 
 #: src/SettingsDialog.cpp:179
 #, kde-format
 msgid "Line style:"
-msgstr ""
+msgstr "線條樣式："
 
 #: src/SettingsDialog.cpp:181
 #, kde-format
 msgid "Solid"
-msgstr ""
+msgstr "實線"
 
 #: src/SettingsDialog.cpp:182
 #, kde-format
 msgid "Dashes"
-msgstr ""
+msgstr "虛線"
 
 #: src/SettingsDialog.cpp:183
 #, kde-format
 msgid "Dots"
-msgstr ""
+msgstr "點線"
 
 #: src/SettingsDialog.cpp:184
 #, kde-format
 msgid "Dash-Dot"
-msgstr ""
+msgstr "短線 - 點"
 
 #: src/SettingsDialog.cpp:185
 #, kde-format
 msgid "Dash-Dot-Dot"
-msgstr ""
+msgstr "短線 - 點 - 點"
 
 #: src/SettingsDialog.cpp:198
 #, kde-format
 msgid "Elevations can be looked up using opentopodata.org's web API."
-msgstr ""
+msgstr "高度可以利用 opentopodata.org 的網路 API 進行查詢。"
 
 #: src/SettingsDialog.cpp:206
 #, kde-format
 msgid "Elevation dataset:"
-msgstr ""
+msgstr "高度資料集："
 
 #: src/SettingsDialog.cpp:210
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ASTER"
-msgstr ""
+msgstr "ASTER"
 
 #: src/SettingsDialog.cpp:212
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ETOPO1"
-msgstr ""
+msgstr "ETOPO1"
 
 #: src/SettingsDialog.cpp:214
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EU-DEM"
-msgstr ""
+msgstr "EU-DEM"
 
 #: src/SettingsDialog.cpp:216
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "Mapzen"
-msgstr ""
+msgstr "Mapzen"
 
 #: src/SettingsDialog.cpp:218
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NED"
-msgstr ""
+msgstr "NED"
 
 #: src/SettingsDialog.cpp:220
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NZ DEM"
-msgstr ""
+msgstr "NZ DEM"
 
 #: src/SettingsDialog.cpp:222
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (30 m)"
-msgstr ""
+msgstr "SRTM (30 公尺)"
 
 #: src/SettingsDialog.cpp:224
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (90 m)"
-msgstr ""
+msgstr "SRTM (90 公尺)"
 
 #: src/SettingsDialog.cpp:227
 #, kde-format
@@ -1638,32 +1614,32 @@ msgstr ""
 #: src/SettingsDialog.cpp:254
 #, kde-format
 msgid "Saving"
-msgstr ""
+msgstr "儲存中"
 
 #: src/SettingsDialog.cpp:261
 #, kde-format
 msgid "Write changes to:"
-msgstr ""
+msgstr "將變更寫入至："
 
 #: src/SettingsDialog.cpp:265
 #, kde-format
 msgid "Exif header"
-msgstr ""
+msgstr "EXIF 標頭"
 
 #: src/SettingsDialog.cpp:267
 #, kde-format
 msgid "XMP sidecar file"
-msgstr ""
+msgstr "XMP 邊車檔"
 
 #: src/SettingsDialog.cpp:269
 #, kde-format
 msgid "Exif header and XMP sidecar file"
-msgstr ""
+msgstr "EXIF 標頭和 XMP 邊車檔"
 
 #: src/SettingsDialog.cpp:278
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
-msgstr ""
+msgstr "允許變更 RAW 影像的 EXIF 標頭"
 
 #: src/SettingsDialog.cpp:283
 #, kde-format
@@ -1673,48 +1649,49 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
+"<b>警告！</b>這是實驗性的功能。預設不管「將變更寫入至」的設定為何，RAW 影像的"
+"變更都只會使用 XMP 邊車檔。若要使用此選項，請多做備份並檢查您的 EXIF 資料是否"
+"未受損毀！"
 
 #: src/SettingsDialog.cpp:291
 #, kde-format
 msgid "Create a backup before altering a file"
-msgstr ""
+msgstr "變更檔案前進行備份"
 
 #: src/SettingsDialog.cpp:320
 #, kde-format
 msgid "Opacity: %1%"
-msgstr ""
+msgstr "不透明度：%1%"
 
 #: src/SettingsDialog.cpp:363
 #, kde-format
 msgid "Settings changed"
-msgstr ""
+msgstr "設定已變更"
 
 #: src/SettingsDialog.cpp:364
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
-msgstr ""
+msgstr "請重新開啟 KGeoTag 來套用已變更的設定！"
 
 #: src/TracksListView.cpp:33 src/TracksListView.cpp:53
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "移除軌跡"
 
 #: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
 #, kde-format
 msgid "<i>No track selected</i>"
-msgstr ""
+msgstr "<i>未選取軌跡</i>"
 
 #: src/TrackWalker.cpp:51
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 個軌跡點"
 
 #: src/TrackWalker.cpp:57
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
-msgstr ""
+msgstr "選取了 %1/%2 個軌跡點"
