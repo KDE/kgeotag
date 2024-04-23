@@ -13,3 +13,6 @@ Dependencies:
     'frameworks/kdoctools': '@stable'
     'education/marble': '@stable'
     'graphics/libkexiv2': '@stable'
+
+Options:
+  require-passing-tests-on: ['Linux', 'FreeBSD', 'Windows']
