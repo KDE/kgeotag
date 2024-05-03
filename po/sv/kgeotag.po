@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-02-10 01:50+0000\n"
-"PO-Revision-Date: 2024-01-04 20:50+0100\n"
+"PO-Revision-Date: 2024-05-02 14:58+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@bredband.net>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -1785,10 +1785,9 @@ msgstr ""
 "används."
 
 #: src/SettingsDialog.cpp:291
-#, fuzzy, kde-format
-#| msgid "Create a backups before altering a file"
+#, kde-format
 msgid "Create a backup before altering a file"
-msgstr "Skapa säkerhetskopia innan en fil ändras"
+msgstr "Skapa en säkerhetskopia innan en fil ändras"
 
 #: src/SettingsDialog.cpp:320
 #, kde-format
