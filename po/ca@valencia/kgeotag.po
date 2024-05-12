@@ -115,7 +115,7 @@ msgstr "Exclou les imatges etiquetades manualment"
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Save as default"
-msgstr "Anomena i guarda predeterminat"
+msgstr "Anomena i guarda com a predeterminat"
 
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
@@ -561,7 +561,7 @@ msgstr "Fitxers o carpetes que s'han de carregar en iniciar"
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr "[fitxers/carpetes...]"
+msgstr "[fitxers/carpetes…]"
 
 #: src/MainWindow.cpp:94 src/MainWindow.cpp:507
 #, kde-format
@@ -945,7 +945,7 @@ msgstr ""
 #: src/MainWindow.cpp:768
 #, kde-format
 msgid "Loading images ..."
-msgstr "S'estan carregant les imatges..."
+msgstr "S'estan carregant les imatges…"
 
 #: src/MainWindow.cpp:768 src/MainWindow.cpp:1061 src/MainWindow.cpp:1268
 #, kde-format
@@ -1146,7 +1146,7 @@ msgstr ""
 #: src/MainWindow.cpp:1061
 #, kde-format
 msgid "Assigning images ..."
-msgstr "S'estan assignant les imatges..."
+msgstr "S'estan assignant les imatges…"
 
 #: src/MainWindow.cpp:1125
 #, kde-format
@@ -1287,7 +1287,7 @@ msgstr "Res a fer"
 #: src/MainWindow.cpp:1268
 #, kde-format
 msgid "Saving changes ..."
-msgstr "S'estan guardant els canvis..."
+msgstr "S'estan guardant els canvis…"
 
 #: src/MainWindow.cpp:1290
 #, kde-format
