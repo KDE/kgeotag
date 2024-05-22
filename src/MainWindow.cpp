@@ -136,6 +136,12 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                 triggerCompleteAutomaticMatching(m_settings->defaultMatchingMode());
             });
 
+    auto *assignToMapCenter = actionCollection()->addAction(QStringLiteral("assignToMapCenter"));
+    assignToMapCenter->setText(i18n("Assign to map center"));
+    assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
+    actionCollection()->setDefaultShortcut(assignToMapCenter, QKeySequence(tr("Ctrl+C")));
+    connect(assignToMapCenter, &QAction::triggered, this, &MainWindow::assignSelectionToMapCenter);
+
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
@@ -1745,4 +1751,9 @@ void MainWindow::findClosestTrackPoint(const QString &path)
     m_mapCenterInfo->trackPointCentered(point.first,
         point.second.toTimeZone(m_fixDriftWidget->imagesTimeZone()));
     m_mapWidget->blockSignals(false);
+}
+
+void MainWindow::assignSelectionToMapCenter()
+{
+    // Implement me
 }
