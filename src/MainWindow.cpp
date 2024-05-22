@@ -37,11 +37,7 @@
 #include <KXMLGUIFactory>
 
 // Qt includes
-#include <QMenuBar>
-#include <QAction>
 #include <QDockWidget>
-#include <QGuiApplication>
-#include <QScreen>
 #include <QApplication>
 #include <QDebug>
 #include <QFileDialog>
@@ -50,9 +46,7 @@
 #include <QTimer>
 #include <QMessageBox>
 #include <QCloseEvent>
-#include <QAbstractButton>
 #include <QVBoxLayout>
-#include <QLoggingCategory>
 
 // C++ includes
 #include <functional>
