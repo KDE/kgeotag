@@ -65,6 +65,8 @@ Removed
 Fixed
 =====
 
+* Changes to the image list layout (combined/separate) are now displayed correctly (again).
+
 Security
 ========
 

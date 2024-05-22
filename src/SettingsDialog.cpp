@@ -75,6 +75,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_imageListsMode->addItem(i18n("One combined list for all images"));
 
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
+    m_originalSplitImagesListValue = m_imageListsMode->currentIndex() == 0;
 
     listsBoxLayout->addWidget(m_imageListsMode);
 
