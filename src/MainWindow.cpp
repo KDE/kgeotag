@@ -137,7 +137,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
             });
 
     auto *assignToMapCenter = actionCollection()->addAction(QStringLiteral("assignToMapCenter"));
-    assignToMapCenter->setText(i18n("Assign to map center"));
+    assignToMapCenter->setText(i18n("(Re-)Assign to map center"));
     assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
     actionCollection()->setDefaultShortcut(assignToMapCenter, QKeySequence(tr("Ctrl+C")));
     connect(assignToMapCenter, &QAction::triggered, this, &MainWindow::assignSelectionToMapCenter);
@@ -1755,5 +1755,27 @@ void MainWindow::findClosestTrackPoint(const QString &path)
 
 void MainWindow::assignSelectionToMapCenter()
 {
-    // Implement me
+    auto *assignedOrAllImages = qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget());
+    auto *unAssignedImages = qobject_cast<ImagesListView *>(m_unAssignedImagesDock->widget());
+
+    QVector<QString> selection;
+    selection += assignedOrAllImages->selectedPaths();
+    if (m_settings->splitImagesList()) {
+        selection += unAssignedImages->selectedPaths();
+    }
+
+    if (selection.isEmpty()) {
+        QMessageBox::information(this, i18n("Assign selection"),
+                                 i18n("Please select one or more images"));
+        return;
+    }
+
+    assignTo(selection, m_mapWidget->currentCenter());
+
+    if (m_settings->splitImagesList()) {
+        assignedOrAllImages->clearSelection();
+        unAssignedImages->selectFirstUnassigned();
+    } else {
+        assignedOrAllImages->selectFirstUnassigned();
+    }
 }
