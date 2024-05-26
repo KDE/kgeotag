@@ -23,7 +23,6 @@ class Settings : public QObject
 public:
     explicit Settings(QObject *parent);
 
-    void saveMainWindowState(const QByteArray &data);
     QByteArray mainWindowState() const;
 
     void saveShowCrosshairs(bool state);

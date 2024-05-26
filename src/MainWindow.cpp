@@ -256,12 +256,16 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     m_tracksDock = createDockWidget(i18n("Tracks"), tracksWrapper, QStringLiteral("tracksDock"));
 
-    // Initialize/Restore the dock widget arrangement
+    // Tell KXmlGuiWindow/KMainWindow to save and restore the window and docks positions
+    setAutoSaveSettings();
+
+    // Ensure a decent dock layout if none has been saved before
     if (! restoreState(m_settings->mainWindowState())) {
         setDefaultDockArrangement();
-    } else {
-        m_unAssignedImagesDock->setVisible(m_settings->splitImagesList());
     }
+
+    // Be sure to hide the "assigned" images list if the list is not splitted
+    m_unAssignedImagesDock->setVisible(m_settings->splitImagesList());
 
     // Restore the map's settings
     m_mapWidget->restoreSettings();
@@ -414,8 +418,6 @@ void MainWindow::closeEvent(QCloseEvent *event)
             return;
         }
     }
-
-    m_settings->saveMainWindowState(saveState());
 
     m_mapWidget->saveSettings();
 

@@ -127,20 +127,16 @@ Settings::Settings(QObject *parent) : QObject(parent)
     m_config = KSharedConfig::openConfig();
 }
 
-// Main
-
-void Settings::saveMainWindowState(const QByteArray &data)
-{
-    auto group = m_config->group(s_main);
-    group.writeEntry(s_windowState, data);
-    group.sync();
-}
+// KMainWindow settings
 
 QByteArray Settings::mainWindowState() const
 {
-    auto group = m_config->group(s_main);
-    return group.readEntry(s_windowState, QByteArray());
+    auto group = m_config->group(QStringLiteral("MainWindow"));
+    const auto state = group.readEntry(QStringLiteral("State"), QString());
+    return QByteArray::fromBase64(state.toUtf8());
 }
+
+// Main
 
 void Settings::saveLastOpenPath(const QString &path)
 {
