@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -77,6 +77,8 @@ static const QVector<QString> s_defaultMatchingModeString {
     QStringLiteral("interpolatedSearch")
 };
 static const QString &s_defaultMatchingModePreset = s_defaultMatchingModeString.at(0);
+
+static const QLatin1String s_selectNextUntagged("selectNextUntagged");
 
 // Elevation lookup
 static const QLatin1String s_elevationLookup("elevationLookup");
@@ -509,4 +511,17 @@ KGeoTag::SearchType Settings::defaultMatchingMode() const
     } else {
         return KGeoTag::CombinedMatchSearch;
     }
+}
+
+void Settings::saveSelectNextUntagged(bool state)
+{
+    auto group = m_config->group(s_assignment);
+    group.writeEntry(s_selectNextUntagged, state);
+    group.sync();
+}
+
+bool Settings::selectNextUntagged() const
+{
+    auto group = m_config->group(s_assignment);
+    return group.readEntry(s_selectNextUntagged, true);
 }

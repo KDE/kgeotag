@@ -122,6 +122,8 @@ private: // Variables
     QDockWidget *m_assignedOrAllImagesDock;
     QDockWidget *m_tracksDock;
 
+    QAction *m_selectNextUntagged;
+
 };
 
 #endif // MAINWINDOW_H

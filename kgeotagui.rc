@@ -30,6 +30,8 @@
       <Menu name="selection">
         <text>Current selection</text>
         <Action name="assignToMapCenter"/>
+        <Separator/>
+        <Action name="selectNextUntagged"/>
       </Menu>
       <Separator/>
       <Action name="saveChanges"/>

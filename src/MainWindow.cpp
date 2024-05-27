@@ -136,11 +136,21 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                 triggerCompleteAutomaticMatching(m_settings->defaultMatchingMode());
             });
 
+    // "Current selection" submenu
+
     auto *assignToMapCenter = actionCollection()->addAction(QStringLiteral("assignToMapCenter"));
     assignToMapCenter->setText(i18n("(Re-)Assign to map center"));
     assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
     actionCollection()->setDefaultShortcut(assignToMapCenter, QKeySequence(tr("Ctrl+C")));
     connect(assignToMapCenter, &QAction::triggered, this, &MainWindow::assignSelectionToMapCenter);
+
+    m_selectNextUntagged = actionCollection()->addAction(QStringLiteral("selectNextUntagged"));
+    m_selectNextUntagged->setText(i18n("Automatically select next untagged image"));
+    m_selectNextUntagged->setCheckable(true);
+    m_selectNextUntagged->setChecked(m_settings->selectNextUntagged());
+    connect(m_selectNextUntagged, &QAction::toggled, m_settings, &Settings::saveSelectNextUntagged);
+
+    // "File" menu again
 
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
@@ -1772,10 +1782,14 @@ void MainWindow::assignSelectionToMapCenter()
 
     assignTo(selection, m_mapWidget->currentCenter());
 
-    if (m_settings->splitImagesList()) {
-        assignedOrAllImages->clearSelection();
-        unAssignedImages->selectFirstUnassigned();
+    if (m_selectNextUntagged->isChecked()) {
+        if (m_settings->splitImagesList()) {
+            assignedOrAllImages->clearSelection();
+            unAssignedImages->selectFirstUnassigned();
+        } else {
+            assignedOrAllImages->selectFirstUnassigned();
+        }
     } else {
-        assignedOrAllImages->selectFirstUnassigned();
+        assignedOrAllImages->highlightImage(m_imagesModel->indexFor(selection.last()));
     }
 }
