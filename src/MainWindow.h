@@ -91,6 +91,7 @@ private Q_SLOTS:
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
                                   const QString &dockId);
+    ImagesListView *imagesListView(QDockWidget *dock) const;
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
     void lookupElevation(const QVector<QString> &paths);
     QString saveFailedHeader(int processed, int allImages) const;
