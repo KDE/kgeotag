@@ -50,6 +50,10 @@
 Added
 =====
 
+* It's now possible to (re-)assign all currently selected images to the current map center using a
+  keyboard shortcut. Optionally, you can also have the next untagged image selected automatically
+  afterwards. Thanks to Robert Menger for the respective feature request :-)
+
 Changed
 =======
 
@@ -66,6 +70,8 @@ Fixed
 =====
 
 * Changes to the image list layout (combined/separate) are now displayed correctly (again).
+
+* Restored compatibility with Ubuntu LTS 20.04.
 
 Security
 ========
