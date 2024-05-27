@@ -1,14 +1,14 @@
 # translation of kgeotag.pot to Esperanto
 # Copyright (C) 2024 Free Software Foundation, Inc.
 # This file is distributed under the same license as the kgeotag package.
-# Oliver Kellogg <okellogg@users.sourceforge.net>, 2024.
+# Oliver Kellogg <olivermkellogg@gmail.com>, 2024.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-23 01:44+0000\n"
-"PO-Revision-Date: 2024-03-24 10:34+0100\n"
+"PO-Revision-Date: 2024-05-26 07:22+0200\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo.org>\n"
 "Language: eo\n"
@@ -21,12 +21,12 @@ msgstr ""
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr ""
+msgstr "Oliver Kellogg"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr ""
+msgstr "olivermkellogg@gmail.com"
 
 #: src/AutomaticMatchingWidget.cpp:39
 #, kde-format
@@ -475,8 +475,8 @@ msgstr "Forĵeti ŝanĝojn"
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Forigi bildon"
+msgstr[1] "Forigi bildojn"
 
 #: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
 #, kde-format
@@ -695,7 +695,11 @@ msgid_plural ""
 "<p>The following files will be skipped due to unsupported MIME types:</p><p>"
 "%2</p>"
 msgstr[0] ""
+"<p>La sekvanta dosiero estos preterlasita pro nesubtenata MIME-typo:</p><p>"
+"%2</p>"
 msgstr[1] ""
+"<p>La sekvantaj dosieroj estos preterlasitaj pro nesubtenata MIME-typo:</"
+"p><p>%2</p>"
 
 #: src/MainWindow.cpp:520
 #, kde-format
@@ -759,8 +763,8 @@ msgstr "Ŝargi GPX-datumojn"
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Pritraktis unu dosieron"
+msgstr[1] "Pritraktis %1 dosierojn"
 
 #: src/MainWindow.cpp:661
 #, kde-format
@@ -770,15 +774,15 @@ msgctxt ""
 "following i18np call."
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Pritraktis unu dosieron; %2</p>"
+msgstr[1] "<p>Pritraktis %1 dosierojn; %2</p>"
 
 #: src/MainWindow.cpp:663 src/MainWindow.cpp:678
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "malsukcesis ŝargi unu dosieron"
+msgstr[1] "malsukcesis ŝargi %1 dosierojn"
 
 #: src/MainWindow.cpp:668
 #, kde-format
@@ -788,15 +792,15 @@ msgctxt ""
 "following i18np call."
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Pritraktis unu dosieron; %2</p>"
+msgstr[1] "<p>Pritraktis %1 dosierojn; %2</p>"
 
 #: src/MainWindow.cpp:670 src/MainWindow.cpp:679
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu dosiero jam ŝargita estis preterlasita"
+msgstr[1] "%1 dosieroj jam ŝargitaj estis preterlasitaj"
 
 #: src/MainWindow.cpp:676
 #, kde-format
@@ -806,8 +810,8 @@ msgctxt ""
 "files counter (%3) are provided by the following i18np call."
 msgid "<p>Processed one file; %2, %3</p>"
 msgid_plural "<p>Processed %1 files; %2, %3</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Pritraktis unu dosieron; %2, %3</p>"
+msgstr[1] "<p>Pritraktis %1 dosierojn; %2, %3</p>"
 
 #: src/MainWindow.cpp:684
 #, kde-format
@@ -822,15 +826,15 @@ msgctxt ""
 "call."
 msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Ŝargis unu vojpunkton de %2</p>"
+msgstr[1] "<p>Ŝargis %1 vojpunktojn de %2</p>"
 
 #: src/MainWindow.cpp:693 src/MainWindow.cpp:702
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu trako"
+msgstr[1] "%1 trakoj"
 
 #: src/MainWindow.cpp:699
 #, kde-format
@@ -840,15 +844,15 @@ msgctxt ""
 "the one for the segments (%3) are provided by the following i18np calls."
 msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Ŝargis unu vojpunkton de %2 kaj %3</p>"
+msgstr[1] "<p>Ŝargis %1 vojpunktojn de %2 kaj %3</p>"
 
 #: src/MainWindow.cpp:703
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu segmento"
+msgstr[1] "%1 segmentoj"
 
 #: src/MainWindow.cpp:718
 #, kde-format
@@ -962,8 +966,8 @@ msgstr "Aldoni bildojn"
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Sukcese aldonis unu bildon!"
+msgstr[1] "Sukcese aldonis %1 bildojn!"
 
 #: src/MainWindow.cpp:874
 #, kde-format
@@ -987,22 +991,22 @@ msgstr ""
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Sukcese aldonis bildon!</p>"
+msgstr[1] "<p>Sukcese aldonis %1 bildojn!</p>"
 
 #: src/MainWindow.cpp:891
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Malsukcesis ŝargi unu bildon.</p>"
+msgstr[1] "<p>Malsukcesis ŝargi %1 bildojn.</p>"
 
 #: src/MainWindow.cpp:895
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Unu bildo jam estis ŝargita.</p>"
+msgstr[1] "<p>%1 bildoj jam estis ŝargitaj.</p>"
 
 #: src/MainWindow.cpp:904
 #, kde-format
@@ -1012,21 +1016,21 @@ msgctxt ""
 "the failed images (%1) and the skipped images (%2) are provided by the "
 "following i18np calls."
 msgid "<p>%1 and %2.</p>"
-msgstr ""
+msgstr "<p>%1 kaj %2.</p>"
 
 #: src/MainWindow.cpp:905
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Malsukcesis ŝargi unu bildon"
+msgstr[1] "Malsukcesis ŝargi %1 bildojn"
 
 #: src/MainWindow.cpp:908
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Unu bildo jam estis ŝargita"
+msgstr[1] "%1 bildoj jam estis ŝargitaj"
 
 #: src/MainWindow.cpp:943 src/MainWindow.cpp:973
 #, kde-format
@@ -1038,15 +1042,15 @@ msgstr "\"%1\""
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 bildo"
+msgstr[1] "%1 bildoj"
 
 #: src/MainWindow.cpp:976
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "1 bildo (%2)"
+msgstr[1] "%1 bildoj (%2)"
 
 #: src/MainWindow.cpp:977
 #, kde-format
@@ -1090,8 +1094,8 @@ msgstr ""
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu ekzakta kongruo"
+msgstr[1] "%1 ekzaktaj kongruoj"
 
 #: src/MainWindow.cpp:1123
 #, kde-format
@@ -1132,8 +1136,8 @@ msgstr "Serĉo de ĝustaj kongruoj"
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Trovis unu ekzaktan kongruon!</p>"
+msgstr[1] "<p>Trovis %1 ekzaktajn kongruojn!</p>"
 
 #: src/MainWindow.cpp:1152
 #, kde-format
@@ -1319,8 +1323,8 @@ msgstr "Forigi ĉiujn procesitajn kaj konservitajn bildojn"
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Forigi unu bildon"
+msgstr[1] "Forigi %1 bildojn"
 
 #: src/MainWindow.cpp:1635 src/MainWindow.cpp:1643
 #, kde-format
@@ -1704,8 +1708,8 @@ msgstr ""
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Forigi trakon"
+msgstr[1] "Forigi trakojn"
 
 #: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
 #, kde-format
