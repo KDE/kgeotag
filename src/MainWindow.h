@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -86,9 +86,12 @@ private Q_SLOTS:
     void removeAllTracks();
     void removeEverything();
 
+    void assignSelectionToMapCenter();
+
 private: // Functions
     QDockWidget *createImagesDock(KGeoTag::ImagesListType type, const QString &title,
                                   const QString &dockId);
+    ImagesListView *imagesListView(QDockWidget *dock) const;
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
     void lookupElevation(const QVector<QString> &paths);
     QString saveFailedHeader(int processed, int allImages) const;
@@ -119,6 +122,8 @@ private: // Variables
     QDockWidget *m_unAssignedImagesDock;
     QDockWidget *m_assignedOrAllImagesDock;
     QDockWidget *m_tracksDock;
+
+    QAction *m_selectNextUntagged;
 
 };
 

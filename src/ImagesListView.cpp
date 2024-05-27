@@ -347,6 +347,24 @@ void ImagesListView::selectImages(bool coordinatesSet)
     }
 }
 
+void ImagesListView::selectFirstUnassigned()
+{
+    if (model()->rowCount() == 0) {
+        return;
+    }
+
+    clearSelection();
+
+    for (int i = 0; i < model()->rowCount(); i++) {
+        const auto index = model()->index(i, 0);
+        if (! index.data(KGeoTag::CoordinatesRole).value<Coordinates>().isSet()) {
+            selectionModel()->select(index, QItemSelectionModel::Select);
+            scrollTo(index);
+            return;
+        }
+    }
+}
+
 void ImagesListView::openExternally()
 {
     // selectedPaths() always contains exactly one entry when this is called,

@@ -136,6 +136,22 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
                 triggerCompleteAutomaticMatching(m_settings->defaultMatchingMode());
             });
 
+    // "Current selection" submenu
+
+    auto *assignToMapCenter = actionCollection()->addAction(QStringLiteral("assignToMapCenter"));
+    assignToMapCenter->setText(i18n("(Re-)Assign to map center"));
+    assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
+    actionCollection()->setDefaultShortcut(assignToMapCenter, QKeySequence(tr("Ctrl+C")));
+    connect(assignToMapCenter, &QAction::triggered, this, &MainWindow::assignSelectionToMapCenter);
+
+    m_selectNextUntagged = actionCollection()->addAction(QStringLiteral("selectNextUntagged"));
+    m_selectNextUntagged->setText(i18n("Automatically select next untagged image"));
+    m_selectNextUntagged->setCheckable(true);
+    m_selectNextUntagged->setChecked(m_settings->selectNextUntagged());
+    connect(m_selectNextUntagged, &QAction::toggled, m_settings, &Settings::saveSelectNextUntagged);
+
+    // "File" menu again
+
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
@@ -307,20 +323,22 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     return createDockWidget(title, list, dockId);
 }
 
+ImagesListView *MainWindow::imagesListView(QDockWidget *dock) const
+{
+    return qobject_cast<ImagesListView *>(dock->widget());
+}
+
 void MainWindow::updateImagesListsMode()
 {
     if (m_settings->splitImagesList()) {
         m_assignedOrAllImagesDock->setWindowTitle(i18n("Assigned images"));
-        qobject_cast<ImagesListView *>(
-            m_assignedOrAllImagesDock->widget())->setListType(KGeoTag::AssignedImages);
+        imagesListView(m_assignedOrAllImagesDock)->setListType(KGeoTag::AssignedImages);
         m_unAssignedImagesDock->show();
-        qobject_cast<ImagesListView *>(
-            m_unAssignedImagesDock->widget())->setListType(KGeoTag::UnAssignedImages);
+        imagesListView(m_unAssignedImagesDock)->setListType(KGeoTag::UnAssignedImages);
         m_imagesModel->setSplitImagesList(true);
     } else {
         m_assignedOrAllImagesDock->setWindowTitle(i18n("Images"));
-        qobject_cast<ImagesListView *>(
-            m_assignedOrAllImagesDock->widget())->setListType(KGeoTag::AllImages);
+        imagesListView(m_assignedOrAllImagesDock)->setListType(KGeoTag::AllImages);
         m_unAssignedImagesDock->hide();
         m_imagesModel->setSplitImagesList(false);
     }
@@ -924,7 +942,7 @@ void MainWindow::imagesDropped(const QVector<QString> &paths)
     }
 
     if (m_settings->splitImagesList()) {
-        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->highlightImage(index);
+        imagesListView(m_assignedOrAllImagesDock)->highlightImage(index);
     }
 }
 
@@ -1002,7 +1020,7 @@ void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coor
     }
 
     if (m_settings->splitImagesList()) {
-        qobject_cast<ImagesListView *>(m_assignedOrAllImagesDock->widget())->highlightImage(
+        imagesListView(m_assignedOrAllImagesDock)->highlightImage(
             m_imagesModel->indexFor(paths.last()));
     }
 }
@@ -1745,4 +1763,35 @@ void MainWindow::findClosestTrackPoint(const QString &path)
     m_mapCenterInfo->trackPointCentered(point.first,
         point.second.toTimeZone(m_fixDriftWidget->imagesTimeZone()));
     m_mapWidget->blockSignals(false);
+}
+
+void MainWindow::assignSelectionToMapCenter()
+{
+    auto *assignedOrAllImages = imagesListView(m_assignedOrAllImagesDock);
+    auto *unAssignedImages = imagesListView(m_unAssignedImagesDock);
+
+    QVector<QString> selection;
+    selection += assignedOrAllImages->selectedPaths();
+    if (m_settings->splitImagesList()) {
+        selection += unAssignedImages->selectedPaths();
+    }
+
+    if (selection.isEmpty()) {
+        QMessageBox::information(this, i18n("Assign selection"),
+                                 i18n("Please select one or more images"));
+        return;
+    }
+
+    assignTo(selection, m_mapWidget->currentCenter());
+
+    if (m_selectNextUntagged->isChecked()) {
+        if (m_settings->splitImagesList()) {
+            assignedOrAllImages->clearSelection();
+            unAssignedImages->selectFirstUnassigned();
+        } else {
+            assignedOrAllImages->selectFirstUnassigned();
+        }
+    } else {
+        assignedOrAllImages->highlightImage(m_imagesModel->indexFor(selection.last()));
+    }
 }

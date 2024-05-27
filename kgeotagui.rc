@@ -1,7 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
+
 <!-- SPDX-FileCopyrightText: none
+
      SPDX-License-Identifier: CC0-1.0
 -->
+
 <gui name="kgeotag"
      version="1"
      xmlns="http://www.kde.org/standards/kxmlgui/1.0"
@@ -24,6 +27,12 @@
       </Menu>
       <Separator/>
       <Action name="searchMatches"/>
+      <Menu name="selection">
+        <text>Current selection</text>
+        <Action name="assignToMapCenter"/>
+        <Separator/>
+        <Action name="selectNextUntagged"/>
+      </Menu>
       <Separator/>
       <Action name="saveChanges"/>
       <Separator/>
