@@ -583,10 +583,9 @@ msgid "Assign images to GPS data"
 msgstr "分配图像到 GPS 数据"
 
 #: src/MainWindow.cpp:142
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "分配至地图中心"
+msgstr ""
 
 #: src/MainWindow.cpp:148
 #, kde-format

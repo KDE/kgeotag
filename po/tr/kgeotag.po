@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 01:42+0000\n"
-"PO-Revision-Date: 2024-03-01 15:08+0300\n"
+"PO-Revision-Date: 2024-05-28 16:34+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.02.0\n"
+"X-Generator: Lokalize 24.07.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -70,7 +70,7 @@ msgstr "En büyük aralık:"
 #: src/AutomaticMatchingWidget.cpp:103
 #, kde-format
 msgid "Maximum distance:"
-msgstr "En büyük mesafe:"
+msgstr "En büyük uzaklık:"
 
 #: src/AutomaticMatchingWidget.cpp:110
 #, kde-format
@@ -184,7 +184,7 @@ msgstr "Yeni yer imi ekle"
 #: src/BookmarksList.cpp:156
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
-msgstr "\"%1\" yer imi halihazırda var, yerine \"%2\" oluşturuldu."
+msgstr "“%1” yer imi halihazırda var, yerine “%2” oluşturuldu."
 
 #: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
 #, kde-format
@@ -199,12 +199,12 @@ msgstr "Yeni yer imi etiketi:"
 #: src/BookmarksList.cpp:206
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr "\"%1\" etiketi halihazırda kullanımda. Lütfen başka bir ad seçin."
+msgstr "“%1” etiketi halihazırda kullanımda. Lütfen başka bir ad seçin."
 
 #: src/BookmarksList.cpp:221
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
-msgstr "\"%1\" yer imi gerçekten silinsin mi?"
+msgstr "“%1” yer imi gerçekten silinsin mi?"
 
 #: src/BookmarksList.cpp:265
 #, kde-format
@@ -214,13 +214,13 @@ msgstr "Yükselti ayarla"
 #: src/BookmarksList.cpp:266
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
-msgstr "\"%1\" için yükselti (m)"
+msgstr "“%1” için yükselti (m)"
 
 #: src/BookmarksList.cpp:287
 #, kde-format
 msgctxt "A quoted bookmark label"
 msgid "\"%1\""
-msgstr "\"%1\""
+msgstr "“%1”"
 
 #: src/BookmarksWidget.cpp:45
 #, kde-format
@@ -526,7 +526,7 @@ msgstr "Fotoğraf coğrafi etiketleme programı"
 #: src/main.cpp:37
 #, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
-msgstr "Telif hakkı (C) 2020-2024 Tobias Leupold"
+msgstr "Telif hakkı (C) 2020–2024 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -589,15 +589,14 @@ msgid "Assign images to GPS data"
 msgstr "GPS verisine görseller ata"
 
 #: src/MainWindow.cpp:142
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "Harita merkezine ata"
+msgstr "Harita merkezine yeniden ata"
 
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr ""
+msgstr "Bir sonraki etiketlenmemiş görseli kendiliğinden seç"
 
 #: src/MainWindow.cpp:156
 #, kde-format
@@ -658,8 +657,8 @@ msgstr ""
 "veri dosyaları yüklenemedi veya ayrıştırılamadı. Otomatik zaman dilimi "
 "algılaması çalışmayacak.</p><p>Lütfen kurulumunuzu denetleyin!</"
 "p><p>Kaynakları, kurmadan yalnızca elle derlediyseniz lütfen <a href="
-"\"https://community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE'nin "
-"Topluluk Vikisi</a>'ne ilgili dosyanın nice erişilebilir yapılacağı ile "
+"\"https://community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE’nin "
+"Topluluk Vikisi</a>’ne ilgili dosyanın nice erişilebilir yapılacağı ile "
 "ilgili bakın.</p>"
 
 #: src/MainWindow.cpp:334
@@ -675,7 +674,7 @@ msgstr "Görseller"
 #: src/MainWindow.cpp:407
 #, kde-format
 msgid "Close KGeoTag"
-msgstr "KGeoTag'i Kapat"
+msgstr "KGeoTag’i Kapat"
 
 #: src/MainWindow.cpp:408
 #, kde-format
@@ -901,8 +900,8 @@ msgid ""
 "file could not be detected.</p><p>Please set the correct timezone manually "
 "on the \"Fix time drift\" page.</p>"
 msgstr ""
-"<p>Yüklü GPX dosyası ile ilişkili görseller için doğru olduğu varsayılan "
-"zaman dilimi algılanamadı.</p><p>Lütfen, \"Zaman sapmasını düzelt\" "
+"<p>Yüklü GPX dosyası ile ilişkili görseller için doğru olduğu öntanımlı "
+"zaman dilimi algılanamadı.</p><p>Lütfen, “Zaman sapmasını düzelt” "
 "sayfasından doğru zaman dilimini el ile ayarlayın.</p>"
 
 #: src/MainWindow.cpp:743
@@ -920,11 +919,11 @@ msgid ""
 "p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
 "page.</p>"
 msgstr ""
-"<p>Yüklenen GPX dosyasından doğru olduğu varsayılan \"%1\" zaman dilimi "
+"<p>Yüklenen GPX dosyasından doğru olduğu varsayılan “%1” zaman dilimi "
 "algılandı; ancak ayarlanamadı. Bu, olmamalıydı!</p><p>Lütfen, kurulu KGeoTag "
 "sürümü ve sisteminizin zaman dilimi bilgisi (<kbd>/usr/share/zoneinfo</kbd> "
-"dosyasına sahip olan paket) ile bir hata kaydı açın.</p><p>\"Zaman sapmasını "
-"düzelt\" sayfasından daha sonra zaman dilimini el ile ayarlayabilirsiniz.</p>"
+"dosyasına sahip olan paket) ile bir hata kaydı açın.</p><p>“Zaman sapmasını "
+"düzelt” sayfasından daha sonra zaman dilimini el ile ayarlayabilirsiniz.</p>"
 
 #: src/MainWindow.cpp:753
 #, kde-format
@@ -940,9 +939,8 @@ msgid ""
 "\" page.</p>"
 msgstr ""
 "<p>Yüklü GPX dosyası ve onunla ilişkili tüm fotoğraflar, tahmin yardımıyla "
-"\"%1\" zaman dilimine kaydedildi. Zaman dilimi, şu anda ayarlı.</p><p>"
-"\"Zaman sapmasını düzelt\" sayfasından zaman dilimini el ile "
-"ayarlayabilirsiniz.</p>"
+"“%1” zaman dilimine kaydedildi. Zaman dilimi, şu anda ayarlı.</p><p>“Zaman "
+"sapmasını düzelt” sayfasından zaman dilimini el ile ayarlayabilirsiniz.</p>"
 
 #: src/MainWindow.cpp:780
 #, kde-format
@@ -1096,7 +1094,7 @@ msgstr[1] "%1 görsel halihazırda yüklenmiş"
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
-msgstr "\"%1\""
+msgstr "“%1”"
 
 #: src/MainWindow.cpp:964
 #, kde-format
@@ -1183,7 +1181,7 @@ msgstr[1] "<p>%1 görsel eşleştirilemedi (%2).</p>"
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
-msgstr[0] "- 1 görselin koordinatları halihazırda atanmış"
+msgstr[0] "— 1 görselin koordinatları halihazırda atanmış"
 msgstr[1] "- %1 görselin koordinatları halihazırda atanmış"
 
 #: src/MainWindow.cpp:1156
@@ -1358,7 +1356,7 @@ msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
 "message was: %1</p>"
 msgstr ""
-"<p>opentopodata.org'dan yükselti verisi getirilmesi başarısız oldu.</"
+"<p>opentopodata.org’dan yükselti verisi getirilmesi başarısız oldu.</"
 "p><p>Hata iletisi: %1</p>"
 
 #: src/MainWindow.cpp:1539
@@ -1459,13 +1457,12 @@ msgstr "Henüz bir coğrafya verisi yüklenmedi!"
 #: src/MainWindow.cpp:1780
 #, kde-format
 msgid "Assign selection"
-msgstr ""
+msgstr "Seçimi ata"
 
 #: src/MainWindow.cpp:1781
-#, fuzzy, kde-format
-#| msgid "Please select a folder"
+#, kde-format
 msgid "Please select one or more images"
-msgstr "Lütfen bir klasör seçin"
+msgstr "Lütfen bir veya daha çok görsel seçin"
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
@@ -1550,7 +1547,7 @@ msgstr "KGeoTag: Ayarlar"
 #: src/SettingsDialog.cpp:40
 #, kde-format
 msgid "KGeoTag settings"
-msgstr "KGeoTag: ayarlar"
+msgstr "KGeoTag ayarları"
 
 #: src/SettingsDialog.cpp:58
 #, kde-format
@@ -1573,7 +1570,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:74
 #, kde-format
 msgid "Separate \"Assigned\" and \"Unassigned\" list"
-msgstr "\"Atanmış\" ve\"Atanmamış\" listelerini ayır"
+msgstr "“Atanmış” ve “Atanmamış” listelerini ayır"
 
 #: src/SettingsDialog.cpp:75
 #, kde-format
@@ -1588,7 +1585,7 @@ msgstr "Görsel Atama"
 #: src/SettingsDialog.cpp:89
 #, kde-format
 msgid "Search type for the main menu \"Assign images to GPS data\" entry"
-msgstr "Ana menü \"GPS verisine görseller ata\" girdisi için arama türü"
+msgstr "Ana menü “GPS verisine görseller ata” girdisi için arama türü"
 
 #: src/SettingsDialog.cpp:108
 #, kde-format
@@ -1597,9 +1594,8 @@ msgid ""
 "\"Exclude manually tagged images\" setting from the \"Automatic assignment\" "
 "dock."
 msgstr ""
-"Bu, tüm görsellerin otomatik bir yeniden atanmasını tetikler ve \"Otomatik "
-"atama\" rıhtımındaki \"Elle etiketlenen görselleri dışla\" ayarına göre "
-"çalışır."
+"Bu, tüm görsellerin otomatik bir yeniden atanmasını tetikler ve “Otomatik "
+"atama” rıhtımındaki “Elle etiketlenen görselleri dışla” ayarına göre çalışır."
 
 #: src/SettingsDialog.cpp:115
 #, kde-format
@@ -1678,7 +1674,7 @@ msgstr "Tire-Nokta-Nokta"
 #: src/SettingsDialog.cpp:199
 #, kde-format
 msgid "Elevations can be looked up using opentopodata.org's web API."
-msgstr "Yükseltiler opentopodata.org'un web API'si kullanılarak bakılabilir."
+msgstr "Yükseltiler opentopodata.org’un web API’si kullanılarak bakılabilir."
 
 #: src/SettingsDialog.cpp:207
 #, kde-format
@@ -1799,8 +1795,8 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
-"<b>Dikkat!</b> Bu özellik deneyseldir. Öntanımlı olarak, \"Değişiklikleri "
-"şuraya yaz\" ayarından farklı biçimde, RAW dosyalarına yapılan tüm "
+"<b>Dikkat!</b> Bu özellik deneyseldir. Öntanımlı olarak, “Değişiklikleri "
+"şuraya yaz” ayarından farklı biçimde, RAW dosyalarına yapılan tüm "
 "değişiklikler XMP sepet dosyasına yazılır. Yedek alın ve bunu kullanırken "
 "Exif verinizin hâlâ tam olduğundan emin olun!"
 
@@ -1824,7 +1820,7 @@ msgstr "Ayarlar değiştirildi"
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
 msgstr ""
-"Değiştirilen ayarı uygulamak ve onları görünür yapmak için KGeoTag'i yeniden "
+"Değiştirilen ayarı uygulamak ve onları görünür yapmak için KGeoTag’i yeniden "
 "başlatın!"
 
 #: src/TracksListView.cpp:33 src/TracksListView.cpp:53
