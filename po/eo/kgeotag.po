@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-28 01:42+0000\n"
-"PO-Revision-Date: 2024-05-26 07:22+0200\n"
+"PO-Revision-Date: 2024-05-29 23:46+0200\n"
 "Last-Translator: Oliver Kellogg <okellogg@users.sourceforge.net>\n"
 "Language-Team: Esperanto <kde-i18n-eo.org>\n"
 "Language: eo\n"
@@ -585,15 +585,14 @@ msgid "Assign images to GPS data"
 msgstr "Asigni bildojn al GPS-datumoj"
 
 #: src/MainWindow.cpp:142
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "Asigni al mapo-centro"
+msgstr "(Re-)Asigni al mapo-centro"
 
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr ""
+msgstr "Aŭtomate elekti sekvantan ne-etikeditan bildon"
 
 #: src/MainWindow.cpp:156
 #, kde-format
@@ -1158,8 +1157,8 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no exact match (%2).</p>"
 msgid_plural "<p>%1 images had no exact match (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Unu bildo havis neniun ekzaktan kongruon (%2).</p>"
+msgstr[1] "<p>%1 bildoj havis neniun ekzaktan kongruon (%2).</p>"
 
 #: src/MainWindow.cpp:1178
 #, kde-format
@@ -1175,8 +1174,8 @@ msgstr "Interpolitaj kongruoj serĉo"
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Trovis unu interpolitan kongruon!</p>"
+msgstr[1] "<p>Trovis %1 interpolitajn kongruojn!</p>"
 
 #: src/MainWindow.cpp:1192
 #, kde-format
@@ -1219,6 +1218,8 @@ msgid ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
 "p>"
 msgstr ""
+"<p>Vi povas reprovi prilabori la dosieron, preterlasi ĝin aŭ nuligi la "
+"konvervadon.</p>"
 
 #: src/MainWindow.cpp:1260 src/MainWindow.cpp:1638 src/MainWindow.cpp:1654
 #: src/MainWindow.cpp:1683 src/MainWindow.cpp:1719
@@ -1263,6 +1264,8 @@ msgid ""
 "<p>Please check if this file still exists and if you have write access to it!"
 "</p>"
 msgstr ""
+"<p>Bonvolu kontroli ĉu ĉi tiu dosiero ankoraŭ ekzistas kaj vi havas "
+"skribopermeson al ĝi!</p>"
 
 #: src/MainWindow.cpp:1465
 #, kde-format
@@ -1381,10 +1384,9 @@ msgid "Assign selection"
 msgstr ""
 
 #: src/MainWindow.cpp:1781
-#, fuzzy, kde-format
-#| msgid "Please select a folder"
+#, kde-format
 msgid "Please select one or more images"
-msgstr "Bonvolu elekti dosierujon"
+msgstr "Bonvolu elekti unu aŭ pliajn dosierojn"
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
@@ -1725,6 +1727,8 @@ msgstr "Agordoj ŝanĝiĝis"
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
 msgstr ""
+"Bonvolu relanĉi KGeoTag por apliki la ŝanĝitajn agordojn kaj igi ilin "
+"videblaj!"
 
 #: src/TracksListView.cpp:33 src/TracksListView.cpp:53
 #, kde-format
@@ -1742,8 +1746,8 @@ msgstr "<i>Neniu trako elektita</i>"
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "%1 trakpunkto"
+msgstr[1] "%1 trakpunktoj"
 
 #: src/TrackWalker.cpp:57
 #, kde-format
