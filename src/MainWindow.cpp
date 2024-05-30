@@ -423,7 +423,7 @@ void MainWindow::closeEvent(QCloseEvent *event)
 
     m_settings->saveBookmarks(m_bookmarksWidget->bookmarks());
 
-    QApplication::quit();
+    KXmlGuiWindow::closeEvent(event);
 }
 
 void MainWindow::addPathsFromCommandLine(QStringList &paths)
