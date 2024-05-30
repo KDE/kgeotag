@@ -73,6 +73,12 @@ Fixed
 
 * Restored compatibility with Ubuntu LTS 20.04.
 
+* The window state saved by the KXmlGuiWindow/KMainWindow class is now used to restore the dock
+  arrangement (or setup the default one) instead of saving the saveState() twice, only using a
+  different serialization.
+
+* The last window position is now restored correctly when closing the program and opening it again.
+
 Security
 ========
 
