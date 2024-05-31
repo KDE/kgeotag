@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-05-28 01:42+0000\n"
+"POT-Creation-Date: 2024-05-31 01:56+0000\n"
 "PO-Revision-Date: 2024-05-28 12:21+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -84,13 +84,13 @@ msgstr "metres"
 msgid "Save settings"
 msgstr "Guarda la configuració"
 
-#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1037
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1039
 #, kde-format
 msgid "(Re)Assign all images"
 msgstr "Re/assigna totes les imatges"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
-#: src/MainWindow.cpp:1132 src/SettingsDialog.cpp:97
+#: src/MainWindow.cpp:1134 src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Combined match search"
 msgstr "Busca una coincidència combinada"
@@ -437,7 +437,7 @@ msgstr "Totes les imatges tenen les mateixes coordenades"
 msgid "All images with coordinates"
 msgstr "Totes les imatges amb coordenades"
 
-#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1057
+#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1059
 #, kde-format
 msgid "Automatic matching"
 msgstr "Coincidència automàtica"
@@ -462,14 +462,14 @@ msgstr "Establix les coordenades a partir del porta-retalls"
 msgid "Set coordinates manually"
 msgstr "Establix manualment les coordenades"
 
-#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1756
+#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1758
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "Troba el punt de pas més proper"
 
-#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1260 src/MainWindow.cpp:1313
-#: src/MainWindow.cpp:1359 src/MainWindow.cpp:1433 src/MainWindow.cpp:1464
-#: src/MainWindow.cpp:1467 src/MainWindow.cpp:1472
+#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1262 src/MainWindow.cpp:1315
+#: src/MainWindow.cpp:1361 src/MainWindow.cpp:1435 src/MainWindow.cpp:1466
+#: src/MainWindow.cpp:1469 src/MainWindow.cpp:1474
 #, kde-format
 msgid "Save changes"
 msgstr "Guarda els canvis"
@@ -485,7 +485,7 @@ msgid "Discard changes"
 msgstr "Descarta els canvis"
 
 #: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
-#: src/MainWindow.cpp:1616
+#: src/MainWindow.cpp:1618
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
@@ -563,12 +563,12 @@ msgstr "Fitxers o carpetes que s'han de carregar en iniciar"
 msgid "[files/folders...]"
 msgstr "[fitxers/carpetes…]"
 
-#: src/MainWindow.cpp:88 src/MainWindow.cpp:519
+#: src/MainWindow.cpp:88 src/MainWindow.cpp:521
 #, kde-format
 msgid "Add images and/or GPX tracks"
 msgstr "Afig imatges i/o trajectes GPX"
 
-#: src/MainWindow.cpp:95 src/MainWindow.cpp:568
+#: src/MainWindow.cpp:95 src/MainWindow.cpp:570
 #, kde-format
 msgid "Add all images and tracks from a folder"
 msgstr "Afig totes les imatges i trajectes des d'una carpeta"
@@ -648,12 +648,12 @@ msgstr "Imatges sense assignar"
 msgid "Tracks"
 msgstr "Trajectes"
 
-#: src/MainWindow.cpp:281
+#: src/MainWindow.cpp:285
 #, kde-format
 msgid "Loading timezone data"
 msgstr "S'estan carregant les dades de les zones horàries"
 
-#: src/MainWindow.cpp:282
+#: src/MainWindow.cpp:286
 #, kde-format
 msgid ""
 "<p>Could not load or parse the timezone data files <kbd>timezones.json</kbd> "
@@ -671,22 +671,22 @@ msgstr ""
 "KGeoTag#Running_the_compiled_sources\">wiki de la comunitat KDE</a> sobre "
 "com fer accessibles els fitxers respectius.</p>"
 
-#: src/MainWindow.cpp:334
+#: src/MainWindow.cpp:338
 #, kde-format
 msgid "Assigned images"
 msgstr "Imatges assignades"
 
-#: src/MainWindow.cpp:340
+#: src/MainWindow.cpp:344
 #, kde-format
 msgid "Images"
 msgstr "Imatges"
 
-#: src/MainWindow.cpp:407
+#: src/MainWindow.cpp:411
 #, kde-format
 msgid "Close KGeoTag"
 msgstr "Tanca KGeoTag"
 
-#: src/MainWindow.cpp:408
+#: src/MainWindow.cpp:412
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -697,12 +697,12 @@ msgstr ""
 "els canvis es descartaran si es tanca ara KGeoTag.</p><p>Voleu tancar el "
 "programa de totes maneres?</p>"
 
-#: src/MainWindow.cpp:461
+#: src/MainWindow.cpp:463
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
 msgstr "Seleccioneu les imatges i/o trajectes GPX que s'han d'afegir"
 
-#: src/MainWindow.cpp:463
+#: src/MainWindow.cpp:465
 #, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
@@ -711,18 +711,18 @@ msgstr ""
 "Tots els fitxers admesos (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra "
 "*.cr2 *.nef *.dng *.gpx );; Tots els fitxers (*)"
 
-#: src/MainWindow.cpp:497
+#: src/MainWindow.cpp:499
 #, kde-format
 msgid "<p>The selection did not contain any supported files!</p>"
 msgstr "<p>La selecció no conté fitxers admesos!</p>"
 
-#: src/MainWindow.cpp:505
+#: src/MainWindow.cpp:507
 #, kde-format
 msgctxt "A filename with a MIME type in braces and a HTML line break"
 msgid "%1 (%2)<br/>"
 msgstr "%1 (%2)<br/>"
 
-#: src/MainWindow.cpp:510
+#: src/MainWindow.cpp:512
 #, kde-format
 msgid ""
 "<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
@@ -736,17 +736,17 @@ msgstr[1] ""
 "<p>Estos fitxers s'han d'ometre a causa d'un tipus MIME no admés:</p><p>%2</"
 "p>"
 
-#: src/MainWindow.cpp:538
+#: src/MainWindow.cpp:540
 #, kde-format
 msgid "Please select a folder"
 msgstr "Seleccioneu una carpeta"
 
-#: src/MainWindow.cpp:569
+#: src/MainWindow.cpp:571
 #, kde-format
 msgid "Could not find any supported files in <kbd>%1</kbd>"
 msgstr "No s'ha trobat cap fitxer admés a <kbd>%1</kbd>"
 
-#: src/MainWindow.cpp:624
+#: src/MainWindow.cpp:626
 #, kde-format
 msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
@@ -755,7 +755,7 @@ msgstr ""
 "<p>No s'ha pogut obrir <kbd>%1</kbd>. Assegureu-vos que teniu accés de "
 "lectura en este fitxer.</p>"
 
-#: src/MainWindow.cpp:629
+#: src/MainWindow.cpp:631
 #, kde-format
 msgid ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
@@ -764,13 +764,13 @@ msgstr ""
 "<p>No s'han pogut llegir les geodades des de <kbd>%1</kbd>: no s'ha pogut "
 "trobar l'element arrel <kbd>gpx</kbd>. Aparentment, no és un fitxer GPX!</p>"
 
-#: src/MainWindow.cpp:635
+#: src/MainWindow.cpp:637
 #, kde-format
 msgid ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 msgstr "<p><kbd>%1</kbd> pareix un fitxer GPX, però no conté geodades!</p>"
 
-#: src/MainWindow.cpp:640
+#: src/MainWindow.cpp:642
 #, kde-format
 msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
@@ -779,35 +779,35 @@ msgstr ""
 "<p>S'ha produït un error en l'anàlisi sintàctica de l'XML per a <kbd>%1</"
 "kbd>. O bé, no s'ha pogut carregar cap data, o només una part.</p>"
 
-#: src/MainWindow.cpp:650
+#: src/MainWindow.cpp:652
 #, kde-format
 msgid "<p><b>Loading GPX file failed</b></p>"
 msgstr "<p><b>Ha fallat la càrrega del fitxer GPX</b></p>"
 
-#: src/MainWindow.cpp:653
+#: src/MainWindow.cpp:655
 #, kde-format
 msgctxt "Fraction of processed files are added inside the round braces"
 msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
 msgstr "<p><b>Ha fallat la càrrega del fitxer GPX (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:660
+#: src/MainWindow.cpp:662
 #, kde-format
 msgid "<p>The next GPX file will be loaded now.</p>"
 msgstr "<p>El fitxer GPX següent es carregarà ara.</p>"
 
-#: src/MainWindow.cpp:664 src/MainWindow.cpp:728
+#: src/MainWindow.cpp:666 src/MainWindow.cpp:730
 #, kde-format
 msgid "Load GPX data"
 msgstr "Carrega les dades GPX"
 
-#: src/MainWindow.cpp:674
+#: src/MainWindow.cpp:676
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
 msgstr[0] "<p>S'ha processat un fitxer</p>"
 msgstr[1] "<p>S'han processat %1 fitxers</p>"
 
-#: src/MainWindow.cpp:679
+#: src/MainWindow.cpp:681
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load. The "
@@ -818,14 +818,14 @@ msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>S'ha processat un fitxer de %2</p>"
 msgstr[1] "<p>S'han processat %1 fitxers de %2</p>"
 
-#: src/MainWindow.cpp:681 src/MainWindow.cpp:696
+#: src/MainWindow.cpp:683 src/MainWindow.cpp:698
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
 msgstr[0] "un fitxer ha fallat en carregar"
 msgstr[1] "%1 fitxers han fallat en carregar"
 
-#: src/MainWindow.cpp:686
+#: src/MainWindow.cpp:688
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that have been skipped. The "
@@ -836,14 +836,14 @@ msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>S'ha processat un fitxer de %2</p>"
 msgstr[1] "<p>S'han processat %1 fitxers de %2</p>"
 
-#: src/MainWindow.cpp:688 src/MainWindow.cpp:697
+#: src/MainWindow.cpp:690 src/MainWindow.cpp:699
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
 msgstr[0] "s'ha omés una imatge ja carregada"
 msgstr[1] "s'han omés %1 imatges ja carregades"
 
-#: src/MainWindow.cpp:694
+#: src/MainWindow.cpp:696
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load and some that "
@@ -854,12 +854,12 @@ msgid_plural "<p>Processed %1 files; %2, %3</p>"
 msgstr[0] "<p>S'ha processat un fitxer de %2, %3</p>"
 msgstr[1] "<p>S'han processat %1 fitxers de %2, %3</p>"
 
-#: src/MainWindow.cpp:702
+#: src/MainWindow.cpp:704
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
 msgstr "<p>No s'ha pogut carregar cap punt de pas.</p>"
 
-#: src/MainWindow.cpp:708
+#: src/MainWindow.cpp:710
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks that have been read. "
@@ -870,14 +870,14 @@ msgid_plural "<p>Loaded %1 waypoints from %2</p>"
 msgstr[0] "<p>S'ha carregat un punt de pas des de %2</p>"
 msgstr[1] "<p>S'han carregat %1 punts de pas des de %2</p>"
 
-#: src/MainWindow.cpp:711 src/MainWindow.cpp:720
+#: src/MainWindow.cpp:713 src/MainWindow.cpp:722
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
 msgstr[0] "un trajecte"
 msgstr[1] "%1 trajectes"
 
-#: src/MainWindow.cpp:717
+#: src/MainWindow.cpp:719
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks and the number of "
@@ -888,19 +888,19 @@ msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
 msgstr[0] "<p>S'ha carregat un punt de pas des de %2 i %3</p>"
 msgstr[1] "<p>S'han carregat %1 punts de pas des de %2 i %3</p>"
 
-#: src/MainWindow.cpp:721
+#: src/MainWindow.cpp:723
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
 msgstr[0] "un segment"
 msgstr[1] "%1 segments"
 
-#: src/MainWindow.cpp:736
+#: src/MainWindow.cpp:738
 #, kde-format
 msgid "Timezone detection failed"
 msgstr "Ha fallat la detecció de la zona horària"
 
-#: src/MainWindow.cpp:737
+#: src/MainWindow.cpp:739
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone for images associated with the loaded GPX "
@@ -911,12 +911,12 @@ msgstr ""
 "imatges associades amb el fitxer GPX carregat.</p><p>Establiu manualment la "
 "zona horària correcta en la pàgina «Corregix la desviació del temps».</p>"
 
-#: src/MainWindow.cpp:743
+#: src/MainWindow.cpp:745
 #, kde-format
 msgid "Setting the detected timezone failed"
 msgstr "S'ha produït un error en configurar la zona horària detectada"
 
-#: src/MainWindow.cpp:744
+#: src/MainWindow.cpp:746
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
@@ -933,12 +933,12 @@ msgstr ""
 "usr/share/zoneinfo</kbd>).</p><p>Podeu ajustar manualment la configuració de "
 "la zona horària en la pàgina «Corregix la desviació del temps».</p>"
 
-#: src/MainWindow.cpp:753
+#: src/MainWindow.cpp:755
 #, kde-format
 msgid "Timezone adjusted"
 msgstr "Zona horària ajustada"
 
-#: src/MainWindow.cpp:754
+#: src/MainWindow.cpp:756
 #, kde-format
 msgid ""
 "<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
@@ -952,24 +952,24 @@ msgstr ""
 "configuració de la zona horària en la pàgina «Corregix la desviació del "
 "temps».</p>"
 
-#: src/MainWindow.cpp:780
+#: src/MainWindow.cpp:782
 #, kde-format
 msgid "Loading images ..."
 msgstr "S'estan carregant les imatges…"
 
-#: src/MainWindow.cpp:780 src/MainWindow.cpp:1073 src/MainWindow.cpp:1280
+#: src/MainWindow.cpp:782 src/MainWindow.cpp:1075 src/MainWindow.cpp:1282
 #, kde-format
 msgid "Cancel"
 msgstr "Cancel·la"
 
-#: src/MainWindow.cpp:806
+#: src/MainWindow.cpp:808
 #, kde-format
 msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 msgstr ""
 "<p><b>No s'ha pogut carregar la imatge</b></p><p>No s'ha pogut llegir <kbd>"
 "%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:812
+#: src/MainWindow.cpp:814
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -979,7 +979,7 @@ msgstr ""
 "<p><b>No s'ha pogut carregar la imatge (%1/%2)</b></p><p>No s'ha pogut "
 "llegir <kbd>%3</kbd>.</p>"
 
-#: src/MainWindow.cpp:821
+#: src/MainWindow.cpp:823
 #, kde-format
 msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
@@ -988,7 +988,7 @@ msgstr ""
 "<p><b>No s'ha pogut carregar la capçalera Exif o fitxer lateral XMP</b></"
 "p><p>No s'ha pogut llegir <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:827
+#: src/MainWindow.cpp:829
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -998,7 +998,7 @@ msgstr ""
 "<p><b>No s'ha pogut carregar la capçalera Exif o fitxer lateral XMP</b></"
 "p><p>No s'ha pogut llegir <kbd>%2</kbd>.</p>"
 
-#: src/MainWindow.cpp:839
+#: src/MainWindow.cpp:841
 #, kde-format
 msgid ""
 "<p>Please check if this file is actually a supported image and if you have "
@@ -1007,14 +1007,14 @@ msgstr ""
 "<p>Comproveu si este fitxer és realment una imatge admesa i si hi teniu "
 "accés de lectura.</p>"
 
-#: src/MainWindow.cpp:843
+#: src/MainWindow.cpp:845
 #, kde-format
 msgid "<p>You can retry to load this file or cancel the loading process.</p>"
 msgstr ""
 "<p>Proveu de tornar a carregar esta imatge o cancel·leu el procés de càrrega."
 "</p>"
 
-#: src/MainWindow.cpp:846
+#: src/MainWindow.cpp:848
 #, kde-format
 msgid ""
 "<p>You can retry to load this file, skip it or cancel the loading process.</"
@@ -1023,27 +1023,27 @@ msgstr ""
 "<p>Proveu de tornar a carregar esta imatge, ometeu-la o cancel·leu el procés "
 "de càrrega.</p>"
 
-#: src/MainWindow.cpp:853 src/MainWindow.cpp:885 src/MainWindow.cpp:891
-#: src/MainWindow.cpp:895 src/MainWindow.cpp:899 src/MainWindow.cpp:931
+#: src/MainWindow.cpp:855 src/MainWindow.cpp:887 src/MainWindow.cpp:893
+#: src/MainWindow.cpp:897 src/MainWindow.cpp:901 src/MainWindow.cpp:933
 #, kde-format
 msgid "Add images"
 msgstr "Afig imatges"
 
-#: src/MainWindow.cpp:886
+#: src/MainWindow.cpp:888
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
 msgstr[0] "S'ha carregat correctament una imatge!"
 msgstr[1] "S'han carregat correctament %1 imatges!"
 
-#: src/MainWindow.cpp:892
+#: src/MainWindow.cpp:894
 #, kde-format
 msgid "Could not add any new images, all requested images failed to load!"
 msgstr ""
 "No s'ha pogut afegir cap imatge nova, han fallat totes les imatges "
 "sol·licitades!"
 
-#: src/MainWindow.cpp:896
+#: src/MainWindow.cpp:898
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
@@ -1051,7 +1051,7 @@ msgstr ""
 "No s'han pogut carregar imatges noves, ja estan carregades totes les imatges "
 "sol·licitades!"
 
-#: src/MainWindow.cpp:900
+#: src/MainWindow.cpp:902
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images failed to load or have "
@@ -1060,28 +1060,28 @@ msgstr ""
 "No s'ha pogut carregar cap imatge nova, ja estan carregades totes les "
 "imatges sol·licitades!"
 
-#: src/MainWindow.cpp:904
+#: src/MainWindow.cpp:906
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
 msgstr[0] "<p>S'ha afegit correctament la imatge!</p>"
 msgstr[1] "<p>S'han afegit correctament %1 imatges!</p>"
 
-#: src/MainWindow.cpp:909
+#: src/MainWindow.cpp:911
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
 msgstr[0] "<p>No s'ha pogut carregar una imatge.</p>"
 msgstr[1] "<p>Han fallat en carregar %1 imatges.</p>"
 
-#: src/MainWindow.cpp:913
+#: src/MainWindow.cpp:915
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
 msgstr[0] "<p>Una imatge ja estava carregada.</p>"
 msgstr[1] "<p>%1 imatges ja estaven carregades.</p>"
 
-#: src/MainWindow.cpp:922
+#: src/MainWindow.cpp:924
 #, kde-format
 msgctxt ""
 "Message string for some images that failed to load and some that were "
@@ -1091,51 +1091,51 @@ msgctxt ""
 msgid "<p>%1 and %2.</p>"
 msgstr "<p>%1 i %2.</p>"
 
-#: src/MainWindow.cpp:923
+#: src/MainWindow.cpp:925
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
 msgstr[0] "No s'ha pogut carregar una imatge"
 msgstr[1] "Han fallat en carregar %1 imatges"
 
-#: src/MainWindow.cpp:926
+#: src/MainWindow.cpp:928
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
 msgstr[0] "una imatge ja estava carregada"
 msgstr[1] "%1 imatges ja estaven carregades"
 
-#: src/MainWindow.cpp:961 src/MainWindow.cpp:991
+#: src/MainWindow.cpp:963 src/MainWindow.cpp:993
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
 msgstr "«%1»"
 
-#: src/MainWindow.cpp:964
+#: src/MainWindow.cpp:966
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
 msgstr[0] "1 imatge"
 msgstr[1] "%1 imatges"
 
-#: src/MainWindow.cpp:994
+#: src/MainWindow.cpp:996
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
 msgstr[0] "1 imatge (%2)"
 msgstr[1] "%1 imatges (%2)"
 
-#: src/MainWindow.cpp:995
+#: src/MainWindow.cpp:997
 #, kde-format
 msgid "all images have the same coordinates"
 msgstr "totes les imatges tenen les mateixes coordenades"
 
-#: src/MainWindow.cpp:996
+#: src/MainWindow.cpp:998
 #, kde-format
 msgid "coordinates differ across the images"
 msgstr "les coordenades diferixen entre les imatges"
 
-#: src/MainWindow.cpp:1038
+#: src/MainWindow.cpp:1040
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1144,7 +1144,7 @@ msgstr ""
 "No s'ha pogut buscar cap coincidència:\n"
 "Encara no s'han carregat imatges."
 
-#: src/MainWindow.cpp:1058
+#: src/MainWindow.cpp:1060
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1153,12 +1153,12 @@ msgstr ""
 "No s'ha pogut buscar cap coincidència:\n"
 "Encara no s'han carregat els trajectes GPS."
 
-#: src/MainWindow.cpp:1073
+#: src/MainWindow.cpp:1075
 #, kde-format
 msgid "Assigning images ..."
 msgstr "S'estan assignant les imatges…"
 
-#: src/MainWindow.cpp:1137
+#: src/MainWindow.cpp:1139
 #, kde-format
 msgctxt ""
 "Message for the number of matches found. The pluralized string for the exact "
@@ -1167,21 +1167,21 @@ msgctxt ""
 msgid "<p>Found %1 and %2!</p>"
 msgstr "<p>S'han trobat %1 i %2!</p>"
 
-#: src/MainWindow.cpp:1138
+#: src/MainWindow.cpp:1140
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
 msgstr[0] "una coincidència exacta"
 msgstr[1] "%1 coincidències exactes"
 
-#: src/MainWindow.cpp:1141
+#: src/MainWindow.cpp:1143
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
 msgstr[0] "una coincidència interpolada"
 msgstr[1] "%1 coincidències interpolades"
 
-#: src/MainWindow.cpp:1148
+#: src/MainWindow.cpp:1150
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1192,31 +1192,31 @@ msgid_plural "<p>%1 images could not be matched (%2).</p>"
 msgstr[0] "<p>Una imatge no té una coincidència exacta (%2).</p>"
 msgstr[1] "<p>%1 imatges no tenen una coincidència exacta (%2).</p>"
 
-#: src/MainWindow.cpp:1151 src/MainWindow.cpp:1173 src/MainWindow.cpp:1195
+#: src/MainWindow.cpp:1153 src/MainWindow.cpp:1175 src/MainWindow.cpp:1197
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] "de les quals una imatge ja té coordenades assignades"
 msgstr[1] "de les quals %1 imatges ja tenen coordenades assignades"
 
-#: src/MainWindow.cpp:1156
+#: src/MainWindow.cpp:1158
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
 msgstr "No s'ha trobat cap coincidència exacta ni interpolada!"
 
-#: src/MainWindow.cpp:1161
+#: src/MainWindow.cpp:1163
 #, kde-format
 msgid "Exact matches search"
 msgstr "Busca les coincidències exactes"
 
-#: src/MainWindow.cpp:1163
+#: src/MainWindow.cpp:1165
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
 msgstr[0] "<p>S'ha trobat una coincidència exacta!</p>"
 msgstr[1] "<p>S'han trobat %1 coincidències exactes!</p>"
 
-#: src/MainWindow.cpp:1170
+#: src/MainWindow.cpp:1172
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1227,24 +1227,24 @@ msgid_plural "<p>%1 images had no exact match (%2).</p>"
 msgstr[0] "<p>Una imatge no té una coincidència exacta (%2).</p>"
 msgstr[1] "<p>%1 imatges no tenen una coincidència exacta (%2).</p>"
 
-#: src/MainWindow.cpp:1178
+#: src/MainWindow.cpp:1180
 #, kde-format
 msgid "Could not find any exact matches!"
 msgstr "No s'ha trobat cap coincidència exacta!"
 
-#: src/MainWindow.cpp:1183
+#: src/MainWindow.cpp:1185
 #, kde-format
 msgid "Interpolated matches search"
 msgstr "Busca les coincidències interpolades"
 
-#: src/MainWindow.cpp:1185
+#: src/MainWindow.cpp:1187
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
 msgstr[0] "<p>S'ha trobat una coincidència interpolada!</p>"
 msgstr[1] "<p>S'han trobat %1 coincidències interpolades!</p>"
 
-#: src/MainWindow.cpp:1192
+#: src/MainWindow.cpp:1194
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1255,17 +1255,17 @@ msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
 msgstr[0] "<p>Una imatge no té cap coincidència interpolada (%2).</p>"
 msgstr[1] "<p>%1 imatges no tenen cap coincidència interpolada (%2).</p>"
 
-#: src/MainWindow.cpp:1200
+#: src/MainWindow.cpp:1202
 #, kde-format
 msgid "Could not find any interpolated matches!"
 msgstr "No s'ha trobat cap coincidència interpolada!"
 
-#: src/MainWindow.cpp:1221
+#: src/MainWindow.cpp:1223
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
 msgstr "<p><b>No s'han pogut guardar els canvis</b></p>"
 
-#: src/MainWindow.cpp:1225
+#: src/MainWindow.cpp:1227
 #, kde-format
 msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
@@ -1273,13 +1273,13 @@ msgctxt ""
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
 msgstr "<p><b>No s'han pogut guardar els canvis (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:1233
+#: src/MainWindow.cpp:1235
 #, kde-format
 msgid "<p>You can retry to process the file or cancel the saving process.</p>"
 msgstr ""
 "<p>Podeu tornar a processar el fitxer o cancel·lar el procés de guardada.</p>"
 
-#: src/MainWindow.cpp:1235
+#: src/MainWindow.cpp:1237
 #, kde-format
 msgid ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
@@ -1288,18 +1288,18 @@ msgstr ""
 "<p>Podeu tornar a processar el fitxer, ometre'l o cancel·lar el procés de "
 "guardada.</p>"
 
-#: src/MainWindow.cpp:1260 src/MainWindow.cpp:1638 src/MainWindow.cpp:1654
-#: src/MainWindow.cpp:1683 src/MainWindow.cpp:1719
+#: src/MainWindow.cpp:1262 src/MainWindow.cpp:1640 src/MainWindow.cpp:1656
+#: src/MainWindow.cpp:1685 src/MainWindow.cpp:1721
 #, kde-format
 msgid "Nothing to do"
 msgstr "Res a fer"
 
-#: src/MainWindow.cpp:1280
+#: src/MainWindow.cpp:1282
 #, kde-format
 msgid "Saving changes ..."
 msgstr "S'estan guardant els canvis…"
 
-#: src/MainWindow.cpp:1302
+#: src/MainWindow.cpp:1304
 #, kde-format
 msgid ""
 "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
@@ -1311,7 +1311,7 @@ msgstr ""
 "encara no existix i assegureu-vos de tindre accés d'escriptura a <kbd>%3</"
 "kbd>.</p>"
 
-#: src/MainWindow.cpp:1349
+#: src/MainWindow.cpp:1351
 #, kde-format
 msgid ""
 "<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
@@ -1322,17 +1322,17 @@ msgstr ""
 "si este fitxer encara existix i si hi teniu accés de lectura (i possiblement "
 "també a un fitxer lateral XMP existent).</p>"
 
-#: src/MainWindow.cpp:1417
+#: src/MainWindow.cpp:1419
 #, kde-format
 msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
 msgstr "<p>No s'han pogut guardar les metadades per a <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:1421
+#: src/MainWindow.cpp:1423
 #, kde-format
 msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
 msgstr "<p>Comproveu si teniu accés d'escriptura a <kbd>%1</kbd>!"
 
-#: src/MainWindow.cpp:1424
+#: src/MainWindow.cpp:1426
 #, kde-format
 msgid ""
 "<p>Please check if this file still exists and if you have write access to it!"
@@ -1341,12 +1341,12 @@ msgstr ""
 "<p>Comproveu si este fitxer encara existix i si hi teniu accés d'escriptura!"
 "</p>"
 
-#: src/MainWindow.cpp:1465
+#: src/MainWindow.cpp:1467
 #, kde-format
 msgid "No changes could be saved!"
 msgstr "No s'han pogut guardar els canvis!"
 
-#: src/MainWindow.cpp:1468
+#: src/MainWindow.cpp:1470
 #, kde-format
 msgid ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
@@ -1355,17 +1355,17 @@ msgstr ""
 "<p>No s'han pogut guardar alguns canvis!</p><p>S'han guardat correctament %1 "
 "de %2 imatges.</p>"
 
-#: src/MainWindow.cpp:1473
+#: src/MainWindow.cpp:1475
 #, kde-format
 msgid "All changes have been successfully saved!"
 msgstr "Tots els canvis s'han guardat correctament!"
 
-#: src/MainWindow.cpp:1530 src/MainWindow.cpp:1551 src/SettingsDialog.cpp:195
+#: src/MainWindow.cpp:1532 src/MainWindow.cpp:1553 src/SettingsDialog.cpp:195
 #, kde-format
 msgid "Elevation lookup"
 msgstr "Elevació de la busca"
 
-#: src/MainWindow.cpp:1531
+#: src/MainWindow.cpp:1533
 #, kde-format
 msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
@@ -1374,7 +1374,7 @@ msgstr ""
 "<p>No s'ha pogut fer l'obtenció de les dades d'elevació des d'«opentopodata."
 "org».</p><p>El missatge d'error ha sigut: %1</p>"
 
-#: src/MainWindow.cpp:1539
+#: src/MainWindow.cpp:1541
 #, kde-format
 msgid ""
 "Fetching elevation data failed: The requested location is not present in the "
@@ -1384,7 +1384,7 @@ msgstr ""
 "sol·licitada no està present en el conjunt de dades d'elevació triat "
 "actualment."
 
-#: src/MainWindow.cpp:1543
+#: src/MainWindow.cpp:1545
 #, kde-format
 msgid ""
 "Fetching elevation data failed: None of the requested locations are present "
@@ -1394,7 +1394,7 @@ msgstr ""
 "ubicacions sol·licitades està present en el conjunt de dades d'elevació "
 "triat actualment."
 
-#: src/MainWindow.cpp:1546
+#: src/MainWindow.cpp:1548
 #, kde-format
 msgid ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
@@ -1404,7 +1404,7 @@ msgstr ""
 "sol·licitades no està present en el conjunt de dades d'elevació triat "
 "actualment."
 
-#: src/MainWindow.cpp:1617
+#: src/MainWindow.cpp:1619
 #, kde-format
 msgid ""
 "The image has pending changes! Do you really want to remove it and discard "
@@ -1418,29 +1418,29 @@ msgstr[1] ""
 "Almenys una de les imatges conté canvis pendents. Voleu eliminar-les i "
 "descartar tots els canvis?"
 
-#: src/MainWindow.cpp:1637 src/MainWindow.cpp:1645
+#: src/MainWindow.cpp:1639 src/MainWindow.cpp:1647
 #, kde-format
 msgid "Remove all processed and saved images"
 msgstr "Elimina totes les imatges processades i guardades"
 
-#: src/MainWindow.cpp:1646 src/MainWindow.cpp:1662
+#: src/MainWindow.cpp:1648 src/MainWindow.cpp:1664
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
 msgstr[0] "S'ha eliminat una imatge"
 msgstr[1] "S'han eliminat %1 imatges"
 
-#: src/MainWindow.cpp:1653 src/MainWindow.cpp:1661
+#: src/MainWindow.cpp:1655 src/MainWindow.cpp:1663
 #, kde-format
 msgid "Remove images that already had coordinates"
 msgstr "Elimina les imatges que tinguen les mateixes coordenades"
 
-#: src/MainWindow.cpp:1668 src/MainWindow.cpp:1683
+#: src/MainWindow.cpp:1670 src/MainWindow.cpp:1685
 #, kde-format
 msgid "Remove all images"
 msgstr "Elimina totes les imatges"
 
-#: src/MainWindow.cpp:1669
+#: src/MainWindow.cpp:1671
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -1451,32 +1451,32 @@ msgstr ""
 "els canvis es descartaran si s'eliminen ara totes les imatges.</p><p>Voleu "
 "eliminar igualment totes les imatges?</p>"
 
-#: src/MainWindow.cpp:1718
+#: src/MainWindow.cpp:1720
 #, kde-format
 msgid "Remove all images and tracks (reset)"
 msgstr "Elimina totes les imatges i trajectes (restablix)"
 
-#: src/MainWindow.cpp:1746
+#: src/MainWindow.cpp:1748
 #, kde-format
 msgid "Failed to parse clipboard data"
 msgstr "No s'han pogut analitzar les dades del porta-retalls"
 
-#: src/MainWindow.cpp:1747
+#: src/MainWindow.cpp:1749
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "No s'han pogut trobar coordenades vàlides en el text del porta-retalls"
 
-#: src/MainWindow.cpp:1757
+#: src/MainWindow.cpp:1759
 #, kde-format
 msgid "No geodata has been loaded yet!"
 msgstr "Encara no s'ha carregat cap geodada!"
 
-#: src/MainWindow.cpp:1780
+#: src/MainWindow.cpp:1782
 #, kde-format
 msgid "Assign selection"
 msgstr "Assigna la selecció"
 
-#: src/MainWindow.cpp:1781
+#: src/MainWindow.cpp:1783
 #, kde-format
 msgid "Please select one or more images"
 msgstr "Seleccioneu una o més imatges"
