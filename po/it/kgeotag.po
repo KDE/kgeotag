@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-31 01:56+0000\n"
-"PO-Revision-Date: 2024-02-14 14:41+0100\n"
+"PO-Revision-Date: 2024-05-28 15:31+0200\n"
 "Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 23.08.4\n"
+"X-Generator: Lokalize 24.02.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -596,15 +596,14 @@ msgid "Assign images to GPS data"
 msgstr "Assegna immagini ai dati GPS"
 
 #: src/MainWindow.cpp:142
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "Assegna al centro della mappa"
+msgstr "Riassegna al centro della mappa"
 
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr ""
+msgstr "Seleziona automaticamente la successiva immagine non etichettata"
 
 #: src/MainWindow.cpp:156
 #, kde-format
@@ -1474,13 +1473,12 @@ msgstr "Non è ancora stato caricato nessun dato geografico."
 #: src/MainWindow.cpp:1782
 #, kde-format
 msgid "Assign selection"
-msgstr ""
+msgstr "Assegna selezione"
 
 #: src/MainWindow.cpp:1783
-#, fuzzy, kde-format
-#| msgid "Please select the images to add"
+#, kde-format
 msgid "Please select one or more images"
-msgstr "Seleziona le immagini da aggiungere"
+msgstr "Seleziona una o più immagini"
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
