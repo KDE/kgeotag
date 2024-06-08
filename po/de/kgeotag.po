@@ -1,22 +1,24 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
 # Burkhard Lück <lueck@hube-lueck.de>, 2021.
 # Frederik Schwarzer <schwarzer@kde.org>, 2021, 2022, 2023.
+# SPDX-FileCopyrightText: 2024 Tobias Leupold <tl@stonemx.de>
+# SPDX-FileCopyrightText: 2024 Alois Spitzbart <spitz234@hotmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-31 01:56+0000\n"
-"PO-Revision-Date: 2023-01-15 00:17+0100\n"
-"Last-Translator: Frederik Schwarzer <schwarzer@kde.org>\n"
+"PO-Revision-Date: 2024-06-02 20:34+0200\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.1\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -49,7 +51,7 @@ msgstr "Sekunden"
 #: src/AutomaticMatchingWidget.cpp:65
 #, kde-format
 msgid "Search for interpolated matches"
-msgstr ""
+msgstr "Suche nach interpolierten Übereinstimmungen"
 
 #: src/AutomaticMatchingWidget.cpp:71
 #, kde-format
@@ -87,7 +89,7 @@ msgstr "Alle Bilder (neu) zuweisen"
 #: src/MainWindow.cpp:1134 src/SettingsDialog.cpp:97
 #, kde-format
 msgid "Combined match search"
-msgstr ""
+msgstr "Kombinierte Suche"
 
 #: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:98
@@ -99,7 +101,7 @@ msgstr "Nur nach genauen Übereinstimmungen suchen"
 #: src/SettingsDialog.cpp:99
 #, kde-format
 msgid "Search interpolated matches only"
-msgstr ""
+msgstr "Suche nur nach interpolierten Übereinstimmungen"
 
 #: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
@@ -197,7 +199,7 @@ msgstr "Neuer Name für das neue Lesezeichen:"
 #: src/BookmarksList.cpp:206
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr ""
+msgstr "Der Name „%1“ wird bereits verwendet. Bitte wählen Sie einen anderen."
 
 #: src/BookmarksList.cpp:221
 #, kde-format
@@ -212,7 +214,7 @@ msgstr "Höhe eingeben"
 #: src/BookmarksList.cpp:266
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
-msgstr "Höhe für „%1“  (m)"
+msgstr "Höhe für „%1“ (m)"
 
 #: src/BookmarksList.cpp:287
 #, kde-format
@@ -436,7 +438,7 @@ msgstr "Dem Lesezeichen zuweisen"
 #: src/ImagesListView.cpp:107
 #, kde-format
 msgid "Assign to map center"
-msgstr ""
+msgstr "Der Mitte der Karte zuweisen"
 
 #: src/ImagesListView.cpp:112
 #, kde-format
@@ -568,7 +570,7 @@ msgstr ""
 #: src/MainWindow.cpp:111
 #, kde-format
 msgid "All images that already had coordinates"
-msgstr ""
+msgstr "Alle Bilder, die bereits Koordinaten hatten"
 
 #: src/MainWindow.cpp:120
 #, kde-format
@@ -578,12 +580,12 @@ msgstr "Alle Strecken"
 #: src/MainWindow.cpp:124
 #, kde-format
 msgid "All images and tracks (reset)"
-msgstr ""
+msgstr "Alle Bilder und Strecken (zurücksetzen)"
 
 #: src/MainWindow.cpp:130
 #, kde-format
 msgid "Assign images to GPS data"
-msgstr "Bilder an GPS-Daten zuweisen"
+msgstr "Bilder den GPS-Daten zuweisen"
 
 #: src/MainWindow.cpp:142
 #, fuzzy, kde-format
@@ -791,8 +793,8 @@ msgstr[1] "<p>%1 Dateien bearbeitet, %2</p>"
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Laden einer Datei fehlgeschlagen"
+msgstr[1] "Laden von %1 Dateien fehlgeschlagen"
 
 #: src/MainWindow.cpp:688
 #, kde-format
@@ -826,7 +828,7 @@ msgstr[1] "<p>%1 Dateien bearbeitet, %2, %3</p>"
 #: src/MainWindow.cpp:704
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
-msgstr ""
+msgstr "<p>Es konnten keine Wegpunkte geladen werden.</p>"
 
 #: src/MainWindow.cpp:710
 #, kde-format
@@ -836,8 +838,8 @@ msgctxt ""
 "call."
 msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Ein Wegpunkt wurde von %2 geladen</p>"
+msgstr[1] "<p>%1 Wegpunkte wurden von %2 geladen</p>"
 
 #: src/MainWindow.cpp:713 src/MainWindow.cpp:722
 #, kde-format
@@ -854,15 +856,15 @@ msgctxt ""
 "the one for the segments (%3) are provided by the following i18np calls."
 msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Ein Wegpunkt wurde von %2 und %3 geladen</p>"
+msgstr[1] "<p>%1 Wegpunkte wurden von %2 und %3 geladen</p>"
 
 #: src/MainWindow.cpp:723
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
-msgstr[0] ""
-msgstr[1] "AbschnitteAbschnitte"
+msgstr[0] "Ein Abschnitt"
+msgstr[1] "%1 Abschnitte"
 
 #: src/MainWindow.cpp:738
 #, kde-format
@@ -880,7 +882,7 @@ msgstr ""
 #: src/MainWindow.cpp:745
 #, kde-format
 msgid "Setting the detected timezone failed"
-msgstr ""
+msgstr "Einrichten der erkannten Zeitzone fehlgeschlagen"
 
 #: src/MainWindow.cpp:746
 #, kde-format
@@ -978,8 +980,8 @@ msgstr "Bilder hinzufügen"
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Ein Bild erfolgreich hinzugefügt!"
+msgstr[1] "%1 Bilder erfolgreich hinzugefügt!"
 
 #: src/MainWindow.cpp:894
 #, kde-format
@@ -1003,15 +1005,15 @@ msgstr ""
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Bild erfolgreich hinzugefügt!</p>"
+msgstr[1] "<p>%1 Bilder erfolgreich hinzugefügt!</p>"
 
 #: src/MainWindow.cpp:911
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Fehler beim Laden von einem Bild.</p>"
+msgstr[1] "<p>Fehler beim Laden von %1 Bildern.</p>"
 
 #: src/MainWindow.cpp:915
 #, kde-format
@@ -1034,8 +1036,8 @@ msgstr "<p>%1 und %2.</p>"
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Fehler beim Laden von einem Bild"
+msgstr[1] "Fehler beim Laden von %1 Bildern"
 
 #: src/MainWindow.cpp:928
 #, kde-format
@@ -1067,7 +1069,7 @@ msgstr[1] "%1 Bilder (%2)"
 #: src/MainWindow.cpp:997
 #, kde-format
 msgid "all images have the same coordinates"
-msgstr ""
+msgstr "Alle Bilder haben dieselben Koordinaten"
 
 #: src/MainWindow.cpp:998
 #, kde-format
@@ -1100,21 +1102,21 @@ msgctxt ""
 "matches (%1) and the interpolated matches (%2) are provided by the following "
 "i18np calls."
 msgid "<p>Found %1 and %2!</p>"
-msgstr ""
+msgstr "<p>%1 und %2 gefunden!</p>"
 
 #: src/MainWindow.cpp:1140
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "Eine exakte Übereinstimmung"
+msgstr[1] "%1 exakte Übereinstimmungen"
 
 #: src/MainWindow.cpp:1143
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "eine interpolierte Übereinstimmung"
+msgstr[1] "%1 interpolierte Übereinstimmungen"
 
 #: src/MainWindow.cpp:1150
 #, kde-format
@@ -1148,8 +1150,8 @@ msgstr ""
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Eine exakte Übereinstimmung gefunden!</p>"
+msgstr[1] "<p>%1 exakte Übereinstimmungen gefunden!</p>"
 
 #: src/MainWindow.cpp:1172
 #, kde-format
@@ -1159,25 +1161,25 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no exact match (%2).</p>"
 msgid_plural "<p>%1 images had no exact match (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Ein Bild hat keine exakte Übereinstimmung (%2).</p>"
+msgstr[1] "<p>%1 Bilder haben keine exakte Übereinstimmung (%2).</p>"
 
 #: src/MainWindow.cpp:1180
 #, kde-format
 msgid "Could not find any exact matches!"
-msgstr ""
+msgstr "Konnte keine exakten Übereinstimmungen finden!"
 
 #: src/MainWindow.cpp:1185
 #, kde-format
 msgid "Interpolated matches search"
-msgstr ""
+msgstr "Interpolierte Übereinstimmungen suchen"
 
 #: src/MainWindow.cpp:1187
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Eine interpolierte Übereinstimmung gefunden!</p>"
+msgstr[1] "<p>%1 interpolierte Übereinstimmungen gefunden!</p>"
 
 #: src/MainWindow.cpp:1194
 #, kde-format
@@ -1187,13 +1189,13 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Ein Bild hat keine interpolierte Übereinstimmung (%2).</p>"
+msgstr[1] "<p>%1 Bilder haben keine interpolierte Übereinstimmung (%2).</p>"
 
 #: src/MainWindow.cpp:1202
 #, kde-format
 msgid "Could not find any interpolated matches!"
-msgstr ""
+msgstr "Konnte keine interpolierten Übereinstimmungen finden!"
 
 #: src/MainWindow.cpp:1223
 #, kde-format
@@ -1361,12 +1363,12 @@ msgstr ""
 #: src/MainWindow.cpp:1720
 #, kde-format
 msgid "Remove all images and tracks (reset)"
-msgstr ""
+msgstr "Alle Bilder und Strecken entfernen (zurücksetzen)"
 
 #: src/MainWindow.cpp:1748
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr ""
+msgstr "Einlesen von Daten aus der Zwischenablage fehlgeschlagen"
 
 #: src/MainWindow.cpp:1749
 #, kde-format
@@ -1436,7 +1438,7 @@ msgstr "Exakte Übereinstimmung"
 #: src/PreviewWidget.cpp:77
 #, kde-format
 msgid "interpolated match"
-msgstr ""
+msgstr "interpolierte Übereinstimmung"
 
 #: src/PreviewWidget.cpp:78
 #, kde-format

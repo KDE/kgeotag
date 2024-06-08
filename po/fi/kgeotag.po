@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-05-31 01:56+0000\n"
-"PO-Revision-Date: 2024-01-22 16:14+0200\n"
+"PO-Revision-Date: 2024-05-09 09:55+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -1798,8 +1798,7 @@ msgstr ""
 "tiedot ovat yhä oikeat ja täydelliset!"
 
 #: src/SettingsDialog.cpp:292
-#, fuzzy, kde-format
-#| msgid "Create a backups before altering a file"
+#, kde-format
 msgid "Create a backup before altering a file"
 msgstr "Luo varmuuskopio ennen tiedoston muuttamista"
 
