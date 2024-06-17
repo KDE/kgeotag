@@ -363,6 +363,11 @@ void MainWindow::setDefaultDockArrangement()
     for (auto *dock : allDocks) {
         dock->setFloating(false);
         addDockWidget(Qt::TopDockWidgetArea, dock);
+
+        // It's actually possible to close a floating dock using keyboard shortcuts (when it
+        // shouldn't be possible, because QDockWidget::DockWidgetClosable is not set). To be sure
+        // to re-show such a closed dock, we explicitely show it here:
+        dock->show();
     }
 
     for (int i = 1; i < allDocks.count(); i++) {
