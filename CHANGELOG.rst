@@ -79,6 +79,11 @@ Fixed
 
 * The last window position is now restored correctly when closing the program and opening it again.
 
+* Closed floating docks are now properly restored by using "Set default dock arrangement". This
+  addresses bug #488597, but actually, it's an upstream Qt bug (reported as
+  `bug #126418 <https://bugreports.qt.io/browse/QTBUG-126418>`_), as the docks shouldn't be closable
+  at all in the first place.
+
 Security
 ========
 
