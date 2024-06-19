@@ -8,6 +8,7 @@ include:
       - /gitlab-templates/linux.yml
       - /gitlab-templates/freebsd.yml
       - /gitlab-templates/reuse-lint.yml
+      - /gitlab-templates/flatpak.yml
 
 .template: &debian
   variables:
