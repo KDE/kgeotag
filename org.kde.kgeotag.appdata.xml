@@ -9,6 +9,9 @@
   <project_license>GPL-3.0-only</project_license>
   <project_group>KDE</project_group>
   <name>KGeoTag</name>
+  <developer id="org.kde">
+    <name translate="no">KDE</name>
+  </developer>
   <name xml:lang="ca">KGeoTag</name>
   <name xml:lang="ca-valencia">KGeoTag</name>
   <name xml:lang="cs">KGeoTag</name>
