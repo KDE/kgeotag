@@ -9,9 +9,6 @@
   <project_license>GPL-3.0</project_license>
   <project_group>KDE</project_group>
   <name>KGeoTag</name>
-  <developer id="org.kde">
-    <name translate="no">KDE</name>
-  </developer>
   <name xml:lang="ca">KGeoTag</name>
   <name xml:lang="ca-valencia">KGeoTag</name>
   <name xml:lang="cs">KGeoTag</name>
@@ -39,6 +36,9 @@
   <name xml:lang="uk">KGeoTag</name>
   <name xml:lang="x-test">xxKGeoTagxx</name>
   <name xml:lang="zh-CN">KGeoTag</name>
+  <developer id="org.kde">
+    <name translate="no">KDE</name>
+  </developer>
   <summary>Photo geotagging program</summary>
   <summary xml:lang="ca">Programa de geoetiquetatge de fotografies</summary>
   <summary xml:lang="ca-valencia">Programa de geoetiquetatge de fotografies</summary>
