@@ -127,7 +127,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // "File" menu again
 
     auto *searchMatchesAction = actionCollection()->addAction(QStringLiteral("searchMatches"));
-    searchMatchesAction->setText(i18n("Assign images to GPS data"));
+    searchMatchesAction->setText(i18n("Correlate images with GPS data"));
     searchMatchesAction->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
     actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(tr("Ctrl+M")));
     connect(searchMatchesAction, &QAction::triggered,
