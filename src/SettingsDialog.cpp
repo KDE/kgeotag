@@ -25,6 +25,7 @@
 #include <QScrollBar>
 #include <QMessageBox>
 #include <QHBoxLayout>
+#include <QApplication>
 
 SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     : QDialog(parent),
@@ -297,14 +298,16 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *scrollArea = new QScrollArea;
     scrollArea->setWidgetResizable(true);
-    const int styleAddition = scrollArea->width() - scrollArea->viewport()->width();
     scrollArea->setWidget(settingsWidget);
     mainLayout->addWidget(scrollArea);
 
-    show();
-    const int widgetWidth = settingsWidget->width() + scrollArea->verticalScrollBar()->width()
-                            + styleAddition;
-    scrollArea->setMinimumWidth(widgetWidth);
+    updateGeometry();
+
+    scrollArea->setMinimumWidth(
+        settingsWidget->width()
+        + qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent)
+        + qApp->style()->pixelMetric(QStyle::PM_DefaultFrameWidth)
+    );
 
     // Button box
 
