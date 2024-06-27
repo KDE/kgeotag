@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-18 01:51+0000\n"
+"POT-Creation-Date: 2024-06-27 01:47+0000\n"
 "PO-Revision-Date: 2022-04-09 15:21+0200\n"
 "Last-Translator: Roman Paholik <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -84,20 +84,20 @@ msgid "(Re)Assign all images"
 msgstr "(Znovu)Priradiť všetky obrázky"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
-#: src/MainWindow.cpp:1139 src/SettingsDialog.cpp:97
+#: src/MainWindow.cpp:1139 src/SettingsDialog.cpp:98
 #, kde-format
 msgid "Combined match search"
 msgstr ""
 
 #: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
-#: src/SettingsDialog.cpp:98
+#: src/SettingsDialog.cpp:99
 #, fuzzy, kde-format
 #| msgid "exact match"
 msgid "Search exact matches only"
 msgstr "presná zhoda"
 
 #: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
-#: src/SettingsDialog.cpp:99
+#: src/SettingsDialog.cpp:100
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr ""
@@ -594,7 +594,7 @@ msgstr ""
 
 #: src/MainWindow.cpp:130
 #, kde-format
-msgid "Assign images to GPS data"
+msgid "Correlate images with GPS data"
 msgstr ""
 
 #: src/MainWindow.cpp:142
@@ -1338,7 +1338,7 @@ msgstr ""
 msgid "All changes have been successfully saved!"
 msgstr ""
 
-#: src/MainWindow.cpp:1537 src/MainWindow.cpp:1558 src/SettingsDialog.cpp:195
+#: src/MainWindow.cpp:1537 src/MainWindow.cpp:1558 src/SettingsDialog.cpp:196
 #, kde-format
 msgid "Elevation lookup"
 msgstr ""
@@ -1520,23 +1520,23 @@ msgstr "Dátum/Čas:"
 msgid "Skip current image"
 msgstr ""
 
-#: src/SettingsDialog.cpp:34
+#: src/SettingsDialog.cpp:35
 #, kde-format
 msgid "KGeoTag: Settings"
 msgstr ""
 
-#: src/SettingsDialog.cpp:40
+#: src/SettingsDialog.cpp:41
 #, kde-format
 msgid "KGeoTag settings"
 msgstr ""
 
-#: src/SettingsDialog.cpp:58
+#: src/SettingsDialog.cpp:59
 #, fuzzy, kde-format
 #| msgid "Images"
 msgid "Image lists"
 msgstr "Obrázky"
 
-#: src/SettingsDialog.cpp:64
+#: src/SettingsDialog.cpp:65
 #, kde-format
 msgid ""
 "<p>Loaded images can either be listed in two different lists (one for all "
@@ -1545,27 +1545,27 @@ msgid ""
 "</p>"
 msgstr ""
 
-#: src/SettingsDialog.cpp:74
+#: src/SettingsDialog.cpp:75
 #, kde-format
 msgid "Separate \"Assigned\" and \"Unassigned\" list"
 msgstr ""
 
-#: src/SettingsDialog.cpp:75
+#: src/SettingsDialog.cpp:76
 #, kde-format
 msgid "One combined list for all images"
 msgstr ""
 
-#: src/SettingsDialog.cpp:84
+#: src/SettingsDialog.cpp:85
 #, kde-format
 msgid "Image Assignment"
 msgstr ""
 
-#: src/SettingsDialog.cpp:89
+#: src/SettingsDialog.cpp:90
 #, kde-format
 msgid "Search type for the main menu \"Assign images to GPS data\" entry"
 msgstr ""
 
-#: src/SettingsDialog.cpp:108
+#: src/SettingsDialog.cpp:109
 #, kde-format
 msgid ""
 "This triggers an automatic (re-)assignment of all images, respecting the "
@@ -1573,150 +1573,150 @@ msgid ""
 "dock."
 msgstr ""
 
-#: src/SettingsDialog.cpp:115
+#: src/SettingsDialog.cpp:116
 #, fuzzy, kde-format
 #| msgid "Thumbnail size:"
 msgid "Thumbnails and previews"
 msgstr "Veľkosť miniatúry:"
 
-#: src/SettingsDialog.cpp:125
+#: src/SettingsDialog.cpp:126
 #, kde-format
 msgid "Thumbnail size:"
 msgstr "Veľkosť miniatúry:"
 
-#: src/SettingsDialog.cpp:132 src/SettingsDialog.cpp:141
+#: src/SettingsDialog.cpp:133 src/SettingsDialog.cpp:142
 #, kde-format
 msgid "px"
 msgstr "px"
 
-#: src/SettingsDialog.cpp:134
+#: src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Preview size:"
 msgstr "Veľkosť náhľadu:"
 
-#: src/SettingsDialog.cpp:145
+#: src/SettingsDialog.cpp:146
 #, kde-format
 msgid ""
 "Please restart the program after changes to these values so that they are "
 "applied and become visible."
 msgstr ""
 
-#: src/SettingsDialog.cpp:153
+#: src/SettingsDialog.cpp:154
 #, kde-format
 msgid "GPX track rendering"
 msgstr ""
 
-#: src/SettingsDialog.cpp:161
+#: src/SettingsDialog.cpp:162
 #, kde-format
 msgid "Color:"
 msgstr "Farba:"
 
-#: src/SettingsDialog.cpp:173
+#: src/SettingsDialog.cpp:174
 #, kde-format
 msgid "Line width:"
 msgstr "Šírka čiary:"
 
-#: src/SettingsDialog.cpp:180
+#: src/SettingsDialog.cpp:181
 #, kde-format
 msgid "Line style:"
 msgstr "Štýl čiary:"
 
-#: src/SettingsDialog.cpp:182
+#: src/SettingsDialog.cpp:183
 #, kde-format
 msgid "Solid"
 msgstr "Plný"
 
-#: src/SettingsDialog.cpp:183
+#: src/SettingsDialog.cpp:184
 #, kde-format
 msgid "Dashes"
 msgstr "Pomlčky"
 
-#: src/SettingsDialog.cpp:184
+#: src/SettingsDialog.cpp:185
 #, kde-format
 msgid "Dots"
 msgstr "Bodky"
 
-#: src/SettingsDialog.cpp:185
+#: src/SettingsDialog.cpp:186
 #, kde-format
 msgid "Dash-Dot"
 msgstr "Prerušovaný"
 
-#: src/SettingsDialog.cpp:186
+#: src/SettingsDialog.cpp:187
 #, kde-format
 msgid "Dash-Dot-Dot"
 msgstr "Dvojito prerušovaný"
 
-#: src/SettingsDialog.cpp:199
+#: src/SettingsDialog.cpp:200
 #, kde-format
 msgid "Elevations can be looked up using opentopodata.org's web API."
 msgstr ""
 
-#: src/SettingsDialog.cpp:207
+#: src/SettingsDialog.cpp:208
 #, kde-format
 msgid "Elevation dataset:"
 msgstr ""
 
-#: src/SettingsDialog.cpp:211
+#: src/SettingsDialog.cpp:212
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ASTER"
 msgstr ""
 
-#: src/SettingsDialog.cpp:213
+#: src/SettingsDialog.cpp:214
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ETOPO1"
 msgstr ""
 
-#: src/SettingsDialog.cpp:215
+#: src/SettingsDialog.cpp:216
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EU-DEM"
 msgstr ""
 
-#: src/SettingsDialog.cpp:217
+#: src/SettingsDialog.cpp:218
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "Mapzen"
 msgstr ""
 
-#: src/SettingsDialog.cpp:219
+#: src/SettingsDialog.cpp:220
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NED"
 msgstr ""
 
-#: src/SettingsDialog.cpp:221
+#: src/SettingsDialog.cpp:222
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NZ DEM"
 msgstr ""
 
-#: src/SettingsDialog.cpp:223
+#: src/SettingsDialog.cpp:224
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (30 m)"
 msgstr ""
 
-#: src/SettingsDialog.cpp:225
+#: src/SettingsDialog.cpp:226
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (90 m)"
 msgstr ""
 
-#: src/SettingsDialog.cpp:228
+#: src/SettingsDialog.cpp:229
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EMODnet 2018 Bathymetry"
 msgstr ""
 
-#: src/SettingsDialog.cpp:231
+#: src/SettingsDialog.cpp:232
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "GEBCO 2020 Bathymetry"
 msgstr ""
 
-#: src/SettingsDialog.cpp:241
+#: src/SettingsDialog.cpp:242
 #, kde-format
 msgid ""
 "Cf. <a href=\"https://www.opentopodata.org/\">https://www.opentopodata.org/</"
@@ -1724,42 +1724,42 @@ msgid ""
 "coverage!"
 msgstr ""
 
-#: src/SettingsDialog.cpp:249
+#: src/SettingsDialog.cpp:250
 #, kde-format
 msgid "Request and set altitudes automatically"
 msgstr ""
 
-#: src/SettingsDialog.cpp:255
+#: src/SettingsDialog.cpp:256
 #, kde-format
 msgid "Saving"
 msgstr "Ukladá sa"
 
-#: src/SettingsDialog.cpp:262
+#: src/SettingsDialog.cpp:263
 #, kde-format
 msgid "Write changes to:"
 msgstr ""
 
-#: src/SettingsDialog.cpp:266
+#: src/SettingsDialog.cpp:267
 #, kde-format
 msgid "Exif header"
 msgstr ""
 
-#: src/SettingsDialog.cpp:268
+#: src/SettingsDialog.cpp:269
 #, kde-format
 msgid "XMP sidecar file"
 msgstr ""
 
-#: src/SettingsDialog.cpp:270
+#: src/SettingsDialog.cpp:271
 #, kde-format
 msgid "Exif header and XMP sidecar file"
 msgstr ""
 
-#: src/SettingsDialog.cpp:279
+#: src/SettingsDialog.cpp:280
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
 msgstr ""
 
-#: src/SettingsDialog.cpp:284
+#: src/SettingsDialog.cpp:285
 #, kde-format
 msgid ""
 "<b>Caution!</b> This is experimental. By default, regardless of the setting "
@@ -1768,22 +1768,22 @@ msgid ""
 "and correct when using this!"
 msgstr ""
 
-#: src/SettingsDialog.cpp:292
+#: src/SettingsDialog.cpp:293
 #, kde-format
 msgid "Create a backup before altering a file"
 msgstr ""
 
-#: src/SettingsDialog.cpp:321
+#: src/SettingsDialog.cpp:324
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "Nepriehľadnosť: %1%"
 
-#: src/SettingsDialog.cpp:364
+#: src/SettingsDialog.cpp:367
 #, kde-format
 msgid "Settings changed"
 msgstr "Nastavenia uložené"
 
-#: src/SettingsDialog.cpp:365
+#: src/SettingsDialog.cpp:368
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
