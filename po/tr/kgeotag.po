@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-27 01:47+0000\n"
-"PO-Revision-Date: 2024-05-28 16:34+0300\n"
+"PO-Revision-Date: 2024-06-27 15:49+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -584,10 +584,9 @@ msgid "All images and tracks (reset)"
 msgstr "Tüm görseller ve izler (sıfırla)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Assign images to GPS data"
+#, kde-format
 msgid "Correlate images with GPS data"
-msgstr "GPS verisine görseller ata"
+msgstr "Görselleri GPS verisiyle ilişkilendir"
 
 #: src/MainWindow.cpp:142
 #, kde-format
