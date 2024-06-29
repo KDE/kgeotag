@@ -578,9 +578,9 @@ msgid "All images and tracks (reset)"
 msgstr "所有图像和轨迹 (重置)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
+#, kde-format
 msgid "Correlate images with GPS data"
-msgstr "分配图像到 GPS 数据"
+msgstr ""
 
 #: src/MainWindow.cpp:142
 #, kde-format
