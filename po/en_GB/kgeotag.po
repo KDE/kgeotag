@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-27 01:47+0000\n"
-"PO-Revision-Date: 2024-05-30 16:30+0100\n"
+"PO-Revision-Date: 2024-06-29 11:34+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
 "Language: en_GB\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.02.2\n"
+"X-Generator: Lokalize 24.05.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -586,10 +586,9 @@ msgid "All images and tracks (reset)"
 msgstr "All images and tracks (reset)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Assign images to GPS data"
+#, kde-format
 msgid "Correlate images with GPS data"
-msgstr "Assign images to GPS data"
+msgstr "Correlate images with GPS data"
 
 #: src/MainWindow.cpp:142
 #, kde-format
