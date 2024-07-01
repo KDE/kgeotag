@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-27 01:47+0000\n"
-"PO-Revision-Date: 2024-06-28 21:02+0200\n"
+"PO-Revision-Date: 2024-06-30 21:40+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
-"Language-Team: Esperanto <kde-i18n-eo.org>\n"
+"Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -332,6 +332,9 @@ msgid ""
 "p><p>The error's description was: %1</p><p>The literal response was:</"
 "p><p><kbd>%2</kbd>"
 msgstr ""
+"Ne eblis analizi la respondon de la servilo: Malsukcesis krei JSON-"
+"dokumenton.</p><p>La priskribo de la eraro estis: %1</p><p>La laŭvorta "
+"respondo estis:</p><p><kbd>%2</kbd>"
 
 #: src/ElevationEngine.cpp:153
 #, kde-format
@@ -361,6 +364,7 @@ msgstr ""
 msgid ""
 "Could not parse the server's response: Could not read the elevation value"
 msgstr ""
+"Ne eblis analizi la respondon de la servilo: Ne eblis legi la altvaloron"
 
 #: src/FixDriftWidget.cpp:25
 #, kde-format
@@ -653,6 +657,12 @@ msgid ""
 "community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
 "wiki</a> on how to make the respective files accessible.</p>"
 msgstr ""
+"<p>Ne eblis ŝargi aŭ analizi la horzonajn datumdosierojn <kbd>timezones."
+"json</kbd> kaj/aŭ <kbd>timezones.png</kbd>. Aŭtomata horzona detekto ne "
+"funkcios.</p><p>Bonvolu kontroli vian instaladon!</p><p>Se vi rulas permane "
+"kompilitajn fontojn sen instali ilin, bonvolu raporti al <a href=\"https://"
+"community.kde.org/KGeoTag#Running_the_compiled_sources\">Komunuma vikio de "
+"KDE</a> pri kiel igi la respektivajn dosierojn alireblaj.</p>"
 
 #: src/MainWindow.cpp:338
 #, kde-format
@@ -676,6 +686,9 @@ msgid ""
 "changes will be discarded if KGeoTag is closed now.</p><p>Do you want to "
 "close the program anyway?</p>"
 msgstr ""
+"<p>Estas pritraktataj ŝanĝoj al bildoj, kiuj ankoraŭ ne estis konservitaj. "
+"Ĉiuj ŝanĝoj estos forĵetitaj se KGeoTag estas fermita nun.</p><p>Ĉu vi tamen "
+"volas fermi la programon?</p>"
 
 #: src/MainWindow.cpp:468
 #, kde-format
@@ -688,6 +701,8 @@ msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
 "cr2 *.nef *.dng *.gpx );; All files (*)"
 msgstr ""
+"Ĉiuj subtenataj dosieroj (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra "
+"*.cr2 *.nef *.dng *.gpx );; Ĉiuj dosieroj (*)"
 
 #: src/MainWindow.cpp:504
 #, kde-format
@@ -731,6 +746,8 @@ msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
 "file.</p>"
 msgstr ""
+"<p>Malfermo de <kbd>%1</kbd> malsukcesis. Bonvolu nepre havi legpermeson al "
+"ĉi tiu dosiero.</p>"
 
 #: src/MainWindow.cpp:636
 #, kde-format
@@ -738,12 +755,16 @@ msgid ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
 "kbd> root element. Apparently, this is not a GPX file!</p>"
 msgstr ""
+"<p>Ne eblis legi geodatenojn de <kbd>%1</kbd>: Ne eblis trovi la radikan "
+"elementon <kbd>gpx</kbd>. Ŝajne, ĉi tio ne estas GPX-dosiero!</p>"
 
 #: src/MainWindow.cpp:642
 #, kde-format
 msgid ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 msgstr ""
+"<p><kbd>%1</kbd> ŝajnas esti GPX-dosiero, sed ĝi enhavas neniujn geodatenojn!"
+"</p>"
 
 #: src/MainWindow.cpp:647
 #, kde-format
@@ -751,6 +772,8 @@ msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
 "all, or only a part of it.</p>"
 msgstr ""
+"<p>XML-analizo malsukcesis por <kbd>%1</kbd>. Aŭ nenia datumo povis esti "
+"ŝargita, aŭ nur parto de ĝi.</p>"
 
 #: src/MainWindow.cpp:657
 #, kde-format
@@ -880,6 +903,9 @@ msgid ""
 "file could not be detected.</p><p>Please set the correct timezone manually "
 "on the \"Fix time drift\" page.</p>"
 msgstr ""
+"<p>La supozeble ĝusta horzono por bildoj asociitaj kun la ŝarĝita GPX-"
+"dosiero ne povis esti detektita.</p><p>Bonvolu agordi la ĝustan horzonon "
+"permane sur la paĝo \"Ripari tempodiviton\".</p>"
 
 #: src/MainWindow.cpp:750
 #, kde-format
@@ -896,6 +922,12 @@ msgid ""
 "p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
 "page.</p>"
 msgstr ""
+"<p>La supozeble ĝusta horzono \"%1\" estis detektita de la ŝargita GPX-"
+"dosiero, sed ne eblis agordi. Ĉi tio ne devus okazi!</p><p>Bonvolu registri "
+"cimraporton pri tio, inkluzive de la instalitaj versioj de KGeoTag kaj la "
+"horzonaj datumoj de via sistemo (la pakaĵo posedanta <kbd>/usr/share/"
+"zoneinfo</kbd>). </p><p>Vi povas ĝustigi la horzonan agordon permane sur la "
+"paĝo \"Ripari tempodrivon\".</p>"
 
 #: src/MainWindow.cpp:760
 #, kde-format
@@ -910,6 +942,10 @@ msgid ""
 "</p><p>You can adjust the timezone setting manually on the \"Fix time drift"
 "\" page.</p>"
 msgstr ""
+"<p>La ŝargita GPX-dosiero supozeble estis registrita en la horzono \"%1\", "
+"same kiel la fotoj asociendaj kun ĝi. Ĉi tiu horzono estas nun elektita.</"
+"p><p>Vi povas alĝustigi la horzonan agordon permane sur la paĝo \"Ripari "
+"tempodrivon\".</p>"
 
 #: src/MainWindow.cpp:787
 #, kde-format
@@ -934,6 +970,8 @@ msgid ""
 "<p><b>Loading image failed (%1/%2)</b></p><p>Could not read <kbd>%3</kbd>.</"
 "p>"
 msgstr ""
+"<p><b>Ŝargado de bildo malsukcesis (%1/%2)</b></p><p>Ne eblis legi <kbd>%3</"
+"kbd>.</p>"
 
 #: src/MainWindow.cpp:828
 #, kde-format
@@ -941,6 +979,8 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%1</kbd>.</p>"
 msgstr ""
+"<p><b>Ŝargado de la Exif-kapo aŭ XMP kromdosiero de bildo malsukcesis</b></"
+"p><p>Ne eblis legi <kbd>%1</kbd>.</p>"
 
 #: src/MainWindow.cpp:834
 #, kde-format
@@ -949,6 +989,8 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%2</kbd>.</p>"
 msgstr ""
+"<p><b>Ŝargado de la Exif-kapo aŭ XMP kromdosiero de bildo malsukcesis</b></"
+"p><p>Ne eblis legi <kbd>%2</kbd>.</p>"
 
 #: src/MainWindow.cpp:846
 #, kde-format
@@ -956,6 +998,8 @@ msgid ""
 "<p>Please check if this file is actually a supported image and if you have "
 "read access to it.</p>"
 msgstr ""
+"<p>Bonvolu kontroli ĉu ĉi tiu dosiero estas efektive subtenata bildo kaj ĉu "
+"vi havas legan aliron al ĝi.</p>"
 
 #: src/MainWindow.cpp:850
 #, kde-format
@@ -969,6 +1013,8 @@ msgid ""
 "<p>You can retry to load this file, skip it or cancel the loading process.</"
 "p>"
 msgstr ""
+"<p>Vi povas reprovi ŝargi ĉi tiun dosieron, preterlasi ĝin aŭ nuligi la "
+"ŝarĝan procezon.</p>"
 
 #: src/MainWindow.cpp:860 src/MainWindow.cpp:892 src/MainWindow.cpp:898
 #: src/MainWindow.cpp:902 src/MainWindow.cpp:906 src/MainWindow.cpp:938
@@ -993,6 +1039,7 @@ msgstr "Ne eblis aldoni novajn bildojn, ĉiuj petitaj bildoj malsukcesis ŝargi!
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
 msgstr ""
+"Ne eblis aldoni novajn bildojn, ĉiuj petitaj bildoj jam estis ŝargitaj!"
 
 #: src/MainWindow.cpp:907
 #, kde-format
@@ -1000,6 +1047,8 @@ msgid ""
 "Could not add any new images, all requested images failed to load or have "
 "already been loaded!"
 msgstr ""
+"Ne eblis aldoni novajn bildojn, ĉiuj petitaj bildoj malsukcesis ŝargi aŭ jam "
+"estis ŝargitaj!"
 
 #: src/MainWindow.cpp:911
 #, kde-format
@@ -1082,6 +1131,8 @@ msgid ""
 "Can't search for matches:\n"
 "No images have been loaded yet."
 msgstr ""
+"Ne eblas serĉi kongruojn:\n"
+"Ankoraŭ neniuj bildoj estis ŝargitaj."
 
 #: src/MainWindow.cpp:1065
 #, kde-format
@@ -1089,6 +1140,8 @@ msgid ""
 "Can't search for matches:\n"
 "No GPS tracks have been loaded yet."
 msgstr ""
+"Ne povas serĉi kongruojn:\n"
+"Ankoraŭ neniuj GPS-spuroj estis ŝargitaj."
 
 #: src/MainWindow.cpp:1080
 #, kde-format
@@ -1102,7 +1155,7 @@ msgctxt ""
 "matches (%1) and the interpolated matches (%2) are provided by the following "
 "i18np calls."
 msgid "<p>Found %1 and %2!</p>"
-msgstr ""
+msgstr "<p>Trovis %1 kaj %2!</p>"
 
 #: src/MainWindow.cpp:1145
 #, kde-format
@@ -1115,8 +1168,8 @@ msgstr[1] "%1 ekzaktaj kongruoj"
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "unu interpolita kongruo"
+msgstr[1] "%1 interpolitaj kongruoj"
 
 #: src/MainWindow.cpp:1155
 #, kde-format
@@ -1126,15 +1179,15 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image could not be matched (%2).</p>"
 msgid_plural "<p>%1 images could not be matched (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Unu bildo ne povis esti kongruita (%2).</p>"
+msgstr[1] "<p>%1 bildoj ne povis esti kongruitaj (%2).</p>"
 
 #: src/MainWindow.cpp:1158 src/MainWindow.cpp:1180 src/MainWindow.cpp:1202
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "el kiuj unu bildo jam havas atribuitajn koordinatojn"
+msgstr[1] "el kiuj %1 bildoj jam havas atribuitajn koordinatojn"
 
 #: src/MainWindow.cpp:1163
 #, kde-format
@@ -1189,8 +1242,8 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Unu bildo ne havis interpolitan kongruon (%2).</p>"
+msgstr[1] "<p>%1 bildoj ne havis interpolitajn kongruojn (%2).</p>"
 
 #: src/MainWindow.cpp:1207
 #, kde-format
@@ -1208,7 +1261,7 @@ msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
 "round braces"
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
-msgstr ""
+msgstr "<p><b>Konservado de ŝanĝoj malsukcesis (%1/%2)</b></p>"
 
 #: src/MainWindow.cpp:1240
 #, kde-format
@@ -1243,6 +1296,9 @@ msgid ""
 "could not be created.</p><p>Please check if this file doesn't exist yet and "
 "be sure to have write access to <kbd>%3</kbd>.</p>"
 msgstr ""
+"<p>Ne eblis konservi ŝanĝojn al <kbd>%1</kbd>: La rezerva dosiero <kbd>%2</"
+"kbd> ne povis esti kreita.</p><p>Bonvolu kontroli ĉu ĉi tiu dosiero ne estas "
+"kreita. ekzistas ankoraŭ kaj nepre havi skriban aliron al <kbd>%3</kbd>.</p>"
 
 #: src/MainWindow.cpp:1356
 #, kde-format
@@ -1251,6 +1307,9 @@ msgid ""
 "file still exists and if you have read access to it (and possibly also to an "
 "existing XMP sidecar file).</p>"
 msgstr ""
+"<p>Ne eblis legi metadatenojn de <kbd>%1</kbd>.</p><p>Bonvolu kontroli ĉu ĉi "
+"tiu dosiero ankoraŭ ekzistas kaj ĉu vi havas legan aliron al ĝi (kaj eble "
+"ankaŭ al ekzistanta XMP kromdosiero).</p>"
 
 #: src/MainWindow.cpp:1424
 #, kde-format
@@ -1282,6 +1341,8 @@ msgid ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
 "</p>"
 msgstr ""
+"<p>Kelkaj ŝanĝoj ne povis esti konservitaj!</p><p>Sukcese konservis %1 el %2 "
+"bildoj.</p>"
 
 #: src/MainWindow.cpp:1480
 #, kde-format
@@ -1299,6 +1360,8 @@ msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
 "message was: %1</p>"
 msgstr ""
+"<p>Alporto de altecaj datumoj el opentopodata.org malsukcesis.</p><p>La "
+"erarmesaĝo estis: %1</p>"
 
 #: src/MainWindow.cpp:1546
 #, kde-format
@@ -1306,6 +1369,8 @@ msgid ""
 "Fetching elevation data failed: The requested location is not present in the "
 "currently chosen elevation dataset."
 msgstr ""
+"Akiro de altecdatenoj malsukcesis: La petita loko ne ĉeestas en la nuntempe "
+"elektita altecdatumaro."
 
 #: src/MainWindow.cpp:1550
 #, kde-format
@@ -1313,6 +1378,8 @@ msgid ""
 "Fetching elevation data failed: None of the requested locations are present "
 "in the currently chosen elevation dataset."
 msgstr ""
+"Akiro de altecdatenoj malsukcesis: Neniu el la petitaj lokoj ĉeestas en la "
+"nuntempe elektita altecdatumaro."
 
 #: src/MainWindow.cpp:1553
 #, kde-format
@@ -1320,6 +1387,8 @@ msgid ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
 "not present in the currently chosen elevation dataset."
 msgstr ""
+"Akiro de altecdatenoj estas nekompleta: Kelkaj el la petitaj lokoj ne "
+"ĉeestas en la nuntempe elektita altecdatumaro."
 
 #: src/MainWindow.cpp:1624
 #, kde-format
@@ -1330,7 +1399,11 @@ msgid_plural ""
 "At least one of the images has pending changes. Do you really want to remove "
 "them and discard all changes?"
 msgstr[0] ""
+"La bildo havas pritraktatajn ŝanĝojn! Ĉu vi vere volas forigi ĝin kaj "
+"forĵeti la ŝanĝojn?"
 msgstr[1] ""
+"Almenaŭ nun el la bildoj havas pritraktatajn ŝanĝojn! Ĉu vi vere volas "
+"forigi ĝin kaj forĵeti la ŝanĝojn?"
 
 #: src/MainWindow.cpp:1644 src/MainWindow.cpp:1652
 #, kde-format
@@ -1361,6 +1434,9 @@ msgid ""
 "changes will be discarded if all images are removed now.</p><p>Do you really "
 "want to remove all images anyway?</p>"
 msgstr ""
+"<p>Estas pritraktataj ŝanĝoj al bildoj, kiuj ankoraŭ ne estis konservitaj. "
+"Ĉiuj ŝanĝoj estos forĵetitaj se ĉiuj bildoj estas forigitaj nun.</p><p>Ĉu vi "
+"vere volas forigi ĉiujn bildojn ĉiukaze?</p>"
 
 #: src/MainWindow.cpp:1725
 #, kde-format
@@ -1490,6 +1566,10 @@ msgid ""
 "consecutive list for all images.</p><p>Use the following images list(s) mode:"
 "</p>"
 msgstr ""
+"<p>Ŝargitaj bildoj povas aŭ esti listigitaj en du malsamaj listoj (unu por "
+"ĉiuj bildoj sen kaj unu por bildoj kun koordinatoj), aŭ uzante kombinitan "
+"sinsekvan liston por ĉiuj bildoj.</p><p>Uzu la sekvan reĝimon de "
+"bildlisto(j):</p>"
 
 #: src/SettingsDialog.cpp:75
 #, kde-format
@@ -1518,6 +1598,8 @@ msgid ""
 "\"Exclude manually tagged images\" setting from the \"Automatic assignment\" "
 "dock."
 msgstr ""
+"Ĉi tio ekigas aŭtomatan (re)asignon de ĉiuj bildoj, respektante la agordon "
+"\"Ekskludi mane etikeditajn bildojn\" de la doko \"Aŭtomata asigno\"."
 
 #: src/SettingsDialog.cpp:116
 #, kde-format
@@ -1670,6 +1752,9 @@ msgid ""
 "a> for further information about the available datasets, like the respective "
 "coverage!"
 msgstr ""
+"Kp. <a href=\"https://www.opentopodata.org/\">https://www.opentopodata.org/</"
+"a> por pliaj informoj pri la disponeblaj datumaroj, kiel la respektiva "
+"kovrado!"
 
 #: src/SettingsDialog.cpp:250
 #, kde-format
@@ -1714,6 +1799,10 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
+"<b>Atentu!</b> Ĉi tio estas eksperimenta. Defaŭlte, sendepende de la agordo "
+"por \"Skribi ŝanĝojn al\", ĉiuj ŝanĝoj al RAW-bildoj estas skribitaj al XMP-"
+"kromdosieroj. Havu sekurkopiojn kaj kontrolu viajn Exif-datumojn pri plua "
+"kompleteco kaj ĝusteco kiam vi uzas ĉi tion!"
 
 #: src/SettingsDialog.cpp:293
 #, kde-format
