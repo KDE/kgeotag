@@ -1,37 +1,36 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
 #
+# SPDX-FileCopyrightText: 2024 Adrián Chaves (Gallaecio)
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-27 01:47+0000\n"
-"PO-Revision-Date: 2024-07-07 07:08+0200\n"
-"Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
-"Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
-"Language: ka\n"
+"PO-Revision-Date: 2024-07-07 11:42+0200\n"
+"Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
+"Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
+"Language: gl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.3.2\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
 msgid "Your names"
-msgstr "Temuri Doghonadze"
+msgstr "Adrián Chaves (Gallaecio)"
 
 #, kde-format
 msgctxt "EMAIL OF TRANSLATORS"
 msgid "Your emails"
-msgstr "Temuri.doghonadze@gmail.com"
+msgstr "adrian@chaves.io"
 
 #: src/AutomaticMatchingWidget.cpp:39
 #, kde-format
 msgid "Search for exact matches"
-msgstr "მხოლოდ ზუსტი დამთხვევების მოძებნა"
+msgstr "Buscar coincidencias exactas"
 
 #: src/AutomaticMatchingWidget.cpp:45
 #, kde-format
@@ -39,17 +38,19 @@ msgid ""
 "Maximum deviation of the image's time from a GPS point's time to be "
 "considered an exact match:"
 msgstr ""
+"Desviación máxima da hora da imaxe para que un punto de tempo do GPS se "
+"considere unha coincidencia exacta:"
 
 #: src/AutomaticMatchingWidget.cpp:59 src/AutomaticMatchingWidget.cpp:90
 #: src/FixDriftWidget.cpp:98
 #, kde-format
 msgid "seconds"
-msgstr "წამი"
+msgstr "segundos"
 
 #: src/AutomaticMatchingWidget.cpp:65
 #, kde-format
 msgid "Search for interpolated matches"
-msgstr "ინტერპოლირებული დამთხვევების მოძებნა"
+msgstr "Buscar coincidencias interpoladas"
 
 #: src/AutomaticMatchingWidget.cpp:71
 #, kde-format
@@ -57,114 +58,116 @@ msgid ""
 "Spatial and temporal boundaries for two coordinates used to calculate an "
 "interpolated match:"
 msgstr ""
+"Límites espaciais e temporais de dúas coordenadas usadas para calcular unha "
+"coincidencia interpolada:"
 
 #: src/AutomaticMatchingWidget.cpp:82
 #, kde-format
 msgid "Maximum interval:"
-msgstr "მაქსიმალური ინტერვალი:"
+msgstr "Intervalo máximo:"
 
 #: src/AutomaticMatchingWidget.cpp:103
 #, kde-format
 msgid "Maximum distance:"
-msgstr "მაქსიმალური დაშორება:"
+msgstr "Distancia máxima:"
 
 #: src/AutomaticMatchingWidget.cpp:110
 #, kde-format
 msgid "meters"
-msgstr "მეტრი"
+msgstr "metros"
 
 #: src/AutomaticMatchingWidget.cpp:132
 #, kde-format
 msgid "Save settings"
-msgstr "პარამეტრების შენახვა"
+msgstr "Gardar a configuración"
 
 #: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1044
 #, kde-format
 msgid "(Re)Assign all images"
-msgstr "ყველა გამოსახულების (თავიდან) მინიჭება"
+msgstr "(Re)asignar todas as imaxes"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
 #: src/MainWindow.cpp:1139 src/SettingsDialog.cpp:98
 #, kde-format
 msgid "Combined match search"
-msgstr "კომბინირებული დამთხვევის ძებნა"
+msgstr "Busca de coincidencia combinada"
 
 #: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
 #: src/SettingsDialog.cpp:99
 #, kde-format
 msgid "Search exact matches only"
-msgstr "მხოლოდ ზუსტი დამთხვევების მოძებნა"
+msgstr "Só buscar coincidencias exactas"
 
 #: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
 #: src/SettingsDialog.cpp:100
 #, kde-format
 msgid "Search interpolated matches only"
-msgstr "მხოლოდ ინტერპოლირებული დამთხვევების მოძებნა"
+msgstr "Só buscar coincidencias interpoladas"
 
 #: src/AutomaticMatchingWidget.cpp:169
 #, kde-format
 msgid "Exclude manually tagged images"
-msgstr "ხელით დადებული ჭდეების მქონე გამოსახულებების ამოღება"
+msgstr "Excluír as imaxes etiquetadas manualmente"
 
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Save as default"
-msgstr "ნაგულისხმებად შენახვა"
+msgstr "Gardar como predeterminada"
 
 #: src/AutomaticMatchingWidget.cpp:202
 #, kde-format
 msgid "Settings saved!"
-msgstr "პარამეტრები დამახსოვრებულია!"
+msgstr "Gardouse a configuración."
 
 #: src/BookmarksList.cpp:56
 #, kde-format
 msgid "Add new bookmark for current map center"
-msgstr "მიმდინარე რუკის ცენტრისთვისა ახალი სანიშნის დამატება"
+msgstr "Engadir un novo marcador para o centro actual do mapa"
 
 #: src/BookmarksList.cpp:60
 #, kde-format
 msgid "Add new manual bookmark"
-msgstr "ახალი სანიშნის ხელით დამატება"
+msgstr "Engadir un novo marcador manual"
 
 #: src/BookmarksList.cpp:65
 #, kde-format
 msgid "Rename bookmark"
-msgstr "სანიშნის გადარქმევა"
+msgstr "Renomear o marcador"
 
 #: src/BookmarksList.cpp:68 src/ImagesListView.cpp:130
 #, kde-format
 msgid "Edit coordinates"
-msgstr "კოორდინატების ჩასწორება"
+msgstr "Editar as coordenadas"
 
 #: src/BookmarksList.cpp:73 src/ImagesListView.cpp:134
 #, kde-format
 msgid "Lookup elevation"
-msgstr "ზღვის დონიდან სიმაღლის მოძებნა"
+msgstr "Buscar a elevación"
 
 #: src/BookmarksList.cpp:76
 #, kde-format
 msgid "Set elevation manually"
-msgstr "ზღვის დონის სიმაღლის ხელით დაყენება"
+msgstr "Definir a elevación manualmente"
 
 #: src/BookmarksList.cpp:81 src/BookmarksList.cpp:220
 #, kde-format
 msgid "Delete bookmark"
-msgstr "სანიშნის წაშლა"
+msgstr "Eliminar o marcador"
 
 #: src/BookmarksList.cpp:104
 #, kde-format
 msgid "New Bookmark"
-msgstr "ახალი სანიშნე"
+msgstr "Novo marcador"
 
 #: src/BookmarksList.cpp:104
 #, kde-format
 msgid "Label for the new bookmark:"
-msgstr "ჭდე ახალი სანიშნისთვის:"
+msgstr "Etiqueta do novo marcador:"
 
 #: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:100
 #, kde-format
 msgid "Untitled"
-msgstr "უსახელო"
+msgstr "Sen título"
 
 #: src/BookmarksList.cpp:138
 #, kde-format
@@ -175,63 +178,63 @@ msgstr "%1 (%2)"
 #: src/BookmarksList.cpp:155
 #, kde-format
 msgid "Add new bookmark"
-msgstr "ახალი სანიშნის დამატება"
+msgstr "Engadir un marcador novo"
 
 #: src/BookmarksList.cpp:156
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
-msgstr "სანიშნე \"%1\" უკვე არსებობს. შეიქმნა \"%2\"."
+msgstr "Xa existe o marcador «%1», creouse «%2» no seu lugar."
 
 #: src/BookmarksList.cpp:197 src/BookmarksList.cpp:205
 #, kde-format
 msgid "Rename Bookmark"
-msgstr "სანიშნის გადარქმევა"
+msgstr "Renomear o marcador"
 
 #: src/BookmarksList.cpp:198
 #, kde-format
 msgid "New label for the new bookmark:"
-msgstr "ახალი ჭდე ახალი სანიშნისთვის:"
+msgstr "Nova etiqueta para o novo marcador:"
 
 #: src/BookmarksList.cpp:206
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr "ჭდე \"%1\" უკვე გამოიყენება. აირჩიეთ სხვა სახელი."
+msgstr "A etiqueta «%1» xa está en uso. Escolla outro nome."
 
 #: src/BookmarksList.cpp:221
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
-msgstr "მართლა წავშალო სანიშნე \"%1\"?"
+msgstr "Seguro que quere eliminar o marcador «%1»?"
 
 #: src/BookmarksList.cpp:265
 #, kde-format
 msgid "Set elevation"
-msgstr "ზღვის დონის სიმაღლის დაყენება"
+msgstr "Definir a elevación"
 
 #: src/BookmarksList.cpp:266
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
-msgstr "\"%1\" -ის სიმაღლე ზღვის დონიდან(მ)"
+msgstr "Elevación de «%1» (m)"
 
 #: src/BookmarksList.cpp:287
 #, kde-format
 msgctxt "A quoted bookmark label"
 msgid "\"%1\""
-msgstr "\"%1\""
+msgstr "«%1»"
 
 #: src/BookmarksWidget.cpp:45
 #, kde-format
 msgid "Position: %1, %2; Altitude: %3 m"
-msgstr "მდებარეობა: %1, %2; სიმაღლე ზღვის დონიდან: %3 მ"
+msgstr "Posición: %1, %2; altitude: %3 m"
 
 #: src/CoordinatesDialog.cpp:35
 #, kde-format
 msgid "Label:"
-msgstr "ჭდე:"
+msgstr "Etiqueta:"
 
 #: src/CoordinatesDialog.cpp:40
 #, kde-format
 msgid "Longitude:"
-msgstr "გრძედი:"
+msgstr "Lonxitude:"
 
 #: src/CoordinatesDialog.cpp:45 src/CoordinatesDialog.cpp:54
 #, kde-format
@@ -242,43 +245,43 @@ msgstr " °"
 #: src/CoordinatesDialog.cpp:49
 #, kde-format
 msgid "Latitude:"
-msgstr "განედი:"
+msgstr "Latitude:"
 
 #: src/CoordinatesDialog.cpp:59
 #, kde-format
 msgid "Altitude:"
-msgstr "სიმაღლე:"
+msgstr "Altitude:"
 
 #: src/CoordinatesDialog.cpp:65
 #, kde-format
 msgctxt "Meters abbreviation"
 msgid " m"
-msgstr " მ"
+msgstr " m"
 
 #: src/CoordinatesDialog.cpp:70
 #, kde-format
 msgid "<i>The altitude is looked up automatically</i>"
-msgstr "<i>სიმაღლე ზღვის დონიდან ავტომატურად მოიძებნა</i>"
+msgstr "<i>A altitude búscase automaticamente</i>"
 
 #: src/CoordinatesDialog.cpp:78
 #, kde-format
 msgid "New bookmark"
-msgstr "ახალი სანიშნე"
+msgstr "Novo marcador"
 
 #: src/CoordinatesDialog.cpp:79
 #, kde-format
 msgid "Data for the new bookmark:"
-msgstr "მონაცემები ახალი სანიშნისთვის:"
+msgstr "Data do novo marcador:"
 
 #: src/CoordinatesDialog.cpp:85
 #, kde-format
 msgid "Manual coordinates"
-msgstr "ხელით მითითებული კოორდინატები"
+msgstr "Coordenadas manuais"
 
 #: src/CoordinatesDialog.cpp:86
 #, kde-format
 msgid "Coordinates for %1:"
-msgstr "%1-ის კოორდინატები:"
+msgstr "Coordenadas de %1:"
 
 #: src/CoordinatesFormatter.cpp:32
 #, kde-format
@@ -290,13 +293,13 @@ msgstr "%1° %2"
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
-msgstr "ეგზა"
+msgstr "L"
 
 #: src/CoordinatesFormatter.cpp:35
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
-msgstr "სიგ"
+msgstr "O"
 
 #: src/CoordinatesFormatter.cpp:40
 #, kde-format
@@ -308,18 +311,18 @@ msgstr "%1° %2"
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
-msgstr "ჩრდ"
+msgstr "N"
 
 #: src/CoordinatesFormatter.cpp:43
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
-msgstr "სმხ"
+msgstr "S"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
 msgid "The request timed out"
-msgstr "მოთხოვნის ვადა გავიდა"
+msgstr "A solicitude superou o tempo límite."
 
 #: src/ElevationEngine.cpp:141
 #, kde-format
@@ -328,16 +331,21 @@ msgid ""
 "p><p>The error's description was: %1</p><p>The literal response was:</"
 "p><p><kbd>%2</kbd>"
 msgstr ""
+"Non foi posíbel analizar a resposta do servidor: non foi posíbel crear un "
+"documento JSON.</p><p>A descrición do erro foi: %1</p><p>A resposta literal "
+"foi:</p><p><kbd>%2</kbd>"
 
 #: src/ElevationEngine.cpp:153
 #, kde-format
 msgid "Could not parse the server's response: Could not read the status value"
 msgstr ""
+"Non foi posíbel analizar a resposta do servidor: non foi posíbel ler o valor "
+"do estado."
 
 #: src/ElevationEngine.cpp:161
 #, kde-format
 msgid "Could not read error description"
-msgstr "შეცდომის აღწერის წაკითხვის შეცდომა"
+msgstr "Non foi posíbel ler a descrición do erro."
 
 #: src/ElevationEngine.cpp:163
 #, kde-format
@@ -349,142 +357,147 @@ msgstr "%1: %2"
 #, kde-format
 msgid "Could not parse the server's response: Could not read the results array"
 msgstr ""
+"Non foi posíbel analizar a resposta do servidor: non foi posíbel ler a "
+"matriz de resultados."
 
 #: src/ElevationEngine.cpp:180
 #, kde-format
 msgid ""
 "Could not parse the server's response: Could not read the elevation value"
 msgstr ""
+"Non foi posíbel analizar a resposta do servidor: non foi posíbel ler o valor "
+"da elevación."
 
 #: src/FixDriftWidget.cpp:25
 #, kde-format
 msgid "Images' time zone"
-msgstr "გამოსახულების დროის სარტყელი"
+msgstr "Fuso horario das imaxes"
 
 #: src/FixDriftWidget.cpp:29
 #, kde-format
 msgid "The images were taken in the following timezone:"
-msgstr ""
+msgstr "As imaxes sacáronse neste fuso horario:"
 
 #: src/FixDriftWidget.cpp:66
 #, kde-format
 msgid "Camera clock time drift"
-msgstr "კამერის საათის დროის აცდენა"
+msgstr "Desviación temporal do reloxo da cámara"
 
 #: src/FixDriftWidget.cpp:70
 #, kde-format
 msgid "Deviation between image dates and the (exact) GPS data time:"
 msgstr ""
+"A desviación entre as datas das imaxes e a hora dos datos GPS (exactos):"
 
 #: src/FixDriftWidget.cpp:82
 #, kde-format
 msgid "hours"
-msgstr "საათი"
+msgstr "horas"
 
 #: src/FixDriftWidget.cpp:90
 #, kde-format
 msgid "minutes"
-msgstr "წუთი"
+msgstr "minutos"
 
 #: src/FixDriftWidget.cpp:104
 #, kde-format
 msgid "Display the fixed dates and times"
-msgstr "ფიქსირებული თარიღებისა და დროების ჩვენება"
+msgstr "Amosar as datas e horas fixas."
 
 #: src/FixDriftWidget.cpp:109
 #, kde-format
 msgid "Fix the files' dates and times when saving"
-msgstr ""
+msgstr "Corrixir a datas e horas dos ficheiros ao gardar."
 
 #: src/ImagesListView.cpp:61
 #, kde-format
 msgid "Select all images"
-msgstr "ყველა გამოსახულების მონიშვნა"
+msgstr "Seleccionar todas as imaxes"
 
 #: src/ImagesListView.cpp:65
 #, kde-format
 msgid "Select"
-msgstr "არჩევა"
+msgstr "Seleccionar"
 
 #: src/ImagesListView.cpp:67 src/MainWindow.cpp:116
 #, kde-format
 msgid "All images"
-msgstr "ყველა გამოსახულება"
+msgstr "Todas as imaxes"
 
 #: src/ImagesListView.cpp:69
 #, kde-format
 msgid "All images without coordinates"
-msgstr "ყველა გამოსახულება კოორდინატების გარეშე"
+msgstr "Todas as imaxes sen coordenadas"
 
 #: src/ImagesListView.cpp:72
 #, kde-format
 msgid "All images with coordinates"
-msgstr "ყველა გამოსახულება კოორდინატებით"
+msgstr "Todas as imaxes con coordenadas"
 
 #: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1064
 #, kde-format
 msgid "Automatic matching"
-msgstr "ავტომატური დამთხვევა"
+msgstr "Busca automática de coincidencias"
 
 #: src/ImagesListView.cpp:101
 #, kde-format
 msgid "Assign to bookmark"
-msgstr "სანიშნეზე მინიჭება"
+msgstr "Asignar ao marcador"
 
 #: src/ImagesListView.cpp:107
 #, kde-format
 msgid "Assign to map center"
-msgstr "რუკის ცენტრზე მინიჭება"
+msgstr "Asignar ao centro do mapa"
 
 #: src/ImagesListView.cpp:112
 #, kde-format
 msgid "Set coordinates from clipboard"
-msgstr "კოორდინატების ბუფერიდან დაყენება"
+msgstr "Definir as coordenadas do portapapeis"
 
 #: src/ImagesListView.cpp:115
 #, kde-format
 msgid "Set coordinates manually"
-msgstr "კოორტინატების ხელით დაყენება"
+msgstr "Definir as coordenadas manualmente"
 
 #: src/ImagesListView.cpp:122 src/MainWindow.cpp:1763
 #, kde-format
 msgid "Find closest trackpoint"
-msgstr ""
+msgstr "Atopar o punto de rastro máis próximo"
 
 #: src/ImagesListView.cpp:141 src/MainWindow.cpp:1267 src/MainWindow.cpp:1320
 #: src/MainWindow.cpp:1366 src/MainWindow.cpp:1440 src/MainWindow.cpp:1471
 #: src/MainWindow.cpp:1474 src/MainWindow.cpp:1479
 #, kde-format
 msgid "Save changes"
-msgstr "ცვლილებების დამახსოვრება"
+msgstr "Gardar os cambios"
 
 #: src/ImagesListView.cpp:148
 #, kde-format
 msgid "Remove coordinates"
-msgstr "კოორდინატების წაშლა"
+msgstr "Retirar as coordenadas"
 
 #: src/ImagesListView.cpp:155
 #, kde-format
 msgid "Discard changes"
-msgstr "ცვლილებების გაუქმება"
+msgstr "Descartar os cambios"
 
 #: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
 #: src/MainWindow.cpp:1623
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
-msgstr[0] "სურათის წაშლა"
-msgstr[1] "სურათის წაშლა"
+msgstr[0] "Retirar a imaxe"
+msgstr[1] "Retirar as imaxes"
 
 #: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
-msgstr "ნაგულისხმები გამხსნელის გაშვება"
+msgstr "Abrir co visor predeterminado"
 
 #: src/ImagesListView.cpp:196
 #, kde-format
 msgid "(No bookmarks defined)"
-msgstr "(სანიშნების გარეშე)"
+msgstr "Non hai marcadores definidos."
 
 #: src/ImagesModel.cpp:52
 #, kde-format
@@ -515,12 +528,12 @@ msgstr "KGeoTag"
 #: src/main.cpp:35
 #, kde-format
 msgid "Photo geotagging program"
-msgstr "სურათებზე გეოტაგების დადების პროგრამა"
+msgstr "Programa de etiquetaxe xeográfica de fotos"
 
 #: src/main.cpp:37
 #, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
-msgstr "Copyright (C) 2020-2024 Tobias Leupold"
+msgstr "© 2020-2024 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -530,112 +543,112 @@ msgstr "Tobias Leupold"
 #: src/main.cpp:41
 #, kde-format
 msgid "Maintainer"
-msgstr "წამყვანი პროგრამისტი"
+msgstr "Mantemento."
 
 #: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
-msgstr "ფაილები/საქაღალდეები"
+msgstr "Ficheiros e cartafoles"
 
 #: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
-msgstr ""
+msgstr "Ficheiros e cartafoles para cargar no inicio."
 
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr "[ფაილები/საქაღლდეები...]"
+msgstr "[ficheiros e cartafoles…]"
 
 #: src/MainWindow.cpp:88 src/MainWindow.cpp:526
 #, kde-format
 msgid "Add images and/or GPX tracks"
-msgstr ""
+msgstr "Engadir imaxes ou rastros de GPX"
 
 #: src/MainWindow.cpp:95 src/MainWindow.cpp:575
 #, kde-format
 msgid "Add all images and tracks from a folder"
-msgstr ""
+msgstr "Engadir todas as imaxes e rastros dun cartafol"
 
 #: src/MainWindow.cpp:105
 #, kde-format
 msgid "All processed and saved images"
-msgstr "ყველა დამუშავებული და შენახული გამოსახულებება"
+msgstr "Todas as imaxes procesadas e gardadas"
 
 #: src/MainWindow.cpp:111
 #, kde-format
 msgid "All images that already had coordinates"
-msgstr "ყველა გამოსახულება, რომლებსაც კოორდინატები უკვე გააჩნდათ"
+msgstr "Todas as imaxes que xa tiñan coordenadas"
 
 #: src/MainWindow.cpp:120
 #, kde-format
 msgid "All tracks"
-msgstr "ყველა ტრაექტორია"
+msgstr "Todos os rastros"
 
 #: src/MainWindow.cpp:124
 #, kde-format
 msgid "All images and tracks (reset)"
-msgstr "ყველა გამოსახულება და ტრეკი (თავიდან)"
+msgstr "Todas as imaxes e rastros (restabelecer)"
 
 #: src/MainWindow.cpp:130
 #, kde-format
 msgid "Correlate images with GPS data"
-msgstr "გამოსახულებების კორელაცია GPS მონაცემებთან"
+msgstr "Correlacionar as imaxes cos datos de GPS"
 
 #: src/MainWindow.cpp:142
 #, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "რუკის ცენტრზე მინიჭება"
+msgstr "(Re)asignar ao centro do mapa"
 
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr ""
+msgstr "Seleccionar automaticamente a seguinte imaxe sen etiquetar"
 
 #: src/MainWindow.cpp:156
 #, kde-format
 msgid "Save changed images"
-msgstr "შენახული გამოსახულებების შენახვა"
+msgstr "Gardar as imaxes cambiadas"
 
 #: src/MainWindow.cpp:168
 #, kde-format
 msgid "Set default dock arrangement"
-msgstr ""
+msgstr "Definir a distribución predeterminada da doca"
 
 #: src/MainWindow.cpp:191
 #, kde-format
 msgid "Bookmarks"
-msgstr "სანიშნები"
+msgstr "Marcadores"
 
 #: src/MainWindow.cpp:196
 #, kde-format
 msgid "Preview"
-msgstr "მინიატურა"
+msgstr "Vista previa"
 
 #: src/MainWindow.cpp:209
 #, kde-format
 msgid "Fix time drift"
-msgstr "დროის აცდენის გასწორება"
+msgstr "Corrixir a desviación temporal"
 
 #: src/MainWindow.cpp:227
 #, kde-format
 msgid "Map"
-msgstr "რუკა"
+msgstr "Mapa"
 
 #: src/MainWindow.cpp:234
 #, kde-format
 msgid "Unassigned images"
-msgstr "მიუნიჭებელი გამოსახულებები"
+msgstr "Imaxes sen asignar"
 
 #: src/MainWindow.cpp:257
 #, kde-format
 msgid "Tracks"
-msgstr "აუდიობილიკები"
+msgstr "Rastros"
 
 #: src/MainWindow.cpp:285
 #, kde-format
 msgid "Loading timezone data"
-msgstr "დროის სარტყელის მონაცემების ჩატვირთვა"
+msgstr "Cargando os datos do fuso horario"
 
 #: src/MainWindow.cpp:286
 #, kde-format
@@ -647,21 +660,28 @@ msgid ""
 "community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
 "wiki</a> on how to make the respective files accessible.</p>"
 msgstr ""
+"<p>Non foi posíbel cargar ou analizar os ficheiros de datos de fusos "
+"horarios <kbd>timezones.json</kbd> ou <kbd>timezones.png</kbd>. A detección "
+"automática de fuso horario non funcionará.</p><p>Revise a instalación!</"
+"p><p>Se está usando fontes compiladas manualmente e non as instalou, "
+"consulte no <a href=\"https://community.kde.org/"
+"KGeoTag#Running_the_compiled_sources\">wiki da comunidade de KDE</a> como "
+"activar o acceso a eses ficheiros.</p>"
 
 #: src/MainWindow.cpp:338
 #, kde-format
 msgid "Assigned images"
-msgstr "მინიჭებული გამოსახულებები"
+msgstr "Imaxes asignadas"
 
 #: src/MainWindow.cpp:344
 #, kde-format
 msgid "Images"
-msgstr "ასლები"
+msgstr "Imaxes"
 
 #: src/MainWindow.cpp:416
 #, kde-format
 msgid "Close KGeoTag"
-msgstr "KGeoTag-ის დახურვა"
+msgstr "Pechar KGeoTag"
 
 #: src/MainWindow.cpp:417
 #, kde-format
@@ -670,11 +690,14 @@ msgid ""
 "changes will be discarded if KGeoTag is closed now.</p><p>Do you want to "
 "close the program anyway?</p>"
 msgstr ""
+"<p>Hai cambios pendentes en imaxes que aínda non se gardaron. Se pecha "
+"KGeoTag agora, descartaranse todos os cambios.</p><p>Quere pechar o programa "
+"de todos xeitos?</p>"
 
 #: src/MainWindow.cpp:468
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
-msgstr ""
+msgstr "Seleccione a imaxe ou o rastro de GPX para engadir."
 
 #: src/MainWindow.cpp:470
 #, kde-format
@@ -682,13 +705,13 @@ msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
 "cr2 *.nef *.dng *.gpx );; All files (*)"
 msgstr ""
-"ყველა მხარდაჭერილი ფაილი (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra "
-"*.cr2 *.nef *.dng *.gpx );; ყველა ფაილი (*)"
+"Todos os ficheiros permitidos (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora "
+"*.kra *.cr2 *.nef *.dng *.gpx );; Todos os ficheiros (*)"
 
 #: src/MainWindow.cpp:504
 #, kde-format
 msgid "<p>The selection did not contain any supported files!</p>"
-msgstr ""
+msgstr "<p>A selección non contiña ningún ficheiro permitido.</p>"
 
 #: src/MainWindow.cpp:512
 #, kde-format
@@ -705,17 +728,21 @@ msgid_plural ""
 "<p>The following files will be skipped due to unsupported MIME types:</p><p>"
 "%2</p>"
 msgstr[0] ""
+"<p>O seguinte ficheiro omitirase porque non se permite o seu tipo MIME:</"
+"p><p>%2</p>"
 msgstr[1] ""
+"<p>Os seguintes ficheiros omitiranse porque non se permite o seu tipo MIME:</"
+"p><p>%2</p>"
 
 #: src/MainWindow.cpp:545
 #, kde-format
 msgid "Please select a folder"
-msgstr "აირჩიეთ საქაღალდე"
+msgstr "Seleccione un cartafol"
 
 #: src/MainWindow.cpp:576
 #, kde-format
 msgid "Could not find any supported files in <kbd>%1</kbd>"
-msgstr ""
+msgstr "Non se atoparon ficheiros compatíbeis en <kbd>%1</kbd>."
 
 #: src/MainWindow.cpp:631
 #, kde-format
@@ -723,6 +750,8 @@ msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
 "file.</p>"
 msgstr ""
+"<p>A apertura de <kbd>%1</kbd> fallou. Asegúrese de que ten acceso de "
+"lectura ao ficheiro.</p>"
 
 #: src/MainWindow.cpp:636
 #, kde-format
@@ -730,12 +759,16 @@ msgid ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
 "kbd> root element. Apparently, this is not a GPX file!</p>"
 msgstr ""
+"<p>Non foi posíbel ler datos xeográficos de <kbd>%1</kbd>: Non foi posíbel "
+"atopar o elemento raíz de <kbd>gpx</kbd>. Non parece ser un ficheiro GPX.</p>"
 
 #: src/MainWindow.cpp:642
 #, kde-format
 msgid ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 msgstr ""
+"<p><kbd>%1</kbd> parece un ficheiro GPX, pero non contén datos xeográficos.</"
+"p>"
 
 #: src/MainWindow.cpp:647
 #, kde-format
@@ -743,34 +776,36 @@ msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
 "all, or only a part of it.</p>"
 msgstr ""
+"<p>A análise de XML de <kbd>%1</kbd> fallou. Ou non se cargaron datos ou só "
+"se cargou unha parte.</p>"
 
 #: src/MainWindow.cpp:657
 #, kde-format
 msgid "<p><b>Loading GPX file failed</b></p>"
-msgstr ""
+msgstr "<p><b>A carga do ficheiro GPX fallou</b></p>"
 
 #: src/MainWindow.cpp:660
 #, kde-format
 msgctxt "Fraction of processed files are added inside the round braces"
 msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
-msgstr ""
+msgstr "<p><b>A carga do ficheiro GPX fallou (%1/%2)</b></p>"
 
 #: src/MainWindow.cpp:667
 #, kde-format
 msgid "<p>The next GPX file will be loaded now.</p>"
-msgstr ""
+msgstr "<p>Agora cargarase o seguinte ficheiro GPX.</p>"
 
 #: src/MainWindow.cpp:671 src/MainWindow.cpp:735
 #, kde-format
 msgid "Load GPX data"
-msgstr "GPX მონაცემების ჩატვირთვა"
+msgstr "Cargar os datos GPX"
 
 #: src/MainWindow.cpp:681
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
-msgstr[0] "<p>დამუშავებულია ერთი ფაილი</p>"
-msgstr[1] "<p>დამუშავებულია %1 ფაილი</p>"
+msgstr[0] "<p>Procesouse un ficheiro.</p>"
+msgstr[1] "<p>Procesáronse %1 ficheiros.</p>"
 
 #: src/MainWindow.cpp:686
 #, kde-format
@@ -780,15 +815,15 @@ msgctxt ""
 "following i18np call."
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
-msgstr[0] "<p>დამუშავებულია ერთი ფაილი; %2</p>"
-msgstr[1] "<p>დამუშავებულია %1 ფაილი; %2</p>"
+msgstr[0] "<p>Procesouse un ficheiro; %2</p>"
+msgstr[1] "<p>Procesáronse %1 ficheiros; %2</p>"
 
 #: src/MainWindow.cpp:688 src/MainWindow.cpp:703
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
-msgstr[0] "ერთი ფაილის ჩატვირთვა შეუძლებელია"
-msgstr[1] "%1 ფაილის ჩატვირთვა შეუძლებელია"
+msgstr[0] "non foi posíbel cargar un ficheiro"
+msgstr[1] "non foi posíbel cargar %1 ficheiros"
 
 #: src/MainWindow.cpp:693
 #, kde-format
@@ -798,15 +833,15 @@ msgctxt ""
 "following i18np call."
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
-msgstr[0] "<p>დამუშავებულია ერთი ფაილი; %2</p>"
-msgstr[1] "<p>დამუშავებულია %1 ფაილი; %2</p>"
+msgstr[0] "<p>Procesouse un ficheiro; %2</p>"
+msgstr[1] "<p>Procesáronse %1 ficheiros; %2</p>"
 
 #: src/MainWindow.cpp:695 src/MainWindow.cpp:704
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "omitiuse un ficheiro xa cargado"
+msgstr[1] "omitíronse %1 ficheiros xa cargados"
 
 #: src/MainWindow.cpp:701
 #, kde-format
@@ -816,13 +851,13 @@ msgctxt ""
 "files counter (%3) are provided by the following i18np call."
 msgid "<p>Processed one file; %2, %3</p>"
 msgid_plural "<p>Processed %1 files; %2, %3</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Procesouse un ficheiro; %2, %3</p>"
+msgstr[1] "<p>Procesáronse %1 ficheiros; %2, %3</p>"
 
 #: src/MainWindow.cpp:709
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
-msgstr ""
+msgstr "<p>Non foi posíbel cargar puntos de camiño.</p>"
 
 #: src/MainWindow.cpp:715
 #, kde-format
@@ -832,15 +867,15 @@ msgctxt ""
 "call."
 msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Cargouse un punto de camiño de %2.</p>"
+msgstr[1] "<p>Cargáronse %1 puntos de camiño de %2.</p>"
 
 #: src/MainWindow.cpp:718 src/MainWindow.cpp:727
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
-msgstr[0] "ერთი ტრეკი"
-msgstr[1] "%1 ტრეკი"
+msgstr[0] "unha pista"
+msgstr[1] "%1 pistas"
 
 #: src/MainWindow.cpp:724
 #, kde-format
@@ -850,20 +885,20 @@ msgctxt ""
 "the one for the segments (%3) are provided by the following i18np calls."
 msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
-msgstr[0] ""
-msgstr[1] ""
+msgstr[0] "<p>Cargouse un punto de camiño de %2 e %3.</p>"
+msgstr[1] "<p>Cargáronse %1 puntos de camiño de %2 e %3.</p>"
 
 #: src/MainWindow.cpp:728
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
-msgstr[0] "ერთი სეგმენტი"
-msgstr[1] "%1 სეგმენტი"
+msgstr[0] "un segmento"
+msgstr[1] "%1 segmentos"
 
 #: src/MainWindow.cpp:743
 #, kde-format
 msgid "Timezone detection failed"
-msgstr "დროის სარტყელის გამოცნობის შეცდომა"
+msgstr "A detección do fuso horario fallou"
 
 #: src/MainWindow.cpp:744
 #, kde-format
@@ -872,11 +907,14 @@ msgid ""
 "file could not be detected.</p><p>Please set the correct timezone manually "
 "on the \"Fix time drift\" page.</p>"
 msgstr ""
+"<p>Non foi posíbel detectar o fuso horario presuntamente correcto das imaxes "
+"asociadas co ficheiro GPX cargado.</p><p>Defina o fuso horario correcto "
+"manualmente na páxina de corrixir a desviación temporal.</p>"
 
 #: src/MainWindow.cpp:750
 #, kde-format
 msgid "Setting the detected timezone failed"
-msgstr ""
+msgstr "A definición do fuso horario detectado fallou"
 
 #: src/MainWindow.cpp:751
 #, kde-format
@@ -906,12 +944,12 @@ msgstr ""
 #: src/MainWindow.cpp:787
 #, kde-format
 msgid "Loading images ..."
-msgstr "გამოსახულებების ჩატვირთვა..."
+msgstr ""
 
 #: src/MainWindow.cpp:787 src/MainWindow.cpp:1080 src/MainWindow.cpp:1287
 #, kde-format
 msgid "Cancel"
-msgstr "გაუქმება"
+msgstr ""
 
 #: src/MainWindow.cpp:813
 #, kde-format
@@ -964,29 +1002,25 @@ msgstr ""
 #: src/MainWindow.cpp:902 src/MainWindow.cpp:906 src/MainWindow.cpp:938
 #, kde-format
 msgid "Add images"
-msgstr "გამოსახულებების დამატება"
+msgstr ""
 
 #: src/MainWindow.cpp:893
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
-msgstr[0] "1 გამოსახულება წარმატებით დაემატა!"
-msgstr[1] "%1 გამოსახულება წარმატებით დაემატა!"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:899
 #, kde-format
 msgid "Could not add any new images, all requested images failed to load!"
 msgstr ""
-"ახალი გამოსახულებების დამატების შეცდომა. ვერც ერთი მითითებული გამოსახულების "
-"ჩატვირთვა ვერ მოხერხდა!"
 
 #: src/MainWindow.cpp:903
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
 msgstr ""
-"ახალი გამოსახულებების დამატების შეცდომა. ყველა მოთხოვნილი გამოსახულება უკვე "
-"დამატებულია!"
 
 #: src/MainWindow.cpp:907
 #, kde-format
@@ -994,29 +1028,27 @@ msgid ""
 "Could not add any new images, all requested images failed to load or have "
 "already been loaded!"
 msgstr ""
-"ახალი გამოსახულებების დამატების შეცდომა. ყველა მოთხოვნილი გამოსახულება უკვე "
-"დამატებულია ან მათი ჩატვირთვა შეუძლებელია!"
 
 #: src/MainWindow.cpp:911
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
-msgstr[0] "<p>გამოსახულება წარმატებით დაემატა!</p>"
-msgstr[1] "<p>%1 გამოსახულება წარმატებით დაემატა!</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:916
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
-msgstr[0] "<p>1 გამოსახულების ჩატვირთვის შეცდომა.</p>"
-msgstr[1] "<p>%1 გამოსახულების ჩატვირთვის შეცდომა.</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:920
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
-msgstr[0] "<p>1 გამოსახულება უკვე ჩატვირთულია.</p>"
-msgstr[1] "<p>%1 გამოსახულება უკვე ჩატვირთულია.</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:929
 #, kde-format
@@ -1026,51 +1058,51 @@ msgctxt ""
 "the failed images (%1) and the skipped images (%2) are provided by the "
 "following i18np calls."
 msgid "<p>%1 and %2.</p>"
-msgstr "<p>%1 და %2.</p>"
+msgstr ""
 
 #: src/MainWindow.cpp:930
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
-msgstr[0] "1 გამოსახულების ჩატვირთვის შეცდომა"
-msgstr[1] "%1 გამოსახულების ჩატვირთვის შეცდომა"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:933
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
-msgstr[0] "1 გამოსახულება უკვე ჩატვირთულია"
-msgstr[1] "%1 გამოსახულება უკვე ჩატვირთულია"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:968 src/MainWindow.cpp:998
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
-msgstr "\"%1\""
+msgstr ""
 
 #: src/MainWindow.cpp:971
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
-msgstr[0] "1 გამოსახულება"
-msgstr[1] "%1 გამოსახულება"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1001
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
-msgstr[0] "1 გამოსახულება (%2)"
-msgstr[1] "%1 გამოსახულება (%2)"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1002
 #, kde-format
 msgid "all images have the same coordinates"
-msgstr "ყველა გამოსახულებას იგივე კოორდინატები აქვს"
+msgstr ""
 
 #: src/MainWindow.cpp:1003
 #, kde-format
 msgid "coordinates differ across the images"
-msgstr "გამოსახულებების კოორდინატები განსხვავდება"
+msgstr ""
 
 #: src/MainWindow.cpp:1045
 #, kde-format
@@ -1078,8 +1110,6 @@ msgid ""
 "Can't search for matches:\n"
 "No images have been loaded yet."
 msgstr ""
-"დამთხვევების ძებნა შეუძლებელია:\n"
-"გამოსახულებები ჯერ არ დაგიმატებიათ."
 
 #: src/MainWindow.cpp:1065
 #, kde-format
@@ -1087,13 +1117,11 @@ msgid ""
 "Can't search for matches:\n"
 "No GPS tracks have been loaded yet."
 msgstr ""
-"დამთხვევების ძებნა შეუძლებელია:\n"
-"GPS ტრაექტორიები ჯერ ჩატვირთული არაა."
 
 #: src/MainWindow.cpp:1080
 #, kde-format
 msgid "Assigning images ..."
-msgstr "გამოსახულებების მინიჭება..."
+msgstr ""
 
 #: src/MainWindow.cpp:1144
 #, kde-format
@@ -1102,21 +1130,21 @@ msgctxt ""
 "matches (%1) and the interpolated matches (%2) are provided by the following "
 "i18np calls."
 msgid "<p>Found %1 and %2!</p>"
-msgstr "<p>ვიპოვე %1 და %2!</p>"
+msgstr ""
 
 #: src/MainWindow.cpp:1145
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
-msgstr[0] "ერთი ზუსტი დამთხვევა"
-msgstr[1] "%1 ზუსტი დამთხვევა"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1148
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
-msgstr[0] "1 ინტერპოლირებული დამთხვევა"
-msgstr[1] "%1 ინტერპოლირებული დამთხვევა"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1155
 #, kde-format
@@ -1144,14 +1172,14 @@ msgstr ""
 #: src/MainWindow.cpp:1168
 #, kde-format
 msgid "Exact matches search"
-msgstr "ძებნის ზუსტი დამთხვევა"
+msgstr ""
 
 #: src/MainWindow.cpp:1170
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
-msgstr[0] "<p>ნაპოვნია 1 ზუსტი დამთხვევა!</p>"
-msgstr[1] "<p>ნაპოვნია %1 ზუსტი დამთხვევა!</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1177
 #, kde-format
@@ -1161,25 +1189,25 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no exact match (%2).</p>"
 msgid_plural "<p>%1 images had no exact match (%2).</p>"
-msgstr[0] "<p>1 გამოსახულებას ზუსტი დამთხვევა არ ჰქონდა (%2).</p>"
-msgstr[1] "<p>%1 გამოსახულებას ზუსტი დამთხვევა არ ჰქონდა (%2).</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1185
 #, kde-format
 msgid "Could not find any exact matches!"
-msgstr "ზუსტი დამთხვევები აღმოჩენილი არაა!"
+msgstr ""
 
 #: src/MainWindow.cpp:1190
 #, kde-format
 msgid "Interpolated matches search"
-msgstr "ინტერპოლირებული დამთხვევების ძებნა"
+msgstr ""
 
 #: src/MainWindow.cpp:1192
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
-msgstr[0] "<p>ნაპოვნია 1 ინტერპოლირებული დამთხვევა!</p>"
-msgstr[1] "<p>ნაპოვნია %1 ინტერპოლირებული დამთხვევა!</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1199
 #, kde-format
@@ -1189,18 +1217,18 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
-msgstr[0] "<p>1 გამოსახულებას ინტერპოლირებული დამთხვევა არ ჰქონდა (%2).</p>"
-msgstr[1] "<p>%1 გამოსახულებას ინტერპოლირებული დამთხვევა არ ჰქონდა (%2).</p>"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1207
 #, kde-format
 msgid "Could not find any interpolated matches!"
-msgstr "ინტერპოლირებული დამთხვევები აღმოჩენილი არაა!"
+msgstr ""
 
 #: src/MainWindow.cpp:1228
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
-msgstr "<p><b>ცვლილებების შენახვის შეცდომა</b></p>"
+msgstr ""
 
 #: src/MainWindow.cpp:1232
 #, kde-format
@@ -1226,12 +1254,12 @@ msgstr ""
 #: src/MainWindow.cpp:1690 src/MainWindow.cpp:1726
 #, kde-format
 msgid "Nothing to do"
-msgstr "არაფერია გასაკეთებელი"
+msgstr ""
 
 #: src/MainWindow.cpp:1287
 #, kde-format
 msgid "Saving changes ..."
-msgstr "ცვლილებების შენახვა..."
+msgstr ""
 
 #: src/MainWindow.cpp:1309
 #, kde-format
@@ -1269,7 +1297,7 @@ msgstr ""
 #: src/MainWindow.cpp:1472
 #, kde-format
 msgid "No changes could be saved!"
-msgstr "შესანახი ცვლილებების გარეშე!"
+msgstr ""
 
 #: src/MainWindow.cpp:1475
 #, kde-format
@@ -1281,12 +1309,12 @@ msgstr ""
 #: src/MainWindow.cpp:1480
 #, kde-format
 msgid "All changes have been successfully saved!"
-msgstr "ყველა ცვლილება წარმატებით იქნა შენახული!"
+msgstr ""
 
 #: src/MainWindow.cpp:1537 src/MainWindow.cpp:1558 src/SettingsDialog.cpp:196
 #, kde-format
 msgid "Elevation lookup"
-msgstr "ზღვის დონიდან სიმაღლის მოძებნა"
+msgstr ""
 
 #: src/MainWindow.cpp:1538
 #, kde-format
@@ -1330,24 +1358,24 @@ msgstr[1] ""
 #: src/MainWindow.cpp:1644 src/MainWindow.cpp:1652
 #, kde-format
 msgid "Remove all processed and saved images"
-msgstr "დამუშავებული და შენახული გამოსახულებების წაშლა"
+msgstr ""
 
 #: src/MainWindow.cpp:1653 src/MainWindow.cpp:1669
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
-msgstr[0] "წაშლილია 1 სურათი"
-msgstr[1] "წაშლილია %1 სურათი"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/MainWindow.cpp:1660 src/MainWindow.cpp:1668
 #, kde-format
 msgid "Remove images that already had coordinates"
-msgstr "იმ გამოსახულებების წაშლა, რომლებსაც კოორდინატები უკვე გააჩნდათ"
+msgstr ""
 
 #: src/MainWindow.cpp:1675 src/MainWindow.cpp:1690
 #, kde-format
 msgid "Remove all images"
-msgstr "ყველა გამოსახულების წაშლა"
+msgstr ""
 
 #: src/MainWindow.cpp:1676
 #, kde-format
@@ -1365,7 +1393,7 @@ msgstr ""
 #: src/MainWindow.cpp:1753
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr "ბუფერის მონაცემების დამუშავების შეცდომა"
+msgstr ""
 
 #: src/MainWindow.cpp:1754
 #, kde-format
@@ -1375,7 +1403,7 @@ msgstr ""
 #: src/MainWindow.cpp:1764
 #, kde-format
 msgid "No geodata has been loaded yet!"
-msgstr "გეომონაცემები ჯერ ჩატვირთული არაა!"
+msgstr ""
 
 #: src/MainWindow.cpp:1787
 #, kde-format
@@ -1385,7 +1413,7 @@ msgstr ""
 #: src/MainWindow.cpp:1788
 #, kde-format
 msgid "Please select one or more images"
-msgstr "აირჩიეთ ერთი ან მეტი გამოსახულება"
+msgstr ""
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
@@ -1396,57 +1424,57 @@ msgstr ""
 #: src/MapWidget.cpp:78
 #, kde-format
 msgid "Floating items"
-msgstr "მცურავი ობიექტები"
+msgstr ""
 
 #: src/MapWidget.cpp:84
 #, kde-format
 msgid "Crosshairs"
-msgstr "გადაჯვარედინება"
+msgstr ""
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
 msgid "Image:"
-msgstr "გამოსახულება:"
+msgstr ""
 
 #: src/PreviewWidget.cpp:54 src/PreviewWidget.cpp:134
 #, kde-format
 msgid "Date/Time:"
-msgstr "თარიღი & დრო:"
+msgstr ""
 
 #: src/PreviewWidget.cpp:63
 #, kde-format
 msgid "Coordinates:"
-msgstr "კოორდინატები:"
+msgstr ""
 
 #: src/PreviewWidget.cpp:75
 #, kde-format
 msgid "read from file"
-msgstr "ფაილიდან წაკითხვა"
+msgstr ""
 
 #: src/PreviewWidget.cpp:76
 #, kde-format
 msgid "exact match"
-msgstr "ზუსტი დამთხვევა"
+msgstr ""
 
 #: src/PreviewWidget.cpp:77
 #, kde-format
 msgid "interpolated match"
-msgstr "ინტერპოლირებული დამთხვევა"
+msgstr ""
 
 #: src/PreviewWidget.cpp:78
 #, kde-format
 msgid "manually set"
-msgstr "ხელით მითითება"
+msgstr ""
 
 #: src/PreviewWidget.cpp:109
 #, kde-format
 msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
-msgstr "<p>მდებარეობა: %1, %2; სიმაღლე ზღვის დონიდან: %3 მ<br/>(%4)</p>"
+msgstr ""
 
 #: src/PreviewWidget.cpp:115
 #, kde-format
 msgid "<i>No coordinates set</i>"
-msgstr "<i>კოორდინატები დაყენებული არაა</i>"
+msgstr ""
 
 #: src/PreviewWidget.cpp:136
 #, kde-format
@@ -1454,28 +1482,26 @@ msgid ""
 "Date/Time\n"
 "(corrected):"
 msgstr ""
-"თარიღი/დრო\n"
-"(ჩასწორებული):"
 
 #: src/RetrySkipAbortDialog.cpp:25
 #, kde-format
 msgid "Skip current image"
-msgstr "მიმდინარე გამოსახულების გამოტოვება"
+msgstr ""
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
 msgid "KGeoTag: Settings"
-msgstr "KGeoTag: მორგება"
+msgstr ""
 
 #: src/SettingsDialog.cpp:41
 #, kde-format
 msgid "KGeoTag settings"
-msgstr "KGeoTag-ის მორგება"
+msgstr ""
 
 #: src/SettingsDialog.cpp:59
 #, kde-format
 msgid "Image lists"
-msgstr "გამოსახულების სიები"
+msgstr ""
 
 #: src/SettingsDialog.cpp:65
 #, kde-format
@@ -1499,7 +1525,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:85
 #, kde-format
 msgid "Image Assignment"
-msgstr "გამოსახულების მინიჭება"
+msgstr ""
 
 #: src/SettingsDialog.cpp:90
 #, kde-format
@@ -1522,17 +1548,17 @@ msgstr ""
 #: src/SettingsDialog.cpp:126
 #, kde-format
 msgid "Thumbnail size:"
-msgstr "მინიატურის ზომა:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:133 src/SettingsDialog.cpp:142
 #, kde-format
 msgid "px"
-msgstr "px"
+msgstr ""
 
 #: src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Preview size:"
-msgstr "მინიატურის ზომა:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:146
 #, kde-format
@@ -1544,47 +1570,47 @@ msgstr ""
 #: src/SettingsDialog.cpp:154
 #, kde-format
 msgid "GPX track rendering"
-msgstr "GPX ტრაექტორიის რენდერი"
+msgstr ""
 
 #: src/SettingsDialog.cpp:162
 #, kde-format
 msgid "Color:"
-msgstr "ფერი:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:174
 #, kde-format
 msgid "Line width:"
-msgstr "ხაზის სიგანე:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:181
 #, kde-format
 msgid "Line style:"
-msgstr "ხაზის სტილი:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:183
 #, kde-format
 msgid "Solid"
-msgstr "მყარი"
+msgstr ""
 
 #: src/SettingsDialog.cpp:184
 #, kde-format
 msgid "Dashes"
-msgstr "ტირეები"
+msgstr ""
 
 #: src/SettingsDialog.cpp:185
 #, kde-format
 msgid "Dots"
-msgstr "წერტილები"
+msgstr ""
 
 #: src/SettingsDialog.cpp:186
 #, kde-format
 msgid "Dash-Dot"
-msgstr "წირე-წერტილი"
+msgstr ""
 
 #: src/SettingsDialog.cpp:187
 #, kde-format
 msgid "Dash-Dot-Dot"
-msgstr "ტირე-წერტილი-წერტილი"
+msgstr ""
 
 #: src/SettingsDialog.cpp:200
 #, kde-format
@@ -1600,61 +1626,61 @@ msgstr ""
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ASTER"
-msgstr "ASTER"
+msgstr ""
 
 #: src/SettingsDialog.cpp:214
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "ETOPO1"
-msgstr "ETOPO1"
+msgstr ""
 
 #: src/SettingsDialog.cpp:216
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EU-DEM"
-msgstr "EU-DEM"
+msgstr ""
 
 #: src/SettingsDialog.cpp:218
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "Mapzen"
-msgstr "Mapzen"
+msgstr ""
 
 #: src/SettingsDialog.cpp:220
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NED"
-msgstr "NED"
+msgstr ""
 
 #: src/SettingsDialog.cpp:222
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "NZ DEM"
-msgstr "NZ DEM"
+msgstr ""
 
 #: src/SettingsDialog.cpp:224
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (30 m)"
-msgstr "SRTM (30 m)"
+msgstr ""
 
 #: src/SettingsDialog.cpp:226
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "SRTM (90 m)"
-msgstr "SRTM (90 m)"
+msgstr ""
 
 #: src/SettingsDialog.cpp:229
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EMODnet 2018 Bathymetry"
-msgstr "EMODnet 2018 Bathymetry"
+msgstr ""
 
 #: src/SettingsDialog.cpp:232
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "GEBCO 2020 Bathymetry"
-msgstr "GEBCO 2020 Bathymetry"
+msgstr ""
 
 #: src/SettingsDialog.cpp:242
 #, kde-format
@@ -1667,27 +1693,27 @@ msgstr ""
 #: src/SettingsDialog.cpp:250
 #, kde-format
 msgid "Request and set altitudes automatically"
-msgstr "ზღვის დონის სიმაღლის ავტომატური მოთხოვნა და დაყენება"
+msgstr ""
 
 #: src/SettingsDialog.cpp:256
 #, kde-format
 msgid "Saving"
-msgstr "შენახვა"
+msgstr ""
 
 #: src/SettingsDialog.cpp:263
 #, kde-format
 msgid "Write changes to:"
-msgstr "სად ჩავწერო ცვლილებები:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:267
 #, kde-format
 msgid "Exif header"
-msgstr "Exif თავსართი"
+msgstr ""
 
 #: src/SettingsDialog.cpp:269
 #, kde-format
 msgid "XMP sidecar file"
-msgstr "XMP sidecar ფაილი"
+msgstr ""
 
 #: src/SettingsDialog.cpp:271
 #, kde-format
@@ -1716,12 +1742,12 @@ msgstr ""
 #: src/SettingsDialog.cpp:324
 #, kde-format
 msgid "Opacity: %1%"
-msgstr "გაუმჭვირვალობა: %1%"
+msgstr ""
 
 #: src/SettingsDialog.cpp:367
 #, kde-format
 msgid "Settings changed"
-msgstr "პარამეტრები შეიცვალა"
+msgstr ""
 
 #: src/SettingsDialog.cpp:368
 #, kde-format
@@ -1733,13 +1759,13 @@ msgstr ""
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
-msgstr[0] "ტრეკის წაშლა"
-msgstr[1] "ტრეკების წაშლა"
+msgstr[0] ""
+msgstr[1] ""
 
 #: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
 #, kde-format
 msgid "<i>No track selected</i>"
-msgstr "<i>ტრაექტორია მონიშნული არაა</i>"
+msgstr ""
 
 #: src/TrackWalker.cpp:51
 #, kde-format
