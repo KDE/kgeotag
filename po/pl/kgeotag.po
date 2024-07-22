@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-06-27 01:47+0000\n"
-"PO-Revision-Date: 2024-01-27 11:06+0100\n"
+"PO-Revision-Date: 2024-07-21 13:01+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -16,6 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -589,21 +590,19 @@ msgid "All images and tracks (reset)"
 msgstr "Wszystkie obrazy i ścieżki (zerowanie)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Assign images to GPS data"
+#, kde-format
 msgid "Correlate images with GPS data"
 msgstr "Przypisz obrazy do danych GPS"
 
 #: src/MainWindow.cpp:142
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "Przypisz środkowi mapy"
+msgstr "Przypisz ponownie środkowi mapy"
 
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr ""
+msgstr "Sam zaznacz kolejny nieoznaczony obraz"
 
 #: src/MainWindow.cpp:156
 #, kde-format
@@ -1499,13 +1498,12 @@ msgstr "Nie wczytano jeszcze żadnych geodanych!"
 #: src/MainWindow.cpp:1787
 #, kde-format
 msgid "Assign selection"
-msgstr ""
+msgstr "Przypisz zaznaczenie"
 
 #: src/MainWindow.cpp:1788
-#, fuzzy, kde-format
-#| msgid "Please select a folder"
+#, kde-format
 msgid "Please select one or more images"
-msgstr "Wybierz katalog"
+msgstr "Wybierz jeden lub więcej obrazów"
 
 #: src/MapCenterInfo.cpp:42
 #, kde-format
@@ -1846,10 +1844,9 @@ msgstr ""
 "pełne i poprawne po użyciu tego!"
 
 #: src/SettingsDialog.cpp:293
-#, fuzzy, kde-format
-#| msgid "Create a backups before altering a file"
+#, kde-format
 msgid "Create a backup before altering a file"
-msgstr "Utwórz kopię zapasową przez zmianą pliku"
+msgstr "Utwórz kopię zapasową przed zmianą pliku"
 
 #: src/SettingsDialog.cpp:324
 #, kde-format
