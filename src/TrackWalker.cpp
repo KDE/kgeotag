@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -37,19 +37,16 @@ void TrackWalker::setToTrack(int row)
 {
     m_trackIndex = row;
 
-    if (row == -1) {
-        m_info->setText(i18n("<i>No track selected</i>"));
-        setEnabled(false);
-        return;
-    }
-
-    const int count = m_geoDataModel->dateTimes().at(row).count();
+    const int count = row != -1 ? m_geoDataModel->dateTimes().at(row).count() : 1;
     m_slider->blockSignals(true);
     m_slider->setValue(1);
     m_slider->setMaximum(count);
     m_slider->blockSignals(false);
-    m_info->setText(i18np("%1 trackpoint", "%1 trackpoints", count));
-    setEnabled(true);
+
+    m_info->setText(row != -1 ? i18np("%1 trackpoint", "%1 trackpoints", count)
+                              : i18n("<i>No track selected</i>"));
+
+    setEnabled(row != -1);
 }
 
 void TrackWalker::sliderMoved(int index)

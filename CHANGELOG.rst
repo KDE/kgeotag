@@ -69,6 +69,10 @@ Removed
 Fixed
 =====
 
+* Fixed a crash when removing a GPX track and moving the "track walker" slider afterwards. Whilst
+  doing so, also fixed the track points counting for slider when removing a GPX track and loading
+  another one directly afterwards.
+
 * Changes to the image list layout (combined/separate) are now displayed correctly (again).
 
 * Restored compatibility with Ubuntu LTS 20.04.

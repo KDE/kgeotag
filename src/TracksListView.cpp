@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -12,6 +12,9 @@
 // Qt includes
 #include <QMenu>
 #include <QAction>
+
+// C++ includes
+#include <functional>
 
 TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView(parent)
 {
@@ -32,6 +35,8 @@ TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView
 
     m_remove = m_contextMenu->addAction(i18np("Remove track", "Remove tracks", 1));
     connect(m_remove, &QAction::triggered, this, &TracksListView::removeTracks);
+    connect(m_remove, &QAction::triggered,
+            std::bind(&TracksListView::updateTrackWalker, this, -1));
 
     connect(this, &QListView::customContextMenuRequested, this, &TracksListView::showContextMenu);
 }
