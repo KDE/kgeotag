@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-27 01:47+0000\n"
+"POT-Creation-Date: 2024-08-22 01:53+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1724,24 +1724,24 @@ msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
 msgstr "请重新启动 KGeoTag，重启后才能使更改生效并看到效果。"
 
-#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#: src/TracksListView.cpp:36 src/TracksListView.cpp:58
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
 msgstr[0] "删除轨迹"
 
-#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:47
 #, kde-format
 msgid "<i>No track selected</i>"
 msgstr "<i>未选中轨迹</i>"
 
-#: src/TrackWalker.cpp:51
+#: src/TrackWalker.cpp:46
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
 msgstr[0] "%1 个轨迹点"
 
-#: src/TrackWalker.cpp:57
+#: src/TrackWalker.cpp:54
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "已选中 %2 个中的 %1 个轨迹点"

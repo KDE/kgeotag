@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-27 01:47+0000\n"
+"POT-Creation-Date: 2024-08-22 01:53+0000\n"
 "PO-Revision-Date: 2024-06-27 15:49+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -1823,26 +1823,26 @@ msgstr ""
 "Değiştirilen ayarı uygulamak ve onları görünür yapmak için KGeoTag’i yeniden "
 "başlatın!"
 
-#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#: src/TracksListView.cpp:36 src/TracksListView.cpp:58
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
 msgstr[0] "İzi kaldır"
 msgstr[1] "İzleri kaldır"
 
-#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:47
 #, kde-format
 msgid "<i>No track selected</i>"
 msgstr "<i>Seçili iz yok</i>"
 
-#: src/TrackWalker.cpp:51
+#: src/TrackWalker.cpp:46
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
 msgstr[0] "%1 iz noktası"
 msgstr[1] "%1 iz noktası"
 
-#: src/TrackWalker.cpp:57
+#: src/TrackWalker.cpp:54
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "%1/%2 seçili iz noktası"

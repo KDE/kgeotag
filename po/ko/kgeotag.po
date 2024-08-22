@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-27 01:47+0000\n"
+"POT-Creation-Date: 2024-08-22 01:53+0000\n"
 "PO-Revision-Date: 2024-08-19 23:13+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1766,24 +1766,24 @@ msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
 msgstr "변경된 설정을 적용하여 표시하려면 KGeoTag를 다시 시작하십시오!"
 
-#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#: src/TracksListView.cpp:36 src/TracksListView.cpp:58
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
 msgstr[0] "궤적 삭제"
 
-#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:47
 #, kde-format
 msgid "<i>No track selected</i>"
 msgstr "<i>선택한 궤적 없음</i>"
 
-#: src/TrackWalker.cpp:51
+#: src/TrackWalker.cpp:46
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
 msgstr[0] "트랙포인트 %1개"
 
-#: src/TrackWalker.cpp:57
+#: src/TrackWalker.cpp:54
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "트랙포인트 %2개 중 %1 선택함"

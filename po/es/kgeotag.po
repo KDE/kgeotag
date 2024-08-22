@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-27 01:47+0000\n"
+"POT-Creation-Date: 2024-08-22 01:53+0000\n"
 "PO-Revision-Date: 2024-06-28 20:50+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -1848,26 +1848,26 @@ msgstr ""
 "Reinicie KGeoTag para aplicar las preferencias modificadas y hacerlas "
 "visibles."
 
-#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#: src/TracksListView.cpp:36 src/TracksListView.cpp:58
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
 msgstr[0] "Eliminar pista"
 msgstr[1] "Eliminar pistas"
 
-#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:47
 #, kde-format
 msgid "<i>No track selected</i>"
 msgstr "<i>No se ha seleccionado ninguna pista</i>"
 
-#: src/TrackWalker.cpp:51
+#: src/TrackWalker.cpp:46
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
 msgstr[0] "%1 punto de pista"
 msgstr[1] "%1 puntos de pista"
 
-#: src/TrackWalker.cpp:57
+#: src/TrackWalker.cpp:54
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "Seleccionado punto de pista %1 de %2"

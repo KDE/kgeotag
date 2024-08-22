@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-06-27 01:47+0000\n"
+"POT-Creation-Date: 2024-08-22 01:53+0000\n"
 "PO-Revision-Date: 2024-07-21 13:01+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
@@ -1864,7 +1864,7 @@ msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
 msgstr "Uruchom KGeoTag ponownie, aby uwzględnić zmiany w jego ustawieniach!"
 
-#: src/TracksListView.cpp:33 src/TracksListView.cpp:53
+#: src/TracksListView.cpp:36 src/TracksListView.cpp:58
 #, kde-format
 msgid "Remove track"
 msgid_plural "Remove tracks"
@@ -1872,12 +1872,12 @@ msgstr[0] "Usuń ścieżkę"
 msgstr[1] "Usuń ścieżki"
 msgstr[2] "Usuń ścieżki"
 
-#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:41
+#: src/TrackWalker.cpp:30 src/TrackWalker.cpp:47
 #, kde-format
 msgid "<i>No track selected</i>"
 msgstr "<i>Nie wybrano żadnej ścieżki</i>"
 
-#: src/TrackWalker.cpp:51
+#: src/TrackWalker.cpp:46
 #, kde-format
 msgid "%1 trackpoint"
 msgid_plural "%1 trackpoints"
@@ -1885,7 +1885,7 @@ msgstr[0] "%1 punkt ścieżki"
 msgstr[1] "%1 punkty ścieżki"
 msgstr[2] "%1 punktów ścieżki"
 
-#: src/TrackWalker.cpp:57
+#: src/TrackWalker.cpp:54
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "Zaznaczono %1 punkt ścieżki z %2"
