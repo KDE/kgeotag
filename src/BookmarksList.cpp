@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -118,7 +118,8 @@ void BookmarksList::newBookmark()
 void BookmarksList::newManualBookmark()
 {
     CoordinatesDialog dialog(CoordinatesDialog::Mode::ManualBookmark,
-                             m_settings->lookupElevationAutomatically());
+                             m_settings->lookupElevationAutomatically(),
+                             *m_settings->latBeforeLon());
     if (! dialog.exec()) {
         return;
     }
@@ -283,7 +284,8 @@ void BookmarksList::editCoordinates()
     const auto id = m_contextMenuItem->text();
     auto &coordinates = m_bookmarks[id];
 
-    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false, coordinates,
+    CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false,
+                             *m_settings->latBeforeLon(), coordinates,
                              i18nc("A quoted bookmark label", "\"%1\"", id));
     if (! dialog.exec()) {
         return;

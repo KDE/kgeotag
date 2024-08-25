@@ -974,7 +974,8 @@ void MainWindow::assignManually(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates,
-                             m_settings->lookupElevationAutomatically(), Coordinates(), label);
+                             m_settings->lookupElevationAutomatically(),
+                             *m_settings->latBeforeLon(), Coordinates(), label);
     if (! dialog.exec()) {
         return;
     }
@@ -1006,6 +1007,7 @@ void MainWindow::editCoordinates(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false,
+                             *m_settings->latBeforeLon(),
                              identicalCoordinates ? coordinates : Coordinates(),
                              label);
     if (! dialog.exec()) {
