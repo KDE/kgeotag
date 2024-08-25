@@ -26,12 +26,13 @@ CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale, Set
 
 QString CoordinatesFormatter::formatLonLat(double value) const
 {
-    // Decimal degrees
+    switch (m_settings->coordinatesFlavor()) {
+    case KGeoTag::DecimalDegrees:
         return i18nc("Formatted coordinates as decimal degrees", "%1°",
                      m_locale->toString(std::abs(value), 'f', KGeoTag::degreesPrecision));
 
-    /*
-    // Degrees, decial minutes
+    case KGeoTag::DegreesDecimalMinutes:
+    {
         double decimals;
         double degrees;
         double decimalMinutes;
@@ -40,8 +41,10 @@ QString CoordinatesFormatter::formatLonLat(double value) const
         return i18nc("Formatted coordinates as degrees and decimal minutes", "%1° %2'",
                      QString::number(std::abs(degrees)),
                      m_locale->toString(std::abs(decimalMinutes), 'f', KGeoTag::minutesPrecision));
+    }
 
-    // Degrees, minutes, decimal seconds
+    case KGeoTag::DegreesMinutesDecimalSeconds:
+    {
         double decimals;
         double degrees;
         double decimalMinutes;
@@ -56,7 +59,12 @@ QString CoordinatesFormatter::formatLonLat(double value) const
                      QString::number(std::abs(degrees)),
                      QString::number(std::abs(minutes)),
                      m_locale->toString(std::abs(decimalSeconds), 'f', KGeoTag::secondsPrecision));
-    */
+    }
+
+    }
+
+    // We can't reach here
+    return QString();
 }
 
 QString CoordinatesFormatter::format(const Coordinates &coordinates) const
