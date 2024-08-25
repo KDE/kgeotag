@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -20,12 +20,13 @@ class CoordinatesFormatter : public QObject
 
 public:
     explicit CoordinatesFormatter(QObject *parent, QLocale *locale);
-    QString lon(const Coordinates &coordinates) const;
-    QString lat(const Coordinates &coordinates) const;
+    QString format(const Coordinates &coordinates) const;
     QString alt(const Coordinates &coordinates) const;
 
 private: // Functions
     QString formatLonLat(double value) const;
+    QString lon(const Coordinates &coordinates) const;
+    QString lat(const Coordinates &coordinates) const;
 
 private: // Variables
     QLocale *m_locale;

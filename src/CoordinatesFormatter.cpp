@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -27,6 +27,12 @@ QString CoordinatesFormatter::formatLonLat(double value) const
     return m_locale->toString(std::abs(value), 'f', KGeoTag::degreesPrecision);
 }
 
+QString CoordinatesFormatter::format(const Coordinates &coordinates) const
+{
+    return i18nc("Formatted coordinates, first longitude then latitude", "%1, %2",
+                 lon(coordinates), lat(coordinates));
+}
+
 QString CoordinatesFormatter::lon(const Coordinates &coordinates) const
 {
     return i18nc("Formatted longitude with a cardinal direction", "%1° %2",
@@ -45,5 +51,6 @@ QString CoordinatesFormatter::lat(const Coordinates &coordinates) const
 
 QString CoordinatesFormatter::alt(const Coordinates &coordinates) const
 {
-    return m_locale->toString(coordinates.alt(), 'f', KGeoTag::altitudePrecision);
+    return i18nc("Formatted altitude in meters", "%1 m",
+                 m_locale->toString(coordinates.alt(), 'f', KGeoTag::altitudePrecision));
 }

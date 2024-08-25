@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -42,9 +42,8 @@ void BookmarksWidget::showInfo(const Coordinates &coordinates)
     if (! coordinates.isSet()) {
         m_info->clear();
     } else {
-        m_info->setText(i18n("Position: %1, %2; Altitude: %3 m",
-                             m_formatter->lon(coordinates),
-                             m_formatter->lat(coordinates),
+        m_info->setText(i18n("Position: %1; Altitude: %2",
+                             m_formatter->format(coordinates),
                              m_formatter->alt(coordinates)));
     }
 }
