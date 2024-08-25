@@ -97,9 +97,13 @@ public:
     void saveLatBeforeLon(bool state);
     const bool *latBeforeLon() const;
 
+    void saveCoordinatesFlavor(KGeoTag::CoordinatesFlavor flavor);
+    KGeoTag::CoordinatesFlavor coordinatesFlavor() const;
+
 private: // Variables
     KSharedConfig::Ptr m_config;
     bool m_latBeforeLon = false;
+    KGeoTag::CoordinatesFlavor m_coordinatesFlavor = KGeoTag::DecimalDegrees;
 
 };
 

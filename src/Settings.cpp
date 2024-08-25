@@ -23,6 +23,17 @@ static const QLatin1String s_splitImagesList("splitImagesList");
 // Coordinates
 static const QLatin1String s_coordinates("coordinates");
 static const QLatin1String s_latBeforeLon("latBeforeLon");
+static const QLatin1String s_coordinatesFlavor("flavor");
+static const QHash<KGeoTag::CoordinatesFlavor, QString> s_flavorEnumToString {
+    { KGeoTag::DecimalDegrees,               QStringLiteral("DecimalDegrees") },
+    { KGeoTag::DegreesDecimalMinutes,        QStringLiteral("DegreesDecimalMinutes") },
+    { KGeoTag::DegreesMinutesDecimalSeconds, QStringLiteral("DegreesMinutesDecimalSeconds") }
+};
+static const QHash<QString, KGeoTag::CoordinatesFlavor> s_flavorStringToEnum {
+    { QStringLiteral("DecimalDegrees"),               KGeoTag::DecimalDegrees },
+    { QStringLiteral("DegreesDecimalMinutes"),        KGeoTag::DegreesDecimalMinutes },
+    { QStringLiteral("DegreesMinutesDecimalSeconds"), KGeoTag::DegreesMinutesDecimalSeconds }
+};
 
 // Map
 static const QLatin1String s_map("map");
@@ -133,6 +144,13 @@ Settings::Settings(QObject *parent) : QObject(parent)
     // Initialize the "lat before lon" bool
     auto group = m_config->group(s_coordinates);
     m_latBeforeLon = group.readEntry(s_latBeforeLon, false);
+
+    // Initialize the coordinates flavor
+    const auto flavor = group.readEntry(s_coordinatesFlavor,
+                                        s_flavorEnumToString.value(KGeoTag::DecimalDegrees));
+    m_coordinatesFlavor = s_flavorStringToEnum.contains(flavor)
+                              ? s_flavorStringToEnum.value(flavor)
+                              : KGeoTag::DecimalDegrees;
 }
 
 // KMainWindow settings
@@ -541,4 +559,17 @@ void Settings::saveLatBeforeLon(bool state)
 const bool *Settings::latBeforeLon() const
 {
     return &m_latBeforeLon;
+}
+
+void Settings::saveCoordinatesFlavor(KGeoTag::CoordinatesFlavor flavor)
+{
+    m_coordinatesFlavor = flavor;
+    auto group = m_config->group(s_coordinates);
+    group.writeEntry(s_coordinatesFlavor, s_flavorEnumToString.value(flavor));
+    group.sync();
+}
+
+KGeoTag::CoordinatesFlavor Settings::coordinatesFlavor() const
+{
+    return m_coordinatesFlavor;
 }

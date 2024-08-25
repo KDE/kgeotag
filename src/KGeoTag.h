@@ -47,6 +47,12 @@ constexpr const int secondsPrecision = 2;
 // 10 cm altitude precision should be sufficient as well
 constexpr const int altitudePrecision = 1;
 
+enum CoordinatesFlavor {
+    DecimalDegrees,
+    DegreesDecimalMinutes,
+    DegreesMinutesDecimalSeconds
+};
+
 enum SearchType {
     CombinedMatchSearch,
     ExactMatchSearch,

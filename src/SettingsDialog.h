@@ -42,6 +42,7 @@ private: // Variables
     Settings *m_settings;
 
     QComboBox *m_coordinatesOrder;
+    QComboBox *m_coordinatesFlavor;
 
     QComboBox *m_imageListsMode;
     QCheckBox *m_splitImagesList;

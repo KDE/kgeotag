@@ -59,26 +59,39 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *coordinatesBox = new QGroupBox(i18n("Coordinates"));
     layout->addWidget(coordinatesBox);
 
-    auto *coordinatesBoxWrapper = new QVBoxLayout(coordinatesBox);
+    auto *coordinatesBoxLayout = new QVBoxLayout(coordinatesBox);
 
-    auto *coordinatesBoxLayout = new QHBoxLayout;
-    coordinatesBoxWrapper->addLayout(coordinatesBoxLayout);
+    auto *coordinatesBoxWrapper = new QHBoxLayout;
+    coordinatesBoxLayout->addLayout(coordinatesBoxWrapper);
 
-    coordinatesBoxLayout->addWidget(new QLabel(i18n("Coordinates order:")));
+    auto *coordinatesSettingsLayout = new QGridLayout;
+    coordinatesBoxWrapper->addLayout(coordinatesSettingsLayout);
+    coordinatesBoxWrapper->addStretch();
 
+    coordinatesSettingsLayout->addWidget(new QLabel(i18n("Coordinates order:")), 0, 0);
     m_coordinatesOrder = new QComboBox;
     m_coordinatesOrder->addItem(i18n("Longitude, latitude"));
     m_coordinatesOrder->addItem(i18n("Latitude, longitude"));
     m_coordinatesOrder->setCurrentIndex(*m_settings->latBeforeLon());
-    coordinatesBoxLayout->addWidget(m_coordinatesOrder);
+    coordinatesSettingsLayout->addWidget(m_coordinatesOrder, 0, 1);
 
-    coordinatesBoxLayout->addStretch();
+    coordinatesSettingsLayout->addWidget(new QLabel(i18n("Coordinates flavor:")), 1, 0);
+    m_coordinatesFlavor = new QComboBox;
+    m_coordinatesFlavor->addItem(i18n("Decimal degrees"),
+                                 static_cast<int>(KGeoTag::DecimalDegrees));
+    m_coordinatesFlavor->addItem(i18n("Degrees, decimal minutes"),
+                                 static_cast<int>(KGeoTag::DegreesDecimalMinutes));
+    m_coordinatesFlavor->addItem(i18n("Degrees, minutes, decimal seconds"),
+                                 static_cast<int>(KGeoTag::DegreesMinutesDecimalSeconds));
+    m_coordinatesFlavor->setCurrentIndex(
+        m_coordinatesFlavor->findData(static_cast<int>(m_settings->coordinatesFlavor())));
+    coordinatesSettingsLayout->addWidget(m_coordinatesFlavor, 1, 1);
 
-    auto *coordinatesOrderLabel = new QLabel(i18n(
+    auto *coordinatesSettingsLabel = new QLabel(i18n(
         "Changes to the coordinates formatting take effect as soon as the respective coordinates "
         "display is updated the next time. Restart KGeoTag to update everything at once."));
-    coordinatesOrderLabel->setWordWrap(true);
-    coordinatesBoxWrapper->addWidget(coordinatesOrderLabel);
+    coordinatesSettingsLabel->setWordWrap(true);
+    coordinatesBoxLayout->addWidget(coordinatesSettingsLabel);
 
     // Image lists
 
@@ -374,6 +387,8 @@ void SettingsDialog::setTrackColor()
 void SettingsDialog::accept()
 {
     m_settings->saveLatBeforeLon(m_coordinatesOrder->currentIndex());
+    m_settings->saveCoordinatesFlavor(static_cast<KGeoTag::CoordinatesFlavor>(
+        m_coordinatesFlavor->currentData().toInt()));
 
     const auto splitImagesList = m_imageListsMode->currentIndex() == 0;
     m_settings->saveSplitImagesList(splitImagesList);
