@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -28,6 +28,12 @@ constexpr const double earthRadius = 6371007.2;
 // 5 decimal places of degrees result in a precision of at worst about 1 m.
 // This should be by far enough for the present use-case.
 constexpr const int degreesPrecision = 5;
+
+// 4 decimal places of minutes result in a precision of at worst about 20 cm.
+constexpr const int minutesPrecision = 4;
+
+// 2 decimal places of seconds result in a precision of at worst about 30 cm.
+constexpr const int secondsPrecision = 2;
 
 // Same for 0,1 m altitude precision ;-)
 constexpr const int altitudePrecision = 1;
