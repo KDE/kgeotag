@@ -119,7 +119,7 @@ void BookmarksList::newManualBookmark()
 {
     CoordinatesDialog dialog(CoordinatesDialog::Mode::ManualBookmark,
                              m_settings->lookupElevationAutomatically(),
-                             *m_settings->latBeforeLon());
+                             m_settings->latBeforeLon());
     if (! dialog.exec()) {
         return;
     }
@@ -285,7 +285,7 @@ void BookmarksList::editCoordinates()
     auto &coordinates = m_bookmarks[id];
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false,
-                             *m_settings->latBeforeLon(), coordinates,
+                             m_settings->latBeforeLon(), coordinates,
                              i18nc("A quoted bookmark label", "\"%1\"", id));
     if (! dialog.exec()) {
         return;

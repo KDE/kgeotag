@@ -95,7 +95,7 @@ public:
     bool selectNextUntagged() const;
 
     void saveLatBeforeLon(bool state);
-    const bool *latBeforeLon() const;
+    bool latBeforeLon() const;
 
     void saveCoordinatesFlavor(KGeoTag::CoordinatesFlavor flavor);
     KGeoTag::CoordinatesFlavor coordinatesFlavor() const;

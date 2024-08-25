@@ -556,9 +556,9 @@ void Settings::saveLatBeforeLon(bool state)
     group.sync();
 }
 
-const bool *Settings::latBeforeLon() const
+bool Settings::latBeforeLon() const
 {
-    return &m_latBeforeLon;
+    return m_latBeforeLon;
 }
 
 void Settings::saveCoordinatesFlavor(KGeoTag::CoordinatesFlavor flavor)

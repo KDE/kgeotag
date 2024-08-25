@@ -72,7 +72,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_coordinatesOrder = new QComboBox;
     m_coordinatesOrder->addItem(i18n("Longitude, latitude"));
     m_coordinatesOrder->addItem(i18n("Latitude, longitude"));
-    m_coordinatesOrder->setCurrentIndex(*m_settings->latBeforeLon());
+    m_coordinatesOrder->setCurrentIndex(m_settings->latBeforeLon());
     coordinatesSettingsLayout->addWidget(m_coordinatesOrder, 0, 1);
 
     coordinatesSettingsLayout->addWidget(new QLabel(i18n("Coordinates flavor:")), 1, 0);

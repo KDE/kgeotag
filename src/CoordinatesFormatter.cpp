@@ -6,6 +6,7 @@
 #include "CoordinatesFormatter.h"
 #include "KGeoTag.h"
 #include "Coordinates.h"
+#include "Settings.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -16,11 +17,10 @@
 // C++ includes
 #include <cmath>
 
-CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale,
-                                           const bool *latBeforeLon)
+CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale, Settings *settings)
     : QObject(parent),
       m_locale(locale),
-      m_latBeforeLon(latBeforeLon)
+      m_settings(settings)
 {
 }
 
@@ -62,8 +62,8 @@ QString CoordinatesFormatter::formatLonLat(double value) const
 QString CoordinatesFormatter::format(const Coordinates &coordinates) const
 {
     return i18nc("Formatted coordinates, \"lon, lat\" or \"lat, lon\"", "%1, %2",
-                 *m_latBeforeLon ? lat(coordinates) : lon(coordinates),
-                 *m_latBeforeLon ? lon(coordinates) : lat(coordinates));
+                 m_settings->latBeforeLon() ? lat(coordinates) : lon(coordinates),
+                 m_settings->latBeforeLon() ? lon(coordinates) : lat(coordinates));
 }
 
 QString CoordinatesFormatter::lon(const Coordinates &coordinates) const
