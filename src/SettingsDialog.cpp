@@ -62,12 +62,15 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *listsBoxLayout = new QVBoxLayout(listsBox);
 
     auto *listsModeLabel = new QLabel(i18n(
-        "<p>Loaded images can either be listed in two different lists (one for all images without "
-        "and one for images with coordinates), or using a combined consecutive list for all images."
-        "</p>"
-        "<p>Use the following images list(s) mode:</p>"));
+        "Loaded images can either be listed in two different lists (one for all images without and "
+        "one for images with coordinates), or using a combined consecutive list for all images."));
     listsModeLabel->setWordWrap(true);
     listsBoxLayout->addWidget(listsModeLabel);
+
+    auto *listModeSelectionLayout = new QHBoxLayout;
+    listsBoxLayout->addLayout(listModeSelectionLayout);
+
+    listModeSelectionLayout->addWidget(new QLabel(i18n("Use the following images list(s) mode:")));
 
     m_imageListsMode = new QComboBox;
     m_imageListsMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -78,7 +81,9 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
     m_originalSplitImagesListValue = m_imageListsMode->currentIndex() == 0;
 
-    listsBoxLayout->addWidget(m_imageListsMode);
+    listModeSelectionLayout->addWidget(m_imageListsMode);
+
+    listModeSelectionLayout->addStretch();
 
     // Automatic matching
 
@@ -87,10 +92,11 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *searchMatchesBoxLayout = new QVBoxLayout(searchMatchesBox);
 
-    auto *matchModeLabel = new QLabel(i18n("Search type for the main menu \"Assign images to GPS "
-                                           "data\" entry"));
-    matchModeLabel->setWordWrap(true);
-    searchMatchesBoxLayout->addWidget(matchModeLabel);
+    auto *searchMatchesSelectionLayout = new QHBoxLayout;
+    searchMatchesBoxLayout->addLayout(searchMatchesSelectionLayout);
+
+    searchMatchesSelectionLayout->addWidget(new QLabel(i18n("Search type for \"Correlate images "
+                                                            "with GPS data\":")));
 
     m_automaticMatchingMode = new QComboBox;
     m_automaticMatchingMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -103,7 +109,9 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_automaticMatchingMode->setCurrentIndex(
         m_automaticMatchingMode->findData(m_settings->defaultMatchingMode()));
 
-    searchMatchesBoxLayout->addWidget(m_automaticMatchingMode);
+    searchMatchesSelectionLayout->addWidget(m_automaticMatchingMode);
+
+    searchMatchesSelectionLayout->addStretch();
 
     auto *matchModeNoteLabel = new QLabel(i18n(
         "This triggers an automatic (re-)assignment of all images, respecting the \"Exclude "
