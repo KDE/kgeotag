@@ -216,7 +216,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // Map
 
     m_mapWidget = m_sharedObjects->mapWidget();
-    m_mapCenterInfo = new MapCenterInfo(m_sharedObjects);
+    m_mapCenterInfo = new MapCenterInfo(m_sharedObjects, m_mapWidget->mapCenterMenu());
     connect(m_mapWidget, &MapWidget::mapMoved, m_mapCenterInfo, &MapCenterInfo::mapMoved);
 
     auto *mapWrapper = new QWidget;

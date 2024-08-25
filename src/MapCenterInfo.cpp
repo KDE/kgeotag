@@ -16,11 +16,13 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLocale>
+#include <QMenu>
 
-MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent)
+MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QMenu *mapCenterMenu, QWidget *parent)
     : QWidget(parent),
       m_formatter(sharedObjects->coordinatesFormatter()),
-      m_locale(sharedObjects->locale())
+      m_locale(sharedObjects->locale()),
+      m_mapCenterMenu(mapCenterMenu)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 
@@ -28,6 +30,11 @@ MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
 
     m_coordinatesLabel = new QLabel;
+    m_coordinatesLabel->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_coordinatesLabel, &QLabel::customContextMenuRequested, this, [this](const QPoint &pos)
+            {
+                m_mapCenterMenu->exec(m_coordinatesLabel->mapToGlobal(pos));
+            });
     layout->addWidget(m_coordinatesLabel);
 
     layout->addStretch();

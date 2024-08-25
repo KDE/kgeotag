@@ -45,6 +45,7 @@ public:
     void centerImage(const QModelIndex &index);
     void centerCoordinates(const Coordinates &coordinates);
     Coordinates currentCenter() const;
+    QMenu *mapCenterMenu() const;
 
 Q_SIGNALS:
     void mapMoved(const Coordinates &center);
@@ -68,6 +69,7 @@ private: // Variables
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     QMenu *m_contextMenu;
+    QMenu *m_mapCenterMenu;
     QVector<QAction *> m_floatersActions;
 
 };

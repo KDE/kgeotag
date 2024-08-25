@@ -136,10 +136,10 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     // Map center actions
 
     m_contextMenu->addSeparator();
-    auto *mapCenterMenu = m_contextMenu->addMenu(i18n("Current map center"));
+    m_mapCenterMenu = m_contextMenu->addMenu(i18n("Current map center"));
 
     // Copy coordinates to clipboard
-    auto *copyAction = mapCenterMenu->addAction(i18n("Copy coordinates to clipboard"));
+    auto *copyAction = m_mapCenterMenu->addAction(i18n("Copy coordinates to clipboard"));
     connect(copyAction, &QAction::triggered, this, [this]
             {
                 QGuiApplication::clipboard()->setText(
@@ -149,8 +149,8 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
             });
 
     // Request adding a bookmark
-    mapCenterMenu->addSeparator();
-    auto *requestBookmarkAction = mapCenterMenu->addAction(i18n("Add bookmark"));
+    m_mapCenterMenu->addSeparator();
+    auto *requestBookmarkAction = m_mapCenterMenu->addAction(i18n("Add bookmark"));
     connect(requestBookmarkAction, &QAction::triggered, this, &MapWidget::requestAddBookmark);
 
     // Don't use the MarbleWidget context menu, but our own
@@ -169,6 +169,11 @@ void MapWidget::showContextMenu(int x, int y)
     }
 
     m_contextMenu->exec(mapToGlobal(QPoint(x, y)));
+}
+
+QMenu *MapWidget::mapCenterMenu() const
+{
+    return m_mapCenterMenu;
 }
 
 void MapWidget::changeFloaterVisiblity(QAction *action)
