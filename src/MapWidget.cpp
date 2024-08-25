@@ -12,6 +12,7 @@
 #include "ImagesModel.h"
 #include "MimeHelper.h"
 #include "GeoDataModel.h"
+#include "CoordinatesFormatter.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -31,6 +32,9 @@
 #include <QMenu>
 #include <QAction>
 #include <QUrl>
+#include <QGuiApplication>
+#include <QClipboard>
+#include <QMessageBox>
 
 // C++ includes
 #include <functional>
@@ -50,7 +54,8 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     : Marble::MarbleWidget(parent),
       m_settings(sharedObjects->settings()),
       m_geoDataModel(sharedObjects->geoDataModel()),
-      m_imagesModel(sharedObjects->imagesModel())
+      m_imagesModel(sharedObjects->imagesModel()),
+      m_coordinatesFormatter(sharedObjects->coordinatesFormatter())
 {
     connect(this, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
             this, [this]
@@ -128,10 +133,24 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
         m_floatersActions.append(licenseAction);
     }
 
-    // Request adding a bookmark
+    // Map center actions
+
     m_contextMenu->addSeparator();
-    auto *requestBookmarkAction = m_contextMenu->addAction(i18n("Add bookmark for current map "
-                                                                "center"));
+    auto *mapCenterMenu = m_contextMenu->addMenu(i18n("Current map center"));
+
+    // Copy coordinates to clipboard
+    auto *copyAction = mapCenterMenu->addAction(i18n("Copy coordinates to clipboard"));
+    connect(copyAction, &QAction::triggered, this, [this]
+            {
+                QGuiApplication::clipboard()->setText(
+                    m_coordinatesFormatter->format(currentCenter()));
+                QMessageBox::information(this, i18n("Copy coordinates to clipboard"),
+                                         i18n("Coordinates copied!"));
+            });
+
+    // Request adding a bookmark
+    mapCenterMenu->addSeparator();
+    auto *requestBookmarkAction = mapCenterMenu->addAction(i18n("Add bookmark"));
     connect(requestBookmarkAction, &QAction::triggered, this, &MapWidget::requestAddBookmark);
 
     // Don't use the MarbleWidget context menu, but our own

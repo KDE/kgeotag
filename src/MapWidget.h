@@ -25,6 +25,7 @@ class SharedObjects;
 class Settings;
 class GeoDataModel;
 class ImagesModel;
+class CoordinatesFormatter;
 
 // Qt classes
 class QDragEnterEvent;
@@ -63,6 +64,7 @@ private: // Variables
     Settings *m_settings;
     GeoDataModel *m_geoDataModel;
     ImagesModel *m_imagesModel;
+    CoordinatesFormatter *m_coordinatesFormatter;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     QMenu *m_contextMenu;

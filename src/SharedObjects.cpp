@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -20,8 +20,8 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
     m_geoDataModel = new GeoDataModel(this);
     m_gpxEngine = new GpxEngine(this, m_geoDataModel);
     m_elevationEngine = new ElevationEngine(this, m_settings);
-    m_mapWidget = new MapWidget(this);
     m_coordinatesFormatter = new CoordinatesFormatter(this, &m_locale);
+    m_mapWidget = new MapWidget(this);
 }
 
 Settings *SharedObjects::settings() const
