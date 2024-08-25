@@ -26,6 +26,8 @@ BookmarksWidget::BookmarksWidget(SharedObjects *sharedObjects, QWidget *parent)
     connect(m_bookmarksList, &BookmarksList::bookmarksChanged,
             this, &BookmarksWidget::bookmarksChanged);
     connect(m_bookmarksList, &BookmarksList::showInfo, this, &BookmarksWidget::showInfo);
+    connect(this, &BookmarksWidget::requestAddBookmark,
+            m_bookmarksList, &BookmarksList::newBookmark);
     layout->addWidget(m_bookmarksList);
 
     m_info = new QLabel;

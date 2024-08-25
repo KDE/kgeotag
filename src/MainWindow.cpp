@@ -228,6 +228,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
     connect(m_mapWidget, &MapWidget::requestLoadGpx, this, &MainWindow::addGpx);
+    connect(m_mapWidget, &MapWidget::requestAddBookmark,
+            m_bookmarksWidget, &BookmarksWidget::requestAddBookmark);
 
     // Images lists
 

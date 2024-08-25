@@ -75,13 +75,14 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     // Build a context menu
 
     m_contextMenu = new QMenu(this);
-    m_contextMenu->addSection(i18n("Floating items"));
+
+    auto *floatersMenu = m_contextMenu->addMenu(i18n("Displayed floating items"));
 
     const auto floatItemsList = floatItems();
     const auto visibility = m_settings->floatersVisibility();
 
     // Add a "Toggle crosshairs" action
-    auto *crossHairsAction = m_contextMenu->addAction(i18n("Crosshairs"));
+    auto *crossHairsAction = floatersMenu->addAction(i18n("Crosshairs"));
     crossHairsAction->setCheckable(true);
     connect(crossHairsAction, &QAction::toggled, this, &Marble::MarbleWidget::setShowCrosshairs);
     crossHairsAction->setChecked(m_settings->showCrosshairs());
@@ -89,7 +90,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
 
     // Add actions for all supported floaters
 
-    m_contextMenu->addSeparator();
+    floatersMenu->addSeparator();
 
     for (const auto &item : floatItemsList) {
         const auto id = item->nameId();
@@ -101,7 +102,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
             continue;
         }
 
-        auto *action = m_contextMenu->addAction(item->name());
+        auto *action = floatersMenu->addAction(item->name());
         action->setIcon(item->icon());
         action->setData(id);
         action->setCheckable(true);
@@ -117,8 +118,8 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     // The "License" floater is always shown on startup (by Marble itself)
     auto *licenseFloater = floatItem(s_licenseFloaterId);
     if (licenseFloater != nullptr) {
-        m_contextMenu->addSeparator();
-        auto *licenseAction = m_contextMenu->addAction(licenseFloater->name());
+        floatersMenu->addSeparator();
+        auto *licenseAction = floatersMenu->addAction(licenseFloater->name());
         licenseAction->setCheckable(true);
         licenseAction->setChecked(true);
         licenseAction->setData(s_licenseFloaterId);
@@ -126,6 +127,12 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
                 this, std::bind(&MapWidget::changeFloaterVisiblity, this, licenseAction));
         m_floatersActions.append(licenseAction);
     }
+
+    // Request adding a bookmark
+    m_contextMenu->addSeparator();
+    auto *requestBookmarkAction = m_contextMenu->addAction(i18n("Add bookmark for current map "
+                                                                "center"));
+    connect(requestBookmarkAction, &QAction::triggered, this, &MapWidget::requestAddBookmark);
 
     // Don't use the MarbleWidget context menu, but our own
     auto *handler = inputHandler();

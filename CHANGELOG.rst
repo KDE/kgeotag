@@ -54,6 +54,8 @@ Added
   keyboard shortcut. Optionally, you can also have the next untagged image selected automatically
   afterwards. Thanks to Robert Menger for the respective feature request :-)
 
+* Bookmarks can now be added using the map's context menu.
+
 Changed
 =======
 
