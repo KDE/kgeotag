@@ -54,6 +54,45 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *layout = new QVBoxLayout(settingsWidget);
 
+    // Coordinates
+
+    auto *coordinatesBox = new QGroupBox(i18n("Coordinates"));
+    layout->addWidget(coordinatesBox);
+
+    auto *coordinatesBoxLayout = new QVBoxLayout(coordinatesBox);
+
+    auto *coordinatesBoxWrapper = new QHBoxLayout;
+    coordinatesBoxLayout->addLayout(coordinatesBoxWrapper);
+
+    auto *coordinatesSettingsLayout = new QGridLayout;
+    coordinatesBoxWrapper->addLayout(coordinatesSettingsLayout);
+    coordinatesBoxWrapper->addStretch();
+
+    coordinatesSettingsLayout->addWidget(new QLabel(i18n("Coordinates order:")), 0, 0);
+    m_coordinatesOrder = new QComboBox;
+    m_coordinatesOrder->addItem(i18n("Longitude, latitude"));
+    m_coordinatesOrder->addItem(i18n("Latitude, longitude"));
+    m_coordinatesOrder->setCurrentIndex(m_settings->latBeforeLon());
+    coordinatesSettingsLayout->addWidget(m_coordinatesOrder, 0, 1);
+
+    coordinatesSettingsLayout->addWidget(new QLabel(i18n("Coordinates flavor:")), 1, 0);
+    m_coordinatesFlavor = new QComboBox;
+    m_coordinatesFlavor->addItem(i18n("Decimal degrees"),
+                                 static_cast<int>(KGeoTag::DecimalDegrees));
+    m_coordinatesFlavor->addItem(i18n("Degrees, decimal minutes"),
+                                 static_cast<int>(KGeoTag::DegreesDecimalMinutes));
+    m_coordinatesFlavor->addItem(i18n("Degrees, minutes, decimal seconds"),
+                                 static_cast<int>(KGeoTag::DegreesMinutesDecimalSeconds));
+    m_coordinatesFlavor->setCurrentIndex(
+        m_coordinatesFlavor->findData(static_cast<int>(m_settings->coordinatesFlavor())));
+    coordinatesSettingsLayout->addWidget(m_coordinatesFlavor, 1, 1);
+
+    auto *coordinatesSettingsLabel = new QLabel(i18n(
+        "Changes to the coordinates formatting take effect as soon as the respective coordinates "
+        "display is updated the next time. Restart KGeoTag to update everything at once."));
+    coordinatesSettingsLabel->setWordWrap(true);
+    coordinatesBoxLayout->addWidget(coordinatesSettingsLabel);
+
     // Image lists
 
     auto *listsBox = new QGroupBox(i18n("Image lists"));
@@ -62,12 +101,15 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *listsBoxLayout = new QVBoxLayout(listsBox);
 
     auto *listsModeLabel = new QLabel(i18n(
-        "<p>Loaded images can either be listed in two different lists (one for all images without "
-        "and one for images with coordinates), or using a combined consecutive list for all images."
-        "</p>"
-        "<p>Use the following images list(s) mode:</p>"));
+        "Loaded images can either be listed in two different lists (one for all images without and "
+        "one for images with coordinates), or using a combined consecutive list for all images."));
     listsModeLabel->setWordWrap(true);
     listsBoxLayout->addWidget(listsModeLabel);
+
+    auto *listModeSelectionLayout = new QHBoxLayout;
+    listsBoxLayout->addLayout(listModeSelectionLayout);
+
+    listModeSelectionLayout->addWidget(new QLabel(i18n("Use the following images list(s) mode:")));
 
     m_imageListsMode = new QComboBox;
     m_imageListsMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -78,7 +120,9 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
     m_originalSplitImagesListValue = m_imageListsMode->currentIndex() == 0;
 
-    listsBoxLayout->addWidget(m_imageListsMode);
+    listModeSelectionLayout->addWidget(m_imageListsMode);
+
+    listModeSelectionLayout->addStretch();
 
     // Automatic matching
 
@@ -87,10 +131,11 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *searchMatchesBoxLayout = new QVBoxLayout(searchMatchesBox);
 
-    auto *matchModeLabel = new QLabel(i18n("Search type for the main menu \"Assign images to GPS "
-                                           "data\" entry"));
-    matchModeLabel->setWordWrap(true);
-    searchMatchesBoxLayout->addWidget(matchModeLabel);
+    auto *searchMatchesSelectionLayout = new QHBoxLayout;
+    searchMatchesBoxLayout->addLayout(searchMatchesSelectionLayout);
+
+    searchMatchesSelectionLayout->addWidget(new QLabel(i18n("Search type for \"Correlate images "
+                                                            "with GPS data\":")));
 
     m_automaticMatchingMode = new QComboBox;
     m_automaticMatchingMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -103,7 +148,9 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_automaticMatchingMode->setCurrentIndex(
         m_automaticMatchingMode->findData(m_settings->defaultMatchingMode()));
 
-    searchMatchesBoxLayout->addWidget(m_automaticMatchingMode);
+    searchMatchesSelectionLayout->addWidget(m_automaticMatchingMode);
+
+    searchMatchesSelectionLayout->addStretch();
 
     auto *matchModeNoteLabel = new QLabel(i18n(
         "This triggers an automatic (re-)assignment of all images, respecting the \"Exclude "
@@ -339,6 +386,10 @@ void SettingsDialog::setTrackColor()
 
 void SettingsDialog::accept()
 {
+    m_settings->saveLatBeforeLon(m_coordinatesOrder->currentIndex());
+    m_settings->saveCoordinatesFlavor(static_cast<KGeoTag::CoordinatesFlavor>(
+        m_coordinatesFlavor->currentData().toInt()));
+
     const auto splitImagesList = m_imageListsMode->currentIndex() == 0;
     m_settings->saveSplitImagesList(splitImagesList);
 

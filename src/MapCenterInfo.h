@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -17,13 +17,15 @@ class CoordinatesFormatter;
 // Qt classes
 class QLabel;
 class QLocale;
+class QMenu;
 
 class MapCenterInfo : public QWidget
 {
     Q_OBJECT
 
 public:
-    explicit MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent = nullptr);
+    explicit MapCenterInfo(SharedObjects *sharedObjects, QMenu *mapCenterMenu,
+                           QWidget *parent = nullptr);
 
 public Q_SLOTS:
     void mapMoved(const Coordinates &center);
@@ -35,6 +37,7 @@ private: // Functions
 private: // Variables
     CoordinatesFormatter *m_formatter;
     const QLocale *m_locale;
+    QMenu *m_mapCenterMenu;
     QLabel *m_coordinatesLabel;
     QLabel *m_dateTimeLabel;
 

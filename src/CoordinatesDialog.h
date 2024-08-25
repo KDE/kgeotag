@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -26,7 +26,7 @@ public:
         EditCoordinates
     };
 
-    explicit CoordinatesDialog(Mode mode, bool hideAlt,
+    explicit CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
                                const Coordinates &coordinates = Coordinates(),
                                const QString &target = QString());
     QString label() const;

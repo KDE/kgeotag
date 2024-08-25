@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -106,9 +106,8 @@ void PreviewWidget::setImage(const QModelIndex &index)
 
     const auto coordinates = index.data(KGeoTag::CoordinatesRole).value<Coordinates>();
     if (coordinates.isSet()) {
-        m_coordinates->setText(i18n("<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>",
-            m_formatter->lon(coordinates),
-            m_formatter->lat(coordinates),
+        m_coordinates->setText(i18n("<p>Position: %1; Altitude: %2<br/>(%3)</p>",
+            m_formatter->format(coordinates),
             m_formatter->alt(coordinates),
             m_matchString.value(index.data(KGeoTag::MatchTypeRole).value<KGeoTag::MatchType>())));
     } else {

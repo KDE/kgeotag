@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -30,6 +30,7 @@ public:
 
 Q_SIGNALS:
     void bookmarksChanged();
+    void requestAddBookmark();
 
 private Q_SLOTS:
     void showInfo(const Coordinates &coordinates);

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -16,11 +16,13 @@
 #include <QHBoxLayout>
 #include <QLabel>
 #include <QLocale>
+#include <QMenu>
 
-MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent)
+MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QMenu *mapCenterMenu, QWidget *parent)
     : QWidget(parent),
       m_formatter(sharedObjects->coordinatesFormatter()),
-      m_locale(sharedObjects->locale())
+      m_locale(sharedObjects->locale()),
+      m_mapCenterMenu(mapCenterMenu)
 {
     setSizePolicy(QSizePolicy::Preferred, QSizePolicy::Maximum);
 
@@ -28,6 +30,11 @@ MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent)
     layout->setContentsMargins(0, 0, 0, 0);
 
     m_coordinatesLabel = new QLabel;
+    m_coordinatesLabel->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(m_coordinatesLabel, &QLabel::customContextMenuRequested, this, [this](const QPoint &pos)
+            {
+                m_mapCenterMenu->exec(m_coordinatesLabel->mapToGlobal(pos));
+            });
     layout->addWidget(m_coordinatesLabel);
 
     layout->addStretch();
@@ -38,10 +45,7 @@ MapCenterInfo::MapCenterInfo(SharedObjects *sharedObjects, QWidget *parent)
 
 void MapCenterInfo::displayCoordinates(const Coordinates &coordinates)
 {
-    m_coordinatesLabel->setText(i18nc("This displays the coordinates of the current map center",
-                                      "Map center position: %1, %2",
-                                m_formatter->lon(coordinates),
-                                m_formatter->lat(coordinates)));
+    m_coordinatesLabel->setText(i18n("Map center position: %1", m_formatter->format(coordinates)));
 }
 
 void MapCenterInfo::mapMoved(const Coordinates &center)

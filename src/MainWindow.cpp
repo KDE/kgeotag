@@ -216,7 +216,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     // Map
 
     m_mapWidget = m_sharedObjects->mapWidget();
-    m_mapCenterInfo = new MapCenterInfo(m_sharedObjects);
+    m_mapCenterInfo = new MapCenterInfo(m_sharedObjects, m_mapWidget->mapCenterMenu());
     connect(m_mapWidget, &MapWidget::mapMoved, m_mapCenterInfo, &MapCenterInfo::mapMoved);
 
     auto *mapWrapper = new QWidget;
@@ -228,6 +228,8 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     connect(m_mapWidget, &MapWidget::imagesDropped, this, &MainWindow::imagesDropped);
     connect(m_mapWidget, &MapWidget::requestLoadGpx, this, &MainWindow::addGpx);
+    connect(m_mapWidget, &MapWidget::requestAddBookmark,
+            m_bookmarksWidget, &BookmarksWidget::requestAddBookmark);
 
     // Images lists
 
@@ -972,7 +974,8 @@ void MainWindow::assignManually(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates,
-                             m_settings->lookupElevationAutomatically(), Coordinates(), label);
+                             m_settings->lookupElevationAutomatically(),
+                             m_settings->latBeforeLon(), Coordinates(), label);
     if (! dialog.exec()) {
         return;
     }
@@ -1004,6 +1007,7 @@ void MainWindow::editCoordinates(ImagesListView *list)
     }
 
     CoordinatesDialog dialog(CoordinatesDialog::Mode::EditCoordinates, false,
+                             m_settings->latBeforeLon(),
                              identicalCoordinates ? coordinates : Coordinates(),
                              label);
     if (! dialog.exec()) {

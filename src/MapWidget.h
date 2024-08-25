@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -25,6 +25,7 @@ class SharedObjects;
 class Settings;
 class GeoDataModel;
 class ImagesModel;
+class CoordinatesFormatter;
 
 // Qt classes
 class QDragEnterEvent;
@@ -44,11 +45,13 @@ public:
     void centerImage(const QModelIndex &index);
     void centerCoordinates(const Coordinates &coordinates);
     Coordinates currentCenter() const;
+    QMenu *mapCenterMenu() const;
 
 Q_SIGNALS:
     void mapMoved(const Coordinates &center);
     void imagesDropped(const QVector<QString> &paths);
     void requestLoadGpx(const QVector<QString> &paths);
+    void requestAddBookmark();
 
 protected:
     void dragEnterEvent(QDragEnterEvent *event) override;
@@ -62,9 +65,11 @@ private: // Variables
     Settings *m_settings;
     GeoDataModel *m_geoDataModel;
     ImagesModel *m_imagesModel;
+    CoordinatesFormatter *m_coordinatesFormatter;
     QVector<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     QMenu *m_contextMenu;
+    QMenu *m_mapCenterMenu;
     QVector<QAction *> m_floatersActions;
 
 };

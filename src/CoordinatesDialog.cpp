@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -18,8 +18,8 @@
 #include <QDialogButtonBox>
 #include <QDebug>
 
-CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, const Coordinates &coordinates,
-                                     const QString &target)
+CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
+                                     const Coordinates &coordinates, const QString &target)
     : QDialog(QApplication::activeWindow())
 {
     auto *layout = new QVBoxLayout(this);
@@ -38,23 +38,23 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, const Coordinates 
     grid->addWidget(m_label, row, 1);
 
     auto *lonLabel = new QLabel(i18n("Longitude:"));
-    grid->addWidget(lonLabel, ++row, 0);
     m_lon = new QDoubleSpinBox;
     m_lon->setDecimals(KGeoTag::degreesPrecision);
     m_lon->setRange(-180.0, 180.0);
     m_lon->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lon->setValue(coordinates.lon());
-    grid->addWidget(m_lon, row, 1);
 
     auto *latLabel = new QLabel(i18n("Latitude:"));
-    grid->addWidget(latLabel, ++row, 0);
     m_lat = new QDoubleSpinBox;
     m_lat->setDecimals(KGeoTag::degreesPrecision);
     m_lat->setRange(-90.0, 90.0);
     m_lat->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lat->setValue(coordinates.lat());
-    grid->addWidget(m_lat, row, 1);
 
+    grid->addWidget(latBeforeLon ? latLabel : lonLabel, ++row, 0);
+    grid->addWidget(latBeforeLon ? m_lat : m_lon, row, 1);
+    grid->addWidget(latBeforeLon ? lonLabel : latLabel, ++row, 0);
+    grid->addWidget(latBeforeLon ? m_lon : m_lat, row, 1);
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
     grid->addWidget(altLabel, ++row, 0);
@@ -73,7 +73,6 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, const Coordinates 
     automaticAltLabel->setVisible(hideAlt);
 
     switch (mode) {
-
     case Mode::ManualBookmark:
         setWindowTitle(i18n("New bookmark"));
         titleLabel->setText(i18n("Data for the new bookmark:"));
@@ -85,7 +84,6 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, const Coordinates 
         setWindowTitle(i18n("Manual coordinates"));
         titleLabel->setText(i18n("Coordinates for %1:", target));
         break;
-
     }
 
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);

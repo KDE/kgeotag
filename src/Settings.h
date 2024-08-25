@@ -94,8 +94,16 @@ public:
     void saveSelectNextUntagged(bool state);
     bool selectNextUntagged() const;
 
+    void saveLatBeforeLon(bool state);
+    bool latBeforeLon() const;
+
+    void saveCoordinatesFlavor(KGeoTag::CoordinatesFlavor flavor);
+    KGeoTag::CoordinatesFlavor coordinatesFlavor() const;
+
 private: // Variables
     KSharedConfig::Ptr m_config;
+    bool m_latBeforeLon = false;
+    KGeoTag::CoordinatesFlavor m_coordinatesFlavor = KGeoTag::DecimalDegrees;
 
 };
 

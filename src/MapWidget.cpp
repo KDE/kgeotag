@@ -12,6 +12,7 @@
 #include "ImagesModel.h"
 #include "MimeHelper.h"
 #include "GeoDataModel.h"
+#include "CoordinatesFormatter.h"
 
 // Marble includes
 #include <marble/GeoPainter.h>
@@ -31,6 +32,9 @@
 #include <QMenu>
 #include <QAction>
 #include <QUrl>
+#include <QGuiApplication>
+#include <QClipboard>
+#include <QMessageBox>
 
 // C++ includes
 #include <functional>
@@ -50,7 +54,8 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     : Marble::MarbleWidget(parent),
       m_settings(sharedObjects->settings()),
       m_geoDataModel(sharedObjects->geoDataModel()),
-      m_imagesModel(sharedObjects->imagesModel())
+      m_imagesModel(sharedObjects->imagesModel()),
+      m_coordinatesFormatter(sharedObjects->coordinatesFormatter())
 {
     connect(this, &Marble::MarbleWidget::visibleLatLonAltBoxChanged,
             this, [this]
@@ -75,13 +80,14 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     // Build a context menu
 
     m_contextMenu = new QMenu(this);
-    m_contextMenu->addSection(i18n("Floating items"));
+
+    auto *floatersMenu = m_contextMenu->addMenu(i18n("Displayed floating items"));
 
     const auto floatItemsList = floatItems();
     const auto visibility = m_settings->floatersVisibility();
 
     // Add a "Toggle crosshairs" action
-    auto *crossHairsAction = m_contextMenu->addAction(i18n("Crosshairs"));
+    auto *crossHairsAction = floatersMenu->addAction(i18n("Crosshairs"));
     crossHairsAction->setCheckable(true);
     connect(crossHairsAction, &QAction::toggled, this, &Marble::MarbleWidget::setShowCrosshairs);
     crossHairsAction->setChecked(m_settings->showCrosshairs());
@@ -89,7 +95,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
 
     // Add actions for all supported floaters
 
-    m_contextMenu->addSeparator();
+    floatersMenu->addSeparator();
 
     for (const auto &item : floatItemsList) {
         const auto id = item->nameId();
@@ -101,7 +107,7 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
             continue;
         }
 
-        auto *action = m_contextMenu->addAction(item->name());
+        auto *action = floatersMenu->addAction(item->name());
         action->setIcon(item->icon());
         action->setData(id);
         action->setCheckable(true);
@@ -117,8 +123,8 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     // The "License" floater is always shown on startup (by Marble itself)
     auto *licenseFloater = floatItem(s_licenseFloaterId);
     if (licenseFloater != nullptr) {
-        m_contextMenu->addSeparator();
-        auto *licenseAction = m_contextMenu->addAction(licenseFloater->name());
+        floatersMenu->addSeparator();
+        auto *licenseAction = floatersMenu->addAction(licenseFloater->name());
         licenseAction->setCheckable(true);
         licenseAction->setChecked(true);
         licenseAction->setData(s_licenseFloaterId);
@@ -126,6 +132,26 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
                 this, std::bind(&MapWidget::changeFloaterVisiblity, this, licenseAction));
         m_floatersActions.append(licenseAction);
     }
+
+    // Map center actions
+
+    m_contextMenu->addSeparator();
+    m_mapCenterMenu = m_contextMenu->addMenu(i18n("Current map center"));
+
+    // Copy coordinates to clipboard
+    auto *copyAction = m_mapCenterMenu->addAction(i18n("Copy coordinates to clipboard"));
+    connect(copyAction, &QAction::triggered, this, [this]
+            {
+                QGuiApplication::clipboard()->setText(
+                    m_coordinatesFormatter->format(currentCenter()));
+                QMessageBox::information(this, i18n("Copy coordinates to clipboard"),
+                                         i18n("Coordinates copied!"));
+            });
+
+    // Request adding a bookmark
+    m_mapCenterMenu->addSeparator();
+    auto *requestBookmarkAction = m_mapCenterMenu->addAction(i18n("Add bookmark"));
+    connect(requestBookmarkAction, &QAction::triggered, this, &MapWidget::requestAddBookmark);
 
     // Don't use the MarbleWidget context menu, but our own
     auto *handler = inputHandler();
@@ -143,6 +169,11 @@ void MapWidget::showContextMenu(int x, int y)
     }
 
     m_contextMenu->exec(mapToGlobal(QPoint(x, y)));
+}
+
+QMenu *MapWidget::mapCenterMenu() const
+{
+    return m_mapCenterMenu;
 }
 
 void MapWidget::changeFloaterVisiblity(QAction *action)

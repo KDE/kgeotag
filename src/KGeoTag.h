@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -25,12 +25,33 @@ constexpr const double maximalAltitude = 8900.0;
 // Earth radius according to the GRS 80 ellipsoid (radius of a sphere of equal area)
 constexpr const double earthRadius = 6371007.2;
 
-// 5 decimal places of degrees result in a precision of at worst about 1 m.
-// This should be by far enough for the present use-case.
-constexpr const int degreesPrecision = 5;
+// The distance between the lines of latitude (north-south position) is always the same.
+// The distance between the lines of longitude (east-west position) depends on the latitude.
+// At 0° N/S (at the equator), the distance is the biggest, at 90° N/S, it's 0.
+//
+// If we assume an earth circumference of 40,030,219 m, 1° latitude or longitude at the equator
+// describes a distance of about 111,195 m.
+//
+// So if we want a worst-case (equator) precision of < 1 m (which should be way enough for what we
+// do here), we need:
 
-// Same for 0,1 m altitude precision ;-)
+// 6 decimal places for decial degrees (--> ca. 11 cm precision)
+constexpr const int degreesPrecision = 6;
+
+// 4 decimal places for decimal minutes (--> ca. 19 cm precision)
+constexpr const int minutesPrecision = 4;
+
+// 2 decimal places for decimal seconds (--> ca. 31 cm precision)
+constexpr const int secondsPrecision = 2;
+
+// 10 cm altitude precision should be sufficient as well
 constexpr const int altitudePrecision = 1;
+
+enum CoordinatesFlavor {
+    DecimalDegrees,
+    DegreesDecimalMinutes,
+    DegreesMinutesDecimalSeconds
+};
 
 enum SearchType {
     CombinedMatchSearch,
