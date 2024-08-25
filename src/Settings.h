@@ -94,8 +94,12 @@ public:
     void saveSelectNextUntagged(bool state);
     bool selectNextUntagged() const;
 
+    void saveLatBeforeLon(bool state);
+    const bool *latBeforeLon() const;
+
 private: // Variables
     KSharedConfig::Ptr m_config;
+    bool m_latBeforeLon = false;
 
 };
 

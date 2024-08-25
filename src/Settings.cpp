@@ -20,6 +20,10 @@ static const QLatin1String s_windowState("windowState");
 static const QLatin1String s_lastOpenPath("lastOpenPath");
 static const QLatin1String s_splitImagesList("splitImagesList");
 
+// Coordinates
+static const QLatin1String s_coordinates("coordinates");
+static const QLatin1String s_latBeforeLon("latBeforeLon");
+
 // Map
 static const QLatin1String s_map("map");
 static const QLatin1String s_showCrosshairs("showCrosshairs");
@@ -125,6 +129,10 @@ static const QString s_bookmarksDataAlt = QStringLiteral("alt");
 Settings::Settings(QObject *parent) : QObject(parent)
 {
     m_config = KSharedConfig::openConfig();
+
+    // Initialize the "lat before lon" bool
+    auto group = m_config->group(s_coordinates);
+    m_latBeforeLon = group.readEntry(s_latBeforeLon, false);
 }
 
 // KMainWindow settings
@@ -520,4 +528,17 @@ bool Settings::selectNextUntagged() const
 {
     auto group = m_config->group(s_assignment);
     return group.readEntry(s_selectNextUntagged, true);
+}
+
+void Settings::saveLatBeforeLon(bool state)
+{
+    m_latBeforeLon = state;
+    auto group = m_config->group(s_coordinates);
+    group.writeEntry(s_latBeforeLon, state);
+    group.sync();
+}
+
+const bool *Settings::latBeforeLon() const
+{
+    return &m_latBeforeLon;
 }

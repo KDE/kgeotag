@@ -19,7 +19,7 @@ class CoordinatesFormatter : public QObject
     Q_OBJECT
 
 public:
-    explicit CoordinatesFormatter(QObject *parent, QLocale *locale);
+    explicit CoordinatesFormatter(QObject *parent, QLocale *locale, const bool *latBeforeLon);
     QString format(const Coordinates &coordinates) const;
     QString alt(const Coordinates &coordinates) const;
 
@@ -30,6 +30,7 @@ private: // Functions
 
 private: // Variables
     QLocale *m_locale;
+    const bool *m_latBeforeLon;
 
 };
 

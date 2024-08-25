@@ -20,7 +20,7 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
     m_geoDataModel = new GeoDataModel(this);
     m_gpxEngine = new GpxEngine(this, m_geoDataModel);
     m_elevationEngine = new ElevationEngine(this, m_settings);
-    m_coordinatesFormatter = new CoordinatesFormatter(this, &m_locale);
+    m_coordinatesFormatter = new CoordinatesFormatter(this, &m_locale, m_settings->latBeforeLon());
     m_mapWidget = new MapWidget(this);
 }
 

@@ -16,9 +16,11 @@
 // C++ includes
 #include <cmath>
 
-CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale)
+CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale,
+                                           const bool *latBeforeLon)
     : QObject(parent),
-      m_locale(locale)
+      m_locale(locale),
+      m_latBeforeLon(latBeforeLon)
 {
 }
 
@@ -29,8 +31,9 @@ QString CoordinatesFormatter::formatLonLat(double value) const
 
 QString CoordinatesFormatter::format(const Coordinates &coordinates) const
 {
-    return i18nc("Formatted coordinates, first longitude then latitude", "%1, %2",
-                 lon(coordinates), lat(coordinates));
+    return i18nc("Formatted coordinates, \"lon, lat\" or \"lat, lon\"", "%1, %2",
+                 *m_latBeforeLon ? lat(coordinates) : lon(coordinates),
+                 *m_latBeforeLon ? lon(coordinates) : lat(coordinates));
 }
 
 QString CoordinatesFormatter::lon(const Coordinates &coordinates) const

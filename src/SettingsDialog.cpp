@@ -54,6 +54,23 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *layout = new QVBoxLayout(settingsWidget);
 
+    // Coordinates
+
+    auto *coordinatesBox = new QGroupBox(i18n("Coordinates"));
+    layout->addWidget(coordinatesBox);
+
+    auto *coordinatesBoxLayout = new QHBoxLayout(coordinatesBox);
+
+    coordinatesBoxLayout->addWidget(new QLabel(i18n("Coordinates order:")));
+
+    m_coordinatesOrder = new QComboBox;
+    m_coordinatesOrder->addItem(i18n("Longitude, latitude"));
+    m_coordinatesOrder->addItem(i18n("Latitude, longitude"));
+    m_coordinatesOrder->setCurrentIndex(*m_settings->latBeforeLon());
+    coordinatesBoxLayout->addWidget(m_coordinatesOrder);
+
+    coordinatesBoxLayout->addStretch();
+
     // Image lists
 
     auto *listsBox = new QGroupBox(i18n("Image lists"));
@@ -347,6 +364,8 @@ void SettingsDialog::setTrackColor()
 
 void SettingsDialog::accept()
 {
+    m_settings->saveLatBeforeLon(m_coordinatesOrder->currentIndex());
+
     const auto splitImagesList = m_imageListsMode->currentIndex() == 0;
     m_settings->saveSplitImagesList(splitImagesList);
 
