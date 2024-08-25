@@ -59,7 +59,10 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *coordinatesBox = new QGroupBox(i18n("Coordinates"));
     layout->addWidget(coordinatesBox);
 
-    auto *coordinatesBoxLayout = new QHBoxLayout(coordinatesBox);
+    auto *coordinatesBoxWrapper = new QVBoxLayout(coordinatesBox);
+
+    auto *coordinatesBoxLayout = new QHBoxLayout;
+    coordinatesBoxWrapper->addLayout(coordinatesBoxLayout);
 
     coordinatesBoxLayout->addWidget(new QLabel(i18n("Coordinates order:")));
 
@@ -70,6 +73,12 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     coordinatesBoxLayout->addWidget(m_coordinatesOrder);
 
     coordinatesBoxLayout->addStretch();
+
+    auto *coordinatesOrderLabel = new QLabel(i18n(
+        "Changes to the coordinates formatting take effect as soon as the respective coordinates "
+        "display is updated the next time. Restart KGeoTag to update everything at once."));
+    coordinatesOrderLabel->setWordWrap(true);
+    coordinatesBoxWrapper->addWidget(coordinatesOrderLabel);
 
     // Image lists
 

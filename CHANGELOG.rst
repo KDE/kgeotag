@@ -57,6 +57,9 @@ Added
 * Added more functionality to the map's context menu: Bookmarks can now be added for the current
   map center and it's coordinates can be copied to the clipboard.
 
+* The displayed order of coordinates can now be configured, either "Longitude, latitude" (as
+  before) or "Latitude, longitude".
+
 Changed
 =======
 
