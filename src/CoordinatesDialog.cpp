@@ -117,12 +117,12 @@ QString CoordinatesDialog::label() const
 
 double CoordinatesDialog::lon() const
 {
-    return m_lonDeg->value() * m_lonDirection->currentIndex() == 0 ? 1 : -1;
+    return m_lonDeg->value() * (m_lonDirection->currentIndex() == 0 ? 1.0 : -1.0);
 }
 
 double CoordinatesDialog::lat() const
 {
-    return m_latDeg->value() * m_latDirection->currentIndex() == 0 ? 1 : -1;
+    return m_latDeg->value() * (m_latDirection->currentIndex() == 0 ? 1.0 : -1.0);
 }
 
 double CoordinatesDialog::alt() const
