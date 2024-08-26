@@ -19,11 +19,6 @@ double fromDecimal(double value, double *minutes)
     return degrees;
 }
 
-double toDecimal(double degrees, double minutes)
-{
-    return degrees + minutes / 60.0;
-}
-
 double fromDecimal(double value, double *minutes, double *seconds)
 {
     double decimals;
@@ -35,9 +30,14 @@ double fromDecimal(double value, double *minutes, double *seconds)
     return degrees;
 }
 
+double toDecimal(double degrees, double minutes)
+{
+    return degrees + minutes / 60.0;
+}
+
 double toDecimal(double degrees, double minutes, double seconds)
 {
-    return degrees + minutes / 60.0 + seconds / 60.0 / 60.0;
+    return degrees + minutes / 60.0 + seconds / 3600.0;
 }
 
 }
