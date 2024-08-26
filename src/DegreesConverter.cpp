@@ -13,9 +13,8 @@ namespace DegreesConverter
 
 double fromDecimal(double value, double *minutes)
 {
-    double decimals;
     double degrees;
-    decimals = std::modf(value, &degrees);
+    const double decimals = std::modf(value, &degrees);
     *minutes = decimals * 60.0;
     return degrees;
 }
@@ -29,10 +28,8 @@ double fromDecimal(double value, double *minutes, double *seconds)
 {
     double decimals;
     double degrees;
-    double decimalMinutes;
-    double decimalSeconds;
     decimals = std::modf(value, &degrees);
-    decimalMinutes = decimals * 60.0;
+    const double decimalMinutes = decimals * 60.0;
     decimals = std::modf(decimalMinutes, minutes);
     *seconds = decimals * 60.0;
     return degrees;
