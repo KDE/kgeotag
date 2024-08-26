@@ -7,6 +7,7 @@
 #include "KGeoTag.h"
 #include "Coordinates.h"
 #include "Settings.h"
+#include "DegreesConverter.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -27,17 +28,15 @@ CoordinatesFormatter::CoordinatesFormatter(QObject *parent, QLocale *locale, Set
 QString CoordinatesFormatter::formatLonLat(double value) const
 {
     switch (m_settings->coordinatesFlavor()) {
+
     case KGeoTag::DecimalDegrees:
         return i18nc("Formatted coordinates as decimal degrees", "%1°",
                      m_locale->toString(std::abs(value), 'f', KGeoTag::degreesPrecision));
 
     case KGeoTag::DegreesDecimalMinutes:
     {
-        double decimals;
-        double degrees;
         double decimalMinutes;
-        decimals = std::modf(value, &degrees);
-        decimalMinutes = decimals * 60.0;
+        const auto degrees = DegreesConverter::fromDecimal(value, &decimalMinutes);
         return i18nc("Formatted coordinates as degrees and decimal minutes", "%1° %2'",
                      QString::number(std::abs(degrees)),
                      m_locale->toString(std::abs(decimalMinutes), 'f', KGeoTag::minutesPrecision));
@@ -45,15 +44,9 @@ QString CoordinatesFormatter::formatLonLat(double value) const
 
     case KGeoTag::DegreesMinutesDecimalSeconds:
     {
-        double decimals;
-        double degrees;
-        double decimalMinutes;
         double minutes;
         double decimalSeconds;
-        decimals = std::modf(value, &degrees);
-        decimalMinutes = decimals * 60.0;
-        decimals = std::modf(decimalMinutes, &minutes);
-        decimalSeconds = decimals * 60.0;
+        const auto degrees = DegreesConverter::fromDecimal(value, &minutes, &decimalSeconds);
         return i18nc("Formatted coordinates as degrees, minutes and decimal seconds",
                      "%1° %2' %3\"",
                      QString::number(std::abs(degrees)),
@@ -63,7 +56,7 @@ QString CoordinatesFormatter::formatLonLat(double value) const
 
     }
 
-    // We can't reach here
+    // We can't reach here, but the compiler thinks so
     return QString();
 }
 

@@ -107,6 +107,7 @@ set(kgeotag_SOURCES
     ${main_ROOT}/TracksListView.cpp
     ${main_ROOT}/TrackWalker.cpp
     ${main_ROOT}/Logging.cpp
+    ${main_ROOT}/DegreesConverter.cpp
 )
 
 qt5_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
