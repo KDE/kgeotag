@@ -28,50 +28,48 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
     auto *grid = new QGridLayout;
     layout->addLayout(grid);
 
-    int row = -1;
-
     auto *titleLabel = new QLabel;
     titleLabel->setWordWrap(true);
-    grid->addWidget(titleLabel, ++row, 0, 1, 2);
+    grid->addWidget(titleLabel, 0, 0, 1, 2);
 
     auto *labelLabel = new QLabel(i18n("Label:"));
-    grid->addWidget(labelLabel, ++row, 0);
+    grid->addWidget(labelLabel, 1, 0);
     m_label = new QLineEdit;
-    grid->addWidget(m_label, row, 1);
+    grid->addWidget(m_label, 1, 1);
 
-    auto *lonLabel = new QLabel(i18n("Longitude:"));
+    const int lonRow = latBeforeLon ? 3 : 2;
+    const int latRow = latBeforeLon ? 2 : 3;
+
+    grid->addWidget(new QLabel(i18n("Longitude:")), lonRow, 0);
     m_lonDeg = new QDoubleSpinBox;
     m_lonDeg->setDecimals(KGeoTag::degreesPrecision);
     m_lonDeg->setRange(-180.0, 180.0);
     m_lonDeg->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_lonDeg->setValue(coordinates.lon());
+    grid->addWidget(m_lonDeg, lonRow, 1);
 
-    auto *latLabel = new QLabel(i18n("Latitude:"));
+    grid->addWidget(new QLabel(i18n("Latitude:")), latRow, 0);
     m_latDeg = new QDoubleSpinBox;
     m_latDeg->setDecimals(KGeoTag::degreesPrecision);
     m_latDeg->setRange(-90.0, 90.0);
     m_latDeg->setSuffix(i18nc("Degrees symbol", "\u2009°"));
     m_latDeg->setValue(coordinates.lat());
-
-    grid->addWidget(latBeforeLon ? latLabel : lonLabel, ++row, 0);
-    grid->addWidget(latBeforeLon ? m_latDeg : m_lonDeg, row, 1);
-    grid->addWidget(latBeforeLon ? lonLabel : latLabel, ++row, 0);
-    grid->addWidget(latBeforeLon ? m_lonDeg : m_latDeg, row, 1);
+    grid->addWidget(m_latDeg, latRow, 1);
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
-    grid->addWidget(altLabel, ++row, 0);
+    grid->addWidget(altLabel, 4, 0);
     altLabel->setVisible(! hideAlt);
     m_alt = new QDoubleSpinBox;
     m_alt->setDecimals(KGeoTag::altitudePrecision);
     m_alt->setRange(KGeoTag::minimalAltitude, KGeoTag::maximalAltitude);
     m_alt->setSuffix(i18nc("Meters abbreviation", "\u2009m"));
     m_alt->setValue(coordinates.alt());
-    grid->addWidget(m_alt, row, 1);
+    grid->addWidget(m_alt, 4, 1);
     m_alt->setVisible(! hideAlt);
 
     auto *automaticAltLabel = new QLabel(i18n("<i>The altitude is looked up automatically</i>"));
     automaticAltLabel->setWordWrap(true);
-    grid->addWidget(automaticAltLabel, ++row, 0, 1, 2);
+    grid->addWidget(automaticAltLabel, 5, 0, 1, 2);
     automaticAltLabel->setVisible(hideAlt);
 
     switch (mode) {
