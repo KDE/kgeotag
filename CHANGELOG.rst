@@ -60,6 +60,9 @@ Added
 * The displayed order of coordinates can now be configured, either "Longitude, latitude" (as
   before) or "Latitude, longitude".
 
+* One can now choose the coordinates "flavor": Either decimal degrees (as before), degrees and
+  decimal minutes or degrees, minutes and decimal seconds.
+
 Changed
 =======
 
