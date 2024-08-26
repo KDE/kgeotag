@@ -19,8 +19,10 @@
 #include <QDebug>
 
 CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
+                                     KGeoTag::CoordinatesFlavor flavor,
                                      const Coordinates &coordinates, const QString &target)
-    : QDialog(QApplication::activeWindow())
+    : QDialog(QApplication::activeWindow()),
+      m_flavor(flavor)
 {
     auto *layout = new QVBoxLayout(this);
     auto *grid = new QGridLayout;

@@ -27,6 +27,7 @@ public:
     };
 
     explicit CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
+                               KGeoTag::CoordinatesFlavor flavor,
                                const Coordinates &coordinates = Coordinates(),
                                const QString &target = QString());
     QString label() const;
@@ -36,6 +37,7 @@ public:
     Coordinates coordinates() const;
 
 private: // Variables
+    KGeoTag::CoordinatesFlavor m_flavor;
     QLineEdit *m_label;
     QDoubleSpinBox *m_lon;
     QDoubleSpinBox *m_lat;
