@@ -39,8 +39,15 @@ public:
 private: // Variables
     KGeoTag::CoordinatesFlavor m_flavor;
     QLineEdit *m_label;
-    QDoubleSpinBox *m_lon;
-    QDoubleSpinBox *m_lat;
+
+    QDoubleSpinBox *m_lonDeg;
+    QDoubleSpinBox *m_lonMin;
+    QDoubleSpinBox *m_lonSec;
+
+    QDoubleSpinBox *m_latDeg;
+    QDoubleSpinBox *m_latMin;
+    QDoubleSpinBox *m_latSec;
+
     QDoubleSpinBox *m_alt;
 
 };

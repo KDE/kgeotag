@@ -40,23 +40,23 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
     grid->addWidget(m_label, row, 1);
 
     auto *lonLabel = new QLabel(i18n("Longitude:"));
-    m_lon = new QDoubleSpinBox;
-    m_lon->setDecimals(KGeoTag::degreesPrecision);
-    m_lon->setRange(-180.0, 180.0);
-    m_lon->setSuffix(i18nc("Degrees symbol", "\u2009°"));
-    m_lon->setValue(coordinates.lon());
+    m_lonDeg = new QDoubleSpinBox;
+    m_lonDeg->setDecimals(KGeoTag::degreesPrecision);
+    m_lonDeg->setRange(-180.0, 180.0);
+    m_lonDeg->setSuffix(i18nc("Degrees symbol", "\u2009°"));
+    m_lonDeg->setValue(coordinates.lon());
 
     auto *latLabel = new QLabel(i18n("Latitude:"));
-    m_lat = new QDoubleSpinBox;
-    m_lat->setDecimals(KGeoTag::degreesPrecision);
-    m_lat->setRange(-90.0, 90.0);
-    m_lat->setSuffix(i18nc("Degrees symbol", "\u2009°"));
-    m_lat->setValue(coordinates.lat());
+    m_latDeg = new QDoubleSpinBox;
+    m_latDeg->setDecimals(KGeoTag::degreesPrecision);
+    m_latDeg->setRange(-90.0, 90.0);
+    m_latDeg->setSuffix(i18nc("Degrees symbol", "\u2009°"));
+    m_latDeg->setValue(coordinates.lat());
 
     grid->addWidget(latBeforeLon ? latLabel : lonLabel, ++row, 0);
-    grid->addWidget(latBeforeLon ? m_lat : m_lon, row, 1);
+    grid->addWidget(latBeforeLon ? m_latDeg : m_lonDeg, row, 1);
     grid->addWidget(latBeforeLon ? lonLabel : latLabel, ++row, 0);
-    grid->addWidget(latBeforeLon ? m_lon : m_lat, row, 1);
+    grid->addWidget(latBeforeLon ? m_lonDeg : m_latDeg, row, 1);
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
     grid->addWidget(altLabel, ++row, 0);
@@ -102,12 +102,12 @@ QString CoordinatesDialog::label() const
 
 double CoordinatesDialog::lon() const
 {
-    return m_lon->value();
+    return m_lonDeg->value();
 }
 
 double CoordinatesDialog::lat() const
 {
-    return m_lat->value();
+    return m_latDeg->value();
 }
 
 double CoordinatesDialog::alt() const
@@ -117,5 +117,5 @@ double CoordinatesDialog::alt() const
 
 Coordinates CoordinatesDialog::coordinates() const
 {
-    return Coordinates(m_lon->value(), m_lat->value(), m_alt->value(), true);
+    return Coordinates(lon(), lat(), m_alt->value(), true);
 }
