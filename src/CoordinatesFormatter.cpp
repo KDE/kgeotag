@@ -36,22 +36,23 @@ QString CoordinatesFormatter::formatLonLat(double value) const
     case KGeoTag::DegreesDecimalMinutes:
     {
         double decimalMinutes;
-        const auto degrees = DegreesConverter::fromDecimal(value, &decimalMinutes);
+        const auto degrees = DegreesConverter::fromDecimal(std::abs(value), &decimalMinutes);
         return i18nc("Formatted coordinates as degrees and decimal minutes", "%1° %2'",
-                     QString::number(std::abs(degrees)),
-                     m_locale->toString(std::abs(decimalMinutes), 'f', KGeoTag::minutesPrecision));
+                     QString::number(degrees),
+                     m_locale->toString(decimalMinutes, 'f', KGeoTag::minutesPrecision));
     }
 
     case KGeoTag::DegreesMinutesDecimalSeconds:
     {
         double minutes;
         double decimalSeconds;
-        const auto degrees = DegreesConverter::fromDecimal(value, &minutes, &decimalSeconds);
+        const auto degrees = DegreesConverter::fromDecimal(std::abs(value),
+                                                           &minutes, &decimalSeconds);
         return i18nc("Formatted coordinates as degrees, minutes and decimal seconds",
                      "%1° %2' %3\"",
-                     QString::number(std::abs(degrees)),
-                     QString::number(std::abs(minutes)),
-                     m_locale->toString(std::abs(decimalSeconds), 'f', KGeoTag::secondsPrecision));
+                     QString::number(degrees),
+                     QString::number(minutes),
+                     m_locale->toString(decimalSeconds, 'f', KGeoTag::secondsPrecision));
     }
 
     }
