@@ -17,6 +17,10 @@
 #include <QDoubleSpinBox>
 #include <QDialogButtonBox>
 #include <QDebug>
+#include <QComboBox>
+
+// C++ includes
+#include <cmath>
 
 CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
                                      KGeoTag::CoordinatesFlavor flavor,
@@ -30,7 +34,7 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
 
     auto *titleLabel = new QLabel;
     titleLabel->setWordWrap(true);
-    grid->addWidget(titleLabel, 0, 0, 1, 2);
+    grid->addWidget(titleLabel, 0, 0, 1, 3);
 
     auto *labelLabel = new QLabel(i18n("Label:"));
     grid->addWidget(labelLabel, 1, 0);
@@ -43,18 +47,26 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
     grid->addWidget(new QLabel(i18n("Longitude:")), lonRow, 0);
     m_lonDeg = new QDoubleSpinBox;
     m_lonDeg->setDecimals(KGeoTag::degreesPrecision);
-    m_lonDeg->setRange(-180.0, 180.0);
+    m_lonDeg->setRange(0.0, 180.0);
     m_lonDeg->setSuffix(i18nc("Degrees symbol", "\u2009°"));
-    m_lonDeg->setValue(coordinates.lon());
     grid->addWidget(m_lonDeg, lonRow, 1);
+
+    m_lonDirection = new QComboBox;
+    m_lonDirection->addItem(i18nc("Abbreviated cardinal direction \"East\"", "E"));
+    m_lonDirection->addItem(i18nc("Abbreviated cardinal direction \"West\"", "W"));
+    grid->addWidget(m_lonDirection, lonRow, 2);
 
     grid->addWidget(new QLabel(i18n("Latitude:")), latRow, 0);
     m_latDeg = new QDoubleSpinBox;
     m_latDeg->setDecimals(KGeoTag::degreesPrecision);
-    m_latDeg->setRange(-90.0, 90.0);
+    m_latDeg->setRange(0.0, 90.0);
     m_latDeg->setSuffix(i18nc("Degrees symbol", "\u2009°"));
-    m_latDeg->setValue(coordinates.lat());
     grid->addWidget(m_latDeg, latRow, 1);
+
+    m_latDirection = new QComboBox;
+    m_latDirection->addItem(i18nc("Abbreviated cardinal direction \"North\"", "N"));
+    m_latDirection->addItem(i18nc("Abbreviated cardinal direction \"South\"", "S"));
+    grid->addWidget(m_latDirection, latRow, 2);
 
     auto *altLabel = new QLabel(i18n("Altitude:"));
     grid->addWidget(altLabel, 4, 0);
@@ -63,13 +75,12 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
     m_alt->setDecimals(KGeoTag::altitudePrecision);
     m_alt->setRange(KGeoTag::minimalAltitude, KGeoTag::maximalAltitude);
     m_alt->setSuffix(i18nc("Meters abbreviation", "\u2009m"));
-    m_alt->setValue(coordinates.alt());
-    grid->addWidget(m_alt, 4, 1);
+    grid->addWidget(m_alt, 4, 1, 1, 2);
     m_alt->setVisible(! hideAlt);
 
     auto *automaticAltLabel = new QLabel(i18n("<i>The altitude is looked up automatically</i>"));
     automaticAltLabel->setWordWrap(true);
-    grid->addWidget(automaticAltLabel, 5, 0, 1, 2);
+    grid->addWidget(automaticAltLabel, 5, 0, 1, 3);
     automaticAltLabel->setVisible(hideAlt);
 
     switch (mode) {
@@ -86,6 +97,12 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
         break;
     }
 
+    m_lonDeg->setValue(std::abs(coordinates.lon()));
+    m_lonDirection->setCurrentIndex(coordinates.lon() >= 0 ? 0 : 1);
+    m_latDeg->setValue(std::abs(coordinates.lat()));
+    m_latDirection->setCurrentIndex(coordinates.lat() >= 0 ? 0 : 1);
+    m_alt->setValue(coordinates.alt());
+
     auto *buttonBox = new QDialogButtonBox(QDialogButtonBox::Ok | QDialogButtonBox::Cancel);
     connect(buttonBox, &QDialogButtonBox::accepted, this, &QDialog::accept);
     connect(buttonBox, &QDialogButtonBox::rejected, this, &QDialog::reject);
@@ -100,12 +117,12 @@ QString CoordinatesDialog::label() const
 
 double CoordinatesDialog::lon() const
 {
-    return m_lonDeg->value();
+    return m_lonDeg->value() * m_lonDirection->currentIndex() == 0 ? 1 : -1;
 }
 
 double CoordinatesDialog::lat() const
 {
-    return m_latDeg->value();
+    return m_latDeg->value() * m_latDirection->currentIndex() == 0 ? 1 : -1;
 }
 
 double CoordinatesDialog::alt() const

@@ -15,6 +15,7 @@
 // Qt classes
 class QLineEdit;
 class QDoubleSpinBox;
+class QComboBox;
 
 class CoordinatesDialog : public QDialog
 {
@@ -43,10 +44,12 @@ private: // Variables
     QDoubleSpinBox *m_lonDeg;
     QDoubleSpinBox *m_lonMin;
     QDoubleSpinBox *m_lonSec;
+    QComboBox *m_lonDirection;
 
     QDoubleSpinBox *m_latDeg;
     QDoubleSpinBox *m_latMin;
     QDoubleSpinBox *m_latSec;
+    QComboBox *m_latDirection;
 
     QDoubleSpinBox *m_alt;
 
