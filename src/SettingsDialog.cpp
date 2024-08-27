@@ -349,14 +349,11 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     mainLayout->addWidget(scrollArea);
 
-    settingsWidget->ensurePolished();
-    updateGeometry();
-
-    scrollArea->setMinimumWidth(
-        settingsWidget->width()
-        + scrollArea->verticalScrollBar()->width()
-        + qApp->style()->pixelMetric(QStyle::PM_DefaultFrameWidth)
-    );
+    // Set the exact needed width as a minimum, so that nothing is cut off
+    scrollArea->ensurePolished();
+    scrollArea->setMinimumWidth(settingsWidget->width()
+                                + scrollArea->verticalScrollBar()->width()
+                                + scrollArea->frameWidth() * 2);
 
     // Button box
 
