@@ -346,13 +346,15 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     auto *scrollArea = new QScrollArea;
     scrollArea->setWidgetResizable(true);
     scrollArea->setWidget(settingsWidget);
+    scrollArea->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     mainLayout->addWidget(scrollArea);
 
+    settingsWidget->ensurePolished();
     updateGeometry();
 
     scrollArea->setMinimumWidth(
         settingsWidget->width()
-        + qApp->style()->pixelMetric(QStyle::PM_ScrollBarExtent)
+        + scrollArea->verticalScrollBar()->width()
         + qApp->style()->pixelMetric(QStyle::PM_DefaultFrameWidth)
     );
 
