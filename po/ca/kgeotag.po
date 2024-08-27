@@ -4,13 +4,13 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2021.
-# Josep M. Ferrer <txemaq@gmail.com>, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-26 01:58+0000\n"
-"PO-Revision-Date: 2024-06-27 11:14+0200\n"
+"POT-Creation-Date: 2024-08-27 01:49+0000\n"
+"PO-Revision-Date: 2024-08-26 12:13+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -84,13 +84,13 @@ msgstr "metres"
 msgid "Save settings"
 msgstr "Desa la configuració"
 
-#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1048
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1049
 #, kde-format
 msgid "(Re)Assign all images"
 msgstr "Re/assigna totes les imatges"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
-#: src/MainWindow.cpp:1143 src/SettingsDialog.cpp:143
+#: src/MainWindow.cpp:1144 src/SettingsDialog.cpp:143
 #, kde-format
 msgid "Combined match search"
 msgstr "Cerca una coincidència combinada"
@@ -167,7 +167,7 @@ msgstr "Adreça d'interès nova"
 msgid "Label for the new bookmark:"
 msgstr "Etiqueta per a la nova adreça d'interès:"
 
-#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:98
+#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:209
 #, kde-format
 msgid "Untitled"
 msgstr "Sense títol"
@@ -225,133 +225,144 @@ msgid "\"%1\""
 msgstr "«%1»"
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "Position: %1, %2; Altitude: %3 m"
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "Posició: %1, %2; Altitud: %3 m"
+msgstr "Posició: %1; Altitud: %2"
 
-#: src/CoordinatesDialog.cpp:35
+#: src/CoordinatesDialog.cpp:39
 #, kde-format
 msgid "Label:"
 msgstr "Etiqueta:"
 
-#: src/CoordinatesDialog.cpp:40
+#: src/CoordinatesDialog.cpp:47
 #, kde-format
 msgid "Longitude:"
 msgstr "Longitud:"
 
-#: src/CoordinatesDialog.cpp:44 src/CoordinatesDialog.cpp:51
+#: src/CoordinatesDialog.cpp:50 src/CoordinatesDialog.cpp:68
 #, kde-format
 msgctxt "Degrees symbol"
 msgid " °"
 msgstr " °"
 
-#: src/CoordinatesDialog.cpp:47
-#, kde-format
-msgid "Latitude:"
-msgstr "Latitud:"
-
-#: src/CoordinatesDialog.cpp:59
-#, kde-format
-msgid "Altitude:"
-msgstr "Altitud:"
-
-#: src/CoordinatesDialog.cpp:65
-#, kde-format
-msgctxt "Meters abbreviation"
-msgid " m"
+#: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
+#, fuzzy, kde-format
+#| msgctxt "Meters abbreviation"
+#| msgid " m"
+msgctxt "(Degreee) Minutes symbol"
+msgid " '"
 msgstr " m"
 
-#: src/CoordinatesDialog.cpp:70
-#, kde-format
-msgid "<i>The altitude is looked up automatically</i>"
-msgstr "<i>L'altitud se cerca automàticament</i>"
-
-#: src/CoordinatesDialog.cpp:77
-#, kde-format
-msgid "New bookmark"
-msgstr "Adreça d'interès nova"
-
-#: src/CoordinatesDialog.cpp:78
-#, kde-format
-msgid "Data for the new bookmark:"
-msgstr "Data per a la nova adreça d'interès:"
-
-#: src/CoordinatesDialog.cpp:84
-#, kde-format
-msgid "Manual coordinates"
-msgstr "Coordenades manuals"
-
-#: src/CoordinatesDialog.cpp:85
-#, kde-format
-msgid "Coordinates for %1:"
-msgstr "Coordenades per a %1:"
-
-#: src/CoordinatesFormatter.cpp:31
+#: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
 #, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
-msgctxt "Formatted coordinates as decimal degrees"
-msgid "%1°"
-msgstr "%1° %2"
+#| msgctxt "Meters abbreviation"
+#| msgid " m"
+msgctxt "(Degreee) Seconds symbol"
+msgid " \""
+msgstr " m"
 
-#: src/CoordinatesFormatter.cpp:41
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
-msgctxt "Formatted coordinates as degrees and decimal minutes"
-msgid "%1° %2'"
-msgstr "%1° %2"
-
-#: src/CoordinatesFormatter.cpp:58
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
-msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
-msgid "%1° %2' %3\""
-msgstr "%1° %2"
-
-#: src/CoordinatesFormatter.cpp:72
-#, kde-format
-msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
-msgid "%1, %2"
-msgstr ""
-
-#: src/CoordinatesFormatter.cpp:79 src/CoordinatesFormatter.cpp:87
-#, kde-format
-msgctxt "Formatted latitude or longitude with a cardinal direction"
-msgid "%1 %2"
-msgstr ""
-
-#: src/CoordinatesFormatter.cpp:81
+#: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
 msgstr "E"
 
-#: src/CoordinatesFormatter.cpp:82
+#: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:76
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
 msgstr "O"
 
-#: src/CoordinatesFormatter.cpp:89
+#: src/CoordinatesDialog.cpp:65
+#, kde-format
+msgid "Latitude:"
+msgstr "Latitud:"
+
+#: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:83
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
 msgstr "N"
 
-#: src/CoordinatesFormatter.cpp:90
+#: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:84
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
 msgstr "S"
 
-#: src/CoordinatesFormatter.cpp:95
+#: src/CoordinatesDialog.cpp:83
+#, kde-format
+msgid "Altitude:"
+msgstr "Altitud:"
+
+#: src/CoordinatesDialog.cpp:89
+#, kde-format
+msgctxt "Meters abbreviation"
+msgid " m"
+msgstr " m"
+
+#: src/CoordinatesDialog.cpp:91
+#, kde-format
+msgid "<i>The altitude is looked up automatically</i>"
+msgstr "<i>L'altitud se cerca automàticament</i>"
+
+#: src/CoordinatesDialog.cpp:96
+#, kde-format
+msgid "New bookmark"
+msgstr "Adreça d'interès nova"
+
+#: src/CoordinatesDialog.cpp:97
+#, kde-format
+msgid "Data for the new bookmark:"
+msgstr "Data per a la nova adreça d'interès:"
+
+#: src/CoordinatesDialog.cpp:103
+#, kde-format
+msgid "Manual coordinates"
+msgstr "Coordenades manuals"
+
+#: src/CoordinatesDialog.cpp:104
+#, kde-format
+msgid "Coordinates for %1:"
+msgstr "Coordenades per a %1:"
+
+#: src/CoordinatesFormatter.cpp:33
+#, kde-format
+msgctxt "Formatted coordinates as decimal degrees"
+msgid "%1°"
+msgstr "%1°"
+
+# skip-rule: t-apo_fim
+#: src/CoordinatesFormatter.cpp:40
+#, kde-format
+msgctxt "Formatted coordinates as degrees and decimal minutes"
+msgid "%1° %2'"
+msgstr "%1° %2'"
+
+# skip-rule: t-apo_fin
+#: src/CoordinatesFormatter.cpp:52
+#, kde-format
+msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
+msgid "%1° %2' %3\""
+msgstr "%1° %2' %3\""
+
+#: src/CoordinatesFormatter.cpp:66
+#, kde-format
+msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
+msgid "%1, %2"
+msgstr "%1, %2"
+
+#: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
+#, kde-format
+msgctxt "Formatted latitude or longitude with a cardinal direction"
+msgid "%1 %2"
+msgstr "%1 %2"
+
+#: src/CoordinatesFormatter.cpp:89
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -468,7 +479,7 @@ msgstr "Totes les imatges tenen les mateixes coordenades"
 msgid "All images with coordinates"
 msgstr "Totes les imatges amb coordenades"
 
-#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1068
+#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1069
 #, kde-format
 msgid "Automatic matching"
 msgstr "Coincidència automàtica"
@@ -493,14 +504,14 @@ msgstr "Estableix les coordenades a partir del porta-retalls"
 msgid "Set coordinates manually"
 msgstr "Estableix manualment les coordenades"
 
-#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1767
+#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1768
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "Troba el punt de pas més proper"
 
-#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1271 src/MainWindow.cpp:1324
-#: src/MainWindow.cpp:1370 src/MainWindow.cpp:1444 src/MainWindow.cpp:1475
-#: src/MainWindow.cpp:1478 src/MainWindow.cpp:1483
+#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1272 src/MainWindow.cpp:1325
+#: src/MainWindow.cpp:1371 src/MainWindow.cpp:1445 src/MainWindow.cpp:1476
+#: src/MainWindow.cpp:1479 src/MainWindow.cpp:1484
 #, kde-format
 msgid "Save changes"
 msgstr "Desa els canvis"
@@ -516,7 +527,7 @@ msgid "Discard changes"
 msgstr "Descarta els canvis"
 
 #: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
-#: src/MainWindow.cpp:1627
+#: src/MainWindow.cpp:1628
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
@@ -988,7 +999,7 @@ msgstr ""
 msgid "Loading images ..."
 msgstr "S'estan carregant les imatges..."
 
-#: src/MainWindow.cpp:789 src/MainWindow.cpp:1084 src/MainWindow.cpp:1291
+#: src/MainWindow.cpp:789 src/MainWindow.cpp:1085 src/MainWindow.cpp:1292
 #, kde-format
 msgid "Cancel"
 msgstr "Cancel·la"
@@ -1136,7 +1147,7 @@ msgid_plural "%1 images have already been loaded"
 msgstr[0] "una imatge ja estava carregada"
 msgstr[1] "%1 imatges ja estaven carregades"
 
-#: src/MainWindow.cpp:970 src/MainWindow.cpp:1001
+#: src/MainWindow.cpp:970 src/MainWindow.cpp:1002
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
@@ -1149,24 +1160,24 @@ msgid_plural "%1 images"
 msgstr[0] "1 imatge"
 msgstr[1] "%1 imatges"
 
-#: src/MainWindow.cpp:1004
+#: src/MainWindow.cpp:1005
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
 msgstr[0] "1 imatge (%2)"
 msgstr[1] "%1 imatges (%2)"
 
-#: src/MainWindow.cpp:1005
+#: src/MainWindow.cpp:1006
 #, kde-format
 msgid "all images have the same coordinates"
 msgstr "totes les imatges tenen les mateixes coordenades"
 
-#: src/MainWindow.cpp:1006
+#: src/MainWindow.cpp:1007
 #, kde-format
 msgid "coordinates differ across the images"
 msgstr "les coordenades difereixen entre les imatges"
 
-#: src/MainWindow.cpp:1049
+#: src/MainWindow.cpp:1050
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1175,7 +1186,7 @@ msgstr ""
 "No s'ha pogut cercar cap coincidència:\n"
 "Encara no s'han carregat imatges."
 
-#: src/MainWindow.cpp:1069
+#: src/MainWindow.cpp:1070
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1184,12 +1195,12 @@ msgstr ""
 "No s'ha pogut cercar cap coincidència:\n"
 "Encara no s'han carregat els trajectes GPS."
 
-#: src/MainWindow.cpp:1084
+#: src/MainWindow.cpp:1085
 #, kde-format
 msgid "Assigning images ..."
 msgstr "S'estan assignant les imatges..."
 
-#: src/MainWindow.cpp:1148
+#: src/MainWindow.cpp:1149
 #, kde-format
 msgctxt ""
 "Message for the number of matches found. The pluralized string for the exact "
@@ -1198,21 +1209,21 @@ msgctxt ""
 msgid "<p>Found %1 and %2!</p>"
 msgstr "<p>S'han trobat %1 i %2!</p>"
 
-#: src/MainWindow.cpp:1149
+#: src/MainWindow.cpp:1150
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
 msgstr[0] "una coincidència exacta"
 msgstr[1] "%1 coincidències exactes"
 
-#: src/MainWindow.cpp:1152
+#: src/MainWindow.cpp:1153
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
 msgstr[0] "una coincidència interpolada"
 msgstr[1] "%1 coincidències interpolades"
 
-#: src/MainWindow.cpp:1159
+#: src/MainWindow.cpp:1160
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1223,31 +1234,31 @@ msgid_plural "<p>%1 images could not be matched (%2).</p>"
 msgstr[0] "<p>Una imatge no té una coincidència exacta (%2).</p>"
 msgstr[1] "<p>%1 imatges no tenen una coincidència exacta (%2).</p>"
 
-#: src/MainWindow.cpp:1162 src/MainWindow.cpp:1184 src/MainWindow.cpp:1206
+#: src/MainWindow.cpp:1163 src/MainWindow.cpp:1185 src/MainWindow.cpp:1207
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] "de les quals una imatge ja té coordenades assignades"
 msgstr[1] "de les quals %1 imatges ja tenen coordenades assignades"
 
-#: src/MainWindow.cpp:1167
+#: src/MainWindow.cpp:1168
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
 msgstr "No s'ha pogut trobar cap coincidència exacta ni interpolada!"
 
-#: src/MainWindow.cpp:1172
+#: src/MainWindow.cpp:1173
 #, kde-format
 msgid "Exact matches search"
 msgstr "Cerca les coincidències exactes"
 
-#: src/MainWindow.cpp:1174
+#: src/MainWindow.cpp:1175
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
 msgstr[0] "<p>S'ha trobat una coincidència exacta!</p>"
 msgstr[1] "<p>S'han trobat %1 coincidències exactes!</p>"
 
-#: src/MainWindow.cpp:1181
+#: src/MainWindow.cpp:1182
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1258,24 +1269,24 @@ msgid_plural "<p>%1 images had no exact match (%2).</p>"
 msgstr[0] "<p>Una imatge no té una coincidència exacta (%2).</p>"
 msgstr[1] "<p>%1 imatges no tenen una coincidència exacta (%2).</p>"
 
-#: src/MainWindow.cpp:1189
+#: src/MainWindow.cpp:1190
 #, kde-format
 msgid "Could not find any exact matches!"
 msgstr "No s'ha pogut trobar cap coincidència exacta!"
 
-#: src/MainWindow.cpp:1194
+#: src/MainWindow.cpp:1195
 #, kde-format
 msgid "Interpolated matches search"
 msgstr "Cerca les coincidències interpolades"
 
-#: src/MainWindow.cpp:1196
+#: src/MainWindow.cpp:1197
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
 msgstr[0] "<p>S'ha trobat una coincidència interpolada!</p>"
 msgstr[1] "<p>S'han trobat %1 coincidències interpolades!</p>"
 
-#: src/MainWindow.cpp:1203
+#: src/MainWindow.cpp:1204
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1286,17 +1297,17 @@ msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
 msgstr[0] "<p>Una imatge no té cap coincidència interpolada (%2).</p>"
 msgstr[1] "<p>%1 imatges no tenen cap coincidència interpolada (%2).</p>"
 
-#: src/MainWindow.cpp:1211
+#: src/MainWindow.cpp:1212
 #, kde-format
 msgid "Could not find any interpolated matches!"
 msgstr "No s'ha pogut trobar cap coincidència interpolada!"
 
-#: src/MainWindow.cpp:1232
+#: src/MainWindow.cpp:1233
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
 msgstr "<p><b>Ha fallat en desar els canvis</b></p>"
 
-#: src/MainWindow.cpp:1236
+#: src/MainWindow.cpp:1237
 #, kde-format
 msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
@@ -1304,13 +1315,13 @@ msgctxt ""
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
 msgstr "<p><b>Ha fallat en desar els canvis (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:1244
+#: src/MainWindow.cpp:1245
 #, kde-format
 msgid "<p>You can retry to process the file or cancel the saving process.</p>"
 msgstr ""
 "<p>Podeu tornar a processar el fitxer o cancel·lar el procés de desament.</p>"
 
-#: src/MainWindow.cpp:1246
+#: src/MainWindow.cpp:1247
 #, kde-format
 msgid ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
@@ -1319,18 +1330,18 @@ msgstr ""
 "<p>Podeu tornar a processar el fitxer, ometre'l o cancel·lar el procés de "
 "desament.</p>"
 
-#: src/MainWindow.cpp:1271 src/MainWindow.cpp:1649 src/MainWindow.cpp:1665
-#: src/MainWindow.cpp:1694 src/MainWindow.cpp:1730
+#: src/MainWindow.cpp:1272 src/MainWindow.cpp:1650 src/MainWindow.cpp:1666
+#: src/MainWindow.cpp:1695 src/MainWindow.cpp:1731
 #, kde-format
 msgid "Nothing to do"
 msgstr "Res a fer"
 
-#: src/MainWindow.cpp:1291
+#: src/MainWindow.cpp:1292
 #, kde-format
 msgid "Saving changes ..."
 msgstr "S'estan desant els canvis..."
 
-#: src/MainWindow.cpp:1313
+#: src/MainWindow.cpp:1314
 #, kde-format
 msgid ""
 "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
@@ -1342,7 +1353,7 @@ msgstr ""
 "encara no existeix i assegureu-vos de tenir accés d'escriptura a <kbd>%3</"
 "kbd>.</p>"
 
-#: src/MainWindow.cpp:1360
+#: src/MainWindow.cpp:1361
 #, kde-format
 msgid ""
 "<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
@@ -1353,17 +1364,17 @@ msgstr ""
 "si aquest fitxer encara existeix i si hi teniu accés de lectura (i "
 "possiblement també a un fitxer lateral XMP existent).</p>"
 
-#: src/MainWindow.cpp:1428
+#: src/MainWindow.cpp:1429
 #, kde-format
 msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
 msgstr "<p>No s'han pogut desar les metadades per a <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:1432
+#: src/MainWindow.cpp:1433
 #, kde-format
 msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
 msgstr "<p>Comproveu si teniu accés d'escriptura a <kbd>%1</kbd>!"
 
-#: src/MainWindow.cpp:1435
+#: src/MainWindow.cpp:1436
 #, kde-format
 msgid ""
 "<p>Please check if this file still exists and if you have write access to it!"
@@ -1372,12 +1383,12 @@ msgstr ""
 "<p>Comproveu si aquest fitxer encara existeix i si hi teniu accés "
 "d'escriptura!</p>"
 
-#: src/MainWindow.cpp:1476
+#: src/MainWindow.cpp:1477
 #, kde-format
 msgid "No changes could be saved!"
 msgstr "No s'han pogut desar els canvis!"
 
-#: src/MainWindow.cpp:1479
+#: src/MainWindow.cpp:1480
 #, kde-format
 msgid ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
@@ -1386,17 +1397,17 @@ msgstr ""
 "<p>No s'han pogut desar alguns canvis!</p><p>S'han desat correctament %1 de "
 "%2 imatges.</p>"
 
-#: src/MainWindow.cpp:1484
+#: src/MainWindow.cpp:1485
 #, kde-format
 msgid "All changes have been successfully saved!"
 msgstr "Tots els canvis s'han desat correctament!"
 
-#: src/MainWindow.cpp:1541 src/MainWindow.cpp:1562 src/SettingsDialog.cpp:243
+#: src/MainWindow.cpp:1542 src/MainWindow.cpp:1563 src/SettingsDialog.cpp:243
 #, kde-format
 msgid "Elevation lookup"
 msgstr "Elevació de la cerca"
 
-#: src/MainWindow.cpp:1542
+#: src/MainWindow.cpp:1543
 #, kde-format
 msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
@@ -1405,7 +1416,7 @@ msgstr ""
 "<p>Ha fallat l'obtenció de les dades d'elevació des d'«opentopodata.org».</"
 "p><p>El missatge d'error ha estat: %1</p>"
 
-#: src/MainWindow.cpp:1550
+#: src/MainWindow.cpp:1551
 #, kde-format
 msgid ""
 "Fetching elevation data failed: The requested location is not present in the "
@@ -1414,7 +1425,7 @@ msgstr ""
 "Error en obtenir les dades d'elevació: la ubicació sol·licitada no està "
 "present en el conjunt de dades d'elevació triat actualment."
 
-#: src/MainWindow.cpp:1554
+#: src/MainWindow.cpp:1555
 #, kde-format
 msgid ""
 "Fetching elevation data failed: None of the requested locations are present "
@@ -1423,7 +1434,7 @@ msgstr ""
 "Error en obtenir les dades d'elevació: cap de les ubicacions sol·licitades "
 "està present en el conjunt de dades d'elevació triat actualment."
 
-#: src/MainWindow.cpp:1557
+#: src/MainWindow.cpp:1558
 #, kde-format
 msgid ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
@@ -1433,7 +1444,7 @@ msgstr ""
 "sol·licitades no està present en el conjunt de dades d'elevació triat "
 "actualment."
 
-#: src/MainWindow.cpp:1628
+#: src/MainWindow.cpp:1629
 #, kde-format
 msgid ""
 "The image has pending changes! Do you really want to remove it and discard "
@@ -1447,29 +1458,29 @@ msgstr[1] ""
 "Almenys una de les imatges conté canvis pendents. Voleu eliminar-les i "
 "descartar tots els canvis?"
 
-#: src/MainWindow.cpp:1648 src/MainWindow.cpp:1656
+#: src/MainWindow.cpp:1649 src/MainWindow.cpp:1657
 #, kde-format
 msgid "Remove all processed and saved images"
 msgstr "Elimina totes les imatges processades i desades"
 
-#: src/MainWindow.cpp:1657 src/MainWindow.cpp:1673
+#: src/MainWindow.cpp:1658 src/MainWindow.cpp:1674
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
 msgstr[0] "S'ha eliminat una imatge"
 msgstr[1] "S'han eliminat %1 imatges"
 
-#: src/MainWindow.cpp:1664 src/MainWindow.cpp:1672
+#: src/MainWindow.cpp:1665 src/MainWindow.cpp:1673
 #, kde-format
 msgid "Remove images that already had coordinates"
 msgstr "Elimina les imatges que tinguin les mateixes coordenades"
 
-#: src/MainWindow.cpp:1679 src/MainWindow.cpp:1694
+#: src/MainWindow.cpp:1680 src/MainWindow.cpp:1695
 #, kde-format
 msgid "Remove all images"
 msgstr "Elimina totes les imatges"
 
-#: src/MainWindow.cpp:1680
+#: src/MainWindow.cpp:1681
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -1480,48 +1491,45 @@ msgstr ""
 "canvis es descartaran si s'eliminen ara totes les imatges.</p><p>Voleu "
 "eliminar igualment totes les imatges?</p>"
 
-#: src/MainWindow.cpp:1729
+#: src/MainWindow.cpp:1730
 #, kde-format
 msgid "Remove all images and tracks (reset)"
 msgstr "Elimina totes les imatges i trajectes (restableix)"
 
-#: src/MainWindow.cpp:1757
+#: src/MainWindow.cpp:1758
 #, kde-format
 msgid "Failed to parse clipboard data"
 msgstr "Ha fallat en analitzar les dades del porta-retalls"
 
-#: src/MainWindow.cpp:1758
+#: src/MainWindow.cpp:1759
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "No s'han pogut trobar coordenades vàlides en el text del porta-retalls"
 
-#: src/MainWindow.cpp:1768
+#: src/MainWindow.cpp:1769
 #, kde-format
 msgid "No geodata has been loaded yet!"
 msgstr "Encara no s'ha carregat cap geodada!"
 
-#: src/MainWindow.cpp:1791
+#: src/MainWindow.cpp:1792
 #, kde-format
 msgid "Assign selection"
 msgstr "Assigna la selecció"
 
-#: src/MainWindow.cpp:1792
+#: src/MainWindow.cpp:1793
 #, kde-format
 msgid "Please select one or more images"
 msgstr "Seleccioneu una o més imatges"
 
 #: src/MapCenterInfo.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "This displays the coordinates of the current map center"
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgid "Map center position: %1"
-msgstr "Posició del centre del mapa: %1, %2"
+msgstr "Posició del centre del mapa: %1"
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Floating items"
+#, kde-format
 msgid "Displayed floating items"
-msgstr "Elements flotants"
+msgstr "Mostra els elements flotants"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1529,28 +1537,24 @@ msgid "Crosshairs"
 msgstr "Punts de mira"
 
 #: src/MapWidget.cpp:139
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "Current map center"
-msgstr "Assigna al centre del mapa"
+msgstr "Centre del mapa actual"
 
 #: src/MapWidget.cpp:142 src/MapWidget.cpp:147
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "Estableix les coordenades a partir del porta-retalls"
+msgstr "Copia les coordenades al porta-retalls"
 
 #: src/MapWidget.cpp:148
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates copied!"
-msgstr "Coordenades:"
+msgstr "S'han copiat les coordenades!"
 
 #: src/MapWidget.cpp:153
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
-msgstr "Afegeix una adreça d'interès nova"
+msgstr "Afegeix una adreça d'interès"
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1588,10 +1592,9 @@ msgid "manually set"
 msgstr "estableix manualment"
 
 #: src/PreviewWidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+#, kde-format
 msgid "<p>Position: %1; Altitude: %2<br/>(%3)</p>"
-msgstr "<p>Posició: %1, %2; Altitud: %3 m<br/>(%4)</p>"
+msgstr "<p>Posició: %1; Altitud: %2<br/>(%3)</p>"
 
 #: src/PreviewWidget.cpp:114
 #, kde-format
@@ -1623,49 +1626,44 @@ msgid "KGeoTag settings"
 msgstr "Configuració del KGeoTag"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "Coordenades:"
+msgstr "Coordenades"
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates order:"
-msgstr "Coordenades per a %1:"
+msgstr "Ordre de les coordenades:"
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "Longitud:"
+msgstr "Longitud, latitud"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "Longitud:"
+msgstr "Latitud, longitud"
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "Coordenades per a %1:"
+msgstr "Precisió de les coordenades:"
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
 msgid "Decimal degrees"
-msgstr ""
+msgstr "Graus decimals"
 
 #: src/SettingsDialog.cpp:82
 #, kde-format
 msgid "Degrees, decimal minutes"
-msgstr ""
+msgstr "Graus i minuts decimals"
 
 #: src/SettingsDialog.cpp:84
 #, kde-format
 msgid "Degrees, minutes, decimal seconds"
-msgstr ""
+msgstr "Graus, minuts i segons decimals"
 
 #: src/SettingsDialog.cpp:91
 #, kde-format
@@ -1674,6 +1672,9 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"Els canvis en el format de les coordenades tenen efecte tan aviat com la "
+"visualització respectiva de les coordenades s'actualitzi la propera vegada. "
+"Reinicieu el KGeoTag per actualitzar-ho tot alhora."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1681,26 +1682,21 @@ msgid "Image lists"
 msgstr "Llistes d'imatges"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Loaded images can either be listed in two different lists (one for all "
-#| "images without and one for images with coordinates), or using a combined "
-#| "consecutive list for all images.</p><p>Use the following images list(s) "
-#| "mode:</p>"
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>Les imatges carregades es poden llistar a dues llistes diferents (una per "
-"a totes les imatges sense coordenades i una altra per a les imatges amb "
+"Les imatges carregades es poden llistar a dues llistes diferents (una per a "
+"totes les imatges sense coordenades i una altra per a les imatges amb "
 "coordenades) o usant una llista consecutiva combinada per a totes les "
-"imatges.</p><p>Useu el següent mode de llista/es d'imatges:</p>"
+"imatges."
 
 #: src/SettingsDialog.cpp:112
 #, kde-format
 msgid "Use the following images list(s) mode:"
-msgstr ""
+msgstr "Useu el mode següent de llista/es d'imatges:"
 
 #: src/SettingsDialog.cpp:117
 #, kde-format
@@ -1718,10 +1714,9 @@ msgid "Image Assignment"
 msgstr "Assignació de les imatges"
 
 #: src/SettingsDialog.cpp:137
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data\":"
-msgstr "Correlaciona les imatges amb les dades GPS"
+msgstr "Tipus de cerca a «Correlaciona les imatges amb les dades GPS»:"
 
 #: src/SettingsDialog.cpp:156
 #, kde-format
