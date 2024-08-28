@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
 "PO-Revision-Date: 2024-08-19 23:13+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -1887,17 +1887,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr "파일을 변경하기 전에 백업 생성"
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "불투명도: %1%"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "설정 변경됨"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"

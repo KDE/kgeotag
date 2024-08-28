@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
 "PO-Revision-Date: 2023-02-15 16:13+0000\n"
 "Last-Translator: José Nuno Coelho Pires <zepires@gmail.com>\n"
 "Language-Team: Portuguese <kde-i18n-pt@kde.org>\n"
@@ -1974,17 +1974,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr "Criar uma cópia de segurança antes de alterar um ficheiro"
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "Opacidade: %1%"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "A configuração mudou"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"

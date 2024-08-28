@@ -4,13 +4,13 @@
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2021.
-# Josep M. Ferrer <txemaq@gmail.com>, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
-"PO-Revision-Date: 2024-06-27 11:14+0200\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
+"PO-Revision-Date: 2024-08-27 18:37+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -225,10 +225,9 @@ msgid "\"%1\""
 msgstr "«%1»"
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "Position: %1, %2; Altitude: %3 m"
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "Posició: %1, %2; Altitud: %3 m"
+msgstr "Posició: %1; Altitud: %2"
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -246,21 +245,18 @@ msgctxt "Degrees symbol"
 msgid " °"
 msgstr " °"
 
+# skip-rule: t-apo_ini, t-apo_fim
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Minutes symbol"
 msgid " '"
-msgstr " m"
+msgstr " '"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Seconds symbol"
 msgid " \""
-msgstr " m"
+msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -328,46 +324,42 @@ msgid "Coordinates for %1:"
 msgstr "Coordenades per a %1:"
 
 #: src/CoordinatesFormatter.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr "%1°"
 
+# skip-rule: t-apo_fim
 #: src/CoordinatesFormatter.cpp:40
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr "%1° %2'"
 
+# skip-rule: t-apo_fin
 #: src/CoordinatesFormatter.cpp:52
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr "%1° %2' %3\""
 
 #: src/CoordinatesFormatter.cpp:66
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: src/CoordinatesFormatter.cpp:89
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -1529,17 +1521,14 @@ msgid "Please select one or more images"
 msgstr "Seleccioneu una o més imatges"
 
 #: src/MapCenterInfo.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "This displays the coordinates of the current map center"
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgid "Map center position: %1"
-msgstr "Posició del centre del mapa: %1, %2"
+msgstr "Posició del centre del mapa: %1"
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Floating items"
+#, kde-format
 msgid "Displayed floating items"
-msgstr "Elements flotants"
+msgstr "Mostra els elements flotants"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1547,28 +1536,24 @@ msgid "Crosshairs"
 msgstr "Punts de mira"
 
 #: src/MapWidget.cpp:139
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "Current map center"
-msgstr "Assigna al centre del mapa"
+msgstr "Centre del mapa actual"
 
 #: src/MapWidget.cpp:142 src/MapWidget.cpp:147
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "Establix les coordenades a partir del porta-retalls"
+msgstr "Copia les coordenades al porta-retalls"
 
 #: src/MapWidget.cpp:148
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates copied!"
-msgstr "Coordenades:"
+msgstr "S'han copiat les coordenades!"
 
 #: src/MapWidget.cpp:153
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
-msgstr "Afig una adreça d'interés nova"
+msgstr "Afig una adreça d'interés"
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1606,10 +1591,9 @@ msgid "manually set"
 msgstr "establix manualment"
 
 #: src/PreviewWidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+#, kde-format
 msgid "<p>Position: %1; Altitude: %2<br/>(%3)</p>"
-msgstr "<p>Posició: %1, %2; Altitud: %3 m<br/>(%4)</p>"
+msgstr "<p>Posició: %1; Altitud: %2<br/>(%3)</p>"
 
 #: src/PreviewWidget.cpp:114
 #, kde-format
@@ -1641,49 +1625,44 @@ msgid "KGeoTag settings"
 msgstr "Configureu KGeoTag"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "Coordenades:"
+msgstr "Coordenades"
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates order:"
-msgstr "Coordenades per a %1:"
+msgstr "Ordre de les coordenades:"
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "Longitud:"
+msgstr "Llargària, latitud"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "Longitud:"
+msgstr "Latitud, llargària"
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "Coordenades per a %1:"
+msgstr "Precisió de les coordenades:"
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
 msgid "Decimal degrees"
-msgstr ""
+msgstr "Graus decimals"
 
 #: src/SettingsDialog.cpp:82
 #, kde-format
 msgid "Degrees, decimal minutes"
-msgstr ""
+msgstr "Graus i minuts decimals"
 
 #: src/SettingsDialog.cpp:84
 #, kde-format
 msgid "Degrees, minutes, decimal seconds"
-msgstr ""
+msgstr "Graus, minuts i segons decimals"
 
 #: src/SettingsDialog.cpp:91
 #, kde-format
@@ -1692,6 +1671,9 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"Els canvis en el format de les coordenades tenen efecte tan prompte com la "
+"visualització respectiva de les coordenades s'actualitze la propera vegada. "
+"Reinicieu KGeoTag per a actualitzar-ho tot alhora."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1699,26 +1681,21 @@ msgid "Image lists"
 msgstr "Llistes d'imatges"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Loaded images can either be listed in two different lists (one for all "
-#| "images without and one for images with coordinates), or using a combined "
-#| "consecutive list for all images.</p><p>Use the following images list(s) "
-#| "mode:</p>"
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>Les imatges carregades es poden llistar a dues llistes diferents (una per "
-"a totes les imatges sense coordenades i una altra per a les imatges amb "
+"Les imatges carregades es poden llistar a dues llistes diferents (una per a "
+"totes les imatges sense coordenades i una altra per a les imatges amb "
 "coordenades) o utilitzant una llista consecutiva combinada per a totes les "
-"imatges.</p><p>Utilitzeu el següent mode de llistes d'imatges:</p>"
+"imatges."
 
 #: src/SettingsDialog.cpp:112
 #, kde-format
 msgid "Use the following images list(s) mode:"
-msgstr ""
+msgstr "Utilitzeu el mode següent de llistes d'imatges:"
 
 #: src/SettingsDialog.cpp:117
 #, kde-format
@@ -1736,10 +1713,9 @@ msgid "Image Assignment"
 msgstr "Assignació de les imatges"
 
 #: src/SettingsDialog.cpp:137
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data\":"
-msgstr "Correlaciona les imatges amb les dades GPS"
+msgstr "Tipus de busca a «Correlaciona les imatges amb les dades GPS»:"
 
 #: src/SettingsDialog.cpp:156
 #, kde-format
@@ -1962,17 +1938,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr "Crea una còpia de seguretat abans d'alterar un fitxer"
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "Opacitat: %1%"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "S'ha canviat la configuració"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
@@ -2003,12 +1979,3 @@ msgstr[1] "%1 punts de pas"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "S'ha seleccionat el punt de pas %1 de %2"
-
-#~ msgctxt "Formatted latitude with a cardinal direction"
-#~ msgid "%1° %2"
-#~ msgstr "%1° %2"
-
-#~ msgid "Search type for the main menu \"Assign images to GPS data\" entry"
-#~ msgstr ""
-#~ "Tipus de busca per a l'entrada «Assigna les imatges a les dades GPS» del "
-#~ "menú principal"

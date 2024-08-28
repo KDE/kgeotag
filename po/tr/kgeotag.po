@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
-"PO-Revision-Date: 2024-08-27 03:13+0300\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
+"PO-Revision-Date: 2024-08-27 14:25+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -244,20 +244,16 @@ msgid " °"
 msgstr " °"
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Minutes symbol"
 msgid " '"
-msgstr "m"
+msgstr " ’"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Seconds symbol"
 msgid " \""
-msgstr "m"
+msgstr " “"
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -291,7 +287,7 @@ msgstr "G"
 #: src/CoordinatesDialog.cpp:83
 #, kde-format
 msgid "Altitude:"
-msgstr "Rakım:"
+msgstr "Yükseklik:"
 
 #: src/CoordinatesDialog.cpp:89
 #, kde-format
@@ -302,7 +298,7 @@ msgstr "m"
 #: src/CoordinatesDialog.cpp:91
 #, kde-format
 msgid "<i>The altitude is looked up automatically</i>"
-msgstr "<i>Rakım, otomatik olarak bulundu</i>"
+msgstr "<i>Yükseklik kendiliğinden bulundu</i>"
 
 #: src/CoordinatesDialog.cpp:96
 #, kde-format
@@ -1222,7 +1218,7 @@ msgstr[1] "<p>%1 görsel eşleştirilemedi (%2).</p>"
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] "— 1 görselin koordinatları halihazırda atanmış"
-msgstr[1] "- %1 görselin koordinatları halihazırda atanmış"
+msgstr[1] "— %1 görselin koordinatları halihazırda atanmış"
 
 #: src/MainWindow.cpp:1168
 #, kde-format
@@ -1777,12 +1773,12 @@ msgstr "Noktalar"
 #: src/SettingsDialog.cpp:233
 #, kde-format
 msgid "Dash-Dot"
-msgstr "Tire-Nokta"
+msgstr "Tire–Nokta"
 
 #: src/SettingsDialog.cpp:234
 #, kde-format
 msgid "Dash-Dot-Dot"
-msgstr "Tire-Nokta-Nokta"
+msgstr "Tire–Nokta–Nokta"
 
 #: src/SettingsDialog.cpp:247
 #, kde-format
@@ -1868,7 +1864,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:297
 #, kde-format
 msgid "Request and set altitudes automatically"
-msgstr "Rakımları kendiliğinden iste ve ayarla"
+msgstr "Yükseklikleri kendiliğinden iste ve ayarla"
 
 #: src/SettingsDialog.cpp:303
 #, kde-format
@@ -1918,17 +1914,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr "Bir dosyayı değiştirmeden önce yedek oluştur"
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "Matlık: %​%1"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "Ayarlar değiştirildi"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"

@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -218,9 +218,9 @@ msgid "\"%1\""
 msgstr "“%1”"
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "坐标：%1, %2；海拔高度：%3 m"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -239,20 +239,16 @@ msgid " °"
 msgstr "°"
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Minutes symbol"
 msgid " '"
-msgstr "m"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Seconds symbol"
 msgid " \""
-msgstr "m"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -320,22 +316,22 @@ msgid "Coordinates for %1:"
 msgstr "%1 的坐标："
 
 #: src/CoordinatesFormatter.cpp:33
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr ""
 
 #: src/CoordinatesFormatter.cpp:40
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr ""
 
 #: src/CoordinatesFormatter.cpp:52
-#, fuzzy, kde-format
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr ""
 
 #: src/CoordinatesFormatter.cpp:66
 #, kde-format
@@ -1422,9 +1418,9 @@ msgid "Map center position: %1"
 msgstr ""
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
+#, kde-format
 msgid "Displayed floating items"
-msgstr "悬浮部件"
+msgstr ""
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1432,9 +1428,9 @@ msgid "Crosshairs"
 msgstr "十字准星"
 
 #: src/MapWidget.cpp:139
-#, fuzzy, kde-format
+#, kde-format
 msgid "Current map center"
-msgstr "分配至地图中心"
+msgstr ""
 
 #: src/MapWidget.cpp:142 src/MapWidget.cpp:147
 #, kde-format
@@ -1442,14 +1438,14 @@ msgid "Copy coordinates to clipboard"
 msgstr ""
 
 #: src/MapWidget.cpp:148
-#, fuzzy, kde-format
+#, kde-format
 msgid "Coordinates copied!"
-msgstr "坐标："
+msgstr ""
 
 #: src/MapWidget.cpp:153
-#, fuzzy, kde-format
+#, kde-format
 msgid "Add bookmark"
-msgstr "添加新书签"
+msgstr ""
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1487,9 +1483,9 @@ msgid "manually set"
 msgstr "手动设置"
 
 #: src/PreviewWidget.cpp:109
-#, fuzzy, kde-format
+#, kde-format
 msgid "<p>Position: %1; Altitude: %2<br/>(%3)</p>"
-msgstr "<p>位置：%1, %2；海拔：%3 m<br/>(%4)</p>"
+msgstr ""
 
 #: src/PreviewWidget.cpp:114
 #, kde-format
@@ -1521,29 +1517,29 @@ msgid "KGeoTag settings"
 msgstr "KGeoTag 设置"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
+#, kde-format
 msgid "Coordinates"
-msgstr "坐标："
+msgstr ""
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
+#, kde-format
 msgid "Coordinates order:"
-msgstr "%1 的坐标："
+msgstr ""
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "经度："
+msgstr ""
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "经度："
+msgstr ""
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "%1 的坐标："
+msgstr ""
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
@@ -1574,14 +1570,12 @@ msgid "Image lists"
 msgstr "图像列表"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>已加载的图像会被列在两个不同的列表内 (一个包含所有无坐标的图像，一个包含有"
-"坐标的图像)，或被列在同一个混合列表中。</p><p>将使用以下图像列表模式：</p>"
 
 #: src/SettingsDialog.cpp:112
 #, kde-format
@@ -1604,9 +1598,9 @@ msgid "Image Assignment"
 msgstr "图像分配"
 
 #: src/SettingsDialog.cpp:137
-#, fuzzy, kde-format
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data\":"
-msgstr "搜索主菜单“分配图像到 GPS 数据”项的类型"
+msgstr ""
 
 #: src/SettingsDialog.cpp:156
 #, kde-format
@@ -1819,17 +1813,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr ""
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "不透明度：%1%"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "设置已更改"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
@@ -1856,7 +1850,3 @@ msgstr[0] "%1 个轨迹点"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "已选中 %2 个中的 %1 个轨迹点"
-
-#~ msgctxt "Formatted latitude with a cardinal direction"
-#~ msgid "%1° %2"
-#~ msgstr "%1° %2"

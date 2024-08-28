@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
-"PO-Revision-Date: 2024-08-26 12:13+0200\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
+"PO-Revision-Date: 2024-08-27 18:37+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -245,21 +245,18 @@ msgctxt "Degrees symbol"
 msgid " °"
 msgstr " °"
 
+# skip-rule: t-apo_ini, t-apo_fim
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Minutes symbol"
 msgid " '"
-msgstr " m"
+msgstr " '"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degreee) Seconds symbol"
 msgid " \""
-msgstr " m"
+msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -1938,17 +1935,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr "Crea una còpia de seguretat abans d'alterar un fitxer"
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "Opacitat: %1%"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "S'ha canviat la configuració"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"

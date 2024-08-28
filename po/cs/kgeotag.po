@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-27 01:49+0000\n"
-"PO-Revision-Date: 2024-06-27 15:49+0200\n"
+"POT-Creation-Date: 2024-08-28 01:56+0000\n"
+"PO-Revision-Date: 2024-08-27 15:17+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.05.1\n"
+"X-Generator: Lokalize 24.05.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -220,7 +220,7 @@ msgstr ""
 #: src/BookmarksWidget.cpp:47
 #, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr ""
+msgstr "Pozice: %1; Výška: %2"
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -239,20 +239,16 @@ msgid " °"
 msgstr ""
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Marker for a file with a pending change"
-#| msgid " *"
+#, kde-format
 msgctxt "(Degreee) Minutes symbol"
 msgid " '"
-msgstr " *"
+msgstr " '"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Marker for a file with a pending change"
-#| msgid " *"
+#, kde-format
 msgctxt "(Degreee) Seconds symbol"
 msgid " \""
-msgstr " *"
+msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -320,46 +316,40 @@ msgid "Coordinates for %1:"
 msgstr ""
 
 #: src/CoordinatesFormatter.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Formatted latitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr "%1°"
 
 #: src/CoordinatesFormatter.cpp:40
-#, fuzzy, kde-format
-#| msgctxt "Formatted latitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr "%1° %2'"
 
 #: src/CoordinatesFormatter.cpp:52
-#, fuzzy, kde-format
-#| msgctxt "Formatted latitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr "%1° %2' %3\""
 
 #: src/CoordinatesFormatter.cpp:66
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: src/CoordinatesFormatter.cpp:89
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -1428,12 +1418,12 @@ msgstr ""
 #: src/MapCenterInfo.cpp:48
 #, kde-format
 msgid "Map center position: %1"
-msgstr ""
+msgstr "Pozice středu mapy: %1"
 
 #: src/MapWidget.cpp:84
 #, kde-format
 msgid "Displayed floating items"
-msgstr ""
+msgstr "Zobrazené plovoucí položky"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1443,23 +1433,20 @@ msgstr "Nitkový kříž"
 #: src/MapWidget.cpp:139
 #, kde-format
 msgid "Current map center"
-msgstr ""
+msgstr "Současný střed mapy"
 
 #: src/MapWidget.cpp:142 src/MapWidget.cpp:147
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "Nastavit souřadnice ze schránky"
+msgstr "Kopírovat souřadnice do schránky"
 
 #: src/MapWidget.cpp:148
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates copied!"
-msgstr "Souřadnice:"
+msgstr "Souřadnice byly zkopírovány."
 
 #: src/MapWidget.cpp:153
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
 msgstr "Přidat záložku"
 
@@ -1531,34 +1518,29 @@ msgid "KGeoTag settings"
 msgstr ""
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "Souřadnice:"
+msgstr "Souřadnice"
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates order:"
-msgstr "Souřadnice:"
+msgstr "Pořadí souřadnic:"
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "Zeměpisná délka:"
+msgstr "Zeměpisná délka, zeměpisná šířka"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "Zeměpisná délka:"
+msgstr "Šířka, délka"
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "Souřadnice:"
+msgstr ""
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
@@ -1617,10 +1599,9 @@ msgid "Image Assignment"
 msgstr "Přiřazení obrázků"
 
 #: src/SettingsDialog.cpp:137
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data\":"
-msgstr "Korelovat obrázky s daty GPS"
+msgstr ""
 
 #: src/SettingsDialog.cpp:156
 #, kde-format
@@ -1829,17 +1810,17 @@ msgstr ""
 msgid "Create a backup before altering a file"
 msgstr "Před upravením souboru vytvořit zálohu"
 
-#: src/SettingsDialog.cpp:371
+#: src/SettingsDialog.cpp:370
 #, kde-format
 msgid "Opacity: %1%"
 msgstr "Krytí: %1%"
 
-#: src/SettingsDialog.cpp:418
+#: src/SettingsDialog.cpp:417
 #, kde-format
 msgid "Settings changed"
 msgstr "Nastavení změněna"
 
-#: src/SettingsDialog.cpp:419
+#: src/SettingsDialog.cpp:418
 #, kde-format
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
