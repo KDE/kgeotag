@@ -122,6 +122,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     auto *removeEverything = actionCollection()->addAction(QStringLiteral("removeEverything"));
     removeEverything->setText(i18n("All images and tracks (reset)"));
+    actionCollection()->setDefaultShortcut(removeEverything, QKeySequence(tr("Ctrl+R")));
     connect(removeEverything, &QAction::triggered, this, &MainWindow::removeEverything);
 
     // "File" menu again
