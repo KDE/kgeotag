@@ -106,10 +106,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     listsModeLabel->setWordWrap(true);
     listsBoxLayout->addWidget(listsModeLabel);
 
-    auto *listModeSelectionLayout = new QHBoxLayout;
-    listsBoxLayout->addLayout(listModeSelectionLayout);
-
-    listModeSelectionLayout->addWidget(new QLabel(i18n("Use the following images list(s) mode:")));
+    listsBoxLayout->addWidget(new QLabel(i18n("Use the following images list(s) mode:")));
 
     m_imageListsMode = new QComboBox;
     m_imageListsMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -120,9 +117,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_imageListsMode->setCurrentIndex(m_settings->splitImagesList() ? 0 : 1);
     m_originalSplitImagesListValue = m_imageListsMode->currentIndex() == 0;
 
-    listModeSelectionLayout->addWidget(m_imageListsMode);
-
-    listModeSelectionLayout->addStretch();
+    listsBoxLayout->addWidget(m_imageListsMode);
 
     // Automatic matching
 
@@ -131,11 +126,8 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
 
     auto *searchMatchesBoxLayout = new QVBoxLayout(searchMatchesBox);
 
-    auto *searchMatchesSelectionLayout = new QHBoxLayout;
-    searchMatchesBoxLayout->addLayout(searchMatchesSelectionLayout);
-
-    searchMatchesSelectionLayout->addWidget(new QLabel(i18n("Search type for \"Correlate images "
-                                                            "with GPS data\":")));
+    searchMatchesBoxLayout->addWidget(new QLabel(
+        i18n("Search type for \"Correlate images with GPS data (search matches)\":")));
 
     m_automaticMatchingMode = new QComboBox;
     m_automaticMatchingMode->setSizePolicy(QSizePolicy::Maximum, QSizePolicy::MinimumExpanding);
@@ -148,9 +140,7 @@ SettingsDialog::SettingsDialog(Settings *settings, QWidget *parent)
     m_automaticMatchingMode->setCurrentIndex(
         m_automaticMatchingMode->findData(m_settings->defaultMatchingMode()));
 
-    searchMatchesSelectionLayout->addWidget(m_automaticMatchingMode);
-
-    searchMatchesSelectionLayout->addStretch();
+    searchMatchesBoxLayout->addWidget(m_automaticMatchingMode);
 
     auto *matchModeNoteLabel = new QLabel(i18n(
         "This triggers an automatic (re-)assignment of all images, respecting the \"Exclude "
