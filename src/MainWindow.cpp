@@ -45,7 +45,6 @@
 #include <QFile>
 #include <QTimer>
 #include <QMessageBox>
-#include <QCloseEvent>
 #include <QVBoxLayout>
 
 // C++ includes
@@ -420,25 +419,22 @@ QDockWidget *MainWindow::createDockWidget(const QString &title, QWidget *widget,
     return dock;
 }
 
-void MainWindow::closeEvent(QCloseEvent *event)
+bool MainWindow::queryClose()
 {
-    if (! m_imagesModel->imagesWithPendingChanges().isEmpty()) {
-        if (QMessageBox::question(this, i18n("Close KGeoTag"),
-            i18n("<p>There are pending changes to images that haven't been saved yet. All changes "
-                 "will be discarded if KGeoTag is closed now.</p>"
-                 "<p>Do you want to close the program anyway?</p>"),
-            QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
+    if (! m_imagesModel->imagesWithPendingChanges().isEmpty()
+        && QMessageBox::question(this, i18n("Close KGeoTag"),
+               i18n("<p>There are pending changes to images that haven't been saved yet. All "
+                    "changes will be discarded if KGeoTag is closed now.</p>"
+                    "<p>Do you want to close the program anyway?</p>"),
+               QMessageBox::Yes | QMessageBox::No, QMessageBox::No) == QMessageBox::No) {
 
-            event->ignore();
-            return;
-        }
+        return false;
     }
 
     m_mapWidget->saveSettings();
-
     m_settings->saveBookmarks(m_bookmarksWidget->bookmarks());
 
-    KXmlGuiWindow::closeEvent(event);
+    return true;
 }
 
 void MainWindow::addPathsFromCommandLine(QStringList &paths)

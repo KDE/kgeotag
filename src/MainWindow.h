@@ -30,7 +30,6 @@ class MapCenterInfo;
 
 // Qt classes
 class QDockWidget;
-class QCloseEvent;
 
 class MainWindow : public KXmlGuiWindow
 {
@@ -41,7 +40,7 @@ public:
     void addPathsFromCommandLine(QStringList &paths);
 
 protected:
-    void closeEvent(QCloseEvent *event) override;
+    bool queryClose() override;
 
 private Q_SLOTS:
     void updateImagesListsMode();
