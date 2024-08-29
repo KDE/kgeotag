@@ -52,11 +52,11 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
 
     m_lonMin = new QDoubleSpinBox;
     m_lonMin->setRange(0.0, 60.0);
-    m_lonMin->setSuffix(i18nc("(Degreee) Minutes symbol", "\u2009'"));
+    m_lonMin->setSuffix(i18nc("(Degree) Minutes symbol", "\u2009'"));
 
     m_lonSec = new QDoubleSpinBox;
     m_lonSec->setRange(0.0, 60.0);
-    m_lonSec->setSuffix(i18nc("(Degreee) Seconds symbol", "\u2009\""));
+    m_lonSec->setSuffix(i18nc("(Degree) Seconds symbol", "\u2009\""));
 
     m_lonDirection = new QComboBox;
     m_lonDirection->addItem(i18nc("Abbreviated cardinal direction \"East\"", "E"));
@@ -70,11 +70,11 @@ CoordinatesDialog::CoordinatesDialog(Mode mode, bool hideAlt, bool latBeforeLon,
 
     m_latMin = new QDoubleSpinBox;
     m_latMin->setRange(0.0, 60.0);
-    m_latMin->setSuffix(i18nc("(Degreee) Minutes symbol", "\u2009'"));
+    m_latMin->setSuffix(i18nc("(Degree) Minutes symbol", "\u2009'"));
 
     m_latSec = new QDoubleSpinBox;
     m_latSec->setRange(0.0, 60.0);
-    m_latSec->setSuffix(i18nc("(Degreee) Seconds symbol", "\u2009\""));
+    m_latSec->setSuffix(i18nc("(Degree) Seconds symbol", "\u2009\""));
 
     m_latDirection = new QComboBox;
     m_latDirection->addItem(i18nc("Abbreviated cardinal direction \"North\"", "N"));
