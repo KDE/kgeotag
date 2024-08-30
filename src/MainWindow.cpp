@@ -86,16 +86,14 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *addFilesAction = actionCollection()->addAction(QStringLiteral("addFiles"));
     addFilesAction->setText(i18n("Add images and/or GPX tracks"));
     addFilesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-new")));
-    actionCollection()->setDefaultShortcut(addFilesAction, QKeySequence(
-        i18nc("Keyboard shortcut for \"add images and/or GPX tracks\"", "Ctrl+F")));
+    actionCollection()->setDefaultShortcut(addFilesAction, QKeySequence(Qt::CTRL | Qt::Key_F));
     connect(addFilesAction, &QAction::triggered,
             this, std::bind(&MainWindow::addFiles, this, QStringList()));
 
     auto *addDirectoryAction = actionCollection()->addAction(QStringLiteral("addDirectory"));
     addDirectoryAction->setText(i18n("Add all images and tracks from a folder"));
     addDirectoryAction->setIcon(QIcon::fromTheme(QStringLiteral("archive-insert-directory")));
-    actionCollection()->setDefaultShortcut(addDirectoryAction, QKeySequence(
-        i18nc("Keyboard shortcut for \"Add all images and tracks from a folder\"", "Ctrl+D")));
+    actionCollection()->setDefaultShortcut(addDirectoryAction, QKeySequence(Qt::CTRL | Qt::Key_D));
     connect(addDirectoryAction, &QAction::triggered,
             this, std::bind(&MainWindow::addDirectory, this, QString()));
 
@@ -123,8 +121,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     auto *removeEverything = actionCollection()->addAction(QStringLiteral("removeEverything"));
     removeEverything->setText(i18n("All images and tracks (reset)"));
-    actionCollection()->setDefaultShortcut(removeEverything, QKeySequence(
-        i18nc("Keyboard shortcut for \"All images and tracks (reset)\"", "Ctrl+R")));
+    actionCollection()->setDefaultShortcut(removeEverything, QKeySequence(Qt::CTRL | Qt::Key_R));
     connect(removeEverything, &QAction::triggered, this, &MainWindow::removeEverything);
 
     // "File" menu again
@@ -132,9 +129,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *searchMatchesAction = actionCollection()->addAction(QStringLiteral("searchMatches"));
     searchMatchesAction->setText(i18n("Correlate images with GPS data (search matches)"));
     searchMatchesAction->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
-    actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(
-        i18nc("Keyboard shortcut for \"Correlate images with GPS data (search matches)\"",
-              "Ctrl+M")));
+    actionCollection()->setDefaultShortcut(searchMatchesAction, QKeySequence(Qt::CTRL | Qt::Key_M));
     connect(searchMatchesAction, &QAction::triggered,
             this, [this]
             {
@@ -146,8 +141,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *assignToMapCenter = actionCollection()->addAction(QStringLiteral("assignToMapCenter"));
     assignToMapCenter->setText(i18n("(Re-)Assign to map center"));
     assignToMapCenter->setIcon(QIcon::fromTheme(QStringLiteral("crosshairs")));
-    actionCollection()->setDefaultShortcut(assignToMapCenter, QKeySequence(
-        i18nc("Keyboard shortcut for \"(Re-)Assign to map center\"", "Ctrl+C")));
+    actionCollection()->setDefaultShortcut(assignToMapCenter, QKeySequence(Qt::CTRL | Qt::Key_C));
     connect(assignToMapCenter, &QAction::triggered, this, &MainWindow::assignSelectionToMapCenter);
 
     m_selectNextUntagged = actionCollection()->addAction(QStringLiteral("selectNextUntagged"));
@@ -161,8 +155,7 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
     auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
     saveChangesAction->setText(i18n("Save changed images"));
     saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
-    actionCollection()->setDefaultShortcut(saveChangesAction, QKeySequence(
-        i18nc("Keyboard shortcut for \"Save changed images\"", "Ctrl+S")));
+    actionCollection()->setDefaultShortcut(saveChangesAction, QKeySequence(Qt::CTRL | Qt::Key_S));
     connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveAllChanges);
 
     KStandardAction::quit(this, &QWidget::close, actionCollection());
