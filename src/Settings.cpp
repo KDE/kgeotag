@@ -157,6 +157,10 @@ Settings::Settings(QObject *parent) : QObject(parent)
 
 QByteArray Settings::mainWindowState() const
 {
+    // NOTE: Most probably, when porting this to KF6, we will need to read
+    // KSharedConfig::openStateConfig() to get this, as apparently, KF6 doesn't store the state
+    // information in ~/.config/...rc, but in an extra "state" rc file.
+
     auto group = m_config->group(QStringLiteral("MainWindow"));
     const auto state = group.readEntry(QStringLiteral("State"), QString());
     return QByteArray::fromBase64(state.toUtf8());
