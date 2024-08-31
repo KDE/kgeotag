@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-30 01:53+0000\n"
+"POT-Creation-Date: 2024-08-31 01:46+0000\n"
 "PO-Revision-Date: 2024-06-29 11:34+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -81,13 +81,13 @@ msgstr "metres"
 msgid "Save settings"
 msgstr "Save settings"
 
-#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1053
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1046
 #, kde-format
 msgid "(Re)Assign all images"
 msgstr "(Re)Assign all images"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
-#: src/MainWindow.cpp:1148 src/SettingsDialog.cpp:135
+#: src/MainWindow.cpp:1141 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr "Combined match search"
@@ -462,7 +462,7 @@ msgstr "Select all images"
 msgid "Select"
 msgstr "Select"
 
-#: src/ImagesListView.cpp:67 src/MainWindow.cpp:117
+#: src/ImagesListView.cpp:67 src/MainWindow.cpp:115
 #, kde-format
 msgid "All images"
 msgstr "All images"
@@ -477,7 +477,7 @@ msgstr "All images without coordinates"
 msgid "All images with coordinates"
 msgstr "All images with coordinates"
 
-#: src/ImagesListView.cpp:78 src/MainWindow.cpp:208 src/MainWindow.cpp:1073
+#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1066
 #, kde-format
 msgid "Automatic matching"
 msgstr "Automatic matching"
@@ -502,14 +502,14 @@ msgstr "Set coordinates from clipboard"
 msgid "Set coordinates manually"
 msgstr "Set coordinates manually"
 
-#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1772
+#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1765
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "Find closest trackpoint"
 
-#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1276 src/MainWindow.cpp:1329
-#: src/MainWindow.cpp:1375 src/MainWindow.cpp:1449 src/MainWindow.cpp:1480
-#: src/MainWindow.cpp:1483 src/MainWindow.cpp:1488
+#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1269 src/MainWindow.cpp:1322
+#: src/MainWindow.cpp:1368 src/MainWindow.cpp:1442 src/MainWindow.cpp:1473
+#: src/MainWindow.cpp:1476 src/MainWindow.cpp:1481
 #, kde-format
 msgid "Save changes"
 msgstr "Save changes"
@@ -525,7 +525,7 @@ msgid "Discard changes"
 msgstr "Discard changes"
 
 #: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
-#: src/MainWindow.cpp:1632
+#: src/MainWindow.cpp:1625
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
@@ -603,135 +603,98 @@ msgstr "Files and/or folders to load at startup"
 msgid "[files/folders...]"
 msgstr "[files/folders...]"
 
-#: src/MainWindow.cpp:87 src/MainWindow.cpp:532
+#: src/MainWindow.cpp:87 src/MainWindow.cpp:525
 #, kde-format
 msgid "Add images and/or GPX tracks"
 msgstr "Add images and/or GPX tracks"
 
-#: src/MainWindow.cpp:90
-#, kde-format
-msgctxt "Keyboard shortcut for \"add images and/or GPX tracks\""
-msgid "Ctrl+F"
-msgstr ""
-
-#: src/MainWindow.cpp:95 src/MainWindow.cpp:581
+#: src/MainWindow.cpp:94 src/MainWindow.cpp:574
 #, kde-format
 msgid "Add all images and tracks from a folder"
 msgstr "Add all images and tracks from a folder"
 
-#: src/MainWindow.cpp:98
-#, kde-format
-msgctxt "Keyboard shortcut for \"Add all images and tracks from a folder\""
-msgid "Ctrl+D"
-msgstr ""
-
-#: src/MainWindow.cpp:106
+#: src/MainWindow.cpp:104
 #, kde-format
 msgid "All processed and saved images"
 msgstr "All processed and saved images"
 
-#: src/MainWindow.cpp:112
+#: src/MainWindow.cpp:110
 #, kde-format
 msgid "All images that already had coordinates"
 msgstr "All images that already had coordinates"
 
-#: src/MainWindow.cpp:121
+#: src/MainWindow.cpp:119
 #, kde-format
 msgid "All tracks"
 msgstr "All tracks"
 
-#: src/MainWindow.cpp:125
+#: src/MainWindow.cpp:123
 #, kde-format
 msgid "All images and tracks (reset)"
 msgstr "All images and tracks (reset)"
 
-#: src/MainWindow.cpp:127
-#, kde-format
-msgctxt "Keyboard shortcut for \"All images and tracks (reset)\""
-msgid "Ctrl+R"
-msgstr ""
-
-#: src/MainWindow.cpp:133
+#: src/MainWindow.cpp:130
 #, fuzzy, kde-format
 #| msgid "Correlate images with GPS data"
 msgid "Correlate images with GPS data (search matches)"
 msgstr "Correlate images with GPS data"
 
-#: src/MainWindow.cpp:137
-#, kde-format
-msgctxt ""
-"Keyboard shortcut for \"Correlate images with GPS data (search matches)\""
-msgid "Ctrl+M"
-msgstr ""
-
-#: src/MainWindow.cpp:147
+#: src/MainWindow.cpp:142
 #, kde-format
 msgid "(Re-)Assign to map center"
 msgstr "(Re-)Assign to map centre"
 
-#: src/MainWindow.cpp:150
-#, kde-format
-msgctxt "Keyboard shortcut for \"(Re-)Assign to map center\""
-msgid "Ctrl+C"
-msgstr ""
-
-#: src/MainWindow.cpp:154
+#: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
 msgstr "Automatically select next untagged image"
 
-#: src/MainWindow.cpp:162
+#: src/MainWindow.cpp:156
 #, kde-format
 msgid "Save changed images"
 msgstr "Save changed images"
 
-#: src/MainWindow.cpp:165
-#, kde-format
-msgctxt "Keyboard shortcut for \"Save changed images\""
-msgid "Ctrl+S"
-msgstr ""
-
-#: src/MainWindow.cpp:175
+#: src/MainWindow.cpp:168
 #, kde-format
 msgid "Set default dock arrangement"
 msgstr "Set default dock arrangement"
 
-#: src/MainWindow.cpp:198
+#: src/MainWindow.cpp:191
 #, kde-format
 msgid "Bookmarks"
 msgstr "Bookmarks"
 
-#: src/MainWindow.cpp:203
+#: src/MainWindow.cpp:196
 #, kde-format
 msgid "Preview"
 msgstr "Preview"
 
-#: src/MainWindow.cpp:216
+#: src/MainWindow.cpp:209
 #, kde-format
 msgid "Fix time drift"
 msgstr "Fix time drift"
 
-#: src/MainWindow.cpp:234
+#: src/MainWindow.cpp:227
 #, kde-format
 msgid "Map"
 msgstr "Map"
 
-#: src/MainWindow.cpp:243
+#: src/MainWindow.cpp:236
 #, kde-format
 msgid "Unassigned images"
 msgstr "Unassigned images"
 
-#: src/MainWindow.cpp:266
+#: src/MainWindow.cpp:259
 #, kde-format
 msgid "Tracks"
 msgstr "Tracks"
 
-#: src/MainWindow.cpp:294
+#: src/MainWindow.cpp:287
 #, kde-format
 msgid "Loading timezone data"
 msgstr "Loading timezone data"
 
-#: src/MainWindow.cpp:295
+#: src/MainWindow.cpp:288
 #, kde-format
 msgid ""
 "<p>Could not load or parse the timezone data files <kbd>timezones.json</kbd> "
@@ -748,22 +711,22 @@ msgstr ""
 "community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
 "wiki</a> on how to make the respective files accessible.</p>"
 
-#: src/MainWindow.cpp:347
+#: src/MainWindow.cpp:340
 #, kde-format
 msgid "Assigned images"
 msgstr "Assigned images"
 
-#: src/MainWindow.cpp:353
+#: src/MainWindow.cpp:346
 #, kde-format
 msgid "Images"
 msgstr "Images"
 
-#: src/MainWindow.cpp:425
+#: src/MainWindow.cpp:418
 #, kde-format
 msgid "Close KGeoTag"
 msgstr "Close KGeoTag"
 
-#: src/MainWindow.cpp:426
+#: src/MainWindow.cpp:419
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -774,12 +737,12 @@ msgstr ""
 "changes will be discarded if KGeoTag is closed now.</p><p>Do you want to "
 "close the program anyway?</p>"
 
-#: src/MainWindow.cpp:474
+#: src/MainWindow.cpp:467
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
 msgstr "Please select the images and/or GPX tracks to add"
 
-#: src/MainWindow.cpp:476
+#: src/MainWindow.cpp:469
 #, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
@@ -788,18 +751,18 @@ msgstr ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
 "cr2 *.nef *.dng *.gpx );; All files (*)"
 
-#: src/MainWindow.cpp:510
+#: src/MainWindow.cpp:503
 #, kde-format
 msgid "<p>The selection did not contain any supported files!</p>"
 msgstr "<p>The selection did not contain any supported files!</p>"
 
-#: src/MainWindow.cpp:518
+#: src/MainWindow.cpp:511
 #, kde-format
 msgctxt "A filename with a MIME type in braces and a HTML line break"
 msgid "%1 (%2)<br/>"
 msgstr "%1 (%2)<br/>"
 
-#: src/MainWindow.cpp:523
+#: src/MainWindow.cpp:516
 #, kde-format
 msgid ""
 "<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
@@ -814,17 +777,17 @@ msgstr[1] ""
 "<p>The following files will be skipped due to unsupported MIME types:</p><p>"
 "%2</p>"
 
-#: src/MainWindow.cpp:551
+#: src/MainWindow.cpp:544
 #, kde-format
 msgid "Please select a folder"
 msgstr "Please select a folder"
 
-#: src/MainWindow.cpp:582
+#: src/MainWindow.cpp:575
 #, kde-format
 msgid "Could not find any supported files in <kbd>%1</kbd>"
 msgstr "Could not find any supported files in <kbd>%1</kbd>"
 
-#: src/MainWindow.cpp:637
+#: src/MainWindow.cpp:630
 #, kde-format
 msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
@@ -833,7 +796,7 @@ msgstr ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
 "file.</p>"
 
-#: src/MainWindow.cpp:642
+#: src/MainWindow.cpp:635
 #, kde-format
 msgid ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
@@ -842,14 +805,14 @@ msgstr ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
 "kbd> root element. Apparently, this is not a GPX file!</p>"
 
-#: src/MainWindow.cpp:648
+#: src/MainWindow.cpp:641
 #, kde-format
 msgid ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 msgstr ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 
-#: src/MainWindow.cpp:653
+#: src/MainWindow.cpp:646
 #, kde-format
 msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
@@ -858,35 +821,35 @@ msgstr ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
 "all, or only a part of it.</p>"
 
-#: src/MainWindow.cpp:663
+#: src/MainWindow.cpp:656
 #, kde-format
 msgid "<p><b>Loading GPX file failed</b></p>"
 msgstr "<p><b>Loading GPX file failed</b></p>"
 
-#: src/MainWindow.cpp:666
+#: src/MainWindow.cpp:659
 #, kde-format
 msgctxt "Fraction of processed files are added inside the round braces"
 msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
 msgstr "<p><b>Loading GPX file failed (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:673
+#: src/MainWindow.cpp:666
 #, kde-format
 msgid "<p>The next GPX file will be loaded now.</p>"
 msgstr "<p>The next GPX file will be loaded now.</p>"
 
-#: src/MainWindow.cpp:677 src/MainWindow.cpp:741
+#: src/MainWindow.cpp:670 src/MainWindow.cpp:734
 #, kde-format
 msgid "Load GPX data"
 msgstr "Load GPX data"
 
-#: src/MainWindow.cpp:687
+#: src/MainWindow.cpp:680
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
 msgstr[0] "<p>Processed one file</p>"
 msgstr[1] "<p>Processed %1 files</p>"
 
-#: src/MainWindow.cpp:692
+#: src/MainWindow.cpp:685
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load. The "
@@ -897,14 +860,14 @@ msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>Processed one file; %2</p>"
 msgstr[1] "<p>Processed %1 files; %2</p>"
 
-#: src/MainWindow.cpp:694 src/MainWindow.cpp:709
+#: src/MainWindow.cpp:687 src/MainWindow.cpp:702
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
 msgstr[0] "one file failed to load"
 msgstr[1] "%1 files failed to load"
 
-#: src/MainWindow.cpp:699
+#: src/MainWindow.cpp:692
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that have been skipped. The "
@@ -915,14 +878,14 @@ msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>Processed one file; %2</p>"
 msgstr[1] "<p>Processed %1 files; %2</p>"
 
-#: src/MainWindow.cpp:701 src/MainWindow.cpp:710
+#: src/MainWindow.cpp:694 src/MainWindow.cpp:703
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
 msgstr[0] "one already loaded file has been skipped"
 msgstr[1] "%1 already loaded files have been skipped"
 
-#: src/MainWindow.cpp:707
+#: src/MainWindow.cpp:700
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load and some that "
@@ -933,12 +896,12 @@ msgid_plural "<p>Processed %1 files; %2, %3</p>"
 msgstr[0] "<p>Processed one file; %2, %3</p>"
 msgstr[1] "<p>Processed %1 files; %2, %3</p>"
 
-#: src/MainWindow.cpp:715
+#: src/MainWindow.cpp:708
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
 msgstr "<p>No waypoints could be loaded.</p>"
 
-#: src/MainWindow.cpp:721
+#: src/MainWindow.cpp:714
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks that have been read. "
@@ -949,14 +912,14 @@ msgid_plural "<p>Loaded %1 waypoints from %2</p>"
 msgstr[0] "<p>Loaded one waypoint from %2</p>"
 msgstr[1] "<p>Loaded %1 waypoints from %2</p>"
 
-#: src/MainWindow.cpp:724 src/MainWindow.cpp:733
+#: src/MainWindow.cpp:717 src/MainWindow.cpp:726
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
 msgstr[0] "one track"
 msgstr[1] "%1 tracks"
 
-#: src/MainWindow.cpp:730
+#: src/MainWindow.cpp:723
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks and the number of "
@@ -967,19 +930,19 @@ msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
 msgstr[0] "<p>Loaded one waypoint from %2 and %3</p>"
 msgstr[1] "<p>Loaded %1 waypoints from %2 and %3</p>"
 
-#: src/MainWindow.cpp:734
+#: src/MainWindow.cpp:727
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
 msgstr[0] "one segment"
 msgstr[1] "%1 segments"
 
-#: src/MainWindow.cpp:749
+#: src/MainWindow.cpp:742
 #, kde-format
 msgid "Timezone detection failed"
 msgstr "Time zone detection failed"
 
-#: src/MainWindow.cpp:750
+#: src/MainWindow.cpp:743
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone for images associated with the loaded GPX "
@@ -990,12 +953,12 @@ msgstr ""
 "GPX file could not be detected.</p><p>Please set the correct time zone "
 "manually on the \"Fix time drift\" page.</p>"
 
-#: src/MainWindow.cpp:756
+#: src/MainWindow.cpp:749
 #, kde-format
 msgid "Setting the detected timezone failed"
 msgstr "Setting the detected time zone failed"
 
-#: src/MainWindow.cpp:757
+#: src/MainWindow.cpp:750
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
@@ -1012,12 +975,12 @@ msgstr ""
 "p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
 "page.</p>"
 
-#: src/MainWindow.cpp:766
+#: src/MainWindow.cpp:759
 #, kde-format
 msgid "Timezone adjusted"
 msgstr "Time zone adjusted"
 
-#: src/MainWindow.cpp:767
+#: src/MainWindow.cpp:760
 #, kde-format
 msgid ""
 "<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
@@ -1030,22 +993,22 @@ msgstr ""
 "now.</p><p>You can adjust the time zone setting manually on the \"Fix time "
 "drift\" page.</p>"
 
-#: src/MainWindow.cpp:793
+#: src/MainWindow.cpp:786
 #, kde-format
 msgid "Loading images ..."
 msgstr "Loading images ..."
 
-#: src/MainWindow.cpp:793 src/MainWindow.cpp:1089 src/MainWindow.cpp:1296
+#: src/MainWindow.cpp:786 src/MainWindow.cpp:1082 src/MainWindow.cpp:1289
 #, kde-format
 msgid "Cancel"
 msgstr "Cancel"
 
-#: src/MainWindow.cpp:819
+#: src/MainWindow.cpp:812
 #, kde-format
 msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 msgstr "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:825
+#: src/MainWindow.cpp:818
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -1055,7 +1018,7 @@ msgstr ""
 "<p><b>Loading image failed (%1/%2)</b></p><p>Could not read <kbd>%3</kbd>.</"
 "p>"
 
-#: src/MainWindow.cpp:834
+#: src/MainWindow.cpp:827
 #, kde-format
 msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
@@ -1064,7 +1027,7 @@ msgstr ""
 "<p><b>Loading image's EXIF header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:840
+#: src/MainWindow.cpp:833
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -1074,7 +1037,7 @@ msgstr ""
 "<p><b>Loading image's EXIF header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%2</kbd>.</p>"
 
-#: src/MainWindow.cpp:852
+#: src/MainWindow.cpp:845
 #, kde-format
 msgid ""
 "<p>Please check if this file is actually a supported image and if you have "
@@ -1083,12 +1046,12 @@ msgstr ""
 "<p>Please check if this file is actually a supported image and if you have "
 "read access to it.</p>"
 
-#: src/MainWindow.cpp:856
+#: src/MainWindow.cpp:849
 #, kde-format
 msgid "<p>You can retry to load this file or cancel the loading process.</p>"
 msgstr "<p>You can retry to load this file or cancel the loading process.</p>"
 
-#: src/MainWindow.cpp:859
+#: src/MainWindow.cpp:852
 #, kde-format
 msgid ""
 "<p>You can retry to load this file, skip it or cancel the loading process.</"
@@ -1097,32 +1060,32 @@ msgstr ""
 "<p>You can retry to load this file, skip it or cancel the loading process.</"
 "p>"
 
-#: src/MainWindow.cpp:866 src/MainWindow.cpp:898 src/MainWindow.cpp:904
-#: src/MainWindow.cpp:908 src/MainWindow.cpp:912 src/MainWindow.cpp:944
+#: src/MainWindow.cpp:859 src/MainWindow.cpp:891 src/MainWindow.cpp:897
+#: src/MainWindow.cpp:901 src/MainWindow.cpp:905 src/MainWindow.cpp:937
 #, kde-format
 msgid "Add images"
 msgstr "Add images"
 
-#: src/MainWindow.cpp:899
+#: src/MainWindow.cpp:892
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
 msgstr[0] "Successfully added one image!"
 msgstr[1] "Successfully added %1 images!"
 
-#: src/MainWindow.cpp:905
+#: src/MainWindow.cpp:898
 #, kde-format
 msgid "Could not add any new images, all requested images failed to load!"
 msgstr "Could not add any new images, all requested images failed to load!"
 
-#: src/MainWindow.cpp:909
+#: src/MainWindow.cpp:902
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
 msgstr ""
 "Could not add any new images, all requested images have already been loaded!"
 
-#: src/MainWindow.cpp:913
+#: src/MainWindow.cpp:906
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images failed to load or have "
@@ -1131,28 +1094,28 @@ msgstr ""
 "Could not add any new images, all requested images failed to load or have "
 "already been loaded!"
 
-#: src/MainWindow.cpp:917
+#: src/MainWindow.cpp:910
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
 msgstr[0] "<p>Successfully added image!</p>"
 msgstr[1] "<p>Successfully added %1 images!</p>"
 
-#: src/MainWindow.cpp:922
+#: src/MainWindow.cpp:915
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
 msgstr[0] "<p>One image failed to load.</p>"
 msgstr[1] "<p>%1 images failed to load.</p>"
 
-#: src/MainWindow.cpp:926
+#: src/MainWindow.cpp:919
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
 msgstr[0] "<p>One image has already been loaded.</p>"
 msgstr[1] "<p>%1 images have already been loaded.</p>"
 
-#: src/MainWindow.cpp:935
+#: src/MainWindow.cpp:928
 #, kde-format
 msgctxt ""
 "Message string for some images that failed to load and some that were "
@@ -1162,51 +1125,51 @@ msgctxt ""
 msgid "<p>%1 and %2.</p>"
 msgstr "<p>%1 and %2.</p>"
 
-#: src/MainWindow.cpp:936
+#: src/MainWindow.cpp:929
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
 msgstr[0] "One image failed to load"
 msgstr[1] "%1 images failed to load"
 
-#: src/MainWindow.cpp:939
+#: src/MainWindow.cpp:932
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
 msgstr[0] "one image has already been loaded"
 msgstr[1] "%1 images have already been loaded"
 
-#: src/MainWindow.cpp:974 src/MainWindow.cpp:1006
+#: src/MainWindow.cpp:967 src/MainWindow.cpp:999
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
 msgstr "\"%1\""
 
-#: src/MainWindow.cpp:977
+#: src/MainWindow.cpp:970
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
 msgstr[0] "1 image"
 msgstr[1] "%1 images"
 
-#: src/MainWindow.cpp:1009
+#: src/MainWindow.cpp:1002
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
 msgstr[0] "1 image (%2)"
 msgstr[1] "%1 images (%2)"
 
-#: src/MainWindow.cpp:1010
+#: src/MainWindow.cpp:1003
 #, kde-format
 msgid "all images have the same coordinates"
 msgstr "all images have the same coordinates"
 
-#: src/MainWindow.cpp:1011
+#: src/MainWindow.cpp:1004
 #, kde-format
 msgid "coordinates differ across the images"
 msgstr "coordinates differ across the images"
 
-#: src/MainWindow.cpp:1054
+#: src/MainWindow.cpp:1047
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1215,7 +1178,7 @@ msgstr ""
 "Cannot search for matches:\n"
 "No images have been loaded yet."
 
-#: src/MainWindow.cpp:1074
+#: src/MainWindow.cpp:1067
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1224,12 +1187,12 @@ msgstr ""
 "Cannot search for matches:\n"
 "No GPS tracks have been loaded yet."
 
-#: src/MainWindow.cpp:1089
+#: src/MainWindow.cpp:1082
 #, kde-format
 msgid "Assigning images ..."
 msgstr "Assigning images ..."
 
-#: src/MainWindow.cpp:1153
+#: src/MainWindow.cpp:1146
 #, kde-format
 msgctxt ""
 "Message for the number of matches found. The pluralized string for the exact "
@@ -1238,21 +1201,21 @@ msgctxt ""
 msgid "<p>Found %1 and %2!</p>"
 msgstr "<p>Found %1 and %2!</p>"
 
-#: src/MainWindow.cpp:1154
+#: src/MainWindow.cpp:1147
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
 msgstr[0] "one exact match"
 msgstr[1] "%1 exact matches"
 
-#: src/MainWindow.cpp:1157
+#: src/MainWindow.cpp:1150
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
 msgstr[0] "one interpolated match"
 msgstr[1] "%1 interpolated matches"
 
-#: src/MainWindow.cpp:1164
+#: src/MainWindow.cpp:1157
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1263,31 +1226,31 @@ msgid_plural "<p>%1 images could not be matched (%2).</p>"
 msgstr[0] "<p>One image could not be matched (%2).</p>"
 msgstr[1] "<p>%1 images could not be matched (%2).</p>"
 
-#: src/MainWindow.cpp:1167 src/MainWindow.cpp:1189 src/MainWindow.cpp:1211
+#: src/MainWindow.cpp:1160 src/MainWindow.cpp:1182 src/MainWindow.cpp:1204
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] "of which one image already has coordinates assigned"
 msgstr[1] "of which %1 images already have coordinates assigned"
 
-#: src/MainWindow.cpp:1172
+#: src/MainWindow.cpp:1165
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
 msgstr "Could neither find any exact, nor any interpolated matches!"
 
-#: src/MainWindow.cpp:1177
+#: src/MainWindow.cpp:1170
 #, kde-format
 msgid "Exact matches search"
 msgstr "Exact matches search"
 
-#: src/MainWindow.cpp:1179
+#: src/MainWindow.cpp:1172
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
 msgstr[0] "<p>Found one exact match!</p>"
 msgstr[1] "<p>Found %1 exact matches!</p>"
 
-#: src/MainWindow.cpp:1186
+#: src/MainWindow.cpp:1179
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1298,24 +1261,24 @@ msgid_plural "<p>%1 images had no exact match (%2).</p>"
 msgstr[0] "<p>One image had no exact match (%2).</p>"
 msgstr[1] "<p>%1 images had no exact match (%2).</p>"
 
-#: src/MainWindow.cpp:1194
+#: src/MainWindow.cpp:1187
 #, kde-format
 msgid "Could not find any exact matches!"
 msgstr "Could not find any exact matches!"
 
-#: src/MainWindow.cpp:1199
+#: src/MainWindow.cpp:1192
 #, kde-format
 msgid "Interpolated matches search"
 msgstr "Interpolated matches search"
 
-#: src/MainWindow.cpp:1201
+#: src/MainWindow.cpp:1194
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
 msgstr[0] "<p>Found one interpolated match!</p>"
 msgstr[1] "<p>Found %1 interpolated matches!</p>"
 
-#: src/MainWindow.cpp:1208
+#: src/MainWindow.cpp:1201
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1326,17 +1289,17 @@ msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
 msgstr[0] "<p>One image had no interpolated match (%2).</p>"
 msgstr[1] "<p>%1 images had no interpolated match (%2).</p>"
 
-#: src/MainWindow.cpp:1216
+#: src/MainWindow.cpp:1209
 #, kde-format
 msgid "Could not find any interpolated matches!"
 msgstr "Could not find any interpolated matches!"
 
-#: src/MainWindow.cpp:1237
+#: src/MainWindow.cpp:1230
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
 msgstr "<p><b>Saving changes failed</b></p>"
 
-#: src/MainWindow.cpp:1241
+#: src/MainWindow.cpp:1234
 #, kde-format
 msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
@@ -1344,12 +1307,12 @@ msgctxt ""
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
 msgstr "<p><b>Saving changes failed (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:1249
+#: src/MainWindow.cpp:1242
 #, kde-format
 msgid "<p>You can retry to process the file or cancel the saving process.</p>"
 msgstr "<p>You can retry to process the file or cancel the saving process.</p>"
 
-#: src/MainWindow.cpp:1251
+#: src/MainWindow.cpp:1244
 #, kde-format
 msgid ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
@@ -1358,18 +1321,18 @@ msgstr ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
 "p>"
 
-#: src/MainWindow.cpp:1276 src/MainWindow.cpp:1654 src/MainWindow.cpp:1670
-#: src/MainWindow.cpp:1699 src/MainWindow.cpp:1735
+#: src/MainWindow.cpp:1269 src/MainWindow.cpp:1647 src/MainWindow.cpp:1663
+#: src/MainWindow.cpp:1692 src/MainWindow.cpp:1728
 #, kde-format
 msgid "Nothing to do"
 msgstr "Nothing to do"
 
-#: src/MainWindow.cpp:1296
+#: src/MainWindow.cpp:1289
 #, kde-format
 msgid "Saving changes ..."
 msgstr "Saving changes ..."
 
-#: src/MainWindow.cpp:1318
+#: src/MainWindow.cpp:1311
 #, kde-format
 msgid ""
 "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
@@ -1380,7 +1343,7 @@ msgstr ""
 "could not be created.</p><p>Please check if this file doesn't exist yet and "
 "be sure to have write access to <kbd>%3</kbd>.</p>"
 
-#: src/MainWindow.cpp:1365
+#: src/MainWindow.cpp:1358
 #, kde-format
 msgid ""
 "<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
@@ -1391,17 +1354,17 @@ msgstr ""
 "file still exists and if you have read access to it (and possibly also to an "
 "existing XMP sidecar file).</p>"
 
-#: src/MainWindow.cpp:1433
+#: src/MainWindow.cpp:1426
 #, kde-format
 msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
 msgstr "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:1437
+#: src/MainWindow.cpp:1430
 #, kde-format
 msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
 msgstr "<p>Please check if you have write access to <kbd>%1</kbd>!"
 
-#: src/MainWindow.cpp:1440
+#: src/MainWindow.cpp:1433
 #, kde-format
 msgid ""
 "<p>Please check if this file still exists and if you have write access to it!"
@@ -1410,12 +1373,12 @@ msgstr ""
 "<p>Please check if this file still exists and if you have write access to it!"
 "</p>"
 
-#: src/MainWindow.cpp:1481
+#: src/MainWindow.cpp:1474
 #, kde-format
 msgid "No changes could be saved!"
 msgstr "No changes could be saved!"
 
-#: src/MainWindow.cpp:1484
+#: src/MainWindow.cpp:1477
 #, kde-format
 msgid ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
@@ -1424,17 +1387,17 @@ msgstr ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
 "</p>"
 
-#: src/MainWindow.cpp:1489
+#: src/MainWindow.cpp:1482
 #, kde-format
 msgid "All changes have been successfully saved!"
 msgstr "All changes have been successfully saved!"
 
-#: src/MainWindow.cpp:1546 src/MainWindow.cpp:1567 src/SettingsDialog.cpp:233
+#: src/MainWindow.cpp:1539 src/MainWindow.cpp:1560 src/SettingsDialog.cpp:233
 #, kde-format
 msgid "Elevation lookup"
 msgstr "Elevation lookup"
 
-#: src/MainWindow.cpp:1547
+#: src/MainWindow.cpp:1540
 #, kde-format
 msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
@@ -1442,35 +1405,35 @@ msgid ""
 msgstr ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
 "message was: %1</p>"
+
+#: src/MainWindow.cpp:1548
+#, kde-format
+msgid ""
+"Fetching elevation data failed: The requested location is not present in the "
+"currently chosen elevation dataset."
+msgstr ""
+"Fetching elevation data failed: The requested location is not present in the "
+"currently chosen elevation dataset."
+
+#: src/MainWindow.cpp:1552
+#, kde-format
+msgid ""
+"Fetching elevation data failed: None of the requested locations are present "
+"in the currently chosen elevation dataset."
+msgstr ""
+"Fetching elevation data failed: None of the requested locations are present "
+"in the currently chosen elevation dataset."
 
 #: src/MainWindow.cpp:1555
 #, kde-format
 msgid ""
-"Fetching elevation data failed: The requested location is not present in the "
-"currently chosen elevation dataset."
-msgstr ""
-"Fetching elevation data failed: The requested location is not present in the "
-"currently chosen elevation dataset."
-
-#: src/MainWindow.cpp:1559
-#, kde-format
-msgid ""
-"Fetching elevation data failed: None of the requested locations are present "
-"in the currently chosen elevation dataset."
-msgstr ""
-"Fetching elevation data failed: None of the requested locations are present "
-"in the currently chosen elevation dataset."
-
-#: src/MainWindow.cpp:1562
-#, kde-format
-msgid ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
 "not present in the currently chosen elevation dataset."
 msgstr ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
 "not present in the currently chosen elevation dataset."
 
-#: src/MainWindow.cpp:1633
+#: src/MainWindow.cpp:1626
 #, kde-format
 msgid ""
 "The image has pending changes! Do you really want to remove it and discard "
@@ -1485,29 +1448,29 @@ msgstr[1] ""
 "At least one of the images has pending changes. Do you really want to remove "
 "them and discard all changes?"
 
-#: src/MainWindow.cpp:1653 src/MainWindow.cpp:1661
+#: src/MainWindow.cpp:1646 src/MainWindow.cpp:1654
 #, kde-format
 msgid "Remove all processed and saved images"
 msgstr "Remove all processed and saved images"
 
-#: src/MainWindow.cpp:1662 src/MainWindow.cpp:1678
+#: src/MainWindow.cpp:1655 src/MainWindow.cpp:1671
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
 msgstr[0] "Removed one image"
 msgstr[1] "Removed %1 images"
 
-#: src/MainWindow.cpp:1669 src/MainWindow.cpp:1677
+#: src/MainWindow.cpp:1662 src/MainWindow.cpp:1670
 #, kde-format
 msgid "Remove images that already had coordinates"
 msgstr "Remove images that already had coordinates"
 
-#: src/MainWindow.cpp:1684 src/MainWindow.cpp:1699
+#: src/MainWindow.cpp:1677 src/MainWindow.cpp:1692
 #, kde-format
 msgid "Remove all images"
 msgstr "Remove all images"
 
-#: src/MainWindow.cpp:1685
+#: src/MainWindow.cpp:1678
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -1518,32 +1481,32 @@ msgstr ""
 "changes will be discarded if all images are removed now.</p><p>Do you really "
 "want to remove all images anyway?</p>"
 
-#: src/MainWindow.cpp:1734
+#: src/MainWindow.cpp:1727
 #, kde-format
 msgid "Remove all images and tracks (reset)"
 msgstr "Remove all images and tracks (reset)"
 
-#: src/MainWindow.cpp:1762
+#: src/MainWindow.cpp:1755
 #, kde-format
 msgid "Failed to parse clipboard data"
 msgstr "Failed to parse clipboard data"
 
-#: src/MainWindow.cpp:1763
+#: src/MainWindow.cpp:1756
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "Could not parse the clipboard's text to valid coordinates"
 
-#: src/MainWindow.cpp:1773
+#: src/MainWindow.cpp:1766
 #, kde-format
 msgid "No geodata has been loaded yet!"
 msgstr "No geodata has been loaded yet!"
 
-#: src/MainWindow.cpp:1796
+#: src/MainWindow.cpp:1789
 #, kde-format
 msgid "Assign selection"
 msgstr "Assign selection"
 
-#: src/MainWindow.cpp:1797
+#: src/MainWindow.cpp:1790
 #, kde-format
 msgid "Please select one or more images"
 msgstr "Please select one or more images"
