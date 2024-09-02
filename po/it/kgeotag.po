@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-08-31 01:46+0000\n"
-"PO-Revision-Date: 2024-08-27 18:51+0200\n"
+"PO-Revision-Date: 2024-08-28 15:50+0200\n"
 "Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1527,10 +1527,9 @@ msgid "Map center position: %1"
 msgstr "Posizione del centro della mappa: %1"
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Floating items"
+#, kde-format
 msgid "Displayed floating items"
-msgstr "Oggetti mobili"
+msgstr "Visualizza oggetti mobili"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1674,6 +1673,9 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"Le modifiche alla formattazione delle coordinate avranno effetto la volta "
+"successiva, non appena la loro visualizzazione viene aggiornata. Riavvia "
+"KGeoTag per aggiornare tutto adesso."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1681,27 +1683,20 @@ msgid "Image lists"
 msgstr "Elenco immagini"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Loaded images can either be listed in two different lists (one for all "
-#| "images without and one for images with coordinates), or using a combined "
-#| "consecutive list for all images.</p><p>Use the following images list(s) "
-#| "mode:</p>"
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>Le immagini caricate possono sia essere elencate in due elenchi diversi "
-"(uno per tutte le immagini senza le coordinate e uno per tutte quelle che ce "
-"le hanno), ma è anche possibile usare un elenco combinato e consecutivo per "
-"tutte le immagini.</p><p>Usare la seguente modalità per l'elenco delle "
-"immagini:</p>"
+"Le immagini caricate possono sia essere elencate in due elenchi diversi (uno "
+"per tutte le immagini senza le coordinate, e uno per tutte quelle che ce le "
+"hanno), oppure usando un elenco consecutivo combinato con tutte le immagini."
 
 #: src/SettingsDialog.cpp:109
 #, kde-format
 msgid "Use the following images list(s) mode:"
-msgstr ""
+msgstr "Usa le seguenti modalità di elencazione delle immagini:"
 
 #: src/SettingsDialog.cpp:114
 #, kde-format
