@@ -258,9 +258,6 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     m_tracksDock = createDockWidget(i18n("Tracks"), tracksWrapper, QStringLiteral("tracksDock"));
 
-    // Tell KXmlGuiWindow/KMainWindow to save and restore the window and docks positions
-    setAutoSaveSettings();
-
     // Ensure a decent dock layout if none has been saved before
     if (! restoreState(m_settings->mainWindowState())) {
         setDefaultDockArrangement();
