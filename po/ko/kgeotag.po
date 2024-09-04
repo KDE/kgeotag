@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-08-31 01:46+0000\n"
+"POT-Creation-Date: 2024-09-04 01:44+0000\n"
 "PO-Revision-Date: 2024-08-19 23:13+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -77,13 +77,13 @@ msgstr "미터"
 msgid "Save settings"
 msgstr "설정 저장"
 
-#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1046
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1043
 #, kde-format
 msgid "(Re)Assign all images"
 msgstr "모든 사진 (재)할당"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
-#: src/MainWindow.cpp:1141 src/SettingsDialog.cpp:135
+#: src/MainWindow.cpp:1138 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr "결합된 일치 검색"
@@ -469,7 +469,7 @@ msgstr "좌표가 없는 모든 사진"
 msgid "All images with coordinates"
 msgstr "좌표가 있는 모든 사진"
 
-#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1066
+#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1063
 #, kde-format
 msgid "Automatic matching"
 msgstr "자동 일치"
@@ -494,14 +494,14 @@ msgstr "클립보드에서 좌표 설정"
 msgid "Set coordinates manually"
 msgstr "수동으로 좌표 입력"
 
-#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1765
+#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1762
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "가장 가까운 트랙포인트 찾기"
 
-#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1269 src/MainWindow.cpp:1322
-#: src/MainWindow.cpp:1368 src/MainWindow.cpp:1442 src/MainWindow.cpp:1473
-#: src/MainWindow.cpp:1476 src/MainWindow.cpp:1481
+#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1266 src/MainWindow.cpp:1319
+#: src/MainWindow.cpp:1365 src/MainWindow.cpp:1439 src/MainWindow.cpp:1470
+#: src/MainWindow.cpp:1473 src/MainWindow.cpp:1478
 #, kde-format
 msgid "Save changes"
 msgstr "변경 사항 저장"
@@ -517,7 +517,7 @@ msgid "Discard changes"
 msgstr "변경 사항 무시"
 
 #: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
-#: src/MainWindow.cpp:1625
+#: src/MainWindow.cpp:1622
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
@@ -594,12 +594,12 @@ msgstr "시작할 때 불러올 파일이나 폴더"
 msgid "[files/folders...]"
 msgstr "[파일/폴더...]"
 
-#: src/MainWindow.cpp:87 src/MainWindow.cpp:525
+#: src/MainWindow.cpp:87 src/MainWindow.cpp:522
 #, kde-format
 msgid "Add images and/or GPX tracks"
 msgstr "사진 및 GPX 궤적 추가"
 
-#: src/MainWindow.cpp:94 src/MainWindow.cpp:574
+#: src/MainWindow.cpp:94 src/MainWindow.cpp:571
 #, kde-format
 msgid "Add all images and tracks from a folder"
 msgstr "폴더의 모든 사진과 궤적 추가"
@@ -680,12 +680,12 @@ msgstr "할당되지 않은 사진"
 msgid "Tracks"
 msgstr "궤적"
 
-#: src/MainWindow.cpp:287
+#: src/MainWindow.cpp:284
 #, kde-format
 msgid "Loading timezone data"
 msgstr "시간대 데이터 불러오는 중"
 
-#: src/MainWindow.cpp:288
+#: src/MainWindow.cpp:285
 #, kde-format
 msgid ""
 "<p>Could not load or parse the timezone data files <kbd>timezones.json</kbd> "
@@ -702,22 +702,22 @@ msgstr ""
 "KGeoTag#Running_the_compiled_sources\">KDE 커뮤니티 위키</a>를 참조하여 해당 "
 "파일을 읽어오는 파일을 확인하십시오.</p>"
 
-#: src/MainWindow.cpp:340
+#: src/MainWindow.cpp:337
 #, kde-format
 msgid "Assigned images"
 msgstr "할당된 사진"
 
-#: src/MainWindow.cpp:346
+#: src/MainWindow.cpp:343
 #, kde-format
 msgid "Images"
 msgstr "사진"
 
-#: src/MainWindow.cpp:418
+#: src/MainWindow.cpp:415
 #, kde-format
 msgid "Close KGeoTag"
 msgstr "KGeoTag 닫기"
 
-#: src/MainWindow.cpp:419
+#: src/MainWindow.cpp:416
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -727,12 +727,12 @@ msgstr ""
 "<p>저장하지 않은 사진 변경 사항이 있습니다. 지금 KGeoTag를 끝내면 변경 사항"
 "이 손실됩니다.</p><p>그래도 끝내시겠습니까?</p>"
 
-#: src/MainWindow.cpp:467
+#: src/MainWindow.cpp:464
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
 msgstr "추가할 사진 또는 GPX 궤적을 선택하십시오"
 
-#: src/MainWindow.cpp:469
+#: src/MainWindow.cpp:466
 #, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
@@ -741,18 +741,18 @@ msgstr ""
 "모든 지원하는 파일 (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *.cr2 "
 "*.nef *.dng *.gpx );; 모든 파일 (*)"
 
-#: src/MainWindow.cpp:503
+#: src/MainWindow.cpp:500
 #, kde-format
 msgid "<p>The selection did not contain any supported files!</p>"
 msgstr "<p>선택한 파일 중에 지원하는 파일이 없습니다!</p>"
 
-#: src/MainWindow.cpp:511
+#: src/MainWindow.cpp:508
 #, kde-format
 msgctxt "A filename with a MIME type in braces and a HTML line break"
 msgid "%1 (%2)<br/>"
 msgstr "%1 (%2)<br/>"
 
-#: src/MainWindow.cpp:516
+#: src/MainWindow.cpp:513
 #, kde-format
 msgid ""
 "<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
@@ -763,17 +763,17 @@ msgid_plural ""
 msgstr[0] ""
 "<p>다음 파일은 지원하지 않는 MIME 형식이므로 건너뜁니다:</p><p>%2</p>"
 
-#: src/MainWindow.cpp:544
+#: src/MainWindow.cpp:541
 #, kde-format
 msgid "Please select a folder"
 msgstr "폴더를 선택하십시오"
 
-#: src/MainWindow.cpp:575
+#: src/MainWindow.cpp:572
 #, kde-format
 msgid "Could not find any supported files in <kbd>%1</kbd>"
 msgstr "<kbd>%1</kbd>에서 지원하는 파일을 찾을 수 없음"
 
-#: src/MainWindow.cpp:630
+#: src/MainWindow.cpp:627
 #, kde-format
 msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
@@ -782,7 +782,7 @@ msgstr ""
 "<p><kbd>%1</kbd>을(를) 열 수 없습니다. 이 파일에 읽기 권한이 있는지 확인하십"
 "시오."
 
-#: src/MainWindow.cpp:635
+#: src/MainWindow.cpp:632
 #, kde-format
 msgid ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
@@ -791,14 +791,14 @@ msgstr ""
 "<p><kbd>%1</kbd>에서 지리 데이터를 읽을 수 없음: <kbd>gpx</kbd> 루트 원소를 "
 "찾을 수 없습니다. GPX 파일이 아닌 것 같습니다!</p>"
 
-#: src/MainWindow.cpp:641
+#: src/MainWindow.cpp:638
 #, kde-format
 msgid ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 msgstr ""
 "<p><kbd>%1</kbd> 파일은 GPX 파일인 것 같지만 지리 데이터가 없습니다!</p>"
 
-#: src/MainWindow.cpp:646
+#: src/MainWindow.cpp:643
 #, kde-format
 msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
@@ -807,34 +807,34 @@ msgstr ""
 "<p><kbd>%1</kbd>의 XML 처리가 실패했습니다. 데이터를 불러올 수 없거나 일부만 "
 "불러왔습니다."
 
-#: src/MainWindow.cpp:656
+#: src/MainWindow.cpp:653
 #, kde-format
 msgid "<p><b>Loading GPX file failed</b></p>"
 msgstr "<p><b>GPX 파일 불러오기 실패</b></p>"
 
-#: src/MainWindow.cpp:659
+#: src/MainWindow.cpp:656
 #, kde-format
 msgctxt "Fraction of processed files are added inside the round braces"
 msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
 msgstr "<p><b>GPX 파일 불러오기 실패(%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:666
+#: src/MainWindow.cpp:663
 #, kde-format
 msgid "<p>The next GPX file will be loaded now.</p>"
 msgstr "<p>다음 GPX 파일을 불러옵니다.</p>"
 
-#: src/MainWindow.cpp:670 src/MainWindow.cpp:734
+#: src/MainWindow.cpp:667 src/MainWindow.cpp:731
 #, kde-format
 msgid "Load GPX data"
 msgstr "GPX 데이터 불러오기"
 
-#: src/MainWindow.cpp:680
+#: src/MainWindow.cpp:677
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
 msgstr[0] "<p>파일 %1개 처리함</p>"
 
-#: src/MainWindow.cpp:685
+#: src/MainWindow.cpp:682
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load. The "
@@ -844,13 +844,13 @@ msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>파일 %1개 처리함, %2</p>"
 
-#: src/MainWindow.cpp:687 src/MainWindow.cpp:702
+#: src/MainWindow.cpp:684 src/MainWindow.cpp:699
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
 msgstr[0] "파일 %1개 불러오기 실패"
 
-#: src/MainWindow.cpp:692
+#: src/MainWindow.cpp:689
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that have been skipped. The "
@@ -860,13 +860,13 @@ msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>파일 %1개 처리함, %2</p>"
 
-#: src/MainWindow.cpp:694 src/MainWindow.cpp:703
+#: src/MainWindow.cpp:691 src/MainWindow.cpp:700
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
 msgstr[0] "이미 불러온 파일 %1개 건너뜀"
 
-#: src/MainWindow.cpp:700
+#: src/MainWindow.cpp:697
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load and some that "
@@ -876,12 +876,12 @@ msgid "<p>Processed one file; %2, %3</p>"
 msgid_plural "<p>Processed %1 files; %2, %3</p>"
 msgstr[0] "<p>파일 %1개 처리함, %2, %3</p>"
 
-#: src/MainWindow.cpp:708
+#: src/MainWindow.cpp:705
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
 msgstr "<p>웨이포인트를 불러올 수 없습니다.</p>"
 
-#: src/MainWindow.cpp:714
+#: src/MainWindow.cpp:711
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks that have been read. "
@@ -891,13 +891,13 @@ msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
 msgstr[0] "<p>%2에서 웨이포인트 %1개 불러옴</p>"
 
-#: src/MainWindow.cpp:717 src/MainWindow.cpp:726
+#: src/MainWindow.cpp:714 src/MainWindow.cpp:723
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
 msgstr[0] "궤적 %1개"
 
-#: src/MainWindow.cpp:723
+#: src/MainWindow.cpp:720
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks and the number of "
@@ -907,18 +907,18 @@ msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
 msgstr[0] "<p>%2, %3에서 웨이포인트 %1개 불러옴</p>"
 
-#: src/MainWindow.cpp:727
+#: src/MainWindow.cpp:724
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
 msgstr[0] "경로 %1개"
 
-#: src/MainWindow.cpp:742
+#: src/MainWindow.cpp:739
 #, kde-format
 msgid "Timezone detection failed"
 msgstr "시간대 감지 실패"
 
-#: src/MainWindow.cpp:743
+#: src/MainWindow.cpp:740
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone for images associated with the loaded GPX "
@@ -928,12 +928,12 @@ msgstr ""
 "<p>불러온 GPX 파일에서 사진의 정확한 시간대를 추측할 수 없습니다.</p><p>\"시"
 "차 수정\" 페이지에서 직접 정확한 시간대를 설정하십시오.</p>"
 
-#: src/MainWindow.cpp:749
+#: src/MainWindow.cpp:746
 #, kde-format
 msgid "Setting the detected timezone failed"
 msgstr "감지한 시간대를 설정할 수 없음"
 
-#: src/MainWindow.cpp:750
+#: src/MainWindow.cpp:747
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
@@ -949,12 +949,12 @@ msgstr ""
 "파일을 포함하는 패키지) 버전을 알려 주십시오.</p><p>\"시차 수정\" 페이지에서 "
 "직접 시간대를 조정할 수 있습니다.</p>"
 
-#: src/MainWindow.cpp:759
+#: src/MainWindow.cpp:756
 #, kde-format
 msgid "Timezone adjusted"
 msgstr "시간대 조정됨"
 
-#: src/MainWindow.cpp:760
+#: src/MainWindow.cpp:757
 #, kde-format
 msgid ""
 "<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
@@ -966,23 +966,23 @@ msgstr ""
 "다. 이 시간대를 선택했습니다.</p><p>\"시차 수정\" 페이지에서 직접 시간대 설정"
 "을 수동으로 조정할 수 있습니다.</p>"
 
-#: src/MainWindow.cpp:786
+#: src/MainWindow.cpp:783
 #, kde-format
 msgid "Loading images ..."
 msgstr "사진 불러오는 중..."
 
-#: src/MainWindow.cpp:786 src/MainWindow.cpp:1082 src/MainWindow.cpp:1289
+#: src/MainWindow.cpp:783 src/MainWindow.cpp:1079 src/MainWindow.cpp:1286
 #, kde-format
 msgid "Cancel"
 msgstr "취소"
 
-#: src/MainWindow.cpp:812
+#: src/MainWindow.cpp:809
 #, kde-format
 msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 msgstr ""
 "<p><b>사진 불러오기 실패</b></p><p><kbd>%1</kbd>을(를) 읽을 수 없습니다.</p>"
 
-#: src/MainWindow.cpp:818
+#: src/MainWindow.cpp:815
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -992,7 +992,7 @@ msgstr ""
 "<p><b>사진 불러오기 실패(%1/%2)</b></p><p><kbd>%3</kbd>을(를) 읽을 수 없습니"
 "다.</p>"
 
-#: src/MainWindow.cpp:827
+#: src/MainWindow.cpp:824
 #, kde-format
 msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
@@ -1001,7 +1001,7 @@ msgstr ""
 "<p><b>사진의 Exif 헤더나 XMP 사이드카 파일 불러오기 실패</b></p><p><kbd>%1</"
 "kbd>을(를) 읽을 수 없습니다.</p>"
 
-#: src/MainWindow.cpp:833
+#: src/MainWindow.cpp:830
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -1011,7 +1011,7 @@ msgstr ""
 "<p><b>사진의 Exif 헤더나 XMP 사이드카 파일 불러오기 실패</b></p><p><kbd>%2</"
 "kbd>을(를) 읽을 수 없습니다.</p>"
 
-#: src/MainWindow.cpp:845
+#: src/MainWindow.cpp:842
 #, kde-format
 msgid ""
 "<p>Please check if this file is actually a supported image and if you have "
@@ -1019,13 +1019,13 @@ msgid ""
 msgstr ""
 "<p>이 파일이 지원하는 사진 형식이며 읽기 권한이 있는지 확인하십시오.</p>"
 
-#: src/MainWindow.cpp:849
+#: src/MainWindow.cpp:846
 #, kde-format
 msgid "<p>You can retry to load this file or cancel the loading process.</p>"
 msgstr ""
 "<p>이 파일을 다시 불러오기 시도하거나 불러오기 작업을 취소할 수 있습니다.</p>"
 
-#: src/MainWindow.cpp:852
+#: src/MainWindow.cpp:849
 #, kde-format
 msgid ""
 "<p>You can retry to load this file, skip it or cancel the loading process.</"
@@ -1034,30 +1034,30 @@ msgstr ""
 "<p>이 파일을 다시 불러오기 시도하거나, 건너뛰거나, 불러오기 작업을 취소할 수 "
 "있습니다.</p>"
 
-#: src/MainWindow.cpp:859 src/MainWindow.cpp:891 src/MainWindow.cpp:897
-#: src/MainWindow.cpp:901 src/MainWindow.cpp:905 src/MainWindow.cpp:937
+#: src/MainWindow.cpp:856 src/MainWindow.cpp:888 src/MainWindow.cpp:894
+#: src/MainWindow.cpp:898 src/MainWindow.cpp:902 src/MainWindow.cpp:934
 #, kde-format
 msgid "Add images"
 msgstr "사진 추가"
 
-#: src/MainWindow.cpp:892
+#: src/MainWindow.cpp:889
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
 msgstr[0] "사진 %1개를 추가했습니다!"
 
-#: src/MainWindow.cpp:898
+#: src/MainWindow.cpp:895
 #, kde-format
 msgid "Could not add any new images, all requested images failed to load!"
 msgstr "새 사진을 추가할 수 없습니다. 모든 요청한 사진을 불러올 수 없습니다!"
 
-#: src/MainWindow.cpp:902
+#: src/MainWindow.cpp:899
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
 msgstr "새 사진을 추가할 수 없습니다. 모든 요청한 사진을 이미 불러왔습니다!"
 
-#: src/MainWindow.cpp:906
+#: src/MainWindow.cpp:903
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images failed to load or have "
@@ -1066,25 +1066,25 @@ msgstr ""
 "새 사진을 추가할 수 없습니다. 모든 요청한 사진을 불러오는 데 실패했거나 이미 "
 "불러왔습니다!"
 
-#: src/MainWindow.cpp:910
+#: src/MainWindow.cpp:907
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
 msgstr[0] "<p>사진 %1개를 추가했습니다!</p>"
 
-#: src/MainWindow.cpp:915
+#: src/MainWindow.cpp:912
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
 msgstr[0] "<p>사진 %1개를 불러올 수 없습니다.</p>"
 
-#: src/MainWindow.cpp:919
+#: src/MainWindow.cpp:916
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
 msgstr[0] "<p>사진 %1개를 이미 불러왔습니다.</p>"
 
-#: src/MainWindow.cpp:928
+#: src/MainWindow.cpp:925
 #, kde-format
 msgctxt ""
 "Message string for some images that failed to load and some that were "
@@ -1094,47 +1094,47 @@ msgctxt ""
 msgid "<p>%1 and %2.</p>"
 msgstr "<p>%1. %2.</p>"
 
-#: src/MainWindow.cpp:929
+#: src/MainWindow.cpp:926
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
 msgstr[0] "사진 %1개를 불러올 수 없습니다"
 
-#: src/MainWindow.cpp:932
+#: src/MainWindow.cpp:929
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
 msgstr[0] "사진 %1개를 이미 불러왔습니다"
 
-#: src/MainWindow.cpp:967 src/MainWindow.cpp:999
+#: src/MainWindow.cpp:964 src/MainWindow.cpp:996
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
 msgstr "\"%1\""
 
-#: src/MainWindow.cpp:970
+#: src/MainWindow.cpp:967
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
 msgstr[0] "사진 %1개"
 
-#: src/MainWindow.cpp:1002
+#: src/MainWindow.cpp:999
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
 msgstr[0] "사진 %1개(%2)"
 
-#: src/MainWindow.cpp:1003
+#: src/MainWindow.cpp:1000
 #, kde-format
 msgid "all images have the same coordinates"
 msgstr "모든 사진의 좌표가 같음"
 
-#: src/MainWindow.cpp:1004
+#: src/MainWindow.cpp:1001
 #, kde-format
 msgid "coordinates differ across the images"
 msgstr "사진의 좌표가 서로 다름"
 
-#: src/MainWindow.cpp:1047
+#: src/MainWindow.cpp:1044
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1143,7 +1143,7 @@ msgstr ""
 "일치를 찾을 수 없음:\n"
 "사진을 불러오지 않았습니다."
 
-#: src/MainWindow.cpp:1067
+#: src/MainWindow.cpp:1064
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1152,12 +1152,12 @@ msgstr ""
 "일치를 찾을 수 없음:\n"
 "GPS 궤적을 불러오지 않았습니다."
 
-#: src/MainWindow.cpp:1082
+#: src/MainWindow.cpp:1079
 #, kde-format
 msgid "Assigning images ..."
 msgstr "사진 할당 중..."
 
-#: src/MainWindow.cpp:1146
+#: src/MainWindow.cpp:1143
 #, kde-format
 msgctxt ""
 "Message for the number of matches found. The pluralized string for the exact "
@@ -1166,19 +1166,19 @@ msgctxt ""
 msgid "<p>Found %1 and %2!</p>"
 msgstr "<p>%1, %2을(를) 찾았습니다!</p>"
 
-#: src/MainWindow.cpp:1147
+#: src/MainWindow.cpp:1144
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
 msgstr[0] "정확한 일치 %1개"
 
-#: src/MainWindow.cpp:1150
+#: src/MainWindow.cpp:1147
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
 msgstr[0] "보간된 일치 %1개"
 
-#: src/MainWindow.cpp:1157
+#: src/MainWindow.cpp:1154
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1188,29 +1188,29 @@ msgid "<p>One image could not be matched (%2).</p>"
 msgid_plural "<p>%1 images could not be matched (%2).</p>"
 msgstr[0] "<p>사진 %1개를 일치시킬 수 없습니다(%2).</p>"
 
-#: src/MainWindow.cpp:1160 src/MainWindow.cpp:1182 src/MainWindow.cpp:1204
+#: src/MainWindow.cpp:1157 src/MainWindow.cpp:1179 src/MainWindow.cpp:1201
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] "사진 %1개에는 이미 좌표가 지정됨"
 
-#: src/MainWindow.cpp:1165
+#: src/MainWindow.cpp:1162
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
 msgstr "정확한 일치나 보간된 일치를 찾을 수 없습니다!"
 
-#: src/MainWindow.cpp:1170
+#: src/MainWindow.cpp:1167
 #, kde-format
 msgid "Exact matches search"
 msgstr "정확한 일치 검색"
 
-#: src/MainWindow.cpp:1172
+#: src/MainWindow.cpp:1169
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
 msgstr[0] "<p>정확한 일치 %1개를 찾았습니다!</p>"
 
-#: src/MainWindow.cpp:1179
+#: src/MainWindow.cpp:1176
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1220,23 +1220,23 @@ msgid "<p>One image had no exact match (%2).</p>"
 msgid_plural "<p>%1 images had no exact match (%2).</p>"
 msgstr[0] "<p>사진 %1개에는 정확한 일치가 없습니다(%2).</p>"
 
-#: src/MainWindow.cpp:1187
+#: src/MainWindow.cpp:1184
 #, kde-format
 msgid "Could not find any exact matches!"
 msgstr "정확한 일치를 찾을 수 없습니다!"
 
-#: src/MainWindow.cpp:1192
+#: src/MainWindow.cpp:1189
 #, kde-format
 msgid "Interpolated matches search"
 msgstr "보간된 일치 검색"
 
-#: src/MainWindow.cpp:1194
+#: src/MainWindow.cpp:1191
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
 msgstr[0] "<p>보간된 일치 %1개를 찾았습니다!</p>"
 
-#: src/MainWindow.cpp:1201
+#: src/MainWindow.cpp:1198
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1246,17 +1246,17 @@ msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
 msgstr[0] "<p>사진 %1개에는 보간된 일치가 없습니다(%2).</p>"
 
-#: src/MainWindow.cpp:1209
+#: src/MainWindow.cpp:1206
 #, kde-format
 msgid "Could not find any interpolated matches!"
 msgstr "보간된 일치를 찾을 수 없습니다!"
 
-#: src/MainWindow.cpp:1230
+#: src/MainWindow.cpp:1227
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
 msgstr "<p><b>변경 사항 저장 실패</b></p>"
 
-#: src/MainWindow.cpp:1234
+#: src/MainWindow.cpp:1231
 #, kde-format
 msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
@@ -1264,13 +1264,13 @@ msgctxt ""
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
 msgstr "<p><b>변경 사항 저장 실패(%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:1242
+#: src/MainWindow.cpp:1239
 #, kde-format
 msgid "<p>You can retry to process the file or cancel the saving process.</p>"
 msgstr ""
 "<p>파일을 다시 처리하도록 시도하거나 저장 작업을 취소할 수 있습니다.</p>"
 
-#: src/MainWindow.cpp:1244
+#: src/MainWindow.cpp:1241
 #, kde-format
 msgid ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
@@ -1279,18 +1279,18 @@ msgstr ""
 "<p>파일을 다시 처리하도록 시도하거나, 건너뛰거나, 저장 작업을 취소할 수 있습"
 "니다.</p>"
 
-#: src/MainWindow.cpp:1269 src/MainWindow.cpp:1647 src/MainWindow.cpp:1663
-#: src/MainWindow.cpp:1692 src/MainWindow.cpp:1728
+#: src/MainWindow.cpp:1266 src/MainWindow.cpp:1644 src/MainWindow.cpp:1660
+#: src/MainWindow.cpp:1689 src/MainWindow.cpp:1725
 #, kde-format
 msgid "Nothing to do"
 msgstr "할 일 없음"
 
-#: src/MainWindow.cpp:1289
+#: src/MainWindow.cpp:1286
 #, kde-format
 msgid "Saving changes ..."
 msgstr "변경 사항 저장 중..."
 
-#: src/MainWindow.cpp:1311
+#: src/MainWindow.cpp:1308
 #, kde-format
 msgid ""
 "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
@@ -1301,7 +1301,7 @@ msgstr ""
 "생성할 수 없습니다.</p><p>파일이 아직 존재하지 않으며 <kbd>%3</kbd>에 쓰기 권"
 "한이 있는지 확인하십시오.</p>"
 
-#: src/MainWindow.cpp:1358
+#: src/MainWindow.cpp:1355
 #, kde-format
 msgid ""
 "<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
@@ -1311,29 +1311,29 @@ msgstr ""
 "<p><kbd>%1</kbd>에서 메타데이터를 읽을 수 없습니다.</p><p>파일이 여전히 존재"
 "하며 읽기 권한이 있는지(XMP 사이드카 파일 포함) 확인하십시오.</p>"
 
-#: src/MainWindow.cpp:1426
+#: src/MainWindow.cpp:1423
 #, kde-format
 msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
 msgstr "<p><kbd>%1</kbd>의 메타데이터를 저장할 수 없습니다.</p>"
 
-#: src/MainWindow.cpp:1430
+#: src/MainWindow.cpp:1427
 #, kde-format
 msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
 msgstr "<p><kbd>%1</kbd>에 쓰기 권한이 있는지 확인하십시오!"
 
-#: src/MainWindow.cpp:1433
+#: src/MainWindow.cpp:1430
 #, kde-format
 msgid ""
 "<p>Please check if this file still exists and if you have write access to it!"
 "</p>"
 msgstr "<p>파일이 여전히 존재하며 쓰기 권한이 있는지 확인하십시오.</p>"
 
-#: src/MainWindow.cpp:1474
+#: src/MainWindow.cpp:1471
 #, kde-format
 msgid "No changes could be saved!"
 msgstr "변경 사항을 저장할 수 없습니다!"
 
-#: src/MainWindow.cpp:1477
+#: src/MainWindow.cpp:1474
 #, kde-format
 msgid ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
@@ -1342,17 +1342,17 @@ msgstr ""
 "<p>일부 변경 사항을 저장할 수 없습니다!</p><p>사진 %2개 중 %1개를 저장했습니"
 "다.</p>"
 
-#: src/MainWindow.cpp:1482
+#: src/MainWindow.cpp:1479
 #, kde-format
 msgid "All changes have been successfully saved!"
 msgstr "모든 변경 사항을 저장했습니다!"
 
-#: src/MainWindow.cpp:1539 src/MainWindow.cpp:1560 src/SettingsDialog.cpp:233
+#: src/MainWindow.cpp:1536 src/MainWindow.cpp:1557 src/SettingsDialog.cpp:233
 #, kde-format
 msgid "Elevation lookup"
 msgstr "고도 찾아보기"
 
-#: src/MainWindow.cpp:1540
+#: src/MainWindow.cpp:1537
 #, kde-format
 msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
@@ -1361,7 +1361,7 @@ msgstr ""
 "<p>opentopodata.org에서 고도 데이터를 가져올 수 없습니다.</p><p>오류 메시지: "
 "%1</p>"
 
-#: src/MainWindow.cpp:1548
+#: src/MainWindow.cpp:1545
 #, kde-format
 msgid ""
 "Fetching elevation data failed: The requested location is not present in the "
@@ -1369,7 +1369,7 @@ msgid ""
 msgstr ""
 "고도 데이터 가져오기 실패: 현재 선택한 고도 데이터에 지정한 위치가 없습니다."
 
-#: src/MainWindow.cpp:1552
+#: src/MainWindow.cpp:1549
 #, kde-format
 msgid ""
 "Fetching elevation data failed: None of the requested locations are present "
@@ -1378,7 +1378,7 @@ msgstr ""
 "고도 데이터 가져오기 실패: 현재 선택한 고도 데이터에 지정한 위치 중 아무것도 "
 "없습니다."
 
-#: src/MainWindow.cpp:1555
+#: src/MainWindow.cpp:1552
 #, kde-format
 msgid ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
@@ -1386,7 +1386,7 @@ msgid ""
 msgstr ""
 "고도 데이터가 완전하지 않음: 현재 선택한 고도 데이터에 일부 위치가 없습니다."
 
-#: src/MainWindow.cpp:1626
+#: src/MainWindow.cpp:1623
 #, kde-format
 msgid ""
 "The image has pending changes! Do you really want to remove it and discard "
@@ -1398,28 +1398,28 @@ msgstr[0] ""
 "변경 사항이 있는 사진이 최소 한 개 있습니다. 사진과 모든 변경 사항을 삭제하시"
 "겠습니까?"
 
-#: src/MainWindow.cpp:1646 src/MainWindow.cpp:1654
+#: src/MainWindow.cpp:1643 src/MainWindow.cpp:1651
 #, kde-format
 msgid "Remove all processed and saved images"
 msgstr "모든 처리하고 저장된 사진 삭제"
 
-#: src/MainWindow.cpp:1655 src/MainWindow.cpp:1671
+#: src/MainWindow.cpp:1652 src/MainWindow.cpp:1668
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
 msgstr[0] "사진 %1개 삭제함"
 
-#: src/MainWindow.cpp:1662 src/MainWindow.cpp:1670
+#: src/MainWindow.cpp:1659 src/MainWindow.cpp:1667
 #, kde-format
 msgid "Remove images that already had coordinates"
 msgstr "좌표가 이미 입력된 사진 삭제"
 
-#: src/MainWindow.cpp:1677 src/MainWindow.cpp:1692
+#: src/MainWindow.cpp:1674 src/MainWindow.cpp:1689
 #, kde-format
 msgid "Remove all images"
 msgstr "모든 사진 삭제"
 
-#: src/MainWindow.cpp:1678
+#: src/MainWindow.cpp:1675
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -1429,32 +1429,32 @@ msgstr ""
 "<p>저장하지 않은 사진 변경 사항이 있습니다. 지금 모든 사진을 삭제하면 변경 사"
 "항이 손실됩니다.</p><p>그래도 모두 삭제하시겠습니까?</p>"
 
-#: src/MainWindow.cpp:1727
+#: src/MainWindow.cpp:1724
 #, kde-format
 msgid "Remove all images and tracks (reset)"
 msgstr "모든 사진과 궤적 삭제(초기화)"
 
-#: src/MainWindow.cpp:1755
+#: src/MainWindow.cpp:1752
 #, kde-format
 msgid "Failed to parse clipboard data"
 msgstr "클립보드 데이터를 해석할 수 없음"
 
-#: src/MainWindow.cpp:1756
+#: src/MainWindow.cpp:1753
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "클립보드 텍스트를 올바른 좌표로 해석할 수 없음"
 
-#: src/MainWindow.cpp:1766
+#: src/MainWindow.cpp:1763
 #, kde-format
 msgid "No geodata has been loaded yet!"
 msgstr "지오데이터를 불러오지 않았습니다!"
 
-#: src/MainWindow.cpp:1789
+#: src/MainWindow.cpp:1786
 #, kde-format
 msgid "Assign selection"
 msgstr "선택 할당"
 
-#: src/MainWindow.cpp:1790
+#: src/MainWindow.cpp:1787
 #, kde-format
 msgid "Please select one or more images"
 msgstr "사진을 하나 이상 선택하십시오"
