@@ -6,4 +6,4 @@ This is the code repository of KGeoTag, a Free/Libre Open Source photo geotaggin
 
 The project's homepage with further information can be found at https://kgeotag.kde.org/.
 
-Feel free to join [KGeoTag's IRC channel](irc://irc.libera.chat/kgeotag) and/or the [mailing list](https://mail.kde.org/cgi-bin/mailman/listinfo/kgeotag/)!
+Feel free to join [KGeoTag's Matrix channel](https://webchat.kde.org/#/room/#kgeotag:kde.org) and/or the [mailing list](https://mail.kde.org/cgi-bin/mailman/listinfo/kgeotag/)!
