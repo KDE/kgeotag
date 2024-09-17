@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-09-04 01:44+0000\n"
-"PO-Revision-Date: 2024-08-30 16:35+0200\n"
+"PO-Revision-Date: 2024-09-03 08:41+0200\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -1601,7 +1601,7 @@ msgstr "Přiřazení obrázků"
 #: src/SettingsDialog.cpp:130
 #, kde-format
 msgid "Search type for \"Correlate images with GPS data (search matches)\":"
-msgstr ""
+msgstr "Hledat typ pro \"Korelovat obrázky s daty GPS (hledat shody)\":"
 
 #: src/SettingsDialog.cpp:146
 #, kde-format
@@ -1619,7 +1619,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:163
 #, kde-format
 msgid "Image list thumbnail size:"
-msgstr ""
+msgstr "Velikost náhledu seznamu obrázků:"
 
 #: src/SettingsDialog.cpp:170 src/SettingsDialog.cpp:179
 #, kde-format
@@ -1629,7 +1629,7 @@ msgstr "px"
 #: src/SettingsDialog.cpp:172
 #, kde-format
 msgid "Preview image size:"
-msgstr ""
+msgstr "Velikost obrázku náhledu:"
 
 #: src/SettingsDialog.cpp:183
 #, kde-format
@@ -1849,28 +1849,3 @@ msgstr[1] ""
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr ""
-
-#~ msgctxt "Keyboard shortcut for \"add images and/or GPX tracks\""
-#~ msgid "Ctrl+F"
-#~ msgstr "Ctrl+F"
-
-#~ msgctxt "Keyboard shortcut for \"Add all images and tracks from a folder\""
-#~ msgid "Ctrl+D"
-#~ msgstr "Ctrl+D"
-
-#~ msgctxt "Keyboard shortcut for \"All images and tracks (reset)\""
-#~ msgid "Ctrl+R"
-#~ msgstr "Ctrl+R"
-
-#~ msgctxt ""
-#~ "Keyboard shortcut for \"Correlate images with GPS data (search matches)\""
-#~ msgid "Ctrl+M"
-#~ msgstr "Ctrl+M"
-
-#~ msgctxt "Keyboard shortcut for \"(Re-)Assign to map center\""
-#~ msgid "Ctrl+C"
-#~ msgstr "Ctrl+C"
-
-#~ msgctxt "Keyboard shortcut for \"Save changed images\""
-#~ msgid "Ctrl+S"
-#~ msgstr "Ctrl+S"
