@@ -44,7 +44,7 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
-[unreleased]
+KGeoTag 1.6.0 released (2024-10-03)
 ====================================================================================================
 
 Added
@@ -69,12 +69,6 @@ Changed
 * Updated the timezones data files to 2024b (cf. Timezone Boundary Builder's `Release Announcement
   <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2024b>`_).
 
-Deprecated
-==========
-
-Removed
-=======
-
 Fixed
 =====
 
@@ -96,9 +90,6 @@ Fixed
   addresses bug #488597, but actually, it's an upstream Qt bug (reported as
   `bug #126418 <https://bugreports.qt.io/browse/QTBUG-126418>`_), as the docks shouldn't be closable
   at all in the first place.
-
-Security
-========
 
 ====================================================================================================
 KGeoTag 1.5.0 released (2024-01-02)
