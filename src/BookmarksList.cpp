@@ -36,11 +36,6 @@ BookmarksList::BookmarksList(SharedObjects *sharedObjects, QWidget *parent)
         addItem(item);
     }
 
-    // Show the first bookmark's coordinates if we have bookmarks
-    if (! m_bookmarks.isEmpty()) {
-        setCurrentItem(0);
-    }
-
     connect(this, &QListWidget::itemClicked, this, &BookmarksList::centerBookmark);
     connect(this, &QListWidget::currentItemChanged, this, &BookmarksList::itemHighlighted);
 
