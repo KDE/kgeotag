@@ -5,10 +5,27 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.6.0)
 
-set(QT_MIN_VERSION "6.0")
-set(KF_MIN_VERSION "6.0")
-set(KExiv2_MIN_VERSION "5.1.0")
-set(Marble_MIN_VERSION "")
+# Qt 6 build
+option(QT6 "Use Qt6/KF6 to build KGeoTag" OFF)
+if(QT6)
+    message(STATUS "Using Qt6/KF6 to build KGeoTag")
+    message(NOTICE "To build using Qt5/KF5 disable the \"QT6\" flag (via \"-DQT6=off\")!")
+else()
+    message(STATUS "Using Qt5/KF5 to build KGeoTag")
+endif()
+
+if(QT6)
+    set(QT_MIN_VERSION "6.0")
+    set(KF_MIN_VERSION "6.0")
+    set(KExiv2_MIN_VERSION "5.1.0")
+    set(Marble_MIN_VERSION "24.11.70")
+else()
+    set(QT_MIN_VERSION "5.12")
+    set(KF_MIN_VERSION "5.68")
+    set(KExiv2_MIN_VERSION "5.0.0")
+    #FIXME: This can be set to 21.12.0 when Ubuntu LTS et al include this version.
+    set(Marble_MIN_VERSION "")
+endif()
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
@@ -34,7 +51,11 @@ include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 
 # Find Qt
-find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
+if(QT6)
+    find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
+else()
+    find_package(Qt5 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
+endif()
 set(CMAKE_AUTOMOC ON)
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
@@ -47,15 +68,29 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF6 ${KF_MIN_VERSION}
-    COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
-    REQUIRED
-)
+if(QT6)
+    find_package(KF6 ${KF_MIN_VERSION}
+        COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
+        REQUIRED
+    )
+else()
+    find_package(KF5 ${KF_MIN_VERSION}
+        COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
+        REQUIRED
+    )
+endif()
 
 # Find KExiv2
-find_package(KExiv2Qt6 ${KExiv2_MIN_VERSION} REQUIRED)
-if (${KExiv2Qt6_FOUND})
-    message(STATUS "Found KExiv2 version ${KExiv2Qt6_VERSION}")
+if(QT6)
+    find_package(KExiv2Qt6 ${KExiv2_MIN_VERSION} REQUIRED)
+    if (${KExiv2Qt6_FOUND})
+        message(STATUS "Found KExiv2 version ${KExiv2Qt6_VERSION}")
+    endif()
+else()
+    find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
+    if (${KF5KExiv2_FOUND})
+        message(STATUS "Found KExiv2 version ${KF5KExiv2_VERSION}")
+    endif()
 endif()
 
 # Find Marble
@@ -109,23 +144,42 @@ set(kgeotag_SOURCES
     ${main_ROOT}/DegreesConverter.cpp
 )
 
-qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
+if(QT6)
+    qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
+else()
+    qt5_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
+endif()
 
 # Build the executable
 add_executable(kgeotag ${kgeotag_SOURCES})
 add_dependencies(kgeotag UpdateVersion)
-target_link_libraries(kgeotag
-    PRIVATE
-    Qt6::Widgets
-    Qt6::Network
-    KF6::CoreAddons
-    KF6::I18n
-    KF6::XmlGui
-    KF6::ConfigWidgets
-    KF6::Crash
-    KExiv2Qt6
-    Marble
-)
+if(QT6)
+    target_link_libraries(kgeotag
+        PRIVATE
+        Qt6::Widgets
+        Qt6::Network
+        KF6::CoreAddons
+        KF6::I18n
+        KF6::XmlGui
+        KF6::ConfigWidgets
+        KF6::Crash
+        KExiv2Qt6
+        Marble
+    )
+else()
+    target_link_libraries(kgeotag
+        PRIVATE
+        Qt5::Widgets
+        Qt5::Network
+        KF5::CoreAddons
+        KF5::I18n
+        KF5::XmlGui
+        KF5::ConfigWidgets
+        KF5::Crash
+        KF5::KExiv2
+        Marble
+    )
+endif()
 
 # Documentation
 add_subdirectory(doc)
