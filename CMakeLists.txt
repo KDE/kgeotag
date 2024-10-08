@@ -5,10 +5,9 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.6.0)
 
-set(QT_MIN_VERSION "5.12")
-set(KF5_MIN_VERSION "5.68")
-set(KExiv2_MIN_VERSION "5.0.0")
-#FIXME: This can be set to 21.12.0 when Ubuntu LTS et al include this version.
+set(QT_MIN_VERSION "6.0")
+set(KF_MIN_VERSION "6.0")
+set(KExiv2_MIN_VERSION "5.1.0")
 set(Marble_MIN_VERSION "")
 
 set(CMAKE_CXX_STANDARD 17)
@@ -26,16 +25,16 @@ configure_file(${CMAKE_SOURCE_DIR}/src/debugMode.h.in ${CMAKE_BINARY_DIR}/debugM
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 # Find ECM
-find_package(ECM ${KF5_MIN_VERSION} REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-set(KDE_COMPILERSETTINGS_LEVEL "5.68")
+set(KDE_COMPILERSETTINGS_LEVEL ${KF_MIN_VERSION})
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 
 # Find Qt
-find_package(Qt5 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
+find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
 set(CMAKE_AUTOMOC ON)
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
@@ -48,15 +47,15 @@ add_definitions(
 )
 
 # Find KDE
-find_package(KF5 ${KF5_MIN_VERSION}
+find_package(KF6 ${KF_MIN_VERSION}
     COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
     REQUIRED
 )
 
 # Find KExiv2
-find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
-if (${KF5KExiv2_FOUND})
-    message(STATUS "Found KExiv2 version ${KF5KExiv2_VERSION}")
+find_package(KExiv2Qt6 ${KExiv2_MIN_VERSION} REQUIRED)
+if (${KExiv2Qt6_FOUND})
+    message(STATUS "Found KExiv2 version ${KExiv2Qt6_VERSION}")
 endif()
 
 # Find Marble
@@ -110,21 +109,21 @@ set(kgeotag_SOURCES
     ${main_ROOT}/DegreesConverter.cpp
 )
 
-qt5_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
+qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
 
 # Build the executable
 add_executable(kgeotag ${kgeotag_SOURCES})
 add_dependencies(kgeotag UpdateVersion)
 target_link_libraries(kgeotag
     PRIVATE
-    Qt5::Widgets
-    Qt5::Network
-    KF5::CoreAddons
-    KF5::I18n
-    KF5::XmlGui
-    KF5::ConfigWidgets
-    KF5::Crash
-    KF5::KExiv2
+    Qt6::Widgets
+    Qt6::Network
+    KF6::CoreAddons
+    KF6::I18n
+    KF6::XmlGui
+    KF6::ConfigWidgets
+    KF6::Crash
+    KExiv2Qt6
     Marble
 )
 
