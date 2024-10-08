@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -141,7 +141,7 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
         }
 
         const QXmlStreamReader::TokenType token = xml.readNext();
-        const QStringRef name = xml.name();
+        const auto name = xml.name();
 
         if (token == QXmlStreamReader::StartElement) {
             if (! gpxFound) {
