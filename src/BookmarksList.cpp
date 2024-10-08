@@ -196,7 +196,7 @@ void BookmarksList::renameBookmark()
 {
     const auto currentLabel = m_contextMenuItem->text();
     auto [ newLabel, okay ] = getString(i18n("Rename Bookmark"),
-                                        i18n("New label for the new bookmark:"), currentLabel);
+                                        i18n("New label for the bookmark \"%1\":", currentLabel));
     if (! okay || newLabel == currentLabel) {
         return;
     }
