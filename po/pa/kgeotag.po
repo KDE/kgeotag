@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-04 01:44+0000\n"
+"POT-Creation-Date: 2024-10-09 01:48+0000\n"
 "PO-Revision-Date: 2021-01-20 21:58-0800\n"
 "Last-Translator: A S Alam <aalam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -115,103 +115,104 @@ msgstr "ਮੂਲ ਵਜੋਂ ਸੰਭਾਲੋ"
 msgid "Settings saved!"
 msgstr "ਸੈਟਿੰਗਾਂ ਸੰਭਾਲੀਆਂ!"
 
-#: src/BookmarksList.cpp:56
+#: src/BookmarksList.cpp:51
 #, kde-format
 msgid "Add new bookmark for current map center"
 msgstr "ਮੌਜੂਦਾ ਨਕਸ਼ਾ ਕੇਂਦਰ ਲਈ ਨਵਾਂ ਬੁੱਕਮਾਰਕ ਜੋੜੋ"
 
-#: src/BookmarksList.cpp:60
+#: src/BookmarksList.cpp:55
 #, kde-format
 msgid "Add new manual bookmark"
 msgstr ""
 
-#: src/BookmarksList.cpp:65
+#: src/BookmarksList.cpp:60
 #, kde-format
 msgid "Rename bookmark"
 msgstr "ਬੁੱਕਮਾਰਕ ਦਾ ਨਾਂ ਬਦਲੋ"
 
-#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:130
+#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:130
 #, kde-format
 msgid "Edit coordinates"
 msgstr "ਧੁਰਿਆਂ ਨੂੰ ਸੋਧੋ"
 
-#: src/BookmarksList.cpp:73 src/ImagesListView.cpp:134
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:134
 #, kde-format
 msgid "Lookup elevation"
 msgstr "ਉਚਾਣ ਖੋਜੋ"
 
-#: src/BookmarksList.cpp:76
+#: src/BookmarksList.cpp:71
 #, kde-format
 msgid "Set elevation manually"
 msgstr "ਉਚਾਣ ਖੁਦ ਸੈੱਟ ਕਰੋ"
 
-#: src/BookmarksList.cpp:81 src/BookmarksList.cpp:221
+#: src/BookmarksList.cpp:76 src/BookmarksList.cpp:216
 #, kde-format
 msgid "Delete bookmark"
 msgstr "ਬੁੱਕਮਾਰਕ ਨੂੰ ਹਟਾਓ"
 
-#: src/BookmarksList.cpp:104
+#: src/BookmarksList.cpp:99
 #, kde-format
 msgid "New Bookmark"
 msgstr "ਨਵਾਂ ਬੁੱਕਮਾਰਕ"
 
-#: src/BookmarksList.cpp:104
+#: src/BookmarksList.cpp:99
 #, kde-format
 msgid "Label for the new bookmark:"
 msgstr ""
 
-#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:209
+#: src/BookmarksList.cpp:107 src/CoordinatesDialog.cpp:209
 #, kde-format
 msgid "Untitled"
 msgstr "ਬਿਨਾਂ ਨਾਂ"
 
-#: src/BookmarksList.cpp:139
+#: src/BookmarksList.cpp:134
 #, kde-format
 msgctxt "Adding a consecutive number to a bookmark label to make it unique"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: src/BookmarksList.cpp:156
+#: src/BookmarksList.cpp:151
 #, kde-format
 msgid "Add new bookmark"
 msgstr "ਨਵਾਂ ਬੁੱਕਮਾਰਕ ਜੋੜੋ"
 
-#: src/BookmarksList.cpp:157
+#: src/BookmarksList.cpp:152
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
 msgstr ""
 
-#: src/BookmarksList.cpp:198 src/BookmarksList.cpp:206
+#: src/BookmarksList.cpp:193 src/BookmarksList.cpp:201
 #, kde-format
 msgid "Rename Bookmark"
 msgstr "ਬੁੱਕਮਾਰਕ ਦਾ ਨਾਂ ਬਦਲੋ"
 
-#: src/BookmarksList.cpp:199
-#, kde-format
-msgid "New label for the new bookmark:"
+#: src/BookmarksList.cpp:194
+#, fuzzy, kde-format
+#| msgid "New label for the new bookmark:"
+msgid "New label for the bookmark \"%1\":"
 msgstr "ਨਵੇਂ ਬੁੱਕਮਾਰਕ ਲਈ ਨਵਾਂ ਲੇਬਲ:"
 
-#: src/BookmarksList.cpp:207
+#: src/BookmarksList.cpp:202
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
 msgstr ""
 
-#: src/BookmarksList.cpp:222
+#: src/BookmarksList.cpp:217
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
 msgstr "ਬੁੱਕਮਾਰਕ \"%1\" ਨੂੰ ਹਟਾਉਣਾ ਹੈ?"
 
-#: src/BookmarksList.cpp:266
+#: src/BookmarksList.cpp:261
 #, kde-format
 msgid "Set elevation"
 msgstr "ਉਚਾਣ ਸੈੱਟ ਕਰੋ"
 
-#: src/BookmarksList.cpp:267
+#: src/BookmarksList.cpp:262
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
 msgstr "\"%1\" (m) ਲਈ ਉਚਾਣ"
 
-#: src/BookmarksList.cpp:289
+#: src/BookmarksList.cpp:284
 #, kde-format
 msgctxt "A quoted bookmark label"
 msgid "\"%1\""
@@ -554,43 +555,43 @@ msgctxt ""
 msgid "%1%2%3"
 msgstr "%1%2%3"
 
-#: src/main.cpp:33 src/MainWindow.cpp:72
+#: src/main.cpp:35 src/MainWindow.cpp:72
 #, kde-format
 msgid "KGeoTag"
 msgstr "ਕੇ-ਜੀਓ-ਟੈਗ"
 
-#: src/main.cpp:35
+#: src/main.cpp:37
 #, kde-format
 msgid "Photo geotagging program"
 msgstr "ਫ਼ੋਟੋ ਜੀਓਟੈਗ ਲਗਾਉਣ ਵਾਲਾ ਪਰੋਗਰਾਮ"
 
-#: src/main.cpp:37
+#: src/main.cpp:39
 #, fuzzy, kde-format
 #| msgid "Copyright (C) 2020-2021 Tobias Leupold"
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Copyright (C) 2020-2021 Tobias Leupold"
 
-#: src/main.cpp:41
+#: src/main.cpp:43
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:41
+#: src/main.cpp:43
 #, kde-format
 msgid "Maintainer"
 msgstr "ਪਰਬੰਧਕ"
 
-#: src/main.cpp:48
+#: src/main.cpp:50
 #, kde-format
 msgid "Files/Folders"
 msgstr ""
 
-#: src/main.cpp:49
+#: src/main.cpp:51
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr ""
 
-#: src/main.cpp:50
+#: src/main.cpp:52
 #, kde-format
 msgid "[files/folders...]"
 msgstr ""

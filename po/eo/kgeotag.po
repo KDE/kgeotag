@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-04 01:44+0000\n"
+"POT-Creation-Date: 2024-10-09 01:48+0000\n"
 "PO-Revision-Date: 2024-08-30 07:07+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
@@ -120,103 +120,104 @@ msgstr "Konservi kiel defaŭlto"
 msgid "Settings saved!"
 msgstr "Agordoj konservitaj!"
 
-#: src/BookmarksList.cpp:56
+#: src/BookmarksList.cpp:51
 #, kde-format
 msgid "Add new bookmark for current map center"
 msgstr "Aldoni novan legosignon por nuna mapo-centro"
 
-#: src/BookmarksList.cpp:60
+#: src/BookmarksList.cpp:55
 #, kde-format
 msgid "Add new manual bookmark"
 msgstr "Aldoni novan manlibron"
 
-#: src/BookmarksList.cpp:65
+#: src/BookmarksList.cpp:60
 #, kde-format
 msgid "Rename bookmark"
 msgstr "Alinomi legosignon"
 
-#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:130
+#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:130
 #, kde-format
 msgid "Edit coordinates"
 msgstr "Redakti koordinatojn"
 
-#: src/BookmarksList.cpp:73 src/ImagesListView.cpp:134
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:134
 #, kde-format
 msgid "Lookup elevation"
 msgstr "Rigarda alteco"
 
-#: src/BookmarksList.cpp:76
+#: src/BookmarksList.cpp:71
 #, kde-format
 msgid "Set elevation manually"
 msgstr "Agordi altecon permane"
 
-#: src/BookmarksList.cpp:81 src/BookmarksList.cpp:221
+#: src/BookmarksList.cpp:76 src/BookmarksList.cpp:216
 #, kde-format
 msgid "Delete bookmark"
 msgstr "Forigi legosignon"
 
-#: src/BookmarksList.cpp:104
+#: src/BookmarksList.cpp:99
 #, kde-format
 msgid "New Bookmark"
 msgstr "Nova Legosigno"
 
-#: src/BookmarksList.cpp:104
+#: src/BookmarksList.cpp:99
 #, kde-format
 msgid "Label for the new bookmark:"
 msgstr "Etikedo por la nova legosigno:"
 
-#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:209
+#: src/BookmarksList.cpp:107 src/CoordinatesDialog.cpp:209
 #, kde-format
 msgid "Untitled"
 msgstr "Sentitola"
 
-#: src/BookmarksList.cpp:139
+#: src/BookmarksList.cpp:134
 #, kde-format
 msgctxt "Adding a consecutive number to a bookmark label to make it unique"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: src/BookmarksList.cpp:156
+#: src/BookmarksList.cpp:151
 #, kde-format
 msgid "Add new bookmark"
 msgstr "Aldoni novan legosignon"
 
-#: src/BookmarksList.cpp:157
+#: src/BookmarksList.cpp:152
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
 msgstr "La legosigno \"%1\" jam ekzistas, kreita \"%2\" anstataŭe."
 
-#: src/BookmarksList.cpp:198 src/BookmarksList.cpp:206
+#: src/BookmarksList.cpp:193 src/BookmarksList.cpp:201
 #, kde-format
 msgid "Rename Bookmark"
 msgstr "Alinomi Legosignon"
 
-#: src/BookmarksList.cpp:199
-#, kde-format
-msgid "New label for the new bookmark:"
+#: src/BookmarksList.cpp:194
+#, fuzzy, kde-format
+#| msgid "New label for the new bookmark:"
+msgid "New label for the bookmark \"%1\":"
 msgstr "Nova etikedo por la nova legosigno:"
 
-#: src/BookmarksList.cpp:207
+#: src/BookmarksList.cpp:202
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
 msgstr "La etikedo \"%1\" jam estas uzata. Bonvolu elekti alian nomon."
 
-#: src/BookmarksList.cpp:222
+#: src/BookmarksList.cpp:217
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
 msgstr "Ĉu vere forigi legosignon \"%1\"?"
 
-#: src/BookmarksList.cpp:266
+#: src/BookmarksList.cpp:261
 #, kde-format
 msgid "Set elevation"
 msgstr "Agordi altecon"
 
-#: src/BookmarksList.cpp:267
+#: src/BookmarksList.cpp:262
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
 msgstr "Alteco por \"%1\" (m)"
 
-#: src/BookmarksList.cpp:289
+#: src/BookmarksList.cpp:284
 #, kde-format
 msgctxt "A quoted bookmark label"
 msgid "\"%1\""
@@ -553,42 +554,42 @@ msgctxt ""
 msgid "%1%2%3"
 msgstr "%1%2%3"
 
-#: src/main.cpp:33 src/MainWindow.cpp:72
+#: src/main.cpp:35 src/MainWindow.cpp:72
 #, kde-format
 msgid "KGeoTag"
 msgstr "KGeoTag"
 
-#: src/main.cpp:35
+#: src/main.cpp:37
 #, kde-format
 msgid "Photo geotagging program"
 msgstr "Programo por geo-markado de fotoj"
 
-#: src/main.cpp:37
+#: src/main.cpp:39
 #, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Kopirajto (C) 2020-2024 Tobias Leupold"
 
-#: src/main.cpp:41
+#: src/main.cpp:43
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:41
+#: src/main.cpp:43
 #, kde-format
 msgid "Maintainer"
 msgstr "Prizorganto"
 
-#: src/main.cpp:48
+#: src/main.cpp:50
 #, kde-format
 msgid "Files/Folders"
 msgstr "Dosieroj/Dosierujoj"
 
-#: src/main.cpp:49
+#: src/main.cpp:51
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Dosieroj kaj/aŭ dosierujoj por ŝargi ĉe ekfunkciigo"
 
-#: src/main.cpp:50
+#: src/main.cpp:52
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[dosieroj/dosierujoj...]"

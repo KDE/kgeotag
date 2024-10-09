@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-09-04 01:44+0000\n"
+"POT-Creation-Date: 2024-10-09 01:48+0000\n"
 "PO-Revision-Date: 2024-08-31 09:18+0200\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@kde.org>\n"
 "Language-Team: French <French <kde-francophone@kde.org>>\n"
@@ -117,105 +117,106 @@ msgstr "Enregistrer comme défaut"
 msgid "Settings saved!"
 msgstr "Configuration enregistrée !"
 
-#: src/BookmarksList.cpp:56
+#: src/BookmarksList.cpp:51
 #, kde-format
 msgid "Add new bookmark for current map center"
 msgstr "Ajouter un nouveau signet pour le centre actuel de la carte"
 
-#: src/BookmarksList.cpp:60
+#: src/BookmarksList.cpp:55
 #, kde-format
 msgid "Add new manual bookmark"
 msgstr "Ajouter un nouveau signet manuellement"
 
-#: src/BookmarksList.cpp:65
+#: src/BookmarksList.cpp:60
 #, kde-format
 msgid "Rename bookmark"
 msgstr "Renommer un signet"
 
-#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:130
+#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:130
 #, kde-format
 msgid "Edit coordinates"
 msgstr "Modifier les coordonnées"
 
-#: src/BookmarksList.cpp:73 src/ImagesListView.cpp:134
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:134
 #, kde-format
 msgid "Lookup elevation"
 msgstr "Rechercher l'altitude"
 
-#: src/BookmarksList.cpp:76
+#: src/BookmarksList.cpp:71
 #, kde-format
 msgid "Set elevation manually"
 msgstr "Définir l'altitude manuellement"
 
-#: src/BookmarksList.cpp:81 src/BookmarksList.cpp:221
+#: src/BookmarksList.cpp:76 src/BookmarksList.cpp:216
 #, kde-format
 msgid "Delete bookmark"
 msgstr "Supprimer un signet"
 
-#: src/BookmarksList.cpp:104
+#: src/BookmarksList.cpp:99
 #, kde-format
 msgid "New Bookmark"
 msgstr "Nouveau signet"
 
-#: src/BookmarksList.cpp:104
+#: src/BookmarksList.cpp:99
 #, kde-format
 msgid "Label for the new bookmark:"
 msgstr "Étiquette pour le nouveau signet :"
 
-#: src/BookmarksList.cpp:112 src/CoordinatesDialog.cpp:209
+#: src/BookmarksList.cpp:107 src/CoordinatesDialog.cpp:209
 #, kde-format
 msgid "Untitled"
 msgstr "Sans titre"
 
-#: src/BookmarksList.cpp:139
+#: src/BookmarksList.cpp:134
 #, kde-format
 msgctxt "Adding a consecutive number to a bookmark label to make it unique"
 msgid "%1 (%2)"
 msgstr "%1 (%2)"
 
-#: src/BookmarksList.cpp:156
+#: src/BookmarksList.cpp:151
 #, kde-format
 msgid "Add new bookmark"
 msgstr "Ajouter un nouveau signet"
 
-#: src/BookmarksList.cpp:157
+#: src/BookmarksList.cpp:152
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
 msgstr "Le signet « %1 » existe déjà et est crée sous le nom « %2 »."
 
-#: src/BookmarksList.cpp:198 src/BookmarksList.cpp:206
+#: src/BookmarksList.cpp:193 src/BookmarksList.cpp:201
 #, kde-format
 msgid "Rename Bookmark"
 msgstr "Renommer un signet"
 
-#: src/BookmarksList.cpp:199
-#, kde-format
-msgid "New label for the new bookmark:"
+#: src/BookmarksList.cpp:194
+#, fuzzy, kde-format
+#| msgid "New label for the new bookmark:"
+msgid "New label for the bookmark \"%1\":"
 msgstr "Nouvelle étiquette pour le nouveau signet :"
 
-#: src/BookmarksList.cpp:207
+#: src/BookmarksList.cpp:202
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
 msgstr ""
 "L'étiquette « %1 » est déjà en cours d'utilisation. Veuillez sélectionner un "
 "autre nom."
 
-#: src/BookmarksList.cpp:222
+#: src/BookmarksList.cpp:217
 #, kde-format
 msgid "Really delete bookmark \"%1\"?"
 msgstr "Voulez-vous vraiment supprimer le signet « %1 » ?"
 
-#: src/BookmarksList.cpp:266
+#: src/BookmarksList.cpp:261
 #, kde-format
 msgid "Set elevation"
 msgstr "Définir l'altitude"
 
-#: src/BookmarksList.cpp:267
+#: src/BookmarksList.cpp:262
 #, kde-format
 msgid "Elevation for \"%1\" (m)"
 msgstr "Altitude pour « %1 » (m)"
 
-#: src/BookmarksList.cpp:289
+#: src/BookmarksList.cpp:284
 #, kde-format
 msgctxt "A quoted bookmark label"
 msgid "\"%1\""
@@ -558,42 +559,42 @@ msgctxt ""
 msgid "%1%2%3"
 msgstr "%1%2%3"
 
-#: src/main.cpp:33 src/MainWindow.cpp:72
+#: src/main.cpp:35 src/MainWindow.cpp:72
 #, kde-format
 msgid "KGeoTag"
 msgstr "KGeoTag"
 
-#: src/main.cpp:35
+#: src/main.cpp:37
 #, kde-format
 msgid "Photo geotagging program"
 msgstr "Programme de géo-localisation de photos"
 
-#: src/main.cpp:37
+#: src/main.cpp:39
 #, kde-format
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Copyright (C) 2020 - 2024 Tobias Leupold"
 
-#: src/main.cpp:41
+#: src/main.cpp:43
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:41
+#: src/main.cpp:43
 #, kde-format
 msgid "Maintainer"
 msgstr "Mainteneur"
 
-#: src/main.cpp:48
+#: src/main.cpp:50
 #, kde-format
 msgid "Files/Folders"
 msgstr "Fichiers / Dossiers"
 
-#: src/main.cpp:49
+#: src/main.cpp:51
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Fichiers et / ou dossiers à charger au démarrage"
 
-#: src/main.cpp:50
+#: src/main.cpp:52
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[Fichiers / Dossiers...]"
