@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-09 01:48+0000\n"
-"PO-Revision-Date: 2024-08-31 01:54+0200\n"
+"PO-Revision-Date: 2024-10-09 08:22+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.0\n"
+"X-Generator: Lokalize 24.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -193,10 +193,9 @@ msgid "Rename Bookmark"
 msgstr "Cambiar nombre del marcador"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Nueva etiqueta para el nuevo marcador:"
+msgstr "Nueva etiqueta para el marcador «%1»:"
 
 #: src/BookmarksList.cpp:202
 #, kde-format

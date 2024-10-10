@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-09 01:48+0000\n"
-"PO-Revision-Date: 2024-08-30 06:58+0200\n"
+"PO-Revision-Date: 2024-10-09 21:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -191,10 +191,9 @@ msgid "Rename Bookmark"
 msgstr "Byt namn på bokmärke"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Ny beteckning för det nya bokmärket:"
+msgstr "Ny beteckning för bokmärket \"%1\":"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
