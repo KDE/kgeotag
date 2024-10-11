@@ -187,10 +187,9 @@ msgid "Rename Bookmark"
 msgstr "重命名书签"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "新书签的新名称："
+msgstr ""
 
 #: src/BookmarksList.cpp:202
 #, kde-format
