@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-09 01:48+0000\n"
-"PO-Revision-Date: 2024-07-21 13:01+0200\n"
+"PO-Revision-Date: 2024-10-12 11:15+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: Polish <kde-i18n-doc@kde.org>\n"
 "Language: pl\n"
@@ -192,10 +192,9 @@ msgid "Rename Bookmark"
 msgstr "Przemianuj zakładkę"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Nowa etykieta dla nowej zakładki:"
+msgstr "Nowa etykieta dla zakładki \"%1\":"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
@@ -224,10 +223,9 @@ msgid "\"%1\""
 msgstr "\"%1\""
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "Position: %1, %2; Altitude: %3 m"
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "Położenie: %1, %2; Wysokość: %3 m"
+msgstr "Położenie: %1; Wysokość: %2"
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -246,20 +244,16 @@ msgid " °"
 msgstr " °"
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Minutes symbol"
 msgid " '"
-msgstr " m"
+msgstr " '"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Seconds symbol"
 msgid " \""
-msgstr " m"
+msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -327,46 +321,40 @@ msgid "Coordinates for %1:"
 msgstr "Współrzędne dla %1:"
 
 #: src/CoordinatesFormatter.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr "%1°"
 
 #: src/CoordinatesFormatter.cpp:40
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr "%1° %2'"
 
 #: src/CoordinatesFormatter.cpp:52
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr "%1° %2' %3\""
 
 #: src/CoordinatesFormatter.cpp:66
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: src/CoordinatesFormatter.cpp:89
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -638,10 +626,9 @@ msgid "All images and tracks (reset)"
 msgstr "Wszystkie obrazy i ścieżki (zerowanie)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Correlate images with GPS data (search matches)"
-msgstr "Przypisz obrazy do danych GPS"
+msgstr "Przypisz obrazy z danym GPS (poszukaj podobieństw)"
 
 #: src/MainWindow.cpp:142
 #, kde-format
@@ -1555,17 +1542,14 @@ msgid "Please select one or more images"
 msgstr "Wybierz jeden lub więcej obrazów"
 
 #: src/MapCenterInfo.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "This displays the coordinates of the current map center"
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgid "Map center position: %1"
-msgstr "Położenie środka mapy: %1, %2"
+msgstr "Położenie środka mapy: %1"
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Floating items"
+#, kde-format
 msgid "Displayed floating items"
-msgstr "Pływające elementy"
+msgstr "Wyświetlane pływające rzeczy"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1573,28 +1557,24 @@ msgid "Crosshairs"
 msgstr "Celowniki"
 
 #: src/MapWidget.cpp:139
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "Current map center"
-msgstr "Przypisz środkowi mapy"
+msgstr "Środek bieżącej mapy"
 
 #: src/MapWidget.cpp:142 src/MapWidget.cpp:147
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "Ustaw współrzędne ze schowka"
+msgstr "Skopiuj współrzędne do schowka"
 
 #: src/MapWidget.cpp:148
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates copied!"
-msgstr "Współrzędne:"
+msgstr "Skopiowano współrzędne!"
 
 #: src/MapWidget.cpp:153
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
-msgstr "Dodaj nową zakładkę"
+msgstr "Dodaj zakładkę"
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1632,10 +1612,9 @@ msgid "manually set"
 msgstr "ręcznie ustawione"
 
 #: src/PreviewWidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+#, kde-format
 msgid "<p>Position: %1; Altitude: %2<br/>(%3)</p>"
-msgstr "<p>Położenie: %1, %2; Wysokość: %3 m<br/>(%4)</p>"
+msgstr "<p>Położenie: %1; Wysokość: %2<br/>(%3)</p>"
 
 #: src/PreviewWidget.cpp:114
 #, kde-format
@@ -1667,49 +1646,44 @@ msgid "KGeoTag settings"
 msgstr "Ustawienia KGeoTaga"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "Współrzędne:"
+msgstr "Współrzędne"
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates order:"
-msgstr "Współrzędne dla %1:"
+msgstr "Kolejność współrzędnych:"
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "Długość geograficzna:"
+msgstr "Długość/Szerokość geograficzna"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "Długość geograficzna:"
+msgstr "Szerokość/Długość geograficzna"
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "Współrzędne dla %1:"
+msgstr "Zapis współrzędnych:"
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
 msgid "Decimal degrees"
-msgstr ""
+msgstr "Stopnie dziesiętnie"
 
 #: src/SettingsDialog.cpp:82
 #, kde-format
 msgid "Degrees, decimal minutes"
-msgstr ""
+msgstr "Stopnie, minuty dziesiętnie"
 
 #: src/SettingsDialog.cpp:84
 #, kde-format
 msgid "Degrees, minutes, decimal seconds"
-msgstr ""
+msgstr "Stopnie, minuty, sekundy dziesiętnie"
 
 #: src/SettingsDialog.cpp:91
 #, kde-format
@@ -1718,6 +1692,8 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"Zmiany w zapisie współrzędnych nastąpią zaraz po odświeżeniu danego "
+"wyświetlacza. Uruchom KGeoTag, aby uaktualnić wszystko na raz."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1725,26 +1701,20 @@ msgid "Image lists"
 msgstr "Lista obrazów"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Loaded images can either be listed in two different lists (one for all "
-#| "images without and one for images with coordinates), or using a combined "
-#| "consecutive list for all images.</p><p>Use the following images list(s) "
-#| "mode:</p>"
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>Wczytane obrazy można wypisać na dwóch różnych listach (jedną dla "
-"wszystkich obrazów bez współrzędnych i drugą ze współrzędnymi) lub używają "
-"połączonej i ciągłej listy dla wszystkich obrazów</p><p>Użyj następującego "
-"trybu listy obrazów:</p>"
+"Wczytane obrazy można wypisać na dwóch różnych listach (jedną dla wszystkich "
+"obrazów bez współrzędnych i drugą ze współrzędnymi) lub używają połączonej i "
+"ciągłej listy dla wszystkich obrazów."
 
 #: src/SettingsDialog.cpp:109
 #, kde-format
 msgid "Use the following images list(s) mode:"
-msgstr ""
+msgstr "Użyj następującego trybu list obrazów:"
 
 #: src/SettingsDialog.cpp:114
 #, kde-format
@@ -1762,10 +1732,11 @@ msgid "Image Assignment"
 msgstr "Przypisywanie obrazów"
 
 #: src/SettingsDialog.cpp:130
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data (search matches)\":"
-msgstr "Przypisz obrazy do danych GPS"
+msgstr ""
+"Rodzaj wyszukiwania dla \"Przypisz obrazy z danym GPS (poszukaj "
+"podobieństw)\":"
 
 #: src/SettingsDialog.cpp:146
 #, kde-format
@@ -1784,10 +1755,9 @@ msgid "Thumbnails and previews"
 msgstr "Miniatury i podglądy"
 
 #: src/SettingsDialog.cpp:163
-#, fuzzy, kde-format
-#| msgid "Thumbnail size:"
+#, kde-format
 msgid "Image list thumbnail size:"
-msgstr "Rozmiar miniatur:"
+msgstr "Rozmiar miniatur na liście obrazów:"
 
 #: src/SettingsDialog.cpp:170 src/SettingsDialog.cpp:179
 #, kde-format
@@ -1795,10 +1765,9 @@ msgid "px"
 msgstr "piks."
 
 #: src/SettingsDialog.cpp:172
-#, fuzzy, kde-format
-#| msgid "Preview size:"
+#, kde-format
 msgid "Preview image size:"
-msgstr "Rozmiar podglądu:"
+msgstr "Rozmiar podglądu obrazu:"
 
 #: src/SettingsDialog.cpp:183
 #, kde-format
