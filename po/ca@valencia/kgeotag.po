@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-09 01:48+0000\n"
-"PO-Revision-Date: 2024-08-30 12:16+0200\n"
+"PO-Revision-Date: 2024-10-09 11:12+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.0\n"
+"X-Generator: Lokalize 24.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -194,10 +194,9 @@ msgid "Rename Bookmark"
 msgstr "Canvia el nom de l'adreça d'interés"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Etiqueta nova per a la nova adreça d'interés:"
+msgstr "Etiqueta nova per a l'adreça d'interés «%1»:"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
@@ -1982,28 +1981,3 @@ msgstr[1] "%1 punts de pas"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "S'ha seleccionat el punt de pas %1 de %2"
-
-#~ msgctxt "Keyboard shortcut for \"add images and/or GPX tracks\""
-#~ msgid "Ctrl+F"
-#~ msgstr "Ctrl+F"
-
-#~ msgctxt "Keyboard shortcut for \"Add all images and tracks from a folder\""
-#~ msgid "Ctrl+D"
-#~ msgstr "Ctrl+D"
-
-#~ msgctxt "Keyboard shortcut for \"All images and tracks (reset)\""
-#~ msgid "Ctrl+R"
-#~ msgstr "Ctrl+R"
-
-#~ msgctxt ""
-#~ "Keyboard shortcut for \"Correlate images with GPS data (search matches)\""
-#~ msgid "Ctrl+M"
-#~ msgstr "Ctrl+M"
-
-#~ msgctxt "Keyboard shortcut for \"(Re-)Assign to map center\""
-#~ msgid "Ctrl+C"
-#~ msgstr "Ctrl+C"
-
-#~ msgctxt "Keyboard shortcut for \"Save changed images\""
-#~ msgid "Ctrl+S"
-#~ msgstr "Ctrl+S"
