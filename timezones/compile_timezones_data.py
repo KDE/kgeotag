@@ -28,8 +28,8 @@ import re
 from hashlib import sha1
 import sys
 
-from PyQt5.QtCore import QSize, Qt
-from PyQt5.QtGui import QColor
+from PyQt6.QtCore import QSize, Qt
+from PyQt6.QtGui import QColor
 from qgis.core import (
     QgsApplication,
     QgsCategorizedSymbolRenderer,
@@ -173,7 +173,7 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
     # This ensures that the program doesn't exit before the image is saved
     loop = QEventLoop()
     render.finished.connect(loop.quit)
-    loop.exec_()
+    loop.exec()
 
 def main():
     parser = argparse.ArgumentParser()
