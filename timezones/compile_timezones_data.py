@@ -1,21 +1,23 @@
 #!/usr/bin/env python
 
 # SPDX-FileCopyrightText: 2021-2023 Isaac Wismer <isaac@iwismer.ca>
+# SPDX-FileCopyrightText: 2024 Tobias Leupold <tl at stonemx dot de>
 #
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
 """
-    This script takes a timezone data file (designed for the ones provided
-    here: https://github.com/evansiroky/timezone-boundary-builder/), and turns it
-    into a PNG with each of the timezones a unique color, and a JSON file with a
-    mapping between the color and timezone.
+    This script takes a timezone data file from the Timezone Boundary Builder project
+    (cf. https://github.com/evansiroky/timezone-boundary-builder/), and turns it into a PNG image
+    with each of the timezones a unique color, and a JSON file with a mapping between the color and
+    timezone.
 
-    This script can be run with the following command:
-    python timezone-png-creator <path-to-datafile> [output-dir]
-    the --height flag can be used to change the height of the image.
+    By default, "combined-shapefile-with-oceans.shp" is used as the shapefile input, as provided by
+    Timezone Boundary Builder's "timezones-with-oceans.shapefile.zip" download.
 
-    This script requires QGIS to be installed on the machine, and currently only
-    works on Linux, but with a few small tweaks could work on Windows as well.
+    The image height, output dir and shapefile input can be adjusted, cf. the --help message.
+
+    This script requires QGIS to be installed on the machine, and is currently only tested on Linux.
+    However, with a few tweaks, it could most probably work on Windows as well.
 """
 
 import argparse
