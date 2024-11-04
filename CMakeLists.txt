@@ -5,10 +5,15 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.6.0)
 
+set(CMAKE_CXX_STANDARD 17)
+set(CMAKE_CXX_STANDARD_REQUIRED ON)
+set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
+
 # Local CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 # Find ECM
+
 option(FORCEQT6 "Don't autodetect the Qt/KF version, use Qt6/KF6 to build KGeoTag" OFF)
 if (FORCEQT6)
     set(ECM_MIN_VERSION "6.0")
@@ -20,6 +25,8 @@ include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
+
+# Decide if we want to do a Qt5/KF5 or Qt6/KF6 build
 
 if (QT_MAJOR_VERSION STREQUAL "6")
     set(QT6 TRUE)
@@ -39,10 +46,6 @@ else()
     #FIXME: This can be set to 21.12.0 when Ubuntu LTS et al include this version.
     set(Marble_MIN_VERSION "")
 endif()
-
-set(CMAKE_CXX_STANDARD 17)
-set(CMAKE_CXX_STANDARD_REQUIRED ON)
-set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 
 # Create a debugMode.h file according to the requested CMAKE_BUILD_TYPE
 if (CMAKE_BUILD_TYPE MATCHES Debug)
