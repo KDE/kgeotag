@@ -5,13 +5,22 @@
 cmake_minimum_required(VERSION 3.16.0)
 project(kgeotag LANGUAGES CXX VERSION 1.6.0)
 
-# Qt 6 build
-option(QT6 "Use Qt6/KF6 to build KGeoTag" OFF)
-if(QT6)
-    message(STATUS "Using Qt6/KF6 to build KGeoTag")
-    message(NOTICE "To build using Qt5/KF5 disable the \"QT6\" flag (via \"-DQT6=OFF\")!")
+# Local CMake modules
+list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
+
+# Find ECM
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
+set(KDE_COMPILERSETTINGS_LEVEL ${KF_MIN_VERSION})
+include(KDEInstallDirs)
+include(KDECMakeSettings)
+include(KDECompilerSettings NO_POLICY_SCOPE)
+include(ECMInstallIcons)
+
+if (QT_MAJOR_VERSION STREQUAL "6")
+    set(QT6 TRUE)
 else()
-    message(STATUS "Using Qt5/KF5 to build KGeoTag")
+    set(QT6 FALSE)
 endif()
 
 if(QT6)
@@ -37,18 +46,6 @@ if (CMAKE_BUILD_TYPE MATCHES Debug)
     set(DEBUG_MODE ON)
 endif()
 configure_file(${CMAKE_SOURCE_DIR}/src/debugMode.h.in ${CMAKE_BINARY_DIR}/debugMode.h)
-
-# Local CMake modules
-list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
-
-# Find ECM
-find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
-list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-set(KDE_COMPILERSETTINGS_LEVEL ${KF_MIN_VERSION})
-include(KDEInstallDirs)
-include(KDECMakeSettings)
-include(KDECompilerSettings NO_POLICY_SCOPE)
-include(ECMInstallIcons)
 
 # Find Qt
 if(QT6)
