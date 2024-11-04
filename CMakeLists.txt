@@ -9,9 +9,13 @@ project(kgeotag LANGUAGES CXX VERSION 1.6.0)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 # Find ECM
-find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
+option(FORCEQT6 "Don't autodetect the Qt/KF version, use Qt6/KF6 to build KGeoTag" OFF)
+if (FORCEQT6)
+    set(ECM_MIN_VERSION "6.0")
+endif()
+
+find_package(ECM ${ECM_MIN_VERSION} REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
-set(KDE_COMPILERSETTINGS_LEVEL ${KF_MIN_VERSION})
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
