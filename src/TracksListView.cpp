@@ -36,7 +36,7 @@ TracksListView::TracksListView(GeoDataModel *model, QWidget *parent) : QListView
     m_remove = m_contextMenu->addAction(i18np("Remove track", "Remove tracks", 1));
     connect(m_remove, &QAction::triggered, this, &TracksListView::removeTracks);
     connect(m_remove, &QAction::triggered,
-            std::bind(&TracksListView::updateTrackWalker, this, -1));
+            this, std::bind(&TracksListView::updateTrackWalker, this, -1));
 
     connect(this, &QListView::customContextMenuRequested, this, &TracksListView::showContextMenu);
 }
