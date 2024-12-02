@@ -1,13 +1,13 @@
-# Copyright (C) YEAR This file is copyright:
+# Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# Tommi Nieminen <translator@legisign.org>, 2020, 2021, 2022, 2023, 2024.
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-10-09 01:48+0000\n"
-"PO-Revision-Date: 2024-05-09 09:55+0300\n"
+"PO-Revision-Date: 2024-10-21 18:57+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 23.08.5\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -189,10 +189,9 @@ msgid "Rename Bookmark"
 msgstr "Muuta kirjanmerkin nimeä"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Uuden kirjanmerkin uusi selite:"
+msgstr "Kirjanmerkin ”%1” uusi selite:"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
@@ -221,10 +220,9 @@ msgid "\"%1\""
 msgstr "”%1”"
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "Position: %1, %2; Altitude: %3 m"
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "Sijainti: %1, %2, korkeus: %3 m"
+msgstr "Sijainti: %1, korkeus: %2"
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -243,20 +241,16 @@ msgid " °"
 msgstr "°"
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Minutes symbol"
 msgid " '"
-msgstr " m"
+msgstr " '"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Seconds symbol"
 msgid " \""
-msgstr " m"
+msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #, kde-format
@@ -324,46 +318,40 @@ msgid "Coordinates for %1:"
 msgstr "Koordinaatit kohteelle %1:"
 
 #: src/CoordinatesFormatter.cpp:33
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr "%1°"
 
 #: src/CoordinatesFormatter.cpp:40
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr "%1° %2'"
 
 #: src/CoordinatesFormatter.cpp:52
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr "%1° %2' %3\""
 
 #: src/CoordinatesFormatter.cpp:66
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: src/CoordinatesFormatter.cpp:89
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -632,21 +620,19 @@ msgid "All images and tracks (reset)"
 msgstr "Kaikki kuvat ja reitit (alusta)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Assign images to GPS data"
+#, kde-format
 msgid "Correlate images with GPS data (search matches)"
-msgstr "Kytke kuvia GPS-tietoihin"
+msgstr "Kytke kuvat GPS-tietoon (etsi osumia)"
 
 #: src/MainWindow.cpp:142
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "Kytke kartan keskustaan"
+msgstr "Kytke (uudelleen) kartan keskustaan"
 
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr ""
+msgstr "Valitse automaattisesti seuraava luokittelematon kuva"
 
 #: src/MainWindow.cpp:156
 #, kde-format
@@ -1502,26 +1488,22 @@ msgstr "Sijaintitietoa ei ole vielä ladattu!"
 #: src/MainWindow.cpp:1786
 #, kde-format
 msgid "Assign selection"
-msgstr ""
+msgstr "Osoita valinta"
 
 #: src/MainWindow.cpp:1787
-#, fuzzy, kde-format
-#| msgid "Please select a folder"
+#, kde-format
 msgid "Please select one or more images"
-msgstr "Valitse kansio"
+msgstr "Valitse yksi tai useampia kuvia"
 
 #: src/MapCenterInfo.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "This displays the coordinates of the current map center"
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgid "Map center position: %1"
-msgstr "Kartan keskipisteen sijainti: %1, %2"
+msgstr "Kartan keskipisteen sijainti: %1"
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Floating items"
+#, kde-format
 msgid "Displayed floating items"
-msgstr "Kelluvat kohteet"
+msgstr "Näytetyt kelluvat kohteet"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1529,28 +1511,24 @@ msgid "Crosshairs"
 msgstr "Ristikko"
 
 #: src/MapWidget.cpp:139
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "Current map center"
-msgstr "Kytke kartan keskustaan"
+msgstr "Kartan nykyinen keskikohta"
 
 #: src/MapWidget.cpp:142 src/MapWidget.cpp:147
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "Aseta koordinaatit leikepöydältä"
+msgstr "Kopioi koordinaatit leikepöydälle"
 
 #: src/MapWidget.cpp:148
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates copied!"
-msgstr "Koordinaatit:"
+msgstr "Koordinaatit kopioitu!"
 
 #: src/MapWidget.cpp:153
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
-msgstr "Lisää uusi kirjanmerkki"
+msgstr "Lisää kirjanmerkki"
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1588,10 +1566,9 @@ msgid "manually set"
 msgstr "käyttäjän asettama"
 
 #: src/PreviewWidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+#, kde-format
 msgid "<p>Position: %1; Altitude: %2<br/>(%3)</p>"
-msgstr "<p>Sijainti: %1, %2; korkeus: %3 m<br/>(%4)</p>"
+msgstr "<p>Sijainti: %1; korkeus: %2<br/>(%3)</p>"
 
 #: src/PreviewWidget.cpp:114
 #, kde-format
@@ -1623,49 +1600,44 @@ msgid "KGeoTag settings"
 msgstr "KGeoTagin asetukset"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "Koordinaatit:"
+msgstr "Koordinaatit"
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates order:"
-msgstr "Koordinaatit kohteelle %1:"
+msgstr "Koordinaattien järjestys:"
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "Pituusaste:"
+msgstr "Pituus, leveys"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "Pituusaste:"
+msgstr "Leveys, pituus"
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "Koordinaatit kohteelle %1:"
+msgstr "Koordinaattilaji:"
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
 msgid "Decimal degrees"
-msgstr ""
+msgstr "Desimaaliset asteet"
 
 #: src/SettingsDialog.cpp:82
 #, kde-format
 msgid "Degrees, decimal minutes"
-msgstr ""
+msgstr "Asteet, desimaaliset minuutit"
 
 #: src/SettingsDialog.cpp:84
 #, kde-format
 msgid "Degrees, minutes, decimal seconds"
-msgstr ""
+msgstr "Asteet, minuutit, desimaaliset sekunnit"
 
 #: src/SettingsDialog.cpp:91
 #, kde-format
@@ -1674,6 +1646,9 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"Muutokset koordinaattimuotoiluun tulevat voimaan heti, kun vastaava "
+"koordinaattinäkymä seuraavan kerran päivittyy. Kaiken voi päivittää kerralla "
+"käynnistämällä KGeoTagin uudelleen."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1681,25 +1656,20 @@ msgid "Image lists"
 msgstr "Kuvaluettelot"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Loaded images can either be listed in two different lists (one for all "
-#| "images without and one for images with coordinates), or using a combined "
-#| "consecutive list for all images.</p><p>Use the following images list(s) "
-#| "mode:</p>"
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>Ladatut kuvat voi joko jakaa kahteen eri luetteloon (koordinaatittomiin "
-"ja koordinaatillisiin kuviin) tai yhdistää kaikki kuvat yhdeksi luetteloksi."
-"</p><p>Luettele kuvat seuraavalla tapaa:</p>"
+"Ladatut kuvat voi luetella kahdessa eri luettelossa (toinen "
+"koordinaatittomille ja toinen koordinaatillisille kuville) tai käyttää "
+"kaikille kuville yhteistä luetteloa."
 
 #: src/SettingsDialog.cpp:109
 #, kde-format
 msgid "Use the following images list(s) mode:"
-msgstr ""
+msgstr "Käytä seuraavaa kuvaluettelotilaa:"
 
 #: src/SettingsDialog.cpp:114
 #, kde-format
@@ -1716,11 +1686,11 @@ msgstr "Yhtenäinen luettelo kaikista kuvista"
 msgid "Image Assignment"
 msgstr "Kuvien kytkeminen"
 
+# Mitä ihmettä tämä tarkoittaa?!
 #: src/SettingsDialog.cpp:130
-#, fuzzy, kde-format
-#| msgid "Assign images to GPS data"
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data (search matches)\":"
-msgstr "Kytke kuvia GPS-tietoihin"
+msgstr "Etsi tyyppiä kohteelle ”Korreloi kuvat GPS-tietoon (etsi osumia)”:"
 
 #: src/SettingsDialog.cpp:146
 #, kde-format
@@ -1739,10 +1709,9 @@ msgid "Thumbnails and previews"
 msgstr "Pienoiskuvat ja esikatselut"
 
 #: src/SettingsDialog.cpp:163
-#, fuzzy, kde-format
-#| msgid "Thumbnail size:"
+#, kde-format
 msgid "Image list thumbnail size:"
-msgstr "Pienoiskuvan koko:"
+msgstr "Kuvaluettelon pienoiskuvan koko:"
 
 #: src/SettingsDialog.cpp:170 src/SettingsDialog.cpp:179
 #, kde-format
@@ -1750,10 +1719,9 @@ msgid "px"
 msgstr "px"
 
 #: src/SettingsDialog.cpp:172
-#, fuzzy, kde-format
-#| msgid "Preview size:"
+#, kde-format
 msgid "Preview image size:"
-msgstr "Esikatselun koko:"
+msgstr "Esikatselun kuvakoko:"
 
 #: src/SettingsDialog.cpp:183
 #, kde-format
