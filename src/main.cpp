@@ -39,6 +39,7 @@ int main(int argc, char *argv[])
     aboutData.setCopyrightStatement(i18n("Copyright (C) 2020-2024 Tobias Leupold"));
     aboutData.setHomepage(QStringLiteral("https://kgeotag.kde.org/"));
     aboutData.setOrganizationDomain(QStringLiteral("kde.org").toUtf8());
+    aboutData.setDesktopFileName(QStringLiteral("org.kde.kgeotag"));
 
     aboutData.addAuthor(i18n("Tobias Leupold"), i18n("Maintainer"),
                         QStringLiteral("tl@stonemx.de"));
