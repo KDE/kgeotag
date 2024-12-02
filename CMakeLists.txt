@@ -22,10 +22,13 @@ include(ECMInstallIcons)
 
 # Set appropriate needed versions for a Qt5/KF5 or Qt6/KF6 build
 
+# By default, a Qt5/KF5 build is done. To force a Qt6/KF6 build, set ECM's BUILD_WITH_QT6,
+# i.e. pass -DBUILD_WITH_QT6=ON to your cmake call.
+
 if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT6 TRUE)
+    set(QT6 ON)
 else()
-    set(QT6 FALSE)
+    set(QT6 OFF)
 endif()
 
 if(QT6)
