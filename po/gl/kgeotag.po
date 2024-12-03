@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-09 01:48+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-11-09 16:05+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
@@ -571,27 +571,27 @@ msgstr "Programa de etiquetaxe xeográfica de fotos"
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "© 2020-2024 Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Maintainer"
 msgstr "Mantemento."
 
-#: src/main.cpp:50
+#: src/main.cpp:51
 #, kde-format
 msgid "Files/Folders"
 msgstr "Ficheiros e cartafoles"
 
-#: src/main.cpp:51
+#: src/main.cpp:52
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Ficheiros e cartafoles para cargar no inicio."
 
-#: src/main.cpp:52
+#: src/main.cpp:53
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[ficheiros e cartafoles…]"

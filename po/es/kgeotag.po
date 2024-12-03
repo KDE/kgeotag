@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-09 01:48+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-10-09 08:22+0200\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -574,27 +574,27 @@ msgstr "Programa de geoetiquetado de fotos"
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Copyright © 2020-2024 Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Maintainer"
 msgstr "Encargado"
 
-#: src/main.cpp:50
+#: src/main.cpp:51
 #, kde-format
 msgid "Files/Folders"
 msgstr "Archivos/carpetas"
 
-#: src/main.cpp:51
+#: src/main.cpp:52
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Archivos y carpetas a cargar durante el inicio"
 
-#: src/main.cpp:52
+#: src/main.cpp:53
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[archivos/carpetas...]"

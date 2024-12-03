@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-09 01:48+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-08-30 07:07+0200\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
@@ -569,27 +569,27 @@ msgstr "Programo por geo-markado de fotoj"
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Kopirajto (C) 2020-2024 Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Maintainer"
 msgstr "Prizorganto"
 
-#: src/main.cpp:50
+#: src/main.cpp:51
 #, kde-format
 msgid "Files/Folders"
 msgstr "Dosieroj/Dosierujoj"
 
-#: src/main.cpp:51
+#: src/main.cpp:52
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Dosieroj kaj/aŭ dosierujoj por ŝargi ĉe ekfunkciigo"
 
-#: src/main.cpp:52
+#: src/main.cpp:53
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[dosieroj/dosierujoj...]"

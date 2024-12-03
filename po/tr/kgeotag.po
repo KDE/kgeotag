@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-10-09 01:48+0000\n"
+"POT-Creation-Date: 2024-12-03 01:49+0000\n"
 "PO-Revision-Date: 2024-10-09 09:54+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
@@ -564,27 +564,27 @@ msgstr "Fotoğraf coğrafi etiketleme programı"
 msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgstr "Telif hakkı © 2020–2024 Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:43
+#: src/main.cpp:44
 #, kde-format
 msgid "Maintainer"
 msgstr "Projeyi Sürdüren"
 
-#: src/main.cpp:50
+#: src/main.cpp:51
 #, kde-format
 msgid "Files/Folders"
 msgstr "Dosyalar/Klasörler"
 
-#: src/main.cpp:51
+#: src/main.cpp:52
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Başlangıçta yüklenecek dosyalar ve/veya klasörler"
 
-#: src/main.cpp:52
+#: src/main.cpp:53
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[dosyalar/klasörler...]"
