@@ -44,6 +44,35 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
+[unreleased]
+====================================================================================================
+
+Added
+=====
+
+Changed
+=======
+
+* KGeoTag can now be compiled against Qt5/KF5 as well as Qt6/KF6. If Qt 5 is found, a Qt5/KF5 build
+  is done. If only Qt 6 is found, a Qt6/KF6 build is done respectively. In a mixed environment with
+  both Qt 5 and 6 being present, a Qt6/KF6 build can be forced by setting ECM's ``BUILD_WITH_QT6``
+  variable, i.e. passing :code:`-DBUILD_WITH_QT6=ON` to cmake.
+
+* Made ``compile_timezones_data.py`` work with QGIS 3.38 and Qt 6.
+
+Deprecated
+==========
+
+Removed
+=======
+
+Fixed
+=====
+
+Security
+========
+
+====================================================================================================
 KGeoTag 1.6.0 released (2024-10-03)
 ====================================================================================================
 
