@@ -44,11 +44,8 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
-[unreleased]
+KGeoTag 1.7.0 released (2024-12-07)
 ====================================================================================================
-
-Added
-=====
 
 Changed
 =======
@@ -59,18 +56,6 @@ Changed
   variable, i.e. passing :code:`-DBUILD_WITH_QT6=ON` to cmake.
 
 * Made ``compile_timezones_data.py`` work with QGIS 3.38 and Qt 6.
-
-Deprecated
-==========
-
-Removed
-=======
-
-Fixed
-=====
-
-Security
-========
 
 ====================================================================================================
 KGeoTag 1.6.0 released (2024-10-03)

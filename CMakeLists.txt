@@ -3,7 +3,7 @@
 # SPDX-License-Identifier: BSD-3-Clause
 
 cmake_minimum_required(VERSION 3.16.0)
-project(kgeotag LANGUAGES CXX VERSION 1.6.0)
+project(kgeotag LANGUAGES CXX VERSION 1.7.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
