@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-03 01:49+0000\n"
-"PO-Revision-Date: 2024-11-09 16:05+0100\n"
+"PO-Revision-Date: 2024-12-08 11:13+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -728,7 +728,7 @@ msgid ""
 msgstr ""
 "<p>Hai cambios pendentes en imaxes que aínda non se gardaron. Se pecha "
 "KGeoTag agora, descartaranse todos os cambios.</p><p>Quere pechar o programa "
-"de todos xeitos?</p>"
+"de todos os xeitos?</p>"
 
 #: src/MainWindow.cpp:464
 #, kde-format
@@ -1481,7 +1481,7 @@ msgid ""
 msgstr ""
 "<p>Hai cambios pendentes en imaxes que aínda non se gardaron. Se retira "
 "todas as imaxes, descartaranse todos os cambios.</p><p>Seguro que quere "
-"retirar todas as imaxes de todos xeitos?</p>"
+"retirar todas as imaxes de todos os xeitos?</p>"
 
 #: src/MainWindow.cpp:1724
 #, kde-format
