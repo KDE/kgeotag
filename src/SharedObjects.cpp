@@ -11,6 +11,7 @@
 #include "ElevationEngine.h"
 #include "MapWidget.h"
 #include "CoordinatesFormatter.h"
+#include "CoordinatesParser.h"
 
 SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
 {
@@ -21,6 +22,7 @@ SharedObjects::SharedObjects(QObject *parent) : QObject(parent)
     m_gpxEngine = new GpxEngine(this, m_geoDataModel);
     m_elevationEngine = new ElevationEngine(this, m_settings);
     m_coordinatesFormatter = new CoordinatesFormatter(this, &m_locale, m_settings);
+    m_coordinatesParser = new CoordinatesParser(this, &m_locale);
     m_mapWidget = new MapWidget(this);
 }
 
@@ -57,6 +59,11 @@ MapWidget *SharedObjects::mapWidget() const
 CoordinatesFormatter *SharedObjects::coordinatesFormatter() const
 {
     return m_coordinatesFormatter;
+}
+
+CoordinatesParser *SharedObjects::coordinatesParser() const
+{
+    return m_coordinatesParser;
 }
 
 void SharedObjects::setBookmarks(const QHash<QString, Coordinates> *bookmarks)

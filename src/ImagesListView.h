@@ -15,6 +15,7 @@
 // Local classes
 class SharedObjects;
 class ImagesListFilter;
+class CoordinatesParser;
 
 // Qt classes
 class QMenu;
@@ -69,6 +70,7 @@ private: // Variables
     KGeoTag::ImagesListType m_listType;
     ImagesListFilter *m_listFilter;
     const QHash<QString, Coordinates> *m_bookmarks;
+    CoordinatesParser *m_coordinatesParser;
 
     bool m_dragStarted = false;
     QPoint m_dragStartPosition;

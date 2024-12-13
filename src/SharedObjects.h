@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -21,6 +21,7 @@ class GpxEngine;
 class ElevationEngine;
 class MapWidget;
 class CoordinatesFormatter;
+class CoordinatesParser;
 
 class SharedObjects : public QObject
 {
@@ -35,6 +36,7 @@ public:
     ElevationEngine *elevationEngine() const;
     MapWidget *mapWidget() const;
     CoordinatesFormatter *coordinatesFormatter() const;
+    CoordinatesParser *coordinatesParser() const;
 
     void setBookmarks(const QHash<QString, Coordinates> *bookmarks);
     const QHash<QString, Coordinates> *bookmarks() const;
@@ -50,6 +52,7 @@ private: // Variables
     MapWidget *m_mapWidget;
     QLocale m_locale;
     CoordinatesFormatter *m_coordinatesFormatter;
+    CoordinatesParser *m_coordinatesParser;
 
     const QHash<QString, Coordinates> *m_bookmarks;
 
