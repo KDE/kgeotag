@@ -11,7 +11,6 @@
 
 // Qt includes
 #include <QLocale>
-#include <QRegularExpression>
 
 static const QRegularExpression s_googleMaps(
     QStringLiteral("^(-?\\d+\\.\\d+), (-?\\d+\\.\\d+)$"));
@@ -22,6 +21,23 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
     : QObject(parent),
       m_locale(locale)
 {
+    // For the human-readable format, localized cardinal directions are used. We cache them here.
+    m_n = i18nc("Abbreviated cardinal direction \"North\"", "N");
+    m_e = i18nc("Abbreviated cardinal direction \"East\"", "E");
+    m_s = i18nc("Abbreviated cardinal direction \"South\"", "S");
+    m_w = i18nc("Abbreviated cardinal direction \"West\"", "W");
+
+    // Create a regular expression to look for human-readable coordinates
+    const auto coordinate = i18nc("Formatted latitude or longitude with a cardinal direction",
+                                  "%1 %2",
+                                  QStringLiteral("(\\d+.+)"),
+                                  QStringLiteral("([%1])").arg(QRegularExpression::escape(
+                                                 m_n + m_e + m_s + m_w)));
+    const auto coordinates = i18nc("Formatted coordinates, \"lon, lat\" or \"lat, lon\"", "%1, %2",
+                                   coordinate, coordinate);
+    m_humanReadable.setPattern(QStringLiteral("^%1$").arg(coordinates));
+
+    qDebug() << m_humanReadable.pattern();
 }
 
 Coordinates CoordinatesParser::parse(const QString &input) const
@@ -41,6 +57,13 @@ Coordinates CoordinatesParser::parse(const QString &input) const
     parseOpenStreetMap(input, &lon, &lat, &success);
     if (success) {
         qCDebug(KGeoTagLog) << "Detected OpenStreetMap coordinates with"
+                            << "lon" << lon << "and lat" << lat;
+        return Coordinates(lon, lat, 0.0, true);
+    }
+
+    parseHumanReadable(input, &lon, &lat, &success);
+    if (success) {
+        qCDebug(KGeoTagLog) << "Detected human-readable coordinates with"
                             << "lon" << lon << "and lat" << lat;
         return Coordinates(lon, lat, 0.0, true);
     }
@@ -91,4 +114,15 @@ void CoordinatesParser::parseOpenStreetMap(const QString &input, double *lon, do
         *lat = parsedLat;
         *success = true;
     }
+}
+
+void CoordinatesParser::parseHumanReadable(const QString &input, double *lon, double *lat,
+                                           bool *success) const
+{
+    const auto match = m_humanReadable.match(input);
+    if (! match.hasMatch()) {
+        return;
+    }
+
+    qCDebug(KGeoTagLog) << input << "could be human-readable coordinates. Continuing ...";
 }

@@ -10,6 +10,7 @@
 
 // Qt includes
 #include <QObject>
+#include <QRegularExpression>
 
 // Qt classes
 class QLocale;
@@ -25,9 +26,17 @@ public:
 private: // Functions
     void parseGoogleMaps(const QString &input, double *lon, double *lat, bool *success) const;
     void parseOpenStreetMap(const QString &input, double *lon, double *lat, bool *success) const;
+    void parseHumanReadable(const QString &input, double *lon, double *lat, bool *success) const;
 
 private: // Variables
     QLocale *m_locale;
+    QString m_n;
+    QString m_e;
+    QString m_s;
+    QString m_w;
+    QString m_nesw;
+
+    QRegularExpression m_humanReadable;
 
 };
 
