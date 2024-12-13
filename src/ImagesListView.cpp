@@ -8,6 +8,7 @@
 #include "ImagesModel.h"
 #include "Settings.h"
 #include "ImagesListFilter.h"
+#include "Logging.h"
 
 // KDE includes
 #include <KLocalizedString>
@@ -374,6 +375,8 @@ void ImagesListView::openExternally()
 
 void ImagesListView::assignToClipboard()
 {
+    qCDebug(KGeoTagLog) << "Parsing corrdinates from clipboard";
+
     const auto data = QGuiApplication::clipboard()->text().simplified();
     bool dataParsed = false;
     double lon = 0.0;
@@ -383,11 +386,12 @@ void ImagesListView::assignToClipboard()
     QRegularExpressionMatch match;
 
     // Google Maps
-    // Schema: xx.xxxxxxxxxxxxxx, xx.xxxxxxxxxxxxx
+    // Schema: -xx.xxxxxxxxxx..., -xx.xxxxxxxxxx...
     if (! dataParsed) {
-        re = QRegularExpression(QStringLiteral("^(\\d+\\.\\d+), (\\d+\\.\\d+)$"));
+        re = QRegularExpression(QStringLiteral("^(-?\\d+\\.\\d+), (-?\\d+\\.\\d+)$"));
         match = re.match(data);
         if (match.hasMatch()) {
+            qCDebug(KGeoTagLog) << "Detected Google Maps coordinates";
             bool lonOkay = false;
             bool latOkay = false;
             lat = match.captured(1).toDouble(&latOkay);
@@ -397,11 +401,12 @@ void ImagesListView::assignToClipboard()
     }
 
     // OpenStreetMap Geo-URI
-    // Schema: geo:xx.xxxxx,xx.xxxxx?z=xx
+    // Schema: geo:-xx.xxxxx,-xx.xxxxx?z=xx
     if (! dataParsed) {
-        re = QRegularExpression(QStringLiteral("^geo:(\\d+\\.\\d+),(\\d+\\.\\d+)\\?z=\\d+$"));
+        re = QRegularExpression(QStringLiteral("^geo:(-?\\d+\\.\\d+),(-?\\d+\\.\\d+)\\?z=\\d+$"));
         match = re.match(data);
         if (match.hasMatch()) {
+            qCDebug(KGeoTagLog) << "Detected OpenStreetMap coordinates";
             bool latOkay = false;
             bool lonOkay = false;
             lat = match.captured(1).toDouble(&latOkay);
@@ -411,8 +416,10 @@ void ImagesListView::assignToClipboard()
     }
 
     if (dataParsed) {
+        qCDebug(KGeoTagLog) << "Extracted coordinates: lat: " << lat << "lon" << lon;
         Q_EMIT assignTo(selectedPaths(), Coordinates(lon, lat, 0.0, true));
     } else {
+        qCDebug(KGeoTagLog) << "Failed to parse" << data;
         Q_EMIT failedToParseClipboard();
     }
 }
