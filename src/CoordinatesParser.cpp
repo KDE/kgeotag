@@ -187,28 +187,16 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
     double parsed2 = 0.0;
 
     // Check for "degrees, minutes and decimal seconds"
-    if (parseDegMinSec(value1, &parsed1) && parseDegMinSec(value2, &parsed2)) {
+    if (parseDegMinDecimalSec(value1, &parsed1) && parseDegMinDecimalSec(value2, &parsed2)) {
         qCDebug(KGeoTagLog) << "    Found \"degress, minutes, decimal seconds\" format";
-        if (direction1 == m_s || direction1 == m_w) {
-            parsed1 *= -1;
-        }
-        if (direction2 == m_s || direction2 == m_w) {
-            parsed2 *= -1;
-        }
-        if (direction1 == m_n || direction1 == m_s) {
-            *lon = parsed2;
-            *lat = parsed1;
-        } else {
-            *lon = parsed1;
-            *lat = parsed2;
-        }
+        assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
         return true;
     }
 
     return false;
 }
 
-bool CoordinatesParser::parseDegMinSec(const QString &input, double *parsed) const
+bool CoordinatesParser::parseDegMinDecimalSec(const QString &input, double *parsed) const
 {
     const auto match = m_degMinDecSec.match(input);
     if (! match.hasMatch()) {
@@ -237,4 +225,23 @@ bool CoordinatesParser::parseDegMinSec(const QString &input, double *parsed) con
 
     *parsed = DegreesConverter::toDecimal(deg, min, sec);
     return true;
+}
+
+void CoordinatesParser::assignLonLat(double parsed1, const QString &direction1,
+                                     double parsed2, const QString &direction2,
+                                     double *lon, double *lat) const
+{
+    if (direction1 == m_s || direction1 == m_w) {
+        parsed1 *= -1;
+    }
+    if (direction2 == m_s || direction2 == m_w) {
+        parsed2 *= -1;
+    }
+    if (direction1 == m_n || direction1 == m_s) {
+        *lon = parsed2;
+        *lat = parsed1;
+    } else {
+        *lon = parsed1;
+        *lat = parsed2;
+    }
 }

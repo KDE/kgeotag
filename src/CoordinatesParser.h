@@ -27,7 +27,10 @@ private: // Functions
     bool parseGoogleMaps(const QString &input, double *lon, double *lat) const;
     bool parseOpenStreetMap(const QString &input, double *lon, double *lat) const;
     bool parseHumanReadable(const QString &input, double *lon, double *lat) const;
-    bool parseDegMinSec(const QString &input, double *parsed) const;
+    bool parseDegMinDecimalSec(const QString &input, double *parsed) const;
+    void assignLonLat(double parsed1, const QString &direction1,
+                      double parsed2, const QString &direction2,
+                      double *lon, double *lat) const;
 
 private: // Variables
     QLocale *m_locale;
