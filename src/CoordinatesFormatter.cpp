@@ -89,3 +89,10 @@ QString CoordinatesFormatter::alt(const Coordinates &coordinates) const
     return i18nc("Formatted altitude in meters", "%1 m",
                  m_locale->toString(coordinates.alt(), 'f', KGeoTag::altitudePrecision));
 }
+
+QString CoordinatesFormatter::formatDecLatLon(const Coordinates &coordinates) const
+{
+    return QStringLiteral("%1, %2").arg(
+        QStringLiteral("%1").arg(coordinates.lat(), 0, 'f', KGeoTag::degreesPrecision),
+        QStringLiteral("%1").arg(coordinates.lon(), 0, 'f', KGeoTag::degreesPrecision));
+}
