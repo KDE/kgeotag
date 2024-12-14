@@ -24,9 +24,9 @@ public:
     Coordinates parse(const QString &input) const;
 
 private: // Functions
-    void parseGoogleMaps(const QString &input, double *lon, double *lat, bool *success) const;
-    void parseOpenStreetMap(const QString &input, double *lon, double *lat, bool *success) const;
-    void parseHumanReadable(const QString &input, double *lon, double *lat, bool *success) const;
+    bool parseGoogleMaps(const QString &input, double *lon, double *lat) const;
+    bool parseOpenStreetMap(const QString &input, double *lon, double *lat) const;
+    bool parseHumanReadable(const QString &input, double *lon, double *lat) const;
 
 private: // Variables
     QLocale *m_locale;
@@ -34,9 +34,14 @@ private: // Variables
     QString m_e;
     QString m_s;
     QString m_w;
-    QString m_nesw;
 
     QRegularExpression m_humanReadable;
+    QStringList m_humanReadableGroups;
+    QRegularExpression m_degMinDecSec;
+    QStringList m_degMinDecSecGroups;
+    QRegularExpression m_degDecMin;
+    QStringList m_degDecMinGroups;
+    QRegularExpression m_decDeg;
 
 };
 
