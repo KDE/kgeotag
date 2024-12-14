@@ -22,6 +22,10 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
     : QObject(parent),
       m_locale(locale)
 {
+    // CAUTION:
+    // Be sure to use the same l10n strings here as are used in the CoordinatesFormatter class,
+    // so that we can parse our own formatted "copy to clipboard" coordinates format!
+
     // For the human-readable format, localized cardinal directions are used. We cache them here.
     m_n = i18nc("Abbreviated cardinal direction \"North\"", "N");
     m_e = i18nc("Abbreviated cardinal direction \"East\"", "E");
