@@ -85,6 +85,12 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
                                                 QStringLiteral("(?<minutes>%1)").arg(
                                                                decimalValue)));
     m_degDecMinGroups = m_degDecMin.namedCaptureGroups();
+
+    // Match decimal degrees
+    auto escapedDecDeg = i18nc("Formatted coordinates as decimal degrees", "%1°",
+                               QStringLiteral("%1"));
+    escapedDecDeg.replace(QStringLiteral("\\%1"), QStringLiteral("%1"));
+    m_decDeg.setPattern(escapedDecDeg.arg(QStringLiteral("(%1)").arg(decimalValue)));
 }
 
 Coordinates CoordinatesParser::parse(const QString &input) const
@@ -213,6 +219,13 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
         return true;
     }
 
+    // Check for "decimal degrees"
+    if (parseDecimalDeg(value1, &parsed1) && parseDecimalDeg(value2, &parsed2)) {
+        qCDebug(KGeoTagLog) << "    Found \"decimal degress\" format";
+        assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
+        return true;
+    }
+
     return false;
 }
 
@@ -269,6 +282,23 @@ bool CoordinatesParser::parseDegDecimalMin(const QString &input, double *parsed)
     }
 
     *parsed = DegreesConverter::toDecimal(deg, min);
+    return true;
+}
+
+bool CoordinatesParser::parseDecimalDeg(const QString &input, double *parsed) const
+{
+    const auto match = m_decDeg.match(input);
+    if (! match.hasMatch()) {
+        return false;
+    }
+
+    bool okay = false;
+    const auto deg = m_locale->toDouble(match.captured(1), &okay);
+    if (! okay) {
+        return false;
+    }
+
+    *parsed = deg;
     return true;
 }
 
