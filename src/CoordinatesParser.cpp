@@ -206,21 +206,21 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
     double parsed2 = 0.0;
 
     // Check for "degrees, minutes and decimal seconds"
-    if (parseDegMinDecimalSec(value1, &parsed1) && parseDegMinDecimalSec(value2, &parsed2)) {
+    if (parseDegMinDecSec(value1, &parsed1) && parseDegMinDecSec(value2, &parsed2)) {
         qCDebug(KGeoTagLog) << "    Found \"degress, minutes and decimal seconds\" format";
         assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
         return true;
     }
 
     // Check for "degrees and decimal minutes"
-    if (parseDegDecimalMin(value1, &parsed1) && parseDegDecimalMin(value2, &parsed2)) {
+    if (parseDegDecMin(value1, &parsed1) && parseDegDecMin(value2, &parsed2)) {
         qCDebug(KGeoTagLog) << "    Found \"degress and decimal minutes\" format";
         assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
         return true;
     }
 
     // Check for "decimal degrees"
-    if (parseDecimalDeg(value1, &parsed1) && parseDecimalDeg(value2, &parsed2)) {
+    if (parseDecDeg(value1, &parsed1) && parseDecDeg(value2, &parsed2)) {
         qCDebug(KGeoTagLog) << "    Found \"decimal degress\" format";
         assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
         return true;
@@ -229,7 +229,7 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
     return false;
 }
 
-bool CoordinatesParser::parseDegMinDecimalSec(const QString &input, double *parsed) const
+bool CoordinatesParser::parseDegMinDecSec(const QString &input, double *parsed) const
 {
     const auto match = m_degMinDecSec.match(input);
     if (! match.hasMatch()) {
@@ -260,7 +260,7 @@ bool CoordinatesParser::parseDegMinDecimalSec(const QString &input, double *pars
     return true;
 }
 
-bool CoordinatesParser::parseDegDecimalMin(const QString &input, double *parsed) const
+bool CoordinatesParser::parseDegDecMin(const QString &input, double *parsed) const
 {
     const auto match = m_degDecMin.match(input);
     if (! match.hasMatch()) {
@@ -285,7 +285,7 @@ bool CoordinatesParser::parseDegDecimalMin(const QString &input, double *parsed)
     return true;
 }
 
-bool CoordinatesParser::parseDecimalDeg(const QString &input, double *parsed) const
+bool CoordinatesParser::parseDecDeg(const QString &input, double *parsed) const
 {
     const auto match = m_decDeg.match(input);
     if (! match.hasMatch()) {
