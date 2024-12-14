@@ -28,6 +28,7 @@ private: // Functions
     bool parseOpenStreetMap(const QString &input, double *lon, double *lat) const;
     bool parseHumanReadable(const QString &input, double *lon, double *lat) const;
     bool parseDegMinDecimalSec(const QString &input, double *parsed) const;
+    bool parseDegDecimalMin(const QString &input, double *parsed) const;
     void assignLonLat(double parsed1, const QString &direction1,
                       double parsed2, const QString &direction2,
                       double *lon, double *lat) const;

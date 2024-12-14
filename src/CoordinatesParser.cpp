@@ -60,18 +60,31 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
 
     // Match degrees, minutes and decimal seconds
 
-    auto ecapedMinDecSec = i18nc("Formatted coordinates as degrees, minutes and decimal seconds",
-                                 "%1° %2' %3\"",
-                                 QStringLiteral("%1"), QStringLiteral("%2"), QStringLiteral("%3"));
-    ecapedMinDecSec.replace(QStringLiteral("\\%1"), QStringLiteral("%1"));
-    ecapedMinDecSec.replace(QStringLiteral("\\%2"), QStringLiteral("%2"));
-    ecapedMinDecSec.replace(QStringLiteral("\\%3"), QStringLiteral("%3"));
+    auto ecapedDegMinDecSec = i18nc(
+        "Formatted coordinates as degrees, minutes and decimal seconds", "%1° %2' %3\"",
+        QStringLiteral("%1"), QStringLiteral("%2"), QStringLiteral("%3"));
+    ecapedDegMinDecSec.replace(QStringLiteral("\\%1"), QStringLiteral("%1"));
+    ecapedDegMinDecSec.replace(QStringLiteral("\\%2"), QStringLiteral("%2"));
+    ecapedDegMinDecSec.replace(QStringLiteral("\\%3"), QStringLiteral("%3"));
 
-    m_degMinDecSec.setPattern(ecapedMinDecSec.arg(QStringLiteral("(?<degrees>\\d+)"),
-                                                  QStringLiteral("(?<minutes>\\d+)"),
-                                                  QStringLiteral("(?<seconds>%1)").arg(
-                                                                 decimalValue)));
+    m_degMinDecSec.setPattern(ecapedDegMinDecSec.arg(QStringLiteral("(?<degrees>\\d+)"),
+                                                     QStringLiteral("(?<minutes>\\d+)"),
+                                                     QStringLiteral("(?<seconds>%1)").arg(
+                                                                    decimalValue)));
     m_degMinDecSecGroups = m_degMinDecSec.namedCaptureGroups();
+
+    // Match degrees and decimal minutes
+
+    auto escapedDegDecMin = i18nc(
+        "Formatted coordinates as degrees and decimal minutes", "%1° %2'",
+        QStringLiteral("%1"), QStringLiteral("%2"));
+    escapedDegDecMin.replace(QStringLiteral("\\%1"), QStringLiteral("%1"));
+    escapedDegDecMin.replace(QStringLiteral("\\%2"), QStringLiteral("%2"));
+
+    m_degDecMin.setPattern(escapedDegDecMin.arg(QStringLiteral("(?<degrees>\\d+)"),
+                                                QStringLiteral("(?<minutes>%1)").arg(
+                                                               decimalValue)));
+    m_degDecMinGroups = m_degDecMin.namedCaptureGroups();
 }
 
 Coordinates CoordinatesParser::parse(const QString &input) const
@@ -188,7 +201,14 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
 
     // Check for "degrees, minutes and decimal seconds"
     if (parseDegMinDecimalSec(value1, &parsed1) && parseDegMinDecimalSec(value2, &parsed2)) {
-        qCDebug(KGeoTagLog) << "    Found \"degress, minutes, decimal seconds\" format";
+        qCDebug(KGeoTagLog) << "    Found \"degress, minutes and decimal seconds\" format";
+        assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
+        return true;
+    }
+
+    // Check for "degrees and decimal minutes"
+    if (parseDegDecimalMin(value1, &parsed1) && parseDegDecimalMin(value2, &parsed2)) {
+        qCDebug(KGeoTagLog) << "    Found \"degress and decimal minutes\" format";
         assignLonLat(parsed1, direction1, parsed2, direction2, lon, lat);
         return true;
     }
@@ -224,6 +244,31 @@ bool CoordinatesParser::parseDegMinDecimalSec(const QString &input, double *pars
     }
 
     *parsed = DegreesConverter::toDecimal(deg, min, sec);
+    return true;
+}
+
+bool CoordinatesParser::parseDegDecimalMin(const QString &input, double *parsed) const
+{
+    const auto match = m_degDecMin.match(input);
+    if (! match.hasMatch()) {
+        return false;
+    }
+
+    bool okay = false;
+
+    const auto deg = match.captured(m_degDecMinGroups.indexOf(
+                                        QStringLiteral("degrees"))).toInt(&okay);
+    if (! okay) {
+        return false;
+    }
+
+    const auto min = m_locale->toDouble(
+        match.captured(m_degDecMinGroups.indexOf(QStringLiteral("minutes"))), &okay);
+    if (! okay) {
+        return false;
+    }
+
+    *parsed = DegreesConverter::toDecimal(deg, min);
     return true;
 }
 
