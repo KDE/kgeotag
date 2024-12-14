@@ -4,6 +4,7 @@
 
 // Local includes
 #include "CoordinatesParser.h"
+#include "DegreesConverter.h"
 #include "Logging.h"
 
 // KDE includes
@@ -152,12 +153,12 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
     // Search for the human-readable format KGeoTag copies to the clipboard.
     // This is a bit harder ;-)
 
-    auto match = m_humanReadable.match(input);
+    const auto match = m_humanReadable.match(input);
     if (! match.hasMatch()) {
         return false;
     }
 
-    qCDebug(KGeoTagLog) << input << "could be human-readable coordinates. Continuing ...";
+    qCDebug(KGeoTagLog) << "    The input could be human-readable coordinates. Continuing ...";
 
     // First we check if the captured cardinal directions are plausible
 
@@ -182,19 +183,58 @@ bool CoordinatesParser::parseHumanReadable(const QString &input, double *lon, do
     const auto value2 = match.captured(m_humanReadableGroups.indexOf(
         QStringLiteral("value2")));
 
-    // Check for "degrees, minutes and decimal seconds"
+    double parsed1 = 0.0;
+    double parsed2 = 0.0;
 
-    /*
-    match = m_degMinDecSec.match(value1);
-    if (match.hasMatch()) {
-        int deg = 0;
-        int min = 0;
-        double sec = 0.0;
-        qDebug() << "deg:" << match.captured(m_degMinDecSecGroups.indexOf(QStringLiteral("degrees")));
-        qDebug() << "min:" << match.captured(m_degMinDecSecGroups.indexOf(QStringLiteral("minutes")));
-        qDebug() << "sec:" << match.captured(m_degMinDecSecGroups.indexOf(QStringLiteral("seconds")));
+    // Check for "degrees, minutes and decimal seconds"
+    if (parseDegMinSec(value1, &parsed1) && parseDegMinSec(value2, &parsed2)) {
+        qCDebug(KGeoTagLog) << "    Found \"degress, minutes, decimal seconds\" format";
+        if (direction1 == m_s || direction1 == m_w) {
+            parsed1 *= -1;
+        }
+        if (direction2 == m_s || direction2 == m_w) {
+            parsed2 *= -1;
+        }
+        if (direction1 == m_n || direction1 == m_s) {
+            *lon = parsed2;
+            *lat = parsed1;
+        } else {
+            *lon = parsed1;
+            *lat = parsed2;
+        }
+        return true;
     }
-    */
 
     return false;
+}
+
+bool CoordinatesParser::parseDegMinSec(const QString &input, double *parsed) const
+{
+    const auto match = m_degMinDecSec.match(input);
+    if (! match.hasMatch()) {
+        return false;
+    }
+
+    bool okay = false;
+
+    const auto deg = match.captured(m_degMinDecSecGroups.indexOf(
+                                        QStringLiteral("degrees"))).toInt(&okay);
+    if (! okay) {
+        return false;
+    }
+
+    const auto min = match.captured(m_degMinDecSecGroups.indexOf(
+                                        QStringLiteral("minutes"))).toInt(&okay);
+    if (! okay) {
+        return false;
+    }
+
+    const auto sec = m_locale->toDouble(
+        match.captured(m_degMinDecSecGroups.indexOf(QStringLiteral("seconds"))), &okay);
+    if (! okay) {
+        return false;
+    }
+
+    *parsed = DegreesConverter::toDecimal(deg, min, sec);
+    return true;
 }

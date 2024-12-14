@@ -27,6 +27,7 @@ private: // Functions
     bool parseGoogleMaps(const QString &input, double *lon, double *lat) const;
     bool parseOpenStreetMap(const QString &input, double *lon, double *lat) const;
     bool parseHumanReadable(const QString &input, double *lon, double *lat) const;
+    bool parseDegMinSec(const QString &input, double *parsed) const;
 
 private: // Variables
     QLocale *m_locale;
