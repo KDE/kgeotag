@@ -44,6 +44,36 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
+[unreleased]
+====================================================================================================
+
+Added
+=====
+
+* The current map center's coordinates can now be exported in the decimal degree "latitude,
+  longitide" format to be used e.g. in Google Maps or OpenStreetMap.
+
+Changed
+=======
+
+Deprecated
+==========
+
+Removed
+=======
+
+Fixed
+=====
+
+* Assigning an image to coordinates from the clipboard now also works if the coordinates are
+  negative. Additionally, we can now also parse our own human-readable format (provided the
+  coordinates string has been formatted using the same locale as is used to parse it).
+  This fixes `Bug #497410 <https://bugs.kde.org/show_bug.cgi?id=497410>`_.
+
+Security
+========
+
+====================================================================================================
 KGeoTag 1.7.0 released (2024-12-07)
 ====================================================================================================
 
