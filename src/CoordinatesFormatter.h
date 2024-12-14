@@ -23,6 +23,7 @@ public:
     explicit CoordinatesFormatter(QObject *parent, QLocale *locale, Settings *settings);
     QString format(const Coordinates &coordinates) const;
     QString alt(const Coordinates &coordinates) const;
+    QString formatDecLatLon(const Coordinates &coordinates) const;
 
 private: // Functions
     QString formatLonLat(double value) const;

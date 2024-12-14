@@ -138,14 +138,24 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
     m_contextMenu->addSeparator();
     m_mapCenterMenu = m_contextMenu->addMenu(i18n("Current map center"));
 
-    // Copy coordinates to clipboard
-    auto *copyAction = m_mapCenterMenu->addAction(i18n("Copy coordinates to clipboard"));
-    connect(copyAction, &QAction::triggered, this, [this]
+    // Copy coordinates to clipboard (human-readable)
+    auto *copyFormattedAction = m_mapCenterMenu->addAction(i18n("Copy formatted coordinates"));
+    connect(copyFormattedAction, &QAction::triggered, this, [this]
             {
-                QGuiApplication::clipboard()->setText(
-                    m_coordinatesFormatter->format(currentCenter()));
+                const auto text = m_coordinatesFormatter->format(currentCenter());
+                QGuiApplication::clipboard()->setText(text);
                 QMessageBox::information(this, i18n("Copy coordinates to clipboard"),
-                                         i18n("Coordinates copied!"));
+                                         i18n("Copied \"%1\" to the clipboard!", text));
+            });
+
+    // Copy coordinates to clipboard (decimal lat, lon)
+    auto *copyDecLatLonAction = m_mapCenterMenu->addAction(i18n("Copy as \"latitude, longitude\""));
+    connect(copyDecLatLonAction, &QAction::triggered, this, [this]
+            {
+                const auto text = m_coordinatesFormatter->formatDecLatLon(currentCenter());
+                QGuiApplication::clipboard()->setText(text);
+                QMessageBox::information(this, i18n("Copy coordinates to clipboard"),
+                                         i18n("Copied \"%1\" to the clipboard!", text));
             });
 
     // Request adding a bookmark
