@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 01:49+0000\n"
+"POT-Creation-Date: 2024-12-14 02:38+0000\n"
 "PO-Revision-Date: 2024-10-11 18:19+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -87,19 +87,19 @@ msgstr "Shrani nastavitve"
 msgid "(Re)Assign all images"
 msgstr "(Ponovno) dodeli vse slike"
 
-#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
+#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:83
 #: src/MainWindow.cpp:1138 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr "Kombinirano iskanje ujemanja"
 
-#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
+#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:91
 #: src/SettingsDialog.cpp:136
 #, kde-format
 msgid "Search exact matches only"
 msgstr "Iskanje samo natančnih ujemanj"
 
-#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
+#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:97
 #: src/SettingsDialog.cpp:137
 #, kde-format
 msgid "Search interpolated matches only"
@@ -135,12 +135,12 @@ msgstr "Dodaj nov ročni zaznamek"
 msgid "Rename bookmark"
 msgstr "Preimenuj zaznamek"
 
-#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:130
+#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:131
 #, kde-format
 msgid "Edit coordinates"
 msgstr "Uredi koordinate"
 
-#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:134
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:135
 #, kde-format
 msgid "Lookup elevation"
 msgstr "Pridobi višino"
@@ -445,79 +445,79 @@ msgstr "Prikaži fiksne datume in čase"
 msgid "Fix the files' dates and times when saving"
 msgstr "Zapiši fiksne datume in čase ob shranjevanju"
 
-#: src/ImagesListView.cpp:61
+#: src/ImagesListView.cpp:62
 #, kde-format
 msgid "Select all images"
 msgstr "Izberi vse slike"
 
-#: src/ImagesListView.cpp:65
+#: src/ImagesListView.cpp:66
 #, kde-format
 msgid "Select"
 msgstr "Izberi"
 
-#: src/ImagesListView.cpp:67 src/MainWindow.cpp:115
+#: src/ImagesListView.cpp:68 src/MainWindow.cpp:115
 #, kde-format
 msgid "All images"
 msgstr "Vse slike"
 
-#: src/ImagesListView.cpp:69
+#: src/ImagesListView.cpp:70
 #, kde-format
 msgid "All images without coordinates"
 msgstr "Vse slike brez koordinat"
 
-#: src/ImagesListView.cpp:72
+#: src/ImagesListView.cpp:73
 #, kde-format
 msgid "All images with coordinates"
 msgstr "Vse slike s koordinatami"
 
-#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1063
+#: src/ImagesListView.cpp:79 src/MainWindow.cpp:201 src/MainWindow.cpp:1063
 #, kde-format
 msgid "Automatic matching"
 msgstr "Samodejno ujemanje"
 
-#: src/ImagesListView.cpp:101
+#: src/ImagesListView.cpp:102
 #, kde-format
 msgid "Assign to bookmark"
 msgstr "Dodeli zaznamku"
 
-#: src/ImagesListView.cpp:107
+#: src/ImagesListView.cpp:108
 #, kde-format
 msgid "Assign to map center"
 msgstr "Dodeli centru zemljevida"
 
-#: src/ImagesListView.cpp:112
+#: src/ImagesListView.cpp:113
 #, kde-format
 msgid "Set coordinates from clipboard"
 msgstr "Nastavi koordinate iz odlagališča"
 
-#: src/ImagesListView.cpp:115
+#: src/ImagesListView.cpp:116
 #, kde-format
 msgid "Set coordinates manually"
 msgstr "Ročno nastavi koordinate"
 
-#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1762
+#: src/ImagesListView.cpp:123 src/MainWindow.cpp:1762
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "Najdi najbližjo točko sledi"
 
-#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1266 src/MainWindow.cpp:1319
+#: src/ImagesListView.cpp:142 src/MainWindow.cpp:1266 src/MainWindow.cpp:1319
 #: src/MainWindow.cpp:1365 src/MainWindow.cpp:1439 src/MainWindow.cpp:1470
 #: src/MainWindow.cpp:1473 src/MainWindow.cpp:1478
 #, kde-format
 msgid "Save changes"
 msgstr "Shrani spremembe"
 
-#: src/ImagesListView.cpp:148
+#: src/ImagesListView.cpp:149
 #, kde-format
 msgid "Remove coordinates"
 msgstr "Odstrani koordinate"
 
-#: src/ImagesListView.cpp:155
+#: src/ImagesListView.cpp:156
 #, kde-format
 msgid "Discard changes"
 msgstr "Zavrzi spremembe"
 
-#: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
+#: src/ImagesListView.cpp:161 src/ImagesListView.cpp:310
 #: src/MainWindow.cpp:1622
 #, kde-format
 msgid "Remove image"
@@ -527,12 +527,12 @@ msgstr[1] "Odstrani sliki"
 msgstr[2] "Odstrani slike"
 msgstr[3] "Odstrani slike"
 
-#: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
+#: src/ImagesListView.cpp:168 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
 msgstr "Odpri s privzetim ogledovalnikom"
 
-#: src/ImagesListView.cpp:196
+#: src/ImagesListView.cpp:197
 #, kde-format
 msgid "(No bookmarks defined)"
 msgstr "(Ni določenih zaznamkov)"

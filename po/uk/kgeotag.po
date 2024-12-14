@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-03 01:49+0000\n"
+"POT-Creation-Date: 2024-12-14 02:38+0000\n"
 "PO-Revision-Date: 2024-10-09 07:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -89,19 +89,19 @@ msgstr "Зберегти параметри"
 msgid "(Re)Assign all images"
 msgstr "Повторно прив'язати усі зображення"
 
-#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:82
+#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:83
 #: src/MainWindow.cpp:1138 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr "Пошук комбінованого відповідника"
 
-#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:90
+#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:91
 #: src/SettingsDialog.cpp:136
 #, kde-format
 msgid "Search exact matches only"
 msgstr "Шукати лише точні відповідники"
 
-#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:96
+#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:97
 #: src/SettingsDialog.cpp:137
 #, kde-format
 msgid "Search interpolated matches only"
@@ -137,12 +137,12 @@ msgstr "Додати нову закладку вручну"
 msgid "Rename bookmark"
 msgstr "Перейменувати закладку"
 
-#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:130
+#: src/BookmarksList.cpp:63 src/ImagesListView.cpp:131
 #, kde-format
 msgid "Edit coordinates"
 msgstr "Редагувати координати"
 
-#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:134
+#: src/BookmarksList.cpp:68 src/ImagesListView.cpp:135
 #, kde-format
 msgid "Lookup elevation"
 msgstr "Шукати висоту"
@@ -443,79 +443,79 @@ msgstr "Показувати фіксовані дати і час"
 msgid "Fix the files' dates and times when saving"
 msgstr "Виправляти записи дат і часу файла під час збереження"
 
-#: src/ImagesListView.cpp:61
+#: src/ImagesListView.cpp:62
 #, kde-format
 msgid "Select all images"
 msgstr "Позначити усі зображення"
 
-#: src/ImagesListView.cpp:65
+#: src/ImagesListView.cpp:66
 #, kde-format
 msgid "Select"
 msgstr "Вибрати"
 
-#: src/ImagesListView.cpp:67 src/MainWindow.cpp:115
+#: src/ImagesListView.cpp:68 src/MainWindow.cpp:115
 #, kde-format
 msgid "All images"
 msgstr "Усі зображення"
 
-#: src/ImagesListView.cpp:69
+#: src/ImagesListView.cpp:70
 #, kde-format
 msgid "All images without coordinates"
 msgstr "Усі зображення без координат"
 
-#: src/ImagesListView.cpp:72
+#: src/ImagesListView.cpp:73
 #, kde-format
 msgid "All images with coordinates"
 msgstr "Усі зображення з координатами"
 
-#: src/ImagesListView.cpp:78 src/MainWindow.cpp:201 src/MainWindow.cpp:1063
+#: src/ImagesListView.cpp:79 src/MainWindow.cpp:201 src/MainWindow.cpp:1063
 #, kde-format
 msgid "Automatic matching"
 msgstr "Автоматична відповідність"
 
-#: src/ImagesListView.cpp:101
+#: src/ImagesListView.cpp:102
 #, kde-format
 msgid "Assign to bookmark"
 msgstr "Призначити до закладки"
 
-#: src/ImagesListView.cpp:107
+#: src/ImagesListView.cpp:108
 #, kde-format
 msgid "Assign to map center"
 msgstr "Призначити до центра карти"
 
-#: src/ImagesListView.cpp:112
+#: src/ImagesListView.cpp:113
 #, kde-format
 msgid "Set coordinates from clipboard"
 msgstr "Встановити координати з буфера обміну"
 
-#: src/ImagesListView.cpp:115
+#: src/ImagesListView.cpp:116
 #, kde-format
 msgid "Set coordinates manually"
 msgstr "Вказати координати вручну"
 
-#: src/ImagesListView.cpp:122 src/MainWindow.cpp:1762
+#: src/ImagesListView.cpp:123 src/MainWindow.cpp:1762
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "Знайти найближчу точку маршруту"
 
-#: src/ImagesListView.cpp:141 src/MainWindow.cpp:1266 src/MainWindow.cpp:1319
+#: src/ImagesListView.cpp:142 src/MainWindow.cpp:1266 src/MainWindow.cpp:1319
 #: src/MainWindow.cpp:1365 src/MainWindow.cpp:1439 src/MainWindow.cpp:1470
 #: src/MainWindow.cpp:1473 src/MainWindow.cpp:1478
 #, kde-format
 msgid "Save changes"
 msgstr "Зберегти зміни"
 
-#: src/ImagesListView.cpp:148
+#: src/ImagesListView.cpp:149
 #, kde-format
 msgid "Remove coordinates"
 msgstr "Вилучити координати"
 
-#: src/ImagesListView.cpp:155
+#: src/ImagesListView.cpp:156
 #, kde-format
 msgid "Discard changes"
 msgstr "Відкинути зміни"
 
-#: src/ImagesListView.cpp:160 src/ImagesListView.cpp:309
+#: src/ImagesListView.cpp:161 src/ImagesListView.cpp:310
 #: src/MainWindow.cpp:1622
 #, kde-format
 msgid "Remove image"
@@ -525,12 +525,12 @@ msgstr[1] "Вилучити зображення"
 msgstr[2] "Вилучити зображення"
 msgstr[3] "Вилучити зображення"
 
-#: src/ImagesListView.cpp:167 src/PreviewWidget.cpp:48
+#: src/ImagesListView.cpp:168 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
 msgstr "Відкрити у типовому переглядачі"
 
-#: src/ImagesListView.cpp:196
+#: src/ImagesListView.cpp:197
 #, kde-format
 msgid "(No bookmarks defined)"
 msgstr "(Не визначено закладок)"
