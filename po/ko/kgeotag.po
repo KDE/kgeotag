@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-14 02:38+0000\n"
+"POT-Creation-Date: 2024-12-15 02:32+0000\n"
 "PO-Revision-Date: 2024-08-19 23:13+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -257,12 +257,14 @@ msgid " \""
 msgstr " m"
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
+#: src/CoordinatesParser.cpp:31
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
 msgstr "동"
 
 #: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:76
+#: src/CoordinatesParser.cpp:33
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
@@ -274,12 +276,14 @@ msgid "Latitude:"
 msgstr "위도:"
 
 #: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:83
+#: src/CoordinatesParser.cpp:30
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
 msgstr "북"
 
 #: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:84
+#: src/CoordinatesParser.cpp:32
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
@@ -321,7 +325,7 @@ msgstr "수동 좌표"
 msgid "Coordinates for %1:"
 msgstr "%1의 좌표:"
 
-#: src/CoordinatesFormatter.cpp:33
+#: src/CoordinatesFormatter.cpp:33 src/CoordinatesParser.cpp:94
 #, fuzzy, kde-format
 #| msgctxt "Formatted longitude with a cardinal direction"
 #| msgid "%1° %2"
@@ -329,7 +333,7 @@ msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
 msgstr "%1° %2"
 
-#: src/CoordinatesFormatter.cpp:40
+#: src/CoordinatesFormatter.cpp:40 src/CoordinatesParser.cpp:83
 #, fuzzy, kde-format
 #| msgctxt "Formatted longitude with a cardinal direction"
 #| msgid "%1° %2"
@@ -337,7 +341,7 @@ msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
 msgstr "%1° %2"
 
-#: src/CoordinatesFormatter.cpp:52
+#: src/CoordinatesFormatter.cpp:52 src/CoordinatesParser.cpp:68
 #, fuzzy, kde-format
 #| msgctxt "Formatted longitude with a cardinal direction"
 #| msgid "%1° %2"
@@ -345,13 +349,14 @@ msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
 msgstr "%1° %2"
 
-#: src/CoordinatesFormatter.cpp:66
+#: src/CoordinatesFormatter.cpp:66 src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
 msgstr ""
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
+#: src/CoordinatesParser.cpp:38
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
@@ -1484,19 +1489,31 @@ msgstr "십자가"
 msgid "Current map center"
 msgstr "지도 중심점에 할당"
 
-#: src/MapWidget.cpp:142 src/MapWidget.cpp:147
+#: src/MapWidget.cpp:142
+#, fuzzy, kde-format
+#| msgid "Remove coordinates"
+msgid "Copy formatted coordinates"
+msgstr "좌표 삭제"
+
+#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, fuzzy, kde-format
 #| msgid "Set coordinates from clipboard"
 msgid "Copy coordinates to clipboard"
 msgstr "클립보드에서 좌표 설정"
 
-#: src/MapWidget.cpp:148
+#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
 #, fuzzy, kde-format
-#| msgid "Coordinates:"
-msgid "Coordinates copied!"
-msgstr "좌표:"
+#| msgid "Set coordinates from clipboard"
+msgid "Copied \"%1\" to the clipboard!"
+msgstr "클립보드에서 좌표 설정"
 
-#: src/MapWidget.cpp:153
+#: src/MapWidget.cpp:152
+#, fuzzy, kde-format
+#| msgid "Longitude:"
+msgid "Copy as \"latitude, longitude\""
+msgstr "경도:"
+
+#: src/MapWidget.cpp:163
 #, fuzzy, kde-format
 #| msgid "Add new bookmark"
 msgid "Add bookmark"
@@ -1928,6 +1945,11 @@ msgstr[0] "트랙포인트 %1개"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "트랙포인트 %2개 중 %1 선택함"
+
+#, fuzzy
+#~| msgid "Coordinates:"
+#~ msgid "Coordinates copied!"
+#~ msgstr "좌표:"
 
 #~ msgctxt "Formatted latitude with a cardinal direction"
 #~ msgid "%1° %2"

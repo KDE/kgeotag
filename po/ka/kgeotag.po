@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-14 02:38+0000\n"
+"POT-Creation-Date: 2024-12-15 02:32+0000\n"
 "PO-Revision-Date: 2024-07-07 07:08+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -258,12 +258,14 @@ msgid " \""
 msgstr " მ"
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
+#: src/CoordinatesParser.cpp:31
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
 msgstr "ეგზა"
 
 #: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:76
+#: src/CoordinatesParser.cpp:33
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
@@ -275,12 +277,14 @@ msgid "Latitude:"
 msgstr "განედი:"
 
 #: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:83
+#: src/CoordinatesParser.cpp:30
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
 msgstr "ჩრდ"
 
 #: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:84
+#: src/CoordinatesParser.cpp:32
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
@@ -322,7 +326,7 @@ msgstr "ხელით მითითებული კოორდინა�
 msgid "Coordinates for %1:"
 msgstr "%1-ის კოორდინატები:"
 
-#: src/CoordinatesFormatter.cpp:33
+#: src/CoordinatesFormatter.cpp:33 src/CoordinatesParser.cpp:94
 #, fuzzy, kde-format
 #| msgctxt "Formatted longitude with a cardinal direction"
 #| msgid "%1° %2"
@@ -330,7 +334,7 @@ msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
 msgstr "%1° %2"
 
-#: src/CoordinatesFormatter.cpp:40
+#: src/CoordinatesFormatter.cpp:40 src/CoordinatesParser.cpp:83
 #, fuzzy, kde-format
 #| msgctxt "Formatted longitude with a cardinal direction"
 #| msgid "%1° %2"
@@ -338,7 +342,7 @@ msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
 msgstr "%1° %2"
 
-#: src/CoordinatesFormatter.cpp:52
+#: src/CoordinatesFormatter.cpp:52 src/CoordinatesParser.cpp:68
 #, fuzzy, kde-format
 #| msgctxt "Formatted longitude with a cardinal direction"
 #| msgid "%1° %2"
@@ -346,13 +350,14 @@ msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
 msgstr "%1° %2"
 
-#: src/CoordinatesFormatter.cpp:66
+#: src/CoordinatesFormatter.cpp:66 src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
 msgstr ""
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
+#: src/CoordinatesParser.cpp:38
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
@@ -1458,19 +1463,31 @@ msgstr "გადაჯვარედინება"
 msgid "Current map center"
 msgstr "რუკის ცენტრზე მინიჭება"
 
-#: src/MapWidget.cpp:142 src/MapWidget.cpp:147
+#: src/MapWidget.cpp:142
+#, fuzzy, kde-format
+#| msgid "Remove coordinates"
+msgid "Copy formatted coordinates"
+msgstr "კოორდინატების წაშლა"
+
+#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, fuzzy, kde-format
 #| msgid "Set coordinates from clipboard"
 msgid "Copy coordinates to clipboard"
 msgstr "კოორდინატების ბუფერიდან დაყენება"
 
-#: src/MapWidget.cpp:148
+#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
 #, fuzzy, kde-format
-#| msgid "Coordinates:"
-msgid "Coordinates copied!"
-msgstr "კოორდინატები:"
+#| msgid "Set coordinates from clipboard"
+msgid "Copied \"%1\" to the clipboard!"
+msgstr "კოორდინატების ბუფერიდან დაყენება"
 
-#: src/MapWidget.cpp:153
+#: src/MapWidget.cpp:152
+#, fuzzy, kde-format
+#| msgid "Longitude:"
+msgid "Copy as \"latitude, longitude\""
+msgstr "გრძედი:"
+
+#: src/MapWidget.cpp:163
 #, fuzzy, kde-format
 #| msgid "Add new bookmark"
 msgid "Add bookmark"
@@ -1886,6 +1903,11 @@ msgstr[1] ""
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Coordinates:"
+#~ msgid "Coordinates copied!"
+#~ msgstr "კოორდინატები:"
 
 #~ msgctxt "Formatted latitude with a cardinal direction"
 #~ msgid "%1° %2"

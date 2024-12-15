@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-14 02:38+0000\n"
+"POT-Creation-Date: 2024-12-15 02:32+0000\n"
 "PO-Revision-Date: 2024-10-09 07:45+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -258,12 +258,14 @@ msgid " \""
 msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
+#: src/CoordinatesParser.cpp:31
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
 msgstr "С"
 
 #: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:76
+#: src/CoordinatesParser.cpp:33
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
@@ -275,12 +277,14 @@ msgid "Latitude:"
 msgstr "Широта:"
 
 #: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:83
+#: src/CoordinatesParser.cpp:30
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
 msgstr "Пн"
 
 #: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:84
+#: src/CoordinatesParser.cpp:32
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
@@ -322,31 +326,32 @@ msgstr "Координати вручну"
 msgid "Coordinates for %1:"
 msgstr "Координати %1:"
 
-#: src/CoordinatesFormatter.cpp:33
+#: src/CoordinatesFormatter.cpp:33 src/CoordinatesParser.cpp:94
 #, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
 msgstr "%1°"
 
-#: src/CoordinatesFormatter.cpp:40
+#: src/CoordinatesFormatter.cpp:40 src/CoordinatesParser.cpp:83
 #, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
 msgstr "%1° %2'"
 
-#: src/CoordinatesFormatter.cpp:52
+#: src/CoordinatesFormatter.cpp:52 src/CoordinatesParser.cpp:68
 #, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
 msgstr "%1° %2' %3\""
 
-#: src/CoordinatesFormatter.cpp:66
+#: src/CoordinatesFormatter.cpp:66 src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
 msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
+#: src/CoordinatesParser.cpp:38
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
@@ -1606,17 +1611,30 @@ msgstr "Перехрестя"
 msgid "Current map center"
 msgstr "Поточний центр карти"
 
-#: src/MapWidget.cpp:142 src/MapWidget.cpp:147
+#: src/MapWidget.cpp:142
+#, fuzzy, kde-format
+#| msgid "Remove coordinates"
+msgid "Copy formatted coordinates"
+msgstr "Вилучити координати"
+
+#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Копіювати координати до буфера обміну"
 
-#: src/MapWidget.cpp:148
-#, kde-format
-msgid "Coordinates copied!"
-msgstr "Координати скопійовано!"
+#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#, fuzzy, kde-format
+#| msgid "Copy coordinates to clipboard"
+msgid "Copied \"%1\" to the clipboard!"
+msgstr "Копіювати координати до буфера обміну"
 
-#: src/MapWidget.cpp:153
+#: src/MapWidget.cpp:152
+#, fuzzy, kde-format
+#| msgid "Latitude, longitude"
+msgid "Copy as \"latitude, longitude\""
+msgstr "Широта, довгота"
+
+#: src/MapWidget.cpp:163
 #, kde-format
 msgid "Add bookmark"
 msgstr "Додати закладку"
@@ -2049,6 +2067,9 @@ msgstr[3] "одна точка маршруту"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "Вибрано точку маршруту %1 з %2"
+
+#~ msgid "Coordinates copied!"
+#~ msgstr "Координати скопійовано!"
 
 #~ msgctxt "Keyboard shortcut for \"add images and/or GPX tracks\""
 #~ msgid "Ctrl+F"

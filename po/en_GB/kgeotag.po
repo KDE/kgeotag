@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-14 02:38+0000\n"
+"POT-Creation-Date: 2024-12-15 02:32+0000\n"
 "PO-Revision-Date: 2024-10-18 18:54+0100\n"
 "Last-Translator: Steve Allewell <steve.allewell@gmail.com>\n"
 "Language-Team: British English\n"
@@ -255,12 +255,14 @@ msgid " \""
 msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
+#: src/CoordinatesParser.cpp:31
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
 msgstr "E"
 
 #: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:76
+#: src/CoordinatesParser.cpp:33
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
@@ -272,12 +274,14 @@ msgid "Latitude:"
 msgstr "Latitude:"
 
 #: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:83
+#: src/CoordinatesParser.cpp:30
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
 msgstr "N"
 
 #: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:84
+#: src/CoordinatesParser.cpp:32
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
@@ -319,31 +323,32 @@ msgstr "Manual coordinates"
 msgid "Coordinates for %1:"
 msgstr "Coordinates for %1:"
 
-#: src/CoordinatesFormatter.cpp:33
+#: src/CoordinatesFormatter.cpp:33 src/CoordinatesParser.cpp:94
 #, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
 msgstr "%1°"
 
-#: src/CoordinatesFormatter.cpp:40
+#: src/CoordinatesFormatter.cpp:40 src/CoordinatesParser.cpp:83
 #, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
 msgstr "%1° %2'"
 
-#: src/CoordinatesFormatter.cpp:52
+#: src/CoordinatesFormatter.cpp:52 src/CoordinatesParser.cpp:68
 #, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
 msgstr "%1° %2' %3\""
 
-#: src/CoordinatesFormatter.cpp:66
+#: src/CoordinatesFormatter.cpp:66 src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
 msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
+#: src/CoordinatesParser.cpp:38
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
@@ -1518,17 +1523,30 @@ msgstr "Crosshairs"
 msgid "Current map center"
 msgstr "Current map centre"
 
-#: src/MapWidget.cpp:142 src/MapWidget.cpp:147
+#: src/MapWidget.cpp:142
+#, fuzzy, kde-format
+#| msgid "Remove coordinates"
+msgid "Copy formatted coordinates"
+msgstr "Remove coordinates"
+
+#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Copy coordinates to clipboard"
 
-#: src/MapWidget.cpp:148
-#, kde-format
-msgid "Coordinates copied!"
-msgstr "Coordinates copied!"
+#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#, fuzzy, kde-format
+#| msgid "Copy coordinates to clipboard"
+msgid "Copied \"%1\" to the clipboard!"
+msgstr "Copy coordinates to clipboard"
 
-#: src/MapWidget.cpp:153
+#: src/MapWidget.cpp:152
+#, fuzzy, kde-format
+#| msgid "Latitude, longitude"
+msgid "Copy as \"latitude, longitude\""
+msgstr "Latitude, longitude"
+
+#: src/MapWidget.cpp:163
 #, kde-format
 msgid "Add bookmark"
 msgstr "Add bookmark"
@@ -1953,6 +1971,9 @@ msgstr[1] "%1 trackpoints"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "Selected trackpoint %1 of %2"
+
+#~ msgid "Coordinates copied!"
+#~ msgstr "Coordinates copied!"
 
 #~ msgctxt "Formatted latitude with a cardinal direction"
 #~ msgid "%1° %2"
