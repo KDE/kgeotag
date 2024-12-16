@@ -3,14 +3,14 @@
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2021.
 # SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Josep M. Ferrer <txemaq@gmail.com>
+# Antoni Bella Pérez <antonibella5@yahoo.com>, 2020, 2021.
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 02:32+0000\n"
-"PO-Revision-Date: 2024-10-21 13:16+0200\n"
+"PO-Revision-Date: 2024-12-15 11:49+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.2\n"
+"X-Generator: Lokalize 22.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1546,10 +1546,9 @@ msgid "Current map center"
 msgstr "Centre del mapa actual"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Elimina les coordenades"
+msgstr "Copia les coordenades amb format"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1557,16 +1556,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Copia les coordenades al porta-retalls"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Copia les coordenades al porta-retalls"
+msgstr "«%1» s'ha copiat a dins del porta-retalls"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Latitud, llargària"
+msgstr "Copia com a «latitud, longitud»"
 
 #: src/MapWidget.cpp:163
 #, kde-format
@@ -1999,6 +1996,3 @@ msgstr[1] "%1 punts de pas"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "S'ha seleccionat el punt de pas %1 de %2"
-
-#~ msgid "Coordinates copied!"
-#~ msgstr "S'han copiat les coordenades!"

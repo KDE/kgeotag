@@ -1438,10 +1438,9 @@ msgid "Current map center"
 msgstr ""
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "删除坐标"
+msgstr ""
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format

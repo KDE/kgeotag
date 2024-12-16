@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 02:32+0000\n"
-"PO-Revision-Date: 2024-10-11 18:19+0200\n"
+"PO-Revision-Date: 2024-12-15 07:23+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -1610,10 +1610,9 @@ msgid "Current map center"
 msgstr "Trenutno središče zemljevida"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Odstrani koordinate"
+msgstr "Kopiraj oblikovane koordinate"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1621,16 +1620,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Kopiraj koordinate na odložišče"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Kopiraj koordinate na odložišče"
+msgstr "Kopirano \"%1\" na odložišče!"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Širina, dolžina"
+msgstr "Kopiraj kot \"širina, dolžina\""
 
 #: src/MapWidget.cpp:163
 #, kde-format

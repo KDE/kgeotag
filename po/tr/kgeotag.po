@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 02:32+0000\n"
-"PO-Revision-Date: 2024-10-09 09:54+0300\n"
+"PO-Revision-Date: 2024-12-15 12:36+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 24.11.70\n"
+"X-Generator: Lokalize 25.03.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1526,10 +1526,9 @@ msgid "Current map center"
 msgstr "Geçerli haritanın merkezi"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Koordinatları kaldır"
+msgstr "Biçimlendirilmiş koordinatları kaldır"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1537,16 +1536,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Koordinatları panoya kopyala"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Koordinatları panoya kopyala"
+msgstr "“%1” panoya kopyalandı!"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Enlem, boylam"
+msgstr "“enlem, boylam” olarak kopyala"
 
 #: src/MapWidget.cpp:163
 #, kde-format

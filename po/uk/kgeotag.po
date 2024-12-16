@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 02:32+0000\n"
-"PO-Revision-Date: 2024-10-09 07:45+0300\n"
+"PO-Revision-Date: 2024-12-15 09:34+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1612,10 +1612,9 @@ msgid "Current map center"
 msgstr "Поточний центр карти"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Вилучити координати"
+msgstr "Копіювати форматовані координати"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1623,16 +1622,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Копіювати координати до буфера обміну"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Копіювати координати до буфера обміну"
+msgstr "«%1» скопійовано до буфера обміну даними!"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Широта, довгота"
+msgstr "Копіювати у форматі «широта, довгота»"
 
 #: src/MapWidget.cpp:163
 #, kde-format

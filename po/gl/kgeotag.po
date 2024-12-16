@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 02:32+0000\n"
-"PO-Revision-Date: 2024-12-12 19:59+0100\n"
+"PO-Revision-Date: 2024-12-15 23:23+0100\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Proxecto Trasno (proxecto@trasno.gal)\n"
 "Language: gl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.08.3\n"
+"X-Generator: Lokalize 24.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1542,10 +1542,9 @@ msgid "Current map center"
 msgstr "Centro actual do mapa"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Retirar as coordenadas"
+msgstr "Copiar as coordenadas formatadas"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1553,16 +1552,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Copiar as coordenadas no portapapeis"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Copiar as coordenadas no portapapeis"
+msgstr "«%1» copiouse no portapapeis."
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Latitude, lonxitude"
+msgstr "Copiar como «latitude, lonxitude»"
 
 #: src/MapWidget.cpp:163
 #, kde-format
