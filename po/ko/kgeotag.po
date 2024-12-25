@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2024-12-15 02:32+0000\n"
-"PO-Revision-Date: 2024-08-19 23:13+0200\n"
+"PO-Revision-Date: 2024-12-24 17:17+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -187,10 +187,9 @@ msgid "Rename Bookmark"
 msgstr "책갈피 이름 바꾸기"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "새 책갈피의 새 이름표:"
+msgstr "\"%1\" 책갈피의 새 이름표:"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
@@ -219,10 +218,9 @@ msgid "\"%1\""
 msgstr "\"%1\""
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "Position: %1, %2; Altitude: %3 m"
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "위치: %1, %2; 고도: %3 m"
+msgstr "위치: %1, 고도: %2"
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -241,20 +239,16 @@ msgid " °"
 msgstr " °"
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Minutes symbol"
 msgid " '"
-msgstr " m"
+msgstr " '"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Seconds symbol"
 msgid " \""
-msgstr " m"
+msgstr " \""
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
 #: src/CoordinatesParser.cpp:31
@@ -326,47 +320,41 @@ msgid "Coordinates for %1:"
 msgstr "%1의 좌표:"
 
 #: src/CoordinatesFormatter.cpp:33 src/CoordinatesParser.cpp:94
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr "%1°"
 
 #: src/CoordinatesFormatter.cpp:40 src/CoordinatesParser.cpp:83
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr "%1° %2'"
 
 #: src/CoordinatesFormatter.cpp:52 src/CoordinatesParser.cpp:68
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr "%1° %2' %3\""
 
 #: src/CoordinatesFormatter.cpp:66 src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
 #: src/CoordinatesParser.cpp:38
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: src/CoordinatesFormatter.cpp:89
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -631,10 +619,9 @@ msgid "All images and tracks (reset)"
 msgstr "모든 사진과 궤적(초기화)"
 
 #: src/MainWindow.cpp:130
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Correlate images with GPS data (search matches)"
-msgstr "사진과 GPS 데이터 연결"
+msgstr "사진과 GPS 데이터 연결(검색 일치함)"
 
 #: src/MainWindow.cpp:142
 #, kde-format
@@ -1466,17 +1453,14 @@ msgid "Please select one or more images"
 msgstr "사진을 하나 이상 선택하십시오"
 
 #: src/MapCenterInfo.cpp:48
-#, fuzzy, kde-format
-#| msgctxt "This displays the coordinates of the current map center"
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgid "Map center position: %1"
-msgstr "지도 중심점 위치: %1, %2"
+msgstr "지도 중심점 위치: %1"
 
 #: src/MapWidget.cpp:84
-#, fuzzy, kde-format
-#| msgid "Floating items"
+#, kde-format
 msgid "Displayed floating items"
-msgstr "떠다니는 항목"
+msgstr "표시된 떠다니는 항목"
 
 #: src/MapWidget.cpp:90
 #, kde-format
@@ -1484,40 +1468,34 @@ msgid "Crosshairs"
 msgstr "십자가"
 
 #: src/MapWidget.cpp:139
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "Current map center"
-msgstr "지도 중심점에 할당"
+msgstr "현재 지도 중심점"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "좌표 삭제"
+msgstr "형식 지정된 좌표 복사"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "클립보드에서 좌표 설정"
+msgstr "클립보드에 좌표 복사"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "클립보드에서 좌표 설정"
+msgstr "\"%1\" 문자열을 클립보드에 복사했습니다!"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "경도:"
+msgstr "\"위도, 경도\"로 복사"
 
 #: src/MapWidget.cpp:163
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
-msgstr "새 책갈피 추가"
+msgstr "책갈피 추가"
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1555,10 +1533,9 @@ msgid "manually set"
 msgstr "수동 설정"
 
 #: src/PreviewWidget.cpp:109
-#, fuzzy, kde-format
-#| msgid "<p>Position: %1, %2; Altitude: %3 m<br/>(%4)</p>"
+#, kde-format
 msgid "<p>Position: %1; Altitude: %2<br/>(%3)</p>"
-msgstr "<p>위치: %1, %2; 고도: %3 m<br/>(%4)</p>"
+msgstr "<p>위치: %1, 고도: %2<br/>(%3)</p>"
 
 #: src/PreviewWidget.cpp:114
 #, kde-format
@@ -1590,49 +1567,44 @@ msgid "KGeoTag settings"
 msgstr "KGeoTag 설정"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "좌표:"
+msgstr "좌표"
 
 #: src/SettingsDialog.cpp:71
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates order:"
-msgstr "%1의 좌표:"
+msgstr "좌표 순서:"
 
 #: src/SettingsDialog.cpp:73
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Longitude, latitude"
-msgstr "경도:"
+msgstr "위도, 경도"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "경도:"
+msgstr "경도, 위도"
 
 #: src/SettingsDialog.cpp:78
-#, fuzzy, kde-format
-#| msgid "Coordinates for %1:"
+#, kde-format
 msgid "Coordinates flavor:"
-msgstr "%1의 좌표:"
+msgstr "좌표 선호:"
 
 #: src/SettingsDialog.cpp:80
 #, kde-format
 msgid "Decimal degrees"
-msgstr ""
+msgstr "십진법 도"
 
 #: src/SettingsDialog.cpp:82
 #, kde-format
 msgid "Degrees, decimal minutes"
-msgstr ""
+msgstr "도, 십진법 분"
 
 #: src/SettingsDialog.cpp:84
 #, kde-format
 msgid "Degrees, minutes, decimal seconds"
-msgstr ""
+msgstr "도, 분, 십진법 초"
 
 #: src/SettingsDialog.cpp:91
 #, kde-format
@@ -1641,6 +1613,8 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"좌표 형식을 변경하면 다음에 좌표가 표시될 때 변경 사항이 적용됩니다. 모든 것"
+"을 한 번에 업데이트하려면 KGeoTag를 다시 시작하십시오."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1648,25 +1622,19 @@ msgid "Image lists"
 msgstr "사진 목록"
 
 #: src/SettingsDialog.cpp:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Loaded images can either be listed in two different lists (one for all "
-#| "images without and one for images with coordinates), or using a combined "
-#| "consecutive list for all images.</p><p>Use the following images list(s) "
-#| "mode:</p>"
+#, kde-format
 msgid ""
 "Loaded images can either be listed in two different lists (one for all "
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
-"<p>불러온 사진을 두 개의 별도의 목록(좌표가 입력되지 않은 사진과 좌표가 입력"
-"된 사진)으로 표시하거나, 목록 한 개에 통합해서 표시할 수 있습니다.</p><p>다"
-"음 사진 목록 모드를 사용할 수 있습니다:</p>"
+"불러온 사진을 두 개의 별도의 목록(좌표가 입력되지 않은 사진과 좌표가 입력된 "
+"사진)으로 표시하거나, 목록 한 개에 통합해서 표시할 수 있습니다."
 
 #: src/SettingsDialog.cpp:109
 #, kde-format
 msgid "Use the following images list(s) mode:"
-msgstr ""
+msgstr "다음 사진 목록 모드 사용:"
 
 #: src/SettingsDialog.cpp:114
 #, kde-format
@@ -1684,10 +1652,9 @@ msgid "Image Assignment"
 msgstr "사진 할당"
 
 #: src/SettingsDialog.cpp:130
-#, fuzzy, kde-format
-#| msgid "Correlate images with GPS data"
+#, kde-format
 msgid "Search type for \"Correlate images with GPS data (search matches)\":"
-msgstr "사진과 GPS 데이터 연결"
+msgstr "\"사진과 GPS 데이터 연결(검색 일치함)\"의 검색 형식"
 
 #: src/SettingsDialog.cpp:146
 #, kde-format
@@ -1705,10 +1672,9 @@ msgid "Thumbnails and previews"
 msgstr "섬네일과 미리 보기"
 
 #: src/SettingsDialog.cpp:163
-#, fuzzy, kde-format
-#| msgid "Thumbnail size:"
+#, kde-format
 msgid "Image list thumbnail size:"
-msgstr "섬네일 크기:"
+msgstr "그림 목록 섬네일 크기:"
 
 #: src/SettingsDialog.cpp:170 src/SettingsDialog.cpp:179
 #, kde-format
@@ -1716,10 +1682,9 @@ msgid "px"
 msgstr "픽셀"
 
 #: src/SettingsDialog.cpp:172
-#, fuzzy, kde-format
-#| msgid "Preview size:"
+#, kde-format
 msgid "Preview image size:"
-msgstr "미리 보기 크기:"
+msgstr "미리 보기 그림 크기:"
 
 #: src/SettingsDialog.cpp:183
 #, kde-format
