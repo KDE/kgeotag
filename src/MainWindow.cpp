@@ -152,13 +152,14 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     // "File" menu again
 
-    auto *saveChangesAction = actionCollection()->addAction(QStringLiteral("saveChanges"));
+    auto *saveChangesAction = actionCollection()->addAction(KStandardAction::Save,
+                                                            QStringLiteral("saveChanges"),
+                                                            this, &MainWindow::saveAllChanges);
     saveChangesAction->setText(i18n("Save changed images"));
-    saveChangesAction->setIcon(QIcon::fromTheme(QStringLiteral("document-save-all")));
-    actionCollection()->setDefaultShortcut(saveChangesAction, QKeySequence(Qt::CTRL | Qt::Key_S));
-    connect(saveChangesAction, &QAction::triggered, this, &MainWindow::saveAllChanges);
+    saveChangesAction->setToolTip(i18n("Save the metadata of all changed images"));
 
-    KStandardAction::quit(this, &QWidget::close, actionCollection());
+    actionCollection()->addAction(KStandardAction::Quit, QStringLiteral("quit"),
+                                  this, &QWidget::close);
 
     // Settings
     // --------

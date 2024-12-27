@@ -36,6 +36,7 @@
       <Separator/>
       <Action name="saveChanges"/>
       <Separator/>
+      <Action name="quit"/>
     </Menu>
     <Menu name="settings">
       <Action name="setDefaultDockArrangement"/>
