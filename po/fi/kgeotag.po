@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-15 02:32+0000\n"
+"POT-Creation-Date: 2024-12-28 02:05+0000\n"
 "PO-Revision-Date: 2024-10-21 18:57+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -79,13 +79,13 @@ msgstr "metriä"
 msgid "Save settings"
 msgstr "Tallenna asetukset"
 
-#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1043
+#: src/AutomaticMatchingWidget.cpp:139 src/MainWindow.cpp:1044
 #, kde-format
 msgid "(Re)Assign all images"
 msgstr "Kytke kaikki kuvat (uudelleen)"
 
 #: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:83
-#: src/MainWindow.cpp:1138 src/SettingsDialog.cpp:135
+#: src/MainWindow.cpp:1139 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr "Yhdistetty osumahaku"
@@ -468,7 +468,7 @@ msgstr "Kaikki koordinaatittomat kuvat"
 msgid "All images with coordinates"
 msgstr "Kaikki koordinaatilliset kuvat"
 
-#: src/ImagesListView.cpp:79 src/MainWindow.cpp:201 src/MainWindow.cpp:1063
+#: src/ImagesListView.cpp:79 src/MainWindow.cpp:202 src/MainWindow.cpp:1064
 #, kde-format
 msgid "Automatic matching"
 msgstr "Automaattinen sovitus"
@@ -493,14 +493,14 @@ msgstr "Aseta koordinaatit leikepöydältä"
 msgid "Set coordinates manually"
 msgstr "Aseta koordinaatit itse"
 
-#: src/ImagesListView.cpp:123 src/MainWindow.cpp:1762
+#: src/ImagesListView.cpp:123 src/MainWindow.cpp:1763
 #, kde-format
 msgid "Find closest trackpoint"
 msgstr "Etsi lähin reittipiste"
 
-#: src/ImagesListView.cpp:142 src/MainWindow.cpp:1266 src/MainWindow.cpp:1319
-#: src/MainWindow.cpp:1365 src/MainWindow.cpp:1439 src/MainWindow.cpp:1470
-#: src/MainWindow.cpp:1473 src/MainWindow.cpp:1478
+#: src/ImagesListView.cpp:142 src/MainWindow.cpp:1267 src/MainWindow.cpp:1320
+#: src/MainWindow.cpp:1366 src/MainWindow.cpp:1440 src/MainWindow.cpp:1471
+#: src/MainWindow.cpp:1474 src/MainWindow.cpp:1479
 #, kde-format
 msgid "Save changes"
 msgstr "Tallenna muutokset"
@@ -516,7 +516,7 @@ msgid "Discard changes"
 msgstr "Hylkää muutokset"
 
 #: src/ImagesListView.cpp:161 src/ImagesListView.cpp:310
-#: src/MainWindow.cpp:1622
+#: src/MainWindow.cpp:1623
 #, kde-format
 msgid "Remove image"
 msgid_plural "Remove images"
@@ -594,12 +594,12 @@ msgstr "Käynnistettäessä ladattavat tiedostot tai kansiot"
 msgid "[files/folders...]"
 msgstr "[tiedostot/kansiot…]"
 
-#: src/MainWindow.cpp:87 src/MainWindow.cpp:522
+#: src/MainWindow.cpp:87 src/MainWindow.cpp:523
 #, kde-format
 msgid "Add images and/or GPX tracks"
 msgstr "Lisää kuvia tai GPX-reittejä"
 
-#: src/MainWindow.cpp:94 src/MainWindow.cpp:571
+#: src/MainWindow.cpp:94 src/MainWindow.cpp:572
 #, kde-format
 msgid "Add all images and tracks from a folder"
 msgstr "Lisää kansion kaikki kuvat ja reitit"
@@ -639,52 +639,58 @@ msgstr "Kytke (uudelleen) kartan keskustaan"
 msgid "Automatically select next untagged image"
 msgstr "Valitse automaattisesti seuraava luokittelematon kuva"
 
-#: src/MainWindow.cpp:156
+#: src/MainWindow.cpp:158
 #, kde-format
 msgid "Save changed images"
 msgstr "Tallenna muuttuneet kuvat"
 
-#: src/MainWindow.cpp:168
+#: src/MainWindow.cpp:159
+#, fuzzy, kde-format
+#| msgid "Save changed images"
+msgid "Save the metadata of all changed images"
+msgstr "Tallenna muuttuneet kuvat"
+
+#: src/MainWindow.cpp:169
 #, kde-format
 msgid "Set default dock arrangement"
 msgstr "Aseta telakan oletusasettelu"
 
-#: src/MainWindow.cpp:191
+#: src/MainWindow.cpp:192
 #, kde-format
 msgid "Bookmarks"
 msgstr "Kirjanmerkit"
 
-#: src/MainWindow.cpp:196
+#: src/MainWindow.cpp:197
 #, kde-format
 msgid "Preview"
 msgstr "Esikatselu"
 
-#: src/MainWindow.cpp:209
+#: src/MainWindow.cpp:210
 #, kde-format
 msgid "Fix time drift"
 msgstr "Korjaa aikasiirtymä"
 
-#: src/MainWindow.cpp:227
+#: src/MainWindow.cpp:228
 #, kde-format
 msgid "Map"
 msgstr "Nimiö"
 
-#: src/MainWindow.cpp:236
+#: src/MainWindow.cpp:237
 #, kde-format
 msgid "Unassigned images"
 msgstr "Kytkemättömät kuvat"
 
-#: src/MainWindow.cpp:259
+#: src/MainWindow.cpp:260
 #, kde-format
 msgid "Tracks"
 msgstr "Reitit"
 
-#: src/MainWindow.cpp:284
+#: src/MainWindow.cpp:285
 #, kde-format
 msgid "Loading timezone data"
 msgstr "Ladataan aikavyöhyketietoa"
 
-#: src/MainWindow.cpp:285
+#: src/MainWindow.cpp:286
 #, kde-format
 msgid ""
 "<p>Could not load or parse the timezone data files <kbd>timezones.json</kbd> "
@@ -701,22 +707,22 @@ msgstr ""
 "KGeoTag#Running_the_compiled_sources\">KDE:n yhteisöwikissä</a> kerrotaan, "
 "miten tiedostoihin pääsee käsiksi.</p>"
 
-#: src/MainWindow.cpp:337
+#: src/MainWindow.cpp:338
 #, kde-format
 msgid "Assigned images"
 msgstr "Kytketyt kuvat"
 
-#: src/MainWindow.cpp:343
+#: src/MainWindow.cpp:344
 #, kde-format
 msgid "Images"
 msgstr "Kuvat"
 
-#: src/MainWindow.cpp:415
+#: src/MainWindow.cpp:416
 #, kde-format
 msgid "Close KGeoTag"
 msgstr "Sulje KGeoTag"
 
-#: src/MainWindow.cpp:416
+#: src/MainWindow.cpp:417
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -727,12 +733,12 @@ msgstr ""
 "hylätään, jos KGeoTag suljetaan nyt.</p><p>Haluatko silti sulkea ohjelman?</"
 "p>"
 
-#: src/MainWindow.cpp:464
+#: src/MainWindow.cpp:465
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
 msgstr "Valitse lisättävät kuvat tai GPX-reitit"
 
-#: src/MainWindow.cpp:466
+#: src/MainWindow.cpp:467
 #, kde-format
 msgid ""
 "All supported files (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra *."
@@ -741,18 +747,18 @@ msgstr ""
 "Kaikki tuetut tiedostot (*.jpg *.jpeg *.png *.webp *.tif *.tiff *.ora *.kra "
 "*.cr2 *.nef *.dng *.gpx);; Kaikki tiedostot (*)"
 
-#: src/MainWindow.cpp:500
+#: src/MainWindow.cpp:501
 #, kde-format
 msgid "<p>The selection did not contain any supported files!</p>"
 msgstr "<p>Valinnassa ei ole tuettuja tiedostoja!</p>"
 
-#: src/MainWindow.cpp:508
+#: src/MainWindow.cpp:509
 #, kde-format
 msgctxt "A filename with a MIME type in braces and a HTML line break"
 msgid "%1 (%2)<br/>"
 msgstr "%1 (%2)<br/>"
 
-#: src/MainWindow.cpp:513
+#: src/MainWindow.cpp:514
 #, kde-format
 msgid ""
 "<p>The following file will be skipped due to an unsupported MIME type:</p><p>"
@@ -766,17 +772,17 @@ msgstr[1] ""
 "<p>Seuraavat tiedostot sivuutettiin ei-tuettujen MIME-tyyppien takia:</p><p>"
 "%2</p>"
 
-#: src/MainWindow.cpp:541
+#: src/MainWindow.cpp:542
 #, kde-format
 msgid "Please select a folder"
 msgstr "Valitse kansio"
 
-#: src/MainWindow.cpp:572
+#: src/MainWindow.cpp:573
 #, kde-format
 msgid "Could not find any supported files in <kbd>%1</kbd>"
 msgstr "Kansiosta <kbd>%1</kbd> ei löytynyt tuettuja tiedostoja."
 
-#: src/MainWindow.cpp:627
+#: src/MainWindow.cpp:628
 #, kde-format
 msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
@@ -785,7 +791,7 @@ msgstr ""
 "<p>Tiedostoa <kbd>%1</kbd> ei voi avata. Varmista, että sinulla on "
 "lukuoikeudet tiedostoon.</p>"
 
-#: src/MainWindow.cpp:632
+#: src/MainWindow.cpp:633
 #, kde-format
 msgid ""
 "<p>Could not read geodata from <kbd>%1</kbd>: Could not find the <kbd>gpx</"
@@ -794,14 +800,14 @@ msgstr ""
 "<p>Tiedostosta <kbd>%1</kbd> ei voi lukea sijaintitietoa: <kbd>gpx</kbd>-"
 "juurialkiota ei löydy. Ilmeisesti tämä ei ole GPX-tiedosto!</p>"
 
-#: src/MainWindow.cpp:638
+#: src/MainWindow.cpp:639
 #, kde-format
 msgid ""
 "<p><kbd>%1</kbd> seems to be a GPX file, but it contains no geodata!</p>"
 msgstr ""
 "<p><kbd>%1</kbd> vaikuttaa GPX-tiedostolta muttei sisällä sijaintitietoa!</p>"
 
-#: src/MainWindow.cpp:643
+#: src/MainWindow.cpp:644
 #, kde-format
 msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
@@ -810,35 +816,35 @@ msgstr ""
 "<p>Tiedoston <kbd>%1</kbd> XML-jäsentäminen epäonnistui. Tietoa ei joko "
 "voitu ladata lainkaan tai vain osa siitä.</p>"
 
-#: src/MainWindow.cpp:653
+#: src/MainWindow.cpp:654
 #, kde-format
 msgid "<p><b>Loading GPX file failed</b></p>"
 msgstr "<p><b>GPX-tiedoston lataaminen epäonnistui</b></p>"
 
-#: src/MainWindow.cpp:656
+#: src/MainWindow.cpp:657
 #, kde-format
 msgctxt "Fraction of processed files are added inside the round braces"
 msgid "<p><b>Loading GPX file failed (%1/%2)</b></p>"
 msgstr "<p><b>GPX-tiedoston lataaminen epäonnistui (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:663
+#: src/MainWindow.cpp:664
 #, kde-format
 msgid "<p>The next GPX file will be loaded now.</p>"
 msgstr "<p>Nyt ladataan seuraava GPX-tiedosto.</p>"
 
-#: src/MainWindow.cpp:667 src/MainWindow.cpp:731
+#: src/MainWindow.cpp:668 src/MainWindow.cpp:732
 #, kde-format
 msgid "Load GPX data"
 msgstr "Lataa GPX-tieto"
 
-#: src/MainWindow.cpp:677
+#: src/MainWindow.cpp:678
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
 msgstr[0] "<p>Yksi tiedosto käsitelty</p>"
 msgstr[1] "<p>%1 tiedostoa käsitelty</p>"
 
-#: src/MainWindow.cpp:682
+#: src/MainWindow.cpp:683
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load. The "
@@ -849,14 +855,14 @@ msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>Yksi tiedosto käsitelty; %2</p>"
 msgstr[1] "<p>%1 tiedostoa käsitelty; %2</p>"
 
-#: src/MainWindow.cpp:684 src/MainWindow.cpp:699
+#: src/MainWindow.cpp:685 src/MainWindow.cpp:700
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
 msgstr[0] "yksi tiedosto ei latautunut"
 msgstr[1] "%1 tiedostoa ei latautunut"
 
-#: src/MainWindow.cpp:689
+#: src/MainWindow.cpp:690
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that have been skipped. The "
@@ -867,14 +873,14 @@ msgid_plural "<p>Processed %1 files; %2</p>"
 msgstr[0] "<p>Yksi tiedosto käsitelty; %2</p>"
 msgstr[1] "<p>%1 tiedostoa käsitelty; %2</p>"
 
-#: src/MainWindow.cpp:691 src/MainWindow.cpp:700
+#: src/MainWindow.cpp:692 src/MainWindow.cpp:701
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
 msgstr[0] "ohitettiin yksi jo ladattu tiedosto"
 msgstr[1] "ohitettiin %1 jo ladattua tiedostoa"
 
-#: src/MainWindow.cpp:697
+#: src/MainWindow.cpp:698
 #, kde-format
 msgctxt ""
 "Processed x files message with some files that failed to load and some that "
@@ -885,12 +891,12 @@ msgid_plural "<p>Processed %1 files; %2, %3</p>"
 msgstr[0] "<p>Yksi tiedosto käsitelty: %2, %3</p>"
 msgstr[1] "<p>%1 tiedostoa käsitelty: %2, %3</p>"
 
-#: src/MainWindow.cpp:705
+#: src/MainWindow.cpp:706
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
 msgstr "<p>Reittipisteitä ei voitu ladata.</p>"
 
-#: src/MainWindow.cpp:711
+#: src/MainWindow.cpp:712
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks that have been read. "
@@ -901,14 +907,14 @@ msgid_plural "<p>Loaded %1 waypoints from %2</p>"
 msgstr[0] "<p>Ladattiin yksi reittipiste ← %2</p>"
 msgstr[1] "<p>Ladattiin %1 reittipistettä ← %2</p>"
 
-#: src/MainWindow.cpp:714 src/MainWindow.cpp:723
+#: src/MainWindow.cpp:715 src/MainWindow.cpp:724
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
 msgstr[0] "yksi reitti"
 msgstr[1] "%1 reittiä"
 
-#: src/MainWindow.cpp:720
+#: src/MainWindow.cpp:721
 #, kde-format
 msgctxt ""
 "Loaded x waypoints message with the number of tracks and the number of "
@@ -919,19 +925,19 @@ msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
 msgstr[0] "<p>Ladattiin yksi reittipiste ← %2 ja %3</p>"
 msgstr[1] "<p>Ladattiin %1 reittipistettä ← %2 ja %3</p>"
 
-#: src/MainWindow.cpp:724
+#: src/MainWindow.cpp:725
 #, kde-format
 msgid "one segment"
 msgid_plural "%1 segments"
 msgstr[0] "yksi segmentti"
 msgstr[1] "%1 segmenttiä"
 
-#: src/MainWindow.cpp:739
+#: src/MainWindow.cpp:740
 #, kde-format
 msgid "Timezone detection failed"
 msgstr "Aikavyöhykkeen tunnistaminen epäonnistui"
 
-#: src/MainWindow.cpp:740
+#: src/MainWindow.cpp:741
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone for images associated with the loaded GPX "
@@ -942,12 +948,12 @@ msgstr ""
 "aikavyöhykettä ei voitu tunnistaa.</p><p>Aseta itse oikea aikavyöhyke "
 "”Korjaa aikapoikkeama” -sivulla.</p>"
 
-#: src/MainWindow.cpp:746
+#: src/MainWindow.cpp:747
 #, kde-format
 msgid "Setting the detected timezone failed"
 msgstr "Tunnistetun aikavyöhykkeen asettaminen epäonnistui"
 
-#: src/MainWindow.cpp:747
+#: src/MainWindow.cpp:748
 #, kde-format
 msgid ""
 "<p>The presumably correct timezone \"%1\" has been detected from the loaded "
@@ -964,12 +970,12 @@ msgstr ""
 "kbd>).</p><p>Aikavyöhykettä voi säätää itse ”Korjaa aikapoikkeama” -sivulta."
 "</p>"
 
-#: src/MainWindow.cpp:756
+#: src/MainWindow.cpp:757
 #, kde-format
 msgid "Timezone adjusted"
 msgstr "Aikavyöhyke säädetty"
 
-#: src/MainWindow.cpp:757
+#: src/MainWindow.cpp:758
 #, kde-format
 msgid ""
 "<p>The loaded GPX file was presumably recorded in the timezone \"%1\", as "
@@ -981,24 +987,24 @@ msgstr ""
 "oletettavasti aikavyöhykkeellä ”%1”. Tämä aikavyöhyke on nyt valittu.</"
 "p><p>Voit itse säätää aikavyöhykettä ”Korjaa aikapoikkeama” -sivulla.</p>"
 
-#: src/MainWindow.cpp:783
+#: src/MainWindow.cpp:784
 #, kde-format
 msgid "Loading images ..."
 msgstr "Ladataan kuvia…"
 
-#: src/MainWindow.cpp:783 src/MainWindow.cpp:1079 src/MainWindow.cpp:1286
+#: src/MainWindow.cpp:784 src/MainWindow.cpp:1080 src/MainWindow.cpp:1287
 #, kde-format
 msgid "Cancel"
 msgstr "Peru"
 
-#: src/MainWindow.cpp:809
+#: src/MainWindow.cpp:810
 #, kde-format
 msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 msgstr ""
 "<p><b>Kuvan lataaminen epäonnistui</b></p><p>Tiedostoa <kbd>%1</kbd> ei "
 "voitu lukea.</p>"
 
-#: src/MainWindow.cpp:815
+#: src/MainWindow.cpp:816
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -1008,7 +1014,7 @@ msgstr ""
 "<p><b>Kuvan lataaminen epäonnistui (%1/%2)</b></p><p>Ei voitu lukea: <kbd>"
 "%3</kbd>.</p>"
 
-#: src/MainWindow.cpp:824
+#: src/MainWindow.cpp:825
 #, kde-format
 msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
@@ -1017,7 +1023,7 @@ msgstr ""
 "<p><b>Kuvien Exif-otsakkeen tai XMP-oheistiedoston lataaminen epäonnistui</"
 "b></p><p>Ei voitu lukea: <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:830
+#: src/MainWindow.cpp:831
 #, kde-format
 msgctxt "Message with a fraction of processed files added in round braces"
 msgid ""
@@ -1027,7 +1033,7 @@ msgstr ""
 "<p><b>Kuvan Exif-otsakkeen tai XMP-oheistiedoston lataaminen epäonnistui</"
 "b></p><p>Ei voitu lukea: <kbd>%2</kbd>.</p>"
 
-#: src/MainWindow.cpp:842
+#: src/MainWindow.cpp:843
 #, kde-format
 msgid ""
 "<p>Please check if this file is actually a supported image and if you have "
@@ -1036,12 +1042,12 @@ msgstr ""
 "<p>Varmista, että tiedosto todella on tuettu kuva ja että siihen on "
 "lukuoikeudet.</p>"
 
-#: src/MainWindow.cpp:846
+#: src/MainWindow.cpp:847
 #, kde-format
 msgid "<p>You can retry to load this file or cancel the loading process.</p>"
 msgstr "<p>Voit yrittää ladata kuvan uudelleen tai perua latauksen.</p>"
 
-#: src/MainWindow.cpp:849
+#: src/MainWindow.cpp:850
 #, kde-format
 msgid ""
 "<p>You can retry to load this file, skip it or cancel the loading process.</"
@@ -1050,31 +1056,31 @@ msgstr ""
 "<p>Voit yrittää ladata tämän tiedoston uudelleen, sivuuttaa sen tai perua "
 "latauksen.</p>"
 
-#: src/MainWindow.cpp:856 src/MainWindow.cpp:888 src/MainWindow.cpp:894
-#: src/MainWindow.cpp:898 src/MainWindow.cpp:902 src/MainWindow.cpp:934
+#: src/MainWindow.cpp:857 src/MainWindow.cpp:889 src/MainWindow.cpp:895
+#: src/MainWindow.cpp:899 src/MainWindow.cpp:903 src/MainWindow.cpp:935
 #, kde-format
 msgid "Add images"
 msgstr "Lisää kuvia"
 
-#: src/MainWindow.cpp:889
+#: src/MainWindow.cpp:890
 #, kde-format
 msgid "Successfully added one image!"
 msgid_plural "Successfully added %1 images!"
 msgstr[0] "Yhden kuvan lisääminen onnistui!"
 msgstr[1] "%1 kuvan lisääminen onnistui!"
 
-#: src/MainWindow.cpp:895
+#: src/MainWindow.cpp:896
 #, kde-format
 msgid "Could not add any new images, all requested images failed to load!"
 msgstr "Uusia kuvia ei voitu lisätä: ainoakaan pyydetty kuva ei latautunut!"
 
-#: src/MainWindow.cpp:899
+#: src/MainWindow.cpp:900
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
 msgstr "Uusia kuvia ei voitu lisätä: kaikki pyydetyt kuvat oli jo ladattu!"
 
-#: src/MainWindow.cpp:903
+#: src/MainWindow.cpp:904
 #, kde-format
 msgid ""
 "Could not add any new images, all requested images failed to load or have "
@@ -1083,28 +1089,28 @@ msgstr ""
 "Uusia kuvia ei voitu lisätä: ainoakaan pyydetty kuva ei latautunut tai ne "
 "oli kaikki jo ladattu!"
 
-#: src/MainWindow.cpp:907
+#: src/MainWindow.cpp:908
 #, kde-format
 msgid "<p>Successfully added image!</p>"
 msgid_plural "<p>Successfully added %1 images!</p>"
 msgstr[0] "<p>Kuvan lisääminen onnistui!</p>"
 msgstr[1] "<p>%1 kuvan lisääminen onnistui!</p>"
 
-#: src/MainWindow.cpp:912
+#: src/MainWindow.cpp:913
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
 msgstr[0] "<p>Yhden kuvan lataaminen epäonnistui.</p>"
 msgstr[1] "<p>%1 kuvan lataaminen epäonnistui.</p>"
 
-#: src/MainWindow.cpp:916
+#: src/MainWindow.cpp:917
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
 msgstr[0] "<p>Yksi kuva on jo ladattu.</p>"
 msgstr[1] "<p>%1 kuvaa on jo ladattu.</p>"
 
-#: src/MainWindow.cpp:925
+#: src/MainWindow.cpp:926
 #, kde-format
 msgctxt ""
 "Message string for some images that failed to load and some that were "
@@ -1114,51 +1120,51 @@ msgctxt ""
 msgid "<p>%1 and %2.</p>"
 msgstr "<p>%1 ja %2.</p>"
 
-#: src/MainWindow.cpp:926
+#: src/MainWindow.cpp:927
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
 msgstr[0] "Yhden kuvan lataaminen epäonnistui"
 msgstr[1] "%1 kuvan lataaminen epäonnistui"
 
-#: src/MainWindow.cpp:929
+#: src/MainWindow.cpp:930
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
 msgstr[0] "yksi kuva on jo ladattu"
 msgstr[1] "%1 kuvaa on jo ladattu"
 
-#: src/MainWindow.cpp:964 src/MainWindow.cpp:996
+#: src/MainWindow.cpp:965 src/MainWindow.cpp:997
 #, kde-format
 msgctxt "A quoted filename"
 msgid "\"%1\""
 msgstr "”%1”"
 
-#: src/MainWindow.cpp:967
+#: src/MainWindow.cpp:968
 #, kde-format
 msgid "1 image"
 msgid_plural "%1 images"
 msgstr[0] "Kuva"
 msgstr[1] "%1 kuvaa"
 
-#: src/MainWindow.cpp:999
+#: src/MainWindow.cpp:1000
 #, kde-format
 msgid "1 image (%2)"
 msgid_plural "%1 images (%2)"
 msgstr[0] "1 kuva (%2)"
 msgstr[1] "%1 kuvaa (%2)"
 
-#: src/MainWindow.cpp:1000
+#: src/MainWindow.cpp:1001
 #, kde-format
 msgid "all images have the same coordinates"
 msgstr "kaikilla kuvilla on samat koordinaatit"
 
-#: src/MainWindow.cpp:1001
+#: src/MainWindow.cpp:1002
 #, kde-format
 msgid "coordinates differ across the images"
 msgstr "kuvien koordinaatit eroavat"
 
-#: src/MainWindow.cpp:1044
+#: src/MainWindow.cpp:1045
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1167,7 +1173,7 @@ msgstr ""
 "Osumia ei voi etsiä:\n"
 "Kuvia ei ole vielä ladattu."
 
-#: src/MainWindow.cpp:1064
+#: src/MainWindow.cpp:1065
 #, kde-format
 msgid ""
 "Can't search for matches:\n"
@@ -1176,12 +1182,12 @@ msgstr ""
 "Osumia ei voi etsiä:\n"
 "GPS-reittejä ei ole vielä ladattu."
 
-#: src/MainWindow.cpp:1079
+#: src/MainWindow.cpp:1080
 #, kde-format
 msgid "Assigning images ..."
 msgstr "Kytketään kuvia…"
 
-#: src/MainWindow.cpp:1143
+#: src/MainWindow.cpp:1144
 #, kde-format
 msgctxt ""
 "Message for the number of matches found. The pluralized string for the exact "
@@ -1190,21 +1196,21 @@ msgctxt ""
 msgid "<p>Found %1 and %2!</p>"
 msgstr "<p>Löytyi %1 ja %2!</p>"
 
-#: src/MainWindow.cpp:1144
+#: src/MainWindow.cpp:1145
 #, kde-format
 msgid "one exact match"
 msgid_plural "%1 exact matches"
 msgstr[0] "yksi täsmäosuma"
 msgstr[1] "%1 täsmäosumaa"
 
-#: src/MainWindow.cpp:1147
+#: src/MainWindow.cpp:1148
 #, kde-format
 msgid "one interpolated match"
 msgid_plural "%1 interpolated matches"
 msgstr[0] "yksi interpoloitu osuma"
 msgstr[1] "%1 interpoloitua osumaa"
 
-#: src/MainWindow.cpp:1154
+#: src/MainWindow.cpp:1155
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1215,31 +1221,31 @@ msgid_plural "<p>%1 images could not be matched (%2).</p>"
 msgstr[0] "<p>Yhdelle kuvalle ei löytynyt osumia (%2).</p>"
 msgstr[1] "<p>%1 kuvalle ei löytynyt osumia (%2).</p>"
 
-#: src/MainWindow.cpp:1157 src/MainWindow.cpp:1179 src/MainWindow.cpp:1201
+#: src/MainWindow.cpp:1158 src/MainWindow.cpp:1180 src/MainWindow.cpp:1202
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
 msgstr[0] "joista yhteen kuvaan on jo asetettu koordinaatit"
 msgstr[1] "joista %1 kuvaan on jo asetettu koordinaatit"
 
-#: src/MainWindow.cpp:1162
+#: src/MainWindow.cpp:1163
 #, kde-format
 msgid "Could neither find any exact, nor any interpolated matches!"
 msgstr "Ei löytynyt tarkkoja eikä interpoloituja osumia!"
 
-#: src/MainWindow.cpp:1167
+#: src/MainWindow.cpp:1168
 #, kde-format
 msgid "Exact matches search"
 msgstr "Tarkkojen osumien haku"
 
-#: src/MainWindow.cpp:1169
+#: src/MainWindow.cpp:1170
 #, kde-format
 msgid "<p>Found one exact match!</p>"
 msgid_plural "<p>Found %1 exact matches!</p>"
 msgstr[0] "<p>Löytyi yksi tarkka osuma!</p>"
 msgstr[1] "<p>Löytyi %1 tarkkaa osumaa!</p>"
 
-#: src/MainWindow.cpp:1176
+#: src/MainWindow.cpp:1177
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1250,24 +1256,24 @@ msgid_plural "<p>%1 images had no exact match (%2).</p>"
 msgstr[0] "<p>Yhdellä kuvalla ei ollut tarkkaa osumaa (%2).</p>"
 msgstr[1] "<p>%1 kuvalla ei ollut tarkkaa osumaa (%2).</p>"
 
-#: src/MainWindow.cpp:1184
+#: src/MainWindow.cpp:1185
 #, kde-format
 msgid "Could not find any exact matches!"
 msgstr "Tarkkoja osumia ei löytynyt!"
 
-#: src/MainWindow.cpp:1189
+#: src/MainWindow.cpp:1190
 #, kde-format
 msgid "Interpolated matches search"
 msgstr "Interpoloitujen osumien haku"
 
-#: src/MainWindow.cpp:1191
+#: src/MainWindow.cpp:1192
 #, kde-format
 msgid "<p>Found one interpolated match!</p>"
 msgid_plural "<p>Found %1 interpolated matches!</p>"
 msgstr[0] "<p>Löytyi yksi interpoloitu osuma!</p>"
 msgstr[1] "<p>Löytyi %1 interpoloitua osumaa!</p>"
 
-#: src/MainWindow.cpp:1198
+#: src/MainWindow.cpp:1199
 #, kde-format
 msgctxt ""
 "Message for the number of unmatched images. The number of images that could "
@@ -1278,17 +1284,17 @@ msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
 msgstr[0] "<p>Yhdellä kuvalla ei ollut interpoloitua osumaa (%2).</p>"
 msgstr[1] "<p>%1 kuvalla ei ollut interpoloitua osumaa (%2).</p>"
 
-#: src/MainWindow.cpp:1206
+#: src/MainWindow.cpp:1207
 #, kde-format
 msgid "Could not find any interpolated matches!"
 msgstr "Interpoloituja osumia ei löytynyt!"
 
-#: src/MainWindow.cpp:1227
+#: src/MainWindow.cpp:1228
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
 msgstr "<p><b>Muutosten tallentaminen epäonnistui</b></p>"
 
-#: src/MainWindow.cpp:1231
+#: src/MainWindow.cpp:1232
 #, kde-format
 msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
@@ -1296,13 +1302,13 @@ msgctxt ""
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
 msgstr "<p><b>Muutosten tallentaminen epäonnistui (%1/%2)</b></p>"
 
-#: src/MainWindow.cpp:1239
+#: src/MainWindow.cpp:1240
 #, kde-format
 msgid "<p>You can retry to process the file or cancel the saving process.</p>"
 msgstr ""
 "<p>Voit yrittää käsitellä tiedoston uudelleen tai perua tallennuksen.</p>"
 
-#: src/MainWindow.cpp:1241
+#: src/MainWindow.cpp:1242
 #, kde-format
 msgid ""
 "<p>You can retry to process the file, skip it or cancel the saving process.</"
@@ -1311,18 +1317,18 @@ msgstr ""
 "<p>Voit yrittää käsitellä tiedoston uudelleen, sivuuttaa sen tai perua "
 "tallennuksen.</p>"
 
-#: src/MainWindow.cpp:1266 src/MainWindow.cpp:1644 src/MainWindow.cpp:1660
-#: src/MainWindow.cpp:1689 src/MainWindow.cpp:1725
+#: src/MainWindow.cpp:1267 src/MainWindow.cpp:1645 src/MainWindow.cpp:1661
+#: src/MainWindow.cpp:1690 src/MainWindow.cpp:1726
 #, kde-format
 msgid "Nothing to do"
 msgstr "Ei mitään tehtävää"
 
-#: src/MainWindow.cpp:1286
+#: src/MainWindow.cpp:1287
 #, kde-format
 msgid "Saving changes ..."
 msgstr "Tallennetaan muutoksia…"
 
-#: src/MainWindow.cpp:1308
+#: src/MainWindow.cpp:1309
 #, kde-format
 msgid ""
 "<p>Could not save changes to <kbd>%1</kbd>: The backup file <kbd>%2</kbd> "
@@ -1333,7 +1339,7 @@ msgstr ""
 "<kbd>%2</kbd> ei voitu luoda.</p><p>Varmista, ettei tiedostoa ole jo "
 "olemassa ja että tiedostoon <kbd>%3</kbd> on kirjoitusoikeudet.</p>"
 
-#: src/MainWindow.cpp:1355
+#: src/MainWindow.cpp:1356
 #, kde-format
 msgid ""
 "<p>Could not read metadata from <kbd>%1</kbd>.</p><p>Please check if this "
@@ -1344,17 +1350,17 @@ msgstr ""
 "mahdollisine XMP-oheistiedostoineen on olemassa ja että niihin on "
 "lukuoikeudet.</p>"
 
-#: src/MainWindow.cpp:1423
+#: src/MainWindow.cpp:1424
 #, kde-format
 msgid "<p>Could not save metadata for <kbd>%1</kbd>.</p>"
 msgstr "<p>Metatietoja ei voitu tallentaa: <kbd>%1</kbd>.</p>"
 
-#: src/MainWindow.cpp:1427
+#: src/MainWindow.cpp:1428
 #, kde-format
 msgid "<p>Please check if you have write access to <kbd>%1</kbd>!"
 msgstr "<p>Varmista, että tiedostoon <kbd>%1</kbd> on kirjoitusoikeudet!"
 
-#: src/MainWindow.cpp:1430
+#: src/MainWindow.cpp:1431
 #, kde-format
 msgid ""
 "<p>Please check if this file still exists and if you have write access to it!"
@@ -1363,12 +1369,12 @@ msgstr ""
 "<p>Varmista, että tiedosto on yhä olemassa ja että siihen on "
 "kirjoitusoikeudet!</p>"
 
-#: src/MainWindow.cpp:1471
+#: src/MainWindow.cpp:1472
 #, kde-format
 msgid "No changes could be saved!"
 msgstr "Muutoksia ei voitu tallentaa!"
 
-#: src/MainWindow.cpp:1474
+#: src/MainWindow.cpp:1475
 #, kde-format
 msgid ""
 "<p>Some changes could not be saved!</p><p>Successfully saved %1 of %2 images."
@@ -1377,17 +1383,17 @@ msgstr ""
 "<p>Joitakin muutoksia ei voitu tallentaa!</p><p>%1/%2 kuvan tallentaminen "
 "onnistui.</p>"
 
-#: src/MainWindow.cpp:1479
+#: src/MainWindow.cpp:1480
 #, kde-format
 msgid "All changes have been successfully saved!"
 msgstr "Kaikkien muutosten tallentaminen onnistui!"
 
-#: src/MainWindow.cpp:1536 src/MainWindow.cpp:1557 src/SettingsDialog.cpp:233
+#: src/MainWindow.cpp:1537 src/MainWindow.cpp:1558 src/SettingsDialog.cpp:233
 #, kde-format
 msgid "Elevation lookup"
 msgstr "Korkeustietohaku"
 
-#: src/MainWindow.cpp:1537
+#: src/MainWindow.cpp:1538
 #, kde-format
 msgid ""
 "<p>Fetching elevation data from opentopodata.org failed.</p><p>The error "
@@ -1396,7 +1402,7 @@ msgstr ""
 "<p>Korkeustiedon nouto opentopodata.orgista epäonnistui.</p><p>Virheviesti "
 "oli: %1</p>"
 
-#: src/MainWindow.cpp:1545
+#: src/MainWindow.cpp:1546
 #, kde-format
 msgid ""
 "Fetching elevation data failed: The requested location is not present in the "
@@ -1405,7 +1411,7 @@ msgstr ""
 "Korkeustiedon nouto epäonnistui: pyydettyä sijaintia ei ole valitussa "
 "korkeustiedon tietojoukossa."
 
-#: src/MainWindow.cpp:1549
+#: src/MainWindow.cpp:1550
 #, kde-format
 msgid ""
 "Fetching elevation data failed: None of the requested locations are present "
@@ -1414,7 +1420,7 @@ msgstr ""
 "Korkeustiedon noutaminen epäonnistui: valitussa korkeustietojoukossa ei ole "
 "yhtäkään pyydetyistä sijainneista."
 
-#: src/MainWindow.cpp:1552
+#: src/MainWindow.cpp:1553
 #, kde-format
 msgid ""
 "Fetching elevation data is incomplete: Some of the requested locations are "
@@ -1423,7 +1429,7 @@ msgstr ""
 "Korkeustiedon nouto jäi epätäydelliseksi: valitussa korkeustietojoukosta "
 "puuttuu joitakin pyydetyistä sijainneista."
 
-#: src/MainWindow.cpp:1623
+#: src/MainWindow.cpp:1624
 #, kde-format
 msgid ""
 "The image has pending changes! Do you really want to remove it and discard "
@@ -1438,29 +1444,29 @@ msgstr[1] ""
 "Ainakin yhdessä kuvista on toteuttamattomia muutoksia! Haluatko varmasti "
 "poistaa ne ja hylätä muutokset?"
 
-#: src/MainWindow.cpp:1643 src/MainWindow.cpp:1651
+#: src/MainWindow.cpp:1644 src/MainWindow.cpp:1652
 #, kde-format
 msgid "Remove all processed and saved images"
 msgstr "Poista kaikki käsitellyt ja tallennetut kuvat"
 
-#: src/MainWindow.cpp:1652 src/MainWindow.cpp:1668
+#: src/MainWindow.cpp:1653 src/MainWindow.cpp:1669
 #, kde-format
 msgid "Removed one image"
 msgid_plural "Removed %1 images"
 msgstr[0] "Poistettiin yksi kuva"
 msgstr[1] "Poistettiin %1 kuvaa"
 
-#: src/MainWindow.cpp:1659 src/MainWindow.cpp:1667
+#: src/MainWindow.cpp:1660 src/MainWindow.cpp:1668
 #, kde-format
 msgid "Remove images that already had coordinates"
 msgstr "Poista kuvat, joissa on jo koordinaatit"
 
-#: src/MainWindow.cpp:1674 src/MainWindow.cpp:1689
+#: src/MainWindow.cpp:1675 src/MainWindow.cpp:1690
 #, kde-format
 msgid "Remove all images"
 msgstr "Poista kaikki kuvat"
 
-#: src/MainWindow.cpp:1675
+#: src/MainWindow.cpp:1676
 #, kde-format
 msgid ""
 "<p>There are pending changes to images that haven't been saved yet. All "
@@ -1470,32 +1476,32 @@ msgstr ""
 "<p>Kuvissa on vielä tallentamattomia muutoksia. Muutokset hylätään, jos "
 "kaikki kuvat nyt poistetaan.</p><p>Haluatko silti poistaa kaikki kuvat?</p>"
 
-#: src/MainWindow.cpp:1724
+#: src/MainWindow.cpp:1725
 #, kde-format
 msgid "Remove all images and tracks (reset)"
 msgstr "Poista kaikki kuvat ja reitit (alusta)"
 
-#: src/MainWindow.cpp:1752
+#: src/MainWindow.cpp:1753
 #, kde-format
 msgid "Failed to parse clipboard data"
 msgstr "Leikepöytätietoa ei voitu jäsentää"
 
-#: src/MainWindow.cpp:1753
+#: src/MainWindow.cpp:1754
 #, kde-format
 msgid "Could not parse the clipboard's text to valid coordinates"
 msgstr "Leikepöydän tekstiä ei voitu jäsentää kelvollisiksi koordinaateiksi"
 
-#: src/MainWindow.cpp:1763
+#: src/MainWindow.cpp:1764
 #, kde-format
 msgid "No geodata has been loaded yet!"
 msgstr "Sijaintitietoa ei ole vielä ladattu!"
 
-#: src/MainWindow.cpp:1786
+#: src/MainWindow.cpp:1787
 #, kde-format
 msgid "Assign selection"
 msgstr "Osoita valinta"
 
-#: src/MainWindow.cpp:1787
+#: src/MainWindow.cpp:1788
 #, kde-format
 msgid "Please select one or more images"
 msgstr "Valitse yksi tai useampia kuvia"
