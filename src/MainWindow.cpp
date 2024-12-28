@@ -264,6 +264,9 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
         setDefaultDockArrangement();
     }
 
+    // Ensure the preview dock is shown by default if it's tabified
+    m_previewDock->raise();
+
     // Be sure to hide the "assigned" images list if the list is not splitted
     m_unAssignedImagesDock->setVisible(m_settings->splitImagesList());
 
