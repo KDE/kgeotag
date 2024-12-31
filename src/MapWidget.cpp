@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -298,7 +298,11 @@ void MapWidget::dropEvent(QDropEvent *event)
             return;
         }
 
+#if QT_VERSION < QT_VERSION_CHECK(6, 0, 0)
         const auto dropPosition = event->pos();
+#else
+        const auto dropPosition = event->position().toPoint();
+#endif
 
         qreal lon;
         qreal lat;
