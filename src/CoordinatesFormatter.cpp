@@ -1,6 +1,16 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
+// =================================================================================================
+// CAUTION:
+//
+// Be sure to use the same l10n strings here as are used in the CoordinatesParser class!
+// If some i18n call is changed here, make sure to update CoordinatesParser.cpp accordingly!
+//
+// If the translations differ, we possibly can't parse coordinates anymore we copied to the
+// clipboard ourselves earlier, because the format of the human-readable coordinates is localized.
+// =================================================================================================
 
 // Local includes
 #include "CoordinatesFormatter.h"

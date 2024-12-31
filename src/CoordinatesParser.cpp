@@ -1,6 +1,16 @@
-// SPDX-FileCopyrightText: 2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2024 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
+
+// =================================================================================================
+// CAUTION:
+//
+// Be sure to use the same l10n strings here as are used in the CoordinatesFormatter class!
+// If some i18n call is changed here, make sure to update CoordinatesFormatter.cpp accordingly!
+//
+// If the translations differ, we possibly can't parse coordinates anymore we copied to the
+// clipboard ourselves earlier, because the format of the human-readable coordinates is localized.
+// =================================================================================================
 
 // Local includes
 #include "CoordinatesParser.h"
@@ -22,10 +32,6 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
     : QObject(parent),
       m_locale(locale)
 {
-    // CAUTION:
-    // Be sure to use the same l10n strings here as are used in the CoordinatesFormatter class,
-    // so that we can parse our own formatted "copy to clipboard" coordinates format!
-
     // For the human-readable format, localized cardinal directions are used. We cache them here.
     m_n = i18nc("Abbreviated cardinal direction \"North\"", "N");
     m_e = i18nc("Abbreviated cardinal direction \"East\"", "E");

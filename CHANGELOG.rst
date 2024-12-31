@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
+.. SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl@stonemx.de>
 
    SPDX-License-Identifier: CC-BY-SA-4.0
 
@@ -52,6 +52,10 @@ Added
 
 * The current map center's coordinates can now be exported in the decimal degree "latitude,
   longitide" format to be used e.g. in Google Maps or OpenStreetMap.
+
+* It's now possible to not only assign coordinates from the clipboard that have been copied from
+  OpenStreetMap or Google Maps, but also using the human-readable format that KGeoTag uses when
+  selecting "Copy formatted coordinates" for the current map center.
 
 Changed
 =======
