@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2024-12-29 02:02+0000\n"
+"POT-Creation-Date: 2025-01-01 01:52+0000\n"
 "PO-Revision-Date: 2024-10-09 21:35+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -254,15 +254,15 @@ msgctxt "(Degree) Seconds symbol"
 msgid " \""
 msgstr " \""
 
-#: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:75
-#: src/CoordinatesParser.cpp:31
+#: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:85
+#: src/CoordinatesParser.cpp:37
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
 msgstr "Ö"
 
-#: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:76
-#: src/CoordinatesParser.cpp:33
+#: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:86
+#: src/CoordinatesParser.cpp:39
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
@@ -273,15 +273,15 @@ msgstr "V"
 msgid "Latitude:"
 msgstr "Latitud:"
 
-#: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:83
-#: src/CoordinatesParser.cpp:30
+#: src/CoordinatesDialog.cpp:80 src/CoordinatesFormatter.cpp:93
+#: src/CoordinatesParser.cpp:36
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"North\""
 msgid "N"
 msgstr "N"
 
-#: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:84
-#: src/CoordinatesParser.cpp:32
+#: src/CoordinatesDialog.cpp:81 src/CoordinatesFormatter.cpp:94
+#: src/CoordinatesParser.cpp:38
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"South\""
 msgid "S"
@@ -323,38 +323,38 @@ msgstr "Manuella koordinater"
 msgid "Coordinates for %1:"
 msgstr "Koordinater för %1:"
 
-#: src/CoordinatesFormatter.cpp:33 src/CoordinatesParser.cpp:94
+#: src/CoordinatesFormatter.cpp:43 src/CoordinatesParser.cpp:100
 #, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
 msgstr "%1°"
 
-#: src/CoordinatesFormatter.cpp:40 src/CoordinatesParser.cpp:83
+#: src/CoordinatesFormatter.cpp:50 src/CoordinatesParser.cpp:89
 #, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
 msgstr "%1° %2'"
 
-#: src/CoordinatesFormatter.cpp:52 src/CoordinatesParser.cpp:68
+#: src/CoordinatesFormatter.cpp:62 src/CoordinatesParser.cpp:74
 #, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
 msgstr "%1° %2' %3\""
 
-#: src/CoordinatesFormatter.cpp:66 src/CoordinatesParser.cpp:44
+#: src/CoordinatesFormatter.cpp:76 src/CoordinatesParser.cpp:50
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
 msgstr "%1, %2"
 
-#: src/CoordinatesFormatter.cpp:73 src/CoordinatesFormatter.cpp:81
-#: src/CoordinatesParser.cpp:38
+#: src/CoordinatesFormatter.cpp:83 src/CoordinatesFormatter.cpp:91
+#: src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
 msgstr "%1 %2"
 
-#: src/CoordinatesFormatter.cpp:89
+#: src/CoordinatesFormatter.cpp:99
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
