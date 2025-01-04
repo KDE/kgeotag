@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-01 01:52+0000\n"
-"PO-Revision-Date: 2024-08-30 07:07+0200\n"
+"PO-Revision-Date: 2025-01-03 21:16+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-doc@kde.org>\n"
 "Language: eo\n"
@@ -192,10 +192,9 @@ msgid "Rename Bookmark"
 msgstr "Alinomi Legosignon"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Nova etikedo por la nova legosigno:"
+msgstr "Nova etikedo por la legosigno \"%1\":"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
@@ -650,10 +649,9 @@ msgid "Save changed images"
 msgstr "Konservi ŝanĝitajn bildojn"
 
 #: src/MainWindow.cpp:159
-#, fuzzy, kde-format
-#| msgid "Save changed images"
+#, kde-format
 msgid "Save the metadata of all changed images"
-msgstr "Konservi ŝanĝitajn bildojn"
+msgstr "Konservi metadatumojn de ĉiuj ŝanĝitaj bildoj"
 
 #: src/MainWindow.cpp:169
 #, kde-format
@@ -1537,10 +1535,9 @@ msgid "Current map center"
 msgstr "Aktuala mapcentro"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Forigi koordinatojn"
+msgstr "Kopii formatitajn koordinatojn"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1548,16 +1545,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Kopii koordinatojn al tondujo"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Kopii koordinatojn al tondujo"
+msgstr "Kopiis \"%1\" al la tondujo!"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Latitudo, longitudo"
+msgstr "Kopii kiel \"latitudo, longitudo\""
 
 #: src/MapWidget.cpp:163
 #, kde-format
@@ -1680,6 +1675,9 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"Ŝanĝoj al la formatado de koordinatoj efektiviĝas tuj kiam la respektiva "
+"ekrano de koordinatoj estas ĝisdatigita la venontan fojon. Rekomencu KGeoTag "
+"por ĝisdatigi ĉion samtempe."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1982,31 +1980,3 @@ msgstr[1] "%1 trakpunktoj"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "Elektita spurpunkto %1 de %2"
-
-#~ msgid "Coordinates copied!"
-#~ msgstr "Koordinatoj kopiiĝis!"
-
-#~ msgctxt "Keyboard shortcut for \"add images and/or GPX tracks\""
-#~ msgid "Ctrl+F"
-#~ msgstr "Ctrl+F"
-
-#~ msgctxt "Keyboard shortcut for \"Add all images and tracks from a folder\""
-#~ msgid "Ctrl+D"
-#~ msgstr "Ctrl+D"
-
-#~ msgctxt "Keyboard shortcut for \"All images and tracks (reset)\""
-#~ msgid "Ctrl+R"
-#~ msgstr "Ctrl+R"
-
-#~ msgctxt ""
-#~ "Keyboard shortcut for \"Correlate images with GPS data (search matches)\""
-#~ msgid "Ctrl+M"
-#~ msgstr "Ctrl+M"
-
-#~ msgctxt "Keyboard shortcut for \"(Re-)Assign to map center\""
-#~ msgid "Ctrl+C"
-#~ msgstr "Ctrl+C"
-
-#~ msgctxt "Keyboard shortcut for \"Save changed images\""
-#~ msgid "Ctrl+S"
-#~ msgstr "Ctrl+S"
