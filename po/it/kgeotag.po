@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-01 01:52+0000\n"
-"PO-Revision-Date: 2024-12-15 18:28+0100\n"
+"PO-Revision-Date: 2024-12-29 09:49+0100\n"
 "Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -652,10 +652,9 @@ msgid "Save changed images"
 msgstr "Salva le immagini modificate"
 
 #: src/MainWindow.cpp:159
-#, fuzzy, kde-format
-#| msgid "Save changed images"
+#, kde-format
 msgid "Save the metadata of all changed images"
-msgstr "Salva le immagini modificate"
+msgstr "Salva i metadati di tutte le immagini modificate"
 
 #: src/MainWindow.cpp:169
 #, kde-format
