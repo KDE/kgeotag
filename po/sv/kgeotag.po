@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
 #
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Stefan Asserhäll <stefan.asserhall@gmail.com>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-01 01:52+0000\n"
-"PO-Revision-Date: 2024-10-09 21:35+0200\n"
+"PO-Revision-Date: 2025-01-12 09:07+0100\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.05.2\n"
+"X-Generator: Lokalize 24.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -645,10 +645,9 @@ msgid "Save changed images"
 msgstr "Spara ändrade bilder"
 
 #: src/MainWindow.cpp:159
-#, fuzzy, kde-format
-#| msgid "Save changed images"
+#, kde-format
 msgid "Save the metadata of all changed images"
-msgstr "Spara ändrade bilder"
+msgstr "Spara alla ändrade bilders metadata"
 
 #: src/MainWindow.cpp:169
 #, kde-format
@@ -1534,10 +1533,9 @@ msgid "Current map center"
 msgstr "Nuvarande kartcentrum"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Ta bort koordinater"
+msgstr "Kopiera formaterade koordinater"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1545,16 +1543,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Kopiera koordinater till klippbordet"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Kopiera koordinater till klippbordet"
+msgstr "Kopierade \"%1\" till klippbordet."
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Latitud, longitud"
+msgstr "Kopiera som \"latitud, longitud\""
 
 #: src/MapWidget.cpp:163
 #, kde-format
