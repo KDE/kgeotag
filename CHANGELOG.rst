@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl@stonemx.de>
+.. SPDX-FileCopyrightText: 2021-2025 Tobias Leupold <tl@stonemx.de>
 
    SPDX-License-Identifier: CC-BY-SA-4.0
 
@@ -59,6 +59,9 @@ Added
 
 Changed
 =======
+
+* Updated the timezones data files to 2025a (cf. Timezone Boundary Builder's `Release Announcement
+  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2025a>`_).
 
 Deprecated
 ==========
