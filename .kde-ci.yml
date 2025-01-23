@@ -2,17 +2,17 @@
 # SPDX-License-Identifier: CC0-1.0
 
 Dependencies:
-- 'on': ['Linux/Qt5', 'FreeBSD/Qt5']
-  'require':
-    'frameworks/extra-cmake-modules': '@stable'
-    'frameworks/kcoreaddons': '@stable'
-    'frameworks/ki18n': '@stable'
-    'frameworks/kxmlgui': '@stable'
-    'frameworks/kconfigwidgets': '@stable'
-    'frameworks/kcrash': '@stable'
-    'frameworks/kdoctools': '@stable'
-    'education/marble': '@stable'
-    'graphics/libkexiv2': '@stable'
+#- 'on': ['Linux/Qt5', 'FreeBSD/Qt5']
+#  'require':
+#    'frameworks/extra-cmake-modules': '@stable'
+#    'frameworks/kcoreaddons': '@stable'
+#    'frameworks/ki18n': '@stable'
+#    'frameworks/kxmlgui': '@stable'
+#    'frameworks/kconfigwidgets': '@stable'
+#    'frameworks/kcrash': '@stable'
+#    'frameworks/kdoctools': '@stable'
+#    'education/marble': '@stable'
+#    'graphics/libkexiv2': '@stable'
 
 - 'on': ['Linux/Qt6', 'FreeBSD/Qt6']
   'require':
