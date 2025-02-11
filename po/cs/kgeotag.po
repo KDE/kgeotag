@@ -1446,10 +1446,9 @@ msgid "Current map center"
 msgstr "Současný střed mapy"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Odstranit souřadnice"
+msgstr ""
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1457,16 +1456,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Kopírovat souřadnice do schránky"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Kopírovat souřadnice do schránky"
+msgstr ""
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Šířka, délka"
+msgstr ""
 
 #: src/MapWidget.cpp:163
 #, kde-format
@@ -1872,6 +1869,3 @@ msgstr[1] ""
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr ""
-
-#~ msgid "Coordinates copied!"
-#~ msgstr "Souřadnice byly zkopírovány."
