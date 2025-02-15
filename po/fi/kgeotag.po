@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-01-01 01:52+0000\n"
-"PO-Revision-Date: 2024-10-21 18:57+0300\n"
+"PO-Revision-Date: 2025-01-12 17:26+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -645,10 +645,9 @@ msgid "Save changed images"
 msgstr "Tallenna muuttuneet kuvat"
 
 #: src/MainWindow.cpp:159
-#, fuzzy, kde-format
-#| msgid "Save changed images"
+#, kde-format
 msgid "Save the metadata of all changed images"
-msgstr "Tallenna muuttuneet kuvat"
+msgstr "Tallenna kaikkien muuttuneiden kuvien metatieto"
 
 #: src/MainWindow.cpp:169
 #, kde-format
@@ -1527,10 +1526,9 @@ msgid "Current map center"
 msgstr "Kartan nykyinen keskikohta"
 
 #: src/MapWidget.cpp:142
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Poista koor"
+msgstr "Kopioi muotoillut koordinaatit"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1538,16 +1536,14 @@ msgid "Copy coordinates to clipboard"
 msgstr "Kopioi koordinaatit leikepöydälle"
 
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
-#, fuzzy, kde-format
-#| msgid "Copy coordinates to clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Kopioi koordinaatit leikepöydälle"
+msgstr "Kopioitiin leikepöydälle ”%1”!"
 
 #: src/MapWidget.cpp:152
-#, fuzzy, kde-format
-#| msgid "Latitude, longitude"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Leveys, pituus"
+msgstr "Kopioi muodossa ”leveys, pituus”"
 
 #: src/MapWidget.cpp:163
 #, kde-format
