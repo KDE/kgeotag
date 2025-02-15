@@ -10,6 +10,7 @@ include:
       - /gitlab-templates/linux-qt6.yml
       - /gitlab-templates/freebsd-qt6.yml
       - /gitlab-templates/reuse-lint.yml
+      - /gitlab-templates/linux-qt6-next.yml
 
 .template: &debian
   variables:
