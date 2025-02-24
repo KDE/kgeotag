@@ -51,7 +51,7 @@ Added
 =====
 
 * The current map center's coordinates can now be exported in the decimal degree "latitude,
-  longitide" format to be used e.g. in Google Maps or OpenStreetMap.
+  longitude" format to be used e.g. in Google Maps or OpenStreetMap.
 
 * It's now possible to not only assign coordinates from the clipboard that have been copied from
   OpenStreetMap or Google Maps, but also using the human-readable format that KGeoTag uses when
