@@ -44,7 +44,7 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
-[unreleased]
+KGeoTag 1.8.0 released (2025-03-09)
 ====================================================================================================
 
 Added
@@ -63,12 +63,6 @@ Changed
 * Updated the timezones data files to 2025a (cf. Timezone Boundary Builder's `Release Announcement
   <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2025a>`_).
 
-Deprecated
-==========
-
-Removed
-=======
-
 Fixed
 =====
 
@@ -76,9 +70,6 @@ Fixed
   negative. Additionally, we can now also parse our own human-readable format (provided the
   coordinates string has been formatted using the same locale as is used to parse it).
   This fixes `Bug #497410 <https://bugs.kde.org/show_bug.cgi?id=497410>`_.
-
-Security
-========
 
 ====================================================================================================
 KGeoTag 1.7.0 released (2024-12-07)

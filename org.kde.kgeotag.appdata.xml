@@ -134,6 +134,9 @@
     <value key="KDE::mailinglist">kgeotag</value>
   </custom>
   <releases>
+    <release version="1.8.0" date="2025-03-09">
+      <url>https://kgeotag.kde.org/news/2025/kgeotag-1.8.0-released/</url>
+    </release>
     <release version="1.7.0" date="2024-12-07">
       <url>https://kgeotag.kde.org/news/2024/kgeotag-1.7.0-released/</url>
     </release>
