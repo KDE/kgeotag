@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-01 01:52+0000\n"
+"POT-Creation-Date: 2025-03-10 02:03+0000\n"
 "PO-Revision-Date: 2025-01-12 17:26+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -565,8 +565,9 @@ msgid "Photo geotagging program"
 msgstr "Valokuvien sijaintitunnisteiden muokkaus"
 
 #: src/main.cpp:39
-#, kde-format
-msgid "Copyright (C) 2020-2024 Tobias Leupold"
+#, fuzzy, kde-format
+#| msgid "Copyright (C) 2020-2024 Tobias Leupold"
+msgid "Copyright (C) 2020-2025 Tobias Leupold"
 msgstr "Tekijänoikeudet © 2020–2024 Tobias Leupold"
 
 #: src/main.cpp:44

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-01 01:52+0000\n"
+"POT-Creation-Date: 2025-03-10 02:03+0000\n"
 "PO-Revision-Date: 2023-01-29 00:55+0000\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -561,7 +561,7 @@ msgstr ""
 
 #: src/main.cpp:39
 #, kde-format
-msgid "Copyright (C) 2020-2024 Tobias Leupold"
+msgid "Copyright (C) 2020-2025 Tobias Leupold"
 msgstr ""
 
 #: src/main.cpp:44

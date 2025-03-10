@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-01-01 01:52+0000\n"
+"POT-Creation-Date: 2025-03-10 02:03+0000\n"
 "PO-Revision-Date: 2024-12-28 09:35+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -572,8 +572,9 @@ msgid "Photo geotagging program"
 msgstr "Програма для роботи з геомітками фотографій"
 
 #: src/main.cpp:39
-#, kde-format
-msgid "Copyright (C) 2020-2024 Tobias Leupold"
+#, fuzzy, kde-format
+#| msgid "Copyright (C) 2020-2024 Tobias Leupold"
+msgid "Copyright (C) 2020-2025 Tobias Leupold"
 msgstr "© Tobias Leupold, 2020-2024"
 
 #: src/main.cpp:44
