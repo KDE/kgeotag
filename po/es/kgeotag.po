@@ -3,13 +3,13 @@
 # This file is distributed under the same license as the kgeotag package.
 #
 # Automatically generated, 2020.
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024 Eloy Cuadra <ecuadra@eloihr.net>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-10 02:03+0000\n"
-"PO-Revision-Date: 2024-12-29 00:48+0100\n"
+"PO-Revision-Date: 2025-03-10 12:32+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.0\n"
+"X-Generator: Lokalize 24.12.2\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -575,10 +575,9 @@ msgid "Photo geotagging program"
 msgstr "Programa de geoetiquetado de fotos"
 
 #: src/main.cpp:39
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2024 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
-msgstr "Copyright © 2020-2024 Tobias Leupold"
+msgstr "Copyright © 2020-2025 Tobias Leupold"
 
 #: src/main.cpp:44
 #, kde-format
@@ -603,7 +602,7 @@ msgstr "Archivos y carpetas a cargar durante el inicio"
 #: src/main.cpp:53
 #, kde-format
 msgid "[files/folders...]"
-msgstr "[archivos/carpetas...]"
+msgstr "[archivos/carpetas…]"
 
 #: src/MainWindow.cpp:87 src/MainWindow.cpp:526
 #, kde-format
@@ -1004,7 +1003,7 @@ msgstr ""
 #: src/MainWindow.cpp:787
 #, kde-format
 msgid "Loading images ..."
-msgstr "Cargando imágenes..."
+msgstr "Cargando imágenes…"
 
 #: src/MainWindow.cpp:787 src/MainWindow.cpp:1083 src/MainWindow.cpp:1290
 #, kde-format
@@ -1205,7 +1204,7 @@ msgstr ""
 #: src/MainWindow.cpp:1083
 #, kde-format
 msgid "Assigning images ..."
-msgstr "Asignando imágenes..."
+msgstr "Asignando imágenes…"
 
 #: src/MainWindow.cpp:1147
 #, kde-format
@@ -1347,7 +1346,7 @@ msgstr "Nada que hacer"
 #: src/MainWindow.cpp:1290
 #, kde-format
 msgid "Saving changes ..."
-msgstr "Guardando cambios..."
+msgstr "Guardando cambios…"
 
 #: src/MainWindow.cpp:1312
 #, kde-format
