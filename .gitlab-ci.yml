@@ -23,7 +23,7 @@ include:
     - >-
       apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf5coreaddons-dev libkf5doctools-dev libkf5i18n-dev libkf5xmlgui-dev libkf5configwidgets-dev libkf5crash-dev libkf5kexiv2-dev libmarble-dev
   script:
-    - mkdir build && cd $_ && cmake .. && make -j$(nproc)
+    - mkdir build && cd $_ && cmake -DBUILD_WITH_QT6=OFF .. && make -j$(nproc)
     - make install
 
 build:debian-stable:
