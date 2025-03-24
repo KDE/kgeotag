@@ -7,8 +7,8 @@ include:
     file:
       #- /gitlab-templates/linux.yml
       #- /gitlab-templates/freebsd.yml
-      - /gitlab-templates/linux-qt6.yml
-      - /gitlab-templates/freebsd-qt6.yml
+      #- /gitlab-templates/linux-qt6.yml
+      #- /gitlab-templates/freebsd-qt6.yml
       - /gitlab-templates/reuse-lint.yml
 
 .template: &debian
@@ -20,16 +20,16 @@ include:
   tags:
     - Linux
 
-build:debian-stable:
-  stage: build
-  image: "debian:stable"
-  <<: *debian
-  before_script:
-    - >-
-      apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf5coreaddons-dev libkf5doctools-dev libkf5i18n-dev libkf5xmlgui-dev libkf5configwidgets-dev libkf5crash-dev libkf5kexiv2-dev libmarble-dev
-  script:
-    - mkdir build && cd $_ && cmake .. && make -j$(nproc)
-    - make install
+#build:debian-stable:
+#  stage: build
+#  image: "debian:stable"
+#  <<: *debian
+#  before_script:
+#    - >-
+#      apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf5coreaddons-dev libkf5doctools-dev libkf5i18n-dev libkf5xmlgui-dev libkf5configwidgets-dev libkf5crash-dev libkf5kexiv2-dev libmarble-dev
+#  script:
+#    - mkdir build && cd $_ && cmake .. && make -j$(nproc)
+#    - make install
 
 build:debian-testing:
   stage: build
@@ -39,5 +39,5 @@ build:debian-testing:
     - >-
       apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf6coreaddons-dev libkf6doctools-dev libkf6i18n-dev libkf6xmlgui-dev libkf6configwidgets-dev libkf6crash-dev libkexiv2qt6-dev libmarble-dev qt6-5compat-dev
   script:
-    - mkdir build && cd $_ && cmake .. && make -j$(nproc)
+    - mkdir build && cd $_ && cmake -DBUILD_WITH_QT6=ON .. && make -j$(nproc)
     - make install
