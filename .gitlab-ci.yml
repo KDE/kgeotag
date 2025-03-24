@@ -37,7 +37,7 @@ build:debian-testing:
   <<: *debian
   before_script:
     - >-
-      apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf6coreaddons-dev libkf6doctools-dev libkf6i18n-dev libkf6xmlgui-dev libkf6configwidgets-dev libkf6crash-dev libkf6kexiv2-dev libmarble-dev qt6-5compat-dev
+      apt-get -qq update && apt-get install -y eatmydata && eatmydata apt-get install -y --no-install-recommends curl git make cmake extra-cmake-modules gettext g++ gcc pkg-config pkg-kde-tools libkf6coreaddons-dev libkf6doctools-dev libkf6i18n-dev libkf6xmlgui-dev libkf6configwidgets-dev libkf6crash-dev libkexiv2qt6-dev libmarble-dev qt6-5compat-dev
   script:
     - mkdir build && cd $_ && cmake .. && make -j$(nproc)
     - make install
