@@ -1,13 +1,13 @@
 # Copyright (C) 2024 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-03-10 02:03+0000\n"
-"PO-Revision-Date: 2024-12-24 17:17+0100\n"
+"PO-Revision-Date: 2025-04-06 23:08+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -559,10 +559,9 @@ msgid "Photo geotagging program"
 msgstr "사진 지오태그 프로그램"
 
 #: src/main.cpp:39
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2024 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
-msgstr "Copyright (C) 2020-2024 Tobias Leupold"
+msgstr "Copyright (C) 2020-2025 Tobias Leupold"
 
 #: src/main.cpp:44
 #, kde-format
@@ -640,10 +639,9 @@ msgid "Save changed images"
 msgstr "변경된 사진 저장"
 
 #: src/MainWindow.cpp:159
-#, fuzzy, kde-format
-#| msgid "Save changed images"
+#, kde-format
 msgid "Save the metadata of all changed images"
-msgstr "변경된 사진 저장"
+msgstr "모든 변경된 사진의 메타데이터 저장"
 
 #: src/MainWindow.cpp:169
 #, kde-format
