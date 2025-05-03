@@ -72,7 +72,7 @@ add_definitions(
 # Find KDE
 if(QT6)
     find_package(KF6 ${KF_MIN_VERSION}
-        COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
+        COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools ColorScheme
         REQUIRED
     )
 else()
@@ -166,6 +166,7 @@ if(QT6)
         KF6::XmlGui
         KF6::ConfigWidgets
         KF6::Crash
+        KF6::ColorScheme
         KExiv2Qt6
         Marble
     )
