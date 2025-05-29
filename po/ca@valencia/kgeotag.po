@@ -1657,12 +1657,12 @@ msgstr "Ordre de les coordenades:"
 #: src/SettingsDialog.cpp:73
 #, kde-format
 msgid "Longitude, latitude"
-msgstr "Llargària, latitud"
+msgstr "Longitud, latitud"
 
 #: src/SettingsDialog.cpp:74
 #, kde-format
 msgid "Latitude, longitude"
-msgstr "Latitud, llargària"
+msgstr "Latitud, longitud"
 
 #: src/SettingsDialog.cpp:78
 #, kde-format
