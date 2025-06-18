@@ -20,12 +20,46 @@ apps:
       - udisks2
       - mount-observe
       - home
+    environment:
+      QT_PLUGIN_PATH: "$SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/marble/plugins:$SNAP/usr/lib/x86_64-linux-gnu/plugins:/snap/kf6-core24/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/plugins"
+layout:
+  /usr/share/marble:
+    symlink: $SNAP/usr/share/marble
+  /usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/marble:
+    symlink: $SNAP/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/marble
 slots:
   session-dbus-interface:
     interface: dbus
     name: org.kde.kgeotag
     bus: session
 parts:
+  marble:
+    source: https://invent.kde.org/education/marble.git
+    source-branch: release/25.04
+    plugin: cmake
+    build-packages:
+      - libpulse0
+      - rsync
+    stage-packages:
+      - libpulse0
+    cmake-generator: Ninja
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DQT_MAJOR_VERSION=6
+      - -DENABLE_QT5=OFF
+      - -DENABLE_QT6=ON
+      - -DBUILD_TESTING=OFF
+      - -DCMAKE_FIND_ROOT_PATH="/snap/kde-qt6-core24-sdk/current;/snap/kf6-core24-sdk/current"
+    override-build: |
+      craftctl default
+      rsync -a --ignore-existing $CRAFT_PART_INSTALL/ /
+    build-environment: &build-environment
+      - PKG_CONFIG_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:/snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig"
+      - LD_LIBRARY_PATH: "/snap/mesa-2404/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$LD_LIBRARY_PATH"
+      - DICPATH: "$CRAFT_STAGE/usr/share/hunspell"
+    prime:
+      - -usr/bin/rsync
   kgeotag:
     parse-info:
       - usr/share/metainfo/org.kde.kgeotag.appdata.xml
