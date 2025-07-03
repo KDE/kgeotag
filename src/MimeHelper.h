@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -10,7 +10,7 @@
 
 // Qt includes
 #include <QString>
-#include <QVector>
+#include <QList>
 
 // Qt classes
 class QMimeData;
@@ -18,7 +18,7 @@ class QMimeData;
 namespace MimeHelper
 {
 
-QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data);
+QList<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data);
 QString mimeType(const QString &path);
 KGeoTag::FileType classifyFile(const QString &path);
 bool isRawImage(const QString &path);

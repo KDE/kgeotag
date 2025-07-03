@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -60,9 +60,9 @@ void TracksListView::showContextMenu(const QPoint &point)
     m_contextMenu->exec(mapToGlobal(point));
 }
 
-QVector<int> TracksListView::selectedTracks() const
+QList<int> TracksListView::selectedTracks() const
 {
-    QVector<int> selection;
+    QList<int> selection;
     const auto selected = selectedIndexes();
     for (const auto &index : selected) {
         selection.append(index.row());

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -48,29 +48,29 @@ private Q_SLOTS:
 
     void addFiles(const QStringList &files);
     void addDirectory(const QString &path);
-    void addGpx(const QVector<QString> &paths);
-    void addImages(const QVector<QString> &paths);
+    void addGpx(const QList<QString> &paths);
+    void addImages(const QList<QString> &paths);
 
-    void imagesDropped(const QVector<QString> &paths);
+    void imagesDropped(const QList<QString> &paths);
     void saveSelection(ImagesListView *list);
     void saveAllChanges();
     void showSettings();
-    void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
+    void assignTo(const QList<QString> &paths, const Coordinates &coordinates);
     void failedToParseClipboard();
-    void checkUpdatePreview(const QVector<QString> &paths);
-    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
-                            const QVector<double> &elevations);
+    void checkUpdatePreview(const QList<QString> &paths);
+    void elevationProcessed(ElevationEngine::Target target, const QList<QString> &paths,
+                            const QList<double> &elevations);
     void elevationLookupFailed(const QString &errorMessage);
     void notAllElevationsPresent(int locationsCount, int elevationsCount);
     void triggerAutomaticMatching(ImagesListView *list, KGeoTag::SearchType searchType);
     void triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType);
-    void matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType);
+    void matchAutomatically(const QList<QString> &paths, KGeoTag::SearchType searchType);
     void assignToMapCenter(ImagesListView *list);
     void assignManually(ImagesListView *list);
     void findClosestTrackPoint(const QString &path);
     void editCoordinates(ImagesListView *list);
     void removeCoordinates(ImagesListView *list);
-    void removeCoordinates(const QVector<QString> &paths);
+    void removeCoordinates(const QList<QString> &paths);
     void discardChanges(ImagesListView *list);
     void lookupElevation(ImagesListView *list);
     void imagesTimeZoneChanged();
@@ -92,11 +92,11 @@ private: // Functions
                                   const QString &dockId);
     ImagesListView *imagesListView(QDockWidget *dock) const;
     QDockWidget *createDockWidget(const QString &title, QWidget *widget, const QString &objectName);
-    void lookupElevation(const QVector<QString> &paths);
+    void lookupElevation(const QList<QString> &paths);
     QString saveFailedHeader(int processed, int allImages) const;
     QString skipRetryCancelText(int processed, int allImages) const;
     bool checkForPendingChanges();
-    void saveChanges(const QVector<QString> &files);
+    void saveChanges(const QList<QString> &files);
 
 private: // Variables
     SharedObjects *m_sharedObjects;

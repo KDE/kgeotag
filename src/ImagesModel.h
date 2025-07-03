@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2021 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -39,10 +39,10 @@ public:
     QModelIndex indexFor(const QString &path) const;
     bool contains(const QString &path) const;
     LoadResult addImage(const QString &path);
-    const QVector<QString> &allImages() const;
-    QVector<QString> imagesWithPendingChanges() const;
-    QVector<QString> processedSavedImages() const;
-    QVector<QString> imagesLoadedTagged() const;
+    const QList<QString> &allImages() const;
+    QList<QString> imagesWithPendingChanges() const;
+    QList<QString> processedSavedImages() const;
+    QList<QString> imagesLoadedTagged() const;
     QDateTime date(const QString &path) const;
     KGeoTag::MatchType matchType(const QString &path) const;
     void setCoordinates(const QString &path, const Coordinates &coordinates,
@@ -53,7 +53,7 @@ public:
     void setSaved(const QString &path);
     void setImagesTimeZone(const QByteArray &id);
     bool hasPendingChanges(const QString &path) const;
-    void removeImages(const QVector<QString> &paths);
+    void removeImages(const QList<QString> &paths);
     void removeAllImages();
 
 private: // Functions
@@ -77,7 +77,7 @@ private: // Variables
     QSize m_previewSize;
 
     KColorScheme m_colorScheme;
-    QVector<QString> m_paths;
+    QList<QString> m_paths;
     QHash<QString, ImageData> m_imageData;
     QTimeZone m_timeZone;
 

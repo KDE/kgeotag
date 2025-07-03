@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -315,8 +315,8 @@ QDockWidget *MainWindow::createImagesDock(KGeoTag::ImagesListType type, const QS
     connect(list, &ImagesListView::editCoordinates, this, &MainWindow::editCoordinates);
     connect(list, QOverload<ImagesListView *>::of(&ImagesListView::removeCoordinates),
             this, QOverload<ImagesListView *>::of(&MainWindow::removeCoordinates));
-    connect(list, QOverload<const QVector<QString> &>::of(&ImagesListView::removeCoordinates),
-            this, QOverload<const QVector<QString> &>::of(&MainWindow::removeCoordinates));
+    connect(list, QOverload<const QList<QString> &>::of(&ImagesListView::removeCoordinates),
+            this, QOverload<const QList<QString> &>::of(&MainWindow::removeCoordinates));
     connect(list, &ImagesListView::discardChanges, this, &MainWindow::discardChanges);
     connect(list, &ImagesListView::lookupElevation,
             this, QOverload<ImagesListView *>::of(&MainWindow::lookupElevation));
@@ -353,7 +353,7 @@ void MainWindow::updateImagesListsMode()
 
 void MainWindow::setDefaultDockArrangement()
 {
-    const QVector<QDockWidget *> allDocks = {
+    const QList<QDockWidget *> allDocks = {
         m_assignedOrAllImagesDock,
         m_unAssignedImagesDock,
         m_previewDock,
@@ -380,7 +380,7 @@ void MainWindow::setDefaultDockArrangement()
     splitDockWidget(m_assignedOrAllImagesDock, m_previewDock, Qt::Vertical);
     splitDockWidget(m_assignedOrAllImagesDock, m_unAssignedImagesDock, Qt::Horizontal);
 
-    const QVector<QDockWidget *> toTabify = {
+    const QList<QDockWidget *> toTabify = {
         m_previewDock,
         m_fixDriftDock,
         m_automaticMatchingDock,
@@ -433,7 +433,7 @@ bool MainWindow::queryClose()
 
 void MainWindow::addPathsFromCommandLine(QStringList &paths)
 {
-    QVector<QString> directories;
+    QList<QString> directories;
     QStringList files;
 
     paths.removeDuplicates();
@@ -488,7 +488,7 @@ void MainWindow::addFiles(const QStringList &files)
     }
 
     // Check the MIME type of all selected files
-    QHash<KGeoTag::FileType, QVector<QString>> classified;
+    QHash<KGeoTag::FileType, QList<QString>> classified;
     for (const auto &path : selection) {
         classified[MimeHelper::classifyFile(path)].append(path);
     }
@@ -555,8 +555,8 @@ void MainWindow::addDirectory(const QString &path)
     QDir dir(directory);
     const auto files = dir.entryList({ QStringLiteral("*") }, QDir::Files);
 
-    QVector<QString> geoDataFiles;
-    QVector<QString> images;
+    QList<QString> geoDataFiles;
+    QList<QString> images;
     for (const auto &file : files) {
         const auto path = directory + QStringLiteral("/") + file;
         switch (MimeHelper::classifyFile(path)) {
@@ -589,7 +589,7 @@ void MainWindow::addDirectory(const QString &path)
     }
 }
 
-void MainWindow::addGpx(const QVector<QString> &paths)
+void MainWindow::addGpx(const QList<QString> &paths)
 {
     const int filesCount = paths.count();
     int processed = 0;
@@ -599,7 +599,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
     int allSegments = 0;
     int allPoints = 0;
     int alreadyLoaded = 0;
-    QVector<QString> loadedPaths;
+    QList<QString> loadedPaths;
 
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -769,7 +769,7 @@ void MainWindow::addGpx(const QVector<QString> &paths)
     }
 }
 
-void MainWindow::addImages(const QVector<QString> &paths)
+void MainWindow::addImages(const QList<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::WaitCursor);
 
@@ -939,7 +939,7 @@ void MainWindow::addImages(const QVector<QString> &paths)
     }
 }
 
-void MainWindow::imagesDropped(const QVector<QString> &paths)
+void MainWindow::imagesDropped(const QList<QString> &paths)
 {
     const auto index = m_imagesModel->indexFor(paths.last());
 
@@ -1016,7 +1016,7 @@ void MainWindow::editCoordinates(ImagesListView *list)
     assignTo(paths, dialog.coordinates());
 }
 
-void MainWindow::assignTo(const QVector<QString> &paths, const Coordinates &coordinates)
+void MainWindow::assignTo(const QList<QString> &paths, const Coordinates &coordinates)
 {
     for (const auto &path : paths) {
         m_imagesModel->setCoordinates(path, coordinates, KGeoTag::ManuallySet);
@@ -1050,7 +1050,7 @@ void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType
         return;
     }
 
-    QVector<QString> paths;
+    QList<QString> paths;
     const bool excludeManuallyTagged = m_automaticMatchingWidget->excludeManuallyTagged();
     for (const auto &path : m_imagesModel->allImages()) {
         if (excludeManuallyTagged && m_imagesModel->matchType(path) == KGeoTag::ManuallySet) {
@@ -1061,7 +1061,7 @@ void MainWindow::triggerCompleteAutomaticMatching(KGeoTag::SearchType searchType
     matchAutomatically(paths, searchType);
 }
 
-void MainWindow::matchAutomatically(const QVector<QString> &paths, KGeoTag::SearchType searchType)
+void MainWindow::matchAutomatically(const QList<QString> &paths, KGeoTag::SearchType searchType)
 {
     if (m_geoDataModel->rowCount() == 0) {
         QMessageBox::information(this, i18n("Automatic matching"),
@@ -1249,7 +1249,7 @@ QString MainWindow::skipRetryCancelText(int processed, int allImages) const
 
 void MainWindow::saveSelection(ImagesListView *list)
 {
-    QVector<QString> files;
+    QList<QString> files;
     auto selected = list->selectedPaths();
     for (const auto &path : selected) {
         if (m_imagesModel->hasPendingChanges(path)) {
@@ -1264,7 +1264,7 @@ void MainWindow::saveAllChanges()
     saveChanges(m_imagesModel->imagesWithPendingChanges());
 }
 
-void MainWindow::saveChanges(const QVector<QString> &files)
+void MainWindow::saveChanges(const QList<QString> &files)
 {
     if (files.isEmpty()) {
         QMessageBox::information(this, i18n("Save changes"), i18n("Nothing to do"));
@@ -1502,7 +1502,7 @@ void MainWindow::removeCoordinates(ImagesListView *list)
     removeCoordinates(list->selectedPaths());
 }
 
-void MainWindow::removeCoordinates(const QVector<QString> &paths)
+void MainWindow::removeCoordinates(const QList<QString> &paths)
 {
     for (const QString &path : paths) {
         m_imagesModel->setCoordinates(path, Coordinates(), KGeoTag::NotMatched);
@@ -1523,7 +1523,7 @@ void MainWindow::discardChanges(ImagesListView *list)
     m_previewWidget->setImage();
 }
 
-void MainWindow::checkUpdatePreview(const QVector<QString> &paths)
+void MainWindow::checkUpdatePreview(const QList<QString> &paths)
 {
     for (const QString &path : paths) {
         if (m_previewWidget->currentImage() == path) {
@@ -1566,11 +1566,11 @@ void MainWindow::lookupElevation(ImagesListView *list)
     lookupElevation(list->selectedPaths());
 }
 
-void MainWindow::lookupElevation(const QVector<QString> &paths)
+void MainWindow::lookupElevation(const QList<QString> &paths)
 {
     QApplication::setOverrideCursor(Qt::BusyCursor);
 
-    QVector<Coordinates> coordinates;
+    QList<Coordinates> coordinates;
     for (const auto &path : paths) {
         coordinates.append(m_imagesModel->coordinates(path));
     }
@@ -1578,8 +1578,8 @@ void MainWindow::lookupElevation(const QVector<QString> &paths)
     m_elevationEngine->request(ElevationEngine::Target::Image, paths, coordinates);
 }
 
-void MainWindow::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &paths,
-                                    const QVector<double> &elevations)
+void MainWindow::elevationProcessed(ElevationEngine::Target target, const QList<QString> &paths,
+                                    const QList<double> &elevations)
 {
     if (target != ElevationEngine::Target::Image) {
         return;
@@ -1780,7 +1780,7 @@ void MainWindow::assignSelectionToMapCenter()
     auto *assignedOrAllImages = imagesListView(m_assignedOrAllImagesDock);
     auto *unAssignedImages = imagesListView(m_unAssignedImagesDock);
 
-    QVector<QString> selection;
+    QList<QString> selection;
     selection += assignedOrAllImages->selectedPaths();
     if (m_settings->splitImagesList()) {
         selection += unAssignedImages->selectedPaths();

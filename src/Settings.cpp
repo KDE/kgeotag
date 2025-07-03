@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -50,14 +50,14 @@ static const QLatin1String s_track("tracks");
 static const QLatin1String s_color("color");
 static const QLatin1String s_width("width");
 static const QLatin1String s_style("style");
-static const QVector<Qt::PenStyle> s_trackStyleEnum {
+static const QList<Qt::PenStyle> s_trackStyleEnum {
     Qt::SolidLine,
     Qt::DashLine,
     Qt::DotLine,
     Qt::DashDotLine,
     Qt::DashDotDotLine
 };
-static const QVector<QString> s_trackStyleString {
+static const QList<QString> s_trackStyleString {
     QStringLiteral("solid"),
     QStringLiteral("dashes"),
     QStringLiteral("dots"),
@@ -81,12 +81,12 @@ static const QLatin1String s_excludeManuallyTaggedWhenReassigning(
                                "excludeManuallyTaggedWhenReassigning");
 
 static const QLatin1String s_defaultMatchingMode("defaultMatchingMode");
-static const QVector<KGeoTag::SearchType> s_defaultMatchingModeEnum {
+static const QList<KGeoTag::SearchType> s_defaultMatchingModeEnum {
     KGeoTag::CombinedMatchSearch,
     KGeoTag::ExactMatchSearch,
     KGeoTag::InterpolatedMatchSearch
 };
-static const QVector<QString> s_defaultMatchingModeString {
+static const QList<QString> s_defaultMatchingModeString {
     QStringLiteral("combinedSearch"),
     QStringLiteral("exactSearch"),
     QStringLiteral("interpolatedSearch")
@@ -98,7 +98,7 @@ static const QLatin1String s_selectNextUntagged("selectNextUntagged");
 // Elevation lookup
 static const QLatin1String s_elevationLookup("elevationLookup");
 static const QLatin1String s_lookupElevationAutomatically("lookupElevationAutomatically");
-static const QVector<QString> s_elevationDatasets = {
+static const QList<QString> s_elevationDatasets = {
     QStringLiteral("aster30m"),
     QStringLiteral("etopo1"),
     QStringLiteral("eudem25m"),
@@ -115,7 +115,7 @@ static const QLatin1String s_dataset("dataset");
 
 // Saving
 static const QLatin1String s_saving("saving");
-static const QVector<QString> s_writeModes = {
+static const QList<QString> s_writeModes = {
     QStringLiteral("WRITETOIMAGEONLY"),
     QStringLiteral("WRITETOSIDECARONLY"),
     QStringLiteral("WRITETOSIDECARANDIMAGE")

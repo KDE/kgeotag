@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -21,7 +21,7 @@ class TracksListView : public QListView
 
 public:
     explicit TracksListView(GeoDataModel *model, QWidget *parent = nullptr);
-    QVector<int> selectedTracks() const;
+    QList<int> selectedTracks() const;
 
 Q_SIGNALS:
     void trackSelected(const QModelIndex &index);

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -45,7 +45,7 @@ ImagesListView::ImagesListView(KGeoTag::ImagesListType type, SharedObjects *shar
     connect(m_listFilter, &ImagesListFilter::requestAddingImages,
             this, &ImagesListView::requestAddingImages);
     connect(m_listFilter, &ImagesListFilter::requestRemoveCoordinates,
-            this, QOverload<const QVector<QString> &>::of(&ImagesListView::removeCoordinates));
+            this, QOverload<const QList<QString> &>::of(&ImagesListView::removeCoordinates));
 
     setSelectionMode(QAbstractItemView::ExtendedSelection);
     setContextMenuPolicy(Qt::CustomContextMenu);
@@ -262,9 +262,9 @@ void ImagesListView::mouseMoveEvent(QMouseEvent *event)
     drag->exec(Qt::MoveAction);
 }
 
-QVector<QString> ImagesListView::selectedPaths() const
+QList<QString> ImagesListView::selectedPaths() const
 {
-    QVector<QString> paths;
+    QList<QString> paths;
     const auto selected = selectedIndexes();
     for (const auto &index : selected) {
         paths.append(index.data(KGeoTag::PathRole).toString());

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -34,33 +34,33 @@ public:
                       const QModelIndex &) override;
 
     bool contains(const QString &path);
-    void addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
-                  const QVector<QVector<Coordinates>> &segments);
+    void addTrack(const QString &path, const QList<QList<QDateTime>> &times,
+                  const QList<QList<Coordinates>> &segments);
     void removeTrack(int row);
     void removeAllTracks();
     Marble::GeoDataLatLonAltBox trackBox(const QString &path) const;
     Marble::GeoDataLatLonAltBox trackBox(const QModelIndex &index) const;
     Coordinates trackBoxCenter(const QString &path) const;
 
-    const QVector<QVector<Marble::GeoDataLineString>> &marbleTracks() const;
-    const QVector<QVector<QDateTime>> &dateTimes() const;
-    const QVector<QHash<QDateTime, Coordinates>> &trackPoints() const;
+    const QList<QList<Marble::GeoDataLineString>> &marbleTracks() const;
+    const QList<QList<QDateTime>> &dateTimes() const;
+    const QList<QHash<QDateTime, Coordinates>> &trackPoints() const;
 
 Q_SIGNALS:
-    void requestAddFiles(const QVector<QString> &paths);
+    void requestAddFiles(const QList<QString> &paths);
 
 private: // Functions
     QString canonicalPath(const QString &path) const;
 
 private: // Variables
-    QVector<QString> m_loadedFiles;
-    QVector<QString> m_displayFileNames;
+    QList<QString> m_loadedFiles;
+    QList<QString> m_displayFileNames;
 
-    QVector<QVector<Marble::GeoDataLineString>> m_marbleTracks;
-    QVector<Marble::GeoDataLatLonAltBox> m_marbleTrackBoxes;
+    QList<QList<Marble::GeoDataLineString>> m_marbleTracks;
+    QList<Marble::GeoDataLatLonAltBox> m_marbleTrackBoxes;
 
-    QVector<QVector<QDateTime>> m_dateTimes;
-    QVector<QHash<QDateTime, Coordinates>> m_trackPoints;
+    QList<QList<QDateTime>> m_dateTimes;
+    QList<QHash<QDateTime, Coordinates>> m_trackPoints;
 
 };
 

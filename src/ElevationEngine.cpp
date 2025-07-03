@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -39,8 +39,8 @@ ElevationEngine::ElevationEngine(QObject *parent, Settings *settings)
     connect(m_requestTimer, &QTimer::timeout, this, &ElevationEngine::processNextRequest);
 }
 
-void ElevationEngine::request(ElevationEngine::Target target, const QVector<QString> &ids,
-                              const QVector<Coordinates> &coordinates)
+void ElevationEngine::request(ElevationEngine::Target target, const QList<QString> &ids,
+                              const QList<Coordinates> &coordinates)
 {
     // Check if we want to lookup different coordinates
     bool identicalCoordinates = true;
@@ -173,7 +173,7 @@ void ElevationEngine::processReply(QNetworkReply *request)
 
     const auto resultsArray = resultsValue.toArray();
     bool allPresent = true;
-    QVector<double> elevations;
+    QList<double> elevations;
     for (const auto &result : resultsArray)  {
         const auto elevation = result.toObject().value(QStringLiteral("elevation"));
         if (elevation.isUndefined()) {

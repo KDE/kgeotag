@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2023 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -11,7 +11,6 @@
 
 // Qt includes
 #include <QObject>
-#include <QVector>
 #include <QHash>
 #include <QDateTime>
 #include <QImage>

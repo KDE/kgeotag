@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -77,7 +77,7 @@ GpxEngine::GpxEngine(QObject *parent, GeoDataModel *geoDataModel)
         const auto allTimeZones = QTimeZone::availableTimeZoneIds();
         const auto keys = m_timezoneMapping.keys();
 
-        QVector<QByteArray> invalidIds;
+        QList<QByteArray> invalidIds;
 
         for (const auto &key : keys) {
             const auto timeZoneId = m_timezoneMapping.value(key).toString().toUtf8();
@@ -122,11 +122,11 @@ GpxEngine::LoadInfo GpxEngine::load(const QString &path)
     double alt = 0.0;
     QDateTime time;
 
-    QVector<QDateTime> segmentTimes;
-    QVector<Coordinates> segmentCoordinates;
+    QList<QDateTime> segmentTimes;
+    QList<Coordinates> segmentCoordinates;
 
-    QVector<QVector<Coordinates>> allSegments;
-    QVector<QVector<QDateTime>> allSegmentTimes;
+    QList<QList<Coordinates>> allSegments;
+    QList<QList<QDateTime>> allSegmentTimes;
 
     bool gpxFound = false;
     bool trackStartFound = false;

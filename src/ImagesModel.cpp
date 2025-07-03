@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -210,14 +210,14 @@ void ImagesModel::emitDataChanged(const QString &path)
     Q_EMIT dataChanged(modelIndex, modelIndex, { Qt::DisplayRole });
 }
 
-const QVector<QString> &ImagesModel::allImages() const
+const QList<QString> &ImagesModel::allImages() const
 {
     return m_paths;
 }
 
-QVector<QString> ImagesModel::imagesWithPendingChanges() const
+QList<QString> ImagesModel::imagesWithPendingChanges() const
 {
-    QVector<QString> images;
+    QList<QString> images;
     for (const auto &path : std::as_const(m_paths)) {
         const auto &data = m_imageData[path];
         if (data.coordinates != data.lastSavedCoordinates) {
@@ -227,9 +227,9 @@ QVector<QString> ImagesModel::imagesWithPendingChanges() const
     return images;
 }
 
-QVector<QString> ImagesModel::processedSavedImages() const
+QList<QString> ImagesModel::processedSavedImages() const
 {
-    QVector<QString> images;
+    QList<QString> images;
     for (const auto &path : std::as_const(m_paths)) {
         const auto &data = m_imageData[path];
         if (data.changed && data.coordinates == data.lastSavedCoordinates) {
@@ -239,9 +239,9 @@ QVector<QString> ImagesModel::processedSavedImages() const
     return images;
 }
 
-QVector<QString> ImagesModel::imagesLoadedTagged() const
+QList<QString> ImagesModel::imagesLoadedTagged() const
 {
-    QVector<QString> images;
+    QList<QString> images;
     for (const auto &path : std::as_const(m_paths)) {
         const auto &data = m_imageData[path];
         if (data.originalCoordinates.isSet()) {
@@ -322,7 +322,7 @@ bool ImagesModel::hasPendingChanges(const QString &path) const
     return data.coordinates != data.lastSavedCoordinates;
 }
 
-void ImagesModel::removeImages(const QVector<QString> &paths)
+void ImagesModel::removeImages(const QList<QString> &paths)
 {
     for (const auto &path : paths) {
         const auto row = m_paths.indexOf(path);

@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -41,7 +41,7 @@ public:
     void saveSettings();
     void restoreSettings();
     void zoomToTrack(const QModelIndex &index);
-    void zoomToTracks(const QVector<QString> &paths);
+    void zoomToTracks(const QList<QString> &paths);
     void centerImage(const QModelIndex &index);
     void centerCoordinates(const Coordinates &coordinates);
     Coordinates currentCenter() const;
@@ -49,8 +49,8 @@ public:
 
 Q_SIGNALS:
     void mapMoved(const Coordinates &center);
-    void imagesDropped(const QVector<QString> &paths);
-    void requestLoadGpx(const QVector<QString> &paths);
+    void imagesDropped(const QList<QString> &paths);
+    void requestLoadGpx(const QList<QString> &paths);
     void requestAddBookmark();
 
 protected:
@@ -66,11 +66,11 @@ private: // Variables
     GeoDataModel *m_geoDataModel;
     ImagesModel *m_imagesModel;
     CoordinatesFormatter *m_coordinatesFormatter;
-    QVector<Marble::GeoDataLineString> m_tracks;
+    QList<Marble::GeoDataLineString> m_tracks;
     QPen m_trackPen;
     QMenu *m_contextMenu;
     QMenu *m_mapCenterMenu;
-    QVector<QAction *> m_floatersActions;
+    QList<QAction *> m_floatersActions;
 
 };
 

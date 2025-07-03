@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -54,8 +54,8 @@ private Q_SLOTS:
     void deleteBookmark();
 
     void itemHighlighted(QListWidgetItem *item, QListWidgetItem *);
-    void elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
-                            const QVector<double> &elevations);
+    void elevationProcessed(ElevationEngine::Target target, const QList<QString> &ids,
+                            const QList<double> &elevations);
     void restoreAfterElevationLookup();
     void centerBookmark(QListWidgetItem *item);
 

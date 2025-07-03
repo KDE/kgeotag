@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -15,7 +15,7 @@
 namespace MimeHelper
 {
 
-static const QVector<QString> s_usableImages {
+static const QList<QString> s_usableImages {
     QStringLiteral("image/jpeg"),
     QStringLiteral("image/png"),
     QStringLiteral("image/webp"),
@@ -24,18 +24,18 @@ static const QVector<QString> s_usableImages {
     QStringLiteral("application/x-krita")
 };
 
-static const QVector<QString> s_rawImageMimeTypes {
+static const QList<QString> s_rawImageMimeTypes {
     QStringLiteral("image/x-canon-cr2"),
     QStringLiteral("image/x-nikon-nef"),
     QStringLiteral("image/x-adobe-dng")
 };
 
-static const QVector<QString> s_usableGeoData {
+static const QList<QString> s_usableGeoData {
     QStringLiteral("application/x-gpx+xml"),
     QStringLiteral("application/xml+gpx")
 };
 
-static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
+static const QHash<KGeoTag::DropTarget, QList<QString>> s_usableTypes {
     { KGeoTag::DroppedOnImageList, s_usableImages },
     { KGeoTag::DroppedOnMap,       s_usableGeoData },
     { KGeoTag::DroppedOnTrackList, s_usableGeoData }
@@ -43,13 +43,13 @@ static const QHash<KGeoTag::DropTarget, QVector<QString>> s_usableTypes {
 
 static const QMimeDatabase s_mimeDB;
 
-QVector<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data)
+QList<QString> getUsablePaths(KGeoTag::DropTarget dropTarget, const QMimeData *data)
 {
     if (! data->hasUrls()) {
         return { };
     }
 
-    QVector<QString> usablePaths;
+    QList<QString> usablePaths;
     const auto urls = data->urls();
     for (const auto &url : urls) {
         if (! url.isLocalFile()) {

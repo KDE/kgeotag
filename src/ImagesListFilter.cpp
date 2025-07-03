@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -96,8 +96,8 @@ bool ImagesListFilter::dropMimeData(const QMimeData *data, Qt::DropAction action
         return false;
     }
 
-    QVector<QString> paths;
-    QVector<QString> removeCoordinates;
+    QList<QString> paths;
+    QList<QString> removeCoordinates;
 
     const auto usablePaths = MimeHelper::getUsablePaths(KGeoTag::DroppedOnImageList, data);
     for (const auto &path : usablePaths) {

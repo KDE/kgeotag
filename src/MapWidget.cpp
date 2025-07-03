@@ -41,7 +41,7 @@
 #include <utility>
 
 static QString s_licenseFloaterId = QStringLiteral("license");
-static QVector<QString> s_unsupportedFloaters = {
+static QList<QString> s_unsupportedFloaters = {
     s_licenseFloaterId,
     QStringLiteral("elevationprofile"),
     QStringLiteral("GpsInfo"),
@@ -283,7 +283,7 @@ void MapWidget::dropEvent(QDropEvent *event)
         // Images dragged from an images list
 
         const auto urls = mimeData->urls();
-        QVector<QString> paths;
+        QList<QString> paths;
 
         // Be sure to really have all images
         for (const auto &url : urls) {
@@ -348,7 +348,7 @@ void MapWidget::zoomToTrack(const QModelIndex &index)
     centerOn(m_geoDataModel->trackBox(index));
 }
 
-void MapWidget::zoomToTracks(const QVector<QString> &paths)
+void MapWidget::zoomToTracks(const QList<QString> &paths)
 {
     Marble::GeoDataLatLonAltBox box;
     for (const auto &path : paths) {

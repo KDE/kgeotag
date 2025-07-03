@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -8,7 +8,7 @@
 // Qt includes
 #include <QObject>
 #include <QHash>
-#include <QVector>
+#include <QList>
 
 // Local classes
 class Settings;
@@ -30,14 +30,13 @@ public:
     };
 
     explicit ElevationEngine(QObject *parent, Settings *settings);
-    void request(Target target, const QVector<QString> &ids,
-                 const QVector<Coordinates> &coordinates);
+    void request(Target target, const QList<QString> &ids, const QList<Coordinates> &coordinates);
 
 Q_SIGNALS:
     void lookupFailed(const QString &errorMessage);
     void notAllPresent(int locationsCount, int elevationsCount);
-    void elevationProcessed(Target target, const QVector<QString> &ids,
-                            const QVector<double> &elevations);
+    void elevationProcessed(Target target, const QList<QString> &ids,
+                            const QList<double> &elevations);
 
 private Q_SLOTS:
     void processNextRequest();
@@ -51,7 +50,7 @@ private: // Variables
     struct RequestData
     {
         Target target;
-        QVector<QString> ids;
+        QList<QString> ids;
     };
 
     Settings *m_settings;
@@ -59,9 +58,9 @@ private: // Variables
     QNetworkAccessManager *m_manager;
 
     QTimer *m_requestTimer;
-    QVector<Target> m_queuedTargets;
-    QVector<QVector<QString>> m_queuedIds;
-    QVector<QString> m_queuedLocations;
+    QList<Target> m_queuedTargets;
+    QList<QList<QString>> m_queuedIds;
+    QList<QString> m_queuedLocations;
 
     QHash<QNetworkReply *, RequestData> m_requests;
 

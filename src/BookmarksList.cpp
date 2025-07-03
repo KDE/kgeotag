@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -227,8 +227,8 @@ void BookmarksList::deleteBookmark()
     Q_EMIT bookmarksChanged();
 }
 
-void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QVector<QString> &ids,
-                                       const QVector<double> &elevations)
+void BookmarksList::elevationProcessed(ElevationEngine::Target target, const QList<QString> &ids,
+                                       const QList<double> &elevations)
 {
     if (target != ElevationEngine::Target::Bookmark) {
         return;

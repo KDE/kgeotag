@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2021-2022 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2021-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -45,13 +45,13 @@ bool GeoDataModel::contains(const QString &path)
     return m_loadedFiles.contains(canonicalPath(path));
 }
 
-void GeoDataModel::addTrack(const QString &path, const QVector<QVector<QDateTime>> &times,
-                            const QVector<QVector<Coordinates>> &segments)
+void GeoDataModel::addTrack(const QString &path, const QList<QList<QDateTime>> &times,
+                            const QList<QList<Coordinates>> &segments)
 {
     Marble::GeoDataLatLonAltBox marbleTrackBox;
-    QVector<Marble::GeoDataLineString> marbleTracks;
+    QList<Marble::GeoDataLineString> marbleTracks;
 
-    QVector<QDateTime> dateTimes;
+    QList<QDateTime> dateTimes;
     QHash<QDateTime, Coordinates> trackPoints;
 
     for (int i = 0; i < times.count(); i++) {
@@ -148,17 +148,17 @@ Marble::GeoDataLatLonAltBox GeoDataModel::trackBox(const QModelIndex &index) con
     return m_marbleTrackBoxes.at(index.row());
 }
 
-const QVector<QVector<Marble::GeoDataLineString>> &GeoDataModel::marbleTracks() const
+const QList<QList<Marble::GeoDataLineString>> &GeoDataModel::marbleTracks() const
 {
     return m_marbleTracks;
 }
 
-const QVector<QVector<QDateTime>> &GeoDataModel::dateTimes() const
+const QList<QList<QDateTime>> &GeoDataModel::dateTimes() const
 {
     return m_dateTimes;
 }
 
-const QVector<QHash<QDateTime, Coordinates>> &GeoDataModel::trackPoints() const
+const QList<QHash<QDateTime, Coordinates>> &GeoDataModel::trackPoints() const
 {
     return m_trackPoints;
 }

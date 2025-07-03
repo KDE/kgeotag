@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -29,7 +29,7 @@ public:
     explicit ImagesListView(KGeoTag::ImagesListType type, SharedObjects *sharedObjects,
                             QWidget *parent = nullptr);
     void setListType(KGeoTag::ImagesListType type);
-    QVector<QString> selectedPaths() const;
+    QList<QString> selectedPaths() const;
     void highlightImage(const QModelIndex &index);
     void selectFirstUnassigned();
 
@@ -45,11 +45,11 @@ Q_SIGNALS:
     void editCoordinates(ImagesListView *list);
     void lookupElevation(ImagesListView *list);
     void removeCoordinates(ImagesListView *list);
-    void removeCoordinates(const QVector<QString> &paths);
+    void removeCoordinates(const QList<QString> &paths);
     void requestSaving(ImagesListView *list);
     void discardChanges(ImagesListView *list);
-    void assignTo(const QVector<QString> &paths, const Coordinates &coordinates);
-    void requestAddingImages(const QVector<QString> &paths);
+    void assignTo(const QList<QString> &paths, const Coordinates &coordinates);
+    void requestAddingImages(const QList<QString> &paths);
     void removeImages(ImagesListView *list);
     void failedToParseClipboard();
     void findClosestTrackPoint(const QString &path);
