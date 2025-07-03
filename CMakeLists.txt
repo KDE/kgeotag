@@ -12,37 +12,21 @@ set(CMAKE_CXX_FLAGS "${CMAKE_CXX_FLAGS} -pedantic")
 # Local CMake modules
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
+# Set appropriate needed versions Qt and KF
+
+set(QT_MIN_VERSION "6.0")
+set(KF_MIN_VERSION "6.0")
+set(KExiv2_MIN_VERSION "5.1.0")
+set(Marble_MIN_VERSION "24.11.70")
+set(KDE_COMPILERSETTINGS_LEVEL "6.0")
+
 # Find ECM
-find_package(ECM REQUIRED NO_MODULE)
+find_package(ECM ${KF_MIN_VERSION} REQUIRED NO_MODULE)
 list(APPEND CMAKE_MODULE_PATH ${ECM_MODULE_PATH})
 include(KDEInstallDirs)
 include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
-
-# Set appropriate needed versions for a Qt5/KF5 or Qt6/KF6 build
-
-# By default, a Qt5/KF5 build is done. To force a Qt6/KF6 build, set ECM's BUILD_WITH_QT6,
-# i.e. pass -DBUILD_WITH_QT6=ON to your cmake call.
-
-if (QT_MAJOR_VERSION STREQUAL "6")
-    set(QT6 ON)
-else()
-    set(QT6 OFF)
-endif()
-
-if(QT6)
-    set(QT_MIN_VERSION "6.0")
-    set(KF_MIN_VERSION "6.0")
-    set(KExiv2_MIN_VERSION "5.1.0")
-    set(Marble_MIN_VERSION "24.11.70")
-else()
-    set(QT_MIN_VERSION "5.12")
-    set(KF_MIN_VERSION "5.68")
-    set(KExiv2_MIN_VERSION "5.0.0")
-    #FIXME: This can be set to 21.12.0 when Ubuntu LTS et al include this version.
-    set(Marble_MIN_VERSION "")
-endif()
 
 # Create a debugMode.h file according to the requested CMAKE_BUILD_TYPE
 if (CMAKE_BUILD_TYPE MATCHES Debug)
@@ -52,11 +36,7 @@ endif()
 configure_file(${CMAKE_SOURCE_DIR}/src/debugMode.h.in ${CMAKE_BINARY_DIR}/debugMode.h)
 
 # Find Qt
-if(QT6)
-    find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
-else()
-    find_package(Qt5 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
-endif()
+find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
 set(CMAKE_AUTOMOC ON)
 add_definitions(
     -DQT_NO_CAST_FROM_ASCII
@@ -66,33 +46,19 @@ add_definitions(
     -DQT_STRICT_ITERATORS
     -DQT_NO_CONTEXTLESS_CONNECT
     -DQT_DEPRECATED_WARNINGS
-    -DQT_DISABLE_DEPRECATED_BEFORE=0x050B00
+    -DQT_DISABLE_DEPRECATED_BEFORE=0x060000
 )
 
 # Find KDE
-if(QT6)
-    find_package(KF6 ${KF_MIN_VERSION}
-        COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools ColorScheme
-        REQUIRED
-    )
-else()
-    find_package(KF5 ${KF_MIN_VERSION}
-        COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools
-        REQUIRED
-    )
-endif()
+find_package(KF6 ${KF_MIN_VERSION}
+    COMPONENTS CoreAddons I18n XmlGui ConfigWidgets Crash DocTools ColorScheme
+    REQUIRED
+)
 
 # Find KExiv2
-if(QT6)
-    find_package(KExiv2Qt6 ${KExiv2_MIN_VERSION} REQUIRED)
-    if (${KExiv2Qt6_FOUND})
-        message(STATUS "Found KExiv2 version ${KExiv2Qt6_VERSION}")
-    endif()
-else()
-    find_package(KF5KExiv2 ${KExiv2_MIN_VERSION} REQUIRED)
-    if (${KF5KExiv2_FOUND})
-        message(STATUS "Found KExiv2 version ${KF5KExiv2_VERSION}")
-    endif()
+find_package(KExiv2Qt6 ${KExiv2_MIN_VERSION} REQUIRED)
+if (${KExiv2Qt6_FOUND})
+    message(STATUS "Found KExiv2 version ${KExiv2Qt6_VERSION}")
 endif()
 
 # Find Marble
@@ -147,43 +113,24 @@ set(kgeotag_SOURCES
     ${main_ROOT}/DegreesConverter.cpp
 )
 
-if(QT6)
-    qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
-else()
-    qt5_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
-endif()
+qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
 
 # Build the executable
 add_executable(kgeotag ${kgeotag_SOURCES})
 add_dependencies(kgeotag UpdateVersion)
-if(QT6)
-    target_link_libraries(kgeotag
-        PRIVATE
-        Qt6::Widgets
-        Qt6::Network
-        KF6::CoreAddons
-        KF6::I18n
-        KF6::XmlGui
-        KF6::ConfigWidgets
-        KF6::Crash
-        KF6::ColorScheme
-        KExiv2Qt6
-        Marble
-    )
-else()
-    target_link_libraries(kgeotag
-        PRIVATE
-        Qt5::Widgets
-        Qt5::Network
-        KF5::CoreAddons
-        KF5::I18n
-        KF5::XmlGui
-        KF5::ConfigWidgets
-        KF5::Crash
-        KF5::KExiv2
-        Marble
-    )
-endif()
+target_link_libraries(kgeotag
+    PRIVATE
+    Qt6::Widgets
+    Qt6::Network
+    KF6::CoreAddons
+    KF6::I18n
+    KF6::XmlGui
+    KF6::ConfigWidgets
+    KF6::Crash
+    KF6::ColorScheme
+    KExiv2Qt6
+    Marble
+)
 
 # Documentation
 add_subdirectory(doc)
