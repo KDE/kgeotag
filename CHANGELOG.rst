@@ -62,6 +62,9 @@ Deprecated
 Removed
 =======
 
+* As current distributions don't ship the needed dependencies anymore, the support for Qt 5 and KF 5
+  has been dropped. KGeoTag is now Qt6/KF6-only.
+
 Fixed
 =====
 
