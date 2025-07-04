@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-10 02:03+0000\n"
+"POT-Creation-Date: 2025-07-04 01:58+0000\n"
 "PO-Revision-Date: 2025-03-10 12:32+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -88,35 +88,35 @@ msgstr "Guardar las preferencias"
 msgid "(Re)Assign all images"
 msgstr "(Re)asignar todas las imágenes"
 
-#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:83
+#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:83
 #: src/MainWindow.cpp:1142 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr "Búsqueda de coincidencias combinadas"
 
-#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:91
+#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:91
 #: src/SettingsDialog.cpp:136
 #, kde-format
 msgid "Search exact matches only"
 msgstr "Buscar solo coincidencias exactas"
 
-#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:97
+#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:97
 #: src/SettingsDialog.cpp:137
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr "Buscar solo coincidencias interpoladas"
 
-#: src/AutomaticMatchingWidget.cpp:169
+#: src/AutomaticMatchingWidget.cpp:163
 #, kde-format
 msgid "Exclude manually tagged images"
 msgstr "Excluir las imágenes etiquetadas manualmente"
 
-#: src/AutomaticMatchingWidget.cpp:202
+#: src/AutomaticMatchingWidget.cpp:196
 #, kde-format
 msgid "Save as default"
 msgstr "Guardar como predeterminada"
 
-#: src/AutomaticMatchingWidget.cpp:202
+#: src/AutomaticMatchingWidget.cpp:196
 #, kde-format
 msgid "Settings saved!"
 msgstr "Preferencias guardadas"
@@ -564,42 +564,42 @@ msgctxt ""
 msgid "%1%2%3"
 msgstr "%1%2%3"
 
-#: src/main.cpp:35 src/MainWindow.cpp:72
+#: src/main.cpp:32 src/MainWindow.cpp:72
 #, kde-format
 msgid "KGeoTag"
 msgstr "KGeoTag"
 
-#: src/main.cpp:37
+#: src/main.cpp:34
 #, kde-format
 msgid "Photo geotagging program"
 msgstr "Programa de geoetiquetado de fotos"
 
-#: src/main.cpp:39
+#: src/main.cpp:36
 #, kde-format
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
 msgstr "Copyright © 2020-2025 Tobias Leupold"
 
-#: src/main.cpp:44
+#: src/main.cpp:41
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:44
+#: src/main.cpp:41
 #, kde-format
 msgid "Maintainer"
 msgstr "Encargado"
 
-#: src/main.cpp:51
+#: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
 msgstr "Archivos/carpetas"
 
-#: src/main.cpp:52
+#: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr "Archivos y carpetas a cargar durante el inicio"
 
-#: src/main.cpp:53
+#: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[archivos/carpetas…]"

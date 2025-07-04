@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-10 02:03+0000\n"
+"POT-Creation-Date: 2025-07-04 01:58+0000\n"
 "PO-Revision-Date: 2024-04-16 18:34+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -85,35 +85,35 @@ msgstr "儲存設定"
 msgid "(Re)Assign all images"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:83
+#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:83
 #: src/MainWindow.cpp:1142 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:91
+#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:91
 #: src/SettingsDialog.cpp:136
 #, kde-format
 msgid "Search exact matches only"
 msgstr "只搜尋完全符合處"
 
-#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:97
+#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:97
 #: src/SettingsDialog.cpp:137
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:169
+#: src/AutomaticMatchingWidget.cpp:163
 #, kde-format
 msgid "Exclude manually tagged images"
 msgstr "排除手動標記的影像"
 
-#: src/AutomaticMatchingWidget.cpp:202
+#: src/AutomaticMatchingWidget.cpp:196
 #, kde-format
 msgid "Save as default"
 msgstr "儲存為預設值"
 
-#: src/AutomaticMatchingWidget.cpp:202
+#: src/AutomaticMatchingWidget.cpp:196
 #, kde-format
 msgid "Settings saved!"
 msgstr "設定已儲存！"
@@ -555,43 +555,43 @@ msgctxt ""
 msgid "%1%2%3"
 msgstr "%1%2%3"
 
-#: src/main.cpp:35 src/MainWindow.cpp:72
+#: src/main.cpp:32 src/MainWindow.cpp:72
 #, kde-format
 msgid "KGeoTag"
 msgstr "KGeoTag"
 
-#: src/main.cpp:37
+#: src/main.cpp:34
 #, kde-format
 msgid "Photo geotagging program"
 msgstr "相片地理位置標記工具"
 
-#: src/main.cpp:39
+#: src/main.cpp:36
 #, fuzzy, kde-format
 #| msgid "Copyright (C) 2020-2024 Tobias Leupold"
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
 msgstr "版權所有 (C) 2020-2024 Tobias Leupold"
 
-#: src/main.cpp:44
+#: src/main.cpp:41
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:44
+#: src/main.cpp:41
 #, kde-format
 msgid "Maintainer"
 msgstr "維護者"
 
-#: src/main.cpp:51
+#: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
 msgstr "檔案/資料夾"
 
-#: src/main.cpp:52
+#: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr ""
 
-#: src/main.cpp:53
+#: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
 msgstr "[檔案/資料夾...]"
