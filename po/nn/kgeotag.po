@@ -5,7 +5,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-03-10 02:03+0000\n"
+"POT-Creation-Date: 2025-07-04 01:58+0000\n"
 "PO-Revision-Date: 2020-11-14 14:45+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -84,35 +84,35 @@ msgstr "Lagra innstillingar"
 msgid "(Re)Assign all images"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:150 src/ImagesListView.cpp:83
+#: src/AutomaticMatchingWidget.cpp:144 src/ImagesListView.cpp:83
 #: src/MainWindow.cpp:1142 src/SettingsDialog.cpp:135
 #, kde-format
 msgid "Combined match search"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:157 src/ImagesListView.cpp:91
+#: src/AutomaticMatchingWidget.cpp:151 src/ImagesListView.cpp:91
 #: src/SettingsDialog.cpp:136
 #, kde-format
 msgid "Search exact matches only"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:162 src/ImagesListView.cpp:97
+#: src/AutomaticMatchingWidget.cpp:156 src/ImagesListView.cpp:97
 #: src/SettingsDialog.cpp:137
 #, kde-format
 msgid "Search interpolated matches only"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:169
+#: src/AutomaticMatchingWidget.cpp:163
 #, kde-format
 msgid "Exclude manually tagged images"
 msgstr ""
 
-#: src/AutomaticMatchingWidget.cpp:202
+#: src/AutomaticMatchingWidget.cpp:196
 #, kde-format
 msgid "Save as default"
 msgstr "Lagra som standard"
 
-#: src/AutomaticMatchingWidget.cpp:202
+#: src/AutomaticMatchingWidget.cpp:196
 #, kde-format
 msgid "Settings saved!"
 msgstr ""
@@ -549,42 +549,42 @@ msgctxt ""
 msgid "%1%2%3"
 msgstr ""
 
-#: src/main.cpp:35 src/MainWindow.cpp:72
+#: src/main.cpp:32 src/MainWindow.cpp:72
 #, kde-format
 msgid "KGeoTag"
 msgstr "KGeoTag"
 
-#: src/main.cpp:37
+#: src/main.cpp:34
 #, kde-format
 msgid "Photo geotagging program"
 msgstr "Program for geografisk stadfesting av foto"
 
-#: src/main.cpp:39
+#: src/main.cpp:36
 #, kde-format
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
 msgstr ""
 
-#: src/main.cpp:44
+#: src/main.cpp:41
 #, kde-format
 msgid "Tobias Leupold"
 msgstr "Tobias Leupold"
 
-#: src/main.cpp:44
+#: src/main.cpp:41
 #, kde-format
 msgid "Maintainer"
 msgstr "Vedlikehaldar"
 
-#: src/main.cpp:51
+#: src/main.cpp:48
 #, kde-format
 msgid "Files/Folders"
 msgstr ""
 
-#: src/main.cpp:52
+#: src/main.cpp:49
 #, kde-format
 msgid "Files and/or folders to load at startup"
 msgstr ""
 
-#: src/main.cpp:53
+#: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
 msgstr ""
