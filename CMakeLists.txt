@@ -28,6 +28,13 @@ include(KDECMakeSettings)
 include(KDECompilerSettings NO_POLICY_SCOPE)
 include(ECMInstallIcons)
 
+# Create a debugMode.h file according to the requested CMAKE_BUILD_TYPE
+if (CMAKE_BUILD_TYPE MATCHES Debug)
+    message(STATUS "Enabling extra checks for CMAKE_BUILD_TYPE=Debug mode")
+    set(DEBUG_MODE ON)
+endif()
+configure_file(${CMAKE_SOURCE_DIR}/src/debugMode.h.in ${CMAKE_BINARY_DIR}/debugMode.h)
+
 # Find Qt
 find_package(Qt6 ${QT_MIN_VERSION} COMPONENTS Widgets Network REQUIRED)
 set(CMAKE_AUTOMOC ON)
@@ -70,17 +77,47 @@ add_custom_target(
     BYPRODUCTS ${CMAKE_BINARY_DIR}/version.h
 )
 
-# Generate debugMode.h according to the requested CMAKE_BUILD_TYPE
-if (CMAKE_BUILD_TYPE MATCHES Debug)
-    message(STATUS "Enabling extra checks for CMAKE_BUILD_TYPE=Debug mode")
-    set(DEBUG_MODE ON)
-endif()
-configure_file(${CMAKE_SOURCE_DIR}/src/debugMode.h.in ${CMAKE_BINARY_DIR}/debugMode.h)
+# Source files
+set(main_ROOT ${CMAKE_SOURCE_DIR}/src)
+set(kgeotag_SOURCES
+    ${main_ROOT}/main.cpp
+    ${main_ROOT}/SharedObjects.cpp
+    ${main_ROOT}/Settings.cpp
+    ${main_ROOT}/MainWindow.cpp
+    ${main_ROOT}/PreviewWidget.cpp
+    ${main_ROOT}/MapWidget.cpp
+    ${main_ROOT}/ImagePreview.cpp
+    ${main_ROOT}/SettingsDialog.cpp
+    ${main_ROOT}/FixDriftWidget.cpp
+    ${main_ROOT}/GpxEngine.cpp
+    ${main_ROOT}/ElevationEngine.cpp
+    ${main_ROOT}/BookmarksList.cpp
+    ${main_ROOT}/BookmarksWidget.cpp
+    ${main_ROOT}/CoordinatesDialog.cpp
+    ${main_ROOT}/CoordinatesFormatter.cpp
+    ${main_ROOT}/CoordinatesParser.cpp
+    ${main_ROOT}/RetrySkipAbortDialog.cpp
+    ${main_ROOT}/ImagesModel.cpp
+    ${main_ROOT}/ImagesListView.cpp
+    ${main_ROOT}/ImagesListFilter.cpp
+    ${main_ROOT}/Coordinates.cpp
+    ${main_ROOT}/AutomaticMatchingWidget.cpp
+    ${main_ROOT}/MimeHelper.cpp
+    ${main_ROOT}/ImagesLayer.cpp
+    ${main_ROOT}/TracksLayer.cpp
+    ${main_ROOT}/MapCenterInfo.cpp
+    ${main_ROOT}/GeoDataModel.cpp
+    ${main_ROOT}/TracksListView.cpp
+    ${main_ROOT}/TrackWalker.cpp
+    ${main_ROOT}/Logging.cpp
+    ${main_ROOT}/DegreesConverter.cpp
+)
+
+qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
 
 # Build the executable
 add_executable(kgeotag ${kgeotag_SOURCES})
 add_dependencies(kgeotag UpdateVersion)
-add_subdirectory(src)
 target_link_libraries(kgeotag
     PRIVATE
     Qt6::Widgets
@@ -94,9 +131,6 @@ target_link_libraries(kgeotag
     KExiv2Qt6
     Marble
 )
-
-# Resources
-qt6_add_resources(kgeotag_SOURCES ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
 
 # Documentation
 add_subdirectory(doc)
