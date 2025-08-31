@@ -201,7 +201,7 @@ msgstr "Etiqueta nova per a l'adreça d'interés «%1»:"
 #: src/BookmarksList.cpp:202
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr "L'etiqueta «%1» ja es troba en ús. Seleccioneu un altre nom."
+msgstr "L'etiqueta «%1» ja es troba en ús. Trieu un altre nom."
 
 #: src/BookmarksList.cpp:217
 #, kde-format
@@ -459,12 +459,12 @@ msgstr "En guardar esmena les dates i hores en els fitxers"
 #: src/ImagesListView.cpp:62
 #, kde-format
 msgid "Select all images"
-msgstr "Selecciona totes les imatges"
+msgstr "Tria totes les imatges"
 
 #: src/ImagesListView.cpp:66
 #, kde-format
 msgid "Select"
-msgstr "Selecciona"
+msgstr "Tria"
 
 #: src/ImagesListView.cpp:68 src/MainWindow.cpp:115
 #, kde-format
@@ -650,7 +650,7 @@ msgstr "(Re)Assigna al centre del mapa"
 #: src/MainWindow.cpp:148
 #, kde-format
 msgid "Automatically select next untagged image"
-msgstr "Selecciona automàticament la imatge següent sense etiqueta"
+msgstr "Tria automàticament la imatge següent sense etiqueta"
 
 #: src/MainWindow.cpp:158
 #, kde-format
@@ -749,7 +749,7 @@ msgstr ""
 #: src/MainWindow.cpp:468
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
-msgstr "Seleccioneu les imatges i/o trajectes GPX que s'han d'afegir"
+msgstr "Trieu les imatges i/o trajectes GPX que s'han d'afegir"
 
 #: src/MainWindow.cpp:470
 #, kde-format
@@ -788,7 +788,7 @@ msgstr[1] ""
 #: src/MainWindow.cpp:545
 #, kde-format
 msgid "Please select a folder"
-msgstr "Seleccioneu una carpeta"
+msgstr "Trieu una carpeta"
 
 #: src/MainWindow.cpp:576
 #, kde-format
@@ -1528,7 +1528,7 @@ msgstr "Assigna la selecció"
 #: src/MainWindow.cpp:1791
 #, kde-format
 msgid "Please select one or more images"
-msgstr "Seleccioneu una o més imatges"
+msgstr "Trieu una o més imatges"
 
 #: src/MapCenterInfo.cpp:48
 #, kde-format
