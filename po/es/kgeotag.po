@@ -1,15 +1,15 @@
 # Spanish translations for kgeotag.po package.
-# Copyright (C) 2020 This file is copyright:
+# Copyright (C) 2020-2025 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-#
 # Automatically generated, 2020.
+#
 # SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Eloy Cuadra <ecuadra@eloihr.net>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-07-04 01:58+0000\n"
-"PO-Revision-Date: 2025-03-10 12:32+0100\n"
+"PO-Revision-Date: 2025-09-20 22:03+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 24.12.2\n"
+"X-Generator: Lokalize 25.08.1\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1962,7 +1962,7 @@ msgstr "Crear copias de seguridad antes de modificar archivos"
 #: src/SettingsDialog.cpp:360
 #, kde-format
 msgid "Opacity: %1%"
-msgstr "Opacidad: %1%"
+msgstr "Opacidad: %1 %"
 
 #: src/SettingsDialog.cpp:407
 #, kde-format
@@ -2000,166 +2000,3 @@ msgstr[1] "%1 puntos de pista"
 #, kde-format
 msgid "Selected trackpoint %1 of %2"
 msgstr "Seleccionado punto de pista %1 de %2"
-
-#~ msgid "Coordinates copied!"
-#~ msgstr "Coordenadas copiadas."
-
-#~ msgctxt "Keyboard shortcut for \"add images and/or GPX tracks\""
-#~ msgid "Ctrl+F"
-#~ msgstr "Ctrl+F"
-
-#~ msgctxt "Keyboard shortcut for \"Add all images and tracks from a folder\""
-#~ msgid "Ctrl+D"
-#~ msgstr "Ctrl+D"
-
-#~ msgctxt "Keyboard shortcut for \"All images and tracks (reset)\""
-#~ msgid "Ctrl+R"
-#~ msgstr "Ctrl+R"
-
-#~ msgctxt ""
-#~ "Keyboard shortcut for \"Correlate images with GPS data (search matches)\""
-#~ msgid "Ctrl+M"
-#~ msgstr "Ctrl+M"
-
-#~ msgctxt "Keyboard shortcut for \"(Re-)Assign to map center\""
-#~ msgid "Ctrl+C"
-#~ msgstr "Ctrl+C"
-
-#~ msgctxt "Keyboard shortcut for \"Save changed images\""
-#~ msgid "Ctrl+S"
-#~ msgstr "Ctrl+S"
-
-#~ msgctxt "Formatted latitude with a cardinal direction"
-#~ msgid "%1° %2"
-#~ msgstr "%1° %2"
-
-#~ msgid "Search type for the main menu \"Assign images to GPS data\" entry"
-#~ msgstr ""
-#~ "Tipo de búsqueda para la entrada del menú principal «Asignar imágenes a "
-#~ "datos GPS»"
-
-#~ msgid "All images have been removed!"
-#~ msgstr "Se han eliminado todas las imágenes."
-
-#~ msgid "GPX tracks (*.gpx);; All files (*)"
-#~ msgstr "Pistas GPX (*.gpx);; Todos los archivos (*)"
-
-#~ msgid ""
-#~ "<p>Some files were removed from the load request because their file "
-#~ "format is not supported.</p>"
-#~ msgstr ""
-#~ "<p>Algunos archivos se han eliminado de la petición de carga porque su "
-#~ "formato no está permitido.</p>"
-
-#~ msgid "<p>The unsupported MIME type was: <kbd>%2</kbd></p>"
-#~ msgid_plural "<p>The unsupported MIME types were: <kbd>%2</kbd></p>"
-#~ msgstr[0] "<p>El tipo MIME no permitido es: <kbd>%2</kbd></p>"
-#~ msgstr[1] "<p>Los tipos MIME no permitidos son: <kbd>%2</kbd></p>"
-
-#~ msgid "File"
-#~ msgstr "Archivo"
-
-#~ msgid "Quit"
-#~ msgstr "Salir"
-
-#~ msgid "Settings"
-#~ msgstr "Preferencias"
-
-#~ msgid "Configure KGeoTag"
-#~ msgstr "Configurar KGeoTag"
-
-#~ msgid "<p>%1 %2!</p>%3"
-#~ msgstr "<p>%1 %2</p>%3"
-
-#~ msgid "Found one exact match%2!"
-#~ msgid_plural "Found %1 exact matches%2!"
-#~ msgstr[0] "Se ha encontrado 1 coincidencia exacta%2."
-#~ msgstr[1] "Se han encontrado %1 coincidencias exactas%2."
-
-#~ msgid " (one image had no exact match)"
-#~ msgid_plural " (%1 images had no exact match)"
-#~ msgstr[0] " (1 imagen no tiene coincidencias exactas)"
-#~ msgstr[1] " (%1 imágenes no tienen coincidencias exactas)"
-
-#~ msgctxt "Fraction of processed files"
-#~ msgid " (%1 of %2)"
-#~ msgstr " (%1 de %2)"
-
-#~ msgid "You can retry to create the backup or cancel the saving process."
-#~ msgstr ""
-#~ "Puede volver a intentar crear la copia de respaldo o cancelar el proceso "
-#~ "sin guardar los cambios."
-
-#~ msgid ""
-#~ "You can retry to create the backup, skip the current file or cancel the "
-#~ "saving process."
-#~ msgstr ""
-#~ "Puede volver a intentar crear la copia de respaldo, omitir el archivo "
-#~ "actual o cancelar el proceso sin guardar los cambios."
-
-#~ msgid " (%1/%2)"
-#~ msgstr " (%1/%2)"
-
-#~ msgid "<p>%1</p><p>%2</p>"
-#~ msgstr "<p>%1</p><p>%2</p>"
-
-#~ msgid ", one file failed"
-#~ msgid_plural ", %1 files failed"
-#~ msgstr[0] ", 1 archivo ha fallado"
-#~ msgstr[1] ", %1 archivos han fallado"
-
-#~ msgid "Could not load any images!"
-#~ msgstr "No se ha podido cargar ninguna imagen"
-
-#~ msgid ""
-#~ "<p>Could not load all images!</p><p>Successfully loaded one image of %2, "
-#~ "%3</p>"
-#~ msgid_plural ""
-#~ "<p>Could not load all images!</p><p>Successfully loaded %1 images of %2, "
-#~ "%3</p>"
-#~ msgstr[0] ""
-#~ "<p>No se han podido cargar todas las imágenes.</p><p>Se ha cargado con "
-#~ "éxito una imagen de %2, %3</p>"
-#~ msgstr[1] ""
-#~ "<p>No se han podido cargar todas las imágenes.</p><p>Se han cargado con "
-#~ "éxito %1 imágenes de %2, %3</p>"
-
-#~ msgid " (skipped one already loaded image)"
-#~ msgid_plural " (skipped %1 already loaded images)"
-#~ msgstr[0] " (se ha omitido 1 imagen ya cargada)"
-#~ msgstr[1] " (se han omitido %1 imágenes ya cargadas)"
-
-#~ msgid "JPEG Images (*.jpg *.jpeg);; All files (*)"
-#~ msgstr "Imágenes JPEG (*.jpg *.jpeg);; Todos los archivos (*)"
-
-#, fuzzy
-#~| msgid ""
-#~| "Please restart the program after changes to these values so that they "
-#~| "are applied and become visible."
-#~ msgid "Please restart the program after changing the list mode to apply it!"
-#~ msgstr ""
-#~ "Reinicie el programa tras modificar estos valores para que se puedan "
-#~ "aplicar antes de ser visibles."
-
-#~ msgid ""
-#~ "Show two image lists: One for unassigned images and\n"
-#~ "one for assigned ones instead of one list for all"
-#~ msgstr ""
-#~ "Mostrar dos listas de imágenes, una con las imágenes sin asignar\n"
-#~ "y otra con las asignadas, en lugar de una lista con todas."
-
-#~ msgid "1 exact match found!"
-#~ msgid_plural "%1 exact matches found!"
-#~ msgstr[0] "Se ha encontrado 1 coincidencia exacta."
-#~ msgstr[1] "Se han encontrado %1 coincidencias exactas."
-
-#~ msgid "1 interpolated match found!"
-#~ msgid_plural "%1 interpolated matches found!"
-#~ msgstr[0] "Se ha encontrado 1 coincidencia interpolada."
-#~ msgstr[1] "Se han encontrado %1 coincidencias interpoladas."
-
-#~ msgid "GPX tracks (*.gpx)"
-#~ msgstr "Pistas GPX (*.gpx)"
-
-#~ msgid "Add GPX file"
-#~ msgstr "Añadir archivo GPX"
