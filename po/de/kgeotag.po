@@ -574,10 +574,9 @@ msgid "Photo geotagging program"
 msgstr "Anwendung zum Geotaggen von Fotos"
 
 #: src/main.cpp:36
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2022 Tobias Leupold"
+#, kde-format
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
-msgstr "Copyright (C) 2020-2022 Tobias Leupold"
+msgstr "© 2020–2025 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
