@@ -84,7 +84,9 @@ add_executable(kgeotag)
 add_dependencies(kgeotag UpdateVersion)
 
 # Add resources
-qt_add_resources(kgeotag ${CMAKE_SOURCE_DIR}/kgeotag.qrc)
+target_sources(kgeotag PRIVATE
+    ${CMAKE_SOURCE_DIR}/kgeotag.qrc
+)
 
 # Add source files
 add_subdirectory(src)
