@@ -1,13 +1,13 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024 Vit Pelcak <vit@pelcak.org>
+# SPDX-FileCopyrightText: 2021, 2022, 2023, 2024, 2025 Vit Pelcak <vit@pelcak.org>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:00+0000\n"
-"PO-Revision-Date: 2024-10-18 11:27+0200\n"
+"PO-Revision-Date: 2025-12-03 11:30+0100\n"
 "Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
 "Language-Team: Czech <kde-i18n-doc@kde.org>\n"
 "Language: cs\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.08.2\n"
+"X-Generator: Lokalize 25.08.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -561,7 +561,7 @@ msgstr ""
 #: src/main.cpp:36
 #, kde-format
 msgid "Copyright (C) 2020-2025 Tobias Leupold"
-msgstr ""
+msgstr "Autorská práva (C) 2020-2025 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -641,7 +641,7 @@ msgstr ""
 #: src/MainWindow.cpp:159
 #, kde-format
 msgid "Save the metadata of all changed images"
-msgstr ""
+msgstr "Uložit metadata všech změněných souborů"
 
 #: src/MainWindow.cpp:169
 #, kde-format
@@ -1448,7 +1448,7 @@ msgstr "Současný střed mapy"
 #: src/MapWidget.cpp:142
 #, kde-format
 msgid "Copy formatted coordinates"
-msgstr ""
+msgstr "Kopírovat formátované souřadnice"
 
 #: src/MapWidget.cpp:147 src/MapWidget.cpp:157
 #, kde-format
@@ -1458,12 +1458,12 @@ msgstr "Kopírovat souřadnice do schránky"
 #: src/MapWidget.cpp:148 src/MapWidget.cpp:158
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr ""
+msgstr "\"%1\" zkopírováno do schránky."
 
 #: src/MapWidget.cpp:152
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr ""
+msgstr "Zkopírovat jako \"šířka, délka\""
 
 #: src/MapWidget.cpp:163
 #, kde-format
