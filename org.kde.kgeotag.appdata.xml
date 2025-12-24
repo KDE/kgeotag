@@ -39,6 +39,7 @@
   <name xml:lang="tr">KGeoTag</name>
   <name xml:lang="uk">KGeoTag</name>
   <name xml:lang="zh-CN">KGeoTag</name>
+  <name xml:lang="zh-TW">KGeoTag</name>
   <developer id="org.kde">
     <name translate="no">KDE</name>
   </developer>
@@ -72,6 +73,7 @@
   <summary xml:lang="tr">Coğrafi Fotoğraf Etiketleyicisi</summary>
   <summary xml:lang="uk">Програма для роботи з геомітками фотографій</summary>
   <summary xml:lang="zh-CN">照片地理标签管理程序</summary>
+  <summary xml:lang="zh-TW">相片地理位置標記工具</summary>
   <description>
     <p>KGeoTag is a standalone geotagging program. Images can be associated with geographic coordinates by different means: On the one hand, a matching with GPX encoded geodata can be done, on the other hand, the coordinates can be set manually, either via drag and drop onto a map, via bookmarks or by manually supplying them. The coordinates can be stored in the images' Exif header and/or in XMP sidecar files.</p>
     <p xml:lang="ar">وسم الجغرافي هو برنامج مستقل لوضع العلامات الجغرافية. يمكن ربط الصور بالإحداثيات الجغرافية بطرق مختلفة: من ناحية، يمكن إجراء مطابقة مع البيانات الجغرافية المشفرة بواسطة GPX، ومن ناحية أخرى، يمكن تعيين الإحداثيات يدويًا، إما عن طريق السحب والإفلات على الخريطة، أو عن طريق الإشارات المرجعية، أو عن طريق إدخالها يدويًا. يمكن تخزين الإحداثيات في رأس Exif للصور و/أو في ملفات XMP sidecar.</p>
@@ -130,6 +132,7 @@
       <caption xml:lang="tr">KGeoTag ile coğrafya etiketleme</caption>
       <caption xml:lang="uk">Геопозиціювання за допомогою KGeoTag</caption>
       <caption xml:lang="zh-CN">使用 KGeoTag 管理地理位置标签</caption>
+      <caption xml:lang="zh-TW">用 KGeoTag 進行地理位置標記</caption>
     </screenshot>
   </screenshots>
   <url type="homepage">https://kgeotag.kde.org/</url>
