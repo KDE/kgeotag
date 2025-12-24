@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:00+0000\n"
-"PO-Revision-Date: 2025-12-22 18:01+0300\n"
+"PO-Revision-Date: 2025-12-23 12:41+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -592,7 +592,7 @@ msgstr "Başlangıçta yüklenecek dosyalar ve/veya klasörler"
 #: src/main.cpp:50
 #, kde-format
 msgid "[files/folders...]"
-msgstr "[dosyalar/klasörler...]"
+msgstr "[dosyalar/klasörler…]"
 
 #: src/MainWindow.cpp:87 src/MainWindow.cpp:526
 #, kde-format
@@ -991,7 +991,7 @@ msgstr ""
 #: src/MainWindow.cpp:787
 #, kde-format
 msgid "Loading images ..."
-msgstr "Görseller yükleniyor ..."
+msgstr "Görseller yükleniyor…"
 
 #: src/MainWindow.cpp:787 src/MainWindow.cpp:1083 src/MainWindow.cpp:1290
 #, kde-format
@@ -1187,7 +1187,7 @@ msgstr ""
 #: src/MainWindow.cpp:1083
 #, kde-format
 msgid "Assigning images ..."
-msgstr "Görseller atanıyor ..."
+msgstr "Görseller atanıyor…"
 
 #: src/MainWindow.cpp:1147
 #, kde-format
@@ -1329,7 +1329,7 @@ msgstr "Yapılacak bir şey yok"
 #: src/MainWindow.cpp:1290
 #, kde-format
 msgid "Saving changes ..."
-msgstr "Değişiklikler kaydediliyor ..."
+msgstr "Değişiklikler kaydediliyor…"
 
 #: src/MainWindow.cpp:1312
 #, kde-format
