@@ -7,16 +7,16 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:00+0000\n"
-"PO-Revision-Date: 2025-12-19 11:05+0200\n"
+"PO-Revision-Date: 2025-12-24 16:55+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
-"n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Poedit 3.8\n"
+"Plural-Forms: nplurals=4; plural=(n==1 ? 0 : n==2 ? 1 : n>10 && n%10==0 ? "
+"2 : 3);\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -852,10 +852,10 @@ msgstr[3] ""
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "הטעינה של אחד הקבצים נכשלה"
+msgstr[1] "הטעינה של שניים מהקבצים נכשלה"
+msgstr[2] "הטעינה של %1 מהקבצים נכשלה"
+msgstr[3] "הטעינה של %1 מהקבצים נכשלה"
 
 #: src/MainWindow.cpp:693
 #, kde-format
@@ -895,7 +895,7 @@ msgstr[3] ""
 #: src/MainWindow.cpp:709
 #, kde-format
 msgid "<p>No waypoints could be loaded.</p>"
-msgstr ""
+msgstr "<p>לא ניתן לטעון את נקודות הביניים.</p>"
 
 #: src/MainWindow.cpp:715
 #, kde-format
@@ -905,16 +905,16 @@ msgctxt ""
 "call."
 msgid "<p>Loaded one waypoint from %2</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>נטענה נקודת ביניים מתוך %2</p>"
+msgstr[1] "<p>נטענו שתי נקודות ביניים מתוך %2</p>"
+msgstr[2] "<p>נטענו %1 נקודות ביניים מתוך %2</p>"
+msgstr[3] "<p>נטענו %1 נקודות ביניים מתוך %2</p>"
 
 #: src/MainWindow.cpp:718 src/MainWindow.cpp:727
 #, kde-format
 msgid "one track"
 msgid_plural "%1 tracks"
-msgstr[0] "מסלול"
+msgstr[0] "מסלול אחד"
 msgstr[1] "שני מסלולים"
 msgstr[2] "%1 מסלולים"
 msgstr[3] "%1 מסלולים"
@@ -927,10 +927,10 @@ msgctxt ""
 "the one for the segments (%3) are provided by the following i18np calls."
 msgid "<p>Loaded one waypoint from %2 and %3</p>"
 msgid_plural "<p>Loaded %1 waypoints from %2 and %3</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>נטענה נקודת ביניים מתוך %2 ו־%3</p>"
+msgstr[1] "<p>נטענו שתי נקודות ביניים מתוך %2 ו־%3</p>"
+msgstr[2] "<p>נטענו %1 נקודות ביניים מתוך %2 ו־%3</p>"
+msgstr[3] "<p>נטענו %1 נקודות ביניים מתוך %2 ו־%3</p>"
 
 #: src/MainWindow.cpp:728
 #, kde-format
@@ -983,6 +983,9 @@ msgid ""
 "</p><p>You can adjust the timezone setting manually on the \"Fix time drift"
 "\" page.</p>"
 msgstr ""
+"<p>קובץ ה־GPX הוקלט כנראה באזור הזמן „%1”, כמו התמונה שמשויכת אליו. אזור "
+"הזמן הזה נבחר כעת.</p><p>אפשר לכוון את אזור הזמן ידנית דרך העמוד „תיקון "
+"סטיית זמן”.</p>"
 
 #: src/MainWindow.cpp:787
 #, kde-format
@@ -1015,6 +1018,8 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%1</kbd>.</p>"
 msgstr ""
+"<p><b>טעינת כותרת ה־Exif או קובץ ה־XMP הנלווה נכשלה</b></p><p>לא ניתן לקרוא "
+"את <kbd>%1</kbd>.</p>"
 
 #: src/MainWindow.cpp:834
 #, kde-format
@@ -1023,6 +1028,8 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%2</kbd>.</p>"
 msgstr ""
+"<p><b>טעינת כותרת ה־Exif או קובץ ה־XMP הנלווה נכשלה</b></p><p>לא ניתן לקרוא "
+"את <kbd>%2</kbd>.</p>"
 
 #: src/MainWindow.cpp:846
 #, kde-format
@@ -1030,6 +1037,7 @@ msgid ""
 "<p>Please check if this file is actually a supported image and if you have "
 "read access to it.</p>"
 msgstr ""
+"<p>נא לבדוק האם הקובץ הזה הוא סוג תמונה נתמך והאם יש לך הרשאה לקרוא אותו.</p>"
 
 #: src/MainWindow.cpp:850
 #, kde-format
@@ -1235,10 +1243,10 @@ msgstr[3] ""
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "שמתוכן לתמונה אחת כבר מוקצות נקודות ציון"
+msgstr[1] "שמתוכן לשתי תמונות כבר מוקצות נקודות ציון"
+msgstr[2] "שמתוכן ל־%1 תמונות כבר מוקצות נקודות ציון"
+msgstr[3] "שמתוכן ל־%1 תמונות כבר מוקצות נקודות ציון"
 
 #: src/MainWindow.cpp:1166
 #, kde-format
@@ -1299,10 +1307,10 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image had no interpolated match (%2).</p>"
 msgid_plural "<p>%1 images had no interpolated match (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>לתמונה אחת לא הייתה תוצאה מבוינת (%2).</p>"
+msgstr[1] "<p>לשתי תמונות לא הייתה תוצאה מבוינת (%2).</p>"
+msgstr[2] "<p>ל־%1 תמונות לא הייתה תוצאה מבוינת (%2).</p>"
+msgstr[3] "<p>ל־%1 תמונות לא הייתה תוצאה מבוינת (%2).</p>"
 
 #: src/MainWindow.cpp:1210
 #, kde-format
@@ -1364,6 +1372,8 @@ msgid ""
 "file still exists and if you have read access to it (and possibly also to an "
 "existing XMP sidecar file).</p>"
 msgstr ""
+"<p>לא ניתן לקרוא את נתוני העל מתוך <kbd>%1</kbd>.</p><p>נא לבדוק אם הקובץ "
+"הזה עדיין קיים ושיש לך גישת קריאה אליו (ואולי גם לקובץ XMP נלווה קיים).</p>"
 
 #: src/MainWindow.cpp:1427
 #, kde-format
@@ -1448,10 +1458,13 @@ msgid ""
 msgid_plural ""
 "At least one of the images has pending changes. Do you really want to remove "
 "them and discard all changes?"
-msgstr[0] ""
+msgstr[0] "יש שינויים ממתינים בתמונה! להסיר אותה ולסלק את השינויים?"
 msgstr[1] ""
+"יש שינויים ממתינים באחת מהתמונות לפחות! להסיר אותן ולסלק את כל השינויים?"
 msgstr[2] ""
+"יש שינויים ממתינים באחת מהתמונות לפחות! להסיר אותן ולסלק את כל השינויים?"
 msgstr[3] ""
+"יש שינויים ממתינים באחת מהתמונות לפחות! להסיר אותן ולסלק את כל השינויים?"
 
 #: src/MainWindow.cpp:1647 src/MainWindow.cpp:1655
 #, kde-format
@@ -1860,13 +1873,13 @@ msgstr "SRTM ‏(90 מ׳)"
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "EMODnet 2018 Bathymetry"
-msgstr ""
+msgstr "EMODnet 2018 Bathymetry"
 
 #: src/SettingsDialog.cpp:269
 #, kde-format
 msgctxt "opentopodata.org elevation dataset"
 msgid "GEBCO 2020 Bathymetry"
-msgstr ""
+msgstr "GEBCO 2020 Bathymetry"
 
 #: src/SettingsDialog.cpp:279
 #, kde-format
