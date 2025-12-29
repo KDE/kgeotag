@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:00+0000\n"
-"PO-Revision-Date: 2025-12-26 09:19+0200\n"
+"PO-Revision-Date: 2025-12-28 10:04+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -883,10 +883,10 @@ msgstr[3] ""
 #, kde-format
 msgid "one already loaded file has been skipped"
 msgid_plural "%1 already loaded files have been skipped"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "קובץ שכבר נטען נפסח"
+msgstr[1] "שני קבצים שכבר נטענו נפסחו"
+msgstr[2] "%1 קבצים שכבר נטענו נפסחו"
+msgstr[3] "%1 קבצים שכבר נטענו נפסחו"
 
 #: src/MainWindow.cpp:701
 #, kde-format
@@ -962,6 +962,8 @@ msgid ""
 "file could not be detected.</p><p>Please set the correct timezone manually "
 "on the \"Fix time drift\" page.</p>"
 msgstr ""
+"<p>לא ניתן לזהות את אזור הזמן הנכון לכאורה לתמונות שמשויכות לקובץ ה־GPX.</"
+"p><p>נא להגדיר את אזור הזמן הנכון ידנית בעמוד „תיקון סטיית זמן”.</p>"
 
 #: src/MainWindow.cpp:750
 #, kde-format
@@ -1243,10 +1245,10 @@ msgctxt ""
 "following i18np call"
 msgid "<p>One image could not be matched (%2).</p>"
 msgid_plural "<p>%1 images could not be matched (%2).</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>לאחת מהתמונות לא נמצאה התאמה (%2).</p>"
+msgstr[1] "<p>לשתיים מהתמונות לא נמצאה התאמה (%2).</p>"
+msgstr[2] "<p>ל־%1 מהתמונות לא נמצאה התאמה (%2).</p>"
+msgstr[3] "<p>ל־%1 מהתמונות לא נמצאה התאמה (%2).</p>"
 
 #: src/MainWindow.cpp:1161 src/MainWindow.cpp:1183 src/MainWindow.cpp:1205
 #, kde-format
@@ -1698,6 +1700,8 @@ msgid ""
 "coordinates display is updated the next time. Restart KGeoTag to update "
 "everything at once."
 msgstr ""
+"שינויים למבנה נקודות הציון משפיע עם העדכון הבא של תצוגת נקודות הציון "
+"התואמות. יש להפעיל את KGeoTag מחדש כדי לעדכן הכול בבת אחת."
 
 #: src/SettingsDialog.cpp:98
 #, kde-format
@@ -1711,6 +1715,8 @@ msgid ""
 "images without and one for images with coordinates), or using a combined "
 "consecutive list for all images."
 msgstr ""
+"טעינת תמונות יכולה להופיע בשתי רשימות שונות (אחת לתמונות ללא נקודות ציון "
+"והשנייה עם), או להשתמש ברשימה משולבת רציפה לכל התמונות."
 
 #: src/SettingsDialog.cpp:109
 #, kde-format
