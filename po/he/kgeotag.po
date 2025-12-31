@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:00+0000\n"
-"PO-Revision-Date: 2025-12-28 10:04+0200\n"
+"PO-Revision-Date: 2025-12-30 09:38+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -839,10 +839,10 @@ msgstr "טעינת נתוני GPX"
 #, kde-format
 msgid "<p>Processed one file</p>"
 msgid_plural "<p>Processed %1 files</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>קובץ אחד טופל</p>"
+msgstr[1] "<p>שני קבצים טופלו</p>"
+msgstr[2] "<p>%1 קבצים טופלו</p>"
+msgstr[3] "<p>%1 קבצים טופלו</p>"
 
 #: src/MainWindow.cpp:686
 #, kde-format
@@ -852,10 +852,10 @@ msgctxt ""
 "following i18np call."
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>קובץ אחד טופל, %2</p>"
+msgstr[1] "<p>שני קבצים טופלו, %2</p>"
+msgstr[2] "<p>%1 קבצים טופלו, %2</p>"
+msgstr[3] "<p>%1 קבצים טופלו, %2</p>"
 
 #: src/MainWindow.cpp:688 src/MainWindow.cpp:703
 #, kde-format
@@ -874,10 +874,10 @@ msgctxt ""
 "following i18np call."
 msgid "<p>Processed one file; %2</p>"
 msgid_plural "<p>Processed %1 files; %2</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>קובץ אחד טופל, %2</p>"
+msgstr[1] "<p>שני קבצים טופלו, %2</p>"
+msgstr[2] "<p>%1 קבצים טופלו, %2</p>"
+msgstr[3] "<p>%1 קבצים טופלו, %2</p>"
 
 #: src/MainWindow.cpp:695 src/MainWindow.cpp:704
 #, kde-format
@@ -896,10 +896,10 @@ msgctxt ""
 "files counter (%3) are provided by the following i18np call."
 msgid "<p>Processed one file; %2, %3</p>"
 msgid_plural "<p>Processed %1 files; %2, %3</p>"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
-msgstr[3] ""
+msgstr[0] "<p>קובץ אחד טופל, %2, %3</p>"
+msgstr[1] "<p>שני קבצים טופלו, %2, %3</p>"
+msgstr[2] "<p>%1 קבצים טופלו, %2, %3</p>"
+msgstr[3] "<p>%1 קבצים טופלו, %2, %3</p>"
 
 #: src/MainWindow.cpp:709
 #, kde-format
@@ -980,6 +980,11 @@ msgid ""
 "p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
 "page.</p>"
 msgstr ""
+"<p>אזור הזמן הנכון לכאורה „%1” זוהה מתוך קובץ ה־GPX שנטען אך לא ניתן להגדיר "
+"אותו. זה לא מצב שאמור לקרות!</p><p>נא להגיש דוח תקלה על כך, כולל הגרסה "
+"המותקנת של KGeoTag ונתוני אזור הזמן של המערכת (החבילה שהקובץ <kbd>/usr/share/"
+"zoneinfo</kbd> בבעלותה).</p><p>אפשר להתאים את הגדרת אזור הזמן ידנית דרך "
+"העמוד „תיקון סטיית זמן”.</p>"
 
 #: src/MainWindow.cpp:760
 #, kde-format
@@ -1508,6 +1513,8 @@ msgid ""
 "changes will be discarded if all images are removed now.</p><p>Do you really "
 "want to remove all images anyway?</p>"
 msgstr ""
+"<p>יש שינויים ממתינים לתמונות שלא נשמרו עדיין. כל השינויים יסולקו אם כל "
+"התמונות תוסרנה כעת.</p><p>להסיר את כל התמונות בכל מקרה?</p>"
 
 #: src/MainWindow.cpp:1728
 #, kde-format
@@ -1903,6 +1910,8 @@ msgid ""
 "a> for further information about the available datasets, like the respective "
 "coverage!"
 msgstr ""
+"אפשר לפנות אל <a href=\"https://www.opentopodata.org/\">https://www."
+"opentopodata.org/</a> לקבלת מידע על סדרות הנתונים הזמינות, כמו הכיסוי התואם!"
 
 #: src/SettingsDialog.cpp:287
 #, kde-format
@@ -1947,6 +1956,10 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
+"<b>זהירות!</b> זאת יכולת ניסיונית. כברירת מחדל, ללא קשר להגדרה „לכתוב את "
+"השינויים אל”, כל השינויים לתמונות גולמיות/RAW נכתבות לקובצי XMP נלווים. חשוב "
+"לשמור על גיבויים ולבדוק שנתוני ה־Exif שלך עדיין שלמים ונכונים כשעושים בה "
+"שימוש!"
 
 #: src/SettingsDialog.cpp:330
 #, kde-format
