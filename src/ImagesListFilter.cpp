@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+// SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -21,8 +21,14 @@ ImagesListFilter::ImagesListFilter(QObject *parent, KGeoTag::ImagesListType type
 
 void ImagesListFilter::setListType(KGeoTag::ImagesListType type)
 {
+#if QT_VERSION >= QT_VERSION_CHECK(6, 10, 0)
+    beginFilterChange();
+    m_listType = type;
+    endFilterChange();
+#else
     m_listType = type;
     invalidateFilter();
+#endif
 }
 
 void ImagesListFilter::setSourceModel(QAbstractItemModel *sourceModel)
