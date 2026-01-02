@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+// SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -121,6 +121,7 @@ private: // Variables
     QDockWidget *m_unAssignedImagesDock;
     QDockWidget *m_assignedOrAllImagesDock;
     QDockWidget *m_tracksDock;
+    QDockWidget *m_searchPlacesDock;
 
     QAction *m_selectNextUntagged;
 

@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+# SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
@@ -53,6 +53,8 @@ target_sources(kgeotag PRIVATE
     ${CMAKE_CURRENT_SOURCE_DIR}/PreviewWidget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/RetrySkipAbortDialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/RetrySkipAbortDialog.h
+    ${CMAKE_CURRENT_SOURCE_DIR}/SearchPlacesWidget.cpp
+    ${CMAKE_CURRENT_SOURCE_DIR}/SearchPlacesWidget.h
     ${CMAKE_CURRENT_SOURCE_DIR}/Settings.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SettingsDialog.cpp
     ${CMAKE_CURRENT_SOURCE_DIR}/SettingsDialog.h

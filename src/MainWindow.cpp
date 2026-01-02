@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+// SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -27,6 +27,7 @@
 #include "GeoDataModel.h"
 #include "TrackWalker.h"
 #include "Logging.h"
+#include "SearchPlacesWidget.h"
 
 // KDE includes
 #include <KActionCollection>
@@ -259,6 +260,11 @@ MainWindow::MainWindow(SharedObjects *sharedObjects)
 
     m_tracksDock = createDockWidget(i18n("Tracks"), tracksWrapper, QStringLiteral("tracksDock"));
 
+    // Search Places
+    auto *searchPlacesWidget = new SearchPlacesWidget(m_sharedObjects);
+    m_searchPlacesDock = createDockWidget(i18n("Search Places"), searchPlacesWidget,
+                                          QStringLiteral("searchPlacesDock"));
+
     // Ensure a decent dock layout if none has been saved before
     if (! restoreState(m_settings->mainWindowState())) {
         setDefaultDockArrangement();
@@ -360,7 +366,8 @@ void MainWindow::setDefaultDockArrangement()
         m_fixDriftDock,
         m_automaticMatchingDock,
         m_bookmarksDock,
-        m_mapDock
+        m_mapDock,
+        m_searchPlacesDock
     };
 
     for (auto *dock : allDocks) {
@@ -384,7 +391,8 @@ void MainWindow::setDefaultDockArrangement()
         m_previewDock,
         m_fixDriftDock,
         m_automaticMatchingDock,
-        m_bookmarksDock
+        m_bookmarksDock,
+        m_searchPlacesDock
     };
 
     for (int i = 0; i < toTabify.count() - 1; i++) {
