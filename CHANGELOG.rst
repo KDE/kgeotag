@@ -1,4 +1,4 @@
-.. SPDX-FileCopyrightText: 2021-2025 Tobias Leupold <tl@stonemx.de>
+.. SPDX-FileCopyrightText: 2021-2026 Tobias Leupold <tl@stonemx.de>
 
    SPDX-License-Identifier: CC-BY-SA-4.0
 
@@ -49,6 +49,9 @@
 
 Added
 =====
+
+* Added Marble's search functionality to search for places and retrieve their coordinates. This
+  fixes `Bug #514067 <https://bugs.kde.org/show_bug.cgi?id=514067>`_.
 
 Changed
 =======
