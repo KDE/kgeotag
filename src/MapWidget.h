@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+// SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -60,6 +60,7 @@ protected:
 private Q_SLOTS:
     void showContextMenu(int x, int y);
     void changeFloaterVisiblity(QAction *action);
+    void openWith(const QString &urlTemplate, int maxZoom);
 
 private: // Variables
     Settings *m_settings;

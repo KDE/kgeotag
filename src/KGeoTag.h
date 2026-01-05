@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2024 Tobias Leupold <tl at stonemx dot de>
+// SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -24,6 +24,9 @@ constexpr const double maximalAltitude = 8900.0;
 
 // Earth radius according to the GRS 80 ellipsoid (radius of a sphere of equal area)
 constexpr const double earthRadius = 6371007.2;
+
+// Derived mean earth circumference
+constexpr const double earthCircumference = 40030218.8;
 
 // The distance between the lines of latitude (north-south position) is always the same.
 // The distance between the lines of longitude (east-west position) depends on the latitude.

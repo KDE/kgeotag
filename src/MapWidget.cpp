@@ -1,4 +1,4 @@
-// SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+// SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 //
 // SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -35,10 +35,12 @@
 #include <QGuiApplication>
 #include <QClipboard>
 #include <QMessageBox>
+#include <QDesktopServices>
 
 // C++ includes
 #include <functional>
 #include <utility>
+#include <cmath>
 
 static QString s_licenseFloaterId = QStringLiteral("license");
 static QList<QString> s_unsupportedFloaters = {
@@ -157,6 +159,22 @@ MapWidget::MapWidget(SharedObjects *sharedObjects, QWidget *parent)
                 QMessageBox::information(this, i18n("Copy coordinates to clipboard"),
                                          i18n("Copied \"%1\" to the clipboard!", text));
             });
+
+    // Open with ...
+
+    auto *openWith = m_mapCenterMenu->addMenu(tr("Open with ..."));
+
+    auto *openStreetMap = openWith->addAction(i18n("OpenStreetMap"));
+    connect(openStreetMap, &QAction::triggered,
+            this, std::bind(&MapWidget::openWith, this,
+                QStringLiteral("https://www.openstreetmap.org/?mlat=%LAT%&mlon=%LON%#map=%ZOOM%"
+                               "/%LAT%/%LON%"), 19));
+
+    auto *googleMaps = openWith->addAction(i18n("Google Maps"));
+    connect(googleMaps, &QAction::triggered, this, std::bind(
+            &MapWidget::openWith, this,
+                QStringLiteral("https://www.google.com/maps/place/%LAT%,%LON%/@%LAT%,%LON%,"
+                               "%ZOOM%z"), 21));
 
     // Request adding a bookmark
     m_mapCenterMenu->addSeparator();
@@ -368,4 +386,51 @@ Coordinates MapWidget::currentCenter() const
                        center.latitude(Marble::GeoDataCoordinates::Degree),
                        0.0,
                        true);
+}
+
+void MapWidget::openWith(const QString &urlTemplate, int maxZoom)
+{
+    auto url = urlTemplate;
+
+    // Add the latitude and longitude
+    const auto center = currentCenter();
+    url.replace(QStringLiteral("%LAT%"), QStringLiteral("%1").arg(center.lat(), 0, 'f',
+                                                                  KGeoTag::degreesPrecision));
+    url.replace(QStringLiteral("%LON%"), QStringLiteral("%1").arg(center.lon(), 0, 'f',
+                                                                  KGeoTag::degreesPrecision));
+
+    // Calculating a proper zoom level is a bit harder ;-)
+
+    // We first calculate the meters per pixel for the current viewport
+    const auto y = viewport()->height() / 2;
+    qreal leftLon;
+    qreal leftLat;
+    qreal rightLon;
+    qreal rightLat;
+    geoCoordinates (0, y, leftLon, leftLat);
+    geoCoordinates (viewport()->width(), y, rightLon, rightLat);
+    const auto left = Marble::GeoDataCoordinates(leftLon, leftLat, 0,
+                                                 Marble::GeoDataCoordinates::Degree);
+    const auto right = Marble::GeoDataCoordinates(rightLon, rightLat, 0,
+                                                  Marble::GeoDataCoordinates::Degree);
+    const auto meterWidth = left.sphericalDistanceTo(right) * KGeoTag::earthRadius;
+    const auto metersPerPixel = meterWidth / viewport()->width();
+
+    // Zoom level 0 would mean that the whole world would fit into a 265x256 tile.
+    // The meters per pixel at zoom level z are:
+    //
+    //     mpp = earth's circumference / (256 * 2^z)
+    //
+    // We solve this for z:
+    //
+    //     z = log2(earth's circumference / (256 * mpp))
+    //
+    // So here we go:
+    const auto zoom = std::log2(KGeoTag::earthCircumference / (256.0 * metersPerPixel));
+
+    // Add the zoom level (at most the maxZoom value given)
+    url.replace(QStringLiteral("%ZOOM%"), QString::number(std::clamp(int(zoom), 0, maxZoom)));
+
+    // Request opening the URL
+    QDesktopServices::openUrl(QUrl(url));
 }
