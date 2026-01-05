@@ -1,16 +1,16 @@
 # Translation of kgeotag.po to Catalan (Valencian)
-# Copyright (C) 2020-2025 This_file_is_part_of_KDE
+# Copyright (C) 2020-2026 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025, 2026 Josep M. Ferrer <txemaq@gmail.com>
 # SPDX-FileCopyrightText: 2020, 2021 Antoni Bella Pérez <antonibella5@yahoo.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2025-03-10 09:18+0100\n"
+"PO-Revision-Date: 2026-01-04 08:44+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 22.12.3\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -378,8 +378,8 @@ msgid ""
 "p><p>The error's description was: %1</p><p>The literal response was:</"
 "p><p><kbd>%2</kbd>"
 msgstr ""
-"No s'ha pogut analitzar la resposta del servidor: ha fallat en crear un "
-"document JSON.</p><p>La descripció de l'error ha sigut: %1</p></p>La "
+"No s'ha pogut analitzar la resposta del servidor: ha fallat mentre es creava "
+"un document JSON.</p><p>La descripció de l'error ha sigut: %1</p></p>La "
 "resposta literal ha sigut:</p><p><kbd>%2</kbd>"
 
 #: src/ElevationEngine.cpp:153
@@ -700,7 +700,7 @@ msgstr "Trajectes"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "Busca llocs"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -806,7 +806,7 @@ msgid ""
 "<p>Opening <kbd>%1</kbd> failed. Please be sure to have read access to this "
 "file.</p>"
 msgstr ""
-"<p>No s'ha pogut obrir <kbd>%1</kbd>. Assegureu-vos que teniu accés de "
+"<p>Ha fallat mentre s'obria <kbd>%1</kbd>. Assegureu-vos que teniu accés de "
 "lectura en este fitxer.</p>"
 
 #: src/MainWindow.cpp:644
@@ -830,8 +830,8 @@ msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
 "all, or only a part of it.</p>"
 msgstr ""
-"<p>S'ha produït un error en l'anàlisi sintàctica de l'XML per a <kbd>%1</"
-"kbd>. O bé, no s'ha pogut carregar cap data, o només una part.</p>"
+"<p>S'ha produït un error durant l'anàlisi de l'XML per a <kbd>%1</kbd>. O "
+"bé, no s'ha pogut carregar cap data, o només una part.</p>"
 
 #: src/MainWindow.cpp:665
 #, kde-format
@@ -876,8 +876,8 @@ msgstr[1] "<p>S'han processat %1 fitxers de %2</p>"
 #, kde-format
 msgid "one file failed to load"
 msgid_plural "%1 files failed to load"
-msgstr[0] "un fitxer ha fallat en carregar"
-msgstr[1] "%1 fitxers han fallat en carregar"
+msgstr[0] "un fitxer ha fallat mentre es carregava"
+msgstr[1] "%1 fitxers han fallat mentre es carregaven"
 
 #: src/MainWindow.cpp:701
 #, kde-format
@@ -968,7 +968,7 @@ msgstr ""
 #: src/MainWindow.cpp:758
 #, kde-format
 msgid "Setting the detected timezone failed"
-msgstr "S'ha produït un error en configurar la zona horària detectada"
+msgstr "S'ha produït un error mentre es configurava la zona horària detectada"
 
 #: src/MainWindow.cpp:759
 #, kde-format
@@ -1020,8 +1020,8 @@ msgstr "Cancel·la"
 #, kde-format
 msgid "<p><b>Loading image failed</b></p><p>Could not read <kbd>%1</kbd>.</p>"
 msgstr ""
-"<p><b>No s'ha pogut carregar la imatge</b></p><p>No s'ha pogut llegir <kbd>"
-"%1</kbd>.</p>"
+"<p><b>Ha fallat mentre es carregava la imatge</b></p><p>No s'ha pogut llegir "
+"<kbd>%1</kbd>.</p>"
 
 #: src/MainWindow.cpp:827
 #, kde-format
@@ -1030,8 +1030,8 @@ msgid ""
 "<p><b>Loading image failed (%1/%2)</b></p><p>Could not read <kbd>%3</kbd>.</"
 "p>"
 msgstr ""
-"<p><b>No s'ha pogut carregar la imatge (%1/%2)</b></p><p>No s'ha pogut "
-"llegir <kbd>%3</kbd>.</p>"
+"<p><b>Ha fallat mentre es carregava la imatge (%1/%2)</b></p><p>No s'ha "
+"pogut llegir <kbd>%3</kbd>.</p>"
 
 #: src/MainWindow.cpp:836
 #, kde-format
@@ -1039,8 +1039,8 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%1</kbd>.</p>"
 msgstr ""
-"<p><b>No s'ha pogut carregar la capçalera Exif o fitxer lateral XMP</b></"
-"p><p>No s'ha pogut llegir <kbd>%1</kbd>.</p>"
+"<p><b>Ha fallat mentre es carregava la capçalera Exif o fitxer lateral XMP</"
+"b></p><p>No s'ha pogut llegir <kbd>%1</kbd>.</p>"
 
 #: src/MainWindow.cpp:842
 #, kde-format
@@ -1049,8 +1049,8 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%2</kbd>.</p>"
 msgstr ""
-"<p><b>No s'ha pogut carregar la capçalera Exif o fitxer lateral XMP</b></"
-"p><p>No s'ha pogut llegir <kbd>%2</kbd>.</p>"
+"<p><b>Ha fallat mentre es carregava la capçalera Exif o fitxer lateral XMP</"
+"b></p><p>No s'ha pogut llegir <kbd>%2</kbd>.</p>"
 
 #: src/MainWindow.cpp:854
 #, kde-format
@@ -1125,8 +1125,8 @@ msgstr[1] "<p>S'han afegit correctament %1 imatges!</p>"
 #, kde-format
 msgid "<p>One image failed to load.</p>"
 msgid_plural "<p>%1 images failed to load.</p>"
-msgstr[0] "<p>No s'ha pogut carregar una imatge.</p>"
-msgstr[1] "<p>Han fallat en carregar %1 imatges.</p>"
+msgstr[0] "<p>Ha fallat mentre es carregava una imatge.</p>"
+msgstr[1] "<p>Han fallat mentre es carregava %1 imatges.</p>"
 
 #: src/MainWindow.cpp:928
 #, kde-format
@@ -1149,8 +1149,8 @@ msgstr "<p>%1 i %2.</p>"
 #, kde-format
 msgid "One image failed to load"
 msgid_plural "%1 images failed to load"
-msgstr[0] "No s'ha pogut carregar una imatge"
-msgstr[1] "Han fallat en carregar %1 imatges"
+msgstr[0] "Ha fallat mentre es carregava una imatge"
+msgstr[1] "Han fallat mentre es carregava %1 imatges"
 
 #: src/MainWindow.cpp:941
 #, kde-format
@@ -1317,7 +1317,7 @@ msgstr "No s'ha trobat cap coincidència interpolada!"
 #: src/MainWindow.cpp:1239
 #, kde-format
 msgid "<p><b>Saving changes failed</b></p>"
-msgstr "<p><b>No s'han pogut guardar els canvis</b></p>"
+msgstr "<p><b>Ha fallat mentre es guardaven els canvis</b></p>"
 
 #: src/MainWindow.cpp:1243
 #, kde-format
@@ -1325,7 +1325,7 @@ msgctxt ""
 "Saving failed message with the fraction of processed files given in the "
 "round braces"
 msgid "<p><b>Saving changes failed (%1/%2)</b></p>"
-msgstr "<p><b>No s'han pogut guardar els canvis (%1/%2)</b></p>"
+msgstr "<p><b>Ha fallat mentre es guardaven els canvis (%1/%2)</b></p>"
 
 #: src/MainWindow.cpp:1251
 #, kde-format
@@ -1434,7 +1434,7 @@ msgid ""
 "Fetching elevation data failed: The requested location is not present in the "
 "currently chosen elevation dataset."
 msgstr ""
-"S'ha produït un error en obtindre les dades d'elevació: la ubicació "
+"S'ha produït un error mentre s'obtenien les dades d'elevació: la ubicació "
 "sol·licitada no està present en el conjunt de dades d'elevació triat "
 "actualment."
 
@@ -1444,7 +1444,7 @@ msgid ""
 "Fetching elevation data failed: None of the requested locations are present "
 "in the currently chosen elevation dataset."
 msgstr ""
-"S'ha produït un error en obtindre les dades d'elevació: cap de les "
+"S'ha produït un error mentre s'obtenien les dades d'elevació: cap de les "
 "ubicacions sol·licitades està present en el conjunt de dades d'elevació "
 "triat actualment."
 
@@ -1513,7 +1513,7 @@ msgstr "Elimina totes les imatges i trajectes (restablix)"
 #: src/MainWindow.cpp:1764
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr "No s'han pogut analitzar les dades del porta-retalls"
+msgstr "Ha fallat durant l'anàlisi de les dades del porta-retalls"
 
 #: src/MainWindow.cpp:1765
 #, kde-format
@@ -1642,34 +1642,32 @@ msgstr "Omet la imatge actual"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "Terme que s'ha de buscar"
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "Busca les coincidències exactes"
+msgstr "Comença la busca"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "Reinicia la busca"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "Resultat de la busca"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "S'estan guardant els canvis…"
+msgstr "S'està buscant…"
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "No s'ha trobat cap lloc"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
