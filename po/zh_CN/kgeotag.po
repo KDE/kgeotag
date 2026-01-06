@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
 "PO-Revision-Date: 2024-04-22 16:06\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -1432,42 +1432,52 @@ msgstr ""
 msgid "Map center position: %1"
 msgstr ""
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr ""
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "十字准星"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr ""
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr ""
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr ""
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr ""
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr ""
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr ""
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr ""
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr ""
@@ -1537,10 +1547,9 @@ msgid "Search term"
 msgstr ""
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "精确匹配项搜索"
+msgstr ""
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
@@ -1553,10 +1562,9 @@ msgid "Search results"
 msgstr ""
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "正在保存更改..."
+msgstr ""
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format

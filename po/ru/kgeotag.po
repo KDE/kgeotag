@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
 "PO-Revision-Date: 2021-02-18 22:11+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -1514,45 +1514,55 @@ msgstr ""
 msgid "Map center position: %1"
 msgstr "Положение центра карты: %1, %2"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, fuzzy, kde-format
 #| msgid "Floating items"
 msgid "Displayed floating items"
 msgstr "Плавающие объекты"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "Перекрестие"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr ""
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Remove coordinates"
 msgid "Copy formatted coordinates"
 msgstr "Удалить координаты"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, fuzzy, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Задать координаты в&ручную..."
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, fuzzy, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "Задать координаты в&ручную..."
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, fuzzy, kde-format
 #| msgid "Longitude:"
 msgid "Copy as \"latitude, longitude\""
 msgstr "Долгота:"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr ""
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr ""
+
+#: src/MapWidget.cpp:181
 #, fuzzy, kde-format
 #| msgid "Add new bookmark"
 msgid "Add bookmark"

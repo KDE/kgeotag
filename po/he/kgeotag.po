@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2025-12-30 09:38+0200\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
+"PO-Revision-Date: 2026-01-04 08:31+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -686,7 +686,7 @@ msgstr "מסלולים"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "מקומות חיפוש"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -1556,42 +1556,52 @@ msgstr "נא לבחור תמונה אחת או יותר"
 msgid "Map center position: %1"
 msgstr "מקום מרכז המפה: %1"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr "פריטים צפים מוצגים"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "סמני צלב"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr "מרכז המפה הנוכחי"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr "העתקת נקודות ציון עם עיצוב"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "העתקת נקודות ציון ללוח הגזירים"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "„%1” הועתק ללוח הגזירים!"
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr "העתקה בתור „קו אורך, קו גובה”"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr ""
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr ""
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr "הוספת סימנייה"
@@ -1658,34 +1668,32 @@ msgstr "דילוג על התמונה הנוכחית"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "ביטוי לחיפוש"
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "חיפוש תוצאות מדויקות"
+msgstr "התחלת חיפוש"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "איפוס החיפוש"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "תוצאות חיפוש"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "השינויים נשמרים…"
+msgstr "מתבצע חיפוש…"
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "לא נמצאו מקומות"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
