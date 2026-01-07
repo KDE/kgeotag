@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-06 00:41+0000\n"
-"PO-Revision-Date: 2026-01-04 12:30+0200\n"
+"PO-Revision-Date: 2026-01-06 08:35+0200\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
 "Language: uk\n"
@@ -1644,12 +1644,12 @@ msgstr "Копіювати у форматі «широта, довгота»"
 #: src/MapWidget.cpp:167
 #, kde-format
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "OpenStreetMap"
 
 #: src/MapWidget.cpp:173
 #, kde-format
 msgid "Google Maps"
-msgstr ""
+msgstr "Карти Google"
 
 #: src/MapWidget.cpp:181
 #, kde-format
