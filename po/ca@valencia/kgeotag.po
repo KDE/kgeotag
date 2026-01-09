@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2026-01-04 08:44+0100\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
+"PO-Revision-Date: 2026-01-06 12:31+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.12.0\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1540,42 +1540,52 @@ msgstr "Trieu una o més imatges"
 msgid "Map center position: %1"
 msgstr "Posició del centre del mapa: %1"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr "Mostra els elements flotants"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "Punts de mira"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr "Centre del mapa actual"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr "Copia les coordenades amb format"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Copia les coordenades al porta-retalls"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "«%1» s'ha copiat a dins del porta-retalls"
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr "Copia com a «latitud, longitud»"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr "Google Maps"
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr "Afig una adreça d'interés"

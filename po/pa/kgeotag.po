@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
 "PO-Revision-Date: 2021-01-20 21:58-0800\n"
 "Last-Translator: A S Alam <aalam.yellow@gmail.com>\n"
 "Language-Team: Punjabi <punjabi-users@lists.sf.net>\n"
@@ -1458,47 +1458,57 @@ msgstr "ਡਾਇਰੈਕਟਰੀ ਚੁਣੋ"
 msgid "Map center position: %1"
 msgstr ""
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr ""
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "ਕਰਾਸ-ਹੇਅਰ"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, fuzzy, kde-format
 #| msgid "Assign to bookmark"
 msgid "Current map center"
 msgstr "ਬੁੱਕਮਾਰਕ ਦਿਓ"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, fuzzy, kde-format
 #| msgid "Remove coordinates"
 msgid "Copy formatted coordinates"
 msgstr "ਧੁਰੇ ਹਟਾਓ"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, fuzzy, kde-format
 #| msgid "Set coordinates manually"
 msgid "Copy coordinates to clipboard"
 msgstr "ਧੁਰੇ ਖਦ ਦਿਓ"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, fuzzy, kde-format
 #| msgid "Set coordinates manually"
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "ਧੁਰੇ ਖਦ ਦਿਓ"
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, fuzzy, kde-format
 #| msgid "Longitude:"
 msgid "Copy as \"latitude, longitude\""
 msgstr "ਲੰਬਕਾਰ:"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr ""
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr ""
+
+#: src/MapWidget.cpp:181
 #, fuzzy, kde-format
 #| msgid "Add new bookmark"
 msgid "Add bookmark"

@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2026-01-04 07:43+0100\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
+"PO-Revision-Date: 2026-01-06 06:58+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -1604,42 +1604,52 @@ msgstr "Izberite eno ali več slik"
 msgid "Map center position: %1"
 msgstr "Sredinski položaj zemljevida: %1"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr "Prikazani lebdeči predmeti"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "Ciljni križ"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr "Trenutno središče zemljevida"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr "Kopiraj oblikovane koordinate"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Kopiraj koordinate na odložišče"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "Kopirano \"%1\" na odložišče!"
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr "Kopiraj kot \"širina, dolžina\""
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr "Google Maps"
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr "Dodaj zaznamek"

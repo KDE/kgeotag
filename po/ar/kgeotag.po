@@ -1,13 +1,13 @@
 # Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# SPDX-FileCopyrightText: 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2025-10-06 20:10+0400\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
+"PO-Revision-Date: 2026-01-08 12:28+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -687,7 +687,7 @@ msgstr "مسارات"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "ابحث الأماكن"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -1621,42 +1621,52 @@ msgstr "الرجاء اختيار صورة واحدة أو أكثر"
 msgid "Map center position: %1"
 msgstr "موضع مركز الخريطة: %1"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr "العناصر العائمة المعروضة"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "مؤشرات متصالبة"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr "مركز الخريطة الحالي"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr "انسخ الإحداثيات المنسقة"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "انسخ الإحداثيات إلى الحافظة"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "نسخ «%1» إلى الحافظة!"
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr "انسخ كـ «خط عرض، خط طول»"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr "خريطة الشّوارع المفتوحة"
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr "خرائط غوغل"
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr "أضف وسمًا مرجعيًا"
@@ -1723,34 +1733,32 @@ msgstr "تخطى الصورة الحالية"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "عبارة البحث"
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "بحث التطابقات الدقيقة"
+msgstr "ابدأ البحث"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "صفّر البحث"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "نتائج البحث"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "حفظ التغييرات ..."
+msgstr "يبحث…"
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "لا يعثر على أماكن"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format

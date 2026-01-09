@@ -8,8 +8,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2026-01-05 00:28+0100\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
+"PO-Revision-Date: 2026-01-09 01:04+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
 "Language: es\n"
@@ -1540,42 +1540,52 @@ msgstr "Seleccione una o más imágenes"
 msgid "Map center position: %1"
 msgstr "Posición del centro del mapa: %1"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr "Elementos flotantes mostrados"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "Punto de mira"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr "Centro del mapa actual"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr "Copiar coordenadas con formato"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Copiar las coordenadas al portapapeles"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "Se ha copiado «%1» al portapapeles."
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr "Copiar como «latitud, longitud»"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr "Google Maps"
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr "Añadir marcador"

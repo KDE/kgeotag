@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the kgeotag package.
 #
 # Volkan Gezer <volkangezer@gmail.com>, 2021.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-04 00:42+0000\n"
-"PO-Revision-Date: 2025-12-23 12:41+0300\n"
-"Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
+"POT-Creation-Date: 2026-01-06 00:41+0000\n"
+"PO-Revision-Date: 2026-01-07 20:40+0300\n"
+"Last-Translator: Emir SARI <emir_sari@îcloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
 "MIME-Version: 1.0\n"
@@ -687,7 +687,7 @@ msgstr "İzler"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "Yerlerde Ara"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -1520,42 +1520,52 @@ msgstr "Lütfen bir veya daha çok görsel seçin"
 msgid "Map center position: %1"
 msgstr "Harita merkez konumu: %1"
 
-#: src/MapWidget.cpp:84
+#: src/MapWidget.cpp:86
 #, kde-format
 msgid "Displayed floating items"
 msgstr "Görüntülenen yüzer ögeler"
 
-#: src/MapWidget.cpp:90
+#: src/MapWidget.cpp:92
 #, kde-format
 msgid "Crosshairs"
 msgstr "Artı imleri"
 
-#: src/MapWidget.cpp:139
+#: src/MapWidget.cpp:141
 #, kde-format
 msgid "Current map center"
 msgstr "Geçerli haritanın merkezi"
 
-#: src/MapWidget.cpp:142
+#: src/MapWidget.cpp:144
 #, kde-format
 msgid "Copy formatted coordinates"
 msgstr "Biçimlendirilmiş koordinatları kaldır"
 
-#: src/MapWidget.cpp:147 src/MapWidget.cpp:157
+#: src/MapWidget.cpp:149 src/MapWidget.cpp:159
 #, kde-format
 msgid "Copy coordinates to clipboard"
 msgstr "Koordinatları panoya kopyala"
 
-#: src/MapWidget.cpp:148 src/MapWidget.cpp:158
+#: src/MapWidget.cpp:150 src/MapWidget.cpp:160
 #, kde-format
 msgid "Copied \"%1\" to the clipboard!"
 msgstr "“%1” panoya kopyalandı!"
 
-#: src/MapWidget.cpp:152
+#: src/MapWidget.cpp:154
 #, kde-format
 msgid "Copy as \"latitude, longitude\""
 msgstr "“enlem, boylam” olarak kopyala"
 
-#: src/MapWidget.cpp:163
+#: src/MapWidget.cpp:167
+#, kde-format
+msgid "OpenStreetMap"
+msgstr "OpenStreetMap"
+
+#: src/MapWidget.cpp:173
+#, kde-format
+msgid "Google Maps"
+msgstr "Google Haritalar"
+
+#: src/MapWidget.cpp:181
 #, kde-format
 msgid "Add bookmark"
 msgstr "Yer imi koy"
@@ -1622,34 +1632,32 @@ msgstr "Geçerli görseli atla"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "Arama terimi"
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "Tam eşleşme araması"
+msgstr "Aramayı başlat"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "Aramayı sıfırla"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "Arama sonuçları"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "Değişiklikler kaydediliyor…"
+msgstr "Aranıyor…"
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "Bulunan yer yok"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
