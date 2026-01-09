@@ -1,13 +1,13 @@
 # Copyright (C) 2025 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# SPDX-FileCopyrightText: 2025 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2025, 2026 Zayed Al-Saidi <zayed.alsaidi@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-06 00:41+0000\n"
-"PO-Revision-Date: 2025-10-06 20:10+0400\n"
+"PO-Revision-Date: 2026-01-08 12:28+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -687,7 +687,7 @@ msgstr "مسارات"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "ابحث الأماكن"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -1659,12 +1659,12 @@ msgstr "انسخ كـ «خط عرض، خط طول»"
 #: src/MapWidget.cpp:167
 #, kde-format
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "خريطة الشّوارع المفتوحة"
 
 #: src/MapWidget.cpp:173
 #, kde-format
 msgid "Google Maps"
-msgstr ""
+msgstr "خرائط غوغل"
 
 #: src/MapWidget.cpp:181
 #, kde-format
@@ -1733,34 +1733,32 @@ msgstr "تخطى الصورة الحالية"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "عبارة البحث"
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "بحث التطابقات الدقيقة"
+msgstr "ابدأ البحث"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "صفّر البحث"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "نتائج البحث"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "حفظ التغييرات ..."
+msgstr "يبحث…"
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "لا يعثر على أماكن"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
