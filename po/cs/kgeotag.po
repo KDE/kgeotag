@@ -1473,12 +1473,12 @@ msgstr "Zkopírovat jako \"šířka, délka\""
 #: src/MapWidget.cpp:167
 #, kde-format
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "OpenStreetMap"
 
 #: src/MapWidget.cpp:173
 #, kde-format
 msgid "Google Maps"
-msgstr ""
+msgstr "Mapy Google"
 
 #: src/MapWidget.cpp:181
 #, kde-format
@@ -1560,13 +1560,12 @@ msgstr ""
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "Výsledky hledání"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "Ukládání změn - "
+msgstr "Vyhledávám ..."
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
