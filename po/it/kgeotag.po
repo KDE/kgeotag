@@ -1,13 +1,13 @@
 # Copyright (C) 2023 This file is copyright:
 # This file is distributed under the same license as the kgeotag package.
-# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025 Paolo Zamponi <feus73@gmail.com>
+# SPDX-FileCopyrightText: 2020, 2021, 2022, 2023, 2024, 2025, 2026 Paolo Zamponi <feus73@gmail.com>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-06 00:41+0000\n"
-"PO-Revision-Date: 2025-03-12 17:39+0100\n"
+"PO-Revision-Date: 2026-01-10 15:37+0100\n"
 "Last-Translator: Paolo Zamponi <feus73@gmail.com>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.12.2\n"
+"X-Generator: Lokalize 25.12.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -694,7 +694,7 @@ msgstr "Tracce"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "Cerca luoghi"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -1574,12 +1574,12 @@ msgstr "Copia come «latitudine, longitudine»"
 #: src/MapWidget.cpp:167
 #, kde-format
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "OpenStreetMap"
 
 #: src/MapWidget.cpp:173
 #, kde-format
 msgid "Google Maps"
-msgstr ""
+msgstr "Mappe di Google"
 
 #: src/MapWidget.cpp:181
 #, kde-format
@@ -1648,34 +1648,32 @@ msgstr "Ometti l'immagine attuale"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "Cerca termine"
 
 #: src/SearchPlacesWidget.cpp:49
-#, fuzzy, kde-format
-#| msgid "Exact matches search"
+#, kde-format
 msgid "Start search"
-msgstr "Ricerca corrispondenze esatte"
+msgstr "Inizia ricerca"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "Azzera ricerca"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "Risultati della ricerca"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "Salvataggio delle modifiche ..."
+msgstr "Ricerca..."
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "Nessun luogo trovato"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
