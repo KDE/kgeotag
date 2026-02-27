@@ -681,7 +681,7 @@ msgstr "轨迹"
 #: src/MainWindow.cpp:265
 #, kde-format
 msgid "Search Places"
-msgstr ""
+msgstr "搜索地点"
 
 #: src/MainWindow.cpp:294
 #, kde-format
@@ -1470,12 +1470,12 @@ msgstr ""
 #: src/MapWidget.cpp:167
 #, kde-format
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "开放街道地图 (OSM)"
 
 #: src/MapWidget.cpp:173
 #, kde-format
 msgid "Google Maps"
-msgstr ""
+msgstr "Google 地图"
 
 #: src/MapWidget.cpp:181
 #, kde-format
@@ -1544,32 +1544,32 @@ msgstr "跳过当前图像"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "查找词条"
 
 #: src/SearchPlacesWidget.cpp:49
 #, kde-format
 msgid "Start search"
-msgstr ""
+msgstr "开始搜索"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "重置搜索"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "搜索结果"
 
 #: src/SearchPlacesWidget.cpp:85
 #, kde-format
 msgid "Searching ..."
-msgstr ""
+msgstr "正在搜索 ..."
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
 msgid "No places found"
-msgstr ""
+msgstr "未找到地点"
 
 #: src/SettingsDialog.cpp:35
 #, kde-format
