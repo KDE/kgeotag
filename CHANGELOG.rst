@@ -55,9 +55,8 @@ Added
 
 * The map's current center can now be shown on OpenStreetMap or Google Maps (via URL and web
   browser). This can be requested by the context menu: Either directly on the map via "Current map
-  center" and "Open with ...", or the "Open with ..." entry of the ceontext menu for the map center
-  display below the map.
-  This implements the additional feature request also asked for in
+  center" and "Open with ...", or the "Open with ..." entry of the context menu for the map center
+  display below the map. This implements the additional feature request also asked for in
   `Bug #514067 <https://bugs.kde.org/show_bug.cgi?id=514067>`_.
 
 Changed
