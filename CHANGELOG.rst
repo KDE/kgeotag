@@ -62,8 +62,8 @@ Added
 Changed
 =======
 
-* Updated the timezones data files to 2025c (cf. Timezone Boundary Builder's `Release Announcement
-  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2025c>`_).
+* Updated the timezones data files to 2026a (cf. Timezone Boundary Builder's `Release Announcement
+  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2026a>`_).
 
 Deprecated
 ==========

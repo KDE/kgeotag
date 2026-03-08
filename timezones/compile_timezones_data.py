@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 
 # SPDX-FileCopyrightText: 2021-2023 Isaac Wismer <isaac@iwismer.ca>
-# SPDX-FileCopyrightText: 2024 Tobias Leupold <tl at stonemx dot de>
+# SPDX-FileCopyrightText: 2024-2026 Tobias Leupold <tl@stonemx.de>
 #
 # SPDX-License-Identifier: GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
 
@@ -151,6 +151,7 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
                 f.write(",")
             f.write("\n")
         f.write("}\n")
+    print("Finished saving JSON mappings")
 
     png_file = (path / "timezones.png").resolve()
     print(f"Saving PNG map to: {png_file.absolute()}")
@@ -165,6 +166,7 @@ def export_data(layer: QgsVectorLayer, timezone_ids: List[str], timezone_colors:
         """Function to save the rendered map once it is done rendering"""
         img = render.renderedImage()
         img.save(str(png_file), "png")
+        print("Finished saving PNG map")
 
     render = QgsMapRendererParallelJob(settings)
     render.finished.connect(finished)
