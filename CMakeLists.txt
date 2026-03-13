@@ -1,9 +1,9 @@
-# SPDX-FileCopyrightText: 2020-2025 Tobias Leupold <tl@stonemx.de>
+# SPDX-FileCopyrightText: 2020-2026 Tobias Leupold <tl@stonemx.de>
 #
 # SPDX-License-Identifier: BSD-2-Clause
 
 cmake_minimum_required(VERSION 3.16.0)
-project(kgeotag LANGUAGES CXX VERSION 1.8.0)
+project(kgeotag LANGUAGES CXX VERSION 2.0.0)
 
 set(CMAKE_CXX_STANDARD 17)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)

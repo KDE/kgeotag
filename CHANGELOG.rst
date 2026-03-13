@@ -44,7 +44,7 @@
    * in case of vulnerabilities.
 
 ====================================================================================================
-[unreleased]
+KGeoTag 2.0.0 released (2026-03-13)
 ====================================================================================================
 
 Added
@@ -65,20 +65,11 @@ Changed
 * Updated the timezones data files to 2026a (cf. Timezone Boundary Builder's `Release Announcement
   <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2026a>`_).
 
-Deprecated
-==========
-
 Removed
 =======
 
 * As current distributions don't ship the needed dependencies anymore, the support for Qt 5 and KF 5
   has been dropped. KGeoTag is now Qt6/KF6-only.
-
-Fixed
-=====
-
-Security
-========
 
 ====================================================================================================
 KGeoTag 1.8.0 released (2025-03-09)
