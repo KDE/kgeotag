@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-14 00:41+0000\n"
-"PO-Revision-Date: 2026-03-14 12:55+0200\n"
+"PO-Revision-Date: 2026-03-20 08:13+0200\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.12.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -816,7 +816,7 @@ msgid ""
 "<p>XML parsing failed for <kbd>%1</kbd>. Either, no data could be loaded at "
 "all, or only a part of it.</p>"
 msgstr ""
-"<p>פענוח XML עבור <kbd>%1</kbd> נכשל. או שלא נטענו ממנו נתונים כלל או שרק "
+"<p>פיענוח XML עבור <kbd>%1</kbd> נכשל. או שלא נטענו ממנו נתונים כלל או שרק "
 "חלקית.</p>"
 
 #: src/MainWindow.cpp:665
@@ -1529,7 +1529,7 @@ msgstr "להסיר את כל התמונות והמסלולים (איפוס)"
 #: src/MainWindow.cpp:1764
 #, kde-format
 msgid "Failed to parse clipboard data"
-msgstr "הפענוח של נתוני לוח הגזירים נכשל"
+msgstr "הפיענוח של נתוני לוח הגזירים נכשל"
 
 #: src/MainWindow.cpp:1765
 #, kde-format
