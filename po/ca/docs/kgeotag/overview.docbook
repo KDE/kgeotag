@@ -99,7 +99,7 @@
 >L'enfocament més pràctic és la coincidència automàtica utilitzant geodades proporcionades per fitxers GPX. Es poden carregar i mostrar en un mapa. Utilitzant aquestes dades, les imatges es poden assignar amb coordenades geogràfiques coincidents mitjançant la cerca (més o menys) de coincidències cronològiques exactes, o interpolant una posició probable si no es pot trobar cap coincidència exacta. </para>
 
 <para
->Normalment, les imatges només proporcionen una hora i una data, però sense zona horària. Per tant, hem d'establir-ne una per a fer possible una tasca. La zona horària, presumiblement correcta, es detecta des de la ubicació geogràfica del fitxer GPX, però també es pot establir manualment. </para>
+>Normalment, les imatges només proporcionen una hora i una data, però sense fus horari. Per tant, hem d'establir-ne una per a fer possible una tasca. El fus horari, presumiblement correcte, es detecta a partir de la ubicació geogràfica del fitxer GPX, però també es pot establir manualment. </para>
 
 <para
 >Si els valors d'altitud no estan establerts en el conjunt de dades o no són prou precisos, es poden consultar utilitzant opentopodata.org (vegeu més avall). </para>

@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-14 00:41+0000\n"
-"PO-Revision-Date: 2026-03-14 09:25+0100\n"
+"PO-Revision-Date: 2026-03-29 12:59+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -418,12 +418,12 @@ msgstr ""
 #: src/FixDriftWidget.cpp:25
 #, kde-format
 msgid "Images' time zone"
-msgstr "Zona horària de les imatges"
+msgstr "Fus horari de les imatges"
 
 #: src/FixDriftWidget.cpp:29
 #, kde-format
 msgid "The images were taken in the following timezone:"
-msgstr "Les imatges es van prendre en la zona horària següent:"
+msgstr "Les imatges es van prendre en el fus horari següent:"
 
 #: src/FixDriftWidget.cpp:66
 #, kde-format
@@ -705,7 +705,7 @@ msgstr "Cerca llocs"
 #: src/MainWindow.cpp:294
 #, kde-format
 msgid "Loading timezone data"
-msgstr "S'estan carregant les dades de les zones horàries"
+msgstr "S'estan carregant les dades dels fusos horaris"
 
 #: src/MainWindow.cpp:295
 #, kde-format
@@ -717,9 +717,9 @@ msgid ""
 "community.kde.org/KGeoTag#Running_the_compiled_sources\">KDE's community "
 "wiki</a> on how to make the respective files accessible.</p>"
 msgstr ""
-"<p>No s'han pogut carregar o analitzar els fitxers de dades de zones "
-"horàries <kbd>timezones.json</kbd> i/o <kbd>timezones.png</kbd>. La detecció "
-"automàtica de la zona horària no funcionarà.</p><p>Reviseu la instal·lació!</"
+"<p>No s'han pogut carregar o analitzar els fitxers de dades de fusos horaris "
+"<kbd>timezones.json</kbd> i/o <kbd>timezones.png</kbd>. La detecció "
+"automàtica del fus horari no funcionarà.</p><p>Reviseu la instal·lació!</"
 "p><p>Si esteu executant manualment el codi font compilat sense haver-lo "
 "instal·lat, vegeu el <a href=\"https://community.kde.org/"
 "KGeoTag#Running_the_compiled_sources\">wiki de la comunitat KDE</a> sobre "
@@ -952,7 +952,7 @@ msgstr[1] "%1 segments"
 #: src/MainWindow.cpp:751
 #, kde-format
 msgid "Timezone detection failed"
-msgstr "Ha fallat la detecció de la zona horària"
+msgstr "Ha fallat la detecció del fus horari"
 
 #: src/MainWindow.cpp:752
 #, kde-format
@@ -961,14 +961,14 @@ msgid ""
 "file could not be detected.</p><p>Please set the correct timezone manually "
 "on the \"Fix time drift\" page.</p>"
 msgstr ""
-"<p>No s'ha pogut detectar la zona horària presumptament correcta per a les "
-"imatges associades amb el fitxer GPX carregat.</p><p>Establiu manualment la "
-"zona horària correcta a la pàgina «Corregeix la desviació del temps».</p>"
+"<p>No s'ha pogut detectar el fus horari presumptament correcte per a les "
+"imatges associades amb el fitxer GPX carregat.</p><p>Establiu manualment el "
+"fus horari correcte a la pàgina «Corregeix la desviació del temps».</p>"
 
 #: src/MainWindow.cpp:758
 #, kde-format
 msgid "Setting the detected timezone failed"
-msgstr "Error en configurar la zona horària detectada"
+msgstr "Error en configurar el fus horari detectat"
 
 #: src/MainWindow.cpp:759
 #, kde-format
@@ -980,17 +980,17 @@ msgid ""
 "p><p>You can adjust the timezone setting manually on the \"Fix time drift\" "
 "page.</p>"
 msgstr ""
-"<p>S'ha detectat la zona horària «%1» presumptament correcta des del fitxer "
+"<p>S'ha detectat el fus horari «%1» presumptament correcte des del fitxer "
 "GPX carregat, però no s'ha pogut establir. Això no hauria de succeir!</"
 "p><p>Envieu un informe d'error sobre això, inclosa la versió emprada del "
-"KGeoTag i les dades de la vostra zona horària (el paquet propietari de <kbd>/"
-"usr/share/zoneinfo</kbd>).</p><p>Podeu ajustar manualment la configuració de "
-"la zona horària a la pàgina «Corregeix la desviació del temps».</p>"
+"KGeoTag i les dades del vostre fus horari (el paquet propietari de <kbd>/usr/"
+"share/zoneinfo</kbd>).</p><p>Podeu ajustar manualment la configuració del "
+"fus horari a la pàgina «Corregeix la desviació del temps».</p>"
 
 #: src/MainWindow.cpp:768
 #, kde-format
 msgid "Timezone adjusted"
-msgstr "Zona horària ajustada"
+msgstr "Fus horari ajustat"
 
 #: src/MainWindow.cpp:769
 #, kde-format
@@ -1000,11 +1000,11 @@ msgid ""
 "</p><p>You can adjust the timezone setting manually on the \"Fix time drift"
 "\" page.</p>"
 msgstr ""
-"<p>El fitxer GPX carregat probablement es va enregistrar en la zona horària "
+"<p>El fitxer GPX carregat probablement es va enregistrar en el fus horari "
 "«%1», així com les fotografies que hi estan associades. Ara hi ha "
-"seleccionada aquesta zona horària.</p><p>Podeu ajustar manualment la "
-"configuració de la zona horària a la pàgina «Corregeix la desviació del "
-"temps».</p>"
+"seleccionat aquest fus horari.</p><p>Podeu ajustar manualment la "
+"configuració del fus horari a la pàgina «Corregeix la desviació del temps».</"
+"p>"
 
 #: src/MainWindow.cpp:795
 #, kde-format
