@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2024, 2025 Scarlett Moore <sgmoore@kde.org>
+# SPDX-FileCopyrightText: 2024-2026 Scarlett Moore <sgmoore@kde.org>
 #
 # SPDX-License-Identifier: CC0-1.0
 ---
@@ -33,15 +33,60 @@ slots:
     name: org.kde.kgeotag
     bus: session
 parts:
-  marble:
-    source: https://invent.kde.org/education/marble.git
-    source-branch: release/25.04
+  wayland:
+    source: https://gitlab.freedesktop.org/wayland/wayland.git
+    source-branch: 1.23
+    plugin: meson
+    meson-parameters:
+      - --prefix=/usr
+    build-snaps:
+      - kde-qt6-core24-sdk/latest/beta
+      - kf6-core24-sdk/latest/beta
+    build-packages:
+      - meson
+      - pkgconf
+      - xsltproc
+      - xmlto
+      - libexpat1-dev
+      - libffi-dev
+      - libxml2-dev
+      - doxygen
+      - graphviz
+    build-environment:
+      - PKG_CONFIG_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:/snap/kde-qt6-core24-sdk/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:/snap/kf6-core24-sdk/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig"
+  wayland-protocols:
+    after:
+      - wayland
+    source: https://gitlab.freedesktop.org/wayland/wayland-protocols.git
+    source-tag: 1.47
+    plugin: meson
+    meson-parameters:
+      - --prefix=/usr
+    build-snaps:
+      - kde-qt6-core24-sdk/latest/beta
+      - kf6-core24-sdk/latest/beta
+    build-packages:
+      - libwayland-dev
+      - meson
+      - pkgconf
+    build-environment:
+      - PKG_CONFIG_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:/snap/kde-qt6-core24-sdk/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:/snap/kf6-core24-sdk/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig"
+      - LD_LIBRARY_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$LD_LIBRARY_PATH"
+  libplasma:
+    after: [wayland-protocols]
+    source: https://invent.kde.org/plasma/libplasma.git
+    source-branch: Plasma/6.6
     plugin: cmake
     build-packages:
       - libpulse0
+      - libxkbcommon-dev
       - rsync
     stage-packages:
       - libpulse0
+      - libxkbcommon0
+    build-snaps:
+      - kde-qt6-core24-sdk/latest/beta
+      - kf6-core24-sdk/latest/beta
     cmake-generator: Ninja
     cmake-parameters:
       - -DCMAKE_INSTALL_PREFIX=/usr
@@ -50,17 +95,62 @@ parts:
       - -DENABLE_QT5=OFF
       - -DENABLE_QT6=ON
       - -DBUILD_TESTING=OFF
-      - -DCMAKE_FIND_ROOT_PATH="/snap/kde-qt6-core24-sdk/current;/snap/kf6-core24-sdk/current"
     override-build: |
       craftctl default
       rsync -a --ignore-existing $CRAFT_PART_INSTALL/ /
-    build-environment: &build-environment
-      - PKG_CONFIG_PATH: "$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig:/snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig"
-      - LD_LIBRARY_PATH: "/snap/mesa-2404/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/ffmpeg-2404-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:$LD_LIBRARY_PATH"
+    prime:
+      - -usr/bin/rsync
+  marble:
+    after:
+      - libplasma
+    source: https://invent.kde.org/education/marble.git
+    source-branch: master
+    plugin: cmake
+    build-snaps:
+      - kde-qt6-core24-sdk/latest/beta
+      - kf6-core24-sdk/latest/beta
+    build-packages:
+      - libpulse0
+      - rsync
+      - libshp-dev
+      - libgps-dev
+      - libwlocate-dev
+      - libabsl-dev
+      - libprotobuf-dev
+      - protobuf-compiler
+      - pkg-config
+      - libdrm2
+    stage-packages:
+      - libpulse0
+      - libshp4
+      - libgps30t64
+      - libwlocate0
+      - libabsl20220623t64
+    cmake-generator: Ninja
+    cmake-parameters:
+      - -DCMAKE_INSTALL_PREFIX=/usr
+      - -DCMAKE_BUILD_TYPE=Release
+      - -DQT_MAJOR_VERSION=6
+      - -DENABLE_QT5=OFF
+      - -DENABLE_QT6=ON
+      - -DBUILD_TESTING=OFF
+    override-pull: |
+        craftctl default
+        patch -p0 < ${SNAPCRAFT_PROJECT_DIR}/snap/local/patches/disable_broken_osm_plugin.patch
+    stage:
+      - -usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libz.so*
+    override-build: |
+      craftctl default
+      rsync -a --ignore-existing $CRAFT_PART_INSTALL/ /
+    build-environment:
       - DICPATH: "$CRAFT_STAGE/usr/share/hunspell"
+      - LD_LIBRARY_PATH: $LD_LIBRARY_PATH:/snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/libproxy:/snap/kf6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:$CRAFT_STAGE/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR:/usr
+      - PKG_CONFIG_PATH: /snap/kde-qt6-core24-sdk/current/usr/lib/$CRAFT_ARCH_TRIPLET_BUILD_FOR/pkgconfig
     prime:
       - -usr/bin/rsync
   kgeotag:
+    after:
+      - marble
     parse-info:
       - usr/share/metainfo/org.kde.kgeotag.appdata.xml
     plugin: cmake
