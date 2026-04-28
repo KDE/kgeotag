@@ -743,7 +743,7 @@ msgstr ""
 #: src/MainWindow.cpp:476
 #, kde-format
 msgid "Please select the images and/or GPX tracks to add"
-msgstr "Prosím, select the images and/or GPX tracks to add"
+msgstr "Prosím, vyberte obrázky a/alebo GPX trasy na pridanie"
 
 #: src/MainWindow.cpp:478
 #, kde-format
