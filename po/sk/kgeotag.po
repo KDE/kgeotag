@@ -1830,8 +1830,8 @@ msgid ""
 "Please restart the program after changes to these values so that they are "
 "applied and become visible."
 msgstr ""
-"Prosím, restart the program after changes to these values so that they are "
-"applied and become visible."
+"Prosím, reštartujte program po zmenách týchto hodnôt, aby sa uplatnili a "
+"stali viditeľnými."
 
 #: src/SettingsDialog.cpp:191
 #, kde-format
@@ -2027,7 +2027,8 @@ msgstr "Nastavenia uložené"
 msgid ""
 "Please restart KGeoTag to apply the changed settings and make them visible!"
 msgstr ""
-"Prosím, restart KGeoTag to apply the changed settings and make them visible!"
+"Prosím, reštartujte KGeoTag, aby sa zmenené nastavenia uplatnili a stali "
+"viditeľnými!"
 
 #: src/TracksListView.cpp:36 src/TracksListView.cpp:58
 #, kde-format
