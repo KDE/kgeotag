@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-14 00:41+0000\n"
-"PO-Revision-Date: 2026-03-14 12:41+0300\n"
+"PO-Revision-Date: 2026-05-02 18:56+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.12.2\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -184,7 +184,7 @@ msgstr "Yeni yer imi ekle"
 #: src/BookmarksList.cpp:152
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
-msgstr "“%1” yer imi halihazırda var, yerine “%2” oluşturuldu."
+msgstr "“%1” yer imi hâlihazırda var, yerine “%2” oluşturuldu."
 
 #: src/BookmarksList.cpp:193 src/BookmarksList.cpp:201
 #, kde-format
@@ -199,7 +199,7 @@ msgstr "“%1” yer imi için yeni etiket:"
 #: src/BookmarksList.cpp:202
 #, kde-format
 msgid "The label \"%1\" is already in use. Please choose another name."
-msgstr "“%1” etiketi halihazırda kullanımda. Lütfen başka bir ad seçin."
+msgstr "“%1” etiketi hâlihazırda kullanımda. Lütfen başka bir ad seçin."
 
 #: src/BookmarksList.cpp:217
 #, kde-format
@@ -612,7 +612,7 @@ msgstr "Tüm işlenmiş ve kaydedilmiş görseller"
 #: src/MainWindow.cpp:111
 #, kde-format
 msgid "All images that already had coordinates"
-msgstr "Halihazırda koordinat içeren tüm görseller"
+msgstr "Hâlihazırda koordinat içeren tüm görseller"
 
 #: src/MainWindow.cpp:120
 #, kde-format
@@ -1085,7 +1085,7 @@ msgstr ""
 msgid ""
 "Could not add any new images, all requested images have already been loaded!"
 msgstr ""
-"Hiçbir yeni görsel eklenemedi, tüm istenen görseller halihazırda yüklenmiş!"
+"Hiçbir yeni görsel eklenemedi, tüm istenen görseller hâlihazırda yüklenmiş!"
 
 #: src/MainWindow.cpp:915
 #, kde-format
@@ -1093,7 +1093,7 @@ msgid ""
 "Could not add any new images, all requested images failed to load or have "
 "already been loaded!"
 msgstr ""
-"Hiçbir yeni görsel eklenemedi, tüm istenen görseller halihazırda yüklenmiş "
+"Hiçbir yeni görsel eklenemedi, tüm istenen görseller hâlihazırda yüklenmiş "
 "veya yüklerken hata oluştu!"
 
 #: src/MainWindow.cpp:919
@@ -1114,8 +1114,8 @@ msgstr[1] "<p>%1 görsel yüklenemedi.</p>"
 #, kde-format
 msgid "<p>One image has already been loaded.</p>"
 msgid_plural "<p>%1 images have already been loaded.</p>"
-msgstr[0] "<p>1 görsel halihazırda yüklenmiş.</p>"
-msgstr[1] "<p>%1 görsel halihazırda yüklenmiş.</p>"
+msgstr[0] "<p>1 görsel hâlihazırda yüklenmiş.</p>"
+msgstr[1] "<p>%1 görsel hâlihazırda yüklenmiş.</p>"
 
 #: src/MainWindow.cpp:937
 #, kde-format
@@ -1138,8 +1138,8 @@ msgstr[1] "%1 görsel yüklenemedi"
 #, kde-format
 msgid "one image has already been loaded"
 msgid_plural "%1 images have already been loaded"
-msgstr[0] "1 görsel halihazırda yüklenmiş"
-msgstr[1] "%1 görsel halihazırda yüklenmiş"
+msgstr[0] "1 görsel hâlihazırda yüklenmiş"
+msgstr[1] "%1 görsel hâlihazırda yüklenmiş"
 
 #: src/MainWindow.cpp:976 src/MainWindow.cpp:1008
 #, kde-format
@@ -1232,8 +1232,8 @@ msgstr[1] "<p>%1 görsel eşleştirilemedi (%2).</p>"
 #, kde-format
 msgid "of which one image already has coordinates assigned"
 msgid_plural "of which %1 images already have coordinates assigned"
-msgstr[0] "— 1 görselin koordinatları halihazırda atanmış"
-msgstr[1] "— %1 görselin koordinatları halihazırda atanmış"
+msgstr[0] "— 1 görselin koordinatları hâlihazırda atanmış"
+msgstr[1] "— %1 görselin koordinatları hâlihazırda atanmış"
 
 #: src/MainWindow.cpp:1174
 #, kde-format
@@ -1467,7 +1467,7 @@ msgstr[1] "%1 görsel kaldırıldı"
 #: src/MainWindow.cpp:1671 src/MainWindow.cpp:1679
 #, kde-format
 msgid "Remove images that already had coordinates"
-msgstr "Halihazırda koordinatları olan görselleri kaldır"
+msgstr "Hâlihazırda koordinatları olan görselleri kaldır"
 
 #: src/MainWindow.cpp:1686 src/MainWindow.cpp:1701
 #, kde-format
