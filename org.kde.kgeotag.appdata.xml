@@ -38,6 +38,7 @@
   <name xml:lang="sl">KGeoTag</name>
   <name xml:lang="sv">Kgeotag</name>
   <name xml:lang="tr">KGeoTag</name>
+  <name xml:lang="ug">KGeoTag</name>
   <name xml:lang="uk">KGeoTag</name>
   <name xml:lang="zh-CN">KGeoTag</name>
   <name xml:lang="zh-TW">KGeoTag</name>
@@ -72,6 +73,7 @@
   <summary xml:lang="sl">Program za geokodiranje fotografij</summary>
   <summary xml:lang="sv">Program för geografisk lokalisering av foton</summary>
   <summary xml:lang="tr">Coğrafî Fotoğraf Etiketleyicisi</summary>
+  <summary xml:lang="ug">سۈرەت جۇغراپىيەلىك بەلگە پىروگراممىسى</summary>
   <summary xml:lang="uk">Програма для роботи з геомітками фотографій</summary>
   <summary xml:lang="zh-CN">照片地理标签管理程序</summary>
   <summary xml:lang="zh-TW">相片地理位置標記工具</summary>
