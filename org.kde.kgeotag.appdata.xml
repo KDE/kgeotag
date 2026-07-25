@@ -49,6 +49,7 @@
   <summary xml:lang="ar">برنامج تحديد الموقع الجغرافي للصور</summary>
   <summary xml:lang="ca">Programa de geoetiquetatge de fotografies</summary>
   <summary xml:lang="ca-valencia">Programa de geoetiquetatge de fotografies</summary>
+  <summary xml:lang="cs">Program pro geoznačkování fotografií</summary>
   <summary xml:lang="de">Anwendung zum Geotaggen von Fotos</summary>
   <summary xml:lang="en-GB">Photo geotagging program</summary>
   <summary xml:lang="eo">Programo por geo-etikedado de fotoj</summary>
@@ -82,6 +83,7 @@
     <p xml:lang="ar">الواسم الجغرافي هو برنامج مستقل لوضع العلامات الجغرافية. يمكن ربط الصور بالإحداثيات الجغرافية بطرق مختلفة: من ناحية، يمكن إجراء مطابقة مع البيانات الجغرافية المشفرة بواسطة GPX، ومن ناحية أخرى، يمكن تعيين الإحداثيات يدويًا، إما عن طريق السحب والإفلات على الخريطة، أو عن طريق الإشارات المرجعية، أو عن طريق إدخالها يدويًا. يمكن تخزين الإحداثيات في رأس Exif للصور و/أو في ملفات XMP sidecar.</p>
     <p xml:lang="ca">El KGeoTag és un programa de geoetiquetatge independent. Les imatges es poden associar amb coordenades geogràfiques de maneres diferents: d'una banda, es pot fer una coincidència amb les geodades codificades amb GPX, per altra banda, les coordenades es poden establir manualment, ja sigui mitjançant arrossegar i deixar anar sobre un mapa, mitjançant enllaços d'interès o subministrant-los manualment. Les coordenades es poden emmagatzemar a la capçalera Exif de les imatges i/o en fitxers laterals XMP.</p>
     <p xml:lang="ca-valencia">KGeoTag és un programa de geoetiquetatge independent. Les imatges es poden associar amb coordenades geogràfiques de maneres diferents: d'una banda, es pot fer una coincidència amb les geodades codificades amb GPX, per altra banda, les coordenades es poden establir manualment, ja siga mitjançant arrossegar i deixar anar sobre un mapa, mitjançant enllaços d'interés o subministrant-los manualment. Les coordenades es poden emmagatzemar en la capçalera Exif de les imatges i/o en fitxers laterals XMP.</p>
+    <p xml:lang="cs">KGeoTag je samostatný program pro geoznačkování. Obrázky lze k geografickým souřadnicím přiřadit různými způsoby: jednak lze provést přiřazení pomocí geodat zakódovaných ve formátu GPX, jednak lze souřadnice zadat ručně, a to buď přetažením myší na mapu, pomocí záložek, nebo jejich ručním zadáním. Souřadnice lze uložit do hlavičky Exif obrázků a/nebo do doprovodných souborů XMP.</p>
     <p xml:lang="en-GB">KGeoTag is a stand-alone geotagging program. Images can be associated with geographic coordinates by different means: On the one hand, a matching with GPX encoded geodata can be done, on the other hand, the coordinates can be set manually, either via drag and drop onto a map, via bookmarks or by manually supplying them. The coordinates can be stored in the images' EXIF header and/or in XMP sidecar files.</p>
     <p xml:lang="eo">KGeoTag estas memstara geomarkada programo. Bildoj povas esti asociitaj kun geografiaj koordinatoj per malsamaj rimedoj: Unuflanke, kongruo kun GPX-kodigitaj geodatenoj povas esti faritaj, aliflanke, la koordinatoj povas esti metitaj permane, ĉu per treno/faligo sur mapon, per legosignoj aŭ per permana donado de ili. La koordinatoj povas esti konservitaj en la Exif-kaplinio de la bildoj kaj/aŭ en XMP-kromdosieroj.</p>
     <p xml:lang="es">KGeoTag es un programa de geoetiquetado autónomo. Se pueden asociar imágenes con coordenadas geográficas de distintas formas: por un lado, se puede realizar una coincidencia con geodatos codificados en GPX; por otro, se pueden definir las coordenadas de forma manual, ya sea arrastrando y soltando en un mapa, usando marcadores o introduciéndolas a mano. Las coordenadas se pueden guardar en las cabeceras Exif de las imágenes y/o en archivos XMP anexos.</p>
@@ -113,6 +115,7 @@
       <caption xml:lang="ar">تحديد الموقع الجغرافي باستخدام برنامج الواسم الجغرافي</caption>
       <caption xml:lang="ca">Etiquetatge geogràfic amb el KGeoTag</caption>
       <caption xml:lang="ca-valencia">Etiquetatge geogràfic amb KGeoTag</caption>
+      <caption xml:lang="cs">Geoznačkování s KGeoTag</caption>
       <caption xml:lang="de">Geotagging mit KGeoTag</caption>
       <caption xml:lang="en-GB">Geotagging with KGeoTag</caption>
       <caption xml:lang="eo">Geomarkado per KGeoTag</caption>
