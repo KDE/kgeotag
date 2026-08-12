@@ -180,7 +180,7 @@ msgstr "أضف علامةً جديدةً"
 #: src/BookmarksList.cpp:152
 #, kde-format
 msgid "The bookmark \"%1\" already exists, created \"%2\" instead."
-msgstr "العلامة الجديدة «%1» موجودة من قبل، إنشاء «%2» بدلاً عنه."
+msgstr "العلامة الجديدة «%1» موجودة من قبل، إنشاء «%2» بدلًا عنه."
 
 #: src/BookmarksList.cpp:193 src/BookmarksList.cpp:201
 #, kde-format
