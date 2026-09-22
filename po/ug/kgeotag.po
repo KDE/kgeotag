@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-14 00:41+0000\n"
-"PO-Revision-Date: 2026-05-31 18:31-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
@@ -170,7 +170,7 @@ msgstr "ماۋزۇسىز"
 #, kde-format
 msgctxt "Adding a consecutive number to a bookmark label to make it unique"
 msgid "%1 (%2)"
-msgstr "%1 (%2)"
+msgstr ""
 
 #: src/BookmarksList.cpp:151
 #, kde-format
@@ -237,7 +237,7 @@ msgstr "مېرىدىئان(ئۇزۇنلۇق):"
 #, kde-format
 msgctxt "Degrees symbol"
 msgid " °"
-msgstr " °"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
 #, kde-format
@@ -256,14 +256,14 @@ msgstr ""
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"East\""
 msgid "E"
-msgstr "E"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:63 src/CoordinatesFormatter.cpp:86
 #: src/CoordinatesParser.cpp:39
 #, kde-format
 msgctxt "Abbreviated cardinal direction \"West\""
 msgid "W"
-msgstr "W"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:65
 #, kde-format
@@ -293,7 +293,7 @@ msgstr ""
 #, kde-format
 msgctxt "Meters abbreviation"
 msgid " m"
-msgstr " m"
+msgstr ""
 
 #: src/CoordinatesDialog.cpp:91
 #, kde-format
@@ -324,7 +324,7 @@ msgstr ""
 #, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1°"
+msgstr ""
 
 #: src/CoordinatesFormatter.cpp:50 src/CoordinatesParser.cpp:89
 #, kde-format
@@ -349,13 +349,13 @@ msgstr "%1، %2"
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr "%1 %2"
+msgstr ""
 
 #: src/CoordinatesFormatter.cpp:99
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr "%1 m"
+msgstr ""
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -384,7 +384,7 @@ msgstr ""
 #, kde-format
 msgctxt "A server error status followed by the error description"
 msgid "%1: %2"
-msgstr "%1: %2"
+msgstr ""
 
 #: src/ElevationEngine.cpp:169
 #, kde-format
@@ -536,7 +536,7 @@ msgstr ""
 #, kde-format
 msgctxt "Marker for a file with a pending change"
 msgid " *"
-msgstr " *"
+msgstr ""
 
 #: src/ImagesModel.cpp:60
 #, kde-format
@@ -550,7 +550,7 @@ msgstr ""
 #: src/main.cpp:32 src/MainWindow.cpp:73
 #, kde-format
 msgid "KGeoTag"
-msgstr "KGeoTag"
+msgstr ""
 
 #: src/main.cpp:34
 #, kde-format
@@ -1655,7 +1655,7 @@ msgstr ""
 #: src/SettingsDialog.cpp:170 src/SettingsDialog.cpp:179
 #, kde-format
 msgid "px"
-msgstr "px"
+msgstr ""
 
 #: src/SettingsDialog.cpp:172
 #, kde-format
