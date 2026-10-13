@@ -2,13 +2,13 @@
 # This file is distributed under the same license as the kgeotag package.
 #
 # Volkan Gezer <volkangezer@gmail.com>, 2021.
-# SPDX-FileCopyrightText: 2022, 2023, 2024, 2025, 2026 Emir SARI <emir_sari@icloud.com>
+# SPDX-FileCopyrightText: 2022-2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-14 00:41+0000\n"
-"PO-Revision-Date: 2026-05-02 18:56+0300\n"
+"PO-Revision-Date: 2026-10-12 11:37+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -1023,7 +1023,7 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%1</kbd>.</p>"
 msgstr ""
-"<p><b>Görselin Exif üstbilgisi veya XMP sepet dosyası yüklenemedi</b></"
+"<p><b>Görselin Exif üst bilgisi veya XMP sepet dosyası yüklenemedi</b></"
 "p><p><kbd>%1</kbd> okunamadı.</p>"
 
 #: src/MainWindow.cpp:842
@@ -1033,7 +1033,7 @@ msgid ""
 "<p><b>Loading image's Exif header or XMP sidecar file failed</b></p><p>Could "
 "not read <kbd>%2</kbd>.</p>"
 msgstr ""
-"<p><b>Görselin Exif üstbilgisi veya XMP sepet dosyası yüklenemedi</b></"
+"<p><b>Görselin Exif üst bilgisi veya XMP sepet dosyası yüklenemedi</b></"
 "p><p><kbd>%2</kbd> okunamadı.</p>"
 
 #: src/MainWindow.cpp:854
@@ -1945,7 +1945,7 @@ msgstr "Değişiklikleri şuraya yaz:"
 #: src/SettingsDialog.cpp:304
 #, kde-format
 msgid "Exif header"
-msgstr "Exif üstbilgisi"
+msgstr "Exif üst bilgisi"
 
 #: src/SettingsDialog.cpp:306
 #, kde-format
@@ -1955,12 +1955,12 @@ msgstr "XMP sepet dosyası"
 #: src/SettingsDialog.cpp:308
 #, kde-format
 msgid "Exif header and XMP sidecar file"
-msgstr "Exif üstbilgisi ve XMP sepet dosyası"
+msgstr "Exif üst bilgisi ve XMP sepet dosyası"
 
 #: src/SettingsDialog.cpp:317
 #, kde-format
 msgid "Allow altering Exif headers of RAW images"
-msgstr "RAW görsellerinin Exif üstbilgilerini değiştirmeye izin ver"
+msgstr "RAW görsellerinin Exif üst bilgilerini değiştirmeye izin ver"
 
 #: src/SettingsDialog.cpp:322
 #, kde-format
