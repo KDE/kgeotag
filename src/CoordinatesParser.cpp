@@ -71,7 +71,7 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
     // Match degrees, minutes and decimal seconds
 
     auto ecapedDegMinDecSec = i18nc(
-        "Formatted coordinates as degrees, minutes and decimal seconds", "%1° %2' %3\"",
+        "Formatted coordinates as degrees, minutes and decimal seconds", "%1° %2′ %3″",
         QStringLiteral("%1"), QStringLiteral("%2"), QStringLiteral("%3"));
     ecapedDegMinDecSec.replace(QStringLiteral("\\%1"), QStringLiteral("%1"));
     ecapedDegMinDecSec.replace(QStringLiteral("\\%2"), QStringLiteral("%2"));
@@ -86,7 +86,7 @@ CoordinatesParser::CoordinatesParser(QObject *parent, QLocale *locale)
     // Match degrees and decimal minutes
 
     auto escapedDegDecMin = i18nc(
-        "Formatted coordinates as degrees and decimal minutes", "%1° %2'",
+        "Formatted coordinates as degrees and decimal minutes", "%1° %2′",
         QStringLiteral("%1"), QStringLiteral("%2"));
     escapedDegDecMin.replace(QStringLiteral("\\%1"), QStringLiteral("%1"));
     escapedDegDecMin.replace(QStringLiteral("\\%2"), QStringLiteral("%2"));

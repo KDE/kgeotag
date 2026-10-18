@@ -47,7 +47,7 @@ QString CoordinatesFormatter::formatLonLat(double value) const
     {
         double decimalMinutes;
         const auto degrees = DegreesConverter::fromDecimal(std::abs(value), &decimalMinutes);
-        return i18nc("Formatted coordinates as degrees and decimal minutes", "%1° %2'",
+        return i18nc("Formatted coordinates as degrees and decimal minutes", "%1° %2′",
                      QString::number(degrees),
                      m_locale->toString(decimalMinutes, 'f', KGeoTag::minutesPrecision));
     }
@@ -59,7 +59,7 @@ QString CoordinatesFormatter::formatLonLat(double value) const
         const auto degrees = DegreesConverter::fromDecimal(std::abs(value),
                                                            &minutes, &decimalSeconds);
         return i18nc("Formatted coordinates as degrees, minutes and decimal seconds",
-                     "%1° %2' %3\"",
+                     "%1° %2′ %3″",
                      QString::number(degrees),
                      QString::number(minutes),
                      m_locale->toString(decimalSeconds, 'f', KGeoTag::secondsPrecision));
