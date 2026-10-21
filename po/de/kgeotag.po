@@ -2,14 +2,14 @@
 # This file is distributed under the same license as the kgeotag package.
 # SPDX-FileCopyrightText: 2021 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2021-2023 Frederik Schwarzer <schwarzer@kde.org>
-# SPDX-FileCopyrightText: 2024 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2024, 2026 Alois Spitzbart <spitz234@hotmail.com>
 # SPDX-FileCopyrightText: 2024 Tobias Leupold <tl@stonemx.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-03-14 00:41+0000\n"
-"PO-Revision-Date: 2024-06-02 20:34+0200\n"
+"PO-Revision-Date: 2026-10-18 22:51+0200\n"
 "Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 24.05.0\n"
+"X-Generator: Lokalize 26.11.70\n"
 
 #, kde-format
 msgctxt "NAME OF TRANSLATORS"
@@ -191,10 +191,9 @@ msgid "Rename Bookmark"
 msgstr "Lesezeichen umbenennen"
 
 #: src/BookmarksList.cpp:194
-#, fuzzy, kde-format
-#| msgid "New label for the new bookmark:"
+#, kde-format
 msgid "New label for the bookmark \"%1\":"
-msgstr "Neuer Name für das neue Lesezeichen:"
+msgstr "Neuer Name für das Lesezeichen „%1“:"
 
 #: src/BookmarksList.cpp:202
 #, kde-format
@@ -223,10 +222,9 @@ msgid "\"%1\""
 msgstr "„%1“"
 
 #: src/BookmarksWidget.cpp:47
-#, fuzzy, kde-format
-#| msgid "Position: %1, %2; Altitude: %3 m"
+#, kde-format
 msgid "Position: %1; Altitude: %2"
-msgstr "Position: %1, %2; Höhe: %3 m"
+msgstr "Position: %1; Höhe: %2"
 
 #: src/CoordinatesDialog.cpp:39
 #, kde-format
@@ -245,20 +243,16 @@ msgid " °"
 msgstr " °"
 
 #: src/CoordinatesDialog.cpp:55 src/CoordinatesDialog.cpp:73
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Minutes symbol"
 msgid " '"
-msgstr " m"
+msgstr " ′"
 
 #: src/CoordinatesDialog.cpp:59 src/CoordinatesDialog.cpp:77
-#, fuzzy, kde-format
-#| msgctxt "Meters abbreviation"
-#| msgid " m"
+#, kde-format
 msgctxt "(Degree) Seconds symbol"
 msgid " \""
-msgstr " m"
+msgstr " ″"
 
 #: src/CoordinatesDialog.cpp:62 src/CoordinatesFormatter.cpp:85
 #: src/CoordinatesParser.cpp:37
@@ -330,47 +324,41 @@ msgid "Coordinates for %1:"
 msgstr "Koordinaten für %1:"
 
 #: src/CoordinatesFormatter.cpp:43 src/CoordinatesParser.cpp:100
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as decimal degrees"
 msgid "%1°"
-msgstr "%1° %2"
+msgstr "%1°"
 
 #: src/CoordinatesFormatter.cpp:50 src/CoordinatesParser.cpp:89
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees and decimal minutes"
 msgid "%1° %2'"
-msgstr "%1° %2"
+msgstr "%1° %2′"
 
 #: src/CoordinatesFormatter.cpp:62 src/CoordinatesParser.cpp:74
-#, fuzzy, kde-format
-#| msgctxt "Formatted longitude with a cardinal direction"
-#| msgid "%1° %2"
+#, kde-format
 msgctxt "Formatted coordinates as degrees, minutes and decimal seconds"
 msgid "%1° %2' %3\""
-msgstr "%1° %2"
+msgstr "%1° %2′ %3″"
 
 #: src/CoordinatesFormatter.cpp:76 src/CoordinatesParser.cpp:50
 #, kde-format
 msgctxt "Formatted coordinates, \"lon, lat\" or \"lat, lon\""
 msgid "%1, %2"
-msgstr ""
+msgstr "%1, %2"
 
 #: src/CoordinatesFormatter.cpp:83 src/CoordinatesFormatter.cpp:91
 #: src/CoordinatesParser.cpp:44
 #, kde-format
 msgctxt "Formatted latitude or longitude with a cardinal direction"
 msgid "%1 %2"
-msgstr ""
+msgstr "%1 %2"
 
 #: src/CoordinatesFormatter.cpp:99
 #, kde-format
 msgctxt "Formatted altitude in meters"
 msgid "%1 m"
-msgstr ""
+msgstr "%1 m"
 
 #: src/ElevationEngine.cpp:122
 #, kde-format
@@ -490,7 +478,7 @@ msgstr "Dem Lesezeichen zuweisen"
 #: src/ImagesListView.cpp:108
 #, kde-format
 msgid "Assign to map center"
-msgstr "Der Mitte der Karte zuweisen"
+msgstr "Dem Zentrum der Karte zuweisen"
 
 #: src/ImagesListView.cpp:113
 #, kde-format
@@ -574,10 +562,9 @@ msgid "Photo geotagging program"
 msgstr "Anwendung zum Geotaggen von Fotos"
 
 #: src/main.cpp:36
-#, fuzzy, kde-format
-#| msgid "Copyright (C) 2020-2025 Tobias Leupold"
+#, kde-format
 msgid "Copyright © 2020-2026 Tobias Leupold"
-msgstr "© 2020–2025 Tobias Leupold"
+msgstr "© 2020–2026 Tobias Leupold"
 
 #: src/main.cpp:41
 #, kde-format
@@ -641,10 +628,9 @@ msgid "Correlate images with GPS data (search matches)"
 msgstr "Bilder den GPS-Daten zuweisen"
 
 #: src/MainWindow.cpp:143
-#, fuzzy, kde-format
-#| msgid "(Re)Assign all images"
+#, kde-format
 msgid "(Re-)Assign to map center"
-msgstr "Alle Bilder (neu) zuweisen"
+msgstr "Dem Zentrum der Karte (wieder) zuweisen"
 
 #: src/MainWindow.cpp:149
 #, kde-format
@@ -1458,10 +1444,9 @@ msgid "Please select one or more images"
 msgstr "Bitte wählen Sie einen Ordner aus"
 
 #: src/MapCenterInfo.cpp:48
-#, fuzzy, kde-format
-#| msgid "Map center position: %1, %2"
+#, kde-format
 msgid "Map center position: %1"
-msgstr "Kartenposition zentrieren (%1, %2)"
+msgstr "Kartenzentrumsposition: %1"
 
 #: src/MapWidget.cpp:86
 #, kde-format
@@ -1474,50 +1459,44 @@ msgid "Crosshairs"
 msgstr "Fadenkreuz"
 
 #: src/MapWidget.cpp:141
-#, fuzzy, kde-format
-#| msgid "Assign to map center"
+#, kde-format
 msgid "Current map center"
-msgstr "Der Mitte der Karte zuweisen"
+msgstr "Aktuelles Zentrum der Karte"
 
 #: src/MapWidget.cpp:144
-#, fuzzy, kde-format
-#| msgid "Remove coordinates"
+#, kde-format
 msgid "Copy formatted coordinates"
-msgstr "Koordinaten entfernen"
+msgstr "Formatierte Koordinaten kopieren"
 
 #: src/MapWidget.cpp:149 src/MapWidget.cpp:159
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copy coordinates to clipboard"
-msgstr "Koordinaten aus der Zwischenablage einstellen"
+msgstr "Koordinaten in die Zwischenablage kopieren"
 
 #: src/MapWidget.cpp:150 src/MapWidget.cpp:160
-#, fuzzy, kde-format
-#| msgid "Set coordinates from clipboard"
+#, kde-format
 msgid "Copied \"%1\" to the clipboard!"
-msgstr "Koordinaten aus der Zwischenablage einstellen"
+msgstr "„%1“ in die Zwischenablage kopiert!"
 
 #: src/MapWidget.cpp:154
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Copy as \"latitude, longitude\""
-msgstr "Längengrad:"
+msgstr "Als „Breitengrad, Längengrad“ kopieren"
 
 #: src/MapWidget.cpp:167
 #, kde-format
 msgid "OpenStreetMap"
-msgstr ""
+msgstr "OpenStreetMap"
 
 #: src/MapWidget.cpp:173
 #, kde-format
 msgid "Google Maps"
-msgstr ""
+msgstr "Google Maps"
 
 #: src/MapWidget.cpp:181
-#, fuzzy, kde-format
-#| msgid "Add new bookmark"
+#, kde-format
 msgid "Add bookmark"
-msgstr "Neues Lesezeichen hinzufügen"
+msgstr "Lesezeichen hinzufügen"
 
 #: src/PreviewWidget.cpp:36
 #, kde-format
@@ -1582,28 +1561,27 @@ msgstr "Aktuelles Bild überspringen"
 #: src/SearchPlacesWidget.cpp:39
 #, kde-format
 msgid "Search term"
-msgstr ""
+msgstr "Suchbegriff"
 
 #: src/SearchPlacesWidget.cpp:49
 #, kde-format
 msgid "Start search"
-msgstr ""
+msgstr "Suche beginnen"
 
 #: src/SearchPlacesWidget.cpp:55
 #, kde-format
 msgid "Reset search"
-msgstr ""
+msgstr "Suche zurücksetzen"
 
 #: src/SearchPlacesWidget.cpp:64
 #, kde-format
 msgid "Search results"
-msgstr ""
+msgstr "Suchergebnisse"
 
 #: src/SearchPlacesWidget.cpp:85
-#, fuzzy, kde-format
-#| msgid "Saving changes ..."
+#, kde-format
 msgid "Searching ..."
-msgstr "Änderungen werden gespeichert ..."
+msgstr "Suchen …"
 
 #: src/SearchPlacesWidget.cpp:102
 #, kde-format
@@ -1621,10 +1599,9 @@ msgid "KGeoTag settings"
 msgstr "KGeoTag-Einstellungen"
 
 #: src/SettingsDialog.cpp:59
-#, fuzzy, kde-format
-#| msgid "Coordinates:"
+#, kde-format
 msgid "Coordinates"
-msgstr "Koordinaten:"
+msgstr "Koordinaten"
 
 #: src/SettingsDialog.cpp:71
 #, fuzzy, kde-format
@@ -1639,10 +1616,9 @@ msgid "Longitude, latitude"
 msgstr "Längengrad:"
 
 #: src/SettingsDialog.cpp:74
-#, fuzzy, kde-format
-#| msgid "Longitude:"
+#, kde-format
 msgid "Latitude, longitude"
-msgstr "Längengrad:"
+msgstr "Breitengrad, Längengrad"
 
 #: src/SettingsDialog.cpp:78
 #, fuzzy, kde-format
