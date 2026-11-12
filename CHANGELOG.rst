@@ -53,8 +53,8 @@ Added
 Changed
 =======
 
-* Updated the timezones data files to 2026e (cf. Timezone Boundary Builder's `Release Announcement
-  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2026e>`_).
+* Updated the timezones data files to 2026f (cf. Timezone Boundary Builder's `Release Announcement
+  <https://github.com/evansiroky/timezone-boundary-builder/releases/tag/2026f>`_).
 
 Deprecated
 ==========
