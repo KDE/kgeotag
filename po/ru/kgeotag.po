@@ -7,8 +7,8 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-08 02:55+0000\n"
-"PO-Revision-Date: 2026-04-03 19:37+0200\n"
-"Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
+"PO-Revision-Date: 2026-11-11 22:59+0200\n"
+"Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
@@ -2054,7 +2054,7 @@ msgstr "Создавать резервную копию перед измене
 #: src/SettingsDialog.cpp:360
 #, kde-format
 msgid "Opacity: %1%"
-msgstr "Непрозрачность: %1%"
+msgstr "Непрозрачность: %1 %"
 
 #: src/SettingsDialog.cpp:407
 #, kde-format
