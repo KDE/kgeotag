@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kgeotag\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-08 02:55+0000\n"
-"PO-Revision-Date: 2026-11-16 19:17+0300\n"
+"PO-Revision-Date: 2026-11-23 18:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -526,7 +526,7 @@ msgstr[1] "Görselleri kaldır"
 #: src/ImagesListView.cpp:168 src/PreviewWidget.cpp:48
 #, kde-format
 msgid "Open with default viewer"
-msgstr "Öntanımlı görüntüleyiciyle aç"
+msgstr "Varsayılan görüntüleyiciyle aç"
 
 #: src/ImagesListView.cpp:197
 #, kde-format
@@ -652,7 +652,7 @@ msgstr "Tüm değiştirilmiş görsellerin üst verisini kaydet"
 #: src/MainWindow.cpp:170
 #, kde-format
 msgid "Set default dock arrangement"
-msgstr "Öntanımlı rıhtım düzenini ayarla"
+msgstr "Varsayılan rıhtım düzenini ayarla"
 
 #: src/MainWindow.cpp:193
 #, kde-format
@@ -951,7 +951,7 @@ msgid ""
 "file could not be detected.</p><p>Please set the correct timezone manually "
 "on the \"Fix time drift\" page.</p>"
 msgstr ""
-"<p>Yüklü GPX dosyası ile ilişkili görseller için doğru olduğu öntanımlı "
+"<p>Yüklü GPX dosyası ile ilişkili görseller için doğru olduğu varsayılan "
 "zaman dilimi algılanamadı.</p><p>Lütfen, “Zaman sapmasını düzelt” "
 "sayfasından doğru zaman dilimini el ile ayarlayın.</p>"
 
@@ -1970,7 +1970,7 @@ msgid ""
 "sidecar files. Have backups and check your Exif data to be still complete "
 "and correct when using this!"
 msgstr ""
-"<b>Dikkat!</b> Bu özellik deneyseldir. Öntanımlı olarak, “Değişiklikleri "
+"<b>Dikkat!</b> Bu özellik deneyseldir. Varsayılan olarak, “Değişiklikleri "
 "şuraya yaz” ayarından farklı biçimde, RAW dosyalarına yapılan tüm "
 "değişiklikler XMP sepet dosyasına yazılır. Yedek alın ve bunu kullanırken "
 "Exif verinizin hâlâ tam olduğundan emin olun!"
